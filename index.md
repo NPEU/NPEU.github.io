@@ -4,6 +4,8 @@ title: NPEU Styleguide
 project_base_url: styleguide
 ---
 
+This is a work in progress.
+
 * [Tokens](tokens)
 * [Elements](elements)
 * [Pages](pages)
