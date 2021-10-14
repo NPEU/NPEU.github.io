@@ -1,0 +1,40 @@
+/*! UKOSS Theme (c) NPEU */
+
+/* --| START THEME |----------------------------------------------------------------------------- */
+
+//@import "_themes-config.scss";
+// Note darkening the brand color for contrast purposes - e.g. navbar and themed background boxes.
+$theme-name: ukoss;
+$theme: (
+    cta-text-color       : #ffffff,
+    cta-background-color : #9E1E54,
+    primary-color        : darken(#66B7E7, 13%),
+    secondary-color      : #9E1E54,
+    page-header-color    : #ffffff
+);
+
+
+$s__breakpoint--enhanced: 83em;
+
+$theme-copy: $theme;
+$theme-name-copy: $theme-name;
+@import "_style";
+
+
+
+$theme-only: true;
+@import "_themeable-patterns.scss";
+
+
+//$theme: map_get($themes, $theme-name);
+$theme: $theme-copy;
+$theme-name: $theme-name-copy;
+@import "_theme";
+
+/* ---------------------------------------------------------------------------------------------- */
+
+/* --| SHAME |----------------------------------------------------------------------------------- */
+
+@import "_shame";
+
+/* ---------------------------------------------------------------------------------------------- */

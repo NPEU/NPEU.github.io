@@ -1,0 +1,163 @@
+/*
+*/
+$meter-namespace: c- !default;
+$theme-namespace: t- !default;
+
+$meter--text-color: currentColor !default;
+$meter-spacing-unit: 2rem !default;
+
+$theme-only: false !default;
+
+@mixin meter-theme ($theme-name: "", $theme: ()) {
+	// Set up theme name:
+	$theme-class: "";
+	@if $theme-name != "" {
+		$theme-class: unquote('.')#{$theme-namespace}#{$theme-name};
+	}
+	//@debug $theme-class;
+
+    $text-color : map-get($theme, meter-text-color);
+
+	/*@if $border-color == null {
+		$border-color: darken($background-color, 10%);
+    }*/
+
+	// Problem here is that we only want to set a darker border colour if we haven't explicated
+	// set one. Default is passed to config, but theme override may be different and we need to know
+	// if it is, because we don't want to auto-darken if we've deliberately set a specific color.
+	// We want to allow a theme cascade (setting minimum properties) but also allow specific
+	// overrides, but should allow for branched cascades too.
+	// Handle override default versus specified in theme.
+
+	// Weirdly, SASS throws an error at this
+	// "Error: Base-level rules cannot contain the parent-selector-referencing character '&'."
+	// There's no '&' being used, so not sure what's going on.
+	// Using nested option as a workaround.
+	//.#{$meter-namespace}meter.#{$theme-prefix}#{$theme-name} {
+	// + meter + . + #{$theme-prefix} + #{$theme-name}
+	.#{$meter-namespace}meter#{$theme-class} {
+
+		color: $text-color;
+
+	}
+
+}
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+    .#{$meter-namespace}meter {
+
+        &#{&} {
+            position: relative;
+        }
+
+        & meter {
+            display: block;
+            width: 100%;
+            //border-style: solid;
+            //border-width: 1px;
+            //border-color: currentColor;
+            box-shadow: 0 0 0 1px currentColor;
+            background: transparent;
+            border-radius: 0.6rem;
+            height: #{$meter-spacing-unit / 2};
+            margin: #{$meter-spacing-unit / 4} 0;
+            position: relative;
+            overflow: hidden;
+
+
+            // For some reason using a comma between selectors prevents things working properly, so
+            // repeating the declarations for now:
+
+            /* 1. Edge */
+            &::-webkit-meter-bar {
+                border: 0; /* [1] */
+                background: transparent;
+            }
+
+            /*&::-moz-meter-bar {
+                background: transparent;
+            }*/
+
+            /*&::-moz-meter-bar {
+                background: currentColor;
+            }*/
+
+            &::-webkit-meter-optimum-value {
+                background: currentColor;
+            }
+
+            &:-moz-meter-optimum::-moz-meter-bar {
+                background: currentColor;
+            }
+
+            // Fallback for non-supporting browsers:
+            > span {
+                display: block;
+                text-indent: 100%;
+                background: currentColor;
+                overflow: hidden;
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: #{$meter-spacing-unit / 2};
+
+            }
+        }
+
+            // Marker positioned using inline width rather than inline left because IE doesn't move
+            // the marker if the window is resized otherwise.
+            #{&}__marker {
+                position: relative;
+
+                font-size: 0.75em;
+
+                height: $meter-spacing-unit;
+
+                &::before,
+                &::after {
+                    display: block;
+                    position: absolute;
+                    right: 0;
+                    transform: translateX(50%);
+                }
+
+                &::before {
+                    content: "";
+                    top: -#{$meter-spacing-unit / 8};
+
+                    // Triangle:
+                    width: 0px;
+                    height: 0px;
+                    border-left: #{$meter-spacing-unit / 4} solid transparent;
+                    border-right: #{$meter-spacing-unit / 4} solid transparent;
+                    border-bottom: #{$meter-spacing-unit / 4} solid currentColor;
+                }
+
+                &::after {
+                    content: attr(data-value);
+                }
+            }
+
+            /*& meter {
+                //display: block;
+                //width: 100%;
+                opacity: 0;
+            }*/
+
+            /*#{&}__value {
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 1.2rem;
+                background-color: currentColor;
+            }*/
+    }
+
+    @include meter-theme(
+        "",
+        (
+            meter-text-color : $meter--text-color,
+        )
+    );
+}

@@ -1,0 +1,482 @@
+/*
+    The `height: 100%;` in the `.card` class below allows the card to fill it's container (if inside,
+    say, a list-grid). However, it doesn't work in Safari OSX/iOS.
+    Applying a `card-wrap` class to a list item to make those items flex-containers seems to work
+    OK, but perhaps this would be better abstracted as a `fill-height` class or something?
+
+    Note IE10-11 flexbox for card, main and body causes problems when in other flex contexts.
+    For IE10 I'm just leaving off the -ms prefixes - it's still usable without flex.
+*/
+
+$card-namespace: c- !default;
+$theme-namespace: t- !default;
+
+$card--base-color: #eee !default;
+
+$card-spacing-unit: 2rem !default;
+
+$card--hover-effect-opacity: 0.2 !default;
+
+// Card outer:
+
+$card--text-color: #333 !default;
+$card--background-color: $card--base-color !default;
+
+$card--border-or-outline: 'outline' !default;
+$card--border-width:  1px !default;
+$card--border-style:  solid  !default;
+$card--border-radius: 0  !default;
+$card--border-color:  darken($card--background-color, 10%) !default;
+
+
+$card-breakpoint: 30em !default;
+$card-pull: 5rem !default;
+
+
+// Card main:
+
+$card-main--text-color: $card--text-color !default;
+$card-main--background-color: $card--background-color !default;
+
+// Card title:
+
+$card-title--text-color: $card--text-color !default;
+$card-title--background-color: $card-main--background-color !default;
+
+
+$card--padding: 0 !default;
+
+// Card body:
+/*
+$card-cta--border-width: 1px !default;
+$card-cta--border-style: solid !default;
+$card-cta--border-radius: 3px !default;
+*/
+$card-body--padding: $card-spacing-unit !default;
+$card-body--margin-left:   0 !default;
+$card-body--margin-right:  0 !default;
+$card-body--margin-top:    0 !default;
+$card-body--margin-bottom: 0 !default;
+
+$card-body--pull-over: 0 !default;
+
+
+// Card title:
+$card-title--font-size: 3rem !default;
+$card-title--line-height: 1.2 !default;
+
+$card-stub-title--font-size: 2.4rem !default;
+$card-stub-title--line-height: 1 !default;
+
+
+// Card text links:
+/*
+$card--link-color: false !default;
+$card--link-color--alt: false !default;
+$card--link-has-border-bottom: false !default;
+$card--link-border-bottom: false !default;
+$card--link-border-bottom--alt: false !default;
+
+// If we've specified a link color for the card, but not an alt state (e.g. hover)
+// then generate one
+@if $card--link-color != false and $card--link-color--alt == false {
+    $card--link-color--alt: darken($card--link-color, 10%) !default;;
+}
+
+// If we've specified a link color for the card, and we want bottom borders, generate the borders:
+@if $card--link-color != false and $card--link-has-border-bottom != false {
+    $card--link-border-bottom: 1px solid lighten($card--link-color, 20%) !default;
+    $card--link-border-bottom--alt: 2px solid lighten($card--link-color--alt, 30%) !default;
+}
+*/
+// Card buttons:
+/*
+$card-button--text-color: #fff !default;
+$card-button--background-color: $card--base-color !default;
+$card-button--background-color-alt: lighten($card--base-color, 20%) !default;
+$card-button--border-color: darken($card--base-color, 20%) !default;
+*/
+
+// Card info:
+$card-info--font-size: 1.4rem;
+
+$theme-only: false !default;
+
+
+/*
+    .#{$card-namespace}card-wrap .#{$card-namespace}card {
+
+        //width: 100%;
+    }
+*/
+// Themes mixin:
+@mixin card-theme ($theme-name: "", $theme: (), $pattern-varient: "") {
+    // Set up theme name:
+    $theme-class: "";
+    @if $theme-name != "" {
+        $theme-class: unquote('.')#{$theme-namespace}#{$theme-name};
+    }
+
+
+//.c-card .c-card__full-link,
+// .c-card .c-card__full-link:hover
+    .#{$card-namespace}card#{$pattern-varient} .#{$card-namespace}card__full-link#{$theme-class},
+    .#{$card-namespace}card#{$pattern-varient} .#{$card-namespace}card__full-link#{$theme-class}:hover {
+        background: map-get($theme, card-background-color);
+    }
+    
+    .#{$card-namespace}card#{$pattern-varient}#{$theme-class},
+    .#{$card-namespace}card#{$pattern-varient}#{$theme-class} .#{$card-namespace}card__main {
+		background-color: map-get($theme, card-main-background-color);
+	}
+
+    .#{$card-namespace}card#{$pattern-varient}#{$theme-class} .#{$card-namespace}card__main .#{$card-namespace}card__title,
+    .#{$card-namespace}card#{$pattern-varient}#{$theme-class} .#{$card-namespace}card__main .#{$card-namespace}card__body,
+    .#{$card-namespace}card#{$pattern-varient}#{$theme-class} .#{$card-namespace}card__main .#{$card-namespace}card__footer {
+        color: map-get($theme, card-text-color);
+        background-color: map-get($theme, card-main-background-color);
+        
+        a[href] {
+            background-color: map-get($theme, card-main-background-color);
+            color: map-get($theme, card-text-color);
+
+            &:hover,
+            &:active,
+            &:focus {
+                background-color: map-get($theme, card-main-background-color);
+                color: map-get($theme, card-text-color);
+            }
+        }
+    }
+
+    @if map-has-key($theme, card-border-color) {
+        .#{$card-namespace}card#{$pattern-varient}#{$theme-class} {
+            border-color: map-get($theme, card-border-color);
+        }
+    }
+}
+
+
+// Themed content mixin:
+@mixin card-themed-content ($theme-name: "", $theme: ()) {
+    // Set up theme name:
+    $theme-class: "";
+    @if $theme-name != "" {
+        $theme-class: unquote('.')#{$theme-namespace}#{$theme-name};
+    }
+
+    .#{$card-namespace}card--themed-content#{$theme-class} .#{$card-namespace}card__main::before {
+        background-color: map-get($theme, primary-color);
+    }
+}
+
+
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+
+    /*
+        IE10-11 needs this wrapper to behave properly.
+        If you're not supporting IE11, you don't this this CSS or the HTML that goes with it.   
+    */
+    /*.#{$card-namespace}card-wrap {
+        &#{&} {
+            display: flex;
+            height: 100%;
+        }
+
+        & > .#{$card-namespace}card {
+            flex-basis: 100%;
+        }
+    }*/
+    
+    /*
+        Older webkit browsers also need special treatment.
+        
+        1. Chrome 39-50, Opera 26-37, Safari/iOS 9-10. Using prefixed property as flex-direction
+           breaks IE11 otherwise, so may as well use for all.
+    */
+    //_:-webkit-any-link, :root .#{$card-namespace}card-wrap.#{$card-namespace}card-wrap {
+    //    
+    //    height: auto;
+    //    flex: 1 0 auto; /* [1] */
+    //    flex-direction: column; /* [1] */
+    //}
+    
+    /*
+        1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
+    */
+    .#{$card-namespace}card {
+        &#{&} {
+            display: flex;
+            flex-direction: column;
+
+            min-height: 100%;
+            flex-grow: 1;
+
+            margin: 0;
+
+            color: $card--text-color;
+            background-color: $card--background-color;
+            padding: $card--padding;
+
+
+            @if $card--border-or-outline == 'outline' {
+                outline: $card--border-width $card--border-style $card--border-color;
+            }
+
+            @if $card--border-or-outline == 'border' {
+                border-color:  $card--border-color;
+                border-style:  $card--border-style;
+                border-width:  $card--border-width;
+                border-radius: $card--border-radius;
+            }
+
+            /*
+                If the 'pull' is > module body content height, it'll protrude below the container,
+                so hide it:
+            */
+            overflow: hidden;
+            
+            width: 0; /* [1] */
+            min-width: 100%; /* [1] */
+        }
+
+
+
+        > * {
+            flex: 0 0 auto;
+
+            width: 100%;
+        }
+
+        #{&}__image {
+            position: relative;
+            text-align: center;
+        }
+
+            #{&}__image img {
+                width: 100%;
+            }
+
+
+            #{&}__image-link,
+            #{&}__image-link:hover {
+                border-bottom: 0;
+                margin-bottom: 0;
+            }
+
+            #{&}__full-link {
+                flex: 1 0 auto;
+                
+                display: flex;
+                flex-direction: column;
+            }
+
+            #{&}__full-link,
+            #{&}__full-link:hover {
+                border-bottom: 0;
+                margin-bottom: 0;
+                padding-bottom: 0;
+
+                background: $card-main--background-color;
+
+                position: relative;
+                display: block;
+
+                min-height: 100%;
+            }
+
+
+            #{&}__full-link:hover::before,
+            #{&}__full-link:active::before,
+            #{&}__full-link:focus::before {
+                border: 0;
+                content: "";
+                display: block;
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                opacity: $card--hover-effect-opacity;
+                background: #000;
+                z-index: 1;
+            }
+
+
+
+        #{&}__main {
+            // Positioning context for themed bar and extended actionable area:
+            position: relative;
+
+            color: $card-main--text-color;
+            background-color: $card-main--background-color;
+
+            margin-left: $card-body--margin-left;
+            margin-right: $card-body--margin-right;
+            margin-top: $card-body--margin-top;
+            margin-bottom: $card-body--margin-bottom;
+            padding: $card-body--padding;
+
+            flex: 1 0 auto;
+
+            display: flex;
+            flex-direction: column;
+
+            position: relative;
+        }
+
+            #{&}__title {
+                flex: 0 0 auto;
+
+                font-size:   $card-title--font-size;
+                line-height: $card-title--line-height;
+                width: 100%;
+                margin-bottom: $card-spacing-unit;
+
+
+                a {
+                    // Reset any inherited link effects:
+                    //all: initial;
+
+                    // Un-reset font settings:
+                    font-size: inherit;
+                    line-height: inherit;
+                    font-weight: inherit;
+                    font-family: inherit;
+                    color: inherit;
+
+                    cursor: pointer;
+
+                }
+                
+                &:only-child {
+                    margin-bottom: 0;
+                }
+            }
+
+            &#{&}--stub #{&}__title {
+                font-size:   $card-stub-title--font-size;
+                line-height: $card-stub-title--line-height;
+            }
+
+            #{&}__body {
+                flex: 1 0 auto;
+
+                display: flex;
+                flex-direction: column;
+
+                width: 100%;
+
+                & > * {
+                    flex: 0 0 auto;
+                }
+
+                & > :last-child {
+                    margin-bottom: 0;
+                }
+            }
+
+                #{&}__cta {
+                    flex: 1 0 auto;
+
+                    display: flex;
+                    justify-content: flex-end;
+                    align-content: flex-start;
+
+                     > * {
+                        align-self: flex-end;
+                    }
+                }
+
+
+            #{&}__footer {
+                flex: 0 0 auto;
+
+                margin-left: $card-body--margin-left;
+                margin-right: $card-body--margin-right;
+                margin-top: auto;
+                margin-bottom: 0;
+                padding-top: $card-body--padding / 2;
+                width: 100%;
+            }
+
+            #{&}__body + #{&}__footer {
+                margin-top: $card-spacing-unit / 2;
+            }
+
+
+                #{&}__footer > * {
+                    margin: 0;
+                }
+
+
+                #{&}__info {
+                    font-size: $card-info--font-size;
+
+                    margin-bottom: -($card-body--padding / 2);
+                    margin-top: -($card-body--padding / 2);
+                    border-top: 1px solid #999;
+                    padding-top: calc((#{$card-body--padding / 2} - 1px);
+                }
+
+
+        &#{&}--themed-content #{&}__main > * {
+            padding-left: 1rem;
+        }
+
+        // Note that this themed bar should a visual representation of the category or group to
+        // to which this card belongs. If you're using this themed bar, make sure you also include
+        // the category/group information somewhere (e.g. in the footer info or as a kicker),
+        // Otherwise this information isn't accessible.
+        &#{&}--themed-content #{&}__main::before {
+            display: block;
+            content: "";
+            width: 0.75rem;
+            position: absolute;
+            top: 1rem;
+            bottom: 1rem;
+            left: 1rem;
+            background-color: #999;
+        }
+    }
+    
+    /*
+        Chrome 39-50, Opera 26-37, Safari/iOS 9-10:
+        1. iOS 9-10 collapses box if using height, so using min-height instead.
+    */
+    //_:-webkit-any-link, :root .#{$card-namespace}card.#{$card-namespace}card {
+    //    flex: 1 0 auto;
+    //    height: auto; /* [1] */
+    //    min-height: 100%; /* [1] */
+    //}
+
+    /*
+    @include card-theme(
+        "",
+        (
+            card-text-color       : $primary-cta--text-color,
+            card-background-color : $primary-cta--background-color
+        )
+    );
+    */
+}
+
+.#{$card-namespace}card--unpublished {
+    opacity: 0.5;
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+    
+    &::after {
+        content: "Unpublished";
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 3px;
+        font-size: 0.75em;
+        color: #fff;
+        background-color: #000;
+    }
+}

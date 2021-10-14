@@ -1,0 +1,243 @@
+/*
+    The `height: 100%;` in the `.event` class below allows the event to fill it's container (if inside,
+    say, a list-grid). However, it doesn't work in Safari OSX/iOS.
+    Applying a `event-wrap` class to a list item to make those items flex-containers seems to work
+    OK, but perhaps this would be better abstracted as a `fill-height` class or something?
+*/
+
+$event-namespace: c- !default;
+$theme-namespace: t- !default;
+
+$event--base-color: #eee !default;
+
+$event-spacing-unit: 2rem !default;
+
+// Event outer:
+
+$event--text-color: #333 !default;
+$event--background-color: $event--base-color !default;
+$event--background-color--alt: darken($event--base-color, 15%) !default;
+
+$event--border-or-outline: 'outline' !default;
+$event--border-width:  1px !default;
+$event--border-style:  solid  !default;
+$event--border-radius: 0  !default;
+$event--border-color:  darken($event--background-color, 10%) !default;
+
+
+$event-breakpoint: 30em !default;
+
+
+
+// Event body:
+
+$event-body--text-color: $event--text-color !default;
+$event-body--background-color: $event--background-color !default;
+
+$event-title--text-color: $event--text-color !default;
+$event-title--background-color: $event--background-color !default;
+
+
+$event--padding: $event-spacing-unit !default;
+
+
+/*
+$event-cta--border-width: 1px !default;
+$event-cta--border-style: solid !default;
+$event-cta--border-radius: 3px !default;
+*/
+$event-body--padding:       $event-spacing-unit !default;
+$event-body--margin-left:   0 !default;
+$event-body--margin-right:  0 !default;
+$event-body--margin-top:    0 !default;
+$event-body--margin-bottom: 0 !default;
+
+$event-body--pull-over: 0 !default;
+
+
+// Event title:
+$event-title--font-size: 3rem !default;
+
+
+// Event text links:
+/*
+$event--link-color: false !default;
+$event--link-color--alt: false !default;
+$event--link-has-border-bottom: false !default;
+$event--link-border-bottom: false !default;
+$event--link-border-bottom--alt: false !default;
+
+// If we've specified a link color for the event, but not an alt state (e.g. hover)
+// then generate one
+@if $event--link-color != false and $event--link-color--alt == false {
+    $event--link-color--alt: darken($event--link-color, 10%) !default;;
+}
+
+// If we've specified a link color for the event, and we want bottom borders, generate the borders:
+@if $event--link-color != false and $event--link-has-border-bottom != false {
+    $event--link-border-bottom: 1px solid lighten($event--link-color, 20%) !default;
+    $event--link-border-bottom--alt: 2px solid lighten($event--link-color--alt, 30%) !default;
+}
+*/
+// Event buttons:
+/*
+$event-button--text-color: #fff !default;
+$event-button--background-color: $event--base-color !default;
+$event-button--background-color-alt: lighten($event--base-color, 20%) !default;
+$event-button--border-color: darken($event--base-color, 20%) !default;
+*/
+
+/*
+    IE11 needs this wrapper to behave properly.
+    If you're not supporting IE11, you don't this this CSS or the HTML that goes with it.
+*/
+.#{$event-namespace}event-wrap {
+    display: flex;
+
+    height: 100%;
+    
+    & > .#{$event-namespace}event {
+        flex-basis: 100%;
+    }
+}
+
+    // Themes mixin:
+    //@mixin event--themer (
+    //    $theme-name: "",
+    //    $background-color: $event--base-color
+    //) {
+    //    // Set up theme name:
+    //    $theme-class: "";
+    //    @if $theme-name != "" {
+    //        $theme-class: unquote('.')#{$theme-namespace}#{$theme-name};
+    //    }
+    //
+    //    .#{$event-namespace}event--themed-content#{$theme-class} .#{$event-namespace}event__body::before {
+    //        background-color: $background-color;
+    //    }
+    //}
+
+$theme-only: false !default;
+
+// Note - no theme yet!
+
+// We don't need this if we're only themeing the pattern:
+/*
+    1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
+*/
+@if $theme-only == false {
+
+    .#{$event-namespace}event {
+        &#{&} {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;    
+            justify-content: space-between;
+            align-items: flex-end;
+
+            height: 100%;
+            //width: 100%;
+
+            color: $event--text-color;
+            background: $event--background-color;
+            padding: $event--padding;
+
+
+            @if $event--border-or-outline == 'outline' {
+                outline: $event--border-width $event--border-style $event--border-color;
+            }
+
+            @if $event--border-or-outline == 'border' {
+                border-color:  $event--border-color;
+                border-style:  $event--border-style;
+                border-width:  $event--border-width;
+                border-radius: $event--border-radius;
+            }
+
+            // If the 'pull' is > module body content height, it'll protrude below the container,
+            // so hide it:
+
+            overflow: hidden;
+            
+            width: 0; /* [1] */
+            min-width: 100%; /* [1] */
+        }
+
+            &#{&}--cancelled {
+                background: $event--background-color--alt;
+            }
+
+
+            > * {
+                flex: 0 1 auto;
+
+                width: 100%;
+            }
+
+
+            #{&}__title {
+                border-bottom: 1px solid #999;
+                padding-bottom: $event-spacing-unit / 2;
+                margin-bottom: $event-spacing-unit / 2;
+            }
+
+
+            #{&}__speaker {
+                font-weight: bold;
+                font-size: 2.4rem;
+
+                margin: 0;
+            }
+
+
+            #{&}__speaker-role {
+                font-weight: normal;
+                font-size: 1.4rem;
+
+                border-bottom: 1px solid #999;
+                padding-bottom: $event-spacing-unit / 2;
+                margin-bottom: 0;
+            }
+
+
+            #{&}__datetime {
+                width: auto;
+
+                font-weight: bold;
+                font-size: 2.4rem;
+
+                margin: $event-spacing-unit 0 0 0;
+            }
+
+            #{&}__action {
+                width: auto;
+                margin: $event-spacing-unit 0 0 auto;
+                padding-left: $event-spacing-unit;
+            }
+
+
+            #{&}__title {
+                font-size: $event-title--font-size;
+            }
+    }
+}
+
+
+// IE10
+// Padding causes size problems for flex, so trying margin on children instead.
+/*
+_:-ms-lang(x), .#{$event-namespace}event.#{$event-namespace}event {
+    padding-left: 0\9;
+    padding-right: 0\9;
+}
+
+_:-ms-lang(x), .#{$event-namespace}event.#{$event-namespace}event > * {
+
+    margin-left: #{$event--padding}\9;
+    margin-right: #{$event--padding}\9;
+
+}
+
+_:-ms-lang(x), .#{$event-namespace}event.#{$event-namespace}event .#{$event-namespace}event__action {
+    margin-right: #{$event--padding}\9;
+}*/

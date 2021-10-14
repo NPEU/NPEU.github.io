@@ -1,0 +1,245 @@
+/*
+    Note featurettes should only appear in the main body and fill the width, so media queries are
+    ok here - we don't need to worry about other contexts and container-queries.
+*/
+
+$featurette-namespace: c- !default;
+$theme-namespace: t- !default;
+
+$featurette--base-color: #eee !default;
+
+$featurette-spacing-unit: 2rem !default;
+
+// featurette outer:
+
+$featurette--text-color: #333 !default;
+$featurette--background-color: #fff !default;
+
+$featurette--border-or-outline: false !default;
+$featurette--border-width:  1px !default;
+$featurette--border-style:  solid  !default;
+$featurette--border-radius: 0  !default;
+$featurette--border-color:  darken($featurette--background-color, 10%) !default;
+
+
+$featurette-breakpoint: 45em !default;
+
+
+// featurette body:
+
+$featurette-body--text-color: $featurette--text-color !default;
+$featurette-body--background-color: $featurette--background-color !default;
+
+$featurette-title--text-color: $featurette--text-color !default;
+$featurette-title--background-color: $featurette--background-color !default;
+
+
+$featurette--padding: 0 !default;
+
+
+/*
+$featurette-cta--border-width: 1px !default;
+$featurette-cta--border-style: solid !default;
+$featurette-cta--border-radius: 3px !default;
+*/
+$featurette-body--padding:       $featurette-spacing-unit !default;
+$featurette-body--margin-left:   0 !default;
+$featurette-body--margin-right:  0 !default;
+$featurette-body--margin-top:    0 !default;
+$featurette-body--margin-bottom: 0 !default;
+
+
+
+// featurette title:
+$featurette-title--font-size: 3rem !default;
+
+
+
+// featurette text links:
+/*
+$featurette--link-color: false !default;
+$featurette--link-color--alt: false !default;
+$featurette--link-has-border-bottom: false !default;
+$featurette--link-border-bottom: false !default;
+$featurette--link-border-bottom--alt: false !default;
+
+// If we've specified a link color for the featurette, but not an alt state (e.g. hover)
+// then generate one
+@if $featurette--link-color != false and $featurette--link-color--alt == false {
+    $featurette--link-color--alt: darken($featurette--link-color, 10%) !default;;
+}
+
+// If we've specified a link color for the featurette, and we want bottom borders, generate the borders:
+@if $featurette--link-color != false and $featurette--link-has-border-bottom != false {
+    $featurette--link-border-bottom: 1px solid lighten($featurette--link-color, 20%) !default;
+    $featurette--link-border-bottom--alt: 2px solid lighten($featurette--link-color--alt, 30%) !default;
+}
+*/
+// featurette buttons:
+/*
+$featurette-button--text-color: #fff !default;
+$featurette-button--background-color: $featurette--base-color !default;
+$featurette-button--background-color-alt: lighten($featurette--base-color, 20%) !default;
+$featurette-button--border-color: darken($featurette--base-color, 20%) !default;
+*/
+
+$theme-only: false !default;
+
+// Themes mixin:
+@mixin featurette-theme ($theme-name: "", $theme: ()) {
+    // Set up theme name:
+    $theme-class: "";
+    @if $theme-name != "" {
+        $theme-class: unquote('.')#{$theme-namespace}#{$theme-name};
+    }
+
+    .#{$featurette-namespace}featurette#{$theme-class},
+    .#{$featurette-namespace}featurette#{$theme-class} * {
+        background-color: map-get($theme, background-color);
+        
+        
+        @if color_light_or_dark(map-get($theme, text-color)) == 'light' {
+            color: map-get($theme, text-color);
+        } @else {
+            color: #fff;
+        }
+    }
+}
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+    
+    /*
+        1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
+    */
+    .#{$featurette-namespace}featurette {
+        &#{&} {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+
+            //height: 100%;
+            //width: 100%;
+            
+            width: 0; /* [1] */
+            min-width: 100%; /* [1] */
+
+            color: $featurette--text-color;
+            background: $featurette--background-color;
+            padding: $featurette--padding;
+
+
+            @if $featurette--border-or-outline == 'outline' {
+                outline: $featurette--border-width $featurette--border-style $featurette--border-color;
+            }
+
+            @if $featurette--border-or-outline == 'border' {
+                border-color:  $featurette--border-color;
+                border-style:  $featurette--border-style;
+                border-width:  $featurette--border-width;
+                border-radius: $featurette--border-radius;
+            }
+        }
+
+        &#{&}--pull-image {
+            margin-top: $featurette-spacing-unit * 2;
+        }
+
+        &#{&}--pull-image #{&}__image {
+            margin-top: -$featurette-spacing-unit;
+        }
+
+        & > * {
+            flex: 1 0 auto;
+
+            width: 100%;
+        }
+
+
+        #{&}__image {
+            position: relative;
+            text-align: center;
+            max-width: 13em;
+            order: -1;
+
+            & img {
+                width: 100%;
+            }
+
+            &-link,
+            &-link:hover {
+                border-bottom: 0;
+            }
+
+        }
+
+        #{&}__image--round {
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+
+        #{&}__body {
+            padding: $featurette-body--padding;
+
+
+            // Featurettes are designed for Power Quotes, so putting these styles here, though they do
+            // seem a little out of place:
+            & > blockquote {
+                margin-left: 0;
+            }
+        }
+    }
+
+
+    @media (min-width: #{$featurette-breakpoint}) {
+
+        // IE10 - doesn't take padding into account (in this case 5% each side), so reducing the
+        // flex basis here by 16% fixes the problem).
+        /*_:-ms-lang(x), .#{$featurette-namespace}featurette.#{$featurette-namespace}featurette {
+            -ms-flex-preferred-size: 84%;
+        }*/
+
+
+        .#{$featurette-namespace}featurette {
+            &#{&} {
+                padding-left: 8%;
+                padding-right: 8%;
+            }
+
+                #{&}__image {
+                    width: auto;
+                    max-width: none;
+                }
+
+                #{&}__body,
+                #{&}__body--50 {
+                    max-width: 50%;
+                }
+
+                #{&}__body--60 {
+                    max-width: 60%;
+                }
+
+                #{&}__body--70 {
+                    max-width: 70%;
+                }
+
+                #{&}__body--80 {
+                    max-width: 80%;
+                }
+
+                #{&}__body--90 {
+                    max-width: 90%;
+                }
+
+                #{&}__body--fill {
+                    max-width: none;
+                    width: 100%;
+                }
+            }
+
+    }
+}

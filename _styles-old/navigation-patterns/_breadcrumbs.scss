@@ -1,0 +1,47 @@
+/*
+
+*/
+
+$breadcrumbs-namespace: n- !default;
+$theme-namespace: t- !default;
+
+$breadcrumbs--base-color: #eee !default;
+
+$breadcrumbs-spacing-unit: 2rem !default;
+
+$breadcrumbs-font-size: 0.875em !default;
+
+
+$breadcrumbs__item--spacing: $breadcrumbs-spacing-unit / 4 !default;
+
+$breadcrumbs__item--separator: "\00a0/" !default;
+
+.#{$breadcrumbs-namespace}breadcrumbs {
+    &#{&} {
+        display: inline-flex;
+        flex-wrap: wrap;
+
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        font-size: $breadcrumbs-font-size;
+    }
+
+        .#{$breadcrumbs-namespace}breadcrumbs__title,
+        .#{$breadcrumbs-namespace}breadcrumbs__item {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .#{$breadcrumbs-namespace}breadcrumbs__title {
+            margin-right: $breadcrumbs__item--spacing * 2;
+        }
+
+        .#{$breadcrumbs-namespace}breadcrumbs__item:not(:first-of-type)::before {
+            content: $breadcrumbs__item--separator;
+            margin-left: $breadcrumbs__item--spacing;
+            margin-right: $breadcrumbs__item--spacing;
+        }
+
+}

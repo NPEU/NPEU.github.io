@@ -1,0 +1,220 @@
+/*
+    Note brochures should only appear in the main body and fill the width, so media queries are
+    ok here - we don't need to worry about other contexts and container-queries.
+*/
+
+$brochure-namespace: c- !default;
+$theme-namespace: t- !default;
+
+$brochure--base-color: #fff !default;
+
+$brochure-spacing-unit: 2rem !default;
+
+// Brochure outer:
+
+$brochure--text-color: #333 !default;
+$brochure--background-color: $brochure--base-color !default;
+
+$brochure--border-or-outline: 'outline' !default;
+$brochure--border-width:  1px !default;
+$brochure--border-style:  solid  !default;
+$brochure--border-radius: 0  !default;
+$brochure--border-color:  darken($brochure--background-color, 10%) !default;
+
+
+$brochure-breakpoint: 45em !default;
+
+
+// Brochure body:
+
+$brochure-body--text-color: $brochure--text-color !default;
+$brochure-body--background-color: $brochure--background-color !default;
+
+$brochure-title--text-color: $brochure--text-color !default;
+$brochure-title--background-color: $brochure--background-color !default;
+
+
+$brochure--padding: 0 !default;
+
+
+/*
+$brochure-cta--border-width: 1px !default;
+$brochure-cta--border-style: solid !default;
+$brochure-cta--border-radius: 3px !default;
+*/
+$brochure-body--padding:       $brochure-spacing-unit !default;
+$brochure-body--margin-left:   0 !default;
+$brochure-body--margin-right:  0 !default;
+$brochure-body--margin-top:    0 !default;
+$brochure-body--margin-bottom: 0 !default;
+
+$brochure-body--pull-over: 0 !default;
+
+
+// Brochure title:
+$brochure-title--font-size: 3rem !default;
+
+
+
+// Brochure text links:
+/*
+$brochure--link-color: false !default;
+$brochure--link-color--alt: false !default;
+$brochure--link-has-border-bottom: false !default;
+$brochure--link-border-bottom: false !default;
+$brochure--link-border-bottom--alt: false !default;
+
+// If we've specified a link color for the brochure, but not an alt state (e.g. hover)
+// then generate one
+@if $brochure--link-color != false and $brochure--link-color--alt == false {
+    $brochure--link-color--alt: darken($brochure--link-color, 10%) !default;;
+}
+
+// If we've specified a link color for the brochure, and we want bottom borders, generate the borders:
+@if $brochure--link-color != false and $brochure--link-has-border-bottom != false {
+    $brochure--link-border-bottom: 1px solid lighten($brochure--link-color, 20%) !default;
+    $brochure--link-border-bottom--alt: 2px solid lighten($brochure--link-color--alt, 30%) !default;
+}
+*/
+// Brochure buttons:
+/*
+$brochure-button--text-color: #fff !default;
+$brochure-button--background-color: $brochure--base-color !default;
+$brochure-button--background-color-alt: lighten($brochure--base-color, 20%) !default;
+$brochure-button--border-color: darken($brochure--base-color, 20%) !default;
+*/
+/*.#{$brochure-namespace}brochure-wrap {
+
+
+}
+
+    .#{$brochure-namespace}brochure-wrap .#{$brochure-namespace}brochure {
+
+        //width: 100%;
+    }
+*/
+
+
+$theme-only: false !default;
+
+// Note - no theme yet!
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+
+    .#{$brochure-namespace}brochure {
+        &#{&} {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            //height: 100%;
+            //width: 100%;
+
+            color: $brochure--text-color;
+            background: $brochure--background-color;
+            padding: $brochure--padding;
+            margin: 0;
+
+
+            @if $brochure--border-or-outline == 'outline' {
+                outline: $brochure--border-width $brochure--border-style $brochure--border-color;
+            }
+
+            @if $brochure--border-or-outline == 'border' {
+                border-color:  $brochure--border-color;
+                border-style:  $brochure--border-style;
+                border-width:  $brochure--border-width;
+                border-radius: $brochure--border-radius;
+            }
+
+            /*max-width: 20em;*/
+            /*margin-top: 0 auto;
+            margin-bottom: 1.5rem;
+            margin-left: auto;
+            margin-right: auto;*/
+
+            /*
+                If the 'pull' is > module body content height, it'll protrude below the container,
+                so hide it:
+            */
+            overflow: hidden;
+        }
+
+        > * {
+            flex: 1 0 auto;
+        }
+            
+            
+
+            #{&}__image {
+                position: relative;
+                text-align: center;
+                
+                img {
+                    width: 100%;
+                }
+            }
+
+                #{&}__image-link,
+                #{&}__image-link:hover {
+                    border-bottom: 0;
+                }
+
+
+
+
+            #{&}__body {
+                /*color: $brochure-body--text-color;
+                background: $brochure-body--background-color;
+
+                margin-left: $brochure-body--margin-left;
+                margin-right: $brochure-body--margin-right;
+                margin-top: $brochure-body--margin-top;
+                margin-bottom: $brochure-body--margin-bottom;*/
+                padding: $brochure-body--padding;
+                /*//padding: $brochure-body--padding $brochure-body--padding 0 $brochure-body--padding;
+
+                -webkit-flex: 1 0 auto;
+                    -ms-flex: 1 0 auto;
+                        flex: 1 0 auto;
+                        */
+        
+                /*&::after {
+                    content: "";
+                    display: block;
+                    margin-top: $brochure-body--padding;
+                    margin-bottom: -1px;
+                    height: 1px;
+                }*/
+            }
+
+            
+            
+            
+        @media (min-width: #{$brochure-breakpoint}) {
+            .#{$brochure-namespace}brochure--reversed .#{$brochure-namespace}brochure__image {
+                order: -1;
+            }
+
+            .#{$brochure-namespace}brochure > * {
+                width: 50%;
+            }
+            
+            @supports (display: grid) {
+                .#{$brochure-namespace}brochure.#{$brochure-namespace}brochure {
+                    display: grid;
+                    grid-template-columns: 50% 50%;
+                }
+                
+                .#{$brochure-namespace}brochure > * {
+                    width: auto;
+                }
+            }
+            
+            .#{$brochure-namespace}brochure .#{$brochure-namespace}brochure__image {
+                max-height: none;
+            }
+        }
+    }
+}

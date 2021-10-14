@@ -1,0 +1,135 @@
+/*
+    Note featurettes should only appear in the main body and fill the width, so media queries are
+    ok here - we don't need to worry about other contexts and container-queries.
+*/
+
+$featurette-namespace: c- !default;
+
+
+$featurette--base-color: #eee !default;
+
+$featurette-spacing-unit: 2rem !default;
+
+// featurette outer:
+
+$featurette--text-color: #333 !default;
+$featurette--background-color: #fff !default;
+
+$featurette--border-or-outline: false !default;
+$featurette--border-width:  1px !default;
+$featurette--border-style:  solid  !default;
+$featurette--border-radius: 0  !default;
+$featurette--border-color:  darken($featurette--background-color, 10%) !default;
+
+
+$featurette-breakpoint: 45em !default;
+
+
+// featurette body:
+
+$featurette-body--text-color: $featurette--text-color !default;
+$featurette-body--background-color: $featurette--background-color !default;
+
+$featurette-title--text-color: $featurette--text-color !default;
+$featurette-title--background-color: $featurette--background-color !default;
+
+
+$featurette--padding: 0 !default;
+
+
+/*
+$featurette-cta--border-width: 1px !default;
+$featurette-cta--border-style: solid !default;
+$featurette-cta--border-radius: 3px !default;
+*/
+$featurette-body--padding:       $featurette-spacing-unit !default;
+$featurette-body--margin-left:   0 !default;
+$featurette-body--margin-right:  0 !default;
+$featurette-body--margin-top:    0 !default;
+$featurette-body--margin-bottom: 0 !default;
+
+
+
+// featurette title:
+$featurette-title--font-size: 3rem !default;
+
+
+
+/*
+    1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
+*/
+.#{$featurette-namespace}featurette {
+    &#{&} {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+
+        padding-left: calc(8% - #{$s__sz-l});
+        padding-right: calc(8% - #{$s__sz-l});
+
+        width: 0; /* [1] */
+        min-width: 100%; /* [1] */
+    }
+
+    & > * {
+        flex: 1 0 auto;
+
+        width: 100%;
+    }
+
+
+    #{&}__image {
+        align-self: center;
+        margin-bottom: 0;
+        position: relative;
+        text-align: center;
+        max-width: 13em;
+        order: -1;
+
+        & img {
+            width: 100%;
+        }
+
+        &-link,
+        &-link:hover {
+            border-bottom: 0;
+        }
+
+    }
+
+    #{&}__image--round {
+        border-radius: 100%;
+        overflow: hidden;
+    }
+    
+    
+    &#{&}--pull-image {
+        margin-top: $s__sz-l + $s__sz-m;
+    }
+
+    &#{&}--pull-image #{&}__image {
+        margin-top: -$s__sz-l;
+        margin-bottom: $s__sz-m;
+        align-self: flex-start;
+    }
+
+
+    #{&}__body {
+        padding: $s__sz-m  calc(8% - #{$s__sz-s});
+
+
+        // Featurettes are designed for Power Quotes, so putting these styles here, though they do
+        // seem a little out of place:
+        & > blockquote {
+            margin-left: 0;
+            margin-right: 0;
+            background-color: transparent !important;
+            color: inherit;
+
+            border-top: 1px dotted currentColor;
+            border-bottom: 1px dotted currentColor;
+        }
+    }
+}

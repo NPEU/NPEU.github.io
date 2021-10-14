@@ -1,0 +1,92 @@
+.c-utilitext {
+    font-size: 0.875em;
+}
+
+// Utilitext improvements
+/*
+p[role="list"] {
+    overflow-x: hidden;
+    overflow-y: visible;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+span[role="listitem"] {
+    white-space: nowrap;
+    padding-left: 1.5em;
+    margin-left: -1.5em;
+    margin-right: 1.5em;
+    text-indent: -0.15em;
+}
+
+span[role="listitem"]::before {
+    content: ' | ';
+    text-align: center;
+    display: inline-block;
+    width: 1.5em;
+    height: 1em;
+    margin-left: -1.5em;
+    text-indent: 0.3em;
+}
+
+[itemtype="https://schema.org/BreadcrumbList"] span[role="listitem"]::before {
+    content: ' / ';
+}
+
+span[role="listitem"] > * {
+    white-space: normal;
+}
+*/
+////
+
+
+
+// Improve link styles
+/*
+    1. This size allows 2px on normal fonts, 1px on smaller fonts.
+*
+a[href] {
+
+    margin: 0;
+    padding: 0;
+    border: 0;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 0.13em; /* [1] *
+    text-underline-offset: 0.2em;
+
+
+    &:hover, &:hover {
+        border: inherit;
+        text-decoration-style: dashed;
+    }
+}
+
+// FF appears to calculate thickness very differently form Chrome.
+@supports (-moz-appearance:none) {
+    a[href] {
+        text-decoration-thickness: 0.1em; /* [1] *
+    }
+}
+
+// IE11 alternaive styles since it doesn't support text-decoration properties:
+@media #{$s__ie10-11} {
+    a[href] {
+        &:hover, &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+// Give link icons some space unless they're the only child.
+a svg:not(:only-child) {
+    margin-left: 0.25em;
+}
+
+@media #{$s__ie10-11} {
+    a svg {
+        vertical-align: text-bottom;
+    }
+}
+*/

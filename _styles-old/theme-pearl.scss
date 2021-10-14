@@ -1,0 +1,39 @@
+/*! PEARL Theme (c) NPEU */
+
+/* --| START THEME |----------------------------------------------------------------------------- */
+
+//@import "_themes-config.scss";
+$theme-name: pearl;
+$theme: (
+    cta-text-color       : #ffffff,
+    cta-background-color : #878787,
+    primary-color        : #662483,
+    secondary-color      : #878787,
+    page-header-color    : #ffffff
+);
+
+
+$s__breakpoint--enhanced: 50em;
+
+$theme-copy: $theme;
+$theme-name-copy: $theme-name;
+@import "_style";
+
+
+
+$theme-only: true;
+@import "_themeable-patterns.scss";
+
+
+//$theme: map_get($themes, $theme-name);
+$theme: $theme-copy;
+$theme-name: $theme-name-copy;
+@import "_theme";
+
+/* ---------------------------------------------------------------------------------------------- */
+
+/* --| SHAME |----------------------------------------------------------------------------------- */
+
+@import "_shame";
+
+/* ---------------------------------------------------------------------------------------------- */

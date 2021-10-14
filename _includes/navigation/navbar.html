@@ -1,0 +1,129 @@
+<!--
+
+    NAVBAR
+
+-->
+
+
+<h2 id="navbar">Navbar</h2>
+
+<p>Note, this is a Fall-Back pattern.</p>
+
+<div class="u-space--below">
+
+    <div class="nav-bar  d-background" data-js="cmr">
+
+        <div class="nav-bar__start" data-area="navbar-controls">
+            <div class="nav-bar__item">
+                <button class="over-panel-control  d-background" hidden="" aria-controls="menu-panel" aria-label="Main menu" aria-expanded="false" data-js="overpanel__control"><svg display="none" focusable="false" class="icon  icon--is-closed" width="1.25em" height="1.25em"><use xlink:href="#icon-menu"></use></svg><svg display="none" focusable="false" class="icon  icon--is-open" width="1.25em" height="1.25em"><use xlink:href="#icon-cross"></use></svg></button>
+            </div>
+            <div class="nav-bar__item">
+                <button class="over-panel-control  d-background" hidden="" aria-controls="search-panel" aria-label="Search" aria-expanded="false" data-js="overpanel__control"><svg display="none" focusable="false" class="icon  icon--is-closed" width="1.25em" height="1.25em"><use xlink:href="#icon-search"></use></svg><svg display="none" focusable="false" class="icon  icon--is-open" width="1.25em" height="1.25em"><use xlink:href="#icon-cross"></use></svg></button>
+            </div>
+        </div>
+
+        <nav class="nav-bar__main" id="primary-nav" aria-label="Primary" data-area="main-nav">
+
+            <div class="over-panel  over-panel--fade" id="menu-panel" data-js="over-panel">
+                <button class="over-panel__overlay" hidden aria-hidden="true" tabindex="-1" data-js="over-panel__overlay"></button>
+                <div class="over-panel__contents  d-background" data-js="over-panel__contents">
+                    <ul class="nav-bar__items">
+                        <li class="nav-bar__item  dropdown-container">
+                            <a href="/contact" class="nav-bar__link"><span>Contact</span></a>
+                        </li>
+                        <li class="nav-bar__item  dropdown-container">
+                            <a href="/about" class="nav-bar__link"><span>About Us</span></a>
+                            <div class="dropdown  dropdown--only-wide" data-js="dropdown">
+                                <button id="about-alias-sub-menu" class="dropdown__control" data-js="dropdown__control" hidden="" aria-label="About Us sub-menu" aria-expanded="false"><svg display="none" focusable="false" class="icon  icon--is-closed" width="1.25em" height="1.25em"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" focusable="false" class="icon  icon--is-open" width="1.25em" height="1.25em"><use xlink:href="#icon-chevron-up"></use></svg></button>
+                                <div class="dropdown__area" id="about-alias-sub-menu--target">
+                                    <ul class="sub-nav__items  sub-nav__items--stacked  d-background--dark">
+                                        <li class="sub-nav__item">
+                                            <a href="/about/athena-swan" class="sub-nav__link"><span>Athena SWAN</span></a>
+                                        </li>
+                                        <li class="sub-nav__item">
+                                            <a href="/about/jobs" class="sub-nav__link"><span>Job Vacancies</span></a>
+                                        </li>
+                                        <li class="sub-nav__item">
+                                            <a href="/about/people" class="sub-nav__link"><span>People</span></a>
+                                        </li>
+                                        <li class="sub-nav__item">
+                                            <a href="/about/postgrad" class="sub-nav__link"><span>Postgraduate Studies</span></a>
+                                        </li>
+                                        <li class="sub-nav__item">
+                                            <a href="/about/seminars" class="sub-nav__link"><span>Seminars</span></a>
+                                        </li>
+                                        <li class="sub-nav__item">
+                                            <a href="/about/working-in-npeu" class="sub-nav__link"><span>Working in the NPEU</span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-bar__item  dropdown-container">
+                            <a href="/research" class="nav-bar__link"><span>Research</span></a>
+                            <div class="dropdown  dropdown--only-wide" data-js="dropdown">
+                                <button id="research-alias-sub-menu" class="dropdown__control" data-js="dropdown__control" hidden="" aria-label="Research sub-menu" aria-expanded="false"><svg display="none" focusable="false" class="icon  icon--is-closed" width="1.25em" height="1.25em"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" focusable="false" class="icon  icon--is-open" width="1.25em" height="1.25em"><use xlink:href="#icon-chevron-up"></use></svg></button>
+                                <div class="dropdown__area" id="research-alias-sub-menu--target">
+                                    <ul class="sub-nav__items  sub-nav__items--stacked  d-background--dark">
+                                        <li class="sub-nav__item">
+                                            <a href="/pru-mnhc" class="sub-nav__link"><span>PRU-MNHC</span></a>
+                                        </li>
+                                        <li class="sub-nav__item">
+                                            <a href="/ctu" class="sub-nav__link"><span>Clinical Trials Unit</span></a>
+                                        </li>
+                                        <li class="sub-nav__item">
+                                            <a href="/sheer" class="sub-nav__link"><span>SHEER</span></a>
+                                        </li>
+                                        <li class="sub-nav__item">
+                                            <a href="/research/projects" class="sub-nav__link"><span>Research Projects</span></a>
+                                        </li>
+                                        <li class="sub-nav__item">
+                                            <a href="/research/publications" class="sub-nav__link"><span>Publications</span></a>
+                                        </li>
+                                        <li class="sub-nav__item">
+                                            <a href="/mbrrace-uk" class="sub-nav__link"><span>MBRRACE-UK</span></a>
+                                        </li>
+                                        <li class="sub-nav__item">
+                                            <a href="/ukoss" class="sub-nav__link"><span>UKOSS</span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-bar__item  dropdown-container">
+                            <a href="/public-involvement" class="nav-bar__link"><span>Public Involvement</span></a>
+                        </li>
+                        <li class="nav-bar__item  dropdown-container">
+                            <a href="/news" class="nav-bar__link"><span>What's New</span></a>
+                        </li>
+                        <li class="nav-bar__item  dropdown-container">
+                            <a href="/privacy-notice" class="nav-bar__link"><span>Privacy Notice</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </nav>
+        
+        <div class="nav-bar__end" data-area="search-form" data-min-width="250">
+            <div class="over-panel  over-panel--fade" id="search-panel" data-js="over-panel">
+                <button class="over-panel__overlay" hidden aria-hidden="true" tabindex="-1" data-js="over-panel__overlay"></button>
+                <div class="over-panel__contents  d-background" data-js="over-panel__contents">
+                    <form action="/search" id="searchform" class="search-form  search-form---restrict-width" method="GET">
+                        <input type="search" class="search-form__field" id="search" placeholder="Search (e.g. Randomisation)" name="q" value="" aria-label="Search">
+                        <button class="search-form__submit" type="submit">
+                            <span>
+                                <svg width="1.25em" height="1.25em" viewBox="0 0 20 20" focusable="false">
+                                    <path fill="currentColor" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
+                                    <text y="-10">Search</text>
+                                </svg>
+                            </span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

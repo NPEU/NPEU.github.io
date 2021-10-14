@@ -1,0 +1,93 @@
+/*
+    The `height: 100%;` in the `.event` class below allows the event to fill it's container (if inside,
+    say, a list-grid). However, it doesn't work in Safari OSX/iOS.
+    Applying a `event-wrap` class to a list item to make those items flex-containers seems to work
+    OK, but perhaps this would be better abstracted as a `fill-height` class or something?
+*/
+
+$event-namespace: c- !default;
+
+$event-title--font-size: 2.2rem;
+$event-title--line-height: $s__base-rem-space-unit * 1.5;
+
+
+.#{$event-namespace}event {
+    &#{&} {   
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;    
+        justify-content: space-between;
+        align-items: flex-end;
+
+        height: 100%;
+
+        padding: $s__sz-m;
+        
+        border: 1px solid currentColor;
+        border-radius: $s__sz-s;
+
+        // If the 'pull' is > module body content height, it'll protrude below the container,
+        // so hide it:
+
+        overflow: hidden;
+        
+        width: 0;
+        min-width: 100%;
+    }
+
+        &#{&}--cancelled {
+        }
+
+
+        > * {
+            flex: 0 1 auto;
+
+            width: 100%;
+        }
+
+
+        #{&}__title {
+            border-bottom: 1px solid #999;
+            padding-bottom: $s__sz-m / 2;
+            margin-bottom: $s__sz-m / 2;
+        }
+
+
+        #{&}__speaker {
+            font-weight: bold;
+            font-size: 2.4rem;
+
+            margin: 0;
+        }
+
+
+        #{&}__speaker-role {
+            font-weight: normal;
+            font-size: 1.4rem;
+
+            border-bottom: 1px solid #999;
+            padding-bottom: $s__sz-m / 2;
+            margin-bottom: 0;
+        }
+
+
+        #{&}__datetime {
+            width: auto;
+
+            font-weight: bold;
+            font-size: 2.4rem;
+
+            margin: $s__sz-m 0 0 0;
+        }
+
+        #{&}__action {
+            width: auto;
+            margin: $s__sz-m 0 0 auto;
+        }
+
+
+        #{&}__title {
+            font-size: $event-title--font-size;
+            line-height: $event-title--line-height;
+        }
+}

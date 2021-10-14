@@ -1,0 +1,122 @@
+/*
+    Fill and area with an image.
+
+    ! NOTE: test this in all non-object-fit-supporting browsers as it may be a fix for those too.
+
+    This only works for landscape containers. If it's portrait it breaks unless the width and
+    translate are inverted, and that can't be detected if size changes.
+    Will be replying on JS to check for change to portrait and apply portrait class.
+
+    Also note:
+    Where a 'cover' image is in a flexible box, and especially in a ff-width pair where the two parts
+    stack on small widths, there's a problem in that the image has no height when stacked.
+    This is obvious, because when side-by-side, the image container height is the same as the 'other'
+    height, but when it's stacked, that's no longer the case. The only way I can think of to solve
+    this is to force a minimum height. We do this using the padding hack, similar to the
+    'proportional container' pattern.
+*/
+
+$image-cover-namespace: u- !default;
+
+/*
+    56.25% = 16:9 ratio
+    75%    = 4:3 ratio
+    100%   = 1:1 ratio
+*/
+$image-cover-min-heights: (
+    10%,
+    20%,
+    30%,
+    40%,
+    50%,
+    56.25%,
+    60%,
+    70%,
+    75%,
+    80%,
+    90%,
+    100%
+) !default;
+
+.#{$image-cover-namespace}image-cover {
+
+    &#{&} {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        // Safari:
+        flex: 1 0 auto;
+
+        &::before {
+            content: "";
+            display: block;
+            width: 100%;
+            padding-top: 1px;
+        }
+    }
+        @each $n in $image-cover-min-heights {
+            &#{&}--min-#{s__str-replace(#{s__strip-unit($n)}, '.', '-')} {
+                &::before {
+                    padding-top: $n;
+                }
+            }
+        }
+
+    .#{$image-cover-namespace}image-cover__inner {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        overflow: hidden;
+    }
+
+        .#{$image-cover-namespace}image-cover__image {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 100%;
+            height: auto;
+            transform: translate(-50%, -50%);
+            max-width: none;
+            max-height: none;
+        }
+
+}
+
+
+/* If `object-fit` is supported, use that and override vertical centering: */
+@supports (object-fit:cover) {
+    .#{$image-cover-namespace}image-cover {
+
+        .#{$image-cover-namespace}image-cover__image {
+            position: relative;
+            left: 0;
+            top: 0;
+            transform: none;
+
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+    }
+    
+    .#{$image-cover-namespace}image-cover--contain {
+
+        .#{$image-cover-namespace}image-cover__image {
+            object-fit: contain;
+        }
+    }
+
+    .#{$image-cover-namespace}image-cover {
+        min-height: auto;
+        
+        @each $n in $image-cover-min-heights {
+            &#{&}--min-#{s__strip-unit($n)} {
+                min-height: auto;
+            }
+        }
+
+    }
+}

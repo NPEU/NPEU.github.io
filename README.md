@@ -1,2 +1,2 @@
-# NPEU.github.io
-NPEU Styleguide
+# styleguide
+NPEU Style Guide and Pattern Library

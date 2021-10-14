@@ -1,0 +1,53 @@
+/*
+
+*/
+
+$contact-list-namespace: c- !default;
+$theme-namespace: t- !default;
+
+$theme-only: false !default;
+
+// Note - no theme yet!
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+
+    // Second selector is for user editor area.
+    .#{$contact-list-namespace}contact-list {
+        &#{&} {
+            dt {
+                display: none;
+            }
+
+            dd {
+                margin-bottom: $sz-xs;
+                position: relative;
+            }
+        }
+
+        // @TODO - this is a bit "magic number-y":
+        .icon {
+            margin-left: -1.75em;
+            margin-top: 0.1em;
+            position: absolute;
+        }
+    }
+
+    .#{$contact-list-namespace}contact-avatar {
+        &#{&} {
+            float: left;
+            margin: 0.5em;
+            width: 35%;
+            min-width: 8em;
+            max-width: 16em;
+            
+            //max-width: 100%;
+            //width: calc((32em - 100%) * 1000);
+            //min-width: 10em;
+            
+            border-radius: 99999px;
+            overflow: hidden;
+        }
+    }
+
+}

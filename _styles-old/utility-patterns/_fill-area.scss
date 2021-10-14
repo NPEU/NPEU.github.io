@@ -1,0 +1,9 @@
+/*
+*/
+
+$fill-area-namespace: u- !default;
+
+.#{$fill-area-namespace}fill-area {            
+    display: grid;
+    width: 100%;
+}

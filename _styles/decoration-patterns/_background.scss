@@ -1,0 +1,116 @@
+/*
+    Background
+    ===========
+*/
+
+$background-namespace: d- !default;
+
+
+[class*="#{$background-namespace}background"] {
+    background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
+    color: var(--t-primary-fore-text-color);
+}
+
+[class*="#{$background-namespace}background"].t-secondary {
+    background-color: hsl(var(--t-secondary-color-h), var(--t-secondary-color-s), var(--t-secondary-color-l));
+    color: var(--t-secondary-fore-text-color);
+}
+
+[class*="#{$background-namespace}background"].t-neutral {
+    background-color: hsl(var(--t-neutral-color-h), var(--t-neutral-color-s), var(--t-neutral-color-l));
+    color: var(--t-neutral-fore-text-color);
+}
+
+
+.#{$background-namespace}background--light {
+    /* For IE11: */
+    --t-primary-color-l: var(--t-primary-color-l--light);
+    --t-secondary-color-l: var(--t-secondary-color-l--light);
+    --t-neutral-color-l: var(--t-neutral-color-l--light);
+    /**/
+
+}
+/*
+    This isn't necessary while the IE11 stuff is present above, but keep it here for when the
+    IE11 stuff isn't needed any more.
+*
+@supports (--css: variables) {
+    .#{$background-namespace}background--light {
+        --t-primary-color-l: calc(var(--t-primary-color-l-copy) + ((100% - var(--t-primary-color-l-copy)) * var(--t-light-adjust)));
+        --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) + ((100% - var(--t-secondary-color-l-copy)) * var(--t-light-adjust)));
+        --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) + ((100% - var(--t-neutral-color-l-copy)) * var(--t-light-adjust)));
+    }
+}
+/**/
+
+.#{$background-namespace}background--very-light {
+    /* For IE11: */
+    --t-primary-color-l: var(--t-primary-color-l--very-light);
+    --t-secondary-color-l: var(--t-secondary-color-l--very-light);
+    --t-neutral-color-l: var(--t-neutral-color-l--very-light);
+    /**/
+}
+/*
+    This isn't necessary while the IE11 stuff is present above, but keep it here for when the
+    IE11 stuff isn't needed any more.
+*
+@supports (--css: variables) {
+    .#{$background-namespace}background--very-light {
+        --t-primary-color-l: calc(var(--t-primary-color-l-copy) + ((100% - var(--t-primary-color-l-copy)) * var(--t-very-light-adjust)));
+        --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) + ((100% - var(--t-secondary-color-l-copy)) * var(--t-very-light-adjust)));
+        --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) + ((100% - var(--t-neutral-color-l-copy)) * var(--t-very-light-adjust)));
+    }
+}
+/**/
+
+.#{$background-namespace}background--dark {
+    /* For IE11: */
+    --t-primary-color-l: var(--t-primary-color-l--dark);
+    --t-secondary-color-l: var(--t-secondary-color-l--dark);
+    --t-neutral-color-l: var(--t-neutral-color-l--dark);
+    /**/
+}
+/*
+    This isn't necessary while the IE11 stuff is present above, but keep it here for when the
+    IE11 stuff isn't needed any more.
+*
+@supports (--css: variables) {
+    .#{$background-namespace}background--dark {
+        --t-primary-color-l: calc(var(--t-primary-color-l-copy) * var(--t-dark-adjust));
+        --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) * var(--t-dark-adjust));
+        --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) * var(--t-dark-adjust));
+    }
+}
+/**/
+
+.#{$background-namespace}background--very-dark {
+    /* For IE11: */
+    --t-primary-color-l: var(--t-primary-color-l--very-dark);
+    --t-secondary-color-l: var(--t-secondary-color-l--very-dark);
+    --t-neutral-color-l: var(--t-neutral-color-l--very-dark);
+    /**/
+}
+/*
+    This isn't necessary while the IE11 stuff is present above, but keep it here for when the
+    IE11 stuff isn't needed any more.
+*
+@supports (--css: variables) {
+    .#{$background-namespace}background--very-dark {
+        --t-primary-color-l: calc(var(--t-primary-color-l-copy) * var(--t-very-dark-adjust));
+        --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) * var(--t-very-dark-adjust));
+        --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) * var(--t-very-dark-adjust));
+    }
+}
+/**/
+
+/**/
+/* Overqualified selectors to raise specificity above the theme classes defined below. */
+[class*=#{$background-namespace}background].#{$background-namespace}background--dark.#{$background-namespace}background--dark,
+[class*=#{$background-namespace}background].#{$background-namespace}background--very-dark.#{$background-namespace}background--very-dark {
+    color: var(--t-text-color-inverse);
+}
+
+[class*=#{$background-namespace}background].#{$background-namespace}background--light.#{$background-namespace}background--light,
+[class*=#{$background-namespace}background].#{$background-namespace}background--very-light.#{$background-namespace}background--very-light {
+    color: var(--t-text-color);
+}

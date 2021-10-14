@@ -1,0 +1,43 @@
+// NEED A BETTER PLACE FOR THE FOLLOWING:
+
+
+// Note these styles will be moved to vars (above) when StartCSS Blockquote is finished.
+blockquote {
+    border-top: 1px dotted var(--t-neutral-color);
+    border-bottom: 1px dotted var(--t-neutral-color);
+
+    --t-neutral-color-l: var(--t-neutral-color-l--very-light);
+    background-color: hsl(var(--t-neutral-color-h),var(--t-neutral-color-s),var(--t-neutral-color-l));
+
+    padding: $s__base-rem-space-unit $s__base-rem-space-unit * 2;
+
+    //@include bottom-space-fix();
+}
+
+// We're assuming that only paragraphs are in use here, so it's not ideal, but allowing * children
+// doesn't work if there's a footer/cite.
+
+blockquote > p:first-child::before, blockquote > p:last-child::after {
+    display: block;
+    font-family: times,serif;
+    font-size: 60px;
+    font-size: 6rem;
+    line-height: 0;
+    opacity: 0.7;
+}
+
+blockquote > p:first-child::before {
+    content: "“";
+    content: open-quote;
+    float: left;
+    margin-left: -3.6rem;
+    margin-top: 2.5rem;
+}
+
+blockquote > p:last-child::after {
+    content: "”";
+    content: close-quote;
+    display: inline-block;
+    position: relative;
+    top: 2.5rem;
+}

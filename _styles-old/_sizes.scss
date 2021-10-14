@@ -1,0 +1,21 @@
+/*
+    Global sizes
+*/
+
+$sz-xxs : $s__base-rem-space-unit / 8; // 3px
+$sz-xs  : $s__base-rem-space-unit / 4; // 6px
+$sz-s   : $s__base-rem-space-unit / 2; // 12px
+$sz-m   : $s__base-rem-space-unit;     // 24px
+$sz-l   : $s__base-rem-space-unit * 2; // 48px
+$sz-xl  : $s__base-rem-space-unit * 4; // 96px
+$sz-xxl : $s__base-rem-space-unit * 8; // 192px
+
+$sizes: (
+    sz-xxs : $sz-xxs,
+    sz-xs  : $sz-xs,
+    sz-s   : $sz-s,
+    sz-m   : $sz-m,
+    sz-l   : $sz-l,
+    sz-xl  : $sz-xl,
+    sz-xxl : $sz-xxl
+);

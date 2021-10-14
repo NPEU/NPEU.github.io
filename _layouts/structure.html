@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en-gb" class="">
+<head>
+    <meta charset="utf-8">
+    <title>{{ page.title }} | NPEU Styleguide</title>
+    <meta name="description" content="{{ site.description }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% assign project_data = site.data.projects[page.project] %}
+
+    {% if page.project != false and page.project != "default" %}
+        {% assign project_base_url = page.project | prepend: '/' %}
+    {% elsif page.project_base_url != false %}
+        {% assign project_base_url = page.project_base_url | prepend: '/' %}
+    {% else %}
+        {% assign project_base_url = '' %}
+    {% endif %}
+
+    <!-- Built with Jekyll and Fall-Back patterns -->
+
+    <!--<base href="http://localhost:4001/">-->
+
+    <!-- Ultra-light fallback styles for ancient browsers: -->
+    <style>
+        /*
+            Tiny Fall-Back Styles (https://github.com/Fall-Back/Patterns/edit/master/Page/README.md)
+
+            The following styles provide a better visual experience in cases where linked
+            stylesheets aren't loaded for any reason. It's recommended that any styles that won't
+            be used by the elements on the page be removed to make this as lean as possible, and
+            the run through a minifier (e.g. https://cssminifier.com) to compress it as much a
+            possible, since this is sent on each request and not cached.
+            Note there's a section that uses attributes to apply styles to specific element. This
+            is so as not to pollute the class space and help authors make distinctions.
+            There's a much long essay on this brewing and I'll add the link when it's done.
+        */
+        body{font:1em/1.2 sans-serif;padding:1em;margin:0 auto;max-width:50em}details,dialog,main,summary{display:block}@supports (list-style-type:disclosure-closed){summary{display:list-item}}mark{background:#ff0;color:# 000}[hidden],template{display:none}fieldset{border:1px solid;border-color:#777;margin:1em 0;padding:1em}image,img,svg{max-width:100%;-ms-interpolation-mode:bicubic;vertical-align:middle;height:auto;border:0}figure{max-width:100%;overflow-x:auto}_:-o-prefocus,:root figure{max-width:initial;overflow-x:visible}hr{border-style:solid;border-width:0 0 1px 0;margin:1em 0;color:#777}pre{width:100%;overflow-x:scroll;overflow-y:auto}video{max-width:100%;height:auto}button,input,label,select,textarea{vertical-align:middle;vertical-align:middle;min-height:2.2em;margin:.2em 0}button,input[type=checkbox],input[type=radio],label,select,textarea{cursor:pointer}button,input,textarea{padding:0 .5em;line-height:1.5}table{width:100%;border:1px solid #777;border-collapse:collapse}table[role=presentation]{border:0;table-layout:fixed}table[role=presentation] td{border:0}th{background:#eee}caption,td,th{padding:.5em}
+    </style>
+
+
+    <!-- From here we're cutting off IE9- to stop all kinds of JS and CSS fails. -->
+    <!--[if !IE]><!-->
+
+    <style>
+        /* Tiny Fall-Back Styles continued ... */
+        [data-fs-text~=right]{text-align:right}[data-fs-text~=center]{text-align:center}[data-fs-text~=larger]{font-size:larger}[data-fs-text~=nowrap]{white-space:nowrap}[data-fs-block~=background]{background:#eee}[data-fs-block~=border]{border:1px solid;margin:1em 0;padding:1em}[data-fs-block~=padding]{padding:1em}[data-fs-block~=table]{display:table;width:100%;table-layout:fixed}[data-fs-block~=table]>*{display:table-cell;padding:.5em}[data-fs-block~=flex]{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}[data-fs-block~=flex]>*{-webkit-box-flex:1;-webkit-flex:1 0 auto;-moz-box-flex:1;-ms-flex:1 0 auto;flex:1 0 auto}[data-fs-block=video]{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%}[data-fs-block=video] embed,[data-fs-block=video] iframe,[data-fs-block=video] object{position:absolute;top:0;left:0;width:100%;height:100%}[data-fs-hr=larger]{border-top-width:10px}
+    </style>
+
+    <!--
+        Accessible font loading. FOUT is a lesser evil than FOIT.
+        (https://keithclark.co.uk/articles/loading-css-without-blocking-render/)
+    -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+
+    <!--
+        Print (Edge doesn't apply to print otherwise)
+        Edge 79+, Chrome 74+, Firefox 63+, Opera 64+, Safari 10.1+, iOS 10.3+, Android 81+
+    -->
+    <link rel="stylesheet" href="/css/style.min.{{ site.data.cache_bust_css.date }}.css" media="
+        only print,
+        only all and (prefers-reduced-motion: no-preference), only all and (prefers-reduced-motion: reduce)
+    ">
+    <link rel="stylesheet" href="/css/testing.min.{{ site.data.cache_bust_css.date }}.css" media="
+        only print,
+        only all and (prefers-reduced-motion: no-preference), only all and (prefers-reduced-motion: reduce)
+    ">
+    <!-- Load styles for IE11, UC -->
+    <script>
+    if (
+        (!!window.MSInputMethodContext && !!document.documentMode)
+     || (navigator.userAgent.indexOf('UCBrowser') > -1)
+    ) {
+        var link  = document.createElement('link');
+        link.rel  = 'stylesheet';
+        link.href = '/css/style.min.{{ site.data.cache_bust_css.date }}.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+
+        var link  = document.createElement('link');
+        link.rel  = 'stylesheet';
+        link.href = '/css/testing.min.{{ site.data.cache_bust_css.date }}.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    }
+    </script>
+    <!-- Load IE11 fixes -->
+    <script>
+    if (
+        (!!window.MSInputMethodContext && !!document.documentMode)
+    ) {
+        var script  = document.createElement('script');
+        script.type  = 'text/javascript';
+        script.src = '/js/ie11.min.js';
+        document.getElementsByTagName('head')[0].appendChild(script);
+        
+        
+        var script2  = document.createElement('script');
+        script2.type  = 'text/javascript';
+        script2.src = '/js/ie11-custom-properties.js';
+        document.getElementsByTagName('head')[0].appendChild(script2);
+    }
+    </script>
+
+    {% if head_style != false %}
+    <style>
+    {{ head_style }}
+
+
+
+
+    </style>
+    {% endif %}
+
+    <script src="/js/script.min.js"></script>
+
+    {% if page.load_highlighter != false %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css" media="
+        only print,
+        only all and (prefers-reduced-motion: no-preference), only all and (prefers-reduced-motion: reduce)
+    ">
+    <!-- Load styles for IE11, UC -->
+    <script>
+    if (
+        (!!window.MSInputMethodContext && !!document.documentMode)
+     || (navigator.userAgent.indexOf('UCBrowser') > -1)
+    ) {
+        var link  = document.createElement('link');
+        link.rel  = 'stylesheet';
+        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    }
+
+    </script>
+    <style>
+        /* Override hljs styles to reset to StartCSS: */
+        .hljs {
+            display: inline-block;
+            overflow-x: auto;
+            padding: 1.2rem;
+            background: transparent;
+        }
+    </style>
+    {% endif %}
+
+    {% comment %}
+
+    {% endcomment %}
+
+    {% if page.has_map %}
+    <link rel="stylesheet" href="/css/map.min.css" media="
+        only print,
+        only all and (prefers-reduced-motion: no-preference), only all and (prefers-reduced-motion: reduce)
+    ">
+    <script src="/js/map.min.js"></script>
+    {% endif %}
+
+    {% if page.has_highcharts %}
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    {% endif %}
+
+    <!--<![endif]-->
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ project_base_url }}/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ project_base_url }}/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ project_base_url }}/favicon-16x16.png">
+    <link rel="manifest" href="{{ project_base_url }}/site.webmanifest">
+    <link rel="mask-icon" href="{{ project_base_url }}/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="{{ project_base_url }}/favicon.ico">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-config" content="{{ project_base_url }}/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body role="document" class="{{ project_data.theme_class }}" data-layout="{{ page.layout_name }}">
+
+    <svg xmlns="http://www.w3.org/2000/svg" display="none">
+        <symbol id="icon-building" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+        </symbol>
+        <symbol id="icon-calendar" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+        </symbol>
+        <symbol id="icon-chevron-down" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <polyline points="6 9 12 15 18 9"/>
+        </symbol>
+        <symbol id="icon-chevron-up" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <polyline points="18 15 12 9 6 15"/>
+        </symbol>
+        <symbol id="icon-chevron-left" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <polyline points="15 18 9 12 15 6"/>
+        </symbol>
+        <symbol id="icon-chevron-right" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <polyline points="9 18 15 12 9 6"/>
+        </symbol>
+        <symbol id="icon-chevrons-down" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline>
+        </symbol>
+        <symbol id="icon-chevrons-up" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline>
+        </symbol>
+        <symbol id="icon-chevrons-left" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline>
+        </symbol>
+        <symbol id="icon-chevrons-right" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline>
+        </symbol>
+        <symbol id="icon-cross" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+        </symbol>
+        <symbol id="icon-edit" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+        </symbol>
+        <symbol id="icon-email" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+        </symbol>
+        <symbol id="icon-facebook" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+        </symbol>
+        <symbol id="icon-fax" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <path class="st0" d="M6,18H4c-1.1,0-2-0.7-2-1.6v-4c0-0.9,0.9-1.6,2-1.6h16c1.1,0,2,0.7,2,1.6v4c0,0.9-0.9,1.6-2,1.6h-2"/>
+            <rect x="6" y="14" class="st0" width="12" height="8"/>
+            <path class="st0" d="M6,7.4L4.8,6.2C4.4,5.7,4.4,5,4.8,4.6c0,0,0.1,0,0.1-0.1c1.4-1.1,3-1.9,4.7-2.2c1.6-0.4,3.2-0.4,4.8,0 c1.7,0.4,3.3,1.1,4.7,2.2c0.5,0.4,0.5,1.1,0.1,1.6c0,0,0,0.1-0.1,0.1L18,7.4c-0.4,0.4-1,0.5-1.5,0.1c-0.4-0.3-0.9-0.6-1.4-0.8 c-0.4-0.2-0.7-0.6-0.7-1v-1c-1.6-0.4-3.2-0.4-4.8,0v1c0,0.4-0.3,0.8-0.7,1C8.4,6.9,8,7.2,7.5,7.5C7.1,7.8,6.4,7.8,6,7.4z"/>
+        </symbol>
+        <symbol id="icon-file" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+        </symbol>
+        <symbol id="icon-info" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+        </symbol>
+        <symbol id="icon-linkedin" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+        </symbol>
+            <symbol id="icon-map-pin" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle>
+        </symbol>
+        <symbol id="icon-menu" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+        </symbol>
+        <symbol id="icon-person" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+        </symbol>
+        <symbol id="icon-phone" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </symbol>
+        <symbol id="icon-rss" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <path class="st0" d="M5.6,9.1c4,0,7.2,3.2,7.2,7.2"/><path class="st0" d="M5.6,3.5c7,0,12.8,5.7,12.8,12.8"/><circle class="st0" cx="6.4" cy="15.5" r="0.8"/>
+        </symbol>
+        <symbol id="icon-search" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <circle cx="10.5" cy="10.5" r="7.5"/>
+            <line x1="21" y1="21" x2="15.8" y2="15.8"/>
+        </symbol>
+        <symbol id="icon-twitter" viewBox="0 0 24 24"
+            fill="none" fill-opacity="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        >
+            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+        </symbol>
+    </svg>
+
+    <div data-hidden="if-css">
+        <fieldset role="presentation">
+            <p>
+                <strong>Notice:</strong> You are viewing an unstyled version of this page. Are you using a very old browser? If so, <a href="https://browsehappy.com/?locale=en">please consider upgrading</a>
+            </p>
+        </fieldset>
+    </div>
+
+    {{ content }}
+    
+    {% if page.translate != false %}
+    <div id="google_translate_element"></div>
+
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+    </script>
+
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    {% endif %}
+
+    {% if page.load_highlighter != false %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    {% endif %}
+
+</body>
+</html>

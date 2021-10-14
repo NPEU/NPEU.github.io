@@ -1,0 +1,39 @@
+/*! Baby OSCAR Theme (c) NPEU */
+
+/* --| START THEME |----------------------------------------------------------------------------- */
+
+//@import "_themes-config.scss";
+$theme-name: baby-oscar;
+$theme: (
+    cta-text-color       : #ffffff,
+    cta-background-color : #9C2F33,
+    primary-color        : #2D649E,
+    secondary-color      : #9C2F33,
+    page-header-color    : #ffffff
+);
+
+
+$s__breakpoint--enhanced: 60em;
+
+$theme-copy: $theme;
+$theme-name-copy: $theme-name;
+@import "_style";
+
+
+
+$theme-only: true;
+@import "_themeable-patterns.scss";
+
+
+//$theme: map_get($themes, $theme-name);
+$theme: $theme-copy;
+$theme-name: $theme-name-copy;
+@import "_theme";
+
+/* ---------------------------------------------------------------------------------------------- */
+
+/* --| SHAME |----------------------------------------------------------------------------------- */
+
+@import "_shame";
+
+/* ---------------------------------------------------------------------------------------------- */

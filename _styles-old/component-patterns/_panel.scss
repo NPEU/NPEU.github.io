@@ -1,0 +1,143 @@
+//$panel--base-color		 : #eee !default;
+$panel-namespace: c- !default;
+$theme-namespace: t- !default;
+
+$panel--text-color       : #333 !default;
+$panel--background-color : #fff !default;
+
+// Note: border color gets darkened by default later, but declaring here to allow specific override:
+//$panel--border-color: darken($panel--background-color, 10%) !default;
+$panel--border-color: null !default;
+$panel--border-width: 1px !default;
+$panel--border-style: solid !default;
+
+$panel--padding: 2rem !default;
+
+$theme-only: false !default;
+
+
+@mixin panel-theme ($theme-name: "", $theme: (), $pattern-varient: "") {
+	// Set up theme name:
+	$theme-class: "";
+	@if $theme-name != "" {
+		$theme-class: unquote('.')#{$theme-namespace}#{$theme-name};
+	}
+	//@debug $theme-class;
+
+    $text-color       : map-get($theme, text-color);
+    $background-color : map-get($theme, background-color);
+    $border-color     : map-get($theme, border-color);
+
+	@if $border-color == null {
+		$border-color: darken($background-color, 10%);
+    }
+
+	// Problem here is that we only want to set a darker border colour if we haven't explicated
+	// set one. Default is passed to config, but theme override may be different and we need to know
+	// if it is, because we don't want to auto-darken if we've deliberately set a specific color.
+	// We want to allow a theme cascade (setting minimum properties) but also allow specific
+	// overrides, but should allow for branched cascades too.
+	// Handle override default versus specified in theme.
+
+	// Weirdly, SASS throws an error at this
+	// "Error: Base-level rules cannot contain the parent-selector-referencing character '&'."
+	// There's no '&' being used, so not sure what's going on.
+	// Using nested option as a workaround.
+	//.#{$panel-namespace}#{$panel-namespace}#{$pattern-varient}panel.#{$theme-prefix}#{$theme-name} {
+	// + panel + . + #{$theme-prefix} + #{$theme-name}
+	.#{$panel-namespace}panel.#{$panel-namespace}panel#{$pattern-varient}#{$theme-class} {
+		color: $text-color;
+		background: $background-color;
+
+		//outline: 1px solid $border-color;
+
+        a[href] {
+            color: $text-color;
+            //background-color: $background-color;
+        }
+
+        a[href]:hover,
+        a[href]:active,
+        a[href]:focus {
+            color: $text-color;
+        }
+
+        a[href].c-cta {
+            border-color: $text-color;
+            color: $text-color;
+            background-color: transparent;
+        }
+
+        a[href].c-cta:hover,
+        a[href].c-cta:active,
+        a[href].c-cta:focus {
+            @if s__color_light_or_dark(map-get($theme, background-color)) == 'light' {
+                background-color: rgba(0,0,0,0.1);
+            } @else {
+                background-color: rgba(255,255,255,0.1);
+            }
+        }
+	}
+
+}
+
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+
+    .#{$panel-namespace}panel {
+
+        &#{&} {
+            padding: $panel--padding;
+
+            //@include bottom-space-fix();
+
+            h1 {
+                border-bottom: 1px solid #bbb;
+                margin-bottom: calc(#{$s__base-rem-space-unit} - 1px);
+            }
+
+            h1:only-child {
+                margin-bottom: -1px;
+            }
+        }
+
+        &__banner {
+            margin-top: -$panel--padding;
+            margin-right: -$panel--padding;
+            margin-bottom: $panel--padding;
+            margin-left: -$panel--padding;
+        }
+
+        &__module {
+            margin-bottom:0;
+            width: 100%;
+            //margin-bottom: $s__base-rem-space-unit / 2;
+
+            h2 {
+                font-size: 24px / $s__base-font-size * 1em;
+                //margin-bottom: $s__base-rem-space-unit / 2;
+                margin-bottom: 0;
+            }
+
+            h3 {
+                font-size: 20px / $s__base-font-size * 1em;
+                //margin-bottom: $s__base-rem-space-unit / 2;
+                margin-bottom: 0;
+            }
+        }
+    }
+
+
+
+    @include panel-theme(
+        "",
+        (
+            text-color		 : $panel--text-color,
+            background-color : $panel--background-color,
+            border-color     : $panel--border-color,
+            border-width     : $panel--border-width,
+            border-style     : $panel--border-style
+        )
+    );
+}

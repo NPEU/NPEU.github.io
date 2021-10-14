@@ -1,0 +1,104 @@
+//$backgrounds--base-color		 : #eee !default;
+$backgrounds-namespace: d- !default;
+$theme-namespace: t- !default;
+
+$backgrounds--background-color : $s__base-ui-color !default;
+
+$theme-only: false !default;
+
+@mixin text-theme ($new-color) {
+
+    $text-color: #fff;
+    @if s__color_light_or_dark($new-color) == 'light' {
+        $text-color: #333;
+    }
+    
+    color: $text-color !important;
+
+    a[href] {
+        color: $text-color !important;
+    }
+
+    a[href]:hover,
+    a[href]:active,
+    a[href]:focus {
+        color: $text-color !important;
+    }
+
+    a[href].c-cta {
+        border-color: $text-color !important;
+        color: $text-color !important;
+        background-color: transparent !important;
+    }
+
+    a[href].c-cta:hover,
+    a[href].c-cta:active,
+    a[href].c-cta:focus {
+        @if s__color_light_or_dark($text-color) == 'light' {
+            background-color: rgba(0,0,0,0.1) !important;
+        } @else {
+            background-color: rgba(255,255,255,0.1) !important;
+        }
+    }
+}
+
+@mixin background-theme ($theme-name: "", $theme: ()) {
+	// Set up theme name:
+	$theme-class: "";
+	@if $theme-name != "" {
+		$theme-class: unquote('.')#{$theme-namespace}#{$theme-name};
+	}
+	//@debug $theme-class;
+
+    .#{$backgrounds-namespace}background--very-light#{$theme-class} {
+		$new-color: lighten(map-get($theme, background-color), 45%);
+        background-color: $new-color !important;
+
+        @include text-theme($new-color);
+	}
+
+    .#{$backgrounds-namespace}background--light#{$theme-class} {
+        $new-color: lighten(map-get($theme, background-color), 35%);
+        background-color: $new-color !important;
+
+        @include text-theme($new-color);
+	}
+
+	.#{$backgrounds-namespace}background#{$theme-class} {
+        $new-color: map-get($theme, background-color);
+        background-color: $new-color !important;
+
+        @include text-theme($new-color);
+	}
+
+    .#{$backgrounds-namespace}background--dark#{$theme-class} {
+        $new-color: darken(map-get($theme, background-color), 10%);
+        background-color: $new-color !important;
+
+        @include text-theme($new-color);
+	}
+
+
+    .#{$backgrounds-namespace}background--very-dark#{$theme-class} {
+        $new-color: darken(map-get($theme, background-color), 20%);
+        background-color: $new-color !important;
+
+        @include text-theme($new-color);
+	}
+
+    .#{$backgrounds-namespace}background--sloped#{$theme-class} {
+        background:    -moz-linear-gradient(45deg, darken(map-get($theme, background-color), 5%) 0%, darken(map-get($theme, background-color), 4%) 50%, darken(map-get($theme, background-color), 2%) 50%, darken(map-get($theme, background-color), 3%) 100%) !important;
+        background: -webkit-linear-gradient(45deg, darken(map-get($theme, background-color), 5%) 0%, darken(map-get($theme, background-color), 4%) 50%, darken(map-get($theme, background-color), 2%) 50%, darken(map-get($theme, background-color), 3%) 100%) !important;
+        background:         linear-gradient(45deg, darken(map-get($theme, background-color), 5%) 0%, darken(map-get($theme, background-color), 4%) 50%, darken(map-get($theme, background-color), 2%) 50%, darken(map-get($theme, background-color), 3%) 100%) !important;
+    }
+}
+
+// We don't need this if we're only theming the pattern:
+@if $theme-only == false {
+
+    @include background-theme(
+        "",
+        (
+            background-color : $backgrounds--background-color
+        ));
+}

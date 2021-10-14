@@ -1,0 +1,35 @@
+/*
+    Search Results
+    ==============
+*/
+
+$search-results-namespace: n- !default;
+
+
+// Search results heading:
+//$search-results-heading--font-size: 2rem !default;
+
+.#{$search-results-namespace}search-results {
+
+    &#{&} {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .#{$search-results-namespace}search-results__heading {
+        font-size: $s__h4-font-size;
+        line-height: $s__h4-height;
+        margin-bottom: 0;
+    }
+    
+    .#{$search-results-namespace}search-results__result {
+        margin-left: 0;
+    }
+    
+    .#{$search-results-namespace}search-results__description,
+    .#{$search-results-namespace}search-results__separator {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}

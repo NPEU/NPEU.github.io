@@ -1,0 +1,190 @@
+/*
+    Box spacing
+
+    @To Do: allow for responsive variations.
+*/
+
+$space-namespace: u- !default;
+
+.#{$space-namespace}space--left--auto {
+    margin-left: auto !important;
+}
+
+.#{$space-namespace}space--right--auto {
+    margin-right: auto !important;
+}
+
+
+
+.#{$space-namespace}space--right--xs {
+    margin-right: $sz-xs !important;
+}
+
+.#{$space-namespace}space--above--xs {
+    margin-top: $sz-xs !important;
+}
+
+.#{$space-namespace}space--below--xs {
+    margin-bottom: $sz-xs !important;
+}
+
+.#{$space-namespace}space--left--xs {
+    margin-left: $sz-xs !important;
+}
+
+.#{$space-namespace}space--right--xs {
+    margin-right: $sz-xs !important;
+}
+
+.#{$space-namespace}space--above--xs {
+    margin-top: $sz-xs !important;
+}
+
+.#{$space-namespace}space--below--xs {
+    margin-bottom: $sz-xs !important;
+}
+
+.#{$space-namespace}space--xs {
+    margin: $sz-xs !important;
+}
+
+
+
+.#{$space-namespace}space--right--s {
+    margin-right: $sz-s !important;
+}
+
+.#{$space-namespace}space--above--s {
+    margin-top: $sz-s !important;
+}
+
+.#{$space-namespace}space--below--s {
+    margin-bottom: $sz-s !important;
+}
+
+.#{$space-namespace}space--left--s {
+    margin-left: $sz-s !important;
+}
+
+.#{$space-namespace}space--right--s {
+    margin-right: $sz-s !important;
+}
+
+.#{$space-namespace}space--above--s {
+    margin-top: $sz-s !important;
+}
+
+.#{$space-namespace}space--below--s {
+    margin-bottom: $sz-s !important;
+}
+
+.#{$space-namespace}space--s {
+    margin: $sz-s !important;
+}
+
+
+
+.#{$space-namespace}space--left {
+    margin-left: $sz-m !important;
+}
+
+.#{$space-namespace}space--right {
+    margin-right: $sz-m !important;
+}
+
+.#{$space-namespace}space--above {
+    margin-top: $sz-m !important;
+}
+
+.#{$space-namespace}space--below {
+    margin-bottom: $sz-m !important;
+}
+
+.#{$space-namespace}space {
+    margin: $sz-m !important;
+}
+
+.#{$space-namespace}space--above--none {
+    margin-top: 0 !important;
+}
+
+.#{$space-namespace}space--below--none {
+    margin-bottom: 0 !important;
+}
+
+.#{$space-namespace}space--left--none {
+    margin-left: 0 !important;
+}
+
+.#{$space-namespace}space--right--none {
+    margin-right: 0 !important;
+}
+
+.#{$space-namespace}space--none {
+    margin: 0 !important;
+}
+
+
+
+.#{$space-namespace}space--left--l {
+    margin-left: $sz-l !important;
+}
+
+.#{$space-namespace}space--right--l {
+    margin-right: $sz-l !important;
+}
+
+.#{$space-namespace}space--above--l {
+    margin-top: $sz-l !important;
+}
+
+.#{$space-namespace}space--below--l {
+    margin-bottom: $sz-l !important;
+}
+
+.#{$space-namespace}space--l {
+    margin: $sz-l !important;
+}
+
+
+
+.#{$space-namespace}space--left--xl {
+    margin-left: $sz-xl !important;
+}
+
+.#{$space-namespace}space--right--xl {
+    margin-right: $sz-xl !important;
+}
+
+.#{$space-namespace}space--above--xl {
+    margin-top: $sz-xl !important;
+}
+
+.#{$space-namespace}space--below--xl {
+    margin-bottom: $sz-xl !important;
+}
+
+.#{$space-namespace}space--xl {
+    margin: $sz-xl !important;
+}
+
+
+.#{$space-namespace}space--left--auto {
+    margin-left: auto !important;
+}
+
+.#{$space-namespace}space--right--auto {
+    margin-right: auto !important;
+}
+
+.#{$space-namespace}space--above--auto {
+    margin-top: auto !important;
+}
+
+.#{$space-namespace}space--below--auto {
+    margin-bottom: auto !important;
+}
+
+.#{$space-namespace}last-child--space--below--none > :last-child {
+    margin-bottom: 0 !important;
+}

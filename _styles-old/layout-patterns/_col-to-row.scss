@@ -1,0 +1,189 @@
+/*
+    Col to Row
+    (Single column to single row)
+
+    The purpose of this pattern is to exhibit the following behaviour:
+
+    * Self contained layout (no media queries so is context independent. Uses Fab Four width for
+      a single breakpoint)
+
+    * Below content breakpoint, there's a single column.
+        [Optional: max-width for content, centered] - the reason for this is that for there to be
+        enough space to adequately display the contents in a row the breakpoint would generally be
+        quite wide - this may be too wide for a single item, so we need the option to restrict it's
+        width.
+
+    * Above content breakpoint, there's a single row. Each item needs to be of adequate width.
+
+    * [Optional: gutter and bottom spacing]
+    
+    After much messing around with IE, the solution is to have an extra wrapper with `display: flex`
+    and `flex-basis: 100%` on the inner wrapper.
+
+*/
+$col-to-row-namespace: l- !default;
+
+$col-to-row-spacing-unit: 2rem !default;
+$col-to-row-spacing-unit--s: ($col-to-row-spacing-unit / 2) !default;
+$col-to-row-spacing-unit--l: ($col-to-row-spacing-unit * 2) !default;
+
+/*
+@mixin col-to-row-size ($width, $breakpoint) {
+
+    .col-to-row
+}
+*/
+
+/*
+    IE11 needs this wrapper to behave properly.
+    If you're not supporting IE11, you don't need this CSS or the HTML that goes with it.
+*/
+/*
+.#{$col-to-row-namespace}col-to-row-wrap {
+    display: --webkit-flex;
+    display: -ms-flexbox;
+    display: flex; 
+    
+    width: 100%;
+    
+    & > .#{$col-to-row-namespace}col-to-row {
+        -webkit-flex-basis: 100%;
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%; 
+    }
+}
+*/
+.#{$col-to-row-namespace}col-to-row {
+
+    &#{&} {
+        /*
+            1. IE11 needs this to calculate widths properly.
+            2. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
+        */
+        display: flex;
+
+        flex-wrap: wrap;
+
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+
+        position: relative; /* [1] */
+        
+        width: 0; /* [2] */
+        min-width: 100%; /* [2] */
+    }
+
+    & > * {
+        margin: 0;
+        padding: 0;
+
+        flex: 1 1 auto;
+
+        display: inline-block;
+    }
+    
+     /*
+        Older webkit browsers also need special treatment.
+        
+        1. Chrome 39-50, Opera 26-37, Safari/iOS 9-10. Using prefixed property as flex-direction
+           breaks IE11 otherwise, so may as well use for all.
+    */
+    @at-root _:-webkit-any-link, :root .#{$col-to-row-namespace}col-to-row__item.#{$col-to-row-namespace}col-to-row__item {
+        display: flex; /* [1] */
+        flex-direction: column /* [1] */;
+        
+    }
+
+    // Reverse order - USE WITH CAUTION:
+    &#{&}--reversed {
+        flex-direction: row-reverse;
+    }
+
+    // Add gutters:
+
+    &#{&}--gutter--s {
+        padding-top: $col-to-row-spacing-unit--s;
+    }
+
+    &#{&}--gutter--s,
+    &#{&}--gutter--s > * {
+        padding-left: $col-to-row-spacing-unit--s / 2;
+        padding-right: $col-to-row-spacing-unit--s / 2;
+    }
+
+    &#{&}--gutter--s > * {
+        padding-bottom: $col-to-row-spacing-unit--s;
+    }
+
+
+
+    &#{&}--gutter,
+    &#{&}--gutter--m {
+        padding-top: $col-to-row-spacing-unit;
+    }
+
+    &#{&}--gutter,
+    &#{&}--gutter > *,
+    &#{&}--gutter--m,
+    &#{&}--gutter--m > * {
+        padding-left: $col-to-row-spacing-unit / 2;
+        padding-right: $col-to-row-spacing-unit / 2;
+    }
+
+    &#{&}--gutter > *,
+    &#{&}--gutter--m > * {
+        padding-bottom: $col-to-row-spacing-unit;
+    }
+
+
+
+    &#{&}--gutter--l {
+        padding-top: $col-to-row-spacing-unit--l;
+    }
+
+    &#{&}--gutter--l,
+    &#{&}--gutter--l > * {
+        padding-left: $col-to-row-spacing-unit--l / 2;
+        padding-right: $col-to-row-spacing-unit--l / 2;
+    }
+
+    &#{&}--gutter--l > * {
+        padding-bottom: $col-to-row-spacing-unit--l;
+    }
+
+    // Add this class to a wrapper if you want to flush the edge gutters:
+    @at-root {
+        /*
+            1. This is a hack for IE11, otherwise the container goes as wide as the children in a
+               row.
+            2. Note we ONLY want this on the outermost container, so we need to turn off this hack
+               for the main distribute container.
+        */
+        #{&}--flush-edge-gutters {
+            overflow: hidden;
+            flex-basis: 100%;
+            
+            width: 0; /* [1] */
+            min-width: 100%; /* [1] */
+        }
+        
+            #{&}--flush-edge-gutters > #{&} {
+                width: auto; /* [2] */
+                min-width: none; /* [2] */
+            }
+
+            #{&}--flush-edge-gutters &#{&}--gutter--s {
+                margin: 0 -$col-to-row-spacing-unit--s;
+            }
+
+            #{&}--flush-edge-gutters &#{&}--gutter,
+            #{&}--flush-edge-gutters &#{&}--gutter--m {
+                margin: 0 -$col-to-row-spacing-unit;
+            }
+
+            #{&}--flush-edge-gutters &#{&}--gutter--l {
+                margin: 0 -$col-to-row-spacing-unit--l;
+            }
+    }
+}

@@ -1,0 +1,94 @@
+/*
+    Fab Four Widths
+
+    https://medium.freecodecamp.com/the-fab-four-technique-to-create-responsive-emails-without-media-queries-baf11fdfa848#.dtpllw1lf
+    https://www.sitepoint.com/responsive-css-patterns-without-media-queries/
+
+*/
+
+
+/// Remove the unit of a length (https://css-tricks.com/snippets/sass/strip-unit-function/)
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+/// Replace `$search` with `$replace` in `$string` (https://css-tricks.com/snippets/sass/str-replace-function/)
+/// @author Hugo Giraudel
+/// @param {String} $string - Initial string
+/// @param {String} $search - Substring to replace
+/// @param {String} $replace ('') - New value
+/// @return {String} - Updated string
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+
+@function safe-num($number) {
+    $n: strip-unit($number) + unquote("");
+    @return str-replace($n, '.', '-');
+}
+
+
+$ff-prefix: ff-width- !default;
+
+$ff-max-widths: (
+    100%
+) !default;
+
+
+$ff-breakpoints: (
+    10em,
+    20em,
+    30em,
+    40em,
+    50em,
+    60em
+) !default;
+
+$ff-min-widths: (
+    25%,
+    33.333%,
+    50%,
+    66.666%,
+    75%
+) !default;
+
+
+@mixin ff-width ($max-width, $breakpoint, $min-width) {
+    max-width: $max-width;
+    width: calc((#{$breakpoint} - 100%) * 1000);
+    min-width: $min-width;
+}
+
+
+@mixin ff-widths ($max-widths, $breakpoints, $min-widths, $prefix: $ff-prefix) {
+    @each $max-width in $max-widths {
+        @each $breakpoint in $breakpoints {
+            @each $min-width in $min-widths {
+                $name: #{safe-num($max-width)}--#{safe-num($breakpoint)}--#{safe-num($min-width)};
+
+                .#{$ff-prefix}#{$name} {
+                    @include ff-width($max-width, $breakpoint, $min-width);
+                }
+            }
+        }
+    }
+}
+
+//.ff-width-test {
+//    @include ff-width(100%, 35em, 50%);
+//}
+
+@include ff-widths($ff-max-widths, $ff-breakpoints, $ff-min-widths);

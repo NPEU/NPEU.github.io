@@ -1,0 +1,458 @@
+$wf-fill--white:   #fff;
+$wf-fill--light:   #eee;
+$wf-fill--mid:     #ccc;
+$wf-fill--dark:    #666;
+$wf-fill--darkest: #333;
+
+$wf-text:        #333;
+$wf-text--light: #fff;
+
+$wf-wire:        #444;
+
+html.wireframe {
+   filter: grayscale(1);
+}
+
+
+
+// Wireframe xross-box
+// http://meyerweb.com/eric/thoughts/2017/11/27/generating-wireframe-boxes-with-css-and-html5
+
+.wireframe [wf-box] {
+    outline-style: solid;
+    outline-width: 1px;
+    outline-color: $wf-wire;
+
+    position: relative;
+    z-index: 1;
+
+    display: flow-root;
+    
+    height: 100%;
+}
+
+// Using SVG fir crosses instead of gradient:
+// (https://codepen.io/gunnarbittersmann/pen/PEYYNM)
+.wireframe [wf-box]::before
+{
+	content: attr(wf-box);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.5em;
+	//font: bold 2em Jubilat, Georgia, serif;
+	color: $wf-wire;
+	text-shadow:
+		0 0 0.25em $wf-fill--mid, 0 0 0.25em $wf-fill--mid,
+		0 0 0.25em $wf-fill--mid, 0 0 0.25em $wf-fill--mid,
+		0 0 0.25em $wf-fill--mid;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: $wf-fill--mid;
+	background-size: 100% 100%;
+	background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201%201%22%20preserveAspectRatio%3D%22none%22%3E%3Cg%20stroke-width%3D%221px%22%20stroke%3D%22#{$wf-wire}%22%20%3E%3Cline%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%20vector-effect%3D%22non-scaling-stroke%22%2F%3E%3Cline%20x1%3D%221%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%20vector-effect%3D%22non-scaling-stroke%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+	/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><g stroke-width="1px" stroke="$wf-wire"><line x1="0" y1="0" x2="1" y2="1" vector-effect="non-scaling-stroke"/><line x1="1" y1="0" x2="0" y2="1" vector-effect="non-scaling-stroke"/></g></svg> */
+}
+/*
+.wireframe [data-wf]::before {
+    position: absolute;
+    z-index: 999;
+    opacity: 0.7;
+
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+   background:
+        linear-gradient(to top right,
+            transparent calc(50% - 1px), $wf-wire calc(50% - 1px),
+            $wf-wire calc(50% + 1px), transparent calc(50% + 1px)),
+        linear-gradient(to bottom right,
+            transparent calc(50% - 1px), $wf-wire calc(50% - 1px),
+            $wf-wire calc(50% + 1px), transparent calc(50% + 1px)),
+        $wf-fill--mid;
+
+
+    content: attr(data-wf);
+    font: bold 2em Georgia, serif;
+    color: $wf-wire;
+
+    text-shadow:
+        1px 1px 0 $wf-fill--mid,
+        -1px 1px 0 $wf-fill--mid,
+        1px -1px 0 $wf-fill--mid,
+        -1px -1px 0 $wf-fill--mid,
+        1px 0 0 $wf-fill--mid,
+        -1px 0 0 $wf-fill--mid,
+        2px 2px 0 $wf-fill--mid,
+        -2px 2px 0 $wf-fill--mid,
+        2px -2px 0 $wf-fill--mid,
+        -2px -2px 0 $wf-fill--mid,
+        2px 0 0 $wf-fill--mid,
+        -2px 0 0 $wf-fill--mid,
+        3px 3px 0 $wf-fill--mid,
+        -3px 3px 0 $wf-fill--mid,
+        3px -3px 0 $wf-fill--mid,
+        -3px -3px 0 $wf-fill--mid,
+        3px 0 0 $wf-fill--mid,
+        -3px 0 0 $wf-fill--mid,
+        4px 4px 0 $wf-fill--mid,
+        -4px 4px 0 $wf-fill--mid,
+        4px -4px 0 $wf-fill--mid,
+        -4px -4px 0 $wf-fill--mid,
+        4px 0 0 $wf-fill--mid,
+        -4px 0 0 $wf-fill--mid;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+*/
+
+.wireframe [wf-links] {
+   
+
+    a[href] {
+        color: inherit;
+        background-color: inherit;
+    }
+
+    a[href]:hover,
+    a[href]:active,
+    a[href]:focus {
+        color: inherit;
+    }
+}
+
+
+.wireframe [wf-area] {
+   
+
+    /*a[href] {
+        color: inherit;
+        background-color: inherit;
+    }
+
+    a[href]:hover,
+    a[href]:active,
+    a[href]:focus {
+        color: inherit;
+    }*/
+}
+
+
+.wireframe [wf-area*=outline] {
+    outline-style: solid;
+    outline-width: 1px;
+    outline-color: $wf-wire;
+}
+
+.wireframe [wf-area*=white] {
+    background-color: $wf-fill--white;
+    color: $wf-text;
+}
+
+.wireframe [wf-area*=light] {
+    background-color: $wf-fill--light;
+    color: $wf-text;
+}
+
+.wireframe [wf-area*=mid] {
+    background-color: $wf-fill--mid;
+    color: $wf-text;
+}
+
+.wireframe [wf-area*=dark] {
+    background-color: $wf-fill--dark;
+    color: $wf-text--light;
+}
+
+.wireframe [wf-area*=darkest] {
+    background-color: $wf-fill--darkest;
+    color: $wf-text--light;
+}
+
+/*
+.wireframe [wf-area*=padding] {
+
+    &:after {
+        content: "";
+        display: block;
+        height: 1px;
+        margin-bottom: -1px;
+        width: 100%;
+    }
+}*/
+
+.wireframe [wf-area*=xs-padding] {
+    //padding: $sz-xs;
+    
+    padding-left: $sz-xs;
+    padding-right: $sz-xs;
+    padding-top: $sz-xs;
+
+     &::after {
+        content: "";
+        display: block;
+        margin-top: $sz-xs;
+        margin-bottom: -1px;
+        height: 1px;
+    }
+    
+}
+
+.wireframe [wf-area*=small-padding] {
+    //padding: $sz-s;
+    
+    padding-left: $sz-s;
+    padding-right: $sz-s;
+    padding-top: $sz-s;
+
+     &::after {
+        content: "";
+        display: block;
+        margin-top: $sz-s;
+        margin-bottom: -1px;
+        height: 1px;
+    }
+    
+}
+
+.wireframe [wf-area*=medium-padding] {
+    //padding: $sz-m;
+    
+    padding-left: $sz-m;
+    padding-right: $sz-m;
+    padding-top: $sz-m;
+
+     &::after {
+        content: "";
+        display: block;
+        margin-top: $sz-m;
+        margin-bottom: -1px;
+        height: 1px;
+    }
+}
+
+
+.wireframe [wf-area*=large-padding] {
+    //padding: $sz-l;   
+    
+    padding-left: $sz-l;
+    padding-right: $sz-l;
+    padding-top: $sz-l;
+
+    &::after {
+        content: "";
+        display: block;
+        margin-top: $sz-l;
+        margin-bottom: -1px;
+        height: 1px;
+    }
+}
+
+
+.wireframe [wf-bar-links] {
+
+
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+
+    list-style-type: none;
+
+    margin: 0;
+    padding: 0;
+
+    li {
+        margin: 0;
+        padding: 0;
+    }
+
+    a[href] {
+        display: block;
+        border: 0;
+        margin: 0;
+    }
+
+    a[href]:hover,
+    a[href]:active,
+    a[href]:focus {
+        background-color: rgba(255,255,255,0.2);
+    }
+}
+
+.wireframe [wf-bar-links*=small-padding] {
+    a[href] {
+        padding: $sz-xs $sz-s;
+    }
+}
+
+.wireframe [wf-area*=white] [wf-bar-links] {
+
+    a[href]:hover,
+    a[href]:active,
+    a[href]:focus {
+        background-color: rgba(0,0,0,0.2);
+    }
+}
+
+
+.wireframe [wf-bar-links*=divided] {
+    overflow: hidden;
+}
+
+.wireframe [wf-bar-links*=divided] > li {
+    position: relative;
+    margin: 0 0 0 -3px;
+}
+
+.wireframe [wf-bar-links*=divided] > li:before {
+    content: "";
+    display: block;
+    height: 1em;
+    width: 2px;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.wireframe [wf-bar-links*=divided] a[href] {
+    margin: 0 2px;
+}
+
+
+
+.wireframe [wf-bar-links*=small-text] {
+    font-size: 0.85em;
+}
+
+
+.wireframe [wf-heading*=large] {
+    font-size: 1.625em;
+    line-height: 1.1;
+    border-bottom: 1px solid;
+    padding-bottom: 0.5em;
+}
+
+
+
+
+.wireframe button[wf-button] {
+    display: inline-block;
+    /* AK. IE9 needs this. */
+    overflow: visible;
+    /* S: Internet Explorer 11-, N: Show the overflow in Edge, Firefox, and IE. */
+    background-color: #663399;
+    color: #fff;
+    font-size: inherit;
+    font-family: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    min-height: 3rem;
+    line-height: 2.4rem;
+    margin: 0.3rem 0;
+    text-transform: none;
+    /* [N0], N: Remove the inheritance of text transform in Edge, Firefox, and IE. */
+    /* -webkit-appearance: button; // [N2] */
+    -webkit-appearance: none;
+    /* AK */
+    cursor: pointer;
+    /* [N3] */
+    border-color: rgba(0, 0, 0, 0.2);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    padding-top: 0.3rem;
+    padding-top: -moz-calc(0);
+    padding-top: calc(0.3rem - 1px);
+    padding-bottom: 0.3rem;
+    padding-bottom: -moz-calc(0);
+    padding-bottom: calc(0.3rem - 1px);
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    vertical-align: middle;
+    /* S: Remove the tapping delay from clickable elements */
+    -ms-touch-action: manipulation;
+    /* S: IE10 */
+    touch-action: manipulation;
+}
+    .wireframe button[wf-button]:hover,
+    .wireframe button[wf-button]:active,
+    .wireframe button[wf-button]:focus {
+        box-shadow: 0 0 0 2px #b38cd9 inset;
+        outline: 0;
+
+        border-color: rgba(0, 0, 0, 0.2);
+        border-style: solid;
+        border-width: 1px;
+        //margin: 0;
+        
+        color: #fff;
+    }
+    
+.wireframe a[href][wf-cta] {
+    display: inline-block;
+
+    color: #663399;
+    background-color: #ffffff;
+    
+    font-size: inherit;
+    font-family: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    min-height: 3rem;
+    line-height: 2.4rem;
+    margin: 0.3rem 0;
+    text-transform: none;
+
+    cursor: pointer;
+
+    border-color: rgba(0, 0, 0, 0.4);
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 3px;
+    
+    padding-top: 0.3rem;
+    padding-top: -moz-calc(0);
+    padding-top: calc(0.3rem - 1px);
+    padding-bottom: 0.3rem;
+    padding-bottom: -moz-calc(0);
+    padding-bottom: calc(0.3rem - 1px);
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    vertical-align: middle;
+
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+    .wireframe a[href][wf-cta]:hover,
+    .wireframe a[href][wf-cta]:active,
+    .wireframe a[href][wf-cta]:focus {
+        box-shadow: 0 0 0 2px #bbbbbb inset;
+        outline: 0;
+
+        border-color: rgba(0, 0, 0, 0.4);
+        border-style: solid;
+        border-width: 2px;
+        //margin: 0;
+        
+        //color: #fff;
+        background-color: #eeeeee;
+    }
+    
+    .wireframe a[href] svg {
+        vertical-align: text-top;
+    }

@@ -1,0 +1,150 @@
+/*
+    The `height: 100%;` in the `.card` class below allows the card to fill it's contrain (if inside,
+    say, a list-grid). However, it doesn't work in Safari OSX/iOS.
+    Applying a `card-wrap` class to a list item to make those items flex-containers seems to work
+    ok, but perhaps this wojld be better abstracted as a `fill-height` class or something?
+*/
+
+$card--base-color: #eee !default;
+$card--text-color: #333 !default;
+$card--background-color: $card--base-color !default;
+$card--border-color: darken($card--background-color, 10%) !default;
+$card--link-color: false !default;
+$card--link-has-border-bottom: false !default;
+$card--link-color--alt: false !default;
+$card--link-has-border-bottom: false !default;
+$card--link-border-bottom: false !default;
+$card--link-border-bottom--hover: false !default;
+
+// If we've specified a link colour for the card, but not an alt state (e.g. hover)
+// then generate one
+@if $card--link-color != false and $card--link-color--alt == false {
+    $card--link-color--alt: darken($card--link-color, 10%);
+}
+
+// If we've specified a link colour for the card, and we want bottom borders, generate the borders:
+@if $card--link-color != false and $card--link-has-border-bottom != false {
+    $card--link-border-bottom: 1px solid lighten($card--link-color, 20%) !default;
+    $card--link-border-bottom--hover: 2px solid lighten($card--link-color--alt, 30%) !default;
+}
+$card--padding: 2rem !default;
+
+
+$card-breakpoint: 30em !default;
+$card-pull: 5rem !default;
+
+.card-wrap {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    
+}
+
+    .card-wrap .card {
+        -webkit-flex: 1 0 auto;
+            -ms-flex: 1 0 auto;
+                flex: 1 0 auto;
+        width: 100%;
+    }
+
+    .card.card {
+        color: $card--text-color;
+        background: $card--background-color;
+        padding: $card--padding;
+        /*height: 100%;*/
+        
+        outline: 1px solid $card--border-color;
+        
+        /*max-width: 20em;*/
+        margin-top: 0 auto;
+        margin-bottom: 1.5rem;
+        margin-left: auto;
+        margin-right: auto;
+        
+        /*
+            If the 'pull' is > module body content height, it'll protrude below the container,
+            so hide it:
+        */
+        overflow: hidden;
+    }
+    // For link colour override for whole card links (e.g. <article><a>)
+    .card a[href] {
+        color: $card--text-color;
+    }
+
+        .card .card__image {
+            position: relative;
+            text-align: center;
+        }
+
+            .card .card__image img {
+                width: 100%;
+            }
+        
+        
+            .card .card__image-link,
+            .card .card__image-link:hover {
+                border-bottom: 0;
+            }
+        
+        .card .card__image + .card__body {
+            position: relative;
+            margin-top: -15%;
+        }
+            
+        .card .card__body {
+            background: $card--background-color;
+            //margin-left: $card--padding;
+            //margin-right: $card--padding;
+            //padding: $card--padding;
+        }
+        
+        @if $card--link-color != false {
+            .card .card__body a {
+                color: $card--link-color;
+                @if $card--link-has-border-bottom != false {
+                    border-bottom: $card--link-border-bottom;
+                }
+            }
+            
+            .card .card__body a:hover,
+            .card .card__body a:active,
+            .card .card__body a:focus {
+                color: $card--link-color--alt;
+                @if $card--link-has-border-bottom != false {
+                    border-bottom: $card--link-border-bottom--hover;
+                }
+            }
+        }
+        
+        .card .card__offset-padding {
+            margin-top: -$card--padding;
+            margin-left: -$card--padding;
+            margin-right: -$card--padding;
+        }
+		
+		
+        .card .card__body-footer,
+        .card .card__body-footer * {
+            margin-bottom: 0;
+        }
+        
+        .card a.card__cta {
+            @include button(
+                $card--text-color, 
+                $card--background-color,
+                $card--base-color,
+                $card--border-color
+            );
+            
+            &:hover,
+            &:active,
+            &:focus {
+                color: $card--text-color;
+            }
+        }
+        

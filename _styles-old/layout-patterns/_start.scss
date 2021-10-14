@@ -1,0 +1,17 @@
+/*
+
+*/
+$start-namespace: l- !default;
+
+
+.#{$start-namespace}start {
+    &#{&} {
+        display: flex;
+        align-items: start;
+        justify-content: start;
+    }
+
+    & > * {
+        flex: 0 1 auto;
+    }
+}

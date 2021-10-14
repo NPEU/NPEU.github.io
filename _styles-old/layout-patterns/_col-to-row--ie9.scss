@@ -1,0 +1,19 @@
+/*
+    Col to Row
+
+*/
+
+.l-col-to-row {
+    clear: both;
+}
+
+.l-col-to-row::after {
+    display: table;
+    content: "";
+    clear: both;
+  }
+
+.l-col-to-row__item  {
+    float: left;
+    max-width: 100%;
+}

@@ -1,0 +1,18 @@
+.page-footer {
+    background-color: $s__base-ui-color;
+    padding: ($s__base-em-ratio * 1.5em) / 3;
+    font-size: 0.875em;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 0;
+}
+
+    .page-footer a[href] {
+        color: lighten($s__base-ui-color, 40%);
+    }
+    
+    .page-footer a[href]:hover,
+    .page-footer a[href]:active,
+    .page-footer a[href]:focus {
+        color: lighten($s__base-ui-color, 20%);
+    }

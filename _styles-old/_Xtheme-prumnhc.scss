@@ -1,0 +1,15 @@
+/*! NeoCLEAR Theme (c) NPEU */
+
+/* --| START THEME |----------------------------------------------------------------------------- */
+$theme-only: true;
+@import "_themes-config.scss";
+@import "_themeable-patterns.scss";
+
+
+$theme-name: prumnhc;
+$theme: map_get($themes, $theme-name);
+
+
+@import "_theme";
+
+/* ---------------------------------------------------------------------------------------------- */

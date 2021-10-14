@@ -1,0 +1,8 @@
+/*
+*/
+
+$expand-width-namespace: u- !default;
+
+.#{$expand-width-namespace}expand-width {
+    flex-grow: 1;
+}

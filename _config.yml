@@ -1,0 +1,76 @@
+# Site settings
+title: "NPEU Styleguide"
+email: "andy.kirk@npeu.ox.ac.uk"
+description: "NPEU Styleguide"
+repository: "https://github.com/NPEU/NPEU.github.io"
+baseurl: ""
+url: "https://npeu.github.io/"
+port: 4006
+
+
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+    values:
+      display_cta: true
+      display_funder: true
+      display_hero: true
+      display_navbar: true
+      display_social: true
+      display_support: true
+      display_toc: true
+      display_page_footer: true
+      is_home: false
+      is_contact: false
+      is_updates: false
+      headline_image: true
+      hero_image: false
+      hero_message: false
+      hero_message_reversed: false
+      landing_brochure: false
+      landing_display_cta: true
+      landing_display_info: true
+      landing_display_signpost_bottom: true
+      landing_display_signpost_top: true
+      landing_display_updates: true
+      landing_display_video: true
+      layout_name: "default"
+      load_highlighter: false
+      npeu_unit: false
+      project: "default"
+      project_base_url: false
+      section_menu: false
+      toc: false
+      main_top_modules: false
+      has_pull_outs: true
+      has_map: false
+      highcharts: false
+      translate: false
+
+# Build settings
+markdown: kramdown
+
+kramdown:
+  auto_ids:       true
+
+# Prevent github pages creating stuff:
+theme: null
+
+exclude: [
+    "_archive",
+    "_assets",
+    "_images",
+    "_scripts",
+    "_styles",
+    "bower.json",
+    "bower_components",
+    "Gemfile",
+    "Gemfile.lock",
+    "gulpfile.js",
+    "local-gulp.bat",
+    "local-jekyll.bat",
+    "node_modules",
+    "package.json",
+    "README.md"
+]

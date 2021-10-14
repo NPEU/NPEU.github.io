@@ -1,0 +1,107 @@
+/*
+    Utilitarian text and links. E.g. footer, login info, skiplinks
+    
+    Utilitext links are prime candidates to have icons as part of the links text.
+    However, the underline border doesn't work well with icons, so an additional span is used to
+    wrap the link text (not the icon) regardless of whether or not there is an icon, since we can't 
+    look inside elements with CSS.
+*/
+
+$utilitext-namespace: c- !default;
+
+.#{$utilitext-namespace}utilitext {
+
+    &#{&} {
+        font-size: 0.875em;
+        margin: 0;
+        padding: 0;
+        
+            
+        a[href] {
+            border-width: 0;
+            padding: 0;
+            margin: 0;
+            
+            span {
+                border-width: 0 0 1px 0;
+                border-style: solid;
+                margin-bottom: -1px;
+                padding-bottom: 2px;
+            }
+        
+            &:hover span, &:active span, &:focus span {
+                border-style: dashed;   
+            }
+        }
+    }
+    
+    
+    @at-root {
+
+    
+        ul#{&} , ol#{&} {
+
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;        
+
+            li {
+                margin: 0;
+            }
+            
+            li + li {
+                margin-left: 1em;
+            }
+        }
+        
+        
+        #{&}#{&}--skiplinks li{
+            margin-left: 0;
+            position: relative;    
+        }
+        
+        #{&}#{&}--skiplinks a[href] {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: auto;
+            margin: 0;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+            white-space: nowrap;
+            
+            &:active, &:focus {
+                clip: auto;
+                height: auto;
+                overflow: visible;
+                position: initial;
+                white-space: inherit;
+                width: auto;
+            }
+        }
+        
+        
+        #{&}#{&}--pale,
+        #{&}#{&}--pale a[href] {
+            color: lighten($s__base-text-color, 20%);            
+        }
+        
+        #{&}#{&}--pale a[href] {
+            &:hover span, &:active span, &:focus span {
+                color: $s__base-text-color;      
+            }
+        }
+        
+        #{&}#{&}--smaller {
+            font-size: 0.8125em;
+        }
+    }
+
+    
+}
+

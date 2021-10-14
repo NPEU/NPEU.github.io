@@ -1,0 +1,29 @@
+{% assign n_items = 0 %}
+{% assign list_items = "" %}
+{% capture newline %}
+{% endcapture %}
+{% capture workspace_1 %}
+    {% for item in site.pages | sort %}
+        
+        {% assign n_items = n_items | plus: 1 %}
+        
+        {% if item.dir contains page.dir %}
+            {% assign t = item.dir | remove: page.dir %}
+
+            {% unless t == "" %}
+                {% capture list_item %}<li><a href="{{ item.url }}">{{ item.title }}</a></li>{% endcapture %}
+                {% assign list_items = list_items |  append: newline | append: list_item %}
+            {% endunless %}
+        {% endif %}
+
+    {% endfor %}
+{% endcapture %}
+{% unless list_items == "" %}
+<nav aria-label="Section menu">
+    <ul>
+        {{ list_items | strip }}
+    </ul>
+</nav>
+<hr>
+{% endunless %}
+{{ workspace_1 }}

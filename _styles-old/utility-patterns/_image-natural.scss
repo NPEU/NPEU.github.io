@@ -1,0 +1,85 @@
+/*
+    Fill and area with an image.
+*/
+
+$image-natural-namespace: u- !default;
+
+.#{$image-natural-namespace}image-natural {
+
+    /*
+        1. For positioned pseudo elements, e.g. External indicator.
+        2. For IE11
+    */
+    &#{&} {
+        display: inline-block;
+        vertical-align: middle;
+
+        position: relative; /* [1] */
+        max-width: 100%; /* [2] */
+    }
+
+       .#{$image-natural-namespace}image-natural__image {
+        /*
+            1. This is to provide positioning context for the ::after pseudo-element.
+            2. This is so a broken image is still 100%.
+            3. Center in container.
+        */
+
+        position: relative; /* [1] */
+
+        display: block; /* [2] */
+
+        height: auto;
+        width: auto;
+
+        max-width: 100%;
+
+        border-style: none;
+
+        background-color: transparent;
+
+        margin: 0 auto; /* [3] */
+
+    }
+}
+
+a[href].#{$image-natural-namespace}image-natural {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    position: relative;
+
+    &:hover,
+    &:active,
+    &:focus {
+        border: 0;
+
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            box-shadow: 0 0 0 0.6rem rgba(0,0,0,.2) inset;
+            z-index: 1;
+        }
+    }
+}
+
+a[href][rel~="external"].#{$image-natural-namespace}image-natural::after {
+    display: none;
+}
+
+a[href][rel~="external"].#{$image-natural-namespace}image-natural:hover::after,
+a[href][rel~="external"].#{$image-natural-namespace}image-natural:active::after,
+a[href][rel~="external"].#{$image-natural-namespace}image-natural:focus::after {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    width: 1.25em;
+    height: 1.25em;
+    display: block;
+    margin: 0;
+}

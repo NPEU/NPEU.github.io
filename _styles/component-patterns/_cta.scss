@@ -1,0 +1,64 @@
+/*
+    CTA
+    ===
+*/
+
+$cta-namespace: c- !default;
+
+/*
+    The FallBack for CTA's usually wraps the link in <b> tags to attempt to convey a modicum of
+    visual importance. Reset the inherited weight and style.
+*/
+.#{$cta-namespace}cta {
+    &#{&} {
+        @include s__button(
+            $s__button-background-color,
+            $s__button-text-color,
+            20,
+            $s__button-background-color
+        );
+
+        text-decoration: none;
+        position: relative;
+
+        font-weight: normal; /* [1] */
+        font-style: normal; /* [1] */
+
+            &:hover,
+            &:active {
+                background-color: lighten($s__button-background-color, 55%);
+                text-decoration: none;
+            }
+
+            svg {
+                vertical-align: text-top;
+                // IE11 needs this:
+                height: 1.25em;
+            }
+
+            * {
+                font-weight: inherit;
+                font-style: inherit;
+            }
+    }
+}
+
+/*a[href].#{$s__class-namespace}button--has-icon,
+a[href].#{$s__class-namespace}cta--has-icon {
+    position: relative;
+}
+
+a[href].#{$s__class-namespace}button--has-icon::after,
+a[href].#{$s__class-namespace}cta--has-icon::after {
+    content: "";
+    display: inline;
+    padding-left: 1.25em;
+    line-height: 0;
+}
+
+a[href].#{$s__class-namespace}button--has-icon .icon,
+a[href].#{$s__class-namespace}cta--has-icon .icon {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(-15%);
+}*/

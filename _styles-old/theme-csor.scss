@@ -1,0 +1,195 @@
+/*! CSOR Theme (c) NPEU */
+
+/* --| START THEME |----------------------------------------------------------------------------- */
+
+//@import "_themes-config.scss";
+$theme-name: csor;
+$theme: (
+    cta-text-color       : #ffffff,
+    cta-background-color : #00a98f,
+    primary-color        : #5f6db2,
+    secondary-color      : #00a98f,
+    page-header-color    : #ffffff
+);
+
+
+$s__breakpoint--enhanced: 50em;
+
+$theme-copy: $theme;
+$theme-name-copy: $theme-name;
+@import "_style";
+
+
+
+$theme-only: true;
+@import "_themeable-patterns.scss";
+
+
+//$theme: map_get($themes, $theme-name);
+$theme: $theme-copy;
+$theme-name: $theme-name-copy;
+@import "_theme";
+
+/* ---------------------------------------------------------------------------------------------- */
+
+table.csor-table.csor-table {
+    text-align: center;
+    border: 0 none;
+    border-spacing: $sz-s;
+    border-collapse: separate;
+    background-color: #ddd;
+}
+
+table.csor-table.csor-table caption {
+    background-color: #fff;
+    color: #333;
+    padding-bottom: 0;
+}
+
+table.csor-table.csor-table th {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1.2em;
+    text-align: center;
+    background-color: #fff;
+    border: 0 none;
+    padding-top: 0;
+
+    position: relative;
+    z-index: 0;
+}
+
+table.csor-table.csor-table th::before {
+    content: "";
+    display: block;
+    background-color: #fff;
+
+    position: absolute;
+    left: -$sz-s;
+    right: -$sz-s;
+    top: -$sz-s;
+    bottom: 0;
+    z-index: -1;
+}
+
+
+
+
+table.csor-table.csor-table th.csor-table__column-1 {
+    color: #5F6DB2;
+}
+
+table.csor-table.csor-table th.csor-table__column-2 {
+    color: #EA6852;
+}
+
+table.csor-table.csor-table th.csor-table__column-3 {
+    color: #FF9E18;
+}
+
+table.csor-table.csor-table th.csor-table__column-4 {
+    color: #00A98F;
+}
+
+
+table.csor-table.csor-table tbody tr.csor-table__row-space td {
+    background-color: #fff;
+    border: 0 none;
+    padding: $sz-xs;
+
+    position: relative;
+    z-index: 0;
+}
+
+table.csor-table.csor-table tbody tr.csor-table__row-space td::before {
+    content: "";
+    display: block;
+    background-color: #fff;
+
+    position: absolute;
+    left: -$sz-s;
+    right: -$sz-s;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+table.csor-table.csor-table tbody td {
+    padding: $sz-m;
+    border-color: #333;
+}
+
+
+table.csor-table.csor-table td.csor-table__column-1 {
+    background-color: #5F6DB2;
+    color: #fff;
+}
+
+table.csor-table.csor-table td.csor-table__column-1 a[href] {
+    color: #fff;
+}
+
+
+table.csor-table.csor-table td.csor-table__column-2 {
+    background-color: #EA6852;
+    color: #fff;
+}
+
+table.csor-table.csor-table td.csor-table__column-2 a[href] {
+    color: #fff;
+}
+
+
+table.csor-table.csor-table td.csor-table__column-3 {
+    background-color: #FF9E18;
+    color: #333;
+}
+
+table.csor-table.csor-table td.csor-table__column-3 a[href] {
+    color: #333;
+}
+
+
+table.csor-table.csor-table td.csor-table__column-4 {
+    background-color: #00A98F;
+    color: #fff;
+    white-space: nowrap;
+}
+
+table.csor-table.csor-table td.csor-table__column-4 a[href] {
+    color: #fff;
+}
+
+@media (max-width: 46em) {
+    table.csor-table.csor-table,
+    table.csor-table.csor-table caption,
+    table.csor-table.csor-table tbody,
+    table.csor-table.csor-table td,
+    table.csor-table.csor-table th {
+        display: block;
+        font-size: 1em;
+    }
+
+    table.csor-table.csor-table caption {
+
+        padding-bottom: $sz-m;
+    }
+
+    table.csor-table.csor-table thead {
+        display: none;
+    }
+
+    table.csor-table.csor-table td::before {
+        content: attr(data-heading);
+        display: block;
+        font-size: 0.875em;
+        font-weight: bold;
+    }
+}
+
+
+/* --| SHAME |----------------------------------------------------------------------------------- */
+
+@import "_shame";
+
+/* ---------------------------------------------------------------------------------------------- */

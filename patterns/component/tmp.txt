@@ -1,0 +1,1741 @@
+
+<!--
+
+    CARD
+    
+-->
+
+<!--
+<h2 class="u-padding--sides" id="card">Card</h2>
+
+<div class="u-padding--sides  u-space--below">
+    <div class="c-card">
+        <div class="c-card__image">
+            <div class="l-proportional-container  l-proportional-container--3-1">
+                <div class="l-proportional-container__content">
+                    <div class="u-image-cover  js-image-cover">
+                        <div class="u-image-cover__inner">
+                            <img src="/assets/images/patterns/placeholder-1--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns/placeholder-1--small.jpg 300w" alt="" class="u-image-cover__image" width="200">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="c-card__main">
+            <h2 class="c-card__title">Card Title</h2>
+            <div class="c-card__body">
+                <p>
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim.
+                </p>
+                <p class="c-card__cta">
+                    <a href="#" class="c-cta  c-cta--has-icon">More<svg display="none" aria-hidden="true" width="20" height="20"><use xlink:href="#icon-chevron-right"></use></svg></a>
+                </p>
+            </div>
+            <div class="c-card__footer">
+                <p class="c-card__info  u-text-group  u-text-group--wide-space">
+                    <span class="u-text-group"><span>Published on: </span><span>18 June 2018 10:11</span></span>
+                    <span class="u-text-group"><span>Published in: </span><span>Quite a long category name category name to test wrapping</span></span>
+                </p>
+            </div>
+        </div>
+        <div class="c-card__footer_image">
+            <div class="l-proportional-container  l-proportional-container--5-1">
+                <div class="l-proportional-container__content">
+                    <div class="u-image-cover  js-image-cover">
+                        <div class="u-image-cover__inner">
+                            <img src="/assets/images/patterns/footer-placeholder-1--small.jpg" sizes="100vw" srcset="/assets/images/patterns/footer-placeholder-1--large.jpg 1600w, /assets/images/patterns/footer-placeholder-1--medium.jpg 900w, /assets/images/patterns/footer-placeholder-1--small.jpg 300w" alt="" class="u-image-cover__image" width="200">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;div class=&quot;c-card&quot;&gt;
+    &lt;div class=&quot;c-card__image&quot;&gt;
+        &lt;div class=&quot;l-proportional-container  l-proportional-container--3-1&quot;&gt;
+            &lt;div class=&quot;l-proportional-container__content&quot;&gt;
+                &lt;div class=&quot;u-image-cover  js-image-cover&quot;&gt;
+                    &lt;div class=&quot;u-image-cover__inner&quot;&gt;
+                        &lt;img src=&quot;/assets/images/patterns/placeholder-1--small.jpg&quot; sizes=&quot;100vw&quot; srcset=&quot;/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/footer-placeholder-1--medium.jpg 900w, /assets/images/patterns/placeholder-1--small.jpg 300w&quot; alt=&quot;&quot; class=&quot;u-image-cover__image&quot; width=&quot;200&quot;&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;c-card__main&quot;&gt;
+        &lt;h2 class=&quot;c-card__title&quot;&gt;Card Title&lt;/h2&gt;
+        &lt;div class=&quot;c-card__body&quot;&gt;
+            &lt;p&gt;
+                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim.
+            &lt;/p&gt;
+            &lt;p class=&quot;c-card__cta&quot;&gt;
+                &lt;a href=&quot;#&quot; class=&quot;c-cta  c-cta--has-icon&quot;&gt;More&lt;svg display=&quot;none&quot; class=&quot;icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use xlink:href=&quot;#icon-chevron-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/a&gt;
+            &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;c-card__footer&quot;&gt;
+            &lt;p class=&quot;c-card__info  u-text-group  u-text-group--wide-space&quot;&gt;
+                &lt;span class=&quot;u-text-group&quot;&gt;&lt;span&gt;Published on: &lt;/span&gt;&lt;span&gt;18 June 2018 10:11&lt;/span&gt;&lt;/span&gt;
+                &lt;span class=&quot;u-text-group&quot;&gt;&lt;span&gt;Published in: &lt;/span&gt;&lt;span&gt;Quite a long category name category name to test wrapping&lt;/span&gt;&lt;/span&gt;
+            &lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;c-card__footer_image&quot;&gt;
+        &lt;div class=&quot;l-proportional-container  l-proportional-container--5-1&quot;&gt;
+            &lt;div class=&quot;l-proportional-container__content&quot;&gt;
+                &lt;div class=&quot;u-image-cover  js-image-cover&quot;&gt;
+                    &lt;div class=&quot;u-image-cover__inner&quot;&gt;
+                        &lt;img src=&quot;/assets/images/patterns/footer-placeholder-1--small.jpg&quot; sizes=&quot;100vw&quot; srcset=&quot;/assets/images/patterns/footer-placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns/footer-placeholder-1--small.jpg 300w&quot; alt=&quot;&quot; class=&quot;u-image-cover__image&quot; width=&quot;200&quot;&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+
+<h3 class="u-padding--sides">Card - full link</h3>
+
+<p class="u-padding--sides">
+Note that this pattern does not allow for a nested CTA (nested <code class="html">&lt;a&gt;</code> are not allowed).
+Here a span is used instead, to help avoid any confusio (whole thing is a link, not just CTA).
+</p>
+
+<div class="u-padding--sides  u-space--below">
+    <div class="c-card">
+        <a href="#" class="c-card__full-link  u-fill-height--column">
+            <div class="c-card__image">
+                <div class="l-proportional-container  l-proportional-container--3-1">
+                    <div class="l-proportional-container__content">
+                        <div class="u-image-cover  js-image-cover">
+                            <div class="u-image-cover__inner">
+                                <img src="/assets/images/patterns/placeholder-2--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-2--large.jpg 1600w, /assets/images/patterns/placeholder-2--medium.jpg 900w, /assets/images/patterns/placeholder-2--small.jpg 300w" alt="" class="u-image-cover__image" width="200">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="c-card__main">
+                <h2 class="c-card__title">Card Title</h2>
+                <div class="c-card__body">
+                    <p>
+                        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim.
+                    </p>
+                    <p class="c-card__cta">
+                        <span>More<svg focusable="false" aria-hidden="true" width="20" height="20"><use xlink:href="#icon-chevron-right"></use></svg></span>
+                    </p>
+                </div>
+                <div class="c-card__footer">
+                    <p class="c-card__info  u-text-group  u-text-group--wide-space">
+                        <span class="u-text-group"><span>Published on: </span><span>18 June 2018 10:11</span></span>
+                        <span class="u-text-group"><span>Published in: </span><span>Quite a long category name category name to test wrapping</span></span>
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;div class=&quot;c-card&quot;&gt;
+    &lt;a href=&quot;#&quot; class=&quot;c-card__full-link  u-fill-height--column&quot;&gt;
+        &lt;div class=&quot;c-card__image&quot;&gt;
+            &lt;div class=&quot;l-proportional-container  l-proportional-container--3-1&quot;&gt;
+                &lt;div class=&quot;l-proportional-container__content&quot;&gt;
+                    &lt;div class=&quot;u-image-cover  js-image-cover&quot;&gt;
+                        &lt;div class=&quot;u-image-cover__inner&quot;&gt;
+                            &lt;img src=&quot;/assets/images/patterns/placeholder-2--small.jpg&quot; alt=&quot;&quot; class=&quot;u-image-cover__image&quot; width=&quot;200&quot;&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;c-card__main&quot;&gt;
+            &lt;h2 class=&quot;c-card__title&quot;&gt;Card Title&lt;/h2&gt;
+            &lt;div class=&quot;c-card__body&quot;&gt;
+                &lt;p&gt;
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim.
+                &lt;/p&gt;
+                &lt;p class=&quot;c-card__cta&quot;&gt;
+                    &lt;span&gt;More&lt;svg display=&quot;none&quot; focusable=&quot;false&quot; class=&quot;icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use xlink:href=&quot;#icon-chevron-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+                &lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;c-card__footer&quot;&gt;
+                &lt;p class=&quot;c-card__info  u-text-group  u-text-group--wide-space&quot;&gt;
+                    &lt;span class=&quot;u-text-group&quot;&gt;&lt;span&gt;Published on: &lt;/span&gt;&lt;span&gt;18 June 2018 10:11&lt;/span&gt;&lt;/span&gt;
+                    &lt;span class=&quot;u-text-group&quot;&gt;&lt;span&gt;Published in: &lt;/span&gt;&lt;span&gt;Quite a long category name category name to test wrapping&lt;/span&gt;&lt;/span&gt;
+                &lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/a&gt;
+&lt;/a&gt;</code></pre>
+    </details>
+</div>
+
+<h3 class="u-padding--sides">Card - no image</h3>
+
+<div class="u-padding--sides  u-space--below">
+    <div class="c-card">
+        <div class="c-card__main">
+            <h2 class="c-card__title">Card Title</h2>
+            <div class="c-card__body">
+                <p>
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim.
+                </p>
+
+            </div>
+            <div class="c-card__footer">
+                <p class="c-card__info  u-text-group  u-text-group--wide-space">
+                    <span class="u-text-group"><span>Published on: </span><span>18 June 2018 10:11</span></span>
+                    <span class="u-text-group"><span>Published in: </span><span>Quite a long category name category name to test wrapping</span></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p class="u-padding--sides">Simply omit the <code>&lt;div class=&quot;c-card__image&quot;&gt;</code> element.</p>
+
+<h3 class="u-padding--sides">Card - linked title</h3>
+
+<div class="u-padding--sides  u-space--below">
+    <div class="c-card">
+        <div class="c-card__main">
+            <h2 class="c-card__title"><a href="">Card Title - Quite a Bit Longer so we can see the effects of underlines on wrapping text</a></h2>
+            <div class="c-card__body">
+                <p>
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim.
+                </p>
+
+            </div>
+            <div class="c-card__footer">
+                <p class="c-card__info  u-text-group  u-text-group--wide-space">
+                    <span class="u-text-group"><span>Published on: </span><span>18 June 2018 10:11</span></span>
+                    <span class="u-text-group"><span>Published in: </span><span>Quite a long category name category name to test wrapping</span></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3 class="u-padding--sides">Card - no footer - longer CTA</h3>
+
+<div class="u-padding--sides  u-space--below">
+    <div class="c-card">
+        <div class="c-card__image">
+            <div class="l-proportional-container  l-proportional-container--3-1">
+                <div class="l-proportional-container__content">
+                    <div class="u-image-cover  js-image-cover">
+                        <div class="u-image-cover__inner">
+                            <img src="/assets/images/patterns/placeholder-2--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-2--large.jpg 1600w, /assets/images/patterns/placeholder-2--medium.jpg 900w, /assets/images/patterns/placeholder-2--small.jpg 300w" alt="" class="u-image-cover__image" width="200">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="c-card__main">
+            <h2 class="c-card__title">Card Title</h2>
+            <div class="c-card__body">
+                <p>
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim.
+                </p>
+                <p class="c-card__cta">
+                    <a href="#" class="c-cta  c-cta--has-icon">A longer CTA to test what happens with wrapping<svg focusable="false" aria-hidden="true" width="20" height="20"><use xlink:href="#icon-chevron-right"></use></svg></a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p class="u-padding--sides">Simply omit the <code>&lt;div class=&quot;c-card__footer&quot;&gt;</code> element.</p>
+
+<h3 class="u-padding--sides">Card - Image and Title Only (no body)</h3>
+
+<div class="u-padding--sides  u-space--below">
+    <div class="c-card">
+        <div class="c-card__image">
+            <div class="l-proportional-container  l-proportional-container--3-1">
+                <div class="l-proportional-container__content">
+                    <div class="u-image-cover  js-image-cover">
+                        <div class="u-image-cover__inner">
+                            <img src="/assets/images/patterns/placeholder-2--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-2--large.jpg 1600w, /assets/images/patterns/placeholder-2--medium.jpg 900w, /assets/images/patterns/placeholder-2--small.jpg 300w" alt="" class="u-image-cover__image" width="200">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="c-card__main">
+            <h2 class="c-card__title"><a href="#">Card Title</a></h2>
+        </div>
+    </div>
+</div>
+
+<h3 class="u-padding--sides">Card - themed content - (Featured news)</h3>
+
+<div class="u-padding--sides  u-space--below">
+    <div class="c-card  c-card--themed-content  t-neoclear">
+        <a href="#" class="c-card__full-link  u-fill-height--column">
+            <div class="c-card__image">
+                <div class="l-proportional-container  l-proportional-container--3-1">
+                    <div class="l-proportional-container__content">
+                        <div class="u-image-cover  js-image-cover">
+                            <div class="u-image-cover__inner">
+                                <img src="/assets/images/patterns/placeholder-3--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-3--large.jpg 1600w, /assets/images/patterns/placeholder-3--medium.jpg 900w, /assets/images/patterns/placeholder-3--small.jpg 300w" alt="" class="u-image-cover__image" width="200">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="c-card__main">
+                <h2 class="c-card__title">Card Title</h2>
+                <div class="c-card__body">
+                    <p>
+                        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim.
+                    </p>
+                </div>
+                <div class="c-card__footer">
+                    <p class="c-card__info  u-text-group  u-text-group--wide-space">
+                        <span class="u-text-group"><span>Published on: </span><span>18 June 2018 10:11</span></span>
+                        <span class="u-text-group"><span>Published in: </span><span>Quite a long category name category name to test wrapping</span></span>
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;div class=&quot;c-card  <strong>c-card--themed-content  t-neoclear</strong>&quot;&gt;
+...</code></pre>
+    </details>
+</div>
+
+<h3 class="u-padding--sides">Card - themed content (News stub)</h3>
+
+<div class="u-padding--sides  u-space--below">
+    <div class="c-card  c-card--themed-content  t-neoclear">
+        <a href="#" class="c-card__full-link  u-fill-height--column">
+            <div class="c-card__main">
+                <h2 class="c-card__title">Card Title</h2>
+                <div class="c-card__footer">
+                    <p class="c-card__info  u-text-group  u-text-group--wide-space">
+                        <span class="u-text-group"><span>Published on: </span><span>18 June 2018 10:11</span></span>
+                        <span class="u-text-group"><span>Published in: </span><span>Quite a long category name category name to test wrapping</span></span>
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<p class="u-padding--sides">Simply omit the <code>&lt;div class=&quot;c-card__image&quot;&gt;</code> and <code>&lt;div class=&quot;c-card__body&quot;&gt;</code> elements.</p>
+
+
+<hr>
+-->
+
+<!--
+
+    CONTACT LIST
+    
+-->
+
+<!--
+
+<h2 class="u-padding--sides" id="contact-list">Contact List</h2>
+
+<div class="u-padding--sides  u-space--below">
+    <div>
+        <img src="/assets/images/patterns/placeholder-person.jpg" alt="" class="c-contact-avatar  d-bands" width="100">
+    </div>
+    <dl class="c-contact-list" itemscope="itemscope" itemtype="http://schema.org/Person">
+        <dt>Name</dt>
+        <dd>
+            <svg focusable="false" aria-hidden="true" width="20" height="20"><use xlink:href="#icon-person"></use></svg>
+            <a href="https://www.npeu.ox.ac.uk/people/jenny-kurinczuk-659">
+                <span itemprop="honorificPrefix">Prof</span> <span itemprop="name">Jenny Kurinczuk</span>
+            </a>
+        </dd>
+        <dt>Organisation</dt>
+        <dd itemprop="worksFor">
+            <svg focusable="false" aria-hidden="true" width="20" height="20"><use xlink:href="#icon-building"></use></svg>
+            Policy Research Unit in Maternal Health &amp; Care (PRU-MHC)
+        </dd>
+        <dt>Address</dt>
+        <dd itemprop="streetAddress" itemscope="itemscope" itemtype="http://schema.org/PostalAddress">
+            <span itemprop="addressLocality">National Perinatal Epidemiology Unit (NPEU)<br>
+            Nuffield Department of Population Health<br>
+            University of Oxford<br>
+            Old Road Campus</span><br>
+            <span itemprop="addressLocality">Oxford</span><br>
+            <span itemprop="postalCode">OX3 7LF</span>
+        </dd>
+        <dt>Email</dt>
+        <dd itemprop="email">
+            <svg focusable="false" aria-hidden="true" width="20" height="20"><use xlink:href="#icon-email"></use></svg>
+            <span itemprop="email">jenny.kurinczuk@npeu.ox.ac.uk</span>
+        </dd>
+        <dt>Telephone</dt>
+        <dd itemprop="telephone">
+            <svg focusable="false" aria-hidden="true" width="20" height="20"><use xlink:href="#icon-phone"></use></svg>
+            01865 289719
+        </dd>
+        <dt>Fax</dt>
+        <dd itemprop="faxNumber">
+            <svg focusable="false" aria-hidden="true" width="20" height="20"><use xlink:href="#icon-fax"></use></svg>
+            01865 289701
+        </dd>
+    </dl>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;div&gt;
+    &lt;img src=&quot;/assets/images/patterns/placeholder-person.jpg&quot; alt=&quot;&quot; class=&quot;c-contact-avatar  d-bands&quot; width=&quot;100&quot;&gt;
+&lt;/div&gt;
+&lt;dl class=&quot;c-contact-list&quot; itemscope=&quot;itemscope&quot; itemtype=&quot;http://schema.org/Person&quot;&gt;
+    &lt;dt&gt;Name&lt;/dt&gt;
+    &lt;dd&gt;
+        &lt;svg display=&quot;none&quot; focusable=&quot;false&quot; class=&quot;icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use xlink:href=&quot;#icon-person&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+        &lt;a href=&quot;https://www.npeu.ox.ac.uk/people/jenny-kurinczuk-659&quot;&gt;
+            &lt;span itemprop=&quot;honorificPrefix&quot;&gt;Prof&lt;/span&gt; &lt;span itemprop=&quot;name&quot;&gt;Jenny Kurinczuk&lt;/span&gt;
+        &lt;/a&gt;
+    &lt;/dd&gt;
+    &lt;dt&gt;Organisation&lt;/dt&gt;
+    &lt;dd itemprop=&quot;worksFor&quot;&gt;
+        &lt;svg display=&quot;none&quot; focusable=&quot;false&quot; class=&quot;icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use xlink:href=&quot;#icon-building&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+        Policy Research Unit in Maternal Health &amp;amp; Care (PRU-MHC)
+    &lt;/dd&gt;
+    &lt;dt&gt;Address&lt;/dt&gt;
+    &lt;dd itemprop=&quot;streetAddress&quot; itemscope=&quot;itemscope&quot; itemtype=&quot;http://schema.org/PostalAddress&quot;&gt;
+        &lt;span itemprop=&quot;addressLocality&quot;&gt;National Perinatal Epidemiology Unit (NPEU)&lt;br&gt;
+        Nuffield Department of Population Health&lt;br&gt;
+        University of Oxford&lt;br&gt;
+        Old Road Campus&lt;/span&gt;&lt;br&gt;
+        &lt;span itemprop=&quot;addressLocality&quot;&gt;Oxford&lt;/span&gt;&lt;br&gt;
+        &lt;span itemprop=&quot;postalCode&quot;&gt;OX3 7LF&lt;/span&gt;
+    &lt;/dd&gt;
+    &lt;dt&gt;Email&lt;/dt&gt;
+    &lt;dd itemprop=&quot;email&quot;&gt;
+        &lt;svg display=&quot;none&quot; focusable=&quot;false&quot; class=&quot;icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use xlink:href=&quot;#icon-email&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+        &lt;span itemprop=&quot;email&quot;&gt;jenny.kurinczuk@npeu.ox.ac.uk&lt;/span&gt;
+    &lt;/dd&gt;
+    &lt;dt&gt;Telephone&lt;/dt&gt;
+    &lt;dd itemprop=&quot;telephone&quot;&gt;
+        &lt;svg display=&quot;none&quot; focusable=&quot;false&quot; class=&quot;icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use xlink:href=&quot;#icon-phone&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+        01865 289719
+    &lt;/dd&gt;
+    &lt;dt&gt;Fax&lt;/dt&gt;
+    &lt;dd itemprop=&quot;faxNumber&quot;&gt;
+        &lt;svg display=&quot;none&quot; focusable=&quot;false&quot; class=&quot;icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use xlink:href=&quot;#icon-fax&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+        01865 289701
+    &lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+    </details>
+</div>
+
+<h3 class="u-padding--sides">Contact List - short</h3>
+
+<div class="u-padding--sides  u-space--below">
+    <dl class="c-contact-list" itemscope="itemscope" itemtype="http://schema.org/Person">
+        <dt>Name</dt>
+        <dd>
+            <svg focusable="false" aria-hidden="true" width="20" height="20"><use xlink:href="#icon-person"></use></svg>
+            <b><span itemprop="honorificPrefix">Dr.</span> <span itemprop="name">Alexandra Scrivens</span></b>
+        </dd>
+        <dt>Tel</dt>
+        <dd itemprop="telephone">
+            <svg focusable="false" aria-hidden="true" width="20" height="20"><use xlink:href="#icon-phone"></use></svg>
+            01865 617928</dd>
+        <dt>Email</dt>
+        <dd itemprop="email">
+            <svg focusable="false" aria-hidden="true" width="20" height="20"><use xlink:href="#icon-email"></use></svg>
+            <a href="mailto:alexandra.scrivens@npeu.ox.ac.uk" itemprop="email">alexandra.scrivens@npeu.ox.ac.uk</a>
+        </dd>
+    </dl>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;dl class=&quot;c-contact-list&quot; itemscope=&quot;itemscope&quot; itemtype=&quot;http://schema.org/Person&quot;&gt;
+    &lt;dt&gt;Name&lt;/dt&gt;
+    &lt;dd&gt;
+        &lt;svg display=&quot;none&quot; focusable=&quot;false&quot; class=&quot;icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use xlink:href=&quot;#icon-person&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+        &lt;b&gt;&lt;span itemprop=&quot;honorificPrefix&quot;&gt;Dr.&lt;/span&gt; &lt;span itemprop=&quot;name&quot;&gt;Alexandra Scrivens&lt;/span&gt;&lt;/b&gt;
+    &lt;/dd&gt;
+    &lt;dt&gt;Tel&lt;/dt&gt;
+    &lt;dd itemprop=&quot;telephone&quot;&gt;
+        &lt;svg display=&quot;none&quot; focusable=&quot;false&quot; class=&quot;icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use xlink:href=&quot;#icon-phone&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+        01865 617928&lt;/dd&gt;
+    &lt;dt&gt;Email&lt;/dt&gt;
+    &lt;dd itemprop=&quot;email&quot;&gt;
+        &lt;svg display=&quot;none&quot; focusable=&quot;false&quot; class=&quot;icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use xlink:href=&quot;#icon-email&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+        &lt;a href=&quot;mailto:alexandra.scrivens@npeu.ox.ac.uk&quot; itemprop=&quot;email&quot;&gt;alexandra.scrivens@npeu.ox.ac.uk&lt;/a&gt;
+    &lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+    </details>
+</div>
+
+
+<hr>
+
+-->
+
+<!--
+
+    EVENT
+    
+-->
+
+<!--
+
+<h2 class="u-padding--sides" id="event">Event</h2>
+
+<div class="u-padding--sides  u-space--below">
+    <div class="c-event">
+        <h3 class="c-event__title">Using qualitative research to shape, inform, and implement global guidelines in maternity care</h3>
+        <p class="c-event__speaker">
+            Professor Soo Downe
+        </p>
+        <p class="c-event__speaker-role">
+            Professor of Midwifery Studies, University of Central Lancaster
+        </p>
+        <p class="c-event__datetime">
+            February: Tue 26<sup>th</sup> 14:30 &ndash; 15:30
+        </p>
+        <a href="#" class="c-event__action  c-cta">+ Add to Calendar</a>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;div class=&quot;c-event&quot;&gt;
+    &lt;h3 class=&quot;c-event__title&quot;&gt;Using qualitative research to shape, inform, and implement global guidelines in maternity care&lt;/h3&gt;
+    &lt;p class=&quot;c-event__speaker&quot;&gt;
+        Professor Soo Downe
+    &lt;/p&gt;
+    &lt;p class=&quot;c-event__speaker-role&quot;&gt;
+        Professor of Midwifery Studies, University of Central Lancaster
+    &lt;/p&gt;
+    &lt;p class=&quot;c-event__datetime&quot;&gt;
+        February: Tue 26&lt;sup&gt;th&lt;/sup&gt; 14:30 &amp;ndash; 15:30
+    &lt;/p&gt;
+    &lt;a href=&quot;#&quot; class=&quot;c-event__action  c-cta&quot;&gt;+ Add to Calendar&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+
+<hr>
+
+-->
+
+<!--
+
+    FEATURETTE
+    
+-->
+
+<!--
+
+<h2 class="u-padding--sides" id="featurette">Featurette</h2>
+
+<div class="u-padding--sides  u-space--below">
+    <div class="c-featurette-wrap">
+        <div class="c-featurette">
+            <div class="c-featurette__body  c-featurette__body--80">
+                <h2>
+                    Featurette Title
+                </h2>
+
+                <p>
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim congue, non molestie arcu aliquam. Vestibulum sagittis feugiat vulputate. Sed pharetra aliquam diam, eu euismod quam ullamcorper in. Sed a tempor tellus. Suspendisse in tellus hendrerit, aliquam ipsum nec, faucibus neque. Fusce a neque urna. Fusce faucibus massa eget laoreet posuere.
+                </p>
+            </div>
+            <div class="c-featurette__image  d-bands">
+                <div class="l-proportional-container  l-proportional-container--1-1">
+                    <div class="l-proportional-container__content">
+                        <div class="u-image-cover  js-image-cover">
+                            <div class="u-image-cover__inner">
+                                <img src="/assets/images/patterns/placeholder-3--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-3--large.jpg 1600w, /assets/images/patterns/placeholder-3--medium.jpg 900w, /assets/images/patterns/placeholder-3--small.jpg 300w" alt="" class="u-image-cover__image" width="200">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;div class=&quot;c-featurette-wrap&quot;&gt;
+    &lt;div class=&quot;c-featurette&quot;&gt;
+        &lt;div class=&quot;c-featurette__body  c-featurette__body--80&quot;&gt;
+            &lt;h2&gt;
+                Featurette Title
+            &lt;/h2&gt;
+
+            &lt;p&gt;
+                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim congue, non molestie arcu aliquam. Vestibulum sagittis feugiat vulputate. Sed pharetra aliquam diam, eu euismod quam ullamcorper in. Sed a tempor tellus. Suspendisse in tellus hendrerit, aliquam ipsum nec, faucibus neque. Fusce a neque urna. Fusce faucibus massa eget laoreet posuere.
+            &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;c-featurette__image  d-bands&quot;&gt;
+            &lt;div class=&quot;l-proportional-container  l-proportional-container--1-1&quot;&gt;
+                &lt;div class=&quot;l-proportional-container__content&quot;&gt;
+                    &lt;div class=&quot;u-image-cover  js-image-cover&quot;&gt;
+                        &lt;div class=&quot;u-image-cover__inner&quot;&gt;
+                            &lt;img src=&quot;/assets/images/patterns/placeholder-3--small.jpg&quot; alt=&quot;&quot; class=&quot;u-image-cover__image&quot; width=&quot;200&quot;&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+<h3 class="u-padding--sides">Featurette (Dark - e.g. Power Quote)</h3>
+
+<div class="u-padding--sides  u-space--below">
+    <div class="c-featurette-wrap">
+        <div class="c-featurette  c-featurette--pull-image  t-featurette--dark">
+            <div class="c-featurette__body  c-featurette__body--80">
+                <blockquote>
+                    "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim congue, non molestie arcu aliquam. Vestibulum sagittis feugiat vulputate. Sed pharetra aliquam diam, eu euismod quam ullamcorper in. Sed a tempor tellus. Suspendisse in tellus hendrerit, aliquam ipsum nec, faucibus neque. Fusce a neque urna. Fusce faucibus massa eget laoreet posuere."
+                </blockquote>
+                <cite>&mdash; Person name</cite>
+            </div>
+            <div class="c-featurette__image  c-featurette__image--round  d-bands">
+                <div class="l-proportional-container  l-proportional-container--1-1">
+                    <div class="l-proportional-container__content">
+                        <div class="u-image-cover  js-image-cover">
+                            <div class="u-image-cover__inner">
+                                <img src="/assets/images/patterns/placeholder-person.jpg" alt="" class="u-image-cover__image" width="200">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;div class=&quot;c-featurette-wrap&quot;&gt;
+    &lt;div class=&quot;c-featurette  c-featurette--pull-image  t-featurette--dark&quot;&gt;
+        &lt;div class=&quot;c-featurette__body  c-featurette__body--80&quot;&gt;
+            &lt;blockquote&gt;
+                &quot;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim congue, non molestie arcu aliquam. Vestibulum sagittis feugiat vulputate. Sed pharetra aliquam diam, eu euismod quam ullamcorper in. Sed a tempor tellus. Suspendisse in tellus hendrerit, aliquam ipsum nec, faucibus neque. Fusce a neque urna. Fusce faucibus massa eget laoreet posuere.&quot;
+            &lt;/blockquote&gt;
+            &lt;cite&gt;&amp;mdash; Person name&lt;/cite&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;c-featurette__image  c-featurette__image--round  d-bands&quot;&gt;
+            &lt;div class=&quot;l-proportional-container  l-proportional-container--1-1&quot;&gt;
+                &lt;div class=&quot;l-proportional-container__content&quot;&gt;
+                    &lt;div class=&quot;u-image-cover  js-image-cover&quot;&gt;
+                        &lt;div class=&quot;u-image-cover__inner&quot;&gt;
+                            &lt;img src=&quot;/assets/images/patterns/placeholder-person.jpg&quot; alt=&quot;&quot; class=&quot;u-image-cover__image&quot; width=&quot;200&quot;&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+<h3 class="u-padding--sides">Featurette (Dark - e.g. Notice)</h3>
+
+<div class="u-padding--sides  u-space--below">
+    <div class="c-featurette-wrap">
+        <div class="c-featurette  t-featurette--dark  u-text-align--center">
+            <div class="text-content  c-featurette__body  c-featurette__body--fill">
+                <h2>
+                    Featurette Title
+                </h2>
+
+                <p>
+                    <a href="#">Read the notice</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;div class=&quot;c-featurette-wrap&quot;&gt;
+    &lt;div class=&quot;c-featurette  t-featurette--dark  u-text-align--center&quot;&gt;
+        &lt;div class=&quot;text-content  c-featurette__body  c-featurette__body--fill&quot;&gt;
+            &lt;h2&gt;
+                Featurette Title
+            &lt;/h2&gt;
+
+            &lt;p&gt;
+                &lt;a href=&quot;#&quot;&gt;Read the notice&lt;/a&gt;
+            &lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+
+<hr>
+
+-->
+
+<!--
+
+    GLIMPSE
+    
+-->
+
+<!--
+
+<h2 class="u-padding--sides" id="glimpse">Glimpse</h2>
+
+<div class="u-padding--sides  u-space--below">
+    <div class="c-glimpse">
+        <a href="#" class="c-glimpse__link">
+            <div class="c-glimpse__image">
+                <div class="l-proportional-container  l-proportional-container--1-1">
+                    <div class="l-proportional-container__content">
+                        <div class="u-image-cover  js-image-cover">
+                            <div class="u-image-cover__inner">
+                                <img src="/assets/images/patterns/placeholder-3--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-3--large.jpg 1600w, /assets/images/patterns/placeholder-3--medium.jpg 900w, /assets/images/patterns/placeholder-3--small.jpg 300w" alt="" class="u-image-cover__image" width="200">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="c-glimpse__content">
+                <h3 class="c-glimpse__heading">Headline</h3>
+                <p>Just a glimpse at what's inside...</p>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+            <pre><code class="html">&lt;div class=&quot;c-glimpse&quot;&gt;
+    &lt;a href=&quot;#&quot; class=&quot;c-glimpse__link&quot;&gt;
+        &lt;div class=&quot;c-glimpse__image&quot;&gt;
+            &lt;div class=&quot;l-proportional-container  l-proportional-container--1-1&quot;&gt;
+                &lt;div class=&quot;l-proportional-container__content&quot;&gt;
+                    &lt;div class=&quot;u-image-cover  js-image-cover&quot;&gt;
+                        &lt;div class=&quot;u-image-cover__inner&quot;&gt;
+                            &lt;img src=&quot;/assets/images/patterns/placeholder-3--small.jpg&quot; sizes=&quot;100vw&quot; srcset=&quot;/assets/images/patterns/placeholder-3--large.jpg 1600w, /assets/images/patterns/placeholder-3--medium.jpg 900w, /assets/images/patterns/placeholder-3--small.jpg 300w&quot; alt=&quot;&quot; class=&quot;u-image-cover__image&quot; width=&quot;200&quot;&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;c-glimpse__content&quot;&gt;
+            &lt;h3 class=&quot;c-glimpse__heading&quot;&gt;Headline&lt;/h3&gt;
+            &lt;p&gt;Just a glimpse at what&apos;s inside...&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/a&gt;
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+<div class="u-padding--sides  u-space--below">
+    <div class="c-glimpse">
+        <a href="#" class="c-glimpse__link">
+            <div class="c-glimpse__image  c-glimpse__image--rounded">
+                <div class="l-proportional-container  l-proportional-container--1-1">
+                    <div class="l-proportional-container__content">
+                        <div class="u-image-cover  js-image-cover">
+                            <div class="u-image-cover__inner">
+                                <img src="/assets/images/patterns/placeholder-person.jpg" alt="" class="u-image-cover__image" width="200">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="c-glimpse__content">
+                <h3 class="c-glimpse__heading">Person Name</h3>         
+                <p>Job title</p>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+            <pre><code class="html">...
+&lt;div class=&quot;c-glimpse__image  <strong>c-glimpse__image--rounded</strong>&quot;&gt;
+...</code></pre>
+    </details>
+</div>
+
+<p class="u-padding--sides">Large image</p>
+
+<div class="u-padding--sides  u-space--below">
+    <div class="c-glimpse  c-glimpse--large-image" style="background: #ddd;">
+        <a href="#" class="c-glimpse__link">
+            <div class="c-glimpse__image  c-glimpse__image--rounded">
+                <div class="l-proportional-container  l-proportional-container--1-1">
+                    <div class="l-proportional-container__content">
+                        <div class="u-image-cover  js-image-cover">
+                            <div class="u-image-cover__inner">
+                                <img src="/assets/images/patterns/placeholder-person.jpg" alt="" class="u-image-cover__image" width="200">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="c-glimpse__content">
+                <h3 class="c-glimpse__heading">Personwitha Longernamethanusual</h3>         
+                <p>Job title</p>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+            <pre><code class="html">...
+&lt;div class=&quot;c-glimpse  <strong>c-glimpse--large-image</strong>&quot;&gt;
+...</code></pre>
+    </details>
+</div>
+
+
+<hr>
+
+-->
+
+<!--
+
+    HEADING
+    
+-->
+
+<!--
+
+<h2 class="u-padding--sides" id="heading">Heading</h2>
+
+<p class="u-padding--sides">
+Block header with option inline CTA.
+</p>
+
+<div class="u-padding--sides">
+    <header class="u-text-group  u-text-group--push-apart  u-space--below">
+        <h2 id="latest-news">Latest News</h2>
+        <p><a href="https://dev.npeu.ox.ac.uk/news" class="c-cta  c-cta--has-icon">See all news<svg focusable="false" aria-hidden="true" width="20" height="20"><use xlink:href="#icon-chevron-right"></use></svg></a></p>
+    </header>
+
+    <header class="u-text-group  u-text-group--push-apart  u-space--below">
+        <h2 id="heading-with-no-cta">Heading with no CTA</h2>
+    </header>
+</div>
+
+
+<hr>
+
+-->
+
+<!--
+
+    HERO
+    
+-->
+
+<!--
+
+<h2 class="u-padding--sides" id="hero">Hero</h2>
+
+<div class="c-hero  d-bands--top  d-bands--bottom  u-space--below">
+    <div class="c-hero__image">
+        <div class="l-proportional-container  l-proportional-container--4-1">
+            <div class="l-proportional-container__content">
+                <div class="u-image-cover  js-image-cover">
+                    <div class="u-image-cover__inner">
+                        <img src="/assets/images/patterns/placeholder-1--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns/placeholder-1--small.jpg 300w" alt="" class="u-image-cover__image" width="200">
+                        <small class="c-hero__image-credit">Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="c-hero__message">
+        <p class="c-hero__message--fluid_text">Hero message or statement. Word count should be around 8-12 words.</p>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;div class=&quot;c-hero  d-bands--top  d-bands--bottom  u-space--below&quot;&gt;
+    &lt;div class=&quot;c-hero__image&quot;&gt;
+        &lt;div class=&quot;l-proportional-container  l-proportional-container--4-1&quot;&gt;
+            &lt;div class=&quot;l-proportional-container__content&quot;&gt;
+                &lt;div class=&quot;u-image-cover  js-image-cover&quot;&gt;
+                    &lt;div class=&quot;u-image-cover__inner&quot;&gt;
+                        &lt;img src=&quot;/assets/images/patterns/placeholder-1--small.jpg&quot; sizes=&quot;100vw&quot; srcset=&quot;/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns/placeholder-1--small.jpg 300w&quot; alt=&quot;&quot; class=&quot;u-image-cover__image&quot; width=&quot;200&quot;&gt;
+                        &lt;small class=&quot;c-hero__image-credit&quot;&gt;Image credit info goes here. Can contain &lt;a href=&quot;#&quot;&gt;links&lt;/a&gt; and so on. Just not too long please.&lt;/small&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;c-hero__message&quot;&gt;
+        &lt;p class=&quot;c-hero__message--fluid_text&quot;&gt;Hero message or statement. Word count should be around 8-12 words.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+<h3 class="u-padding--sides">Hero - reversed</h3>
+
+<div class="c-hero  c-hero--reversed  d-bands--top  d-bands--bottom  u-space--below">
+    <div class="c-hero__image">
+        <div class="l-proportional-container  l-proportional-container--4-1">
+            <div class="l-proportional-container__content">
+                <div class="u-image-cover  js-image-cover">
+                    <div class="u-image-cover__inner">
+                        <img src="/assets/images/patterns/placeholder-2--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-2--large.jpg 1600w, /assets/images/patterns/placeholder-2--medium.jpg 900w, /assets/images/patterns/placeholder-2--small.jpg 300w" alt="" class="u-image-cover__image" width="200">
+                        <small class="c-hero__image-credit">Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="c-hero__message">
+        <p class="c-hero__message--fluid_text">Long word for testing. Antidisestablishmentarianism.</p>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;div class=&quot;c-hero  <strong>c-hero--reversed</strong>  d-bands--top  d-bands--bottom  u-space--below&quot;&gt;</code></pre>
+    </details>
+</div>
+
+<h3 class="u-padding--sides" id="hero-2">Hero - with heading and CTA - reversed</h3>
+
+<div class="c-hero  c-hero--reversed  d-bands--top  d-bands--bottom  u-space--below">
+    <div class="c-hero__image">
+        <div class="l-proportional-container  l-proportional-container--4-1">
+            <div class="l-proportional-container__content">
+                <div class="u-image-cover  js-image-cover">
+                    <div class="u-image-cover__inner">
+                        <img src="/assets/images/patterns/placeholder-1--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns/placeholder-1--small.jpg 300w" alt="" class="u-image-cover__image" width="200">
+                        <small class="c-hero__image-credit">Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="c-hero__message  c-hero__message--wide">
+        <h1 class="c-hero__message--fluid_heading">Welcome to the NPEU</h1>
+        <p class="c-hero__message--fluid_text">The NPEU (National Perinatal Epidemiology Unit) is a multi-disciplinary research unit which was established at the University of Oxford in 1978</p>
+        <p class="u-space--left--auto"><a href="/about" class="c-cta  c-cta--has-icon">About the NPEU<svg focusable="false" aria-hidden="true" width="20" height="20"><use xlink:href="#icon-chevron-right"></use></svg></a></p>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;div class=&quot;c-hero  c-hero--reversed  d-bands--top  d-bands--bottom  u-space--below&quot;&gt;
+    &lt;div class=&quot;c-hero__image&quot;&gt;
+        &lt;div class=&quot;l-proportional-container  l-proportional-container--4-1&quot;&gt;
+            &lt;div class=&quot;l-proportional-container__content&quot;&gt;
+                &lt;div class=&quot;u-image-cover  js-image-cover&quot;&gt;
+                    &lt;div class=&quot;u-image-cover__inner&quot;&gt;
+                        &lt;img src=&quot;/assets/images/patterns/placeholder-1--small.jpg&quot; sizes=&quot;100vw&quot; srcset=&quot;/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns/placeholder-1--small.jpg 300w&quot; alt=&quot;&quot; class=&quot;u-image-cover__image&quot; width=&quot;200&quot;&gt;
+                        &lt;small class=&quot;c-hero__image-credit&quot;&gt;Image credit info goes here. Can contain &lt;a href=&quot;#&quot;&gt;links&lt;/a&gt; and so on. Just not too long please.&lt;/small&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;c-hero__message  c-hero__message--wide&quot;&gt;
+        &lt;h1 class=&quot;c-hero__message--fluid_heading&quot;&gt;Welcome to the NPEU&lt;/h1&gt;
+        &lt;p class=&quot;c-hero__message--fluid_text&quot;&gt;The NPEU (National Perinatal Epidemiology Unit) is a multi-disciplinary research unit which was established at the University of Oxford in 1978&lt;/p&gt;
+        &lt;p class=&quot;u-space--left--auto&quot;&gt;&lt;a href=&quot;/about&quot; class=&quot;c-cta  c-cta--has-icon&quot;&gt;About the NPEU&lt;svg display=&quot;none&quot; focusable=&quot;false&quot; class=&quot;icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use xlink:href=&quot;#icon-chevron-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/a&gt;&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+
+<hr>
+
+-->
+
+<!--
+
+    INFO OVERLAY
+    
+-->
+
+<!--
+
+<h2 class="u-padding--sides" id="info-overlay">Info Overlay - natural width</h2>
+
+<div class="u-padding--s">
+    <div class="c-info-overlay-wrap" style="max-width: 600px">
+        <img src="/assets/images/patterns/placeholder-1--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns/placeholder-1--small.jpg 300w" alt="" class="" width="600">
+        <details class="c-info-overlay">
+            <summary><span data-if-css="hide">Credit</span><svg focusable="false" class="icon  icon--is-closed"><use xlink:href="#icon-info"></use></svg><svg focusable="false" class="icon  icon--is-open"><use xlink:href="#icon-cross"></use></svg></summary>
+            <div>Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please.</div>
+        </details>
+    </div>
+</div>
+
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;div class=&quot;c-info-overlay-wrap&quot;&gt;
+    &lt;img ... &gt;
+    &lt;details class=&quot;c-info-overlay&quot;&gt;
+        &lt;summary&gt;&lt;span data-if-css="hide"&gt;Credit&lt;/span&gt;<&lt;svg display=&quot;none&quot; focusable=&quot;false&quot; class=&quot;icon  icon--is-closed&quot;&gt;&lt;use xlink:href=&quot;#icon-info&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;svg display=&quot;none&quot; focusable=&quot;false&quot; class=&quot;icon  icon--is-open&quot;&gt;&lt;use xlink:href=&quot;#icon-cross&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/summary&gt;
+        &lt;div&gt;Image credit info goes here. Can contain &lt;a href=&quot;#&quot;&gt;links&lt;/a&gt; and so on. Just not too long please.&lt;/div&gt;
+    &lt;/details&gt;
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+<p class="u-padding--s">Longer content to test wrapping and containment.</p>
+
+<div class="u-padding--s">
+    <div class="c-info-overlay-wrap" style="max-width: 600px">
+        <img src="/assets/images/patterns/placeholder-1--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns/placeholder-1--small.jpg 300w" alt="" class="" width="600">
+        <details class="c-info-overlay">
+            <summary><span data-if-css="hide">Credit</span><svg focusable="false" class="icon  icon--is-closed"><use xlink:href="#icon-info"></use></svg><svg focusable="false" class="icon  icon--is-open"><use xlink:href="#icon-cross"></use></svg></summary>
+            <div>Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please. Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please. Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please.</div>
+        </details>
+    </div>
+</div>
+
+
+<h3 class="u-padding--sides" id="info-overlay-2">Info Overlay - force full width</h3>
+
+<div class="u-padding--s">
+    <div class="c-info-overlay-wrap" style="max-width: 600px">
+        <img src="/assets/images/patterns/placeholder-1--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns/placeholder-1--small.jpg 300w" alt="" class="" width="600">
+        <details class="c-info-overlay  c-info-overlay--full-width">
+            <summary><span data-if-css="hide">Credit</span><svg focusable="false" class="icon  icon--is-closed"><use xlink:href="#icon-info"></use></svg><svg focusable="false" class="icon  icon--is-open"><use xlink:href="#icon-cross"></use></svg></summary>
+            <div>Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please.</div>
+        </details>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;div class=&quot;c-info-overlay-wrap&quot;&gt;
+    &lt;img ... &gt;
+    &lt;details class=&quot;c-info-overlay  <b>c-info-overlay--full-width</b>&quot;&gt;
+        ...
+    &lt;/details&gt;
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+<h3 class="u-padding--sides" id="info-overlay-2">Info Overlay - force half width</h3>
+
+<div class="u-padding--s">
+    <div class="c-info-overlay-wrap" style="max-width: 600px">
+        <img src="/assets/images/patterns/placeholder-1--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns/placeholder-1--small.jpg 300w" alt="" class="" width="600">
+        <details class="c-info-overlay  c-info-overlay--half-width">
+            <summary><span data-if-css="hide">Credit</span><svg focusable="false" class="icon  icon--is-closed"><use xlink:href="#icon-info"></use></svg><svg focusable="false" class="icon  icon--is-open"><use xlink:href="#icon-cross"></use></svg></summary>
+            <div>Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please.</div>
+        </details>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;div class=&quot;c-info-overlay-wrap&quot;&gt;
+    &lt;img ... &gt;
+    &lt;details class=&quot;c-info-overlay  <b>c-info-overlay--half-width</b>&quot;&gt;
+        ...
+    &lt;/details&gt;
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+
+<h3 class="u-padding--sides" id="info-overlay-2">Info Overlay - large content test</h3>
+
+<p class="u-padding--sides">Forced a small image and overly long content.</p>
+
+<div class="u-padding--s">
+    <div class="c-info-overlay-wrap" style="max-width: 300px">
+        <img src="/assets/images/patterns/placeholder-1--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns/placeholder-1--small.jpg 300w" alt="" class="" width="300">
+        <details class="c-info-overlay">
+            <summary><span data-if-css="hide">Credit</span><svg focusable="false" class="icon  icon--is-closed"><use xlink:href="#icon-info"></use></svg><svg focusable="false" class="icon  icon--is-open"><use xlink:href="#icon-cross"></use></svg></summary>
+            <div>Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please. Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please. Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please. Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please.Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please.</div>
+        </details>
+    </div>
+</div>
+
+<hr>
+
+-->
+
+<!--
+
+    LONGFORM CONTENT
+    
+-->
+
+<!--
+
+<h2 class="u-padding--sides" id="longform-content">Longform Content</h2>
+
+<p class="u-padding--sides">Class to be applied to any longform content (e.g. article or main page content)</p>
+<p class="u-padding--sides">Currently the isn't much going on here yet.</p>
+
+<div class="u-padding--sides  u-space--below">
+    <div class="c-longform-content">
+        <h1>Example Longform h1 Title</h1>
+
+        <p>...</p>
+
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;div class=&quot;c-longform-content&quot;&gt;
+    &lt;h1&gt;Example Longform h1 Title&lt;/h1&gt;
+
+    &lt;p&gt;...&lt;/p&gt;
+
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+
+<hr>
+
+-->
+
+<!--
+
+    MAP
+    
+-->
+
+<!--
+
+
+<h2 class="u-padding--sides" id="map">Map</h2>
+
+<p class="u-padding--sides">This pattern is more about tweaking Leaflet maps and resetting properties that have been overridden than applying new styles.</p>
+<p class="u-padding--sides">This may change in the future if more custom styles are required.</p>
+<p class="u-padding--sides">This pattern takes into account a no-js scenario and uses a static image as the default.</p>
+
+<div class="u-padding--s">
+    <div class="c-map  c-map--300" id="test_map" tabindex="0" style="width: 500px; height: 500px; overflow: hidden;">
+        <p class="u-text-align--center">
+            <img src="https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/-1.21574715729,51.751613839,13,0,0/600x600?access_token=pk.eyJ1IjoiYW5keWtraXJrIiwiYSI6ImNqbGh3a3FnbzA1aDMza204eDJnMmVhMmMifQ.I7diR0BZvQWzn2okKy6qIQ" alt="">
+        </p>
+        <p class="u-text-align--center">No javascript available, can't display an interactive map.
+    </div>
+    <script>
+    leafletMapInitialize('test_map', {"lat":51.7516138390000008939750841818749904632568359375,"lng":-1.215747157290000046714339987374842166900634765625,"zoom":13,"token":"pk.eyJ1IjoiYW5keWtraXJrIiwiYSI6ImNqbGh3a3FnbzA1aDMza204eDJnMmVhMmMifQ.I7diR0BZvQWzn2okKy6qIQ"}, [{"lat":"true","lng":"true","color":"blue","popup":"NPEU Address"}]);
+    </script>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;div class=&quot;c-map  c-map--300&quot; id=&quot;test_map&quot;&gt;
+    &lt;p class=&quot;u-text-align--center&quot;&gt;
+        &lt;img src=&quot;https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/-1.21574715729,51.751613839,13,0,0/600x600?access_token=pk.eyJ1IjoiYW5keWtraXJrIiwiYSI6ImNqbGh3a3FnbzA1aDMza204eDJnMmVhMmMifQ.I7diR0BZvQWzn2okKy6qIQ&quot; alt=&quot;&quot;&gt;
+    &lt;/p&gt;
+    &lt;p class=&quot;u-text-align--center&quot;&gt;No javascript available, can&apos;t display an interactive map.
+&lt;/div&gt;
+&lt;script&gt;
+leafletMapInitialize(&apos;test_map&apos;, {&quot;lat&quot;:51.7516138390000008939750841818749904632568359375,&quot;lng&quot;:-1.215747157290000046714339987374842166900634765625,&quot;zoom&quot;:13,&quot;token&quot;:&quot;pk.eyJ1IjoiYW5keWtraXJrIiwiYSI6ImNqbGh3a3FnbzA1aDMza204eDJnMmVhMmMifQ.I7diR0BZvQWzn2okKy6qIQ&quot;}, [{&quot;lat&quot;:&quot;true&quot;,&quot;lng&quot;:&quot;true&quot;,&quot;color&quot;:&quot;blue&quot;,&quot;popup&quot;:&quot;NPEU Address&quot;}]);
+&lt;/script&gt;</code></pre>
+    </details>
+</div>
+
+
+<hr>
+
+-->
+
+<!--
+
+    MAP
+    
+-->
+
+<!--
+
+
+<h2 class="u-padding--sides" id="meter">Meter</h2>
+
+<p class="u-padding--sides">This pattern uses width for the marker rather than postioning, because IE doesn't move the marker if the winow is resized.</p>
+<p class="u-padding--sides">Note that the tinted background is not part of the pattern - it's there to illustrate that the pattern has a transparent background.</p>
+
+<div class="u-padding  u-space--below" style="background: #ccc;">
+    <div class="c-meter">
+        <meter min="0" max="1020" value="175">
+            <span style="width: calc(175 / 1020 * 100%);">175 out of 1020 recruited.</span>
+        </meter>
+        <div aria-hidden="true" class="c-meter__marker" style="width: calc(175 / 1020 * 100%);" data-value="175"></div>
+    </div>
+</div>
+
+<div class="u-padding  u-space--below" style="background: #ccc;">
+    <div class="c-meter">
+        <meter min="0" max="1020" value="1020">
+            <span style="width: calc(1020 / 1020 * 100%);">1020 out of 1020 recruited.</span>
+        </meter>
+        <div aria-hidden="true" class="c-meter__marker" style="width: calc(1020 / 1020 * 100%);" data-value="175"></div>
+    </div>
+</div>
+
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;div class=&quot;c-meter&quot;&gt;
+    &lt;meter min=&quot;0&quot; max=&quot;1020&quot; value=&quot;175&quot;&gt;
+        &lt;span style=&quot;width: calc(175 / 1020 * 100%);&quot;&gt;175 out of 1020 recruited.&lt;/span&gt;
+    &lt;/meter&gt;
+    &lt;div aria-hidden=&quot;true&quot; class=&quot;c-meter__marker&quot; style=&quot;width: calc(175 / 1020 * 100%);&quot; data-value=&quot;175&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+
+<hr>
+
+-->
+
+<!--
+
+    PAGE FOOTER
+    
+-->
+
+<!--
+
+
+<h2 class="u-padding--sides" id="page-footer">Page Footer</h2>
+
+<p class="u-padding--sides">This pattern should only be used by page template, and only once per page.</p>
+<p class="u-padding--sides"><strong>WiP</strong> - this pattern isn't finalised.</p>
+
+<p class="c-page-footer">
+    &copy; NPEU 2019
+</p>
+
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;p class=&quot;c-page-footer&quot;&gt;
+    &amp;copy; NPEU 2019
+&lt;/p&gt;</code></pre>
+    </details>
+</div>
+
+
+<hr>
+
+-->
+
+<!--
+
+    PAGE HEADER
+    
+-->
+
+<!--
+
+<h2 class="u-padding--sides" id="page-header">Page Header</h2>
+
+<p class="u-padding--sides">This pattern should only be used by page template, and only once per page.</p>
+<p class="u-padding--sides"><strong>WiP</strong> - this pattern doesn't currently do anything and may be removed.</p>
+
+
+<hr>
+
+-->
+
+<!--
+
+    PANEL
+    
+-->
+
+<!--
+
+
+<h2 class="u-padding--sides" id="panel">Panel</h2>
+
+<p class="u-padding--sides">Panels should be though of as generic block containers that are likely to display content distinct from it's surrounds (e.g. has a border and/or background).</p>
+<p class="u-padding--sides">Note what appears to be large borders around the first two panels are actually a container background to illustrate that the default panel is white.</p>
+
+<div class="u-padding--s  u-space--below  d-background">
+    <div class="c-panel  u-space--below">
+        <p>Some panel content.</p>
+    </div>
+    <div class="c-panel">
+        <p>Another panel content <a href="#">with a link</a>.</p>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <div class="c-panel  d-background">
+        <p>Some different panel content, also <a href="#">with a link</a>.</p>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <div class="c-panel  d-bands  u-text-align--center  u-text-size--large">
+        <p>A banded panel content, also <a href="#">with a link</a>.</p>
+    </div>
+</div>
+
+
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;div class=&quot;c-panel  u-space--below&quot;&gt;
+    &lt;p&gt;Some panel content.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;c-panel  t-neutral--dark&quot;&gt;
+    &lt;p&gt;Another panel content.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+
+<hr>
+
+-->
+
+<!--
+
+    PRIMARY CTA
+    
+-->
+
+<!--
+
+
+<h2 class="u-padding--sides" id="primary-cta">Primary CTA</h2>
+
+<p class="u-padding--sides">This pattern is intended to be shown as part of a page banner for a project-specific site. It should only be used once.</p>
+
+<div class="u-padding--s  u-space--below">
+    <a href="/https://rct.npeu.ox.ac.uk/trialname" class="c-primary-cta">Randomise to A Trial</a>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;a href=&quot;https://rct.npeu.ox.ac.uk/trialname&quot; class=&quot;c-primary-cta&quot;&gt;Randomise to A Trial&lt;/a&gt;</code></pre>
+    </details>
+</div>
+
+
+<hr>
+
+-->
+
+<!--
+
+    SIGNS
+    
+-->
+
+<!--
+
+
+<h2 class="u-padding--sides" id="signs">Signs</h2>
+
+<p class="u-padding--sides">This pattern is intended to be show on a landing. It should used sparingly, or it's impact will be lost.</p>
+
+<div class="u-padding--s  u-space--below">
+    <div class="c-signpost  u-fill-heightX">
+
+        <div class="c-sign  c-sign--participants">
+            <a href="/neoclear/parents" class="c-sign__link">
+                <span class="c-sign__centered-content  u-padding--top--l  u-padding--bottom--l">
+                    <span class="c-sign__svg" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1heCBtZWV0IiBmaWxsPSIjZmZmIj48cGF0aCBkPSJNNjYuNCAyNy4xQzczLjkgMjcuMSA4MCAyMSA4MCAxMy41IDgwIDYuMSA3My45IDAgNjYuNCAwIDU5IDAgNTIuOSA2LjEgNTIuOSAxMy41YzAgNy41IDYuMSAxMy42IDEzLjUgMTMuNnpNOTUuNiA0NXMuOC0xNS4xLTE1LjItMTUuMUg1Mi44Yy0yLjYgMC00LjcuNC02LjUgMSAxMC41LjUgMTUuNCA2LjkgMTYuNSAxMC4zLjMuOSA3LjEgMjEuMyA1LjcgMjcuNS0uOSA0LTUuNiA3LjQtOS4yIDkuNWw2LjUgMjEuMi4yLjZoMTguNGwuOS0xMmMwIDIuMyAyLjIgNC45IDUuMSA0LjkgMi44IDAgNS4xLTIuNyA1LjMtNUw5NS42IDQ1ek0zNi40IDMwLjljNy4yIDAgMTMtNiAxMy0xMy40QzQ5LjQgMTAgNDMuNiA0IDM2LjQgNHMtMTMgNi0xMyAxMy41YzAgNy40IDUuOCAxMy40IDEzIDEzLjR6Ii8+PHBhdGggZD0iTTU5LjUgNDIuM2MtLjYtMi00LjMtNy45LTE0LjMtOGwtMTkuNi4xYy05LjctLjUtMTMuNiA1LjItMTQuMiA3LjcgMCAwLTYuNiAyMS01LjQgMjUuOC43IDMgNS45IDYuNyAxMS41IDkuNEw5LjkgMTAwaDUyLjNMNTUgNzYuNmM1LTIuNiA5LjMtNS45IDEwLTguNyAxLjEtNC45LTUuNS0yNS42LTUuNS0yNS42ek0yNy42IDY1LjRjLS45LjQtMS45LjYtMyAuNi00LjEgMC03LjQtMy40LTcuNC03LjVzMy4zLTcuNSA3LjQtNy41YzQgMCA3LjMgMy4yIDcuNCA3LjMgMS4zLS45IDIuNi0xLjMgMy42LTEuNSAxLjUtLjMgMi42IDAgMi42IDAgNC45IDEuMSAxNS44IDUuOSAxNS44IDUuOVM0OC4yIDcwIDM3LjYgNzBoLS44Yy0xIDAtMS45LS4xLTIuNi0uMi01LjEtLjYtNi41LTIuNS02LjYtNC40eiIvPjwvc3ZnPg==');"></span>
+                    <span class="c-sign__text  c-sign__text--large">Parents</span>
+                </span>
+            </a>
+        </div>
+
+        <div class="c-sign  c-sign--clinicians">
+            <a href="/neoclear/clinicians" class="c-sign__link">
+                <span class="c-sign__centered-content  u-padding--top--l  u-padding--bottom--l">
+                    <span class="c-sign__svg" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1heCBtZWV0IiBmaWxsPSIjZmZmIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjE2LjkiIHI9IjE2LjkiLz48cGF0aCBkPSJNNTAgNTIuM2M3LjMgMCAxMy4yLTYgMTMuMi0xMy4ySDM2LjhjMCA3LjIgNS45IDEzLjIgMTMuMiAxMy4yeiIvPjxwYXRoIGQ9Ik02OS43IDM5LjNDNjkuNiA0OSA2Mi41IDU3IDUzLjMgNTguNnYxNS45YzAgOC4yLTYuMiAxNS40LTE0LjQgMTUuOC04LjUuNS0xNS42LTYtMTYuMS0xNC4zLTIuMi0xLjMtMy42LTMuOS0zLjEtNi44LjUtMi42IDIuNi00LjcgNS4yLTUuMSA0LjEtLjcgNy42IDIuNCA3LjYgNi4zIDAgMi4zLTEuMyA0LjQtMy4xIDUuNS41IDQuNiA0LjYgOC4yIDkuNCA3LjggNC42LS40IDcuOS00LjUgNy45LTkuMXYtMTZDMzcuNSA1NyAzMC40IDQ5IDMwLjMgMzkuM2MtOS4xIDEuMi0xNi4xIDktMTYuMSAxOC40djM0LjFjMCA0LjUgMy43IDguMiA4LjIgOC4yaDU1LjRjNC41IDAgOC4yLTMuNyA4LjItOC4yVjU3LjdjLS4xLTkuNC03LjItMTcuMi0xNi4zLTE4LjR6Ii8+PC9zdmc+');"></span>
+                    <span class="c-sign__text  c-sign__text--large">Clinicians</span>
+                </span>
+            </a>
+        </div>
+
+        <div class="c-sign  c-sign--span-all">
+            <a href="/neoclear/recruitment" class="c-sign__link">
+                <span class="c-sign__centered-content">
+                    <span class="l-col-to-row">
+                        <span class="l-col-to-row__item  ff-width-100--30--50">
+                            <span class="c-sign__text  c-sign__text--large">Recruitment total: 313</span><br>
+                            <span class="c-sign__text  c-sign__text--small">(Target: 1020)</span>
+                            <div class="c-meter">
+                                <meter min="0" max="1020" value="313">
+                                    <span style="width: calc(175 / 1020 * 100%);">131 out of 1020 recruited.</span>
+                                </meter>
+                                <div aria-hidden="true" class="c-meter__marker" style="width: calc(313 / 1020 * 100%);" data-value="313"></div>
+                            </div>
+                        </span>
+                        <span class="l-col-to-row__item  ff-width-100--30--50  u-padding--sides--xs">
+                            <span class="c-sign__text  c-sign__text">The latest infant was recruited at <b>Princess Anne Hospital, Southampton</b> on <b>13 February 2019</b></span>
+                        </span>
+                    </span>
+                </span>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;div class=&quot;c-signpost  u-fill-height&quot;&gt;
+
+    &lt;div class=&quot;c-sign  c-sign--participants&quot;&gt;
+        &lt;a href=&quot;/neoclear/parents&quot; class=&quot;c-sign__link&quot;&gt;
+            &lt;span class=&quot;c-sign__centered-content  u-padding--top--l  u-padding--bottom--l&quot;&gt;
+                &lt;span class=&quot;c-sign__svg&quot; style=&quot;background-image: url(&apos;data:image/svg+xml;base64,...SNIP...&apos;);&quot;&gt;&lt;/span&gt;
+                &lt;span class=&quot;c-sign__text  c-sign__text--large&quot;&gt;Parents&lt;/span&gt;
+            &lt;/span&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;c-sign  c-sign--clinicians&quot;&gt;
+        &lt;a href=&quot;/neoclear/clinicians&quot; class=&quot;c-sign__link&quot;&gt;
+            &lt;span class=&quot;c-sign__centered-content  u-padding--top--l  u-padding--bottom--l&quot;&gt;
+                &lt;span class=&quot;c-sign__svg&quot; style=&quot;background-image: url(&apos;data:image/svg+xml;base64,...SNIP...&apos;);&quot;&gt;&lt;/span&gt;
+                &lt;span class=&quot;c-sign__text  c-sign__text--large&quot;&gt;Clinicians&lt;/span&gt;
+            &lt;/span&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;c-sign  c-sign--span-all&quot;&gt;
+        &lt;a href=&quot;/neoclear/recruitment&quot; class=&quot;c-sign__link&quot;&gt;
+            &lt;span class=&quot;c-sign__centered-content&quot;&gt;
+                &lt;span class=&quot;l-col-to-row&quot;&gt;
+                    &lt;span class=&quot;l-col-to-row__item  ff-width-100--30--50&quot;&gt;
+                        &lt;span class=&quot;c-sign__text  c-sign__text--large&quot;&gt;Recruitment total: 313&lt;/span&gt;&lt;br&gt;
+                        &lt;span class=&quot;c-sign__text  c-sign__text--small&quot;&gt;(Target: 1020)&lt;/span&gt;
+                        &lt;div class=&quot;c-meter&quot;&gt;
+                            &lt;meter min=&quot;0&quot; max=&quot;1020&quot; value=&quot;313&quot;&gt;
+                                &lt;span style=&quot;width: calc(175 / 1020 * 100%);&quot;&gt;131 out of 1020 recruited.&lt;/span&gt;
+                            &lt;/meter&gt;
+                            &lt;div aria-hidden=&quot;true&quot; class=&quot;c-meter__marker&quot; style=&quot;width: calc(313 / 1020 * 100%);&quot; data-value=&quot;313&quot;&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/span&gt;
+                    &lt;span class=&quot;l-col-to-row__item  ff-width-100--30--50  u-padding--sides--xs&quot;&gt;
+                        &lt;span class=&quot;c-sign__text  c-sign__text&quot;&gt;The latest infant was recruited at &lt;b&gt;Princess Anne Hospital, Southampton&lt;/b&gt; on &lt;b&gt;13 February 2019&lt;/b&gt;&lt;/span&gt;
+                    &lt;/span&gt;
+                &lt;/span&gt;
+            &lt;/span&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+
+<hr>
+
+-->
+
+<!--
+
+    SYSTEM MESSAGES
+    
+-->
+
+<!--
+
+
+<h2 class="u-padding--sides" id="system-messages">System Messages</h2>
+
+<p class="u-padding--sides">The usual culprits - notice, warning, error, success.</p>
+
+<div class="u-padding--s  u-space--below">
+    <div class="c-system-message">
+        <p><strong>Notice</strong></p>
+        <p>This lets you know something happened. For information only. <a href="#">Here's a link</a></p>
+    </div>
+</div>
+
+<div class="u-padding--s  u-space--below">
+    <div class="c-system-message  t-success">
+        <p><strong>Success!</strong></p>
+        <p>This lets you know something successfully completed. <a href="#">Here's a link</a></p>
+    </div>
+</div>
+
+<div class="u-padding--s  u-space--below">
+    <div class="c-system-message  t-warning">
+        <p><strong>Warning</strong></p>
+        <p>This lets you know something bad may happen if you're not careful. <a href="#">Here's a link</a></p>
+    </div>
+</div>
+
+<div class="u-padding--s  u-space--below">
+    <div class="c-system-message  t-error">
+        <p><strong>Error</strong></p>
+        <p>This lets you know something did <strong>NOT</strong> successfully complete - and that it's a problem. <a href="#">Here's a link</a></p>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;div class=&quot;c-system-message&quot;&gt;
+    &lt;p&gt;&lt;strong&gt;Notice&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;This lets you know something happened. For information only. &lt;a href=&quot;#&quot;&gt;Here&apos;s a link&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;c-system-message  t-success&quot;&gt;
+    &lt;p&gt;&lt;strong&gt;Success!&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;This lets you know something successfully completed. &lt;a href=&quot;#&quot;&gt;Here&apos;s a link&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;c-system-message  t-warning&quot;&gt;
+    &lt;p&gt;&lt;strong&gt;Warning&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;This lets you know something bad may happen if you&apos;re not careful. &lt;a href=&quot;#&quot;&gt;Here&apos;s a link&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;c-system-message  t-error&quot;&gt;
+    &lt;p&gt;&lt;strong&gt;Error&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;This lets you know something did &lt;strong&gt;NOT&lt;/strong&gt; successfully complete - and that it&apos;s a problem. &lt;a href=&quot;#&quot;&gt;Here&apos;s a link&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+    </details>
+</div>
+
+
+<hr>
+
+-->
+
+<!--
+
+    THUMBNAILS AND FILE LINKS
+    
+-->
+
+<!--
+
+<h2 class="u-padding--sides" id="thumbnails-and-file-links">Thumbnails and File Links</h2>
+
+<p class="u-padding--sides">Thumbnail pattern allowing for captions. Especially used for download previews.</p>
+<p class="u-padding--sides">Classic standalone thumbnail:</p>
+
+<div class="u-padding--s  u-space--below  u-text-align--center">
+    <p>
+        <a href="/assets/downloads/neoclear/parents/NeoCLEAR PIL v3.0 - 29-March-2019.pdf" type="application/pdf" class="c-thumbnail">
+            <img src="/assets/downloads/neoclear/parents/NeoCLEAR PIL v3.0 - 29-March-2019.pdf.png" alt="Parent Information Leaflet. Thumbnail preview of the file." width="150">
+            <br>
+            <span>Parent Information Leaflet</span>
+        </a>
+    </p>
+
+</div>
+
+<p class="u-padding--sides">Variants as part of user content:</p>
+
+<div class="u-padding--s  u-space--below  u-text-align--center  c-user-content">
+
+    <p>Thumbnail only:</p>
+    <p>
+        <span data-contains="download" data-modified-time="1592237976">
+            <a data-contains="thumbnail" href="/assets/downloads/neoclear/parents/NeoCLEAR PIL v3.0 - 29-March-2019.pdf" type="application/pdf">
+                <img alt="PIL. Thumbnail preview of the file." src="/assets/downloads/neoclear/parents/NeoCLEAR PIL v3.0 - 29-March-2019.pdf.png" width="150">
+            </a>
+        </span>
+    </p>
+
+    <p>Text only:</p>
+    <p>
+        <span data-contains="download" data-modified-time="1592237976">
+            <a href="/assets/downloads/neoclear/parents/NeoCLEAR PIL v3.0 - 29-March-2019.pdf" type="application/pdf">PIL</a>
+        </span>
+    </p>
+
+    <p>Thumbnail and text:</p>
+    <p>
+        <span data-contains="download" data-modified-time="1592237976">
+            <a data-contains="thumbnail" href="/assets/downloads/neoclear/parents/NeoCLEAR PIL v3.0 - 29-March-2019.pdf" type="application/pdf">
+                <img alt="Thumbnail preview of the file." src="/assets/downloads/neoclear/parents/NeoCLEAR PIL v3.0 - 29-March-2019.pdf.png" width="150"><br>
+                <span>PIL</span>
+            </a>
+        </span>
+    </p>
+
+
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;a href=&quot;/assets/downloads/neoclear/parents/NeoCLEAR PIL v3.0 - 29-March-2019.pdf&quot; type=&quot;application/pdf&quot; class=&quot;c-thumbnail&quot;&gt;
+    &lt;img src=&quot;/assets/downloads/neoclear/parents/NeoCLEAR PIL v3.0 - 29-March-2019.pdf.png&quot; alt=&quot;&quot;&gt;
+    &lt;br&gt;
+    Parent Information Leaflet
+&lt;/a&gt;</code></pre>
+    </details>
+</div>
+
+
+<hr>
+
+-->
+
+<!--
+
+    UTILITEXT
+    
+-->
+
+<!--
+
+
+<h2 class="u-padding--sides" id="utilitext">Utilitext</h2>
+
+<h3 class="u-padding--sides">Line of text with links</h3>
+
+<div class="u-padding--sides  u-space--below">
+    <p class="c-utilitext" role="list">
+        <span role="listitem">
+            <a href="/user-profile"><span>Logged in as stargazer (view profile)</span></a>
+        </span>
+        <span data-if-css="hide"> | </span>
+        <span role="listitem">
+            <a href="/logout"><span>Logout</span></a>
+        </span>
+        <span data-if-css="hide"> | </span>
+        <span role="listitem">
+            <a href="/administrator"><span>Admin</span></a>
+        </span>
+        <span data-if-css="hide"> | </span>
+        <span role="listitem">
+            <a href="https://intranet.npeu.ox.ac.uk"><span>Staff Area</span></a>
+        </span>
+        <span data-if-css="hide"> | </span>
+        <span role="listitem">
+            <a href="#" class="u-padding--right--s"><span>Edit page</span> <svg focusable="false" class="icon  u-space--left--xs" aria-hidden="true"><use xlink:href="#icon-edit"></use></svg></a>
+        </span>
+    </p>
+</div>
+
+<p>NOT Utilitext (for comparison)</p>
+
+<div class="u-padding--sides  u-space--below">
+    <p role="list">
+        <span role="listitem">
+            <a href="/user-profile"><span>Logged in as stargazer (view profile)</span></a>
+        </span>
+        <span data-if-css="hide"> | </span>
+        <span role="listitem">
+            <a href="/logout"><span>Logout</span></a>
+        </span>
+        <span data-if-css="hide"> | </span>
+        <span role="listitem">
+            <a href="/administrator"><span>Admin</span></a>
+        </span>
+        <span data-if-css="hide"> | </span>
+        <span role="listitem">
+            <a href="https://intranet.npeu.ox.ac.uk"><span>Staff Area</span></a>
+        </span>
+        <span data-if-css="hide"> | </span>
+        <span role="listitem">
+            <a href="#" class="u-padding--right--s"><span>Edit page</span> <svg focusable="false" class="icon  u-space--left--xs" aria-hidden="true"><use xlink:href="#icon-edit"></use></svg></a>
+        </span>
+    </p>
+</div>
+
+
+<h3 class="u-padding--sides">List of links</h3>
+
+<div class="u-padding--sides  u-space--below">
+    <ul class="c-utilitext">
+        <li><a href="/"><span>Home</span></a></li>
+        <li><a href="/contact"><span>Contact Us</span></a></li>
+        <li><a href="#top"><span>Top</span></a></li>
+    </ul>
+</div>
+
+<h3 class="u-padding--sides">Skip links</h3>
+
+<div class="u-padding--sides  u-space--below">
+    <ul class="c-utilitext  c-utilitext--skiplinks">
+        <li><a href="#main"><span>Skip to content</span></a></li>
+        <li><a href="#primary-nav"><span>Skip to navigation</span></a></li>
+        <li><a href="#page-footer"><span>Skip to footer</span></a></li>
+    </ul>
+</div>
+
+<h3 class="u-padding--sides">Pale</h3>
+
+<div class="u-padding--sides  u-space--below">
+    <p class="c-utilitext  c-utilitext--pale">
+        <a href="/user-profile"><span>Logged in as stargazer (view profile)</span></a> | <a href="/logout"><span>Logout</span></a> | <a href="/administrator"><span>Admin</span></a> | <a href="https://intranet.npeu.ox.ac.uk"><span>Staff Area</span></a> | <a href="#" class="u-padding--right--s"><span>Edit page</span><svg focusable="false" class="icon  u-space--left--xs" aria-hidden="true"><use xlink:href="#icon-edit"></use></svg></a>
+    </p>
+</div>
+
+<h3 class="u-padding--sides">Smaller</h3>
+
+<div class="u-padding--sides  u-space--below">
+    <p class="c-utilitext  c-utilitext--smaller">
+        <a href="/user-profile"><span>Logged in as stargazer (view profile)</span></a> | <a href="/logout"><span>Logout</span></a> | <a href="/administrator"><span>Admin</span></a> | <a href="https://intranet.npeu.ox.ac.uk"><span>Staff Area</span></a> | <a href="#" class="u-padding--right--s"><span>Edit page</span><svg focusable="false" class="icon  u-space--left--xs" aria-hidden="true"><use xlink:href="#icon-edit"></use></svg></a>
+    </p>
+</div>
+
+-->

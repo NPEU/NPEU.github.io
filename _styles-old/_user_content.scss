@@ -1,0 +1,10 @@
+[data-contains="contact-details"] {
+    @extend .c-contact-list;
+}
+
+img[src*="/img/avatars/"] {
+    @extend .c-contact-avatar;
+    @extend .d-bands;
+}
+
+// For theme-specific settings, see _themes.scss 

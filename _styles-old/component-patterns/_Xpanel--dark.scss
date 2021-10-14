@@ -1,0 +1,8 @@
+// This is sort of like an alias...
+
+@mixin panel-theme--dark ($name: "", $theme: ()) {
+    @include panel-theme(
+        #{$name}--dark,
+        $theme
+    );
+}

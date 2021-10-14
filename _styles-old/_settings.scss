@@ -1,0 +1,93 @@
+/*
+
+*/
+
+$s__base-font-family: 'Lato', sans-serif;
+
+$s__root-font-size: 10px;
+
+$s__base-ui-color: #614776 !default;
+//$s__breakpoint--enhanced: 42.5625em;
+//$s__breakpoint--enhanced: 51.875em;
+//$s__breakpoint--enhanced: 58em;
+$s__body-max-width: 0;
+
+//@import '../bower_components/Fall-Back-Start-CSS/scss/_start_settings.scss';
+@import '../bower_components/Fall-Back-Start-CSS/scss/_01-start-functions.scss';
+@import '../bower_components/Fall-Back-Start-CSS/scss/_02-start-mixins.scss';
+@import '../bower_components/Fall-Back-Start-CSS/scss/_03-start-tokens.scss';
+@import '../bower_components/Fall-Back-Start-CSS/scss/_04-start-settings.scss';
+
+
+$max-main-line-length: 0;
+$s__measure: 42em;
+$not-too-small: 18em;
+
+//$h1-font-size: 40px / $s__base-font-size * 1em;
+//$h2-font-size: 32px / $s__base-font-size * 1em;
+//$h3-font-size: 26px / $s__base-font-size * 1em;
+$hover-effect-opacity: 0.2;
+$hover-effect-width: $s__base-rem-space-unit / 4;
+
+// System / UI messages:
+
+$system-message--color: #69b3e7;
+$system-message--color--success: #789d4a;
+$system-message--color--warning: #ff9e1b;
+$system-message--color--error: #9b3259;
+
+/* --| FUNCTIONS AND MIXINS |-------------------------------------------------------------------- */
+
+@mixin bottom-space-fix ($size: $s__base-rem-space-unit) {
+
+	padding-bottom: 0 !important;
+
+	&::after {
+		content: "";
+		display: block;
+		height: 1px;
+        margin-top: calc(#{$size} - 1px);
+        clear: both;
+	}
+
+}
+
+@mixin sloped-background ($color) {
+    background: -moz-linear-gradient(45deg, darken($color, 7%) 0%, darken($color, 5%) 50%, darken($color, 3%) 50%,darken($color, 5%) 100%) !important;
+    background: -webkit-linear-gradient(45deg, darken($color, 7%) 0%,darken($color, 5%) 50%,darken($color, 3%) 50%,darken($color, 5%) 100%) !important;
+    background: linear-gradient(45deg, darken($color, 7%) 0%,darken($color, 5%) 50%,darken($color, 3%) 50%,darken($color, 5%) 100%) !important;
+
+}
+
+@mixin signs-theme-background ($color) {
+    @include sloped-background($color);
+}
+
+
+
+// Fluid Typography
+// https://css-tricks.com/snippets/css/fluid-typography/
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+    $u1: unit($min-vw);
+    $u2: unit($max-vw);
+    $u3: unit($min-font-size);
+    $u4: unit($max-font-size);
+
+    @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+            & {
+            font-size: $min-font-size;
+            @media screen and (min-width: $min-vw) {
+                font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+            }
+            @media screen and (min-width: $max-vw) {
+                font-size: $max-font-size;
+            }
+        }
+    }
+}
+

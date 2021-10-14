@@ -1,0 +1,22 @@
+/*
+    Text alignment.
+
+    @To Do: allow for responsive variations.
+*/
+
+$text-align-namespace: u- !default;
+
+.#{$text-align-namespace}text-align--left {
+    text-align: left !important;
+    justify-content: flex-start;
+}
+
+.#{$text-align-namespace}text-align--center {
+    text-align: center !important;
+    justify-content: center;
+}
+
+.#{$text-align-namespace}text-align--right {
+    text-align: right !important;
+    justify-content: flex-end;
+}

@@ -1,0 +1,69 @@
+/*
+    Help from http://www.mademyday.de/css-height-equals-width-with-pure-css.html
+    and https://css-tricks.com/snippets/sass/maintain-aspect-ratio-mixin/
+*/
+
+$proportional-container-namespace: l- !default;
+
+
+$proportions: (
+    "1-1": 100%,
+    "2-1": 50%,
+    "3-1": 33%,
+    "4-1": 25%,
+    "4-3": 75%,
+    "5-1": 20%,
+    "16-9": 56.25%
+) !default;
+
+$proportional-container--wide: 45em !default;
+
+.#{$proportional-container-namespace}proportional-container {
+
+    &#{&} {
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: "";
+            display: block;
+            width: 100%;
+            // No initial padding - best to be explicit.
+        }
+    }
+    
+
+        #{&}__content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #{&}__content svg {
+            width: 100%;
+            height: 100%;
+        }
+}
+
+
+
+
+@each $ratio, $percent in $proportions {
+    .#{$proportional-container-namespace}proportional-container--#{$ratio}::before {
+        padding-top: $percent;
+    }
+}
+
+@media (min-width: $proportional-container--wide) {
+    @each $ratio, $percent in $proportions {
+        .#{$proportional-container-namespace}proportional-container--#{$ratio}--wide::before {
+            padding-top: $percent;
+        }
+    }
+}

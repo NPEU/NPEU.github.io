@@ -1,0 +1,547 @@
+/*
+
+*/
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS FUNCTIONS
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+/*
+    Colour contrast from https://gist.github.com/FStop/8959422
+
+    Usage:
+    @if s__color_contrast($colour, #fff) < 2 {
+        color: #333;
+    }
+    @else{
+        color: #fff;
+    }
+*/
+/* Awesome contrast ratio function
+* via https://gist.github.com/voxpelli/6304812
+**/
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS MIXINS
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+/*
+    Apply a border and a padding that offsets the border-width from one spacing unit so as not to
+    affect the vertical rhythm.
+    Note the Opera Mini doesn't support `calc` so we need to include normal padding for that
+    browser.
+    Also, since we're supporting FF 8+, we're including -moz-calc for versions up to 16.
+    I may consider removing this as those browsers are dead, but I'm just being thorough for now.
+
+    Note on the 'last margin' issue/hack:
+    The pseudo element is intended to provide a collapsible margin to cancel out any 'trailing'
+    margins from content elements. However, since we're reducing the whole padding space by the
+    border-width to maintain the vertical rhythm, that margin is also less, BUT the content margin
+    is NOT being reduced, so that wins out - the reduction is ignored.
+    If the pseudo element bottom margin is adjusted to cancel out the height (1px) AS WELL AS
+    the amount of border-width, but the last element DOES NOT have a margin, then the space becomes
+    too small.
+    If pseudo-element height is 0, it doesn't work in IE, Chrome, Safari, without inline-block
+*/
+/*
+    This button mixin isn't really meant for generating specific/themed _types_ of button - there
+    would be too much code duplication for that.
+    Instead, this is intended to create buttons for new/custom selectors.
+    For example:
+
+    ```
+    [role="button"] {
+        @include s__button;
+    }
+    ```
+
+    rather than:
+
+    ```
+        .btn--affirmative {
+            @include s__button(<text-color>, <bg-color>);
+        }
+    ```
+
+    Note - because of this, think about removing parameters (it changed from my original intention -
+    I may change it back or split this into 2 mixins, or even just move things that are meant for
+    input[type="button"] to that ruleset - actually that's not a bad idea).
+
+*/
+/*
+    1. Remove the tapping delay from clickable elements.
+
+    Sort out the height of buttons. At 12px spacing, should be 30px high with 3px top/bottom margin.
+    Note Edge doesn't like: `line-height: calc(3rem - 2px)` if `display: inline-flex`
+    FF8 - ? doesn't like `line-height: -moz-calc()` and ignores
+    Need to make sure height is governed by line-height in case of breaks within buttons.
+*/
+/*
+    Uni-directional margins (bottom) is fine for most cases, but things like figcaptions that may
+    contain parapgraphs can result in double bottom margins, so flipping that around inside those
+    containers.
+*/
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS TOKENS
+    ============================================================================================
+
+    Fall-Back is designed for use with the basic
+    [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+
+    This determines a browser support base of:
+
+    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
+    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+
+
+    Any double-classing (e.g. `.class.class`) is deliberate and intended to increase specifity.
+    This allows any applicable Start-CSS declarations to be overidden.
+    E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
+    `.{pattern}.{pattren}`
+
+    https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
+
+|-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS SETTINGS
+    ============================================================================================
+
+    Fall-Back is designed for use with the basic
+    [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+
+    This determines a browser support base of:
+
+    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
+    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+
+
+    Any double-classing (e.g. `.class.class`) is deliberate and intended to increase specifity.
+    This allows any applicable Start-CSS declarations to be overidden.
+    E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
+    `.{pattern}.{pattren}`
+
+    https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
+
+|-------------------------------------------------------------------------------------------------*/
+/* --| FUNCTIONS AND MIXINS |-------------------------------------------------------------------- */
+.ss-main {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+  color: #333;
+  width: 100%;
+}
+
+.ss-main .ss-single-selected {
+  display: flex;
+  cursor: pointer;
+  width: 100%;
+  height: 30px;
+  padding: 6px;
+  border: 1px solid #dcdee2;
+  border-radius: 4px;
+  background-color: #ffffff;
+  outline: 0;
+  box-sizing: border-box;
+  transition: background-color .2s;
+}
+
+.ss-main .ss-single-selected.ss-disabled {
+  background-color: #dcdee2;
+  cursor: not-allowed;
+}
+
+.ss-main .ss-single-selected.ss-open-above {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.ss-main .ss-single-selected.ss-open-below {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.ss-main .ss-single-selected .placeholder {
+  display: flex;
+  flex: 1 1 100%;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  width: calc(100% - 30px);
+  line-height: 1em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.ss-main .ss-single-selected .placeholder * {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: auto;
+}
+
+.ss-main .ss-single-selected .placeholder .ss-disabled {
+  color: #757575;
+}
+
+.ss-main .ss-single-selected .ss-deselect {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 1 auto;
+  margin: 0 6px 0 6px;
+  font-weight: bold;
+}
+
+.ss-main .ss-single-selected .ss-deselect.ss-hide {
+  display: none;
+}
+
+.ss-main .ss-single-selected .ss-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 1 auto;
+  margin: 0 6px 0 6px;
+}
+
+.ss-main .ss-single-selected .ss-arrow span {
+  border: solid #333;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  transition: transform .2s, margin .2s;
+}
+
+.ss-main .ss-single-selected .ss-arrow span.arrow-up {
+  transform: rotate(-135deg);
+  margin: 3px 0 0 0;
+}
+
+.ss-main .ss-single-selected .ss-arrow span.arrow-down {
+  transform: rotate(45deg);
+  margin: -3px 0 0 0;
+}
+
+.ss-main .ss-multi-selected {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  min-height: 30px;
+  width: 100%;
+  padding: 0 0 0 3px;
+  border: 1px solid #dcdee2;
+  border-radius: 4px;
+  background-color: #ffffff;
+  outline: 0;
+  box-sizing: border-box;
+  transition: background-color .2s;
+}
+
+.ss-main .ss-multi-selected.ss-disabled {
+  background-color: #dcdee2;
+  cursor: not-allowed;
+}
+
+.ss-main .ss-multi-selected.ss-disabled .ss-values .ss-disabled {
+  color: #333;
+}
+
+.ss-main .ss-multi-selected.ss-disabled .ss-values .ss-value .ss-value-delete {
+  cursor: not-allowed;
+}
+
+.ss-main .ss-multi-selected.ss-open-above {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.ss-main .ss-multi-selected.ss-open-below {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.ss-main .ss-multi-selected .ss-values {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  flex: 1 1 100%;
+  width: calc(100% - 30px);
+}
+
+.ss-main .ss-multi-selected .ss-values .ss-disabled {
+  display: flex;
+  padding: 4px 5px;
+  margin: 2px 0px;
+  line-height: 1em;
+  align-items: center;
+  width: 100%;
+  color: #757575;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleOut {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.ss-main .ss-multi-selected .ss-values .ss-value {
+  display: flex;
+  user-select: none;
+  align-items: center;
+  font-size: 12px;
+  padding: 3px 5px;
+  margin: 3px 5px 3px 0px;
+  color: #ffffff;
+  background-color: #5F6DB2;
+  border-radius: 4px;
+  animation-name: scaleIn;
+  animation-duration: .2s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+.ss-main .ss-multi-selected .ss-values .ss-value.ss-out {
+  animation-name: scaleOut;
+  animation-duration: .2s;
+  animation-timing-function: ease-out;
+}
+
+.ss-main .ss-multi-selected .ss-values .ss-value .ss-value-delete {
+  margin: 0 0 0 5px;
+  cursor: pointer;
+}
+
+.ss-main .ss-multi-selected .ss-add {
+  display: flex;
+  flex: 0 1 3px;
+  margin: 9px 12px 0 5px;
+}
+
+.ss-main .ss-multi-selected .ss-add .ss-plus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #333;
+  position: relative;
+  height: 10px;
+  width: 2px;
+  transition: transform .2s;
+}
+
+.ss-main .ss-multi-selected .ss-add .ss-plus:after {
+  background: #333;
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 10px;
+  left: -4px;
+  top: 4px;
+}
+
+.ss-main .ss-multi-selected .ss-add .ss-plus.ss-cross {
+  transform: rotate(45deg);
+}
+
+.ss-content {
+  position: absolute;
+  width: 100%;
+  margin: -1px 0 0 0;
+  box-sizing: border-box;
+  border: solid 1px #dcdee2;
+  z-index: 1010;
+  background-color: #ffffff;
+  transform-origin: center top;
+  transition: transform .2s, opacity .2s;
+  opacity: 0;
+  transform: scaleY(0);
+}
+
+.ss-content.ss-open {
+  display: block;
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.ss-content .ss-search {
+  display: flex;
+  flex-direction: row;
+  padding: 8px 8px 6px 8px;
+}
+
+.ss-content .ss-search.ss-hide {
+  height: 0px;
+  opacity: 0;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+}
+
+.ss-content .ss-search.ss-hide input {
+  height: 0px;
+  opacity: 0;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+}
+
+.ss-content .ss-search input {
+  display: inline-flex;
+  font-size: inherit;
+  line-height: inherit;
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0px;
+  height: 30px;
+  padding: 6px 8px;
+  margin: 0;
+  border: 1px solid #dcdee2;
+  border-radius: 4px;
+  background-color: #ffffff;
+  outline: 0;
+  text-align: left;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-appearance: textfield;
+}
+
+.ss-content .ss-search input::placeholder {
+  color: #8a8a8a;
+  vertical-align: middle;
+}
+
+.ss-content .ss-search input:focus {
+  box-shadow: 0 0 5px #5F6DB2;
+}
+
+.ss-content .ss-search .ss-addable {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: bold;
+  flex: 0 0 30px;
+  height: 30px;
+  margin: 0 0 0 8px;
+  border: 1px solid #dcdee2;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.ss-content .ss-addable {
+  padding-top: 0px;
+}
+
+.ss-content .ss-list {
+  max-height: 200px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.ss-content .ss-list .ss-optgroup .ss-optgroup-label {
+  padding: 6px 10px 6px 10px;
+  font-weight: bold;
+}
+
+.ss-content .ss-list .ss-optgroup .ss-option {
+  padding: 6px 6px 6px 25px;
+}
+
+.ss-content .ss-list .ss-optgroup-label-selectable {
+  cursor: pointer;
+}
+
+.ss-content .ss-list .ss-optgroup-label-selectable:hover {
+  color: #ffffff;
+  background-color: #5F6DB2;
+}
+
+.ss-content .ss-list .ss-option {
+  padding: 6px 10px 6px 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ss-content .ss-list .ss-option * {
+  display: inline-block;
+}
+
+.ss-content .ss-list .ss-option:hover, .ss-content .ss-list .ss-option.ss-highlighted {
+  color: #ffffff;
+  background-color: #5F6DB2;
+}
+
+.ss-content .ss-list .ss-option.ss-disabled {
+  cursor: not-allowed;
+  color: #757575;
+  background-color: #ffffff;
+}
+
+.ss-content .ss-list .ss-option:not(.ss-disabled).ss-option-selected {
+  color: #333;
+  background-color: rgba(95, 109, 178, 0.1);
+}
+
+.ss-content .ss-list .ss-option.ss-hide {
+  display: none;
+}
+
+.ss-content .ss-list .ss-option .ss-search-highlight {
+  background-color: #fffb8c;
+}
+
+/*! Overrides: */
+.ss-main .ss-multi-selected .ss-values {
+  flex: 1 1 calc(100% - 2.4rem);
+  width: auto;
+}
+
+.ss-main .ss-multi-selected .ss-add {
+  flex: 0 1 2.4rem;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.ss-content .ss-search.ss-hide,
+.ss-content .ss-search.ss-hide input {
+  padding: 0;
+  border: 0;
+  width: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.ss-main .ss-multi-selected .ss-values .ss-disabled {
+  margin: 2px 0;
+  line-height: 2.4rem;
+}

@@ -1,0 +1,279 @@
+/*
+
+*/
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS FUNCTIONS
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+/*
+    Colour contrast from https://gist.github.com/FStop/8959422
+
+    Usage:
+    @if s__color_contrast($colour, #fff) < 2 {
+        color: #333;
+    }
+    @else{
+        color: #fff;
+    }
+*/
+/* Awesome contrast ratio function
+* via https://gist.github.com/voxpelli/6304812
+**/
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS MIXINS
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+/*
+    Apply a border and a padding that offsets the border-width from one spacing unit so as not to
+    affect the vertical rhythm.
+    Note the Opera Mini doesn't support `calc` so we need to include normal padding for that
+    browser.
+    Also, since we're supporting FF 8+, we're including -moz-calc for versions up to 16.
+    I may consider removing this as those browsers are dead, but I'm just being thorough for now.
+
+    Note on the 'last margin' issue/hack:
+    The pseudo element is intended to provide a collapsible margin to cancel out any 'trailing'
+    margins from content elements. However, since we're reducing the whole padding space by the
+    border-width to maintain the vertical rhythm, that margin is also less, BUT the content margin
+    is NOT being reduced, so that wins out - the reduction is ignored.
+    If the pseudo element bottom margin is adjusted to cancel out the height (1px) AS WELL AS
+    the amount of border-width, but the last element DOES NOT have a margin, then the space becomes
+    too small.
+    If pseudo-element height is 0, it doesn't work in IE, Chrome, Safari, without inline-block
+*/
+/*
+    This button mixin isn't really meant for generating specific/themed _types_ of button - there
+    would be too much code duplication for that.
+    Instead, this is intended to create buttons for new/custom selectors.
+    For example:
+
+    ```
+    [role="button"] {
+        @include s__button;
+    }
+    ```
+
+    rather than:
+
+    ```
+        .btn--affirmative {
+            @include s__button(<text-color>, <bg-color>);
+        }
+    ```
+
+    Note - because of this, think about removing parameters (it changed from my original intention -
+    I may change it back or split this into 2 mixins, or even just move things that are meant for
+    input[type="button"] to that ruleset - actually that's not a bad idea).
+
+*/
+/*
+    1. Remove the tapping delay from clickable elements.
+
+    Sort out the height of buttons. At 12px spacing, should be 30px high with 3px top/bottom margin.
+    Note Edge doesn't like: `line-height: calc(3rem - 2px)` if `display: inline-flex`
+    FF8 - ? doesn't like `line-height: -moz-calc()` and ignores
+    Need to make sure height is governed by line-height in case of breaks within buttons.
+*/
+/*
+    Uni-directional margins (bottom) is fine for most cases, but things like figcaptions that may
+    contain parapgraphs can result in double bottom margins, so flipping that around inside those
+    containers.
+*/
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS TOKENS
+    ============================================================================================
+
+    Fall-Back is designed for use with the basic
+    [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+
+    This determines a browser support base of:
+
+    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
+    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+
+
+    Any double-classing (e.g. `.class.class`) is deliberate and intended to increase specifity.
+    This allows any applicable Start-CSS declarations to be overidden.
+    E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
+    `.{pattern}.{pattren}`
+
+    https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
+
+|-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS SETTINGS
+    ============================================================================================
+
+    Fall-Back is designed for use with the basic
+    [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+
+    This determines a browser support base of:
+
+    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
+    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+
+
+    Any double-classing (e.g. `.class.class`) is deliberate and intended to increase specifity.
+    This allows any applicable Start-CSS declarations to be overidden.
+    E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
+    `.{pattern}.{pattren}`
+
+    https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
+
+|-------------------------------------------------------------------------------------------------*/
+/* --| FUNCTIONS AND MIXINS |-------------------------------------------------------------------- */
+/*
+$font-color: $s__base-text-color;
+$font-disabled-color: lighten($font-color, 26%);
+$primary-color: darken($system-message--color, 24%);
+*/
+/* https://hugogiraudel.github.io/a11y-dialog/example/styles.css */
+/* -------------------------------------------------------------------------- *\
+ * Necessary styling for the dialog to work
+ * -------------------------------------------------------------------------- */
+/**
+ * When `<dialog>` is properly supported, the overlay is implied and can be
+ * styled with `::backdrop`, which means the DOM one should be removed.
+ */
+[data-a11y-dialog-native] .dialog-overlay {
+  display: none;
+}
+
+/**
+ * When `<dialog>` is not supported, its default display is `inline` which can
+ * cause layout issues.
+ */
+dialog[open] {
+  display: block;
+}
+
+.dialog[aria-hidden='true'] {
+  display: none;
+}
+
+/* -------------------------------------------------------------------------- *\
+ * Styling to make the dialog look like a dialog
+ * -------------------------------------------------------------------------- */
+.dialog:not([data-a11y-dialog-native]),
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.dialog {
+  display: flex;
+}
+
+.dialog-overlay {
+  background-color: rgba(43, 46, 56, 0.9);
+}
+
+dialog::backdrop {
+  background-color: rgba(43, 46, 56, 0.9);
+}
+
+.dialog-content {
+  background-color: white;
+  margin: auto;
+  z-index: 2;
+  position: relative;
+}
+
+dialog.dialog-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+}
+
+/* -------------------------------------------------------------------------- *\
+ * Extra dialog styling to make it shiny
+ * -------------------------------------------------------------------------- */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(10%);
+  }
+}
+
+.dialog-overlay {
+  animation: fade-in 200ms both;
+}
+
+.dialog-content {
+  animation: fade-in 400ms 200ms both, slide-up 400ms 200ms both;
+}
+
+dialog.dialog-content {
+  animation: fade-in 400ms 200ms both;
+}
+
+.dialog-content {
+  padding: 1em;
+  max-width: 90%;
+  width: 600px;
+  border-radius: 2px;
+}
+
+.dialog-content__large {
+  width: 90%;
+}
+
+@media screen and (min-width: 700px) {
+  .dialog-content {
+    padding: 2em;
+  }
+}
+
+.dialog h1 {
+  margin: 0;
+  font-size: 1.25em;
+}
+
+.dialog iframe {
+  width: 100%;
+}
+
+.dialog iframe:focus {
+  box-shadow: 0 0 0 0.6rem #fff, 0 0 0 1.2rem rgba(0, 0, 0, 0.2);
+}
+
+.dialog-close {
+  position: absolute;
+  top: 2.4rem;
+  right: 2.4rem;
+  /*border: 0;
+    padding: 0;
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 1.25em;
+    width: 1.2em;
+    height: 1.2em;
+    text-align: center;
+    cursor: pointer;*/
+  transition: 0.15s;
+}
+
+/*
+@media screen and (min-width: 700px) {
+    .dialog-close {
+        top: 1em;
+        right: 1em;
+    }
+}
+*/

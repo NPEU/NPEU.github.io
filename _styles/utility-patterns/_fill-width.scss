@@ -1,0 +1,13 @@
+/*
+    Fill Width
+    ============
+
+    Forces an element to fill it's container width.
+
+*/
+
+$fill-width-namespace: u- !default;
+
+.#{$fill-width-namespace}fill-width {
+    width: 100%;
+}

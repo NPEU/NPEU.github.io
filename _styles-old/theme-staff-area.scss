@@ -1,0 +1,42 @@
+/*! Staff Area Theme (c) NPEU */
+
+/* --| START THEME |----------------------------------------------------------------------------- */
+
+//@import "_themes-config.scss";
+$theme-name: staff-area;
+$theme: (
+    cta-text-color       : #ffffff,
+    cta-background-color : #BC955C,
+    primary-color        : #5F6DB2,
+    secondary-color      : #BC955C,
+    page-header-color    : #ffffff
+);
+
+$s__breakpoint--enhanced: 60em;
+
+$theme-copy: $theme;
+$theme-name-copy: $theme-name;
+
+$s__base-ui-color: map-get($theme, 'primary-color');
+$s__th-background-color: lighten($s__base-ui-color, 30%);
+
+@import "_style";
+
+
+
+$theme-only: true;
+@import "_themeable-patterns.scss";
+
+
+//$theme: map_get($themes, $theme-name);
+$theme: $theme-copy;
+$theme-name: $theme-name-copy;
+@import "_theme";
+
+/* ---------------------------------------------------------------------------------------------- */
+
+/* --| SHAME |----------------------------------------------------------------------------------- */
+
+@import "_shame";
+
+/* ---------------------------------------------------------------------------------------------- */

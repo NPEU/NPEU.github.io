@@ -1,0 +1,48 @@
+/*
+*/
+$page-footer-namespace: c- !default;
+$theme-namespace: t- !default;
+
+
+$theme-only: false !default;
+
+// Note - no theme yet!
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+
+    /*.page-footer {
+
+        &#{&} {
+            background-color: $s__base-ui-color;
+            padding: ($s__base-em-ratio * 1.5em) / 3;
+            font-size: 0.875em;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 0;
+        }
+
+
+
+        a[href] {
+            color: lighten($s__base-ui-color, 40%);
+        }
+
+        a[href]:hover,
+        a[href]:active,
+        a[href]:focus {
+            color: lighten($s__base-ui-color, 20%);
+        }
+
+    }*/
+
+    .#{$page-footer-namespace}page-footer {
+
+        &#{&} {
+            background-color: #fff;
+            padding: #{$sz-m / 2} $sz-m;
+            margin: 0;
+            text-align: center;
+        }
+    }
+}

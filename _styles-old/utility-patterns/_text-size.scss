@@ -1,0 +1,23 @@
+/*
+    Text size.
+    
+    @To Do: allow for responsive variations.
+*/
+
+$text-size-namespace: u- !default;
+
+.#{$text-size-namespace}text-size--small {
+    font-size: 0.875em !important;
+    
+    a[href] {
+        border-width: 1px;
+    }
+}
+
+.#{$text-size-namespace}text-size--medium {
+    font-size: 1em !important;
+}
+
+.#{$text-size-namespace}text-size--large {
+    font-size: 1.25em !important;
+}

@@ -1,0 +1,11 @@
+main > :not(.full-width) {
+    max-width: $measure;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// Negate main margin:
+.full-width {
+    margin-left: -$s__base-rem-space-unit;
+    margin-right: -$s__base-rem-space-unit;
+}

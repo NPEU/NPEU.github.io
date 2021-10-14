@@ -1,0 +1,22 @@
+/*
+*/
+$page-footer-namespace: c- !default;
+$theme-namespace: t- !default;
+
+
+$theme-only: false !default;
+
+// Note - no theme yet!
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+
+    .#{$page-footer-namespace}page-wrap {
+
+        &#{&} {
+            max-width: 1600px;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+    }
+}

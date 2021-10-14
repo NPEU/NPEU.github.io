@@ -1,0 +1,195 @@
+/*
+    Card
+    =====
+*/
+
+$card-namespace: c- !default;
+
+
+// Card title:
+$card-title--font-size: 2.2rem;
+$card-title--line-height: $s__base-rem-space-unit * 1.5;
+
+//$card-stub-title--font-size: 2.4rem !default;
+//$card-stub-title--line-height: 1 !default;
+
+.#{$card-namespace}card {
+    &#{&} {
+        display: flex;
+        flex-direction: column;
+
+        position: relative;
+
+        height: 100%;
+
+        border-radius: $s__sz-s;
+        overflow: hidden;
+    }
+
+        /*
+            The markup pattern allows for a TFS border, so zap that:
+        */
+        & > div {
+            display: flex;
+            flex-direction: column;
+
+            height: 100%;
+
+            border: 0;
+            padding: 0;
+            margin: 0;
+
+
+        }
+
+        #{&}__header,
+        #{&}__body,
+        #{&}__footer {
+            margin: 0;
+
+            & > * {
+                padding: 0;
+                margin-right: calc(#{$s__sz-m} - #{$s__border-width});
+                margin-left: calc(#{$s__sz-m} - #{$s__border-width});
+            }
+
+            &:first-child {
+                margin-top: calc(#{$s__sz-m} - #{$s__border-width});
+            }
+
+            &:last-child {
+                margin-bottom: calc(#{$s__sz-m} - #{$s__border-width});
+            }
+
+        }
+
+        #{&}__header {
+            display: flex;
+            flex-direction: column;
+        }
+
+            #{&}__image {
+                position: relative;
+                order: -1;
+                margin-top: calc(-#{$s__sz-m} + #{$s__border-width});
+                margin-bottom: calc(#{$s__sz-m} - #{$s__border-width});
+                margin-right: 0;
+                margin-left: 0;
+
+                // I'm toying with this, so leave it in place for now.
+                clip-path: ellipse(170% 75% at 10% 25%);
+            }
+
+            #{&}__title {
+                font-size:   $card-title--font-size;
+                line-height: $card-title--line-height;
+                margin-top: 0;
+                margin-bottom: 0;
+                
+                a {
+                    text-decoration: none !important;
+                }
+
+                a::before {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    z-index: 1;
+                }
+
+                a span {
+                    position: relative;
+                    z-index: 2;
+                }
+            }
+
+            #{&}__header-extra {
+                margin-top: $s__sz-m;
+                margin-bottom: 0;
+
+                position: relative;
+                z-index: 2;
+            }
+
+        #{&}__body {
+            margin-top: $s__sz-m;
+            margin-bottom: 0;
+            flex-grow: 1;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        #{&}__footer {
+            margin-top: $s__sz-m;
+            margin-bottom: 0;
+            z-index: 2;
+        }
+
+        #{&}__footer > div {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        #{&}__footer > footer {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        #{&}__footer > div + footer {
+            margin-top: $s__sz-m;
+        }
+
+        #{&}__footer-image {
+            margin-top: $s__sz-m;
+            margin-bottom: 0;
+            background-color: #fff;
+        }
+
+        #{&}__footer-image--padded {
+            padding: $s__sz-m;
+        }
+        
+        .c-cta svg {
+            display: inline;
+        }
+}
+
+.#{$card-namespace}card--has-js {
+    cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus {
+        box-shadow: 0 0 0 0.6rem #fff, 0 0 0 1.2rem rgba(0,0,0,.2);
+    }
+}
+
+.#{$card-namespace}card--is-mousedown {
+    .#{$card-namespace}card__title a::after {
+        display: none;
+    }
+}
+
+.#{$card-namespace}card--unpublished {
+    opacity: 0.5;
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+
+    &::after {
+        content: "Unpublished";
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: $s__sz-xs $s__sz-s;
+        border-bottom-left-radius: $s__sz-s;
+        font-size: 0.75em;
+        color: #fff;
+        background-color: #000;
+    }
+}

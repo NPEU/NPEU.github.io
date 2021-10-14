@@ -1,0 +1,395 @@
+<!--
+
+    CARD
+
+-->
+{% capture date_content %}
+<p>{% include date.html date=1632939147 %}</p>
+{% endcapture %}
+
+<h2 id="card">Card</h2>
+
+<p>Cards are more complex than you might think.</p>
+
+<ol>
+    <li>Firstly, there are several components to them, and only the title and link are required. The others can appear or not in any combination.</li>
+    <li>Next, they need to be able to account for these variations inside a layout of some kind and present themselves smartly in relation to each other.</li>
+    <li>Then the heading levels need to make sense in their surrounding context.</li>
+    <li>Finally, interaction with them (the links and state styling) should make sense in accessibility terms, as well as in NoCSS scenarios.</li>
+</ol>
+
+<h3>Typical card</h3>
+
+<div class="u-space--below">
+    {% include card.html
+        title="This is a typical card"
+        url="/patterns/component"
+        header_extra=date_content
+        content="<p>This card tells you something else about something else.</p>"
+        cta="Read more"
+        img_src="/assets/images/patterns/placeholder-1"
+        img_alt="Mother looking at the child she's holding"
+    %}
+</div>
+
+<div>
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;article class=&quot;c-card  js-c-card  d-border  d-background&quot;&gt;
+    &lt;div data-fs-block=&quot;border&quot;&gt;
+        &lt;header class=&quot;c-card__header&quot;&gt;
+            &lt;h3 class=&quot;c-card__title&quot;&gt;&lt;a href=&quot;/patterns&quot; aria-describedby=&quot;desc-this-is-a-typical-card&quot;&gt;This is a typical card&lt;/a&gt;&lt;/h3&gt;
+            
+            &lt;div class=&quot;c-card__image  l-box&quot;&gt;
+                &lt;div class=&quot;u-image-cover  js-image-cover  u-image-cover--min-56-25&quot;&gt;
+                    &lt;div class=&quot;u-image-cover__inner&quot;&gt;
+                        &lt;img src=&quot;/assets/images/patterns/placeholder-1--small.jpg&quot; sizes=&quot;100vw&quot; srcset=&quot;/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns//assets/images/patterns/placeholder-1--small.jpg 300w&quot; alt=&quot;Mother looking at the child she&apos;s holding&quot; class=&quot;u-image-cover__image&quot; width=&quot;200&quot; height=&quot;133&quot;&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+             
+            &lt;div class=&quot;c-card__header-extra&quot;&gt; 
+                &lt;p&gt;&lt;time datetime=&quot;2021-09-29&quot;&gt;29 September, 2021&lt;/time&gt;&lt;/p&gt;
+            &lt;/div&gt;
+            
+        &lt;/header&gt;
+
+        
+        &lt;div class=&quot;c-card__body&quot;&gt;
+            &lt;p&gt;...&lt;/p&gt;
+        &lt;/div&gt;
+           
+        &lt;div class=&quot;c-card__footer&quot;&gt;      
+            &lt;div class=&quot;layout  l-row  l-row--end&quot;&gt;
+                &lt;p class=&quot;l-layout__inner&quot;&gt;
+
+                    &lt;b&gt;&lt;a href=&quot;/patterns&quot; class=&quot;c-cta&quot; id=&quot;desc-this-is-a-typical-card&quot; tabindex=&quot;-1&quot; aria-hidden=&quot;true&quot;&gt;Read more&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot;&gt;&lt;use xlink:href=&quot;#icon-chevron-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/a&gt;&lt;/b&gt;
+                    
+                &lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+    </details>
+</div>
+
+<h3>Minimal card</h3>
+
+<div class="u-space--below">
+    {% include card.html
+        title="This is a minimal card"
+        url="/patterns"
+    %}
+</div>
+
+
+<div>
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;article class=&quot;c-card  js-c-card  d-border  d-background&quot;&gt;
+    &lt;div data-fs-block=&quot;border&quot;&gt;
+        &lt;header class=&quot;c-card__header&quot;&gt;
+            &lt;h3 class=&quot;c-card__title&quot;&gt;&lt;a href=&quot;/patterns&quot;&gt;This is a minimal card&lt;/a&gt;&lt;/h3&gt;
+        &lt;/header&gt;
+    &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+    </details>
+</div>
+
+<h3>Everything</h3>
+
+<p>Image, header extra, content, CTA and footer extra</p>
+
+<div class="u-space--below">
+    {% include card.html
+        title="This card has everything"
+        url="/patterns"
+        header_extra=date_content
+        content="<p>This card tells you something else about something else.</p><p>This card tells you something else about something else.</p><p>This card tells you something else about something else.</p>"
+        cta="Read more"
+        img_src="/assets/images/patterns/placeholder-2"
+        img_alt="Father holding his child"
+        footer_extra="<p>- by <a href=\"#author\">Some Author</a></p>"
+    %}
+</div>
+
+<div>
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;article class=&quot;c-card  js-c-card  d-border  d-background&quot;&gt;
+    &lt;div data-fs-block=&quot;border&quot;&gt;
+        &lt;header class=&quot;c-card__header&quot;&gt;
+            &lt;h3 class=&quot;c-card__title&quot;&gt;&lt;a href=&quot;/patterns&quot; aria-describedby=&quot;desc-this-card-has-everything&quot;&gt;This card has everything&lt;/a&gt;&lt;/h3&gt;
+
+            &lt;div class=&quot;c-card__image  l-box&quot;&gt;
+                &lt;div class=&quot;u-image-cover  js-image-cover  u-image-cover--min-56-25&quot;&gt;
+                    &lt;div class=&quot;u-image-cover__inner&quot;&gt;
+                        &lt;img src=&quot;/assets/images/patterns/placeholder-2--small.jpg&quot; sizes=&quot;100vw&quot; srcset=&quot;/assets/images/patterns/placeholder-2--large.jpg 1600w, /assets/images/patterns/placeholder-2--medium.jpg 900w, /assets/images/patterns//assets/images/patterns/placeholder-2--small.jpg 300w&quot; alt=&quot;Mother looking at the child she&apos;s holding&quot; class=&quot;u-image-cover__image&quot; width=&quot;200&quot; height=&quot;133&quot;&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;c-card__header-extra&quot;&gt;     
+                &lt;p&gt;&lt;time datetime=&quot;2021-09-29&quot;&gt;29 September, 2021&lt;/time&gt;&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/header&gt;
+        
+        &lt;div class=&quot;c-card__body&quot;&gt;
+            &lt;p&gt;...&lt;/p&gt;
+        &lt;/div&gt;
+        
+        &lt;div class=&quot;c-card__footer&quot;&gt;
+            
+            &lt;div class=&quot;layout  l-row  l-row--end&quot;&gt;
+                &lt;p class=&quot;l-layout__inner&quot;&gt;
+
+                    &lt;b&gt;&lt;a href=&quot;/patterns&quot; class=&quot;c-cta&quot; id=&quot;desc-this-card-has-everything&quot; tabindex=&quot;-1&quot; aria-hidden=&quot;true&quot;&gt;Read more&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot;&gt;&lt;use xlink:href=&quot;#icon-chevron-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/a&gt;&lt;/b&gt;
+                    
+                &lt;/p&gt;
+            &lt;/div&gt;
+            
+            &lt;footer&gt;
+                &lt;p&gt;- by Some Author&lt;/p&gt;
+            &lt;/footer&gt; 
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+    </details>
+</div>
+
+<h3>Combinations</h3>
+
+<p>Image</p>
+
+<div class="u-space--below">
+    {% include card.html
+        title="Another card here"
+        url="/patterns"
+        img_src="/assets/images/patterns/placeholder-2"
+        img_alt="Father holding his child"
+    %}
+</div>
+
+<p>Image, header extra</p>
+
+<div class="u-space--below">
+    {% include card.html
+        title="This card has a longer title so we can test text wrapping"
+        url="/patterns"
+        header_extra=date_content
+        img_src="/assets/images/patterns/placeholder-3"
+        img_alt="Mother holding her child"
+    %}
+</div>
+
+<p>Header extra, content</p>
+
+<div class="u-space--below">
+    {% include card.html
+        title="Yes another card"
+        url="/patterns"
+        header_extra=date_content
+        content="<p>This card tells you something else about something else.</p><p>This card tells you something else about something else.</p><p>This card tells you something else about something else.</p>"
+    %}
+</div>
+
+<p>Header extra, content, CTA</p>
+
+<div class="u-space--below">
+    {% include card.html
+        title="This card is super great"
+        url="/patterns"
+        header_extra=date_content
+        content="<p>This card tells you something else about something else.</p><p>This card tells you something else about something else.</p><p>This card tells you something else about something else.</p>"
+        cta="Read more"
+    %}
+</div>
+
+<p>Header extra, CTA and footer extra</p>
+
+<div class="u-space--below">
+    {% include card.html
+        title="This card is exciting"
+        url="/patterns"
+        header_extra=date_content
+        cta="Read more"
+        footer_extra="<p>- by <a href=\"#author\">Some Author</a></p>"
+    %}
+</div>
+
+<p>Header extra, footer extra</p>
+
+<div class="u-space--below">
+    {% include card.html
+        title="So, another card"
+        url="/patterns"
+        header_extra=date_content
+        footer_extra="<p>- by <a href=\"#author\">Some Author</a></p>"
+    %}
+</div>
+
+<p>Content, footer extra</p>
+
+<div class="u-space--below">
+    {% include card.html
+        title="And another card"
+        url="/patterns"
+        content="<p>This card tells you something else about something else.</p><p>This card tells you something else about something else.</p><p>This card tells you something else about something else.</p>"
+        footer_extra="<p>- by <a href=\"#author\">Some Author</a></p>"
+    %}
+</div>
+
+<p>CTA and footer extra</p>
+
+<div class="u-space--below">
+    {% include card.html
+        title="This card has no content"
+        url="/patterns"
+        cta="Read more"
+        footer_extra="<p>- by <a href=\"#author\">Some Author</a></p>"
+    %}
+</div>
+
+<p>CTA</p>
+
+<div class="u-space--below">
+    {% include card.html
+        title="This one only has a CTA"
+        url="/patterns"
+        cta="Read more"
+    %}
+</div>
+
+<p>Footer extra</p>
+
+<div class="u-space--below">
+    {% include card.html
+        title="This card has some footer text"
+        url="/patterns"
+        footer_extra="<p>- by <a href=\"#author\">Some Author</a></p>"
+    %}
+</div>
+
+<p>Special - Footer Image</p>
+
+<div class="u-space--below">
+    {% include card.html
+        title="This card has a footer image"
+        url="/patterns"
+        header_extra=date_content
+        content="<p>This card tells you something else about something else.</p><p>This card tells you something else about something else.</p><p>This card tells you something else about something else.</p>"
+        img_src="/assets/images/patterns/placeholder-1"
+        img_alt="Mother looking at the child she's holding"
+        footer_img_src="/assets/images/patterns/footer-placeholder-1"
+        footer_img_padded=true
+        footer_img_w=270
+        footer_img_h=54
+    %}
+</div>
+
+<div>
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;article class=&quot;c-card  js-c-card  d-border  d-background&quot;&gt;
+    &lt;div data-fs-block=&quot;border&quot;&gt;
+        &lt;header class=&quot;c-card__header&quot;&gt;
+            &lt;h3 class=&quot;c-card__title&quot;&gt;&lt;a href=&quot;/patterns&quot;&gt;This card has a footer image&lt;/a&gt;&lt;/h3&gt;
+            
+            &lt;div class=&quot;c-card__image  l-box&quot;&gt;
+                &lt;div class=&quot;u-image-cover  js-image-cover  u-image-cover--min-56-25&quot;&gt;
+                    &lt;div class=&quot;u-image-cover__inner&quot;&gt;
+                        &lt;img src=&quot;/assets/images/patterns/placeholder-1--small.jpg&quot; sizes=&quot;100vw&quot; srcset=&quot;/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns//assets/images/patterns/placeholder-1--small.jpg 300w&quot; alt=&quot;Mother looking at the child she&apos;s holding&quot; class=&quot;u-image-cover__image&quot; width=&quot;200&quot; height=&quot;133&quot;&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            
+            &lt;div class=&quot;c-card__header-extra&quot;&gt;
+                &lt;p&gt;&lt;time datetime=&quot;2021-09-29&quot;&gt;29 September, 2021&lt;/time&gt;&lt;/p&gt;
+            &lt;/div&gt; 
+        &lt;/header&gt;
+
+        &lt;div class=&quot;c-card__body&quot;&gt;
+            &lt;p&gt;...&lt;/p&gt;
+        &lt;/div&gt;
+        
+        &lt;div class=&quot;c-card__footer-image  c-card__footer-image--padded&quot;&gt;
+            &lt;div class=&quot;u-image-cover  js-image-cover  u-image-cover--min-20&quot;&gt;
+                &lt;div class=&quot;u-image-cover__inner&quot;&gt;
+                    &lt;img src=&quot;/assets/images/patterns/footer-placeholder-1--small.jpg&quot; sizes=&quot;100vw&quot; srcset=&quot;/assets/images/patterns/footer-placeholder-1--large.jpg 1600w, /assets/images/patterns/footer-placeholder-1--medium.jpg 900w, /assets/images/patterns//assets/images/patterns/footer-placeholder-1--small.jpg 300w&quot; alt=&quot;&quot; class=&quot;u-image-cover__image&quot; width=&quot;270&quot; height=&quot;54&quot;&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+    </details>
+</div>
+
+
+<p>Special - Footer Image 2</p>
+
+<div class="u-space--below">
+    {% include card.html
+        title="This card has everything including a footer image"
+        url="/patterns"
+        header_extra=date_content
+        content="<p>This card tells you something else about something else.</p><p>This card tells you something else about something else.</p><p>This card tells you something else about something else.</p>"
+        cta="Read more"
+        img_src="/assets/images/patterns/placeholder-3"
+        img_alt="Mother holding her child"
+        footer_extra="<p>- by <a href=\"#author\">Some Author</a></p>"
+        footer_img_src="/assets/images/patterns/footer-placeholder-1"
+        footer_img_padded=true
+        footer_img_w=270
+        footer_img_h=54
+    %}
+</div>
+
+
+<h2>Variations</h2>
+
+<h3>Different heading level</h3>
+
+<p>The appearance of the heading remains the same.</p>
+
+<div class="u-space--below">
+    {% include card.html
+        title="This card has an h2"
+        url="/patterns"
+        hx="2"
+        header_extra=date_content
+        content="<p>This card tells you something else about something else.</p>"
+        cta="Read more"
+    %}
+</div>
+
+
+<h3>Different image ratio</h3>
+
+<div class="u-space--below">
+    {% include card.html
+        title="This card's image is ratio is 40"
+        url="/patterns"
+        header_extra=date_content
+        content="<p>This card tells you something else about something else.</p>"
+        cta="Read more"
+        img_src="/assets/images/patterns/placeholder-1"
+        img_alt="Mother looking at the child she's holding"
+        img_ratio=40
+    %}
+</div>
+
+
+<h3>Unpublished state</h3>
+
+<div class="u-space--below">
+    {% include card.html
+        title="This is unpublished"
+        url="/patterns"
+        header_extra=date_content
+        content="<p>This card tells you something else about something else.</p>"
+        cta="Read more"
+        img_src="/assets/images/patterns/placeholder-2"
+        img_alt="Father holding his child"
+        unpublished=true
+    %}
+</div>

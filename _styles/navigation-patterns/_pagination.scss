@@ -1,0 +1,70 @@
+/*
+    Pagination
+    ===========
+
+    Note that the bulk of the pagination pattern is service by the layout classes.
+    The classes declared here provide some additional decoration.
+*/
+
+$pagination-namespace: n- !default;
+
+.#{$pagination-namespace}pagination {
+
+    /*
+    */
+    &#{&} {
+
+    }
+
+    .l-box__separator {
+        display: none;
+    }
+
+    a {
+        padding-top: $s__sz-xs;
+        padding-bottom: $s__sz-xs;
+        margin-left: $s__sz-xs;
+        margin-right: $s__sz-xs;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        svg[display][focusable][aria-hidden] {
+            margin: 0;
+        }
+    }
+    
+    a[aria-hidden] {
+        opacity: 0.5;
+    }
+    
+    a[aria-current] {
+        //background-color: #eee;
+        //background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-light));
+        border-radius: 100%;
+        margin-left: $s__sz-s;
+        margin-right: $s__sz-s;
+    }
+    
+
+    .#{$pagination-namespace}pagination__page-links a {
+        width: #{$s__sz-m + $s__sz-s};
+    }
+    
+    .#{$pagination-namespace}pagination__start-links a {
+        padding-left: 0;
+        padding-right: $s__sz-xs;
+    }
+    
+    .#{$pagination-namespace}pagination__end-links a {
+        padding-left: $s__sz-xs;
+        padding-right: 0;
+    }
+    
+    .#{$pagination-namespace}pagination__start-links .l-box,
+    .#{$pagination-namespace}pagination__page-links .l-box,
+    .#{$pagination-namespace}pagination__end-links .l-box:not(:last-child) {
+        border-right: 1px solid #ccc;
+    }
+
+}

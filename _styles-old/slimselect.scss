@@ -1,0 +1,38 @@
+@import "_settings.scss";
+@import "_core_themes.scss";
+
+$font-color: $s__base-text-color;
+$font-disabled-color: lighten($font-color, 26%);
+//$primary-color: darken($system-message--color, 24%);
+$primary-color: #5F6DB2;
+
+@import '../bower_components/SlimSelect/src/slim-select/slimselect.scss';
+
+/*! Overrides: */
+
+.ss-main .ss-multi-selected .ss-values {
+    flex: 1 1 calc(100% - 2.4rem);
+    width: auto;
+}
+
+.ss-main .ss-multi-selected .ss-add {
+    flex: 0 1 2.4rem;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.ss-content .ss-search.ss-hide,
+.ss-content .ss-search.ss-hide input {
+    padding: 0;
+    border: 0;
+    width: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.ss-main .ss-multi-selected .ss-values .ss-disabled {
+    margin: 2px 0;
+    line-height: 2.4rem;
+}

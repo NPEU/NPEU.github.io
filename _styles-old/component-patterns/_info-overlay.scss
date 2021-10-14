@@ -1,0 +1,105 @@
+/*
+*/
+$info-overlay-namespace: c- !default;
+$theme-namespace: t- !default;
+
+
+$info-overlay-breakpoint: 40rem !default;
+$info-overlay-max-message-breakpoint: 100rem !default;
+$info-overlay-min-message-size: 20px !default;
+$info-overlay-max-message-size: 52px !default;
+
+$theme-only: false !default;
+
+// Note - no theme yet!
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+
+    .#{$info-overlay-namespace}info-overlay-wrap {
+        position: relative;
+    }
+
+    .#{$info-overlay-namespace}info-overlay {
+        &#{&} {
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #fff;
+            background: rgba(0,0,0,0.5);
+            padding: 0;
+            margin: 0;
+            border: 0;
+
+            a[href],
+            a[href]:hover,
+            a[href]:focus,
+            a[href]:active {
+                color: #fff;
+            }
+        }
+
+        & > summary {
+
+            width: 2.4rem;
+            height: 2.4rem;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+
+            & > :first-child {
+                display: inline;
+            }
+
+            & > :last-child {
+                display: none;
+            }
+
+            &::before {
+                display: none;
+            }
+
+            &:hover,
+            &:focus,
+            &:active {
+                background: rgba(255,255,255,0.4);
+            }
+        }
+
+        &[open] {
+            & > summary {
+                & > :first-child {
+                    display: none;
+                }
+
+                & > :last-child {
+                    display: inline;
+                }
+            }
+        }
+
+        & > summary + * {
+            position: relative;
+            left: 2.4rem;
+            margin-top: -2.4rem;
+            max-width: calc(100% - 2.4rem);
+            padding: $sz-xs $sz-m;
+            font-size: 0.875em;
+        }
+
+        * {
+            margin: 0;
+        }
+
+        &--full-width[open] {
+            width: 100%;
+        }
+
+        &--half-width[open] {
+            width: 50%;
+        }
+
+    }
+}

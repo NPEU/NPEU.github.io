@@ -1,0 +1,128 @@
+/*
+    Many (soon all?) of these patterns are themeable, so they are configured and imported here
+    (separately) so that they can be imported into other theme files without resulting in
+    re-declared base-styles. E.g. bands defines a set of size classes, these only need to appear in
+    the stylesheet once. The file that includes *this* file should set `$theme-only: true` to toggle
+    this behaviour.
+*/
+
+@import "_settings.scss";
+@import "_sizes";
+
+
+//$suppress_styles: true;
+//@import "../bower_components/Fall-Back-Start-CSS/scss/_start.scss";
+
+//$neutral-theme: map-get($themes, neutral);
+
+
+/* --| Component Patterns |---------------------------------------------------------------------- */
+
+@import "component-patterns/_badge.scss";
+
+/*$brochure-spacing-unit: $s__base-rem-space-unit;
+$brochure--border-or-outline: false;
+@import "component-patterns/_brochure.scss";*/
+
+
+
+$card-spacing-unit: $s__base-rem-space-unit;
+
+$card--base-color: $s__base-ui-color;
+
+$card--text-color: #fff;
+
+$card--hover-effect-opacity: $hover-effect-opacity;
+
+$card-title--font-size: 2.2rem;
+$card-title--line-height: $s__base-rem-space-unit * 1.5;
+
+$card--background-color: darken($card--base-color, 7%);
+$card-main--background-color: $card--base-color;
+
+$card--border-color: darken($card--base-color, 20%);
+$card--border-or-outline: 'border';
+
+
+@import "component-patterns/_card.scss";
+/*@include card-theme("card", (
+    background-color: darken($s__base-ui-color, 20%),
+    text-color: #fff
+    )
+);*/
+
+
+@import "component-patterns/_contact-list.scss";
+
+$event-spacing-unit: $s__base-rem-space-unit;
+$event--background-color: #fff;
+$event--border-color: $s__base-ui-color;
+@import "component-patterns/_event.scss";
+
+
+$featurette-spacing-unit: $s__base-rem-space-unit;
+@import "component-patterns/_featurette.scss";
+@include featurette-theme("featurette--dark", (
+    background-color: darken($s__base-ui-color, 20%),
+    text-color: #fff
+    )
+);
+
+@include featurette-theme("featurette--light", (
+    background-color: lighten($s__base-ui-color, 30%),
+    text-color: $s__base-ui-color
+    )
+);
+
+
+
+//@import "patterns/_funder-logo.scss";
+// Not sure why glimpse ever needs a max-width.
+$glimpse--max-width: none;
+$glimpse--spacing-unit: $s__base-rem-space-unit;
+@import "component-patterns/_glimpse.scss";
+
+//$hero-max-message-breakpoint: 100rem;
+//$hero-max-message-size: 32px !default;
+@import "component-patterns/_hero.scss";
+
+@import "component-patterns/_info-overlay.scss";
+
+$longform-content-max-width: $s__measure;
+@import "component-patterns/_longform-content.scss";
+
+@import "component-patterns/_page-header.scss";
+
+@import "component-patterns/_page-footer.scss";
+
+@import "component-patterns/_page-wrap.scss";
+
+//$meter--text-color: #fff;
+$meter-spacing-unit: $s__base-rem-space-unit;
+@import "component-patterns/_meter.scss";
+
+
+@import "component-patterns/_map.scss";
+
+$panel--padding: $s__base-rem-space-unit;
+@import "component-patterns/_panel.scss";
+//@import "component-patterns/_panel--dark.scss";
+
+@import "component-patterns/_primary-cta.scss";
+
+$signs--base-color: $s__base-ui-color;
+@import "component-patterns/_signs.scss";
+
+@import "component-patterns/_thumbnail.scss";
+
+$tool-form--spacing-unit: $s__base-rem-space-unit;
+@import "component-patterns/_tool-form.scss";
+
+@import "component-patterns/_utilitext.scss";
+
+/* ---------------------------------------------------------------------------------------------- */
+
+/* --| Decoration Patterns |--------------------------------------------------------------------- */
+// These patterns are themeable and so are included via '_themeable_patterns.scss'.
+@import "decoration-patterns/_background.scss";
+@import "decoration-patterns/_bands.scss";

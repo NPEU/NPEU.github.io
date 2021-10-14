@@ -1,0 +1,403 @@
+/// Try to incorporate these into StartCSS or put somewhere more sensible.
+
+@import "_start_tweaks.scss";
+
+/*
+    Stuff from latest StartCSS update - needs properly sorting:
+*/
+
+
+main {
+    margin-bottom: 0;
+}
+
+header {
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    background-color: inherit;
+}
+
+td svg {
+    vertical-align: bottom;
+}
+/*
+dd {
+    margin-bottom: $s__base-rem-space-unit;
+}
+*/
+/*
+header p {
+    margin: 0;
+}
+*/
+// Hmmm. THere's way too much in here already. Needs sorting.
+
+
+// Staff Area glimpse :target = not where where to best put this override to d-background:
+.c-glimpse:target {
+    background-color: #ffcb84 !important;
+}
+
+// 'Invisible form' Need to add this as a pattern.
+// Joomla's logout process needs to be a form (post) in order to redirect back to the current page.
+// Ideally this would just be a link with a URL parameter, but it doesn't work.
+// So, that's the use-case for styling a form to look like a single link. There may be others.
+// Note that here we're applying all a styles combined from StartCSS and utilitext.
+// Really not ideal, but this whole pattern is a bit of a hack.
+.c-single-link-form {
+    &#{&},
+    & * {
+        display: inline;
+        border: 0;
+        padding: 0;
+        margin: 0;
+        background: transparent;
+        color: $s__base-text-color;
+    }
+
+    & button {
+        border-radius: 0;
+        min-height: 0;
+        color: $s__anchor-text-color;
+        background-color: transparent;
+        vertical-align: baseline;
+        line-height: normal;
+
+        text-decoration: $s__anchor-text-decoration;
+        -webkit-text-decoration-skip: objects;
+
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+
+        span {
+            border-width: 0 0 1px 0;
+            border-style: solid;
+            margin-bottom: -1px;
+            padding-bottom: 2px;
+        }
+
+        @if $s__anchor-focus-shadow != false {
+            &:focus {
+                outline: 0;
+                box-shadow: 0 0 0 $s__anchor-focus-shadow-width rgba($s__anchor-text-color, 0.5);
+            }
+        }
+
+        &:hover span, &:active span, &:focus span {
+            border-style: dashed;
+        }
+    }
+}
+
+
+// Form innput prefix. Not sure how best to handle this.
+
+.c-composite > span:first-child {
+    //@include s__button();
+    display: inline-block;
+    min-height: 3rem;
+    overflow: visible;
+    margin: .3rem 0;
+    padding-top: -moz-calc(0);
+    padding-top: calc(.3rem - 1px);
+    padding-bottom: .3rem;
+    padding-bottom: -moz-calc(0);
+    padding-bottom: calc(.3rem - 1px);
+    padding-right: .6rem;
+    padding-left: .6rem;
+    border-color: rgba(0,0,0,.2);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    color: #333;
+    background-color: #f7f6f6;
+    font-size: 0.875em;
+    line-height: 2.4rem;
+    vertical-align: middle;
+}
+//----------------------------------------------------------
+
+// This is a one-off for the WhatsOn prefs form.
+// Consider making 'details in forms' a thing.
+.sh-naked-details {
+    border: 0;
+    padding: 0;
+    margin-top: 2.4rem;
+    margin-bottom: 0;
+
+    summary {
+        padding-left: 1.4em;
+        margin: 0;
+    }
+
+    &[open] summary {
+        margin-bottom: 1.2rem;
+    }
+
+    summary + p {
+        margin: 0;
+        font-size: 0.875em;
+    }
+}
+
+
+//----------------------------------------------------------
+
+
+// Used for 'invisible' iframe on https://www.npeu.ox.ac.uk/privacy-cookies
+.fluid-frame {
+    border: 0;
+    width: 100%;
+}
+
+
+// User agent stylesheet makes cites italic by default, but that shouldn't be the case for
+// footnotes where italics is common to differentiate parts of the citation.
+// This should really go in the user stylesheet, but there I don't use classnames, so I'd have to
+// change the CKEDITOR FOOTNOTES plugin to use the [data] attributes instead, and change all
+// occurrences of that classname in the content database.
+// -- unless I make an exception which seems like the most sensible thing to do.
+
+.footnotes cite {
+    font-style: normal;
+    font-size: 0.875em;
+}
+
+// StartCSS turns off max-width for images with a width or height attribute.
+// I can sort of imagine why I did that, but I dont' have a test case for it, and inline with
+// FallBack guideance, all images SHOULD have a height or width to make them sensible in no-CSS
+// situtaions. So, I'm not sure what to do about that, so just reverting the StartCSS rule here for
+// now:
+img[width],
+img[height] {
+    max-width: 100%;
+}
+
+
+// This is for the styleguide:
+
+/* IE9-11 */
+@media #{$s__ie9-11} {
+
+    details > pre {
+
+        width: calc(100vw - 67px);
+    }
+
+}
+
+
+
+#highlighter-start,
+#highlighter-end {
+    display: none;
+}
+
+
+
+
+//$enough-room-at: $s__base-rem-space-unit + $measure + $s__base-rem-space-unit + $s__base-rem-space-unit + ($measure / 2) + $s__base-rem-space-unit;
+
+.svg__link:hover,
+.svg__link:active,
+.svg__link:focus {
+	box-shadow: 0 0 0 ($hover-effect-width) #fff, 0 0 0 ($hover-effect-width * 2) rgba(0,0,0,$hover-effect-opacity);
+}
+
+
+
+.svg a[href]::after {
+	display: none;
+}
+
+
+@media only screen and (min-width: $s__breakpoint--enhanced) {
+    .nav-bar.d-bands--bottom {
+        border: 0;
+    }
+}
+
+.dropdown,
+.nav-bar__item,
+.nav-bar__link {
+    position: relative;
+}
+
+.nav-bar__item a,
+.nav-bar__item span {
+    position: relative;
+}
+
+.nav-bar__item--current > a::before,
+.subnav__item--current > a::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.4;
+}
+
+
+.nav-bar__item--current > a:hover::before,
+.nav-bar__item--current > a:active::before,
+.nav-bar__item--current > a:focus::before,
+.subnav__item--current > a:hover::before,
+.subnav__item--current > a:active::before,
+.subnav__item--current > a:focus::before {
+    display: none;
+}
+
+
+.search-form .search-form__field.search-form__field {
+    border-radius: 50px 0 0 50px;
+    padding-left: 0.5em;
+}
+/*-----------*/
+
+// Note Safari 10- doesn't factor in min/max width/height when deciding how many items can fit on
+// a multi-line flex container.
+// This means that the usual fab-four technique doesn't work as expected.
+.dl-2-col {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin: 0;
+}
+
+.dl-2-col dt {
+    flex: 1 0 8em;
+
+    margin: 0;
+}
+
+.dl-2-col dd {
+    flex: 1 0 calc(100% - 9em);
+    align-self: flex-end;
+
+    margin: 0;
+    padding-left: 1em;
+}
+
+/*------------------*/
+
+/* User profile form uses headings (h2) inside Legends.
+Check the a11y of this, and move margin removal to StartCSS if appropriate. */
+legend h1,
+legend h2,
+legend h3,
+legend h4,
+legend h5,
+legend h6 {
+    margin-bottom: 0;
+}
+
+/*------------------*/
+
+/*------------------*/
+
+.s-updates.c-panel .c-card__full-link {
+    max-width: 41rem;
+    margin: 0 auto;
+}
+
+
+/*---------------------*/
+
+// For use on PRu homepage - not sure where this best fits in.
+.video-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #333;
+}
+
+/*---------------------*/
+
+
+
+
+/*
+.l-blockrow:last-child > .d-bands--bottom {
+    border: 0 !important;
+}*/
+/*-----------------*/
+
+/***************************/
+/*
+@media only screen and (max-width: $primary-content-breakpoint) {
+    .l-primary-content__pull-out.u-space--above {
+        margin-top: 0 !important;
+    }
+
+    .l-primary-content__pull-out .c-panel {
+        padding-top: 0 !important;
+    }
+}
+*/
+// ($min-vw, $max-vw, $min-font-size, $max-font-size)
+
+
+
+/*
+    Really odd, but in normal Chrome (not canary, FF or Edge) .u-fill-height doesn't work properly in
+    bespoke context.
+
+    E.g. https://www.npeu.ox.ac.uk/pru-mnhc
+
+    I really can't figure out why the behaviour is different, but taking off min-height works as expected.
+    However, it's context-specific, I can't just remove that rule from everywhere.
+
+
+    - UPDATE - avoided adding the height class, but keep this as a note for now.
+*/
+/*
+.custom .u-fill-height {
+    min-height: 0;
+}
+*/
+
+/*
+.recruitment {
+    padding: $panel--padding;
+
+    @include bottom-space-fix();
+
+    border: 1px solid #aaa;
+}
+
+.recruitment figcaption {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+
+
+.recruitment .recruitment__info {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.recruitment .recruitment__info dt {
+    flex: 1 0 4em;
+}
+
+.recruitment .recruitment__info dd {
+    flex: 1 0 calc(100% - 4em);
+    margin: 0;
+}
+
+.filelist {
+    list-style-type: none;
+}
+
+.filelist li {
+    margin-left: 0;
+    margin-bottom: 2.4rem;
+}*/

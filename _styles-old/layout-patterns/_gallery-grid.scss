@@ -1,0 +1,151 @@
+/*
+    Distribute items inside a container.
+
+*/
+$gallery-grid-namespace: l- !default;
+
+$gallery-grid-spacing-unit: 1rem !default;
+$gallery-grid-spacing-unit--s: ($gallery-grid-spacing-unit / 2) !default;
+$gallery-grid-spacing-unit--l: ($gallery-grid-spacing-unit * 2) !default;
+
+$gallery-grid-bases: (
+    15,
+    20,
+) !default;
+
+.#{$gallery-grid-namespace}gallery-grid {
+
+    /*
+        1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
+    */
+    &#{&} {
+        display: flex;
+        flex-wrap: wrap;
+
+
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        
+        width: 0; /* [1] */
+        min-width: 100%; /* [1] */
+    }
+
+    & > * {
+        margin: 0;
+        flex: 1 1 auto;
+    }
+
+    /* MODIFIERS */
+
+    /* Widths */
+    /* 
+        1. In Flexbox, with these settings, incomplete rows will have their items stretched to fill,
+           (due to flex-grow: 1), so a max-width is necessary.
+           This is why Grid is preferred and if supported, added below.
+    */
+    // Item bases:
+    @each $gallery-grid-basis in $gallery-grid-bases {
+        &.#{$gallery-grid-namespace}gallery-grid--basis-#{$gallery-grid-basis} > * {
+            flex-basis: #{$gallery-grid-basis}em;
+            max-width: #{$gallery-grid-basis}em;
+        }
+    }
+
+
+    /* Gutters */
+
+    &.#{$gallery-grid-namespace}gallery-grid--gutter--small,
+    &.#{$gallery-grid-namespace}gallery-grid--gutter--s {
+        margin-left: -($gallery-grid-spacing-unit--s / 2);
+        margin-right: -($gallery-grid-spacing-unit--s / 2);
+
+        > * {
+            padding: 0 ($gallery-grid-spacing-unit--s / 2) $gallery-grid-spacing-unit--s ($gallery-grid-spacing-unit--s / 2);
+        }
+    }
+
+    &.#{$gallery-grid-namespace}gallery-grid--gutter--medium,
+    &.#{$gallery-grid-namespace}gallery-grid--gutter--m {
+        margin-left: -($gallery-grid-spacing-unit / 2);
+        margin-right: -($gallery-grid-spacing-unit / 2);
+
+        > * {
+            padding: 0 ($gallery-grid-spacing-unit / 2) $gallery-grid-spacing-unit ($gallery-grid-spacing-unit / 2);
+        }
+    }
+
+
+    &.#{$gallery-grid-namespace}gallery-grid--gutter--large,
+    &.#{$gallery-grid-namespace}gallery-grid--gutter--l {
+        margin-left: -($gallery-grid-spacing-unit--l / 2);
+        margin-right: -($gallery-grid-spacing-unit--l / 2);
+
+        > * {
+            padding: 0 ($gallery-grid-spacing-unit--l / 2) $gallery-grid-spacing-unit--l ($gallery-grid-spacing-unit--l / 2);
+        }
+    }
+
+
+    /* Alignment */
+
+    &.#{$gallery-grid-namespace}gallery-grid--align-center {
+        justify-content: center;
+    }
+
+
+}
+
+/* GRID */
+@supports (display: grid) {
+    .#{$gallery-grid-namespace}gallery-grid {
+        &#{&} {
+            display: grid;        
+
+            & > * {
+                max-width: none;
+            }
+        }
+        
+        // Item bases:
+        @each $gallery-grid-basis in $gallery-grid-bases {
+            &.#{$gallery-grid-namespace}gallery-grid--basis-#{$gallery-grid-basis} {
+                grid-template-columns: repeat(auto-fit, minmax(#{$gallery-grid-basis}em, 1fr));
+            }
+        }
+
+
+        /* Gutters */
+
+        &.#{$gallery-grid-namespace}gallery-grid--gutter--small,
+        &.#{$gallery-grid-namespace}gallery-grid--gutter--s {
+            margin: 0;
+            grid-gap: $gallery-grid-spacing-unit--s;
+
+            & > * {
+                padding: 0;
+            }
+        }
+
+        &.#{$gallery-grid-namespace}gallery-grid--gutter--medium,
+        &.#{$gallery-grid-namespace}gallery-grid--gutter--m {
+            margin: 0;
+            grid-gap: $gallery-grid-spacing-unit;
+
+            & > * {
+                padding: 0;
+            }
+        }
+
+
+        &.#{$gallery-grid-namespace}gallery-grid--gutter--large,
+        &.#{$gallery-grid-namespace}gallery-grid--gutter--l {
+            margin: 0;
+            grid-gap: $gallery-grid-spacing-unit--l;
+
+            & > * {
+                padding: 0;
+            }
+        }
+    }
+}

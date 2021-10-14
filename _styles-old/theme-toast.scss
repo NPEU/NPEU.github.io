@@ -1,0 +1,39 @@
+/*! TOAST Theme (c) NPEU */
+
+/* --| START THEME |----------------------------------------------------------------------------- */
+
+//@import "_themes-config.scss";
+$theme-name: toast;
+$theme: (
+    cta-text-color       : #ffffff,
+    cta-background-color : #FF9E18,
+    primary-color        : #8C827A,
+    secondary-color      : #FF9E18,
+    page-header-color    : #ffffff
+);
+
+
+$s__breakpoint--enhanced: 50em;
+
+$theme-copy: $theme;
+$theme-name-copy: $theme-name;
+@import "_style";
+
+
+
+$theme-only: true;
+@import "_themeable-patterns.scss";
+
+
+//$theme: map_get($themes, $theme-name);
+$theme: $theme-copy;
+$theme-name: $theme-name-copy;
+@import "_theme";
+
+/* ---------------------------------------------------------------------------------------------- */
+
+/* --| SHAME |----------------------------------------------------------------------------------- */
+
+@import "_shame";
+
+/* ---------------------------------------------------------------------------------------------- */

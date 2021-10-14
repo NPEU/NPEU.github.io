@@ -1,0 +1,74 @@
+/*
+    Border
+    ======
+*/
+
+$border-namespace: d- !default;
+
+$border-size: $s__border-width;
+$border-size--thick: $s__border-width * 3;
+
+[class~="#{$background-namespace}border"] {
+    border-width: $border-size;
+    border-style: solid;
+}
+
+
+[class*="#{$background-namespace}border"] {
+    border-color: var(--t-primary-color);
+}
+
+[class*="#{$background-namespace}border"].t-secondary {
+    border-color: var(--t-secondary-color);
+}
+
+[class*="#{$background-namespace}border"].t-neutral {
+    border-color: var(--t-neutral-color);
+}
+
+
+
+.#{$background-namespace}border--thick {
+    border-width: $border-size--thick;
+    border-style: solid;
+}
+
+.#{$background-namespace}border--bottom {
+    border-bottom-width: $border-size;
+    border-bottom-style: solid;
+}
+
+.#{$background-namespace}border--bottom--thick {
+    border-bottom-width: $border-size--thick;
+    border-bottom-style: solid;
+}
+
+.#{$background-namespace}border--top {
+    border-top-width: $border-size;
+    border-top-style: solid;
+}
+
+.#{$background-namespace}border--top--thick {
+    border-top-width: $border-size--thick;
+    border-top-style: solid;
+}
+
+.#{$background-namespace}border--left {
+    border-left-width: $border-size;
+    border-left-style: solid;
+}
+
+.#{$background-namespace}border--left--thick {
+    border-left-width: $border-size--thick;
+    border-left-style: solid;
+}
+
+.#{$background-namespace}border--right {
+    border-right-width: $border-size;
+    border-right-style: solid;
+}
+
+.#{$background-namespace}border--right--thick {
+    border-right-width: $border-size--thick;
+    border-right-style: solid;
+}

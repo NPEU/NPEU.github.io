@@ -1,0 +1,331 @@
+/* --| SETTINGS |-------------------------------------------------------------------------------- */
+
+// NOTE - Needs an overhaul because of updated StartCSS
+
+//@import "_settings.scss";
+
+
+//$theme-map: ($theme-name: $theme);
+//$themes: map-merge($themes, $theme-map);
+/**/
+
+$primary-color   : #5F4776;
+//$primary-color   : #aaa;
+//$primary-color   : #66B7E7;
+//$primary-color   : #2C9CDF;
+//$secondary-color : #BC955C;
+$secondary-color : #b9975b;
+$neutral-color   : #8e8279;
+
+/**/
+
+$border-thick: 0.3rem;
+
+$s__base-ui-color: $primary-color;
+
+$s__base-text-color: #111;
+/**/
+//$s__procedural-margins: false;
+$s__use-last-child-margin-zero: true;
+/**/
+//$s__use-layout: false;
+//$s__zero-header-hx-margin: false;
+//$s__space_dl_groups: false;
+//$s__text_zoom_scales_all: false;
+//$s__figure-scroll: false;
+/**/
+
+
+$s__body-padding: 0;
+$s__body-max-width: 0;
+
+$max-main-line-length: 0;
+$s__measure: 42em;
+$not-too-small: 18em;
+
+
+
+
+$s__main-max-line-length: 0;
+$s__main-padding: 0;
+
+
+$s__space_dl_groups: true;
+
+$s__text_zoom_scales_all: true;
+
+
+$s__border-width: 0.1rem;
+$s__border-radius: 0.3rem;
+
+//$s__focus-outline-width: 0.2rem;
+//$s__focus-outline-offset: 0.2rem;
+
+$s__anchor-border-bottom-width: 0.2rem;
+//$s__anchor-focus-shadow-width: 0.3rem;
+
+//$s__button-focus-shadow-width: 0.3rem;
+
+//$s__input-focus-shadow-width: 0.3rem;
+
+//$s__select-focus-shadow-width: 0.3rem;
+
+//$s__textarea-focus-shadow-width: 0.3rem;
+
+$s__figure-scroll: true;
+
+
+
+//$s__anchor-text-color: inherit;
+$s__anchor-text-color: currentColor;
+$s__anchor-text-color--alt: $s__anchor-text-color;
+
+
+
+
+
+/*
+//@debug $s__base-ui-color;
+
+$s__html-background-color: darken(map-get(map-get($themes, neutral), primary-color), 20%);
+
+$s__body-padding: 0;
+$s__main-max-line-length: 0;
+$s__main-padding: 0;
+
+$s__anchor-text-color: #333;
+
+// I shouldn't have to set this as the !default should allow a cascade.
+// Investigate why this is happening. I don't think it's a SASS problem as it seems to work in a
+// reduced test-case (though to be fair this isn't using @import...)
+// https://codepen.io/akirk/pen/RmWKgy
+$s__anchor-text-color--alt: #333;
+
+
+
+$s__selection-background-color: lighten(map-get(map-get($themes, neutral), primary-color), 10%) !default;
+$s__experimental_checkradios: true;
+
+
+$s__class-namespace: c-;
+$fs__include_class_bordered: false;
+$fs__include_class_padded:   false;
+$fs__include_class_poem:     false;
+*/
+/* ---------------------------------------------------------------------------------------------- */
+
+/* --| STARTCSS |-------------------------------------------------------------------------------- */
+
+//@import '../bower_components/Fall-Back-Start-CSS/scss/_start_settings.scss';
+//@import '../bower_components/Fall-Back-Start-CSS/scss/_start_functions.scss';
+//@import '../bower_components/Fall-Back-Start-CSS/scss/_start_mixins.scss';
+@import '../bower_components/Fall-Back-Start-CSS/scss/_start.scss';
+
+@import "_start_tweaks.scss";
+
+
+$s__class-namespace: c-;
+
+//$fs__include_class_cta_button:    false;
+$fs__include_class_bordered:      false;
+$fs__include_class_padded:        false;
+$fs__include_class_subtitle:      false;
+$fs__include_class_tagline:       false;
+//$fs__include_class_composite:     false;
+//$fs__include_class_custom_inputs: false;
+//$fs__include_class_poem:          false;
+
+///@import '../bower_components/Fall-Back-Start-CSS/scss/_start-classes.scss';
+///@import '../bower_components/Fall-Back-Start-CSS/scss/_start-accessibility.scss';
+///@import '../bower_components/Fall-Back-Start-CSS/scss/_Xstart-utilities.scss';
+///@import '../bower_components/Fall-Back-Start-CSS/scss/_Xstart-icons.scss';
+
+//$s__experimental: true;
+$s__experimental_checkradios: true;
+@import '../bower_components/Fall-Back-Start-CSS/scss/_start-experimental.scss';
+
+/* ---------------------------------------------------------------------------------------------- */
+
+/* --| THEME |----------------------------------------------------------------------------------- */
+
+@import "_themer.scss";
+
+/* ---------------------------------------------------------------------------------------------- */
+
+/* --| PATTERNS |-------------------------------------------------------------------------------- */
+
+/* --| Component Patterns |---------------------------------------------------------------------- */
+
+@import "component-patterns/_badge.scss";
+
+@import "component-patterns/_cta.scss";
+
+@import "component-patterns/_card.scss";
+
+@import "component-patterns/_contact-list.scss";
+
+@import "component-patterns/_event.scss";
+
+@import "component-patterns/_featurette.scss";
+
+@import "component-patterns/_forms.scss";
+
+@import "component-patterns/_page-wrap.scss";
+
+/* ---------------------------------------------------------------------------------------------- */
+
+
+
+/* --| Decoration Patterns |---------------------------------------------------------------------- */
+
+@import "decoration-patterns/_background.scss";
+
+@import "decoration-patterns/_border.scss";
+
+/* ---------------------------------------------------------------------------------------------- */
+
+
+
+/* --| Layout Patterns |------------------------------------------------------------------------- */
+
+
+$layout-spacing-unit: $s__base-rem-space-unit / 2;
+@import "layout-patterns/_base.scss";
+
+@import "layout-patterns/_distribute.scss";
+
+//@import "layout-patterns/_col-to-row.scss";
+
+/* ---------------------------------------------------------------------------------------------- */
+
+
+
+/* --| Navigation Patterns |--------------------------------------------------------------------- */
+
+@import "navigation-patterns/_pagination.scss";
+
+@import "navigation-patterns/_search-results.scss";
+
+@import "navigation-patterns/_menu.scss";
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
+
+
+
+/* --| Fall-Back Patterns |---------------------------------------------------------------------- */
+
+
+$s__dropdown--base-ui-color: transparent;
+$s__dropdown--base-text-color: inherit;
+//$s__dropdown--background-color:                transparent;
+$s__dropdown--text-color:                        inherit;
+//$s__dropdown__control--color:                  $s__nav-bar__link--color;
+//$s__dropdown__control--background-color:       $s__nav-bar__link--background-color;
+//$s__dropdown__control--background-color--alt:  $s__nav-bar__link--background-color--alt;
+//$s__dropdown__control--background-color--alt2: $s__nav-bar__link--background-color--alt;
+$s__dropdown-z-index: 2;
+@import "../bower_components/Fall-Back-Patterns/Dropdown/scss/_dropdown-next";
+
+
+$s__nav-bar--base-ui-color:                transparent;
+$s__nav-bar--base-ui-text-color:           inherit;
+$s__nav-bar__link--color:                  inherit;
+$s__nav-bar__link--background-color:       transparent;
+$s__nav-bar__link--background-color--alt:  rgba(255,255,255,0.15);
+$s__sub-nav__link--background-color:       transparent;
+$s__sub-nav__link--background-color--alt:  rgba(255,255,255,0.15);
+@import '../bower_components/Fall-Back-Patterns/Nav Bar/scss/_nav-bar-next.scss';
+
+
+$s__over-panel--base-ui-color: transparent;
+$s__over-panel--base-text-color: inherit;
+$s__over-panel__contents--padding: 0;
+$s__over-panel__overlay--background-color: #000;
+@import "../bower_components/Fall-Back-Patterns/Over Panel/scss/_over-panel-next";
+
+
+//$s__search-form--background-color:              transparent;
+//$s__search-form__submit--text-color:            #fff;
+//$s__search-form__submit--background-color:      darken($s__base-ui-color, 5%);
+//$s__search-form__submit--background-color--alt: darken($s__base-ui-color, 15%);
+//$s__search-form-max-width:                      35em;
+@import "../bower_components/Fall-Back-Patterns/Search Form/scss/_search-form-next";
+
+.search-form.search-form {
+    margin-left: auto;
+}
+
+.search-form .search-form__field.search-form__field {
+    border-radius: 50px 0 0 50px;
+    padding-left: 0.5em;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+
+
+
+/* --| Special Patterns |------------------------------------------------------------------------ */
+// Special patterns are intended to be utility patterns that work in isolation from anything else,
+// and/or do not share the u- prefix naming convention.
+
+$ff-breakpoints: (
+    10em,
+    15em,
+    20em,
+    25em,
+    30em,
+    35em,
+    40em,
+    45em,
+    50em,
+    55em,
+    60em,
+    65em,
+    70em,
+    75em,
+    80em
+);
+
+$ff-min-widths: (
+    20%,
+    25%,
+    30%,
+    33.333%,
+    40%,
+    50%,
+    60%,
+    66.666%,
+    70%,
+    75%,
+    80%
+);
+
+@import "special-patterns/_ff-widths.scss";
+
+/* ---------------------------------------------------------------------------------------------- */
+
+
+
+/* --| Utility Patterns |------------------------------------------------------------------------ */
+
+@import "utility-patterns/_block-center.scss";
+@import "utility-patterns/_fill-height.scss";
+@import "utility-patterns/_fill-width.scss";
+
+@import "utility-patterns/_image-cover.scss";
+
+
+/* ---------------------------------------------------------------------------------------------- */
+
+
+
+/* --| SHAME |----------------------------------------------------------------------------------- */
+
+@import "_shame";
+
+/* ---------------------------------------------------------------------------------------------- */
+
+
+

@@ -1,0 +1,58 @@
+.hero.hero {
+    margin-top: -$s__base-rem-space-unit;
+    margin-bottom: $s__base-rem-space-unit;
+
+    min-width: $body-min-width;
+}
+
+    .hero .hero__text {
+        position: absolute;
+        top: 2.5rem;
+        left: 4rem;
+        color: #fff;
+    }
+
+        .hero__text h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 2vw;
+        }
+
+        .hero__text p {
+            font-size: 1.6rem;
+            line-height: 1.2;
+            margin: 0;
+        }
+
+            .hero__text p span {
+                white-space: nowrap;
+            }
+
+
+        @media only screen and (min-width: $body-min-width) {
+
+            // At screen 250px 1vw = 2.5px, thus 4vw = 10px and 2vw = 5px.
+
+            .hero .hero__text {
+                top: 10vw;
+            }
+
+                .hero__text h1 {
+                    // Min font is 30px thus 30-10 = 20 hence 2rem;
+                    font-size: calc(2rem + 4vw);
+                }
+
+                .hero__text p {
+                    // Min font is 16px thus 16-5 = 11 hence 1.1rem;
+                    font-size: calc(1.1rem + 2vw);
+                }
+
+        }
+
+        @media only screen and (max-width: 100em) {
+
+            .hero__text p {
+                max-width: 60%;
+            }
+
+        }

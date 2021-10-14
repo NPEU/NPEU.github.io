@@ -1,0 +1,451 @@
+// This file acts as a bridge or converter between the theme values and the speecifc patterns.
+// Note that all patterns that need to be themeable need to follow the same 'interface'.
+// See 'panel' pattern for initial example.
+
+// NOTE: the way this works is that patterns are only themed if the theme class is applied to the
+// same element as the pattern class. This is intentional as it's possible for a collection of
+// things to need to utilize several themes (think of news items belonging to different projects)
+// The only things that are (and should be) scoped to children of themed classes via the cascade
+// rather than explicitly are the overrides to StartCSS, at the bottom.
+
+$theme-namespace: t- !default;
+$s__namespace: '';
+/*
+Note - this won't work until SASS supports dynamic calling of mixins. It's close, but hasn't been
+merged yet. Hoping that will be done soon so I can change this.
+
+// List all the includes that should be called.
+// Note that they're defined in the relevent pattern files, so it isn't ideal to list them here,
+// but I don't know of another way of doing this yet.
+// One idea could be that each pattern that needs to be theme-able adds it's own name to this list,
+// (registers itself). This may work, but may come with it's own set of problems. Investigate.
+$patterns: (
+    bands-theme,
+    page-header-theme,
+    panel-theme,
+    panel-theme--dark,
+    primary-cta-theme
+);
+*/
+
+
+// Set defaults:
+$theme: map-merge(
+    (
+        background-color            : map-get($theme, primary-color),
+        band-color                  : map-get($theme, primary-color),
+        border-color                : map-get($theme, primary-color),
+        card-background-color       : darken(map-get($theme, primary-color), 7%),
+        card-main-background-color  : map-get($theme, primary-color),
+        card-border-color           : darken(map-get($theme, primary-color), 20%),
+        card-text-color             : #fff,
+        cta-text-color              : #333,
+        cta-background-color        : map-get($theme, primary-color),
+        page-header-color           : map-get($theme, primary-color),
+        signs-background-color      : map-get($theme, primary-color),
+        text-color                  : #333
+    )
+    , $theme
+);
+
+
+
+
+
+/* - Waiting for SASS to support. Currently pseudo code.
+@each $pattern in $patterns {
+    @include $pattern (
+        (
+            name  : #{$theme-name},
+            theme : $theme
+        )
+    );
+}
+*/
+//@debug $theme-name;
+//@debug $theme;
+
+@include background-theme($theme-name, $theme);
+@include bands-theme($theme-name, $theme);
+@include card-theme($theme-name, $theme);
+@include featurette-theme($theme-name, $theme);
+//@include meter-theme($theme-name, $theme);
+@include page-header-theme($theme-name, $theme);
+@include panel-theme($theme-name, $theme);
+@include primary-cta-theme($theme-name, $theme);
+@include signs-theme($theme-name, $theme);
+
+// Override StartCSS values.
+// Note this almost certainly isn't the best place for this but will do for now.
+/*.#{$theme-namespace}#{$theme-name}.t-color {
+    color: #fff;
+}*/
+
+
+/*
+.#{$theme-namespace}#{$theme-name} button,
+.#{$theme-namespace}#{$theme-name} button.over-panel-control,
+.#{$theme-namespace}#{$theme-name} button.over-panel-control[aria-expanded=true] {*
+.#{$theme-namespace}#{$theme-name} button:not(.over-panel__overlay):not(.dropdown__control),
+.#{$theme-namespace}#{$theme-name} button:not(.over-panel__overlay)[aria-expanded=true] {
+*/
+button.#{$theme-namespace}#{$theme-name}:not(.over-panel__overlay):not(.dropdown__control),
+a[href].button.#{$theme-namespace}#{$theme-name}:not(.over-panel__overlay):not(.dropdown__control),
+a[href].c-cta.#{$theme-namespace}#{$theme-name}:not(.over-panel__overlay):not(.dropdown__control),
+.cookie_notice__action button {
+    border-color: map-get($theme, border-color) !important;
+    color: map-get($theme, cta-text-color) !important;
+    background-color: map-get($theme, background-color) !important;
+
+    &:hover,
+    &:active {
+        @if is-int($s__button-background-color--alt) {
+            @if $s__button-background-color--alt > 0 {
+                $s__button-background-color--alt_percent: $s__button-background-color--alt * 1%;
+                background-color: lighten(map-get($theme, background-color), $s__button-background-color--alt_percent) !important;
+            }
+            @if $s__button-background-color--alt < 0 {
+                $s__button-background-color--alt_percent: $s__button-background-color--alt * -1%;
+                background-color: darken(map-get($theme, background-color), $s__button-background-color--alt_percent) !important;
+            }
+        } @else {
+            background-color: $s__button-background-color--alt;
+        }
+    }
+
+    &:focus {
+        outline: 0;
+        box-shadow: 0 0 0 $s__button-focus-shadow-width rgba(map-get($theme, background-color), 0.5);
+    }
+
+}
+
+
+// Table:
+
+table.#{$theme-namespace}#{$theme-name} caption,
+.#{$theme-namespace}#{$theme-name} + .highcharts-data-table caption {
+    background-color: map-get($theme, background-color);
+}
+
+table.#{$theme-namespace}#{$theme-name} th,
+.#{$theme-namespace}#{$theme-name} + .highcharts-data-table th {
+    background-color: lighten(map-get($theme, background-color), 69);
+}
+
+table.#{$theme-namespace}#{$theme-name} td,
+.#{$theme-namespace}#{$theme-name} + .highcharts-data-table td,
+table.#{$theme-namespace}#{$theme-name} th,
+.#{$theme-namespace}#{$theme-name} + .highcharts-data-table th {
+    border: 1px solid map-get($theme, background-color);
+}
+
+
+table.#{$theme-namespace}#{$theme-name} tr:nth-child(odd) > td,
+.#{$theme-namespace}#{$theme-name} + .highcharts-data-table tr:nth-child(odd) > td,
+table.#{$theme-namespace}#{$theme-name} tr:nth-child(odd) > th,
+.#{$theme-namespace}#{$theme-name} + .highcharts-data-table tr:nth-child(odd) > th {
+    background-color: lighten(map-get($theme, background-color), 65);
+}
+
+
+// Navbar:
+.#{$theme-namespace}#{$theme-name}.nav-bar {
+    //@include sloped-background(map-get($theme, primary-color));
+    background: map-get($theme, primary-color);
+}
+
+.#{$theme-namespace}#{$theme-name}.subnav__items {
+    background-color: map-get($theme, primary-color);
+}
+
+
+// Overpanel:
+.#{$theme-namespace}#{$theme-name}.over-panel__contents {
+    //@include sloped-background(map-get($theme, primary-color));
+    //background: map-get($theme, primary-color);
+    background-color: darken(map-get($theme, primary-color), 5%);
+    //padding-left: 1.2rem;
+}
+
+
+
+// Search form
+
+.#{$theme-namespace}#{$theme-name}.search-form {
+    //background-color: map-get($theme, background-color);
+    padding-left: 1.2rem;
+}
+
+
+
+// Search form button:
+.#{$theme-namespace}#{$theme-name}.search-form .search-form__submit {
+    background-color: darken(map-get($theme, background-color), 5%);
+
+    &:hover,
+    &:focus {
+        background-color: darken(map-get($theme, background-color), 15%);
+    }
+
+    /*&:hover,
+    &:active,
+    &:focus {
+        @if is-int($s__button-background-color--alt) {
+            @if $s__button-background-color--alt > 0 {
+                $s__button-background-color--alt_percent: $s__button-background-color--alt * 1%;
+                background-color: lighten(map-get($theme, background-color), $s__button-background-color--alt_percent);
+            }
+            @if $s__button-background-color--alt < 0 {
+                $s__button-background-color--alt_percent: $s__button-background-color--alt * -1%;
+                background-color: darken(map-get($theme, background-color), $s__button-background-color--alt_percent);
+            }
+        }
+    }*/
+}
+
+// Search form input:
+.#{$theme-namespace}#{$theme-name}.search-form .search-form__field {
+
+    &:hover,
+    &:focus {
+        background-color: #f7f6f6;
+    }
+
+    /*&:hover,
+    &:active,
+    &:focus {
+        @if is-int($s__button-background-color--alt) {
+            @if $s__button-background-color--alt > 0 {
+                $s__button-background-color--alt_percent: $s__button-background-color--alt * 1%;
+                background-color: lighten(map-get($theme, background-color), $s__button-background-color--alt_percent);
+            }
+            @if $s__button-background-color--alt < 0 {
+                $s__button-background-color--alt_percent: $s__button-background-color--alt * -1%;
+                background-color: darken(map-get($theme, background-color), $s__button-background-color--alt_percent);
+            }
+        }
+    }*/
+}
+
+// Inputs
+@if $s__input-focus-shadow != false {
+    #{$s__namespace}input:not([type]):focus,
+    #{$s__namespace}[type="color"]:focus,
+    #{$s__namespace}[type="date"]:focus,
+    #{$s__namespace}[type="datetime"]:focus,
+    #{$s__namespace}[type="datetime-local"]:focus,
+    #{$s__namespace}[type="file"]:focus,
+    #{$s__namespace}[type="month"]:focus,
+    #{$s__namespace}[type="number"]:focus,
+    #{$s__namespace}[type="password"]:focus,
+    #{$s__namespace}[type="search"]:focus,
+    #{$s__namespace}[type="range"]:focus,
+    #{$s__namespace}[type="tel"]:focus,
+    #{$s__namespace}[type="text"]:focus,
+    #{$s__namespace}[type="time"]:focus,
+    #{$s__namespace}[type="url"]:focus,
+    #{$s__namespace}[type="week"]:focus {
+        box-shadow: 0 0 0 $s__input-focus-shadow-width rgba(lighten(map-get($theme, background-color), 3%), 1);
+    }
+
+    /*
+        Without custom styling (appearance: none), Safari doesn't apply the shadow, so breaks
+        accessibility ...
+    */
+    #{$s__namespace}[type="checkbox"]:focus,
+    #{$s__namespace}[type="radio"]:focus {
+        box-shadow: 0 0 0 $s__input-focus-shadow-width rgba(map-get($theme, background-color), 0.5);
+    }
+}
+
+
+
+/* - Don't do this, it's too generic and results in equal specificity that's resolved in source
+    order, thus later themes win out, causing problems.
+.#{$theme-namespace}#{$theme-name} a[href] {
+
+    border-color: map-get($theme, border-color);
+    color: #fff;
+    background-color: map-get($theme, background-color);
+
+    &:hover,
+    &:active,
+    &:focus {
+        color: #fff;
+    }
+}
+*/
+/*
+:not(.overpanel) .#{$theme-namespace}#{$theme-name} a[href].c-cta {
+
+    border-color: map-get($theme, border-color);
+    color: #fff;
+    background-color: transparent;
+    //background-color: map-get($theme, background-color);
+    content: "#{$theme-name}";
+
+    &:hover,
+    &:active,
+    &:focus {
+        @if color_light_or_dark(map-get($theme, background-color)) == 'light' {
+            background-color: rgba(0,0,0,0.2);
+        } @else {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+
+        //background-color: lighten(map-get($theme, border-color), 65%);
+    }
+}
+*/
+/*
+.#{$theme-namespace}#{$theme-name}.d-50-50-background {
+    background: #FFFFFF;
+    background: -moz-linear-gradient(left, map-get($theme, background-color) 0%, map-get($theme, background-color) 50%, #ffffff 50%, #ffffff 100%);
+    background: -webkit-linear-gradient(left, map-get($theme, background-color) 0%,map-get($theme, background-color) 50%,#ffffff 50%,#ffffff 100%);
+    background: linear-gradient(to right, map-get($theme, background-color) 0%,map-get($theme, background-color) 50%,#ffffff 50%,#ffffff 100%);
+}
+
+.#{$theme-namespace}#{$theme-name}.d-50-50-background--flipped {
+    background: #FFFFFF;
+    background: -moz-linear-gradient(left, #ffffff 0%, #ffffff 50%, map-get($theme, background-color) 50%, map-get($theme, background-color) 100%);
+    background: -webkit-linear-gradient(left, #ffffff 0%,#ffffff 50%,map-get($theme, background-color) 50%,map-get($theme, background-color) 100%);
+    background: linear-gradient(to right, #ffffff 0%,#ffffff 50%,map-get($theme, background-color) 50%,map-get($theme, background-color) 100%);
+}
+*/
+
+// Alternate colours:
+@if map-has-key($theme, "secondary-color") {
+    //@debug map-get($theme, secondary-color);
+    $theme: map-merge(
+        $theme,
+        (
+            background-color       : map-get($theme, secondary-color),
+            signs-background-color : map-get($theme, secondary-color)
+        )
+    );
+
+    @include background-theme(#{$theme-name}--alt, $theme);
+    @include signs-theme(#{$theme-name}--alt, $theme);
+}
+
+$theme--normal: $theme;
+// Very light theme:
+
+$theme: map-merge(
+    $theme,
+    (
+        background-color      : lighten(map-get($theme, primary-color), 45%),
+        cta-text-color        : #333,
+        cta-background-color  : lighten(map-get($theme, primary-color), 45%),
+        text-color            : #333,
+        card-text-color       : #333
+    )
+);
+$theme--very-light: $theme;
+@include panel-theme($theme-name, $theme, --very-light);
+@include card-theme($theme-name, $theme, --very-light);
+
+
+// Light theme:
+
+$theme: map-merge(
+    $theme,
+    (
+        background-color      : lighten(map-get($theme, primary-color), 35%),
+        cta-text-color        : #333,
+        cta-background-color  : lighten(map-get($theme, primary-color), 35%),
+        text-color            : #333
+    )
+);
+$theme--light: $theme;
+@include panel-theme($theme-name, $theme, --light);
+@include card-theme($theme-name, $theme, --light);
+
+
+// Dark theme:
+
+$theme: map-merge(
+    $theme,
+    (
+        background-color      : darken(map-get($theme, primary-color), 10%),
+        cta-text-color        : #fff,
+        cta-background-color  : darken(map-get($theme, primary-color), 10%),
+        text-color            : #fff
+    )
+);
+$theme--dark: $theme;
+@include panel-theme($theme-name, $theme, --dark);
+
+
+// Very dark theme:
+$theme: map-merge(
+    $theme,
+    (
+        background-color      : darken(map-get($theme, primary-color), 20%),
+        cta-text-color        : #fff,
+        cta-background-color  : darken(map-get($theme, primary-color), 20%),
+        text-color            : #fff
+    )
+);
+$theme--very-dark: $theme;
+@include panel-theme($theme-name, $theme, --very-dark);
+
+
+
+
+
+// User Content:
+.#{$theme-namespace}#{$theme-name} {
+
+    img[src*="/img/avatars/"],
+    [data-contains~="portrait"] img {
+        border-color: map-get($theme, primary-color) !important;
+    }
+
+    div[data-display-as="themed-box"] {
+		background: map-get($theme--normal, primary-color);
+       
+        a[href].c-cta:hover,
+        a[href].c-cta:active,
+        a[href].c-cta:focus {
+            @if s__color_light_or_dark(map-get($theme, primary-color)) == 'light' {
+                background-color: rgba(0,0,0,0.1);
+            } @else {
+                background-color: rgba(255,255,255,0.1);
+            }
+        }
+    }
+    
+    summary:focus {
+        @if s__color_light_or_dark(map-get($theme, primary-color)) == 'light' {
+            outline: 2px solid rgba(0,0,0,0.5);
+        } @else {
+            outline: 2px solid rgba(255,255,255,0.5);
+        }
+    }
+}
+
+
+// This next bit is an experiment with a different approach. If successful, migrate the above to this
+// format (and possibly other stuff too)
+// The idea is that we want to declare a brand colour for stuff to inherit, but avoiding custom
+// properties (for now).`inhert` or `currentColor` are the only options for this, really, but this
+// affects more than we'd really like (we can't specify to inherit from somewhere else), so we need
+// reset text colour etc. NEED TO BE VERY CAREFUL!
+[data-brand="#{$theme-name}"] {
+
+    [data-display-as~="themed-box--background"],
+    [data-display-as~="themed-box--border"] {
+        color: map-get($theme, primary-color);
+    }
+
+    [data-display-as~="themed-box--background"] > * {
+        color: #fff;
+    }
+
+    [data-display-as~="themed-box--border"] > * {
+        color: $s__base-text-color;
+    }
+}

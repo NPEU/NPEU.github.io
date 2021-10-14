@@ -1,0 +1,168 @@
+/*
+    Fill and area with an image.
+*/
+
+$image-cover-namespace: u- !default;
+
+/*
+.#{$image-cover-namespace} {
+    margin-left: $sz-s !important;
+}
+*/
+
+
+/* Make the image fill the width and be vertically centered: */
+/* (in portrait images this will leave gaps at the sides) */
+/*.u-image-cover {
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}*/
+
+
+
+/*
+    ! NOTE: test this in all non-object-fit-supporting browsers as it may be a fix for those too.
+
+    This only works for landscape containers. If it's portrait it breaks unless the width and
+    // translate are inverted, and that can't be detected if size changes.
+    Will be replying on JS to check for change to portrait and apply portrait class.
+*/
+
+
+.#{$image-cover-namespace}image-cover {
+
+    &#{&} {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        // Safari:
+        flex: 1 0 auto;
+    }
+
+        /*
+        &#{&}--min-10 {
+           min-height: 10vmin;
+        }
+
+        &#{&}--min-20 {
+            min-height: 20vmin;
+        }
+
+        &#{&}--min-30 {
+            min-height: 30vmin;
+        }
+
+        &#{&}--min-40 {
+            min-height: 40vmin;
+        }
+
+        &#{&}--min-50 {
+            min-height: 50vmin;
+        }
+        */
+
+    .#{$image-cover-namespace}image-cover__inner {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+
+        .#{$image-cover-namespace}image-cover__image {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 100%;
+            height: auto;
+            transform: translate(-50%, -50%);
+            max-width: none;
+            max-height: none;
+        }
+
+}
+
+
+/* If `object-fit` is supported, use that and override vertical centering: */
+@supports (object-fit:cover) {
+    .#{$image-cover-namespace}image-cover {
+
+        .#{$image-cover-namespace}image-cover__inner {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+            .#{$image-cover-namespace}image-cover__image {
+                position: relative;
+                left: 0;
+                top: 0;
+                transform: none;
+
+                object-fit: cover;
+                height: 100%;
+                width: 100%;
+            }
+    }
+}
+
+// Where a 'cover' image is in a flexible box, and especially in a ff-width pair where the two parts
+// stack on small widths, there's a problem in that the image has no height when stacked.
+// This is obvious, because when side-by-side, the image container height is the same as the 'other'
+// height, but when it's stacked, that's no longer the case. The only way I can think of to solve
+// this is to force a minimum height. I can't use a ff-height 'switch' because I need to switch the
+// min-width between 'something' or 'off and it doesn't work like that, so this is the next best 
+// option, I think (not the --- comment below is what this WAS, but it caused problems in larger
+// contexts, and caused the image to disappear at certain ranges):
+.#{$image-cover-namespace}image-cover {
+    min-height: 100%;
+    
+    &#{&}--min-10 {
+       min-height: 10vh;
+    }
+
+    &#{&}--min-20 {
+        min-height: 20vh;
+    }
+
+    &#{&}--min-30 {
+        min-height: 30vh;
+    }
+
+    &#{&}--min-40 {
+        min-height: 40vh;
+    }
+
+    &#{&}--min-50 {
+        min-height: 50vh;
+    }
+}
+
+// ---Note this isn't great but it's easier to have this apply only at smaller sizes.
+// May need to change it causes problems, but current concern is NIHR funding baby image.
+/*@media (max-width: $s__breakpoint--enhanced) {
+    .#{$image-cover-namespace}image-cover {
+       
+        &#{&}--min-10 {
+           min-height: 10vmin;
+        }
+
+        &#{&}--min-20 {
+            min-height: 20vmin;
+        }
+
+        &#{&}--min-30 {
+            min-height: 30vmin;
+        }
+
+        &#{&}--min-40 {
+            min-height: 40vmin;
+        }
+
+        &#{&}--min-50 {
+            min-height: 50vmin;
+        }
+    }
+}---*/

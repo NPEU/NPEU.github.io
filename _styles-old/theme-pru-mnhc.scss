@@ -1,0 +1,39 @@
+/*! PRU-MNHC Theme (c) NPEU */
+
+/* --| START THEME |----------------------------------------------------------------------------- */
+
+//@import "_themes-config.scss";
+$theme-name: pru-mnhc;
+$theme: (
+    cta-text-color       : #ffffff,
+    cta-background-color : #5d4777,
+    primary-color        : #5d4777,
+    secondary-color      : #b9975b,
+    page-header-color    : #ffffff
+);
+
+
+$s__breakpoint--enhanced: 68em;
+
+$theme-copy: $theme;
+$theme-name-copy: $theme-name;
+@import "_style";
+
+
+
+$theme-only: true;
+@import "_themeable-patterns.scss";
+
+
+//$theme: map_get($themes, $theme-name);
+$theme: $theme-copy;
+$theme-name: $theme-name-copy;
+@import "_theme";
+
+/* ---------------------------------------------------------------------------------------------- */
+
+/* --| SHAME |----------------------------------------------------------------------------------- */
+
+@import "_shame";
+
+/* ---------------------------------------------------------------------------------------------- */

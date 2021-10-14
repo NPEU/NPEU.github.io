@@ -1,0 +1,27 @@
+    <nav aria-label="Breadcrumbs" class="l-layout  l-row  l-row--start  l-gutter--s  l-flush-edge-gutter">
+        <div class="l-layout__inner">
+            <p class="l-box">You are here: </p>
+            <p role="list" class="l-box" itemscope="" itemtype="https://schema.org/BreadcrumbList">
+                <span class="l-layout  l-row  l-row--start  l-gutter--s  l-flush-edge-gutter">
+                    <span class="l-layout__inner">
+                        <span role="listitem" class="l-box" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                            <a itemprop="item" href="/"><span itemprop="name">Home</span></a><span class="l-box__separator">&nbsp;/&nbsp;</span>
+                            <meta itemprop="position" content="1">
+                        </span>
+                        {% assign crumbs = page.url | remove:'/index.html' | split: '/' %}
+                        {% for crumb in crumbs offset: 1 %}
+                        <span role="listitem" class="l-box" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                            {% if forloop.last %}
+                            <a itemprop="item" aria-current="page"><span>{{ crumb | replace:'-',' ' | remove:'.html' | capitalize }}</span></a>
+                            <meta itemprop="position" content="{{ forloop.index | plus: 1 }}">
+                            {% else %}
+                            <a itemprop="item" href="{% assign crumb_limit = forloop.index | plus: 1 %}{% for crumb in crumbs limit: crumb_limit %}{{ crumb | append: '/' }}{% endfor %}"><span itemprop="name">{{ crumb | replace:'-',' ' | remove:'.html' | capitalize }}</span></a><span class="l-box__separator">&nbsp;/&nbsp;</span>
+                            <meta itemprop="position" content="{{ forloop.index | plus: 1 }}">
+                            {% endif %}
+                        </span>
+                        {% endfor %}
+                    </span>
+                </span>
+            </p>
+        </div>
+    </nav>

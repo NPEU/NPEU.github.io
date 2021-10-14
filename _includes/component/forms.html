@@ -1,0 +1,142 @@
+<!--
+
+    FORMS
+
+-->
+
+
+<!--
+<h2 id="search-form">Search Form</h2>
+
+<div class="u-space--below">
+    <form action="/neoclear/search" id="searchform" method="GET">
+        <input type="hidden" value="&amp;t[]=4463" name="Search">
+        <span class="composite">
+            <input type="search" class="search-form__field" id="search" placeholder="Search" name="q" value="" aria-label="Search">
+            <button class="search-form__submit" type="submit">
+                <span>Search</span>
+            </button>
+        </span>
+    </form>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;form action=&quot;/neoclear/search&quot; id=&quot;searchform&quot; method=&quot;GET&quot;&gt;
+    &lt;input type=&quot;hidden&quot; value=&quot;&amp;amp;t[]=4463&quot; name=&quot;Search&quot;&gt;
+    &lt;span class=&quot;composite&quot;&gt;
+        &lt;input type=&quot;search&quot; class=&quot;search-form__field&quot; id=&quot;search&quot; placeholder=&quot;Search&quot; name=&quot;q&quot; value=&quot;&quot; aria-label=&quot;Search&quot;&gt;
+        &lt;button class=&quot;search-form__submit&quot; type=&quot;submit&quot;&gt;
+            &lt;span&gt;Search&lt;/span&gt;
+        &lt;/button&gt;
+    &lt;/span&gt;
+&lt;/form&gt;</code></pre>
+    </details>
+</div>
+
+<!--
+<h3>Boxed form:</h3>
+
+<p>Also illustrating expandable input.</p>
+
+<div class="u-padding--s  u-space--below">
+    <form action="/neoclear/search" id="searchform-2" class="c-panel  t-neoclear  d-bands" method="GET">
+        <input type="hidden" value="&amp;t[]=4463" name="Search">
+        <span class="composite  u-fill-width">
+            <input type="search" class="search-form__field  u-expand-width" id="search-2" placeholder="Search" name="q" value="" aria-label="Search">
+            <button class="search-form__submit" type="submit">
+                <span>Search</span>
+            </button>
+        </span>
+    </form>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;form action=&quot;/neoclear/search&quot; id=&quot;searchform&quot; <b>class=&quot;c-panel  t-neoclear  d-bands&quot;</b> method=&quot;GET&quot;&gt;
+    &lt;input type=&quot;hidden&quot; value=&quot;&amp;amp;t[]=4463&quot; name=&quot;Search&quot;&gt;
+    &lt;span class=&quot;composite  <b>u-fill-width</b>&quot;&gt;
+        &lt;input type=&quot;search&quot; class=&quot;search-form__field  <b>u-expand-width</b>&quot; id=&quot;search&quot; placeholder=&quot;Search&quot; name=&quot;q&quot; value=&quot;&quot; aria-label=&quot;Search&quot;&gt;
+        &lt;button class=&quot;search-form__submit&quot; type=&quot;submit&quot;&gt;
+            &lt;span&gt;Search&lt;/span&gt;
+        &lt;/button&gt;
+    &lt;/span&gt;
+&lt;/form&gt;</code></pre>
+    </details>
+</div>
+
+
+<hr>
+-->
+<h2 id="tool-form">Tool Form</h2>
+
+<p>Simple forms for things like filtering lists. Note it's quite likely a wrapping fieldset isn't appropriate.</p>
+<p>This example includes Filterability attributes that might be relevant here, but not EVERYTHING Filterability would need to function.</p>
+<p>Note the fieldset's div is so flex works properly - it doesn't in Chrome and older versions of Firefox.</p>
+
+<div class="u-space--below">
+    <form class="c-form  c-form--tool-form">
+        <label for="filter">Filter projects:</label>
+        <span class="c-form__composite">
+             <input id="filter" filterable_input> <button filterable_submit>Filter</button>
+        </span>
+        <a class="c-cta" href="#">Clear</a>
+        <fieldset class="c-form--tool-form__fieldset">
+            <div>
+                <legend>Filter by:</legend>
+                <span class="c-form__group">
+                    <label for="filter_title">Title:</label> <input type="radio" name="filter_choice" id="filter_title" filterable_toggle="title">
+                </span>
+                <span class="c-form__group">
+                    <label for="filter_lead">Lead:</label> <input type="radio" name="filter_choice" id="filter_lead" filterable_toggle="lead">
+                </span>
+                <span class="c-form__group">
+                    <label for="filter_all">Both:</label> <input type="radio" name="filter_choice" id="filter_all" filterable_toggle checked>
+                </span>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;form class=&quot;c-form  c-form--tool-form&quot;&gt;
+    &lt;label for=&quot;filter&quot;&gt;Filter projects:&lt;/label&gt;
+    &lt;span class=&quot;c-form__composite&quot;&gt;
+         &lt;input id=&quot;filter&quot; filterable_input&gt; &lt;button filterable_submit&gt;Filter&lt;/button&gt;
+    &lt;/span&gt;
+    &lt;a class=&quot;c-cta&quot; href=&quot;#&quot;&gt;Clear&lt;/a&gt;
+    &lt;fieldset class=&quot;c-form--tool-form__fieldset&quot;&gt;
+        &lt;div&gt;
+            &lt;legend&gt;Filter by:&lt;/legend&gt;
+            &lt;span class=&quot;c-form__group&quot;&gt;
+                &lt;label for=&quot;filter_title&quot;&gt;Title:&lt;/label&gt; &lt;input type=&quot;radio&quot; name=&quot;filter_choice&quot; id=&quot;filter_title&quot; filterable_toggle=&quot;title&quot;&gt;
+            &lt;/span&gt;
+            &lt;span class=&quot;c-form__group&quot;&gt;
+                &lt;label for=&quot;filter_lead&quot;&gt;Lead:&lt;/label&gt; &lt;input type=&quot;radio&quot; name=&quot;filter_choice&quot; id=&quot;filter_lead&quot; filterable_toggle=&quot;lead&quot;&gt;
+            &lt;/span&gt;
+            &lt;span class=&quot;c-form__group&quot;&gt;
+                &lt;label for=&quot;filter_all&quot;&gt;Both:&lt;/label&gt; &lt;input type=&quot;radio&quot; name=&quot;filter_choice&quot; id=&quot;filter_all&quot; filterable_toggle checked&gt;
+            &lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/fieldset&gt;
+&lt;/form&gt;</code></pre>
+    </details>
+</div>
+
+<hr>
+
+<h2 id="tool-form">Another Form</h2>
+
+<div class="u-space--below">
+    <form class="c-form  c-form--tool-form">
+        <label for="prefixed-filter">Filter projects:</label>
+        <span>Prefix info here</span>
+        <span class="c-form__composite">
+            <input id="prefixed-filter" filterable_input> <button filterable_submit>Filter</button>
+        </span>
+    </form>
+</div>

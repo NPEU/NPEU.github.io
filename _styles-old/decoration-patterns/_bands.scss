@@ -1,0 +1,75 @@
+//$bands--base-color		 : #eee !default;
+$bands-namespace: d- !default;
+$theme-namespace: t- !default;
+
+$bands--band-color : $s__base-ui-color !default;
+
+$theme-only: false !default;
+
+@mixin bands-theme ($theme-name: "", $theme: ()) {
+	// Set up theme name:
+	$theme-class: "";
+	@if $theme-name != "" {
+		$theme-class: unquote('.')#{$theme-namespace}#{$theme-name};
+	}
+	//@debug $theme-class;
+
+	.#{$bands-namespace}bands#{$theme-class},
+    .#{$bands-namespace}bands--left#{$theme-class},
+    .#{$bands-namespace}bands--right#{$theme-class},
+    .#{$bands-namespace}bands--sides#{$theme-class},
+    .#{$bands-namespace}bands--top#{$theme-class},
+    .#{$bands-namespace}bands--above#{$theme-class},
+    .#{$bands-namespace}bands--bottom#{$theme-class},
+    .#{$bands-namespace}bands--below#{$theme-class} {
+		border-color: map-get($theme, band-color) !important;
+	}
+}
+
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+
+    .#{$bands-namespace}bands--left,
+    .#{$bands-namespace}bands--sides {
+        border-left-style: solid !important;
+        border-left-width: 3px !important;
+    }
+
+    .#{$bands-namespace}bands--right,
+    .#{$bands-namespace}bands--sides {
+        border-right-style: solid !important;
+        border-right-width: 3px !important;
+    }
+
+    .#{$bands-namespace}bands--top,
+    .#{$bands-namespace}bands--above {
+        border-top-style: solid !important;
+        border-top-width: 3px !important;
+    }
+
+    .#{$bands-namespace}bands--bottom,
+    .#{$bands-namespace}bands--below {
+        border-bottom-style: solid !important;
+        border-bottom-width: 3px !important;
+    }
+
+    .#{$bands-namespace}bands {
+        border-style: solid !important;
+        border-width: 3px !important;
+    }
+
+    @each $theme-name, $size in $sizes {
+        .#{$bands-namespace}bands--#{$theme-name} {
+            border-width: $size !important;
+        }
+    }
+
+
+
+    @include bands-theme(
+        "",
+        (
+            band-color : $bands--band-color
+        ));
+}

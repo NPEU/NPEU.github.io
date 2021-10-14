@@ -1,0 +1,568 @@
+/* --| SETTINGS |-------------------------------------------------------------------------------- */
+
+// NOTE - Needs an overhaul because of updated StartCSS
+
+
+@import "_settings.scss";
+@import "_core_themes.scss";
+
+$theme-map: ($theme-name: $theme);
+$themes: map-merge($themes, $theme-map);
+
+
+$s__base-background-color: #fff;
+$s__main-background-color: #fff;
+
+//$s__procedural-margins: true;
+$s__use-last-child-margin-zero: true;
+//$s__use-layout: false;
+$s__zero-header-hx-margin: true;
+$s__space_dl_groups: true;
+
+
+
+//@debug $s__base-ui-color;
+
+$s__html-background-color: darken(map-get(map-get($themes, neutral), primary-color), 20%);
+
+$s__body-padding: 0;
+$s__main-max-line-length: 0;
+$s__main-padding: 0;
+
+$s__anchor-text-color: #333;
+
+// I shouldn't have to set this as the !default should allow a cascade.
+// Investigate why this is happening. I don't think it's a SASS problem as it seems to work in a
+// reduced test-case (though to be fair this isn't using @import...)
+// https://codepen.io/akirk/pen/RmWKgy
+$s__anchor-text-color--alt: #333;
+
+
+
+$s__selection-background-color: lighten(map-get(map-get($themes, neutral), primary-color), 10%) !default;
+$s__experimental_checkradios: true;
+
+
+$s__class-namespace: c-;
+$fs__include_class_bordered: false;
+$fs__include_class_padded:   false;
+$fs__include_class_poem:     false;
+
+//@import '../bower_components/Fall-Back-Start-CSS/scss/_start_settings.scss';
+//@import '../bower_components/Fall-Back-Start-CSS/scss/_start_functions.scss';
+//@import '../bower_components/Fall-Back-Start-CSS/scss/_start_mixins.scss';
+@import '../bower_components/Fall-Back-Start-CSS/scss/_start.scss';
+@import '../bower_components/Fall-Back-Start-CSS/scss/_start-classes.scss';
+@import '../bower_components/Fall-Back-Start-CSS/scss/_start-accessibility.scss';
+//@import '../bower_components/Fall-Back-Start-CSS/scss/_Xstart-utilities.scss';
+@import '../bower_components/Fall-Back-Start-CSS/scss/_Xstart-icons.scss';
+@import '../bower_components/Fall-Back-Start-CSS/scss/_start-experimental.scss';
+
+
+// NEED A BETTER PLACE FOR THE FOLLOWING:
+//@import "_start_tweaks.scss";
+
+
+@import "_sizes";
+
+//$hover-effect-opacity: 0.2;
+//$hover-effect-width: $s__base-rem-space-unit / 4;
+
+
+/* ---------------------------------------------------------------------------------------------- */
+/* --| FUNCTIONS AND MIXINS |-------------------------------------------------------------------- */
+
+//@import "../bower_components/Fall-Back-Base/_fallback-base";
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
+
+/* --| FALL-BACK PATTERNS |---------------------------------------------------------------------- */
+
+
+@import "../bower_components/Fall-Back-Patterns/Close Button/scss/_close-button";
+
+
+//$s__over-panel__contents--offset-top: 3px;
+$s__over-panel__contents--padding: 0;
+$s__over-panel__overlay--background-color: #000;
+@import "../bower_components/Fall-Back-Patterns/Over Panel/scss/_over-panel-v2";
+
+
+
+$s__nav-bar--background-color:             $s__base-ui-color;
+$s__nav-bar__link--color:                  #fff;//#333;
+//$s__nav-bar__link--background-color:       transparent;
+$s__nav-bar__link--background-color:       rgba(255,255,255,0.05);
+$s__nav-bar__link--background-color--alt:  rgba(0,0,0,0.3);
+$s__nav-bar__link--background-color--alt2: rgba(0,0,0,0.3);
+
+//$s__nav-bar__link--border-width: 0;
+$s__nav-bar__link--border-color:           rgba(0,0,0,0.2);
+
+$s__sub-nav--background-color:             $s__base-ui-color;
+$s__sub-nav__link--color:                  $s__nav-bar__link--color;
+//$s__sub-nav__link--background-color:       transparent;
+//$s__sub-nav__link--background-color--alt:  rgba(0,0,0,0.3);
+$s__sub-nav__link--background-color:       rgba(0,0,0,0.3);
+$s__sub-nav__link--background-color--alt:  transparent;
+$s__sub-nav__link--border-style:           solid;
+
+
+//$s__nav-bar-divider-first-item:            true;
+
+@import "../bower_components/Fall-Back-Patterns/Nav Bar/scss/_nav-bar-v2";
+// Not sure about this. It allows the sloped background set up in the theme to show through, but
+// if it's ok that this is transparent, why is it needed in the first place? May be missing
+// something here? Either it should be configurable or removed, really, or the sloped background
+// applied to the ::before instead.
+
+//.js-nav-bar .nav-bar::before {
+.nav-bar::before {
+    background: transparent;
+}
+
+//.js-nav-bar .nav-bar__items .nav-bar__item {
+.nav-bar__items .nav-bar__item {
+    border-left-width: $s__nav-bar__link--border-width;
+}
+
+//.js-nav-bar .nav-bar__items .nav-bar__item {
+.nav-bar__items .nav-bar__item {
+    margin-left: 1.2rem;
+}
+
+
+
+
+$s__dropdown--background-color:               transparent;
+$s__dropdown--text-color:                     $s__nav-bar__link--color;
+$s__dropdown__control--color:                  $s__nav-bar__link--color;
+$s__dropdown__control--background-color:       $s__nav-bar__link--background-color;
+$s__dropdown__control--background-color--alt:  $s__nav-bar__link--background-color--alt;
+$s__dropdown__control--background-color--alt2: $s__nav-bar__link--background-color--alt;
+$s__dropdown-z-index: 2;
+
+@import "../bower_components/Fall-Back-Patterns/Dropdown/scss/_dropdown-v2";
+
+
+.dropdown.js-dropdown {
+    position: static;
+}
+
+
+
+$s__search-form--background-color:              transparent;
+$s__search-form__submit--text-color:            #fff;
+$s__search-form__submit--background-color:      darken($s__base-ui-color, 5%);
+$s__search-form__submit--background-color--alt: darken($s__base-ui-color, 15%);
+$s__search-form-max-width:                      35em;
+
+@import "../bower_components/Fall-Back-Patterns/Search Form/scss/_search-form-v2";
+
+
+
+@import "../bower_components/Fall-Back-Patterns/Sticky Footer/scss/_sticky-footer-v2";
+/*
+$fallback-svg--fixed-height:      80px;
+$fallback-svg--padding:           calc-px-from-rem($sz-xs);
+$fallback-svg--border-width:      0;
+$fallback-svg--border-color:      #fff;
+$fallback-svg--link-bg-color:     #fff;
+$fallback-svg--link-bg-color-alt: #fff;
+@import "../bower_components/Fall-Back-SVG/_svg";
+
+@include svg--fixed-height(120px, 'svg--fixed-height--logo--large', 0, 0);
+@include svg--fixed-height(80px, 'svg--fixed-height--logo', 0, 0);
+@include svg--fixed-height(60px, 'svg--fixed-height--parent-logo', 0, 0);
+@include svg--fixed-height(($s__base-rem-space-unit * 4), 'svg--fixed-height--funder-logo', ($s__base-rem-space-unit / 2), 0);
+*/
+
+@import "../bower_components/Fall-Back-Cookie-Notice/_cookie-notice";
+/* ---------------------------------------------------------------------------------------------- */
+
+
+
+/* --| PATTERNS |-------------------------------------------------------------------------------- */
+$ff-breakpoints: (
+    10em,
+    15em,
+    20em,
+    25em,
+    30em,
+    35em,
+    40em,
+    45em,
+    50em,
+    55em,
+    60em,
+    65em,
+    70em,
+    75em,
+    80em
+) !default;
+
+$ff-min-widths: (
+    20%,
+    25%,
+    33.333%,
+    40%,
+    50%,
+    60%,
+    66.666%,
+    75%,
+    80%
+) !default;
+
+//@import "../bower_components/NPEU-layout-patterns/dist/scss/_ff-widths.scss";
+
+//@import "../bower_components/NPEU-layout-patterns/dist/scss/_scl--pushed-apart.scss";
+
+//@import "../bower_components/NPEU-layout-patterns/dist/scss/_scl--n-up.scss";
+
+
+//$gallery-grid-spacing-unit: $s__base-rem-space-unit;
+//@import "../bower_components/NPEU-layout-patterns/dist/scss/_gallery-grid.scss";
+
+/* --| Themeable Patterns |---------------------------------------------------------------------- */
+$thumbnail--border-color: lighten(map-get(map-get($themes, neutral), primary-color), 10%);
+@import "_themeable-patterns.scss";
+
+
+/* --| Component Patterns |---------------------------------------------------------------------- */
+// These patterns are themeable and so are included via '_themeable_patterns.scss' above.
+$system-message-spacing-unit: $s__base-rem-space-unit / 2;
+@import "component-patterns/_system-messages.scss";
+
+@include system-message-theme(
+    "success",
+    (
+        system-message-color : $system-message--color--success
+    )
+);
+
+@include system-message-theme(
+    "warning",
+    (
+        system-message-color : $system-message--color--warning
+    )
+);
+
+@include system-message-theme(
+    "error",
+    (
+        system-message-color : $system-message--color--error
+    )
+);
+/* ---------------------------------------------------------------------------------------------- */
+
+
+/* --| Decoration Patterns |--------------------------------------------------------------------- */
+// These patterns are themeable and so are included via '_themeable_patterns.scss' .
+
+$neutral-theme: map-get($themes, neutral);
+@include background-theme(
+    "neutral",
+    (
+        background-color: map-get($neutral-theme, background-color)
+    ));
+
+
+/* ---------------------------------------------------------------------------------------------- */
+
+/* --| Layout Patterns |------------------------------------------------------------------------- */
+
+$col-to-row-spacing-unit: $s__base-rem-space-unit;
+@import "layout-patterns/_col-to-row.scss";
+
+//$primary-content-max-width: 42em;
+$primary-content-spacing-unit: $s__base-rem-space-unit;
+$primary-content-pull-out-side: right;
+$primary-content-pull-out-side-space: 0 $primary-content-spacing-unit;
+@import "layout-patterns/_primary-content.scss";
+
+// Special adjustment to framed c-panels in pulled-out-context:
+@media only screen and (min-width: $primary-content-breakpoint) {
+    .l-primary-content.l-primary-content--has-pull-outs .c-panel--framed {
+        padding: 0;
+    }
+}
+
+//@import "layout-patterns/_balance.scss";
+$distribute-spacing-unit: $s__base-rem-space-unit;
+@import "layout-patterns/_distribute.scss";
+
+$gallery-grid-spacing-unit: $s__base-rem-space-unit;
+@import "layout-patterns/_gallery-grid.scss";
+
+//@import "layout-patterns/_n-up.scss";
+
+@import "layout-patterns/_proportional-container.scss";
+.proportional-container--1-1_4::before {
+    padding-top: 140%;
+}
+
+@import "layout-patterns/_center.scss";
+@import "layout-patterns/_start.scss";
+@import "layout-patterns/_end.scss";
+
+/* ---------------------------------------------------------------------------------------------- */
+
+
+/* --| Navigation Patterns |--------------------------------------------------------------------- */
+//$breadcrumbs-font-size: 1em;
+@import "navigation-patterns/_breadcrumbs.scss";
+
+
+$pagination-spacing-unit: $s__base-rem-space-unit;
+$pagination--link-background-color--alt: lighten(map-get($neutral-theme, background-color), 25%);
+$pagination--background-color: #fff;
+$pagination--active-background-color: lighten(map-get($neutral-theme, background-color), 40%);
+@import "navigation-patterns/_pagination.scss";
+
+
+
+$section-menu-spacing-unit: $s__base-rem-space-unit;
+$section-menu--text-color: inherit;
+$section-menu--background-color: inherit;
+$section-menu--link-background-color--alt: rgba(0,0,0,0.2);
+$section-menu--active-background-color: lighten(map-get($neutral-theme, background-color), 40%);
+$section-menu--padding: 0;
+$section-menu--border-width: 0;
+$section-menu--link-margin: 0;
+@import "navigation-patterns/_section-menu.scss";
+
+$search-results-spacing-unit: $s__base-rem-space-unit;
+$search-results-heading-font-size: $s__h4-font-size;
+@import "navigation-patterns/_search-results.scss";
+/* ---------------------------------------------------------------------------------------------- */
+
+
+/* --| Utility Patterns |------------------------------------------------------------------------ */
+//@import "utility-patterns/_full-width.scss";
+@import "utility-patterns/_expand-width.scss";
+@import "utility-patterns/_fill-area.scss";
+@import "utility-patterns/_fill-height.scss";
+@import "utility-patterns/_fill-width.scss";
+@import "utility-patterns/_image-cover.scss";
+@import "utility-patterns/_image-natural.scss";
+@import "utility-patterns/_lists.scss";
+$max-measure-limit: $s__measure;
+@import "utility-patterns/_max-measure.scss";
+@import "utility-patterns/_padding.scss";
+@import "utility-patterns/_space.scss";
+@import "utility-patterns/_text-align.scss";
+@import "utility-patterns/_text-groups.scss";
+@import "utility-patterns/_text-size.scss";
+@import "utility-patterns/_word-wrap.scss";
+
+
+
+/* --| Special Patterns |------------------------------------------------------------------------ */
+// Special patterns are intended to be utility patterns that work in isolation from anything else,
+// and/or do not share the u- prefix naming convention.
+@import "special-patterns/_ff-widths.scss";
+
+
+/*
+
+@include background-theme(
+    "neutral",
+    (
+        background-color : #8e8279
+    ));
+*/
+
+/*
+    Highlight :target-ed headings
+    Note I can't selected the whole section without it being wrapped in something, and I don't want
+    to mess around with that.
+*/
+main :target {
+       -moz-animation: target-fade 3s 1;
+    -webkit-animation: target-fade 3s 1;
+            animation: target-fade 3s 1;
+}
+
+$highlight-color: map-get(map-get($themes, neutral), primary-color);
+
+@-moz-keyframes target-fade {
+    0% { background-color: rgba($highlight-color,0.4); box-shadow: 0 0 0 1.2rem rgba($highlight-color,0.4); }
+    100% { background-color: rgba($highlight-color,0); box-shadow: 0 0 0 1.2rem rgba($highlight-color,0); }
+}
+
+@-webkit-keyframes target-fade {
+    0% { background-color: rgba($highlight-color,0.4); box-shadow: 0 0 0 1.2rem rgba($highlight-color,0.4); }
+    100% { background-color: rgba($highlight-color,0); box-shadow: 0 0 0 1.2rem rgba($highlight-color,0); }
+}
+
+@keyframes target-fade {
+    0% { background-color: rgba($highlight-color,0.4); box-shadow: 0 0 0 1.2rem rgba($highlight-color,0.4); }
+    100% { background-color: rgba($highlight-color,0); box-shadow: 0 0 0 1.2rem rgba($highlight-color,0); }
+}
+/* ---------------------------------------------------------------------------------------------- */
+
+/* --| USER CONTENT |---------------------------------------------------------------------------- */
+
+@import "component-patterns/_user_content";
+
+
+
+/* --| THEMES |---------------------------------------------------------------------------------- */
+
+// Not happy with this - needs a re-think.
+// Neutral is OK, but there's really no point in having --light / --dark etc. white themes.
+// Makes no sense.
+
+
+//@import "_themes-config";
+//@import "_themes";
+
+// Some themes DO need to be available in the core stylesheet. E.g. white theme, so it's possible to
+// be explicit.
+
+
+
+
+
+$theme-name: white;
+$theme: map_get($themes, $theme-name);
+
+
+@import "_theme";
+
+
+$theme-name: neutral;
+$theme: map_get($themes, $theme-name);
+
+@import "_theme";
+
+
+
+// Also, this is a duplicate of part the _themes.scss so needs a re-think too.
+// The problem is that really there should un-themed defaults for eveything, so the basic stylesheet
+// works as intended, but a one-to-one override of the theme is possible.
+// Maybe incude these in the panel file itself, but need to this about it properly first.
+// ALSO NOTE that classnames SHOULD NOT (NEED TO) CHANGE. That way we can just reorganise this SCSS
+// without messing up the final output design.
+
+//$theme-name: npeu;
+//$theme: map_get($themes, $theme-name);
+
+//@import "_theme";
+
+// Navbar:
+/*
+.nav-bar {
+    @include sloped-background(map-get($theme, primary-color));
+}
+*/
+
+
+// Overpanel:
+/*.over-panel__contents {
+    @include sloped-background(map-get($theme, primary-color));
+}*/
+
+// Alternate colours:
+@if map-has-key($theme, "secondary-color") {
+    //@debug map-get($theme, secondary-color);
+    $theme: map-merge(
+        $theme,
+        (
+            background-color : map-get($theme, secondary-color)
+        )
+    );
+
+    @include background-theme(#{$theme-name}--alt, $theme);
+}
+
+
+// Very light theme:
+$theme: map-merge(
+    $theme,
+    (
+        background-color      : lighten(map-get($theme, primary-color), 60%),
+        cta-text-color        : #333,
+        cta-background-color  : lighten(map-get($theme, primary-color), 60%),
+        text-color            : #333
+    )
+);
+
+@include panel-theme("", $theme, --very-light);
+@include card-theme($theme-name, $theme, --very-light);
+
+// Light theme:
+
+$theme: map-merge(
+    $theme,
+    (
+        background-color      : lighten(map-get($theme, primary-color), 35%),
+        cta-text-color        : #333,
+        cta-background-color  : lighten(map-get($theme, primary-color), 35%),
+        text-color            : #333
+    )
+);
+
+@include panel-theme("", $theme, --light);
+@include card-theme($theme-name, $theme, --light);
+
+// Dark theme:
+
+$theme: map-merge(
+    $theme,
+    (
+        background-color      : darken(map-get($theme, primary-color), 10%),
+        cta-text-color        : #fff,
+        cta-background-color  : darken(map-get($theme, primary-color), 10%),
+        text-color            : #fff
+    )
+);
+
+@include panel-theme("", $theme, --dark);
+
+
+// Very dark theme:
+$theme: map-merge(
+    $theme,
+    (
+        background-color      : darken(map-get($theme, primary-color), 20%),
+        cta-text-color        : #fff,
+        cta-background-color  : darken(map-get($theme, primary-color), 20%),
+        text-color            : #fff
+    )
+);
+
+@include panel-theme("", $theme, --very-dark);
+
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
+
+
+
+/* --| WIREFRAME--------------------------------------------------------------------------------- */
+// http://meyerweb.com/eric/thoughts/2017/11/27/generating-wireframe-boxes-with-css-and-html5
+// Just testing this out, may not keep.
+//@import "_wireframe";
+
+/* ---------------------------------------------------------------------------------------------- */
+
+
+////* --| USER CONTENT |---------------------------------------------------------------------------- */
+
+///@import "component-patterns/_user_content";
+
+/* ---------------------------------------------------------------------------------------------- */
+
+
+
+/* --| JOOMLA |---------------------------------------------------------------------------------- */
+
+.highlight {
+    background-color: #e0dcda;
+}
+
+/* ---------------------------------------------------------------------------------------------- */

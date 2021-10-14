@@ -1,0 +1,132 @@
+<!--
+
+    TEXT GROUP
+
+-->
+
+
+<h2 id="text-group">Text Group</h2>
+
+<p>Text groups are an implantation of base layout classes; no new styles are introduced here. Often there is a need to control how text breaks across lines. To solve this, groups of text must be wrapped in <code>span</code> elements and layout classes applied.
+This need is common enough to warrant it's own set of examples for demonstration and testing purposes.</p>
+
+<p>The first example is the default behaviour for text; no classes are applied. This is example is provided for comparison purposes.</p>
+
+<div class="u-space--below  s-example--padded">
+    <p>
+        <span>This is group in a span.</span>
+        <span>This is a 2nd group in a span. We want only one line if possible.</span>
+    </p>
+</div>
+
+<p>The text but with the classes applied to show a better behaviour.</p>
+<div class="u-space--below  s-example--padded">
+    <div class="l-layout  l-row  l-preserve-space  l-row--start">
+        <p class="l-layout__inner">
+            <span class="l-box  s-example">This is group in a span.</span>
+            <span class="l-box  s-example">This is a 2nd group in a span. We want only one line if possible.</span>
+        </p><!-- End layout-inner -->
+    </div>
+</div>
+
+<h3>With a gutter:</h3>
+
+<div class="u-space--below  s-example--padded">
+    <div class="l-layout  l-row  l-row--start  l-gutter  l-flush-edge-gutter">
+        <p class="l-layout__inner">
+            <span class="l-box"><span class="s-example">A shorter example.</span></span>
+            <span class="l-box"><span class="s-example">Another short example.</span></span>
+            <span class="l-box"><span class="s-example">A third short example.</span></span>
+        </p><!-- End layout-inner -->
+    </div>
+</div>
+
+
+<h3>Gutter, pushed apart:</h3>
+
+<div class="u-space--below  s-example--padded">
+    <div class="l-layout  l-row  l-row--push-apart  l-gutter  l-flush-edge-gutter">
+        <p class="l-layout__inner">
+            <span class="l-box"><span class="s-example">A shorter example.</span></span>
+            <span class="l-box"><span class="s-example">Another short example.</span></span>
+            <span class="l-box"><span class="s-example">A third short example.</span></span>
+        </p><!-- End layout-inner -->
+    </div>
+</div>
+
+<div class="u-space--below  s-example--padded">
+    <div class="l-layout  l-row  l-row--push-apart  l-gutter  l-flush-edge-gutter">
+        <p class="l-layout__inner">
+            <span class="l-box"><span class="s-example">A shorter example.</span></span>
+            <span class="l-box"><span class="s-example">Another example, but a sort of medium length.</span></span>
+        </p><!-- End layout-inner -->
+    </div>
+</div>
+
+<h3>Gutter, aligned start:</h3>
+
+<div class="u-space--below  s-example--padded">
+    <div class="l-layout  l-row  l-row--start  l-gutter  l-flush-edge-gutter">
+        <p class="l-layout__inner">
+            <span class="l-box"><span class="s-example">A shorter example.</span></span>
+            <span class="l-box"><span class="s-example">Another short example.</span></span>
+            <span class="l-box"><span class="s-example">A third short example.</span></span>
+        </p><!-- End layout-inner -->
+    </div>
+</div>
+
+
+<h3>Gutter, aligned end:</h3>
+
+<div class="u-space--below  s-example--padded">
+    <div class="l-layout  l-row  l-row--end  l-gutter  l-flush-edge-gutter">
+        <p class="l-layout__inner">
+            <span class="l-box"><span class="s-example">A shorter example.</span></span>
+            <span class="l-box"><span class="s-example">Another short example.</span></span>
+            <span class="l-box"><span class="s-example">A third short example.</span></span>
+        </p><!-- End layout-inner -->
+    </div>
+</div>
+
+<h3>Gutter, aligned center:</h3>
+
+<div class="u-space--below  s-example--padded">
+    <div class="l-layout  l-row  l-row--center  l-gutter  l-flush-edge-gutter">
+        <p class="l-layout__inner">
+            <span class="l-box"><span class="s-example">A shorter example.</span></span>
+            <span class="l-box"><span class="s-example">Another short example.</span></span>
+            <span class="l-box"><span class="s-example">A third short example.</span></span>
+        </p><!-- End layout-inner -->
+    </div>
+</div>
+
+<h3>Testing separators</h3>
+
+<div class="u-space--below  s-example--padded">
+    <div class="l-layout  l-row  l-row--center  l-gutter--s  l-flush-edge-gutter">
+        <p class="l-layout__inner">
+            <span class="l-box"><span class="s-example"><a href="#">A shorter example</a><span class="l-box__separator">&nbsp;/&nbsp;</span></span></span>
+            <span class="l-box"><span class="s-example"><a href="#">Another short example</a><span class="l-box__separator">&nbsp;/&nbsp;</span></span></span>
+            <span class="l-box"><span class="s-example"><a href="#">A third short example</a></span></span>
+        </p><!-- End layout-inner -->
+    </div>
+</div>
+
+<div class="u-space--below  s-example--padded">
+    <div class="l-layout  l-row  l-row--center  l-gutter--s  l-flush-edge-gutter">
+        <p class="l-layout__inner">
+            <span class="l-box"><span class="s-example"><a href="#">A shorter example</a><span class="l-box__separator">&nbsp;|&nbsp;</span></span></span>
+            <span class="l-box"><span class="s-example"><a href="#">Another short example</a><span class="l-box__separator">&nbsp;|&nbsp;</span></span></span>
+            <span class="l-box"><span class="s-example"><a href="#">A third short example</a></span></span>
+        </p><!-- End layout-inner -->
+    </div>
+</div>
+
+<!--
+
+<div class="u-padding-bottom">
+    <div class="u-text-group  u-text-group--push-apart">
+
+    </div>
+</div>
+-->

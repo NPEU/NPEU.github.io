@@ -1,0 +1,39 @@
+/*! NeoCLEAR Theme (c) NPEU */
+
+/* --| START THEME |----------------------------------------------------------------------------- */
+
+//@import "_themes-config.scss";
+$theme-name: neoclear;
+$theme: (
+    cta-text-color       : #ffffff,
+    cta-background-color : #B51A82,
+    primary-color        : #009590,
+    secondary-color      : #B51A82,
+    page-header-color    : #ffffff
+);
+
+
+$s__breakpoint--enhanced: 60em;
+
+$theme-copy: $theme;
+$theme-name-copy: $theme-name;
+@import "_style";
+
+
+
+$theme-only: true;
+@import "_themeable-patterns.scss";
+
+
+//$theme: map_get($themes, $theme-name);
+$theme: $theme-copy;
+$theme-name: $theme-name-copy;
+@import "_theme";
+
+/* ---------------------------------------------------------------------------------------------- */
+
+/* --| SHAME |----------------------------------------------------------------------------------- */
+
+@import "_shame";
+
+/* ---------------------------------------------------------------------------------------------- */

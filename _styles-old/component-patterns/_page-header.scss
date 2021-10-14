@@ -1,0 +1,70 @@
+//$page-header--base-color		 : #eee !default;
+$page-header-namespace: c- !default;
+$theme-namespace: t- !default;
+
+$page-header--text-color       : #fff !default;
+$page-header--background-color : $s__base-ui-color !default;
+
+$page-header--band-color       : $s__base-ui-color !default;
+
+// Note: border color gets darkened by default later, but declaring here to allow specific override:
+//$panel--border-color: darken($panel--background-color, 10%) !default;
+//$page-header--border-color: null !default;
+//$page-header--border-width: 1px !default;
+//$page-header--border-style: solid !default;
+
+$page-header--padding: $s__base-rem-space-unit / 2 !default;
+
+$theme-only: false !default;
+
+@mixin page-header-theme ($theme-name: "", $theme: ()) {
+	// Set up theme name:
+	$theme-class: "";
+	@if $theme-name != "" {
+		$theme-class: unquote('.')#{$theme-namespace}#{$theme-name};
+	}
+	//@debug $theme-class;
+
+	/*.#{$page-header-namespace}page-header#{$theme-class} {
+		color: map-get($theme, text-color);
+		background-color: map-get($theme, page-header-color);
+	}*/
+}
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+
+    .#{$page-header-namespace}page-header {
+
+        /*
+            If there's no CTA, we want the logo to behave differently.
+            Note the MQ width is a magic number here, if any of the logos change, this will need
+            changing too. However, it's unlikely to happen, and only affects the main site.
+        */
+        @media only screen and (min-width: 46.2em) {
+            &#{&}--no-cta #{&}__logo,
+            & #{&}__logo:only-child {
+                margin-right: auto;
+            }
+        }
+
+        & #{&}__cta {
+            margin: 0 auto;
+            
+            .#{$page-header-namespace}primary-cta {
+                &[href] {
+                    margin-left: $s__base-rem-space-unit / 2 ;
+                }
+            }
+        }
+
+    }
+
+    @include page-header-theme(
+        "",
+        (
+            text-color       : $page-header--text-color,
+            background-color : $page-header--background-color
+        )
+    );
+}

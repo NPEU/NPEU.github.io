@@ -1,0 +1,90 @@
+/*
+*/
+
+$tool-form-namespace: c- !default;
+$theme-namespace: t- !default;
+
+$tool-form--base-color: #999;
+$tool-form--background-color: lighten($tool-form--base-color, 50);
+
+
+
+$tool-form--spacing-unit: 2rem !default;
+$tool-form--base-color: #eee !default;
+$tool-form--text-color: #333 !default;
+
+
+$tool-form--background-color: #fff !default;
+$tool-form--border-size: 1px !default;
+$tool-form--border-style: solid !default;
+$tool-form--border-color: darken($tool-form--background-color, 30%) !default;
+$tool-form--border-radius: 0.5em !default;
+
+/*$tool-form--link-color: false !default;
+$tool-form--link-has-border-bottom: false !default;
+$tool-form--link-color--alt: false !default;
+$tool-form--link-has-border-bottom: false !default;
+$tool-form--link-border-bottom: false !default;
+$tool-form--link-border-bottom--hover: false !default;*/
+
+$theme-only: false !default;
+
+// Note - no theme yet!
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+
+    .#{$tool-form-namespace}tool-form {
+
+        &#{&} {
+            background-color: $tool-form--background-color;
+            color: $tool-form--text-color;
+            //padding-left: $tool-form--spacing-unit / 2;
+
+            @if $tool-form--border-radius != false {
+                border-radius: $tool-form--border-radius;
+            }
+
+        }
+
+        #{&}__fieldset {
+            padding: 0;
+            margin: 0;
+            border: 0;
+
+            &::after {
+                display: none;
+            }
+
+            /*
+                Chrome and older Firefox (and others?) don't support flex on a fieldset so we need
+                an internal wrapper.
+            */
+            & > div {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            /*
+                1. Legends don't flex, this gets around that problem.
+            */
+            & legend {
+                float: left; /* [1] */
+                padding: ($s__base-rem-space-unit / 4) 0;
+                margin-right: $tool-form--spacing-unit / 2;
+                margin-bottom: 0;
+            }
+
+            & > div > :not(:last-child):not(legend) {
+                margin-right: $tool-form--spacing-unit;
+            }
+
+        }
+
+            #{&}__group {
+                display: inline-block;
+                white-space: nowrap;
+            }
+
+    }
+}

@@ -1,0 +1,298 @@
+/*
+*/
+$hero-namespace: c- !default;
+$theme-namespace: t- !default;
+
+
+$hero-breakpoint: 40rem !default;
+$hero-breakpoint-wide: $hero-breakpoint * 1.6 !default;
+
+$hero-max-message-breakpoint: 100rem !default;
+
+$hero-min-message-size: 16px !default;
+$hero-max-message-size: 26px !default;
+$hero-min-heading-size: 24px !default;
+$hero-max-heading-size: 46px !default;
+
+$theme-only: false !default;
+
+// Note - no theme yet!
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+
+
+    .#{$hero-namespace}hero-wrap {
+        padding: 0;
+        margin: 0;
+        min-inline-size: auto;
+        border: 0;
+        width: 100%;
+
+        // Note this won't be needed when moving to :last-child margin method.
+        &::after {
+            display: none;
+        }
+
+        & > div {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+    }
+
+    .#{$hero-namespace}hero-carousel {
+
+
+        #{&}__nav {
+
+            padding: 0 0.6rem;
+            margin: -$sz-m 0 0 0;
+            z-index: 1;
+
+            //@include sloped-background(map-get($theme, primary-color));
+
+            p {
+                margin: 0;
+            }
+
+            a[href] {
+                display: inline-block;
+                overflow: hidden;
+                border-radius: 0.6rem;
+                height: 1.2rem;
+                width: 1.2rem;
+                background: #bbb;
+                text-indent: 1.2rem;
+                border: 1px solid #333;
+                padding: 0;
+                margin: 0 0.3rem;
+
+                &:hover {
+                    background: #888;
+                }
+            }
+        }
+
+
+        hr {
+            display: none;
+        }
+
+        #{&}__scroll-area {
+            order: -1;
+
+            display: flex;
+            overflow-x: scroll;
+
+            scroll-behavior: smooth;
+
+            scroll-snap-type: mandatory; /* [1] */
+            scroll-snap-points-x: repeat(100%); /* [1] */
+
+            scroll-snap-type: x mandatory; /* [2] */
+            -webkit-overflow-scrolling: touch; /* [3] */
+
+            -ms-scroll-snap-type: mandatory; /* [4] */
+            -ms-scroll-snap-points-x: repeat(100%);  /* [4] */
+
+            &:focus {
+                box-shadow: 0 0 0 3px rgba(0,0,0,0.3);
+                outline: 0 none;
+            }
+
+
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            .#{$hero-namespace}hero {
+                flex: 0 0 100%;
+
+                scroll-snap-align: start;
+
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                
+                /*
+                    Turn off :target highlighting animation.
+                */
+                   -moz-animation: none;
+                -webkit-animation: none;
+                        animation: none;
+            }
+        }
+    }
+
+    .#{$hero-namespace}hero {
+        &#{&} {
+            position: relative;
+            background: #fff;
+        }
+
+        #{&}__message {
+            //@extend .u-word-wrap;
+
+            padding: $sz-xs $sz-m;
+        }
+
+
+        #{&}__message * {
+            margin: 0;
+        }
+
+        #{&}__message > #{&}__message--fluid_text,
+        #{&}__message > #{&}__message--fluid_heading {
+            /*
+                1. For IE10 to wrap text.
+            */
+
+            @include fluid-type(strip-unit($hero-breakpoint) * 16px, strip-unit($hero-max-message-breakpoint) * 16px, $hero-min-message-size, $hero-max-message-size);
+
+            line-height: 1.3;
+            font-weight: bold;
+            margin: 0;
+            max-width: 100%; /* [1] */
+        }
+
+        #{&}__message > #{&}__message--fluid_heading {
+            @include fluid-type(strip-unit($hero-breakpoint) * 16px, strip-unit($hero-max-message-breakpoint) * 16px, $hero-min-heading-size, $hero-max-heading-size);
+        }
+
+        #{&}__image-credit {
+            font-size: 0.875em;
+            line-height: 1.3;
+            padding: 0.2em 0.5em;
+            color: #fff;
+            background-color: rgba(0,0,0,0.4);
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            max-width: 50%;
+
+            a[href] {
+                background-color: transparent;
+                color: #fff;
+                border-width: 1px;
+
+                &:hover,
+                &:active,
+                &:focus {
+                    background-color: transparent;
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    .#{$hero-namespace}hero--reversed .#{$hero-namespace}hero__image-credit {
+        right: auto;
+        left: 0;
+    }
+
+    @media only screen and (max-width:#{$hero-breakpoint}) {
+        .#{$hero-namespace}hero {
+            #{&}__message {
+                /*
+                    1. This is here to override the inline style width declaration.
+                       Allowing Joomla interface to specify width so it can be tweaked to suit the text,
+                       but we want it full-width on narrow screens and we can't do MQ's in inline styles,
+                */
+                width: 100% !important; /* [1] */
+            }
+        }
+
+        .#{$hero-namespace}hero-carousel {
+            #{&}__nav {
+                margin: 0;
+
+            }
+        }
+    }
+
+    @media only screen and (max-width:#{$hero-breakpoint-wide}) {
+        .#{$hero-namespace}hero {
+            #{&}__message--wide {
+                /*
+                    1. This is here to override the inline style width declaration.
+                       Allowing Joomla interface to specify width so it can be tweaked to suit the text,
+                       but we want it full-width on narrow screens and we can't do MQ's in inline styles,
+                */
+                width: 100% !important; /* [1] */
+            }
+        }
+    }
+
+    @media only screen and (min-width:#{$hero-breakpoint}) {
+
+        .#{$hero-namespace}hero {
+
+            #{&}__message:not(#{&}__message--wide) {
+                position: absolute;
+                z-index: 1;
+
+                bottom: 0;
+                left: 0;
+                width: calc(10em + 20%);
+                top: 0;
+                background: rgba(255,255,255,0.75);
+
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                align-content: center;
+                justify-content: flex-start;
+            }
+
+            #{&}__message > * {
+                flex: 1 0 100%;
+            }
+        }
+
+        .#{$hero-namespace}hero--reversed .#{$hero-namespace}hero__message:not(.#{$hero-namespace}hero__message--wide) {
+            right: 0;
+            left: auto;
+        }
+
+    }
+
+    @media only screen and (min-width:#{$hero-breakpoint-wide}) {
+
+        .#{$hero-namespace}hero {
+
+            #{&}__message--wide {
+                position: absolute;
+                z-index: 1;
+
+                bottom: 0;
+                left: 0;
+                width: calc(20em + 20%);
+                top: 0;
+                background: rgba(255,255,255,0.75);
+
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;;
+                align-content: center;
+                justify-content: flex-start;
+            }
+
+
+            #{&}__message > * {
+                flex: 1 0 100%;
+            }
+        }
+
+        .#{$hero-namespace}hero--reversed .#{$hero-namespace}hero__message {
+            right: 0;
+            left: auto;
+        }
+
+    }
+}

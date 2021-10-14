@@ -1,0 +1,87 @@
+/*
+*/
+$map-namespace: c- !default;
+$js-map-namespace: js- !default;
+//$theme-namespace: t- !default;
+
+$theme-only: false !default;
+
+$map-heights: (
+    300,
+    500
+) !default;
+
+// Note - no theme yet!
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+
+
+    //@each $height in $map-heights {
+    //    .#{$map-namespace}map__static {
+    //        min-height: #{$height}px;
+    //    }
+    //}
+
+
+    .#{$js-map-namespace}map {
+
+        .#{$map-namespace}map {
+            display: flex;
+            width: 100%;
+        }
+
+
+            .#{$map-namespace}map > * {
+                width: 100%;
+                height: 100%;
+                
+                flex: 1 0 auto;
+            }
+
+            @each $height in $map-heights {
+                .#{$map-namespace}map--#{$height} > * {
+                    min-height: #{$height}px;
+                }
+            }
+
+
+            .#{$map-namespace}map .leaflet-container {
+                &:hover,
+                &:active,
+                &:focus {
+                    box-shadow: 0 0 0 0.6rem #fff, 0 0 0 1.2rem rgba(0,0,0,.2);
+                }
+            }
+
+            // Fix map links inheriting styles:
+
+            .#{$map-namespace}map .leaflet-container a[href] {
+                background-color: transparent;
+                margin-bottom: 0;
+                border-bottom: 0;
+                color: #0078A8 !important;
+
+                &:hover,
+                &:active,
+                &:focus {
+                    color: #002b41 !important;
+                }
+            }
+
+            .#{$map-namespace}map .leaflet-container .leaflet-bar a[href] {
+                background-color: #fff;
+                color: #000 !important;
+
+                &:hover,
+                &:active,
+                &:focus {
+                    background-color: #f4f4f4 !important;
+                }
+            }
+
+            /*.#{$map-namespace}map .leaflet-control-zoom.leaflet-bar.leaflet-control {
+                padding-bottom: 2px;
+            }*/
+    }
+}

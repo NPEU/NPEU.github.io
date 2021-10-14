@@ -1,0 +1,203 @@
+@import "_settings.scss";
+
+@import "_core_themes.scss";
+
+
+@import '../bower_components/Fall-Back-Start-CSS/scss/_01-start-functions.scss';
+@import '../bower_components/Fall-Back-Start-CSS/scss/_02-start-mixins.scss';
+@import '../bower_components/Fall-Back-Start-CSS/scss/_03-start-tokens.scss';
+@import '../bower_components/Fall-Back-Start-CSS/scss/_04-start-settings.scss';
+
+@import '../bower_components/Fall-Back-Start-CSS/scss/_start.scss';
+@import '../bower_components/Fall-Back-Start-CSS/scss/_start-classes.scss';
+@import '../bower_components/Fall-Back-Start-CSS/scss/_start-accessibility.scss';
+//@import '../bower_components/Fall-Back-Start-CSS/scss/_start-utilities.scss';
+@import '../bower_components/Fall-Back-Start-CSS/scss/_Xstart-icons.scss';
+@import '../bower_components/Fall-Back-Start-CSS/scss/_start-experimental.scss';
+
+
+@import "_sizes";
+
+$ff-breakpoints: ();
+$ff-min-widths: ();
+@import "special-patterns/_ff-widths.scss";
+/*
+@import "component-patterns/_contact-list.scss";
+
+@import "component-patterns/_thumbnail.scss";
+
+$theme-only: true;
+@import "component-patterns/_panel.scss";
+
+@import "layout-patterns/_distribute.scss";
+
+@import "utility-patterns/_padding.scss";
+
+@import "utility-patterns/_space.scss";
+
+@import "utility-patterns/_text-align.scss";
+*/
+
+//$theme-only: true;
+$theme-only: false;
+
+// Note these are needed by component-patterns/_user_content so this is duplication of the same
+// in _themeable-patterns. This duplication should be unnecessary in V2.
+$theme-name: neutral;
+$panel--padding: $s__base-rem-space-unit;
+@import "component-patterns/_contact-list.scss";
+@import "component-patterns/_thumbnail.scss";
+
+
+$theme-only: true;
+@import "component-patterns/_primary-cta.scss";
+
+
+/*
+    We need to load _distribute.scss because _user_content.scss required it, but we don't actually
+    want to apply the styles because it makes editing hard.
+*/
+@import "layout-patterns/_distribute.scss";
+.c-user-content [data-display-as~="blocks"] > * {
+    display: block !important;
+}
+
+.c-user-content [data-display-as~="blocks"] > * > * {
+    max-width: none !important;
+}
+
+.c-user-content [data-display-as~="blocks"] > * > * > span {
+    display: inline-block !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-color: #ddd !important;
+    padding: 1em !important;
+}
+
+
+
+@import "utility-patterns/_padding.scss";
+@import "utility-patterns/_space.scss";
+@import "utility-patterns/_text-align.scss";
+@import "utility-patterns/_word-wrap.scss";
+
+
+
+@import "component-patterns/_user_content.scss";
+
+
+
+@import "_start_tweaks.scss";
+
+/*
+    Override contents.css body margin, because it messes with Magicline:
+*/
+body
+{
+	//margin: 0 20px;
+	margin: 0;
+    padding: 10px 20px;
+    background-color: #fff;
+    min-width: auto;
+}
+
+
+/*
+    Make images more manageable inside the editor
+*/
+img {
+    max-width: 100%;
+    max-height: 50vw;
+    width: auto;
+}
+
+
+ul, ol, dl {
+    width: 100%;
+}
+
+.embed-container {
+    text-align: center;
+}
+
+
+.cke_widget_wrapper.cke_widget_block{
+
+    &::before,
+    &::after {
+        content: " ";
+        display: table;
+    }
+
+    &::after {
+        clear: both;
+    }
+}
+
+.cke_widget_drag_handler {
+    background: transparent !important;
+}
+
+
+
+.u-text-align--left {
+    text-align: left;
+}
+
+.u-text-align--center {
+    text-align: center;
+}
+
+.u-text-align--right {
+    text-align: right;
+}
+
+.u-text-align--left {
+    text-align: left;
+}
+
+
+
+/*
+    Unfortunately this stylesheet is loaded into toolbar dropdown selection frames, so we need 
+    reset all these styles:
+*/
+
+.cke_panel_grouptitle {
+    line-height: 1 !important;
+    font-family: sans-serif, Arial, Verdana, "Trebuchet MS", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+}
+
+.cke_panel_listItem a,
+.cke_panel_listItem a:hover,
+.cke_panel_listItem a:active,
+.cke_panel_listItem a:focus {
+    border: 0;
+    padding: 0 2px;
+    margin: 0;
+}
+
+.cke_panel_listItem * {
+    line-height: 1.7 !important;
+    font-size: 0.9em !important;
+}
+
+.cke_panel_listItem h2 {
+    font-size: 1.1em !important;
+}
+
+.cke_panel_listItem h3 {
+    font-size: 1.05em !important;
+}
+
+.cke_panel_listItem h4 {
+    font-size: 1em !important;
+}
+
+.cke_panel_listItem h5 {
+    font-size: 0.9em !important;
+}
+
+.cke_panel_listItem h6 {
+    font-size: 0.8em !important;
+}

@@ -1,0 +1,171 @@
+/*
+    The `height: 100%;` in the `.section-menu` class below allows the section-menu to fill it's container (if inside,
+    say, a list-grid). However, it doesn't work in Safari OSX/iOS.
+    Applying a `section-menu-wrap` class to a list item to make those items flex-containers seems to work
+    OK, but perhaps this would be better abstracted as a `fill-height` class or something?
+*/
+
+$section-menu-namespace: n- !default;
+$theme-namespace: t- !default;
+
+$section-menu--base-color: #eee !default;
+
+$section-menu-spacing-unit: 2rem !default;
+
+// Section menu outer:
+
+$section-menu--text-color: #333 !default;
+$section-menu--background-color: $section-menu--base-color !default;
+
+$section-menu--border-or-outline: 'outline' !default;
+$section-menu--border-width:  1px !default;
+$section-menu--border-style:  solid  !default;
+$section-menu--border-radius: 0  !default;
+$section-menu--border-color:  darken($section-menu--base-color, 10%) !default;
+
+
+
+$section-menu--separator-width:  1px !default;
+$section-menu--separator-style:  solid  !default;
+$section-menu--separator-color:  darken($section-menu--base-color, 10%) !default;
+
+//$section-menu-breakpoint: 30em !default;
+
+
+
+// Section menu body:
+$section-menu--padding: $section-menu-spacing-unit !default;
+
+
+//$section-menu-body--padding:       $section-menu-spacing-unit !default;
+$section-menu-body--margin-left:   0 !default;
+$section-menu-body--margin-right:  0 !default;
+$section-menu-body--margin-top:    0 !default;
+$section-menu-body--margin-bottom: 0 !default;
+
+//$section-menu-body--pull-over: 0 !default;
+
+
+// Section menu title:
+$section-menu-title--font-size: 3rem !default;
+
+
+// Section menu text links:
+
+$section-menu--link-padding: ($section-menu-spacing-unit / 4) !default;
+$section-menu--link-margin: 0 -#{$section-menu-spacing-unit / 4} !default;
+$section-menu--link-background-color: false !default;
+$section-menu--link-background-color--alt: false !default;
+$section-menu--link-has-border-bottom: false !default;
+$section-menu--link-border-bottom: false !default;
+$section-menu--link-border-bottom--alt: false !default;
+
+$section-menu--active-background-color: false !default;
+
+// If we've specified a link color for the section-menu, but not an alt state (e.g. hover)
+// then generate one
+@if $section-menu--link-background-color != false and $section-menu--link-background-color--alt == false {
+    $section-menu--link-background-color--alt: darken($section-menu--link-background-color, 10%) !default;;
+}
+
+// If we've specified a link color for the section-menu, and we want bottom borders, generate the borders:
+@if $section-menu--link-background-color != false and $section-menu--link-has-border-bottom != false {
+    $section-menu--link-border-bottom: 1px solid lighten($section-menu--link-background-color, 20%) !default;
+    $section-menu--link-border-bottom--alt: 2px solid lighten($section-menu--link-background-color--alt, 30%) !default;
+}
+
+
+
+    .#{$section-menu-namespace}section-menu.#{$section-menu-namespace}section-menu {
+
+        color: $section-menu--text-color;
+        background: $section-menu--background-color;
+        padding: $section-menu--padding;
+
+
+        @if $section-menu--border-or-outline == 'outline' {
+            outline: $section-menu--border-width $section-menu--border-style $section-menu--border-color;
+        }
+
+        @if $section-menu--border-or-outline == 'border' {
+            border-color:  $section-menu--border-color;
+            border-style:  $section-menu--border-style;
+            border-width:  $section-menu--border-width;
+            border-radius: $section-menu--border-radius;
+        }
+
+        /*
+            If the 'pull' is > module body content height, it'll protrude below the container,
+            so hide it:
+        */
+        overflow: hidden;
+    }
+
+
+
+        .#{$section-menu-namespace}section-menu .#{$section-menu-namespace}section-menu__list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .#{$section-menu-namespace}section-menu .#{$section-menu-namespace}section-menu__item {
+                padding: 0;
+                margin: 0;
+            }
+
+            @if $section-menu--separator-width != false {
+                .#{$section-menu-namespace}section-menu .#{$section-menu-namespace}section-menu__item:not(:last-child) .#{$section-menu-namespace}section-menu__link {
+                    border-bottom-color:  $section-menu--separator-color;
+                    border-bottom-style:  $section-menu--separator-style;
+                    border-bottom-width:  $section-menu--separator-width;
+                }
+            }
+            
+            .#{$section-menu-namespace}section-menu .#{$section-menu-namespace}section-menu__item--active .#{$section-menu-namespace}section-menu__link {
+                @if $section-menu--active-background-color != false {
+                    background: $section-menu--active-background-color;
+                }
+            }
+            
+            // @TODO - make this configurable
+            .#{$section-menu-namespace}section-menu .#{$section-menu-namespace}section-menu__item--active span {
+                border-bottom: 2px dashed;
+            }
+
+                .#{$section-menu-namespace}section-menu .#{$section-menu-namespace}section-menu__link[href] {
+                    padding: $section-menu--link-padding;
+                    margin: $section-menu--link-margin;
+  
+                    border: 0;
+                    
+                    @if $section-menu--link-background-color != false {
+                        background: $section-menu--link-background-color;
+                    }
+
+                    display: block;
+
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        //border: 0;
+                        @if $section-menu--link-background-color--alt != false {
+                            background: $section-menu--link-background-color--alt;
+                        }
+                    }
+                }
+                
+                .#{$section-menu-namespace}section-menu__item > ul {
+                    list-style: none;
+                    padding: 0;
+                    margin-left: $section-menu-spacing-unit;
+                }
+
+
+                .#{$section-menu-namespace}section-menu .#{$section-menu-namespace}section-menu__title {
+                    //font-size: $section-menu-title--font-size;
+                    margin-bottom: 0;
+                }
+
+
+

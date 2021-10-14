@@ -1,0 +1,107 @@
+/*
+*/
+$system-message-namespace: c- !default;
+$theme-namespace: t- !default;
+
+
+$system-message--text-color: #333 !default;
+$system-message--color:      #aaa !default;
+
+$system-message--border-or-outline: 'border' !default;
+$system-message--border-width:  1px !default;
+$system-message--border-style:  solid  !default;
+$system-message--border-radius: 0.5em  !default;
+//$system-message--border-color:  darken($system-message--background-color, 10%) !default;
+$system-message-spacing-unit: 2rem !default;
+
+$theme-only: false !default;
+
+
+@mixin system-message-theme ($theme-name: "", $theme: ()) {
+	// Set up theme name:
+	$theme-class: "";
+	@if $theme-name != "" {
+		$theme-class: unquote('.')#{$theme-namespace}#{$theme-name};
+	}
+	//@debug $theme-class;
+
+	.#{$system-message-namespace}system-message#{$theme-class},
+	#{$theme-class} {
+
+		//background-color: map-get($theme, system-message-color);
+		//background-color: lighten(map-get($theme, system-message-color), 20%);
+        //border-color: map-get($theme, system-message-color);
+        
+        background:    -moz-linear-gradient(45deg, lighten(map-get($theme, system-message-color), 20%) 0%, lighten(map-get($theme, system-message-color), 21%) 50%, lighten(map-get($theme, system-message-color), 19%) 50%, lighten(map-get($theme, system-message-color), 18%) 100%) !important;
+        background: -webkit-linear-gradient(45deg, lighten(map-get($theme, system-message-color), 20%) 0%, lighten(map-get($theme, system-message-color), 21%) 50%, lighten(map-get($theme, system-message-color), 19%) 50%, lighten(map-get($theme, system-message-color), 18%) 100%) !important;
+        background:         linear-gradient(45deg, lighten(map-get($theme, system-message-color), 20%) 0%, lighten(map-get($theme, system-message-color), 21%) 50%, lighten(map-get($theme, system-message-color), 19%) 50%, lighten(map-get($theme, system-message-color), 18%) 100%) !important;
+        
+        //@if s__color_light_or_dark(lighten(map-get($theme, system-message-color), 20%)) == 'light' {
+        @if s__color_light_or_dark(map-get($theme, system-message-color)) == 'light' {
+            color: $s__base-text-color;
+        } @else {
+            color: #fff;
+        }
+        
+        a[href]:link,
+        a[href]:visited,
+        a[href]:hover,
+        a[href]:active,
+        a[href]:focus {
+            color: inherit;
+        }
+	}
+
+}
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+
+    .#{$system-message-namespace}system-message {
+
+        &#{&} {
+            color: $system-message--text-color;
+            //background-color: $system-message--background-color;
+            padding: $system-message-spacing-unit;
+            
+            //@include bottom-space-fix($system-message-spacing-unit);
+
+            /*
+            @if $system-message--border-or-outline == 'outline' {
+                outline: $system-message--border-width $system-message--border-style $system-message--color;
+            }
+
+            @if $system-message--border-or-outline == 'border' {
+                //border-color:  $system-message--border-color;
+                border-style:  $system-message--border-style;
+                border-width:  $system-message--border-width;
+                border-radius: $system-message--border-radius;
+            }
+            */
+            /*a[href] {
+                background-color: transparent;
+                color: #fff;
+                //border-width: 1px;
+
+                &:hover,
+                &:active,
+                &:focus {
+                    background-color: transparent;
+                    color: #fff;
+                }
+            }*/
+            
+            /*> * {
+                margin-bottom: $system-message-spacing-unit;
+            }*/
+        }
+    }
+
+
+    @include system-message-theme(
+        "",
+        (
+            system-message-color : $system-message--color,
+        )
+    );
+}

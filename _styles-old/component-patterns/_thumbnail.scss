@@ -1,0 +1,84 @@
+/*
+*/
+$thumbnail-namespace: c- !default;
+$theme-namespace: t- !default;
+
+$thumbnail--text-color: #333 !default;
+$thumbnail--border-color: #ccc !default;
+
+$theme-only: false !default;
+
+
+@mixin thumbnail-theme ($theme-name: "", $theme: ()) {
+	// Set up theme name:
+	$theme-class: "";
+	@if $theme-name != "" {
+		$theme-class: unquote('.')#{$theme-namespace}#{$theme-name};
+	}
+	//@debug $theme-class;
+	
+    $text-color : map-get($theme, thumbnail-text-color);
+    
+	/*@if $border-color == null {
+		$border-color: darken($background-color, 10%);
+    }*/
+
+	// Problem here is that we only want to set a darker border colour if we haven't explicated
+	// set one. Default is passed to config, but theme override may be different and we need to know
+	// if it is, because we don't want to auto-darken if we've deliberately set a specific color.
+	// We want to allow a theme cascade (setting minimum properties) but also allow specific
+	// overrides, but should allow for branched cascades too.
+	// Handle override default versus specified in theme.
+
+	// Weirdly, SASS throws an error at this
+	// "Error: Base-level rules cannot contain the parent-selector-referencing character '&'."
+	// There's no '&' being used, so not sure what's going on.
+	// Using nested option as a workaround.
+	//.#{$thumbnail-namespace}thumbnail.#{$theme-prefix}#{$theme-name} {
+	// + thumbnail + . + #{$theme-prefix} + #{$theme-name}
+	.#{$thumbnail-namespace}thumbnail#{$theme-class} {
+
+		color: $text-color;
+        
+
+		//outline: 1px solid $border-color;
+	}
+
+}
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+
+    .#{$thumbnail-namespace}thumbnail {
+
+        &#{&}[href] {
+            display: inline-block;
+            
+            border-width: 0;
+            padding: 0;
+            margin: 0;
+        }
+        
+        &#{&}[href]:hover,
+        &#{&}[href]:active,
+        &#{&}[href]:focus {
+            box-shadow: 0 0 0 ($hover-effect-width * 2) rgba(255,255,255,0.8), 0 0 0 ($hover-effect-width * 3) rgba(0,0,0,$hover-effect-opacity);
+            border-width: 0;
+            padding: 0;
+            margin: 0;
+        }
+        
+        & img {
+            margin: 0;
+            border: 1px solid $thumbnail--border-color;
+        }
+    }
+
+
+    @include thumbnail-theme(
+        "",
+        (
+            thumbnail-text-color : $thumbnail--text-color,
+        )
+    );
+}

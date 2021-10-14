@@ -1,0 +1,575 @@
+/*
+    NOTE: data-width and data-position are currently unused.
+    I'm considering their use. An (abandoned) attempt at customising the CKEditor div plugin
+    would have required these.
+*/
+
+$user-content-namespace: c- !default;
+
+$theme-namespace: t- !default;
+
+//$theme-only: false !default;
+
+$uc-breakpoint: 35em !default;
+// Note - no theme yet!
+
+
+
+// We don't need this if we're only theming the pattern:
+@if $theme-only == false {
+    .#{$user-content-namespace}user-content {
+
+        // Contact list:
+        [data-contains~="contact-details"] {
+            @extend .c-contact-list;
+        }
+
+        [data-display-is~="width-one-quarter"] + [data-contains~="contact-details"],
+        [data-width="one-quarter"] + [data-contains~="contact-details"] {
+            @include ff-width(100%, $uc-breakpoint, unquote("calc(75% - #{$sz-m})"));
+        }
+
+        [data-display-is~="width-one-third"] + [data-contains~="contact-details"],
+        [data-width="one-third"] + [data-contains~="contact-details"] {
+            @include ff-width(100%, $uc-breakpoint, unquote("calc(67% - #{$sz-m})"));
+        }
+
+        [data-display-is~="width-one-half"] + [data-contains~="contact-details"],
+        [data-width="one-half"] + [data-contains~="contact-details"] {
+            @include ff-width(100%, $uc-breakpoint, unquote("calc(50% - #{$sz-m})"));
+        }
+
+        [data-display-is~="width-two-thirds"] + [data-contains~="contact-details"],
+        [data-width="two-thirds"] + [data-contains~="contact-details"] {
+            @include ff-width(100%, $uc-breakpoint, unquote("calc(33% - #{$sz-m})"));
+        }
+
+        [data-display-is*="width-"] + [data-contains~="contact-details"] + *,
+        [data-width] + [data-contains~="contact-details"] + * {
+            clear: both;
+        }
+
+
+
+        a[href][data-display-as~="cta"] {
+            @include s__button(
+                $s__base-text-color,
+                transparent,
+                lighten($s__button-background-color, 55%),
+                $s__base-text-color
+            );
+        }
+
+        a[href][data-display-as~="primary-cta"] {
+            @extend .c-primary-cta;
+
+            @include primary-cta-theme($theme-name, map-get($themes, $theme-name));
+        }
+
+
+        // For theme-specific settings, see _themes.scss
+        // Note this is identical to Panel, but that mixin can't be use because of the way it adds
+        // classes. May need to rethink things.
+        [data-display-as~="box"],
+        [data-display-as~="pale-box"],
+        [data-display-as~="themed-box--background"],
+        [data-display-as~="themed-box--border"],
+        [data-display-as~="notice-box"] {
+            padding: $panel--padding;
+
+            margin-bottom: $sz-m;
+
+            //@include bottom-space-fix();
+
+            width: 100%;
+
+            &::before,
+            &::after {
+                content: " ";
+                display: table;
+            }
+
+            &,
+            &::after {
+                clear: both;
+            }
+
+        }
+
+        [data-display-as~="box"] {
+            border: 1px solid map-get(map-get($themes, neutral), primary-color);
+        }
+
+        [data-display-as~="pale-box"] {
+            background-color: lighten(map-get(map-get($themes, neutral), primary-color), 45%),
+        }
+
+        [data-display-as~="themed-box--background"] {
+            color: #fff;
+            background: map-get(map-get($themes, $theme-name), primary-color);
+            //background: currentColor;
+
+            //outline: 1px solid $border-color;
+
+            a[href] {
+                color: #fff;
+            }
+
+            a[href]:hover,
+            a[href]:active,
+            a[href]:focus {
+                color: #fff;
+            }
+
+            a[href][data-display-as~="cta"] {
+                border-color: #fff;
+                color: #fff;
+            }
+
+            a[href][data-display-as~="cta"]:hover,
+            a[href][data-display-as~="cta"]:active,
+            a[href][data-display-as~="cta"]:focus {
+                @if s__color_light_or_dark(map-get(map-get($themes, $theme-name), primary-color)) == 'light' {
+                    background-color: rgba(0,0,0,0.1);
+                } @else {
+                    background-color: rgba(255,255,255,0.1);
+                }
+            }
+
+            a[href][data-display-as~="primary-cta"] {
+                border-color: #fff;
+                border-width: 2px;
+                border-style: solid;
+                padding: calc(#{$primary-cta--padding / 2} - 2px) $primary-cta--padding;
+            }
+        }
+
+        [data-display-as~="themed-box--border"] {
+            border-color: currentColor;
+            border-style: solid;
+            border-width: 3px;
+        }
+
+        [data-display-as~="notice-box"] {
+            border: 6px solid map-get(map-get($themes, $theme-name), secondary-color);
+            background: scale-color(map-get(map-get($themes, $theme-name), secondary-color), $lightness: 93%);
+
+            a[href][data-display-as~="cta"]:hover,
+            a[href][data-display-as~="cta"]:active,
+            a[href][data-display-as~="cta"]:focus {
+                @if s__color_light_or_dark(map-get(map-get($themes, $theme-name), secondary-color)) == 'light' {
+                    background-color: rgba(0,0,0,0.1);
+                } @else {
+                    background-color: rgba(255,255,255,0.1);
+                }
+            }
+            
+            a[href][data-display-as~="primary-cta"] {
+                background-color: map-get(map-get($themes, $theme-name), secondary-color);
+            }
+        }
+
+        // Layouts:
+
+        /*[data-display-as~="blocks"] {
+            @extend .l-distribute-wrap;
+        }*/
+
+        [data-display-as~="blocks"] > * {
+            @extend .l-distribute;
+        }
+
+        [data-display-as~="blocks"] > * > * {
+            @extend .u-space--below;
+            @extend .u-text-align--center;
+            @extend .u-padding--sides--s;
+
+            flex-basis: 11.25em;
+            max-width: 15em;
+
+            align-self: stretch;
+        }
+
+        [data-display-as~="blocks"] > * > * > span {
+            display: flex;
+            flex-direction: column;
+        }
+
+        [data-display-as~="blocks"] > * > * > span > a {
+            flex: 0 0 auto;
+        }
+
+        [data-display-as~="blocks"] > * > * > span > a:first-child {
+            flex: 1 0 auto;
+        }
+
+
+        [data-display-is~="pulled-left"],
+        [data-display-is~="pulled-right"],
+        [data-display-is~="pulled-center"],
+        [data-position] {
+            margin-bottom: $sz-s;
+
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+
+            // We want some space on the right, but not when narrow screens effectively turn the
+            // floating off:
+            /*&::before,
+            &::after {
+                content: "";
+                display: block;
+                -webkit-flex: 0 0 auto;
+                    -ms-flex: 0 0 auto;
+                        flex: 0 0 auto;
+                //@include ff-width($sz-m, $uc-breakpoint, 100%);
+            }
+
+            // Because these pseudo elements are children, we need to calculate parent's parent:
+
+            &[data-display-is~="width-one-half"]::before,
+            &[data-display-is~="width-one-half"]::after {
+                @include ff-width($sz-m, ($uc-breakpoint / 2), 0);
+            }*/
+        }
+
+        [data-display-is~="pulled-left"],
+        [data-position="left"] {
+            float: left;
+            clear: left;
+            margin-right: $sz-m;
+
+            &::before {
+                display: none;
+            }
+
+            & + ::before,
+            & + ::after {
+                content: " ";
+                display: table;
+            }
+
+            & + ::after {
+                clear: both;
+            }
+        }
+
+        [data-display-is~="pulled-right"],
+        [data-position="right"] {
+            float: right;
+            clear: right;
+            margin-left: $sz-m;
+
+            &::after {
+                display: none;
+            }
+
+            & + ::before,
+            & + ::after {
+                content: " ";
+                display: table;
+            }
+
+            & + ::after {
+                clear: both;
+            }
+        }
+
+        [data-display-is~="pulled-center"],
+        [data-position="center"] {
+            margin-left: auto;
+            margin-right: auto;
+
+            &::after {
+                display: none;
+            }
+        }
+
+        [data-display-is~="width-one-quarter"],
+        [data-width="one-quarter"] {
+            @include ff-width(100%, $uc-breakpoint, 25%);
+        }
+
+        [data-display-is~="width-one-third"],
+        [data-width="one-third"] {
+            @include ff-width(100%, $uc-breakpoint, 33%);
+        }
+
+        [data-display-is~="width-one-half"],
+        [data-width="one-half"] {
+            @include ff-width(100%, $uc-breakpoint, 50%);
+        }
+
+        [data-display-is~="width-two-thirds"],
+        [data-width="two-thirds"] {
+            @include ff-width(100%, $uc-breakpoint, 67%);
+        }
+
+        [data-display-is~="width-one-whole"],
+        [data-width="one-whole"] {
+            width: 100%;
+        }
+
+
+        [data-contains~="image"] {
+            //@extend .c-badge;
+            // No - extend is too messy. Maybe create a mixin, but duplicate it here for now:
+            display: inline-block;
+            vertical-align: middle;
+            position: relative; /* [1] */
+
+
+            svg {
+                max-width: 100%;
+            }
+
+            img {
+                /*
+                    1. This is to provide positioning context for the ::after pseudo-element.
+                    2. This is so a broken image is still 100%.
+                    3. Center in container.
+                    4. This prevents long-thin images appearing huge an narrow (100% width) sizes.
+                       However, it's a bit of a magic number, so may not work in all cases.
+                */
+
+                position: relative; /* [1] */
+
+                display: block; /* [2] */
+
+                height: auto;
+                width: auto;
+
+                max-width: 100%;
+                max-height: 50vw; /* [4] */
+
+                border-style: none;
+
+                margin: 0 auto; /* [3] */
+
+            }
+        }
+
+        a[href][data-contains~="image"] {
+            border: 0;
+            padding: 0;
+
+            &:hover,
+            &:active,
+            &:focus {
+                border: 0;
+                box-shadow: 0 0 0 0.6rem #fff, 0 0 0 1.2rem rgba(0,0,0,.2);
+            }
+        }
+
+        a[href][rel~="external"][data-contains~="image"]::after {
+            position: absolute;
+            right: -1em;
+            top: -1em;
+            width: 1.25em;
+            height: 1.25em;
+            display: block;
+        }
+
+        // Scale 16, 18, 24, 30, 36, 48, 60, 72  *3 =
+        // 48, 54, 72, 90, 108, 144, 180, 216
+
+        [data-contains~="logo"] img {
+            max-height: 9rem;
+            background-color: transparent;
+        }
+
+        [data-contains~="logo-xsmall"] img {
+            max-height: 5.4rem;
+        }
+
+        [data-contains~="logo-small"] img {
+            max-height: 7.2rem;
+        }
+
+        [data-contains~="logo-medium"] img {
+            // Repetition for clarity.
+            max-height: 9rem;
+        }
+
+        [data-contains~="logo-large"] img {
+            max-height: 10.8rem;
+        }
+
+        [data-contains~="logo-xlarge"] img {
+            max-height: 14.4rem;
+        }
+
+        [data-contains~="logo-xxlarge"] img {
+            max-height: 18rem;
+        }
+
+        [data-contains~="logo-xxxlarge"] img {
+            max-height: 21.6rem;
+        }
+
+        [data-contains~="thumbnail"] {
+            @extend .c-thumbnail;
+        }
+
+
+        [data-contains~="thumbnails"] a:first-of-type {
+            @extend .c-thumbnail;
+            @extend .u-space--below;
+        }
+
+
+        // Images:
+        img {
+            background: #fff;
+        }
+
+        b > img,
+        b > i > img {
+            border: 3px solid lighten(map-get(map-get($themes, neutral), primary-color), 10%) !important;
+        }
+
+        b > i > img {
+            padding: $sz-s;
+        }
+
+
+        // Avatar / portrait:
+        [data-contains~="portrait"] {
+            width: 100%;
+            max-width: 16em;
+        }
+
+        [data-contains~="portrait"]::before {
+            content: "";
+            width: 1px;
+            margin-left: -1px;
+            float: left;
+            height: 0;
+            padding-top: 100%;
+        }
+
+        [data-contains~="portrait"]::after { /* to clear float */
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        [data-contains~="portrait"] img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            max-height: none;
+            object-fit: cover;
+        }
+
+        /*
+            Note this original method just assumed that images are square.
+            MaatHRI team page proves this is not the case, so the above, explicit portrait
+            declaration is needed.
+            It's still ok to assume square images in templates, though, where I know I'm just using
+            the avatars folder (where square is forced on upload).
+            So, it's really just user content that's the problem, so keep things as they are for
+            now.
+        */
+        img[src*="/assets/images/avatars/"],
+        [data-contains~="portrait"] img {
+            display: block;
+            width: 100%;
+            max-width: 16em;
+            margin: 0 auto;
+
+            border-radius: 99999px;
+            overflow: hidden;
+
+
+            //@extend .c-contact-avatar;
+            //@extend .d-bands;
+        }
+
+        // Text content:
+        [data-display-as~="smallprint"] {
+            font-size: 0.875em;
+        }
+
+        [data-display-as~="strapline"] {
+            font-size: 1.125em;
+        }
+
+        // Figures
+
+        figcaption {
+            text-align: center;
+            font-size: 0.875em;
+            margin-top: $sz-s;
+        }
+
+
+        // Downloads
+        [data-contains~="download"] {
+            display: inline-block;
+        }
+
+        // Links
+        // (So normal links should have the [FILE] marker, but not links that contain thumbnails,
+        // however, we apply it to a span after a break to follow the proper thumbnail pattern)
+        a[href$=".pdf"]:not([data-contains="thumbnail"])::before,
+        a[href$=".pdf"] br + span::before,
+        a[href$=".doc"]:not([data-contains="thumbnail"])::before,
+        a[href$=".doc"] br + span::before,
+        a[href$=".docx"]:not([data-contains="thumbnail"])::before,
+        a[href$=".docx"] br + span::before,
+        a[href$=".ppt"]:not([data-contains="thumbnail"])::before,
+        a[href$=".ppt"] br + span::before,
+        a[href$=".pptx"]:not([data-contains="thumbnail"])::before,
+        a[href$=".pptx"] br + span::before,
+        a[href$=".ppsx"]:not([data-contains="thumbnail"])::before,
+        a[href$=".ppsx"] br + span::before,
+        a[href$=".xls"]:not([data-contains="thumbnail"])::before,
+        a[href$=".xls"] br + span::before,
+        a[href$=".xlsx"]:not([data-contains="thumbnail"])::before,
+        a[href$=".xlsx"] br + span::before,
+        a[href$=".zip"]:not([data-contains="thumbnail"])::before,
+        a[href$=".zip"] br + span::before {
+            content: "[FILE] ";
+            position: relative;
+            display: inline-block;
+            font-size: 0.75em;
+            vertical-align: middle;
+            line-height: 1;
+            //color: #999;
+            opacity: .6;
+            margin-right: 0.5em;
+            margin-top: -0.3125em;
+        }
+    }
+
+    // Priority content:
+    // (Note these are quite hacky and apply styles based on content rather than author intent
+    // Ideally these could be controlled via CKEditor div plugin, but there isn't currently a
+    // mechanism for altering the dialog form, and I don't want to create a custom version of
+    // this plugin - at least not now.
+    [data-contains="priority-content"] [data-display-as*="pale-box"],
+    [data-contains="priority-content"] [data-display-as*="themed-box"] {
+        text-align: center;
+
+        // Reduce heading sizes (esp for sidebars)
+        h2 {
+            font-size: 24px / $s__base-font-size * 1em;
+            //margin-bottom: $s__base-rem-space-unit / 2;
+            margin-bottom: 0;
+        }
+
+        h3 {
+            font-size: 20px / $s__base-font-size * 1em;
+            //margin-bottom: $s__base-rem-space-unit / 2;
+            margin-bottom: 0;
+        }
+
+        // If the only child is a paragraph, bump up the font size
+        // (note I may need to change this to all elements so long as there isn't a heading)
+        p:only-child {
+            font-size: 1.25em;
+        }
+    }
+}

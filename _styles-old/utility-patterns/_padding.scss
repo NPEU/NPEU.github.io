@@ -1,0 +1,198 @@
+/*
+    Box padding.
+    
+    @To Do: allow for responsive variations.
+*/
+
+$padding-namepadding: u- !default;
+
+
+.#{$padding-namepadding}padding--left--xs,
+.#{$padding-namepadding}padding--sides--xs {
+    padding-left: $sz-xs !important;
+}
+
+.#{$padding-namepadding}padding--right--xs,
+.#{$padding-namepadding}padding--sides--xs {
+    padding-right: $sz-xs !important;
+}
+
+.#{$padding-namepadding}padding--top--xs {
+    padding-top: $sz-xs !important;
+}
+
+.#{$padding-namepadding}padding--bottom--xs {
+    padding-bottom: $sz-xs !important;
+}
+
+.#{$padding-namepadding}padding--xs {
+    padding: $sz-xs !important;
+}
+
+
+
+
+.#{$padding-namepadding}padding--left--s,
+.#{$padding-namepadding}padding--sides--s {
+    padding-left: $sz-s !important;
+}
+
+.#{$padding-namepadding}padding--right--s,
+.#{$padding-namepadding}padding--sides--s {
+    padding-right: $sz-s !important;
+}
+
+.#{$padding-namepadding}padding--top--s {
+    padding-top: $sz-s !important;
+}
+
+.#{$padding-namepadding}padding--bottom--s {
+    padding-bottom: $sz-s !important;
+}
+
+.#{$padding-namepadding}padding--s {
+    padding: $sz-s !important;
+}
+
+
+
+.#{$padding-namepadding}padding--left,
+.#{$padding-namepadding}padding--sides {
+    padding-left: $sz-m !important;
+}
+
+.#{$padding-namepadding}padding--right,
+.#{$padding-namepadding}padding--sides {
+    padding-right: $sz-m !important;
+}
+
+.#{$padding-namepadding}padding--top {
+    padding-top: $sz-m !important;
+}
+
+.#{$padding-namepadding}padding--bottom {
+    padding-bottom: $sz-m !important;
+}
+
+
+// Set large and x-large padding to medium by default:...
+.#{$padding-namepadding}padding--left--l,
+.#{$padding-namepadding}padding--sides--l {
+    padding-left: $sz-m !important;
+}
+
+.#{$padding-namepadding}padding--right--l,
+.#{$padding-namepadding}padding--sides--l {
+    padding-right: $sz-m !important;
+}
+
+.#{$padding-namepadding}padding--top--l {
+    padding-top: $sz-m !important;
+}
+
+.#{$padding-namepadding}padding--bottom--l {
+    padding-bottom: $sz-m !important;
+}
+
+.#{$padding-namepadding}padding--l {
+    padding: $sz-m !important;
+}
+
+
+
+.#{$padding-namepadding}padding--left--xl,
+.#{$padding-namepadding}padding--sides--xl {
+    padding-left: $sz-m !important;
+}
+
+.#{$padding-namepadding}padding--right--xl,
+.#{$padding-namepadding}padding--sides--xl {
+    padding-right: $sz-m !important;
+}
+
+.#{$padding-namepadding}padding--top--xl {
+    padding-top: $sz-m !important;
+}
+
+.#{$padding-namepadding}padding--bottom--xl {
+    padding-bottom: $sz-m !important;
+}
+
+.#{$padding-namepadding}padding--xl {
+    padding: $sz-m !important;
+}
+
+// ...then allow full sized padding when there's more room:
+@media only screen and (min-width: $not-too-small +10em) {
+    .#{$padding-namepadding}padding--left--l,
+    .#{$padding-namepadding}padding--sides--l {
+        padding-left: $sz-l !important;
+    }
+
+    .#{$padding-namepadding}padding--right--l,
+    .#{$padding-namepadding}padding--sides--l {
+        padding-right: $sz-l !important;
+    }
+
+    .#{$padding-namepadding}padding--top--l {
+        padding-top: $sz-l !important;
+    }
+
+    .#{$padding-namepadding}padding--bottom--l {
+        padding-bottom: $sz-l !important;
+    }
+
+    .#{$padding-namepadding}padding--l {
+        padding: $sz-l !important;
+    }
+
+
+
+    .#{$padding-namepadding}padding--left--xl,
+    .#{$padding-namepadding}padding--sides--xl {
+        padding-left: $sz-xl !important;
+    }
+
+    .#{$padding-namepadding}padding--right--xl,
+    .#{$padding-namepadding}padding--sides--xl {
+        padding-right: $sz-xl !important;
+    }
+
+    .#{$padding-namepadding}padding--top--xl {
+        padding-top: $sz-xl !important;
+    }
+
+    .#{$padding-namepadding}padding--bottom--xl {
+        padding-bottom: $sz-xl !important;
+    }
+
+    .#{$padding-namepadding}padding--xl {
+        padding: $sz-xl !important;
+    }
+}
+
+
+    .#{$padding-namepadding}padding {
+        padding: $sz-m !important;
+    }
+
+    
+.#{$padding-namepadding}padding--top--none {
+    padding-top: 0 !important;
+}
+
+.#{$padding-namepadding}padding--bottom--none {
+    padding-bottom: 0 !important;
+}    
+
+.#{$padding-namepadding}padding--left--none {
+    padding-left: 0 !important;
+}
+
+.#{$padding-namepadding}padding--right--none {
+    padding-right: 0 !important;
+}
+
+.#{$padding-namepadding}padding--none {
+    padding: 0 !important;
+}

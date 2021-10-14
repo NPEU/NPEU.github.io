@@ -1,0 +1,46 @@
+/*
+
+*/
+
+$contact-list-namespace: c- !default;
+
+.#{$contact-list-namespace}contact-list {
+    &#{&} {
+        dt {
+            display: none;
+        }
+
+        dd {
+            margin-bottom: $s__sz-xs;
+            position: relative;
+        }
+    }
+
+    svg {
+        display: inline-block;
+        width: 1.25em;
+        height: 1.25em;
+        
+        // @TODO - this is a bit "magic number-y":
+        margin-left: -1.75em;
+        margin-top: 0.1em;
+        position: absolute;
+    }
+}
+
+.#{$contact-list-namespace}contact-avatar {
+    &#{&} {
+        float: left;
+        margin: 0.5em;
+        width: 35%;
+        min-width: 8em;
+        max-width: 16em;
+        
+        //max-width: 100%;
+        //width: calc((32em - 100%) * 1000);
+        //min-width: 10em;
+        
+        border-radius: 99999px;
+        overflow: hidden;
+    }
+}

@@ -1,0 +1,192 @@
+/*
+    All basic themes
+*/
+
+$theme-only: true;
+@import "_themes-config.scss";
+@import "_themeable-patterns.scss";
+
+
+
+// This file acts as a bridge or converter between the theme values and the soeecifc patterns.
+// Note that all patterns that need to be themeable need to follow the same 'interface'.
+// See 'panel' pattern for initial example.
+
+// NOTE: the way this works is that patterns are only themed if the theme class is applied to the
+// same element as the pattern class. This is intentional as it's possible for a collection of
+// things to need to utilize several themes (think of news items belonging to different projects)
+// The only things that are (and should be) scoped to children of themed classes via the cascade
+// rather than explicitly are the overrides to StartCSS, at the bottom.
+
+$theme-namespace: t- !default;
+
+/*
+Note - this won't work until SASS supports dynamic calling of mixins. It's close, but hasn't been
+merged yet. Hoping that will be done soon so I can change this.
+
+// List all the includes that should be called.
+// Note that they're defined in the relevent pattern files, so it isn't ideal to list them here,
+// but I don't know of another way of doing this yet.
+// One idea could be that each pattern that needs to be theme-able adds it's own name to this list,
+// (registers itself). This may work, but may come with it's own set of problems. Investigate.
+$patterns: (
+    bands-theme,
+    page-header-theme,
+    panel-theme,
+    panel-theme--dark,
+    primary-cta-theme
+);
+*/
+
+@each $name, $theme in $themes {
+
+
+
+    // Set defaults:
+    $theme: map-merge(
+        (
+            background-color      : map-get($theme, primary-color),
+            band-color            : map-get($theme, primary-color),
+            border-color          : map-get($theme, primary-color),
+            card-background-color : rgba(0,0,0,0.1),
+            card-text-color       : #fff,
+            cta-text-color        : #333,
+            cta-background-color  : map-get($theme, primary-color),
+            meter-text-color      : #fff,
+            page-header-color     : map-get($theme, primary-color),
+            text-color            : #333
+        )
+        , $theme
+    );
+
+
+
+
+
+    /* - Waiting for SASS to support. Currently pseudo code.
+    @each $pattern in $patterns {
+        @include $pattern (
+            (
+                name  : #{$name},
+                theme : $theme
+            )
+        );
+    }
+    */
+    //@debug $theme;
+
+    @include background-theme($name, $theme);
+    @include bands-theme($name, $theme);
+    @include card-themed-content($name, $theme);
+    //@include card-theme($name, $theme);
+    //@include meter-theme($name, $theme);
+    //@include page-header-theme($name, $theme);
+    //@include panel-theme($name, $theme);
+    //@include primary-cta-theme($name, $theme);
+
+
+    // Override StartCSS values.
+    // Note this almost certainly isn't the best place for this but will do for now.
+    /*.#{$theme-namespace}#{$name}.t-color {
+        color: map-get($theme, text-color);
+    }*/
+
+
+    /*.#{$theme-namespace}#{$name} button,
+    .#{$theme-namespace}#{$name} button.over-panel-control,
+    .#{$theme-namespace}#{$name} button.over-panel-control[aria-expanded=true] {
+
+        border-color: map-get($theme, border-color);
+        color: map-get($theme, cta-text-color);
+        background-color: map-get($theme, background-color);
+
+        &:hover,
+        &:active,
+        &:focus {
+            @if is-int($s__button-background-color--alt) {
+                @if $s__button-background-color--alt > 0 {
+                    $s__button-background-color--alt_percent: $s__button-background-color--alt * 1%;
+                    background-color: lighten(map-get($theme, background-color), $s__button-background-color--alt_percent);
+                }
+                @if $s__button-background-color--alt < 0 {
+                    $s__button-background-color--alt_percent: $s__button-background-color--alt * -1%;
+                    background-color: darken(map-get($theme, background-color), $s__button-background-color--alt_percent);
+                }
+            }
+        }
+    }*/
+
+    /*.#{$theme-namespace}#{$name} a[href] {
+
+        border-color: map-get($theme, border-color);
+        color: map-get($theme, text-color);
+        background-color: transparent;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: map-get($theme, text-color);
+        }
+    }*/
+
+    /*:not(.overpanel) .#{$theme-namespace}#{$name} a[href].c-cta {
+
+        border-color: map-get($theme, border-color);
+        color: map-get($theme, text-color);
+        background-color: #fff;
+
+        &:hover,
+        &:active,
+        &:focus, {
+            background-color: lighten(map-get($theme, border-color), 65%);
+        }
+    }*/
+
+    /*
+    .#{$theme-namespace}#{$name}.d-50-50-background {
+        background: #FFFFFF;
+        background: -moz-linear-gradient(left, map-get($theme, background-color) 0%, map-get($theme, background-color) 50%, #ffffff 50%, #ffffff 100%);
+        background: -webkit-linear-gradient(left, map-get($theme, background-color) 0%,map-get($theme, background-color) 50%,#ffffff 50%,#ffffff 100%);
+        background: linear-gradient(to right, map-get($theme, background-color) 0%,map-get($theme, background-color) 50%,#ffffff 50%,#ffffff 100%);
+    }
+
+    .#{$theme-namespace}#{$name}.d-50-50-background--flipped {
+        background: #FFFFFF;
+        background: -moz-linear-gradient(left, #ffffff 0%, #ffffff 50%, map-get($theme, background-color) 50%, map-get($theme, background-color) 100%);
+        background: -webkit-linear-gradient(left, #ffffff 0%,#ffffff 50%,map-get($theme, background-color) 50%,map-get($theme, background-color) 100%);
+        background: linear-gradient(to right, #ffffff 0%,#ffffff 50%,map-get($theme, background-color) 50%,map-get($theme, background-color) 100%);
+    }
+    */
+    
+    
+    // Alternate colours:
+    /*@if map-has-key($theme, "secondary-color") {
+        //@debug map-get($theme, secondary-color);
+        $theme: map-merge(
+            $theme,
+            (
+                background-color : map-get($theme, secondary-color)
+            )
+        );
+
+        @include background-theme("#{$name}--alt", $theme);
+    }*/
+    
+    // Dark theme:
+    
+    /*$theme: map-merge(
+        $theme,
+        (
+            background-color      : darken(map-get($theme, primary-color), 20%),
+            cta-text-color        : #fff,
+            cta-background-color  : darken(map-get($theme, primary-color), 20%),
+            text-color            : #fff
+        )
+    );
+    
+    @include panel-theme(#{$name}--dark, $theme);*/
+}
+
+
+
+/* ---------------------------------------------------------------------------------------------- */

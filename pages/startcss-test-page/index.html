@@ -1,0 +1,1195 @@
+---
+title: StartCSS Test Page
+layout: structure--basic
+head_style: |
+    /**
+    *:focus {
+        outline: 5px solid red !important;
+    }
+    /**/
+    /**
+    *:focus {
+        box-shadow: 0 0 2px 0 currentColor !important;
+    }
+    /**/
+
+
+
+    .test_bg {
+        background: rgba(0,0,255,0.1);
+    }
+
+    .box {
+        border: 1px solid #333;
+        background: #fed;
+        /*margin-top: -1px;
+        margin-bottom: calc(1.5rem - 1px);*/
+        /*margin-bottom: -moz-calc(2.4rem - 2px);*/
+        /*margin-bottom: calc(2.4rem - 2px);*/
+        margin-bottom: 2.4rem;
+        height: 14.4rem;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 0.2rem;
+    }
+
+    video {
+        width: 100%;
+        height: auto;
+        margin-bottom: 0.2rem;
+
+         /*max-height: 360px;*/
+    }
+
+    /*
+        Make the outlines fit to the grid for testing only.
+    */
+    h1,h2,h3,h4,h5,h6 {
+        overflow-y: hidden;
+    }
+
+    /* Handling long words */
+
+    * {
+        /* These are technically the same, but use both */
+        /*overflow-wrap: break-word;*/
+        /*word-wrap: break-word;
+
+        /*-ms-word-break: break-all;
+        /* This is the dangerous one in WebKit, as it breaks things wherever */
+        /*word-break: break-all; this applies on FF and isn't what we want. */
+        /* Instead use this non-standard one: */
+        /*word-break: break-word;*/
+
+
+        word-break: break-word;
+        word-wrap: break-word;
+
+
+        /* Adds a hyphen where the word breaks, if supported (No Blink) */
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+    }
+
+    table * {
+        word-break: normal;
+        word-wrap: normal;
+    }
+    /*
+    table {
+        max-width: 100%;
+        overflow-x: scroll;
+    }
+    */
+
+    /* Safari 6.2+ (Not iOS) declared as being for 7.1 but is applied to 6.2 */
+    /*_:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root .selector { property:value; }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="2"]  { margin-bottom: 0; }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="3"]  { margin-bottom: 0; }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="4"]  { margin-bottom: 0; }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="5"]  { margin-bottom: calc(0.9rem - 2px); }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="6"]  { margin-bottom: calc(0.4rem - 2px); }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="7"]  { margin-bottom: calc(1.1rem - 2px); }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="8"]  { margin-bottom: calc(0.6rem - 2px); }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="9"]  { margin-bottom: calc(1.3rem - 2px); }
+    _:-webkit-full-screen, _::-webkit-full-page-media, _:future, :root select[size="10"] { margin-bottom: calc(0.8rem - 2px); }
+
+    */
+
+
+    /*
+        Attempt to fix `pre` tag margins due to scrollbar height.
+
+        Part 1.
+        So far, it seems best to assume there are scrollbars (FF and IE desktop) and give a small bottom
+        margin to compensate. That's what's in StartCSS.
+
+        However, browsers without scrollbars (touch) then have the _wrong_ bottom margin.
+
+        So, using -webkit custom scrollbars to set scrollbar height equal to a space-unit.
+        This solves problems on all webkit browsers (even touch browsers that don't normally show
+        scrollbars).
+
+        Problem: setting `pre` bottom margin to a spacing-unit would be best, really, but FF and IE
+        desktop don't have these options.
+        Setting the bottom margin to take into account the scrollbar height fixes those browsers but now
+        breaks the webkit browsers which need a 'normal' margin amount.
+
+        (A) So, targeting all webkit browsers that support custom scrollbars would be the way to solve
+        this. You can't do @supports for pseudo element, (and @supports doesn't have as much support as
+        custom scrollbars anyway) so using a hack that happens to have about the same level of support:
+        http://browserhacks.com/#hack-f4ade0540d8e891e8190065f75acb186
+
+        Part 2.
+        Non-webkit mobile (Window Phone IE, Android Firefox) still has the wrong margin, so need to find
+        hacks for these.
+
+    */
+
+    pre::-webkit-scrollbar {
+        height: 1.2rem;
+    }
+
+    pre::-webkit-scrollbar-track {
+        background-color: #ddd;
+    }
+
+    pre::-webkit-scrollbar-thumb {
+        background: #aaa;
+        border-radius: 0.6rem;
+    }
+
+    /* (^A) */
+
+    pre:not(*:root) {
+        margin-bottom: 2.4rem; /* $fallback--base-rem-space-unit / 2; */
+    }
+
+
+
+
+
+    /* Use hover query to reset margin - not ideal but ot bad! */
+    /*@media (hover: hover) {
+        pre {
+            margin-bottom: -0.75rem; /* $fallback--base-rem-space-unit / 2;/
+        }
+    }*/
+
+    /*@media screen and (min-resolution: 2dppx) {
+        @-moz-document url-prefix() {
+            pre {
+                background: red;
+            }
+        }
+    }*/
+    /*
+    @media not all and ((-moz-os-version:windows-win10) and (-moz-touch-enabled:1)) {
+        pre {
+            background: red;
+            margin-bottom: -0.75rem;
+        }
+
+    }
+    */
+    /* If it's Firefox and touch is enabled: ... */
+    /*@media screen and (-moz-touch-enabled:1) {
+        pre {
+            background: #fee;
+            -margin-bottom: -0.75rem;
+        }
+    }*/
+
+    /* ... but if it's on Windows 10 (e.g. Surface)  */
+    /*
+    @media screen and (-moz-os-version:windows-win10) {
+        pre {
+            background: #eef;
+            -margin-bottom: -1.0625rem;
+        }
+    }*/
+
+
+    /* IE Mobile: */
+    /*@media screen and (min-resolution: 1dppx) and (-ms-high-contrast: none), screen and (min-resolution: 1dppx) and (-ms-high-contrast: active),{
+        @-moz-document url-prefix() {
+            pre {
+                background: yellow;
+                margin-bottom: -0.75rem;
+            }
+        }
+    }*/
+
+    /*
+    figure {
+        snap-height: 1.5rem;
+    }
+
+    figure * {
+        snap-height: 0;
+    }
+
+    figure img {
+        vertical-align: top;
+    }
+
+    */
+
+
+
+    .tb-baseline main {
+        /*background-color: transparent;
+        background-size: 100% 1.2rem;
+        background-repeat: repeat-y;*/
+
+        /*background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.2) 6%, transparent 6%), to(transparent 100%)); /* Chrome, Safari 4+ */
+        /*background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.2) 6%, transparent 6%, transparent 100%); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+        /*background-image:    -moz-linear-gradient(top, rgba(0, 0, 0, 0.2) 6%, transparent 6%, transparent 100%); /* Firefox 3.6-15 */
+        /*background-image:      -o-linear-gradient(top, rgba(0, 0, 0, 0.2) 6%, transparent 6%, transparent 100%); /* Opera 11.10-12.00 */
+        /*background-image:         linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 6%, transparent 6%, transparent 100%); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.50+ */
+
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.2+0,0.2+6,0+7,0+100 */
+        /*background-image: -moz-linear-gradient(top,  rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.2) 6%, rgba(0,0,0,0) 6%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+        /*background-image: -webkit-linear-gradient(top,  rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.2) 6%,rgba(0,0,0,0) 6%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+        /*background-image: linear-gradient(to bottom,  rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.2) 6%,rgba(0,0,0,0) 6%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+
+
+        background-image: url('https://lab.gridlight-design.co.uk/fallback-v1/line-grid-12px.gif');
+        background-repeat: repeat;
+    }
+
+    .tb-outlines h1, .tb-outlines h2, .tb-outlines h3, .tb-outlines h4, .tb-outlines h5, .tb-outlines h6,
+    .tb-outlines p, .tb-outlines li,
+    .tb-outlines dt, .tb-outlines dd,
+    .tb-outlines figcaption {
+        background: rgba(0,0,0,0.05);
+        outline: 1px dashed rgba(0,0,0,0.2);
+    }
+
+
+    .tb-toolbox {
+        padding: 0.5em;
+        background: rgba(255,255,255,0.6);
+        position: fixed;
+        z-index: 999;
+        bottom: 0;
+        left: 0;
+        font-size: 0.8em;
+        line-height: 1.5;
+    }
+
+    .tb-toolbox:hover {
+        background: rgba(255,255,255,0.8);
+    }
+
+    .tb-toolbox input {
+        vertical-align: middle;
+        margin: 0;
+        min-height: none;
+        -webkit-transform: none;
+            -ms-transform: none;
+                transform: none;
+    }
+
+    .tb-toolbox label {
+        font-weight: normal;
+        vertical-align: middle;
+    }
+body_class: tb-baseline  tb-outlines
+body_end_script: |
+    // Attempt at building a browser-info display tool:
+    window.onload = (function(onload) {
+        return function(event) {
+            onload && onload(event);
+
+            var browser_info = {
+                'User agent': navigator.userAgent,
+                'Device pixel ratio': window.devicePixelRatio,
+                'Viewport width': document.documentElement.clientWidth,
+                'Viewport height': document.documentElement.clientHeight,
+                'Device width': window.screen.availWidth,
+                'Device height': window.screen.availHeight
+            };
+
+            var browser_info_table = document.getElementById('browser_info');
+            var browser_info_body  = browser_info_table.tBodies[0];
+            var row, cell1, cell2, i;
+            browser_info_body.deleteRow(0);
+
+            for (i in browser_info) {
+                row   = browser_info_body.insertRow(-1);
+                cell1 = row.insertCell(-1);
+                cell1.innerHTML = i;
+                cell2 = row.insertCell(-1);
+                cell2.innerHTML = browser_info[i];
+            }
+        }
+    }(window.onload));
+
+    /*-- Test pages only: --------------------------------------------------------*/
+    /* Functions */
+    function ready(fn) {
+        if (document.readyState != 'loading'){
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+    }
+
+    function hasClass(el, className) {
+        if (el.classList) {
+            var r = el.classList.contains(className);
+        } else {
+            var r = new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
+        }
+        return r;
+    }
+
+    function toggleClass(el, className) {
+        if (el.classList) {
+            el.classList.toggle(className);
+        } else {
+            var classes = el.className.split(' ');
+            var existingIndex = classes.indexOf(className);
+
+            if (existingIndex >= 0) {
+                classes.splice(existingIndex, 1);
+            } else {
+                classes.push(className);
+            }
+            el.className = classes.join(' ');
+        }
+
+    }
+
+    function preprend(parent, el) {
+        parent.insertBefore(el, parent.firstChild);
+    }
+    /**/
+
+    /* Add toolbox: */
+    ready(function(){
+        var $body = document.querySelectorAll('body')[0];
+        var $main = document.querySelectorAll('main')[0];
+        var toolbox = document.createElement('div');
+        toolbox.id = 'toolbox';
+        toolbox.className = 'tb-toolbox';
+        var tools = [
+            '<input type="checkbox" id="toggleBaseline"' + (hasClass($body, 'tb-baseline') ? ' checked' : '') + ' "> ',
+            '<label for="toggleBaseline">Baseline grid</label><br>',
+            '<input type="checkbox" id="toggleOutlines"' + (hasClass($body, 'tb-outlines') ? ' checked' : '') + ' "> ',
+            '<label for="toggleOutlines">Outline elements</label><br>',
+            '<label for="maxMainWidth">Max main width:</label><br>',
+            '<input type="text" id="maxMainWidth" />',
+        ];
+        //toolbox.innerHtml = tools.join("\n");
+        preprend($body, toolbox);
+        var $toolbox = document.querySelectorAll('#toolbox')[0];
+        $toolbox.innerHTML = tools.join("\n");
+
+        var $toggleBaseline = document.querySelectorAll('#toggleBaseline')[0];
+        var $toggleOutlines = document.querySelectorAll('#toggleOutlines')[0];
+        var $maxMainWidth   = document.querySelectorAll('#maxMainWidth')[0];
+
+        // Set default values:
+        $maxMainWidth.value = getComputedStyle($main)['maxWidth'];
+
+        // Add event handlers:
+        $toggleBaseline.addEventListener('change', function(){
+            toggleClass($body, 'tb-baseline');
+        });
+
+        $toggleOutlines.addEventListener('change', function(){
+            toggleClass($body, 'tb-outlines');
+        });
+
+        $maxMainWidth.addEventListener('change', function(){
+            $main.style.maxWidth = $maxMainWidth.value;
+        });
+
+
+
+
+        /*
+        $("#toggleBaseline").change(function(){
+            $("body").toggleClass('baseline-grid');
+        });
+        $("#toggleHeadingBg").change(function(){
+            $("body").toggleClass('heading-background');
+        });
+        $("#toggleSectionBg").change(function(){
+            $("body").toggleClass('section-background');
+        });*/
+    });
+
+    /*
+    Add margins to 'off-grid' elements to maintain vertical rhythm.
+    Note we're assuming the only 'off-grid' elements -- `pre`, `img`, `video` -- will be contained
+    within `figure`s.
+    We also assume (know) that figures have a 1.5rem bottom margin, and we don't use top margins, so we
+    should be safe to _reduce_ the bottom margin by enough to restore grid alignment.
+    *//*
+    window.onload = (function(onload) {
+        return function(event) {
+            onload && onload(event);
+
+            //var $root = document.querySelectorAll(':root')[0];
+            var $body = document.querySelectorAll('body')[0];
+            var $main   = document.querySelectorAll('main')[0];
+            var figures = $main.querySelectorAll('figure');
+
+            var grid_size = getComputedStyle($body)['line-height'];
+            var grid_unit = parseInt(grid_size, 10) / 2;
+
+            console.log(grid_size, grid_unit);
+
+            figures.forEach(function(item, i){
+                //console.log(item, (item.offsetHeight / grid_unit - Math.floor(item.offsetHeight / grid_unit)) );
+                //var val = grid_unit + (grid_size * (item.offsetHeight / grid_unit - Math.floor(item.offsetHeight / grid_unit))) + 'rem';
+                var diff = item.offsetHeight / grid_unit - (Math.floor(item.offsetHeight / grid_unit));
+                console.log(diff);
+                if (diff > 0) {
+                    var diff_px = (grid_unit * 2 - (grid_unit * diff));
+                    console.log(diff_px);
+                    item.style.marginBottom = diff_px + 'px';
+                }
+
+
+                //item.style.marginBottom = grid_unit + (grid_size * (item.offsetHeight / grid_unit - Math.floor(item.offsetHeight / grid_unit))) + 'rem';
+            });
+        }
+    }(window.onload));*/
+---
+<p><a href="#">Test active link</a></p>
+<p><a href="#bottom">Skip to bottom</a></p>
+<p><a href="#tmp-lists">Skip to lists (temp)</a></p>
+<!--
+<h2>Notes</h2>
+<p>
+    <strong>Sizing issues:</strong><br>
+    Borders normally should be the same size regardless of font size.<br>
+    Vertical Rhythm (VR) preserved by using either padding or margin tweaks to offset border- Border Compensation Tweaks (BCT).<br>
+    VR is calculated by REMs so adjustment to <code>html</code> font-size should adjust whole VR.<br>
+    However, doing this DOES NOT adjust the BCT.<br>
+    So, perhaps have to consider changing all BCT values to <code>calc()</code> so that <code>html</code>  font-size adjustments (e.g. in Media Queries) will also adjust BCT.<br>
+    Although, it's possible to make font-size changes on the <code>body</code>  font-size, so this may not be necessary.
+</p>
+
+<p>
+    Double bottom space fix needs thought in how it relates to borders.
+    The border/padding combination works fine, but the bottom margin of the inner elements will be a full spacing-unit, not adjusted for border-width.
+    This means the combined margin is 1 full spacing unit and this negates the BCT.
+    Maybe will have to make BCT margin-based and not padding based after all?
+</p>
+-->
+
+<h2>Forms</h2>
+
+
+<form>
+    <fieldset>
+        <p>Some inputs would be here, like this:</p>
+        <p>Here's a <button>Button</button></p>
+        <p>Here's a <button>Button with<br>a break</button></p>
+        <p><input type="button" value="input type[button]"></p>
+        <p><input type="reset" value="input type[reset]"></p>
+        <p><input type="submit" value="input type[submit]"></p>
+    </fieldset>
+    <fieldset>
+        <legend>A legend</legend>
+        <p>
+            <label for="input1-1">Enter some text:</label> <input type="text" id="input1-1"> <button>Button</button>
+        </p>
+        <p>
+            <label for="input1a-1">Without <code>type</code> attribute:</label> <input type="text" id="input1a-1"> <button>Button</button>
+        </p>
+        <p>
+            <label for="input1-2">Choose a file:</label> <input type="file" id="input1-2"> <button>Button</button>
+        </p>
+
+        <p>
+            <label for="input1-3">Select unit type:</label>
+            <select id="input1-3">
+                <option value="1">Miner Long Name Jones Bones</option>
+                <option value="2">Puffer</option>
+                <option value="3">Snipey</option>
+                <option value="4">Max</option>
+                <option value="5">Firebot</option>
+                <option value="6">Roger</option>
+                <option value="7">Dodger</option>
+                <option value="8">Codger</option>
+                <option value="9">Bodger</option>
+                <option value="10">Splodger</option>
+                <option value="11">Zodger</option>
+                <option value="12">Modger</option>
+            </select> <button>Button</button>
+        </p>
+
+        <p>
+            Multi-select: (note Mac Safari treats <code>size</code> attributes less than 4 as 4)
+        </p>
+
+        <p>
+            <label for="input1-3a">Select unit types (<code>size="2"</code>):</label>
+            <select id="input1-3a" multiple size="2">
+                <option value="1">Miner Long Name Jones Bones</option>
+                <option value="2">Puffer</option>
+                <option value="3">Snipey</option>
+                <option value="4">Max</option>
+                <option value="5">Firebot</option>
+                <option value="6">Roger</option>
+                <option value="7">Dodger</option>
+                <option value="8">Codger</option>
+                <option value="9">Bodger</option>
+                <option value="10">Splodger</option>
+                <option value="11">Zodger</option>
+                <option value="12">Modger</option>
+            </select> <button>Button</button>
+        </p>
+
+        <p>
+            <label for="input1-3b">Select unit types (<code>size="3"</code>):</label>
+            <select id="input1-3b" multiple size="3">
+                <option value="1">Miner Long Name Jones Bones</option>
+                <option value="2">Puffer</option>
+                <option value="3">Snipey</option>
+                <option value="4">Max</option>
+                <option value="5">Firebot</option>
+                <option value="6">Roger</option>
+                <option value="7">Dodger</option>
+                <option value="8">Codger</option>
+                <option value="9">Bodger</option>
+                <option value="10">Splodger</option>
+                <option value="11">Zodger</option>
+                <option value="12">Modger</option>
+            </select> <button>Button</button>
+        </p>
+        <p>
+            <label for="input1-3c">Select unit types (<code>size="4"</code>):</label>
+            <select id="input1-3c" multiple size="4">
+                <option value="1">Miner Long Name Jones Bones</option>
+                <option value="2">Puffer</option>
+                <option value="3">Snipey</option>
+                <option value="4">Max</option>
+                <option value="5">Firebot</option>
+                <option value="6">Roger</option>
+                <option value="7">Dodger</option>
+                <option value="8">Codger</option>
+                <option value="9">Bodger</option>
+                <option value="10">Splodger</option>
+                <option value="11">Zodger</option>
+                <option value="12">Modger</option>
+            </select> <button>Button</button>
+        </p>
+
+        <p>
+            <label for="input1-3d">Select unit types (<code>size="5"</code>):</label>
+            <select id="input1-3d" multiple size="5">
+                <option value="1">Miner Long Name Jones Bones</option>
+                <option value="2">Puffer</option>
+                <option value="3">Snipey</option>
+                <option value="4">Max</option>
+                <option value="5">Firebot</option>
+                <option value="6">Roger</option>
+                <option value="7">Dodger</option>
+                <option value="8">Codger</option>
+                <option value="9">Bodger</option>
+                <option value="10">Splodger</option>
+                <option value="11">Zodger</option>
+                <option value="12">Modger</option>
+            </select> <button>Button</button>
+        </p>
+
+        <p>
+            <label for="input1-3e">Select unit types (<code>size="6"</code>):</label>
+            <select id="input1-3e" multiple size="6">
+                <option value="1">Miner Long Name Jones Bones</option>
+                <option value="2">Puffer</option>
+                <option value="3">Snipey</option>
+                <option value="4">Max</option>
+                <option value="5">Firebot</option>
+                <option value="6">Roger</option>
+                <option value="7">Dodger</option>
+                <option value="8">Codger</option>
+                <option value="9">Bodger</option>
+                <option value="10">Splodger</option>
+                <option value="11">Zodger</option>
+                <option value="12">Modger</option>
+            </select> <button>Button</button>
+        </p>
+
+        <p>
+            <label for="input1-3f">Select unit types (<code>size="7"</code>):</label>
+            <select id="input1-3f" multiple size="7">
+                <option value="1">Miner Long Name Jones Bones</option>
+                <option value="2">Puffer</option>
+                <option value="3">Snipey</option>
+                <option value="4">Max</option>
+                <option value="5">Firebot</option>
+                <option value="6">Roger</option>
+                <option value="7">Dodger</option>
+                <option value="8">Codger</option>
+                <option value="9">Bodger</option>
+                <option value="10">Splodger</option>
+                <option value="11">Zodger</option>
+                <option value="12">Modger</option>
+            </select> <button>Button</button>
+        </p>
+
+        <p>
+            <label for="input1-3g">Select unit types (<code>size="8"</code>):</label>
+            <select id="input1-3g" multiple size="8">
+                <option value="1">Miner Long Name Jones Bones</option>
+                <option value="2">Puffer</option>
+                <option value="3">Snipey</option>
+                <option value="4">Max</option>
+                <option value="5">Firebot</option>
+                <option value="6">Roger</option>
+                <option value="7">Dodger</option>
+                <option value="8">Codger</option>
+                <option value="9">Bodger</option>
+                <option value="10">Splodger</option>
+                <option value="11">Zodger</option>
+                <option value="12">Modger</option>
+            </select> <button>Button</button>
+        </p>
+
+        <p>
+            <label for="input1-3h">Select unit types (<code>size="9"</code>):</label>
+            <select id="input1-3h" multiple size="9">
+                <option value="1">Miner Long Name Jones Bones</option>
+                <option value="2">Puffer</option>
+                <option value="3">Snipey</option>
+                <option value="4">Max</option>
+                <option value="5">Firebot</option>
+                <option value="6">Roger</option>
+                <option value="7">Dodger</option>
+                <option value="8">Codger</option>
+                <option value="9">Bodger</option>
+                <option value="10">Splodger</option>
+                <option value="11">Zodger</option>
+                <option value="12">Modger</option>
+            </select> <button>Button</button>
+        </p>
+
+        <p>
+            <label for="input1-3i">Select unit types (<code>size="10"</code>):</label>
+            <select id="input1-3i" multiple size="10">
+                <option value="1">Miner Long Name Jones Bones</option>
+                <option value="2">Puffer</option>
+                <option value="3">Snipey</option>
+                <option value="4">Max</option>
+                <option value="5">Firebot</option>
+                <option value="6">Roger</option>
+                <option value="7">Dodger</option>
+                <option value="8">Codger</option>
+                <option value="9">Bodger</option>
+                <option value="10">Splodger</option>
+                <option value="11">Zodger</option>
+                <option value="12">Modger</option>
+            </select> <button>Button</button>
+        </p>
+
+        <p>
+            <input type="checkbox" id="input1-4"> <label for="input1-4">I agree to the terms</label>
+        </p>
+
+        <fieldset>
+            <p>
+                <input type="radio" id="input1-5a" name="input1-5"> <label for="input1-5a">Radio 1</label> <input type="radio" id="input1-5b" name="input1-5"> <label for="input1-5b">Radio 2</label>
+            </p>
+        </fieldset>
+
+        <p>
+            <label for="input1-5">Enter some text:</label> <textarea id="input1-5">Some test text
+spanning multiple
+lines.</textarea>
+        </p>
+    </fieldset>
+    <fieldset>
+        <legend>A legend</legend>
+        <p>
+            <label for="input1-6"><code>&lt;color&gt;</code> input:</label> <input type="color" id="input1-6"> <button>Button</button>
+        </p>
+        <p>
+            <label for="input1-7"><code>&lt;date&gt;</code> input:</label> <input type="date" id="input1-7"> <button>Button</button>
+        </p>
+        <p>
+            <label for="input1-8"><code>&lt;datetime&gt;</code> input:</label> <input type="datetime" id="input1-8"> <button>Button</button>
+        </p>
+        <p>
+            <label for="input1-9"><code>&lt;datetime-local&gt;</code> input:</label> <input type="datetime-local" id="input1-9"> <button>Button</button>
+        </p><p>
+            <label for="input1-10"><code>&lt;month&gt;</code> input:</label> <input type="month" id="input1-10"> <button>Button</button>
+        </p>
+        <p>
+            <label for="input1-11"><code>&lt;number&gt;</code> input:</label> <input type="number" id="input1-11"> <button>Button</button>
+        </p>
+        <p>
+            <label for="input1-12"><code>&lt;password&gt;</code> input:</label> <input type="password" id="input1-12"> <button>Button</button>
+        </p>
+        <p>
+            <label for="input1-13"><code>&lt;range&gt;</code> input:</label> <input type="range" id="input1-13"> <button>Button</button>
+        </p>
+        <p>
+            <label for="input1-14"><code>&lt;search&gt;</code> input:</label> <input type="search" id="input1-14"> <button>Button</button>
+        </p>
+        <p>
+            <label for="input1-15"><code>&lt;tel&gt;</code> input:</label> <input type="tel" id="input1-15"> <button>Button</button>
+        </p>
+        <p>
+            <label for="input1-16"><code>&lt;time&gt;</code> input:</label> <input type="time" id="input1-16"> <button>Button</button>
+        </p>
+        <p>
+            <label for="input1-17"><code>&lt;url&gt;</code> input:</label> <input type="url" id="input1-17"> <button>Button</button>
+        </p>
+        <p>
+            <label for="input1-18"><code>&lt;week&gt;</code> input:</label> <input type="week" id="input1-18"> <button>Button</button>
+        </p>
+        <p>
+            Progress: <progress></progress>
+        </p>
+    </fieldset>
+</form>
+<form oninput="result.value=parseInt(a.value)+parseInt(b.value)">
+    <p>
+        Output: <input type="range" name="b" value="50" /> +
+        <input type="number" name="a" value="10" /> =
+        <output name="result">60</output>
+    </p>
+</form>
+<p>
+    <code>&lt;meter&gt;</code> examples:
+</p>
+<p>
+    Heat the oven to <meter min="200" max="500" value="350">350 degrees</meter>.
+</p>
+<p>
+    He got a <meter low="69" high="80" max="100" value="84">B</meter> on the exam.
+</p>
+
+<hr>
+<h1>Heading 1</h1>
+<p>Pellentesque habitant morbi tristique <a href="#">some inline link</a> senectus et netus et <a href="#" rel="external">some inline external link</a> malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+
+<h2>Heading 2</h2>
+<p>Pellentesque habitant morbi tristique <a href="#">some inline link</a> senectus et netus et <a href="#" rel="external">some inline external link</a> malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+
+<h3>Heading 3</h3>
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+
+<h4>Heading 4</h4>
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+
+<h5>Heading 5</h5>
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+
+<h6>Heading 6</h6>
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+
+<hr>
+<h2>Heading 2<br>Simulate line-wrap</h2>
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+
+<h3>Heading 3<br>Simulate line-wrap</h3>
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+
+<h4>Heading 4<br>Simulate line-wrap</h4>
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+
+<h5>Heading 5<br>Simulate line-wrap</h5>
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+
+<h6>Heading 6<br>Simulate line-wrap</h6>
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+
+<h2>Blockquotes</h2>
+
+<blockquote>
+     The people recognize themselves in their commodities; they find their
+     soul in their automobile, hi-fi set, split-level home, kitchen equipment.
+     — <cite><a href="https://en.wikipedia.org/wiki/Herbert_Marcuse">Herbert Marcuse</a></cite>
+</blockquote>
+
+<blockquote>
+    <p>I contend that we are both atheists. I just believe in one fewer
+    god than you do. When you understand why you dismiss all the other
+    possible gods, you will understand why I dismiss yours.</p>
+    <footer>— <cite>Stephen Roberts</cite></footer>
+</blockquote>
+
+<h2>Lists</h2>
+
+<h3><code>ol</code></h3>
+<p>I have lived in the following countries (given in the order of when I first lived there):</p>
+<ol>
+    <li>Switzerland</li>
+    <li>United Kingdom</li>
+    <li>United States</li>
+    <li>Norway</li>
+</ol>
+
+<p id="tmp-lists">Same list with various type attributes (the floated image tests the fix for <a href="https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists">list number/bullet position problem</a>).</p>
+
+<img src="/media/poster.jpg" style="float: left; width:40%;">
+
+<ol type="1">
+    <li>Switzerland</li>
+    <li>United Kingdom</li>
+    <li>United States</li>
+    <li>Norway</li>
+</ol>
+
+<ol type="a">
+    <li>Switzerland</li>
+    <li>United Kingdom</li>
+    <li>United States</li>
+    <li>Norway</li>
+</ol>
+
+<ol type="A">
+    <li>Switzerland</li>
+    <li>United Kingdom</li>
+    <li>United States</li>
+    <li>Norway</li>
+</ol>
+
+<ol type="i">
+    <li>Switzerland</li>
+    <li>United Kingdom</li>
+    <li>United States</li>
+    <li>Norway</li>
+</ol>
+
+<ol type="I">
+    <li>Switzerland</li>
+    <li>United Kingdom</li>
+    <li>United States</li>
+    <li>Norway</li>
+</ol>
+
+<p>Same list reversed</p>
+
+<ol reversed>
+    <li>Switzerland</li>
+    <li>United Kingdom</li>
+    <li>United States</li>
+    <li>Norway</li>
+</ol>
+
+
+<p>Same list start at 5</p>
+
+<ol start="5">
+    <li>Switzerland</li>
+    <li>United Kingdom</li>
+    <li>United States</li>
+    <li>Norway</li>
+</ol>
+
+<p>Start at 5 AND reversed</p>
+
+<ol start="5" reversed>
+    <li>Switzerland</li>
+    <li>United Kingdom</li>
+    <li>United States</li>
+    <li>Norway</li>
+</ol>
+
+
+<p>Nested:</p>
+<ol>
+    <li>Switzerland</li>
+    <li>
+        United Kingdom
+        <ol>
+            <li>Manchester</li>
+            <li>Leeds</li>
+            <li>
+                London
+                <ol>
+                    <li>Inner</li>
+                    <li>Outer</li>
+                    <li>Greater</li>
+                </ol>
+            </li>
+        </ol>
+    </li>
+    <li>United States</li>
+    <li>Norway</li>
+</ol>
+
+<h3><code>ul</code></h3>
+<p>I have lived in the following countries:</p>
+<ul>
+    <li>Norway</li>
+    <li>Switzerland</li>
+    <li>
+        United Kingdom
+        <ul>
+            <li>Manchester</li>
+            <li>Leeds</li>
+            <li>
+                London
+                <ul>
+                    <li>Inner</li>
+                    <li>Outer</li>
+                    <li>Greater</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>United States</li>
+</ul>
+
+<h3><code>dl</code></h3>
+
+<dl>
+    <dt>Last modified time</dt>
+    <dd>2004-12-23T23:33Z</dd>
+    <dt>Recommended update interval</dt>
+    <dd>60s</dd>
+    <dt>Authors</dt>
+    <dt>Editors</dt>
+    <dd>Robert Rothman</dd>
+    <dd>Daniel Jackson</dd>
+</dl>
+
+<div>
+<h2>Text-level elements</h2>
+<p>
+    <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-a-element" rel="external">[a]</a>: <a href="#">With href</a>. <a>Without href</a>. <a href="https://www.w3.org/TR/html5/text-level-semantics.html#text-level-semantics" rel="external">External link</a>.
+</p>
+<p>
+    On a related note, very long words like "rindfleischetikettierungsüberwachungsaufgabenübertragungsgesetz" (see <a href="https://en.wikipedia.org/wiki/Rinderkennzeichnungs-_und_Rindfleischetikettierungs%C3%BCberwachungsaufgaben%C3%BCbertragungsgesetz" rel="external">rindfleischetikettierungsüberwachungsaufgabenübertragungsgesetz</a>) need to be catered for with regards to word-wrapping.
+</p>
+<p>
+    <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-em-element" rel="external">[em]</a> and <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-strong-element" rel="external">[strong]</a>: <em>Stress emphasis</em> and <strong>strong importance, seriousness, or urgency</strong>.
+</p>
+<p>
+    <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-small-element" rel="external">[small]</a>: <small>side comments such as small print</small>.
+</p>
+<p>
+    <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-s-element" rel="external">[s]</a>: <s>Contents that are no longer accurate or no longer relevant</s>.
+</p>
+<p>
+    <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-cite-element" rel="external">[cite]</a>: A reference to a creative work. It must include the title of the work or the name of the author(person, people or organization) or an URL reference, or a reference in abbreviated form as per the conventions used for the addition of citation metadata. E.g. In the words of <cite>Charles Bukowski</cite> -  <q>An intellectual says a simple thing in a hard way. An artist says a hard thing in a simple way.</q>.
+</p>
+<p>
+    <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-q-element" rel="external">[q]</a>: content quoted from another source. E.g. The man said <q>Things that are impossible just take longer</q>. I disagreed with him.
+</p>
+<p>
+    <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-abbr-element" rel="external">[abbr]</a>: An abbreviation or acronym, optionally with its expansion. The title attribute may be used to provide an expansion of the abbreviation. The attribute, if specified, must contain an expansion of the abbreviation, and nothing else. E.g. The <abbr title="Web Hypertext Application Technology Working Group">WHATWG</abbr> started working on HTML5 in 2004.
+</p>
+<p>
+    <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-dfn-element" rel="external">[dfn]</a>: Represents the defining instance of a term. E.g. The <dfn><abbr title="Garage Door Opener">GDO</abbr></dfn> is a device that allows off-world teams to open the iris. --- later... --- Teal'c activated his <abbr title="Garage Door Opener">GDO</abbr> and so Hammond ordered the iris to be opened.
+</p>
+<p>
+    <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-time-element" rel="external">[time]</a>: Represents its contents, along with a machine-readable form of those contents in the datetime attribute. The kind of content is limited to various kinds of dates, times, time-zone offsets, and durations. E.g. <time class="dtstart" datetime="2005-10-05">October 5</time>.
+</p>
+<p>
+    <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-code-element" rel="external">[code]</a>: Represents a fragment of computer code. E.g. The <code>code</code> element represents a fragment of computer code.
+</p>
+<p>
+    <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-var-element" rel="external">[var]</a>: Represents a variable. E.g. If there are <var>n</var> pipes leading to the ice cream factory...
+</p>
+<p>
+    <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-samp-element" rel="external">[samp-]</a>: Represents a sample or quoted output from another program or computing system. E.g. The computer said <samp>Too much cheese in tray two</samp> but I didn't know what that meant.
+</p>
+<p>
+    <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-kbd-element" rel="external">[kbd]</a>: Represents user input (typically keyboard input, although it may also be used to represent other input, such as voice commands). E.g. To make George eat an apple, press <kbd><kbd>Shift</kbd>+<kbd>F3</kbd></kbd>.
+</p>
+<p>
+    <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-sup-element" rel="external">[sup and sup]</a>: Represents a superscript and the sub element represents a subscript. The most beautiful women are <span lang="fr"><abbr>M<sup>lle</sup></abbr> Gwendoline</span> and <span lang="fr"><abbr>M<sup>me</sup></abbr> Denise</span>. The coordinate of the <var>i</var>th point is (<var>x<sub><var>i</var></sub></var>, <var>y<sub><var>i</var></sub></var>). For example, the 10th point has coordinate (<var>x<sub>10</sub></var>, <var>y<sub>10</sub></var>).
+</p>
+<p>
+    <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-i-element" rel="external">[i]</a>: Represents a span of text in an alternate voice or mood, or otherwise offset from the normal prose in a manner indicating a different quality of text, such as a taxonomic designation, a technical term, an idiomatic phrase from another language, transliteration, a thought, or a ship name in Western texts. E.g. The <i class="taxonomy">Felis silvestris catus</i> is cute. The term <i>prose content</i> is defined above. There is a certain <i lang="fr">je ne sais quoi</i> in the air.
+</p>
+<p>
+    <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-b-element" rel="external">[b]</a>: Represents a span of text to which attention is being drawn for utilitarian purposes without conveying any extra importance and with no implication of an alternate voice or mood, such as key words in a document abstract, product names in a review, actionable words in interactive text-driven software, or an article lede. E.g. The <b>frobonitor</b> and <b>barbinator</b> components are fried. <b>Emboldened text can be nested 2 levels deep and <code>bolder</code> should be applied to the inner level, like <b>this</b>.</b>
+</p>
+<p>
+    <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-u-element" rel="external">[u]</a>: Represents a span of text with an unarticulated, though explicitly rendered, non-textual annotation, such as labeling the text as being a proper name in Chinese text (a Chinese proper name mark), or labeling the text as being misspelt. E.g. The <u>see</u> is full of fish.
+</p>
+<p>
+    <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-mark-element" rel="external">[mark]</a>: Represents a run of text in one document marked or highlighted for reference purposes, due to its relevance in another context. E.g. I also have some <mark>kitten</mark>s who are visiting me these days. They're really cute. I think they like my garden! Maybe I should adopt a <mark>kitten</mark>.
+</p>
+
+
+</div>
+
+<h2>Text-level Combinations</h2>
+<p>
+    Sometimes links have other elements nested within them. For example a link to <a href="https://www.w3.org/TR/css-fonts-3/#font-family-prop">the <code>font-family</code> spec</a> containes a nested <code>&lt;code&gt;</code> element.
+    There's also the case where the <code>&lt;code&gt;</code> elements is the <em>only</em> child of a link, like this: <a href="https://www.w3.org/TR/css-fonts-3/#propdef-font-style"><code>font-style</code></a>.
+    If any element that can be nested within another is too-heavily styled, complicatatons can occur.
+</p>
+<p>
+    Another possibility is a <a href="#">link with <mark>mark</mark> inside it</a>.
+</p>
+
+<p>Nest <b>bold with <i>italics</i> to test the</b> font properly.</p>
+
+<p>And again with nested <b>bold with <b><i>bolder italics</i></b> to test the</b> font some more.</p>
+
+
+<h2>Other</h2>
+
+    <pre><code>Small - no scrolling</code></pre>
+
+<p>Random text</p>
+
+<figure>
+    <figcaption>HTML</figcaption>
+        <pre><code>&lt;!-- Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+, IE10+ (including Edge) --&gt;
+&lt;link rel="stylesheet" href="css/your-stylesheet.css"
+media="only screen and (-webkit-min-device-pixel-ratio:0) and (min-color-index:0), (-ms-high-contrast: none)"&gt;
+&lt;!-- FF29+ --&gt;
+&lt;link rel="stylesheet" href="css/your-stylesheet.css"
+media="only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm)"&gt;
+</code></pre>
+</figure>
+
+<hr>
+
+<details>
+    <summary>Summary/details</summary>
+    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+</details>
+
+<hr>
+
+<h2>Media</h2>
+
+<!--
+Improve/expand upon the SVG and link to dedicated page that contains more examples and
+explanation.
+-->
+
+<div class="box">
+    <object type="image/svg+xml" data="/media/fallback-logo.svg" height="144" class="svg__image">
+        <p>Object failed to load.</p>
+    </object>
+</div>
+
+<p>
+    <a href="#">
+        <img src="/media/pexels-photo-172256.jpg" alt="" width="300">
+    </a>
+</p>
+
+<figure>
+   <img src="/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny">
+   <figcaption>
+        Image
+    </figcaption>
+</figure>
+
+<figure>
+   <img src="/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny">
+   <figcaption>
+        <p>Longer caption here. It's inside a paragraph.</p>
+    </figcaption>
+</figure>
+
+<figure>
+   <img src="/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny">
+   <figcaption>
+        <p>Even longer caption here.</p>
+        <p>There's even a second paragraph.</p>
+    </figcaption>
+</figure>
+
+<p>Linked image:</p>
+<p><a href="#"><img src="/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny"></a></p>
+
+
+<figure>
+    <!-- first try HTML5 playback: if serving as XML, expand `controls` to `controls="controls"` and autoplay likewise       -->
+    <!-- warning: playback does not work on iPad/iPhone if you include the poster attribute! fixed in iOS4                   -->
+    <video width="640" height="360" controls>
+        <!-- MP4 must be first for iPad! -->
+        <source src="/media/big_buck_bunny.mp4" type="video/mp4"><!-- Safari / iOS, IE9 -->
+        <source src="/media/big_buck_bunny.webm" type="video/webm"><!-- Chrome10+, Ffx4+, Opera10.6+ -->
+        <source src="/media/big_buck_bunny.ogv" type="video/ogg"><!-- Firefox3.6+ / Opera 10.5+ -->
+        <!-- fallback to Flash: -->
+        <object width="640" height="360" type="application/x-shockwave-flash" data="media/player.swf">
+            <!-- Firefox uses the `data` attribute above, IE/Safari uses the param below -->
+            <param name="movie" value="player.swf">
+            <param name="flashvars" value="autostart=true&amp;controlbar=over&amp;image=poster.jpg&amp;file=media/big_buck_bunny.mp4">
+            <!-- fallback image -->
+            <img src="/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny"
+                 title="No video playback capabilities, please download the video below">
+        </object>
+    </video>
+    <!-- you *must* offer a download link as they may be able to play the file locally. customise this bit all you want -->
+    <figcaption>
+        <strong>Download Video:</strong> Closed Format: <a href="media/big_buck_bunny.mp4">"MP4"</a> Open Format: <a href="media/big_buck_bunny.ogv">"OGG"</a> / <a href="media/big_buck_bunny.webm">"WebM"</a>
+    </figcaption>
+</figure>
+
+<table id="Books" border="1">
+    <caption id="Cap1">Books I May or May Not Have Read</caption>
+    <thead>
+        <tr>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Year</th>
+            <th>ISBN-13</th>
+            <th>ISBN-10</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Miguel De Cervantes</td>
+            <td>The Ingenious Gentleman Don Quixote of La Mancha</td>
+            <td>1605</td>
+            <td>9783125798502</td>
+            <td>3125798507</td>
+            </tr>
+        <tr>
+        <td>Mary Shelley</td>
+            <td>Frankenstein; or, The Modern Prometheus</td>
+            <td>1818</td>
+            <td>9781530278442</td>
+            <td>1530278449</td>
+        </tr>
+        <tr>
+            <td>Herman Melville</td>
+            <td>Moby-Dick; or, The Whale</td>
+            <td>1851</td>
+            <td>9781530697908</td>
+            <td>1530697905</td>
+        </tr>
+        <tr>
+            <td>Emma Dorothy Eliza Nevitte Southworth</td>
+            <td>The Hidden Hand</td>
+            <td>1888</td>
+            <td>9780813512969</td>
+            <td>0813512964</td>
+        </tr>
+        <tr>
+            <td>F. Scott Fitzgerald</td>
+            <td>The Great Gatsby</td>
+            <td>1925</td>
+            <td>9780743273565</td>
+            <td>0743273567</td>
+        </tr>
+        <tr>
+            <td>George Orwell</td>
+            <td>Nineteen Eighty-Four</td>
+            <td>1948</td>
+            <td>9780451524935</td>
+            <td>0451524934</td>
+        </tr>
+    </tbody>
+</table>
+
+<table id="browser_info" border="1">
+    <caption>Browser info</caption>
+    <thead>
+        <tr><th>Name</th><th>Value</th></tr>
+    </thead>
+    <tbody>
+        <tr><td colspan="2">No Javascript - unable to detect anything!</td></tr>
+    </tbody>
+</table>
+
+<p>
+    Some more text.
+</p>
+
+<footer>
+    <p>Contact information for this page:</p>
+    <address>
+        someone@somewhere.com
+    </address>
+</footer>
+
+<div id="bottom"></div>

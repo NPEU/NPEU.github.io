@@ -1,0 +1,230 @@
+@import "_settings.scss";
+
+//@import "_core_themes.scss";
+
+@import "_sizes";
+
+$ff-breakpoints: ();
+$ff-min-widths: ();
+@import "special-patterns/_ff-widths.scss";
+/*
+@import "component-patterns/_contact-list.scss";
+
+@import "component-patterns/_thumbnail.scss";
+
+$theme-only: true;
+@import "component-patterns/_panel.scss";
+
+@import "layout-patterns/_distribute.scss";
+
+@import "utility-patterns/_padding.scss";
+
+@import "utility-patterns/_space.scss";
+
+@import "utility-patterns/_text-align.scss";
+*/
+
+$theme-only: true;
+@import "component-patterns/_user_content";
+
+
+
+.cke_widget_wrapper.cke_widget_block{ 
+
+    &::before,
+    &::after {
+        content: " ";
+        display: table;
+    }
+
+    &::after {
+        clear: both;
+    }
+}
+
+[data-display-is~="pulled-left"],
+[data-position="left"] {
+    float: left;
+    clear: left;
+    //margin-right: $sz-m;
+    margin-left: 0;
+    margin-right: 0;
+
+    &::before {
+        display: none;
+    }
+
+    & + ::before,
+    & + ::after {
+        content: " ";
+        display: table;
+    }
+
+    & + ::after {
+        clear: both;
+    }
+}
+
+[data-display-is~="pulled-right"],
+[data-position="right"] {
+    float: right;
+    clear: right;
+    //margin-left: $sz-m;
+    margin-left: 0;
+    margin-right: 0;
+
+    &::after {
+        display: none;
+    }
+
+    & + ::before,
+    & + ::after {
+        content: " ";
+        display: table;
+    }
+
+    & + ::after {
+        clear: both;
+    }
+}
+
+[data-display-is~="pulled-center"],
+[data-position="center"] {
+    margin-left: auto;
+    margin-right: auto;
+
+    &::after {
+        display: none;
+    }
+}
+
+[data-display-is~="width-one-quarter"],
+[data-width="one-quarter"] {
+    @include ff-width(100%, $uc-breakpoint, 25%);
+}
+
+[data-display-is~="width-one-third"],
+[data-width="one-third"] {
+    @include ff-width(100%, $uc-breakpoint, 33%);
+}
+
+[data-display-is~="width-one-half"],
+[data-width="one-half"] {
+    @include ff-width(100%, $uc-breakpoint, 50%);
+}
+
+[data-display-is~="width-two-thirds"],
+[data-width="two-thirds"] {
+    @include ff-width(100%, $uc-breakpoint, 67%);
+}
+
+[data-display-is~="width-one-whole"],
+[data-width="one-whole"] {
+    width: 100%;
+}
+
+
+
+
+[data-contains~="image"] {
+    //@extend .c-badge;
+    // No - extend is too messy. Maybe create a mixin, but duplicate it here for now:
+    display: block;
+    vertical-align: middle;
+    position: relative; /* [1] */
+
+
+    svg {
+        max-width: 100%;
+    }
+
+    img {
+        /*
+            1. This is to provide positioning context for the ::after pseudo-element.
+            2. This is so a broken image is still 100%.
+            3. Center in container.
+            4. This prevents long-thin images appearing huge an narrow (100% width) sizes.
+               However, it's a bit of a magic number, so may not work in all cases.
+        */
+
+        position: relative; /* [1] */
+
+        display: block; /* [2] */
+
+        height: auto;
+        width: auto;
+
+        max-width: 100%;
+        max-height: 50vw; /* [4] */
+
+        border-style: none;
+
+        margin: 0 auto; /* [3] */
+
+    }
+}
+
+// Scale 16, 18, 24, 30, 36, 48, 60, 72  *3 =
+// 48, 54, 72, 90, 108, 144, 180, 216 
+
+[data-contains~="logo"] img {
+    background-color: transparent;
+}
+
+[data-contains~="logo-xsmall"] img {
+    max-height: 5.4rem;
+}
+
+[data-contains~="logo-small"] img {
+    max-height: 7.2rem;
+}
+
+[data-contains~="logo-medium"] img {
+    max-height: 9rem;
+}
+
+[data-contains~="logo-large"] img {
+    max-height: 10.8rem;
+}
+
+[data-contains~="logo-xlarge"] img {
+    max-height: 14.4rem;
+}
+
+[data-contains~="logo-xxlarge"] img {
+    max-height: 18rem;
+}
+
+[data-contains~="logo-xxlarge"] img {
+    max-height: 21.6rem;
+}
+
+
+
+[data-contains~="logo-xsmall"] {
+    height: 5.4rem;
+}
+
+[data-contains~="logo-small"] {
+    height: 7.2rem;
+}
+
+[data-contains~="logo-medium"] {
+    height: 9rem;
+}
+
+[data-contains~="logo-large"] {
+    height: 10.8rem;
+}
+
+[data-contains~="logo-xlarge"] {
+    height: 14.4rem;
+}
+
+[data-contains~="logo-xxlarge"] {
+    height: 18rem;
+}
+
+[data-contains~="logo-xxxlarge"] {
+    height: 21.6erm;
+}

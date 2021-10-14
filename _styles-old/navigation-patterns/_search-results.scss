@@ -1,0 +1,32 @@
+/*
+    The `height: 100%;` in the `.search-results` class below allows the search-results to fill it's container (if inside,
+    say, a list-grid). However, it doesn't work in Safari OSX/iOS.
+    Applying a `search-results-wrap` class to a list item to make those items flex-containers seems to work
+    OK, but perhaps this would be better abstracted as a `fill-height` class or something?
+*/
+
+$search-results-namespace: n- !default;
+$theme-namespace: t- !default;
+
+//$search-results--base-color: #eee !default;
+
+$search-results-spacing-unit: 2rem !default;
+
+// Search results heading:
+$search-results-heading--font-size: 2rem !default;
+
+.#{$search-results-namespace}search-results {
+
+    &#{&} {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .#{$search-results-namespace}search-results__heading {
+        font-size: $search-results-heading--font-size;
+        margin-bottom: 0;
+    }
+}
+
+

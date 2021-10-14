@@ -1,0 +1,51 @@
+/*
+    Section Menu
+    =============
+
+*/
+
+$menu-namespace: n- !default;
+
+.#{$menu-namespace}menu {
+
+    /*
+    */
+    &#{&} {
+    }
+
+    .#{$pagination-namespace}menu__title {
+        margin: 0;
+    }
+
+    .#{$pagination-namespace}menu__links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            padding: 0;
+            margin: 0;
+        }
+
+        li:not(:last-child) {
+            border-bottom: 1px solid #ccc;
+        }
+
+        a {
+            text-decoration: none;
+            padding: $s__sz-xs;
+            display: block;
+            position: relative;
+        }
+
+        a[href] {
+            &:hover {
+                background: #eee;
+            }
+
+            &:focus {
+                z-index: 1;
+            }
+        }
+    }
+}

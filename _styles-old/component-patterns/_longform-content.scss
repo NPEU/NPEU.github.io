@@ -1,0 +1,42 @@
+/*
+*/
+$longform-content-namespace: c- !default;
+//$theme-namespace: t- !default;
+
+$theme-only: false !default;
+
+$longform-content-max-width: 42em !default;
+
+// Note - no theme yet!
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+
+    .#{$longform-content-namespace}longform-content {
+
+        &#{&} {
+            max-width: $longform-content-max-width;
+            margin-left: auto;
+            margin-right: auto;
+
+            /*h1 {
+                border-bottom: 1px solid #bbb;
+                margin-bottom: calc(#{$s__base-rem-space-unit} - 1px);
+            }*/
+        }
+        
+        
+         details {
+            margin-bottom: $sz-m;
+            border: 0;
+            border-bottom: 1px solid #eee;
+            padding: $sz-xs 0 $sz-xs $sz-m;
+        }
+
+        summary {
+            margin-bottom: $sz-m;
+            font-weight: bold;
+        }
+
+    }
+}

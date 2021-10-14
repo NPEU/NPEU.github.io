@@ -1,0 +1,50 @@
+/*
+    Block Center
+    ============
+
+    Centers items inside a container.
+
+*/
+
+$block-center-namespace: u- !default;
+
+/*
+    I'm considering using grid for this.
+    It is already necessary for IE11
+*/
+
+.#{$block-center-namespace}block-center {
+    &#{&} {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    & > * {
+        flex: 0 1 auto;
+    }
+    
+    /*
+        IE10-11
+
+        1. IE11- seems to need this.
+        ... Or, maybe not!?!?! Weird. 03/09/2020 - taken this out.
+        UGGGGH - needs it in the banner badges, but not badge list badges.
+    */
+    /* NEEDS WORK
+    @media only all and (-ms-high-contrast: none), only all and (-ms-high-contrast: active) {
+
+        &#{&} {
+            display: -ms-grid;
+            -ms-grid-columns: 100%;
+            -ms-grid-rows: 100%;
+        }
+
+        & > * {            
+            -ms-grid-column-align: center;
+            -ms-grid-row-align: center;
+        }
+
+    }
+    */
+}

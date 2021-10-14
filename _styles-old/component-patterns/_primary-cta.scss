@@ -1,0 +1,130 @@
+//$primary-cta--base-color		 : #eee !default;
+$primary-cta-namespace: c- !default;
+$theme-namespace: t- !default;
+
+$primary-cta--text-color            : #fff !default;
+$primary-cta--background-color      : $s__base-ui-color !default;
+$primary-cta--background-color--alt : -15 !default;
+
+// Note: border color gets darkened by default later, but declaring here to allow specific override:
+//$panel--border-color: darken($panel--background-color, 10%) !default;
+//$primary-cta--border-color: null !default;
+//$primary-cta--border-width: 1px !default;
+//$primary-cta--border-style: solid !default;
+
+$primary-cta--padding: $s__base-rem-space-unit / 2 !default;
+
+$theme-only: false !default;
+
+@mixin primary-cta-theme ($theme-name: "", $theme: ()) {
+	// Set up theme name:
+	$theme-class: "";
+	@if $theme-name != "" {
+		$theme-class: unquote('.')#{$theme-namespace}#{$theme-name};
+	}
+	//@debug $theme-class;
+
+	.#{$primary-cta-namespace}primary-cta#{$theme-class}[href] {
+		color: map-get($theme, cta-text-color);
+		background-color: map-get($theme, cta-background-color);
+
+
+        // Note the hover effect classes are declared globally.
+        // This isn't deal, but this component isn't (yet) intended for re-use in other projects.
+
+        &:hover,
+        &:active,
+        &:focus {
+            //box-shadow: 0 0 0 $hover-effect-width rgba(map-get($theme, background-color), $hover-effect-opacity);
+            color: map-get($theme, cta-text-color);
+
+            /*@if is-int($s__button-background-color--alt) {
+                @if $s__button-background-color--alt > 0 {
+                    $s__button-background-color--alt_percent: $s__button-background-color--alt * 1%;
+                    background-color: lighten(map-get($theme, cta-background-color), $s__button-background-color--alt_percent);
+                }
+                @if $s__button-background-color--alt < 0 {
+                    $s__button-background-color--alt_percent: $s__button-background-color--alt * -1%;
+                    background-color: darken(map-get($theme, cta-background-color), $s__button-background-color--alt_percent);
+                }
+            }
+            */
+
+            @if is-int($primary-cta--background-color--alt) {
+
+                &::before {
+                    $primary-cta--background-color--alt_decimal: abs($primary-cta--background-color--alt) / 100;
+                    @if $primary-cta--background-color--alt > 0 {
+                        //$primary-cta--background-color--alt_percent: $primary-cta--background-color--alt * 1%;
+                        //background-color: lighten(map-get($theme, cta-background-color), $primary-cta--background-color--alt_percent);
+
+                        background-color: rgba(255,255,255,$primary-cta--background-color--alt_decimal);
+                    }
+                    @if $primary-cta--background-color--alt < 0 {
+                        //$primary-cta--background-color--alt_percent: $primary-cta--background-color--alt * -1%;
+                        //background-color: darken(map-get($theme, cta-background-color), $primary-cta--background-color--alt_percent);
+
+                        background-color: rgba(0,0,0,$primary-cta--background-color--alt_decimal);
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+
+    /*
+        1. To avoid lots of hover colour adjustments we're using a pseudo element to lighten or
+           darken the background colour. For that we need this to be postitionL relative, and ...
+         2. We also need to wrap the text in a span so it appears above the pseudo element.
+    */
+    .#{$primary-cta-namespace}primary-cta {
+        &[href] {
+            display: inline-block;
+            padding: $primary-cta--padding / 2 $primary-cta--padding;
+            border: 0;
+            border-radius: 6px;
+
+            font-size: 1.375em;
+
+            text-align: center;
+            margin-bottom: 0;
+
+            position: relative; /* [1] */
+            overflow: hidden; /* [1] */
+ 
+                &::before {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    background-color: transparent;
+                }
+
+                &:hover,
+                &:active,
+                &:focus {
+                    border: 0;
+                }
+                
+                span {
+                    position: relative; /* [12 */
+                }
+        }
+    }
+
+
+    @include primary-cta-theme(
+        "",
+        (
+            cta-text-color       : $primary-cta--text-color,
+            cta-background-color : $primary-cta--background-color
+        )
+    );
+}
