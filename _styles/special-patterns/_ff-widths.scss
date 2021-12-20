@@ -67,9 +67,9 @@ $ff-min-widths: (
 
 
 @mixin ff-width ($max-width, $breakpoint, $min-width) {
-    max-width: $max-width;
-    width: calc((#{$breakpoint} - 100%) * 1000);
-    min-width: $min-width;
+    max-width: $max-width !important;
+    width: calc((#{$breakpoint} - 100%) * 1000) !important;
+    min-width: $min-width !important;
 }
 
 

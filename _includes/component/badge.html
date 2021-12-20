@@ -214,3 +214,19 @@ SVGO removes these attributes for the final SVG output, but svg2png requires tha
 <p>This method ensures the main brand is always shown in SVG-supporting browsers, as it doesn't rely on an external resource.</p>
 <p>The fallback PNG is still external, but there is only a very very small chance of a non-SVG-supporting browser also failing to load the fallback image.</p>
 <p>This pattern should ideally only be used once per page due to the extra markup weight, but if necessary, it can be used more than once.</p>
+
+
+<h3>Badge - external links</h3>
+
+<p class="u-padding--s  u-block-center">
+    <a class="c-badge c-badge--limit-height--6 twitter" href="https://twitter.com/npeu_ctu" rel="external noopener noreferrer" target="_blank">
+        <img alt="Twitter" height="60" onerror="this.src='/assets/images/brand-logos/social/twitter.png'; this.onerror=null;" src="/assets/images/brand-logos/social/twitter.svg">
+    </a>
+</p>
+
+<div>
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html"></code></pre>
+    </details>
+</div>
