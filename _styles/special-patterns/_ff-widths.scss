@@ -70,6 +70,11 @@ $ff-min-widths: (
     max-width: $max-width !important;
     width: calc((#{$breakpoint} - 100%) * 1000) !important;
     min-width: $min-width !important;
+    
+    // If gap (inc flexbox gap) is supported we need to account for that:
+    @supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+        min-width: calc(#{$min-width} - var(--g, 0)) !important;
+    }
 }
 
 

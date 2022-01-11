@@ -3404,6 +3404,10 @@ a[href].c-cta--has-icon .icon {
   display: inline;
 }
 
+.c-card:focus-within {
+  box-shadow: 0 0 0 0.6rem #fff, 0 0 0 1.2rem rgba(0, 0, 0, 0.2);
+}
+
 .c-card--has-js {
   cursor: pointer;
 }
@@ -3918,7 +3922,7 @@ $featurette-cta--border-radius: 3px !default;
   flex-direction: column;
   height: 100%;
   /* 1 */
-  --g: 0;
+  --g: 0rem;
 }
 
 /*
@@ -3932,8 +3936,12 @@ $featurette-cta--border-radius: 3px !default;
   flex-basis: auto;
 }
 
+/*
+    Use this to for things like sticky footers (main layout) or to allow a row item to fill the row.
+*/
 .l-box--expand {
-  flex-grow: 1;
+  flex-grow: 1 !important;
+  min-width: 100% !important;
 }
 
 .l-row .l-layout__inner, .l-layout.l-distribute .l-layout__inner {
@@ -4076,29 +4084,69 @@ $featurette-cta--border-radius: 3px !default;
   content: "\00a0";
 }
 
-.l-layout.l-basis-15 > .l-layout__inner > .l-box {
+.l-layout.l-basis--15 > .l-layout__inner > .l-box {
   flex-basis: 15rem;
   --b: 15rem;
 }
 
-.l-layout.l-basis-20 > .l-layout__inner > .l-box {
+.l-layout.l-basis--20 > .l-layout__inner > .l-box {
   flex-basis: 20rem;
   --b: 20rem;
 }
 
-.l-layout.l-basis-25 > .l-layout__inner > .l-box {
+.l-layout.l-basis--25 > .l-layout__inner > .l-box {
   flex-basis: 25rem;
   --b: 25rem;
 }
 
-.l-layout.l-basis-30 > .l-layout__inner > .l-box {
+.l-layout.l-basis--30 > .l-layout__inner > .l-box {
   flex-basis: 30rem;
   --b: 30rem;
 }
 
-.l-layout.l-basis-35 > .l-layout__inner > .l-box {
+.l-layout.l-basis--35 > .l-layout__inner > .l-box {
   flex-basis: 35rem;
   --b: 35rem;
+}
+
+.l-layout.l-limit--15 > .l-layout__inner > .l-box {
+  max-width: 15rem;
+}
+
+.l-layout.l-limit--20 > .l-layout__inner > .l-box {
+  max-width: 20rem;
+}
+
+.l-layout.l-limit--25 > .l-layout__inner > .l-box {
+  max-width: 25rem;
+}
+
+.l-layout.l-limit--30 > .l-layout__inner > .l-box {
+  max-width: 30rem;
+}
+
+.l-layout.l-limit--35 > .l-layout__inner > .l-box {
+  max-width: 35rem;
+}
+
+.l-layout.l-limit--40 > .l-layout__inner > .l-box {
+  max-width: 40rem;
+}
+
+.l-layout.l-limit--45 > .l-layout__inner > .l-box {
+  max-width: 45rem;
+}
+
+.l-layout.l-limit--50 > .l-layout__inner > .l-box {
+  max-width: 50rem;
+}
+
+.l-layout.l-limit--55 > .l-layout__inner > .l-box {
+  max-width: 55rem;
+}
+
+.l-layout.l-limit--60 > .l-layout__inner > .l-box {
+  max-width: 60rem;
 }
 
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
@@ -4144,13 +4192,11 @@ $featurette-cta--border-radius: 3px !default;
   .l-layout.l-distribute.l-distribute--balance-top > .l-layout__inner {
     /* 1 or more: */
     /* 2 or more: */
-    /* 3 or more: - note this should be part of col-to-row*/
-    /*& > .l-box:nth-last-child(n+3),            & > .l-box:nth-last-child(n+3) ~ * {                //flex-basis: unquote("max(33%, (var(--bp1) - 100%) * 999)");                flex-basis: unquote("max(33%, ((var(--b) * 3) - 100%) * 999)");            }*/
     /* 3 or more: */
     /* 3 or more, different values for the first one: */
     /* 4 or more: */
     /*            From here on in there are increasingly more possibilities on how things can be laid out.            More items = more possibilities. I've tried to go for what I consider to be the most balanced option but almost all other possibilities are achievable.            */
-    /* 5 or more: */
+    /* 5 or more: (1x5 | 1,2x2 | 2,3 | 5) (skip out 1,4???) */
     /* 5 or more, different values for the first two: */
     /* 5 or more, different values for the first one: */
     /* 6 or more: */
@@ -4169,11 +4215,7 @@ $featurette-cta--border-radius: 3px !default;
     /* 11 or more: */
     /* 11 or more, different values for the second one: */
     /* 11 or more, different values for the first one: */
-    /* 11 or more, different values for the next 3 ...: */
-    /*& > .l-box:nth-last-child(n+11) ~ :nth-child(5),            & > .l-box:nth-last-child(n+11) ~ :nth-child(5) ~ * {                flex-basis: unquote("max(33%, (var(--bp2) - 100%) * 999)");            }            */
-    /* 11 or more, different values for the last 4 ...: */
-    /*& > .l-box:nth-last-child(n+11) ~ :nth-child(7),            & > .l-box:nth-last-child(n+11) ~ :nth-child(7) ~ * {                flex-basis: unquote("max(25%, (var(--bp2) - 100%) * 999)");            }*/
-    /* 12 or more: double class to boost specificity - ugh.*/
+    /* 12 or more: */
   }
   .l-layout.l-distribute.l-distribute--balance-top > .l-layout__inner > .l-box {
     flex-basis: 100%;
@@ -4196,14 +4238,14 @@ $featurette-cta--border-radius: 3px !default;
   }
   .l-layout.l-distribute.l-distribute--balance-top > .l-layout__inner > .l-box:nth-last-child(n+5),
   .l-layout.l-distribute.l-distribute--balance-top > .l-layout__inner > .l-box:nth-last-child(n+5) ~ * {
-    flex-basis: min(max((50% - var(--g)), ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max((25% - var(--g)), ((var(--b) * 4) - 100%) * 999), max((20% - var(--g)), ((var(--b) * 5) - 100%) * 999));
+    flex-basis: min(max((50% - var(--g)), ((var(--b) * 2) - 100%) * 999), max((33% - var(--g)), ((var(--b) * 3) - 100%) * 999), max((20% - var(--g)), ((var(--b) * 5) - 100%) * 999));
   }
   .l-layout.l-distribute.l-distribute--balance-top > .l-layout__inner > .l-box:nth-last-child(n+5),
   .l-layout.l-distribute.l-distribute--balance-top > .l-layout__inner > .l-box:nth-last-child(n+5) + * {
     flex-basis: min(max((50% - var(--g)), ((var(--b) * 2) - 100%) * 999), max((20% - var(--g)), ((var(--b) * 5) - 100%) * 999));
   }
   .l-layout.l-distribute.l-distribute--balance-top > .l-layout__inner > .l-box:nth-last-child(n+5) {
-    flex-basis: min(max((50% - var(--g)), ((var(--b) * 3) - 100%) * 999), max(100%, ((var(--b) * 4) - 100%) * 999), max((20% - var(--g)), ((var(--b) * 5) - 100%) * 999));
+    flex-basis: min(max((50% - var(--g)), ((var(--b) * 3) - 100%) * 999), max((50% - var(--g)), ((var(--b) * 3) - 100%) * 999), max((20% - var(--g)), ((var(--b) * 5) - 100%) * 999));
   }
   .l-layout.l-distribute.l-distribute--balance-top > .l-layout__inner > .l-box:nth-last-child(n+6),
   .l-layout.l-distribute.l-distribute--balance-top > .l-layout__inner > .l-box:nth-last-child(n+6) ~ * {
@@ -5465,10 +5507,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 20% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--10--20 {
+    min-width: calc(20% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--10--25 {
   max-width: 100% !important;
   width: calc((10em - 100%) * 1000) !important;
   min-width: 25% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--10--25 {
+    min-width: calc(25% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--10--30 {
@@ -5477,10 +5531,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 30% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--10--30 {
+    min-width: calc(30% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--10--33-333 {
   max-width: 100% !important;
   width: calc((10em - 100%) * 1000) !important;
   min-width: 33.333% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--10--33-333 {
+    min-width: calc(33.333% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--10--40 {
@@ -5489,10 +5555,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 40% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--10--40 {
+    min-width: calc(40% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--10--50 {
   max-width: 100% !important;
   width: calc((10em - 100%) * 1000) !important;
   min-width: 50% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--10--50 {
+    min-width: calc(50% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--10--60 {
@@ -5501,10 +5579,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 60% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--10--60 {
+    min-width: calc(60% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--10--66-666 {
   max-width: 100% !important;
   width: calc((10em - 100%) * 1000) !important;
   min-width: 66.666% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--10--66-666 {
+    min-width: calc(66.666% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--10--70 {
@@ -5513,10 +5603,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 70% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--10--70 {
+    min-width: calc(70% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--10--75 {
   max-width: 100% !important;
   width: calc((10em - 100%) * 1000) !important;
   min-width: 75% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--10--75 {
+    min-width: calc(75% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--10--80 {
@@ -5525,10 +5627,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 80% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--10--80 {
+    min-width: calc(80% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--15--20 {
   max-width: 100% !important;
   width: calc((15em - 100%) * 1000) !important;
   min-width: 20% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--15--20 {
+    min-width: calc(20% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--15--25 {
@@ -5537,10 +5651,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 25% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--15--25 {
+    min-width: calc(25% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--15--30 {
   max-width: 100% !important;
   width: calc((15em - 100%) * 1000) !important;
   min-width: 30% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--15--30 {
+    min-width: calc(30% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--15--33-333 {
@@ -5549,10 +5675,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 33.333% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--15--33-333 {
+    min-width: calc(33.333% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--15--40 {
   max-width: 100% !important;
   width: calc((15em - 100%) * 1000) !important;
   min-width: 40% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--15--40 {
+    min-width: calc(40% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--15--50 {
@@ -5561,10 +5699,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 50% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--15--50 {
+    min-width: calc(50% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--15--60 {
   max-width: 100% !important;
   width: calc((15em - 100%) * 1000) !important;
   min-width: 60% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--15--60 {
+    min-width: calc(60% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--15--66-666 {
@@ -5573,10 +5723,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 66.666% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--15--66-666 {
+    min-width: calc(66.666% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--15--70 {
   max-width: 100% !important;
   width: calc((15em - 100%) * 1000) !important;
   min-width: 70% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--15--70 {
+    min-width: calc(70% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--15--75 {
@@ -5585,10 +5747,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 75% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--15--75 {
+    min-width: calc(75% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--15--80 {
   max-width: 100% !important;
   width: calc((15em - 100%) * 1000) !important;
   min-width: 80% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--15--80 {
+    min-width: calc(80% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--20--20 {
@@ -5597,10 +5771,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 20% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--20--20 {
+    min-width: calc(20% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--20--25 {
   max-width: 100% !important;
   width: calc((20em - 100%) * 1000) !important;
   min-width: 25% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--20--25 {
+    min-width: calc(25% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--20--30 {
@@ -5609,10 +5795,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 30% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--20--30 {
+    min-width: calc(30% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--20--33-333 {
   max-width: 100% !important;
   width: calc((20em - 100%) * 1000) !important;
   min-width: 33.333% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--20--33-333 {
+    min-width: calc(33.333% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--20--40 {
@@ -5621,10 +5819,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 40% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--20--40 {
+    min-width: calc(40% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--20--50 {
   max-width: 100% !important;
   width: calc((20em - 100%) * 1000) !important;
   min-width: 50% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--20--50 {
+    min-width: calc(50% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--20--60 {
@@ -5633,10 +5843,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 60% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--20--60 {
+    min-width: calc(60% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--20--66-666 {
   max-width: 100% !important;
   width: calc((20em - 100%) * 1000) !important;
   min-width: 66.666% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--20--66-666 {
+    min-width: calc(66.666% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--20--70 {
@@ -5645,10 +5867,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 70% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--20--70 {
+    min-width: calc(70% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--20--75 {
   max-width: 100% !important;
   width: calc((20em - 100%) * 1000) !important;
   min-width: 75% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--20--75 {
+    min-width: calc(75% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--20--80 {
@@ -5657,10 +5891,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 80% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--20--80 {
+    min-width: calc(80% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--25--20 {
   max-width: 100% !important;
   width: calc((25em - 100%) * 1000) !important;
   min-width: 20% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--25--20 {
+    min-width: calc(20% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--25--25 {
@@ -5669,10 +5915,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 25% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--25--25 {
+    min-width: calc(25% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--25--30 {
   max-width: 100% !important;
   width: calc((25em - 100%) * 1000) !important;
   min-width: 30% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--25--30 {
+    min-width: calc(30% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--25--33-333 {
@@ -5681,10 +5939,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 33.333% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--25--33-333 {
+    min-width: calc(33.333% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--25--40 {
   max-width: 100% !important;
   width: calc((25em - 100%) * 1000) !important;
   min-width: 40% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--25--40 {
+    min-width: calc(40% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--25--50 {
@@ -5693,10 +5963,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 50% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--25--50 {
+    min-width: calc(50% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--25--60 {
   max-width: 100% !important;
   width: calc((25em - 100%) * 1000) !important;
   min-width: 60% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--25--60 {
+    min-width: calc(60% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--25--66-666 {
@@ -5705,10 +5987,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 66.666% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--25--66-666 {
+    min-width: calc(66.666% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--25--70 {
   max-width: 100% !important;
   width: calc((25em - 100%) * 1000) !important;
   min-width: 70% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--25--70 {
+    min-width: calc(70% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--25--75 {
@@ -5717,10 +6011,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 75% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--25--75 {
+    min-width: calc(75% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--25--80 {
   max-width: 100% !important;
   width: calc((25em - 100%) * 1000) !important;
   min-width: 80% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--25--80 {
+    min-width: calc(80% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--30--20 {
@@ -5729,10 +6035,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 20% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--30--20 {
+    min-width: calc(20% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--30--25 {
   max-width: 100% !important;
   width: calc((30em - 100%) * 1000) !important;
   min-width: 25% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--30--25 {
+    min-width: calc(25% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--30--30 {
@@ -5741,10 +6059,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 30% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--30--30 {
+    min-width: calc(30% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--30--33-333 {
   max-width: 100% !important;
   width: calc((30em - 100%) * 1000) !important;
   min-width: 33.333% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--30--33-333 {
+    min-width: calc(33.333% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--30--40 {
@@ -5753,10 +6083,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 40% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--30--40 {
+    min-width: calc(40% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--30--50 {
   max-width: 100% !important;
   width: calc((30em - 100%) * 1000) !important;
   min-width: 50% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--30--50 {
+    min-width: calc(50% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--30--60 {
@@ -5765,10 +6107,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 60% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--30--60 {
+    min-width: calc(60% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--30--66-666 {
   max-width: 100% !important;
   width: calc((30em - 100%) * 1000) !important;
   min-width: 66.666% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--30--66-666 {
+    min-width: calc(66.666% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--30--70 {
@@ -5777,10 +6131,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 70% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--30--70 {
+    min-width: calc(70% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--30--75 {
   max-width: 100% !important;
   width: calc((30em - 100%) * 1000) !important;
   min-width: 75% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--30--75 {
+    min-width: calc(75% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--30--80 {
@@ -5789,10 +6155,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 80% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--30--80 {
+    min-width: calc(80% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--35--20 {
   max-width: 100% !important;
   width: calc((35em - 100%) * 1000) !important;
   min-width: 20% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--35--20 {
+    min-width: calc(20% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--35--25 {
@@ -5801,10 +6179,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 25% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--35--25 {
+    min-width: calc(25% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--35--30 {
   max-width: 100% !important;
   width: calc((35em - 100%) * 1000) !important;
   min-width: 30% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--35--30 {
+    min-width: calc(30% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--35--33-333 {
@@ -5813,10 +6203,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 33.333% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--35--33-333 {
+    min-width: calc(33.333% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--35--40 {
   max-width: 100% !important;
   width: calc((35em - 100%) * 1000) !important;
   min-width: 40% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--35--40 {
+    min-width: calc(40% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--35--50 {
@@ -5825,10 +6227,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 50% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--35--50 {
+    min-width: calc(50% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--35--60 {
   max-width: 100% !important;
   width: calc((35em - 100%) * 1000) !important;
   min-width: 60% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--35--60 {
+    min-width: calc(60% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--35--66-666 {
@@ -5837,10 +6251,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 66.666% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--35--66-666 {
+    min-width: calc(66.666% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--35--70 {
   max-width: 100% !important;
   width: calc((35em - 100%) * 1000) !important;
   min-width: 70% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--35--70 {
+    min-width: calc(70% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--35--75 {
@@ -5849,10 +6275,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 75% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--35--75 {
+    min-width: calc(75% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--35--80 {
   max-width: 100% !important;
   width: calc((35em - 100%) * 1000) !important;
   min-width: 80% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--35--80 {
+    min-width: calc(80% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--40--20 {
@@ -5861,10 +6299,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 20% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--40--20 {
+    min-width: calc(20% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--40--25 {
   max-width: 100% !important;
   width: calc((40em - 100%) * 1000) !important;
   min-width: 25% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--40--25 {
+    min-width: calc(25% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--40--30 {
@@ -5873,10 +6323,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 30% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--40--30 {
+    min-width: calc(30% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--40--33-333 {
   max-width: 100% !important;
   width: calc((40em - 100%) * 1000) !important;
   min-width: 33.333% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--40--33-333 {
+    min-width: calc(33.333% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--40--40 {
@@ -5885,10 +6347,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 40% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--40--40 {
+    min-width: calc(40% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--40--50 {
   max-width: 100% !important;
   width: calc((40em - 100%) * 1000) !important;
   min-width: 50% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--40--50 {
+    min-width: calc(50% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--40--60 {
@@ -5897,10 +6371,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 60% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--40--60 {
+    min-width: calc(60% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--40--66-666 {
   max-width: 100% !important;
   width: calc((40em - 100%) * 1000) !important;
   min-width: 66.666% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--40--66-666 {
+    min-width: calc(66.666% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--40--70 {
@@ -5909,10 +6395,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 70% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--40--70 {
+    min-width: calc(70% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--40--75 {
   max-width: 100% !important;
   width: calc((40em - 100%) * 1000) !important;
   min-width: 75% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--40--75 {
+    min-width: calc(75% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--40--80 {
@@ -5921,10 +6419,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 80% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--40--80 {
+    min-width: calc(80% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--45--20 {
   max-width: 100% !important;
   width: calc((45em - 100%) * 1000) !important;
   min-width: 20% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--45--20 {
+    min-width: calc(20% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--45--25 {
@@ -5933,10 +6443,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 25% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--45--25 {
+    min-width: calc(25% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--45--30 {
   max-width: 100% !important;
   width: calc((45em - 100%) * 1000) !important;
   min-width: 30% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--45--30 {
+    min-width: calc(30% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--45--33-333 {
@@ -5945,10 +6467,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 33.333% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--45--33-333 {
+    min-width: calc(33.333% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--45--40 {
   max-width: 100% !important;
   width: calc((45em - 100%) * 1000) !important;
   min-width: 40% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--45--40 {
+    min-width: calc(40% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--45--50 {
@@ -5957,10 +6491,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 50% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--45--50 {
+    min-width: calc(50% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--45--60 {
   max-width: 100% !important;
   width: calc((45em - 100%) * 1000) !important;
   min-width: 60% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--45--60 {
+    min-width: calc(60% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--45--66-666 {
@@ -5969,10 +6515,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 66.666% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--45--66-666 {
+    min-width: calc(66.666% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--45--70 {
   max-width: 100% !important;
   width: calc((45em - 100%) * 1000) !important;
   min-width: 70% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--45--70 {
+    min-width: calc(70% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--45--75 {
@@ -5981,10 +6539,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 75% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--45--75 {
+    min-width: calc(75% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--45--80 {
   max-width: 100% !important;
   width: calc((45em - 100%) * 1000) !important;
   min-width: 80% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--45--80 {
+    min-width: calc(80% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--50--20 {
@@ -5993,10 +6563,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 20% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--50--20 {
+    min-width: calc(20% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--50--25 {
   max-width: 100% !important;
   width: calc((50em - 100%) * 1000) !important;
   min-width: 25% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--50--25 {
+    min-width: calc(25% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--50--30 {
@@ -6005,10 +6587,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 30% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--50--30 {
+    min-width: calc(30% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--50--33-333 {
   max-width: 100% !important;
   width: calc((50em - 100%) * 1000) !important;
   min-width: 33.333% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--50--33-333 {
+    min-width: calc(33.333% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--50--40 {
@@ -6017,10 +6611,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 40% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--50--40 {
+    min-width: calc(40% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--50--50 {
   max-width: 100% !important;
   width: calc((50em - 100%) * 1000) !important;
   min-width: 50% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--50--50 {
+    min-width: calc(50% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--50--60 {
@@ -6029,10 +6635,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 60% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--50--60 {
+    min-width: calc(60% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--50--66-666 {
   max-width: 100% !important;
   width: calc((50em - 100%) * 1000) !important;
   min-width: 66.666% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--50--66-666 {
+    min-width: calc(66.666% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--50--70 {
@@ -6041,10 +6659,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 70% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--50--70 {
+    min-width: calc(70% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--50--75 {
   max-width: 100% !important;
   width: calc((50em - 100%) * 1000) !important;
   min-width: 75% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--50--75 {
+    min-width: calc(75% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--50--80 {
@@ -6053,10 +6683,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 80% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--50--80 {
+    min-width: calc(80% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--55--20 {
   max-width: 100% !important;
   width: calc((55em - 100%) * 1000) !important;
   min-width: 20% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--55--20 {
+    min-width: calc(20% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--55--25 {
@@ -6065,10 +6707,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 25% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--55--25 {
+    min-width: calc(25% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--55--30 {
   max-width: 100% !important;
   width: calc((55em - 100%) * 1000) !important;
   min-width: 30% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--55--30 {
+    min-width: calc(30% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--55--33-333 {
@@ -6077,10 +6731,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 33.333% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--55--33-333 {
+    min-width: calc(33.333% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--55--40 {
   max-width: 100% !important;
   width: calc((55em - 100%) * 1000) !important;
   min-width: 40% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--55--40 {
+    min-width: calc(40% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--55--50 {
@@ -6089,10 +6755,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 50% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--55--50 {
+    min-width: calc(50% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--55--60 {
   max-width: 100% !important;
   width: calc((55em - 100%) * 1000) !important;
   min-width: 60% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--55--60 {
+    min-width: calc(60% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--55--66-666 {
@@ -6101,10 +6779,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 66.666% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--55--66-666 {
+    min-width: calc(66.666% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--55--70 {
   max-width: 100% !important;
   width: calc((55em - 100%) * 1000) !important;
   min-width: 70% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--55--70 {
+    min-width: calc(70% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--55--75 {
@@ -6113,10 +6803,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 75% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--55--75 {
+    min-width: calc(75% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--55--80 {
   max-width: 100% !important;
   width: calc((55em - 100%) * 1000) !important;
   min-width: 80% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--55--80 {
+    min-width: calc(80% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--60--20 {
@@ -6125,10 +6827,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 20% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--60--20 {
+    min-width: calc(20% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--60--25 {
   max-width: 100% !important;
   width: calc((60em - 100%) * 1000) !important;
   min-width: 25% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--60--25 {
+    min-width: calc(25% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--60--30 {
@@ -6137,10 +6851,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 30% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--60--30 {
+    min-width: calc(30% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--60--33-333 {
   max-width: 100% !important;
   width: calc((60em - 100%) * 1000) !important;
   min-width: 33.333% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--60--33-333 {
+    min-width: calc(33.333% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--60--40 {
@@ -6149,10 +6875,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 40% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--60--40 {
+    min-width: calc(40% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--60--50 {
   max-width: 100% !important;
   width: calc((60em - 100%) * 1000) !important;
   min-width: 50% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--60--50 {
+    min-width: calc(50% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--60--60 {
@@ -6161,10 +6899,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 60% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--60--60 {
+    min-width: calc(60% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--60--66-666 {
   max-width: 100% !important;
   width: calc((60em - 100%) * 1000) !important;
   min-width: 66.666% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--60--66-666 {
+    min-width: calc(66.666% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--60--70 {
@@ -6173,10 +6923,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 70% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--60--70 {
+    min-width: calc(70% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--60--75 {
   max-width: 100% !important;
   width: calc((60em - 100%) * 1000) !important;
   min-width: 75% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--60--75 {
+    min-width: calc(75% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--60--80 {
@@ -6185,10 +6947,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 80% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--60--80 {
+    min-width: calc(80% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--65--20 {
   max-width: 100% !important;
   width: calc((65em - 100%) * 1000) !important;
   min-width: 20% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--65--20 {
+    min-width: calc(20% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--65--25 {
@@ -6197,10 +6971,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 25% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--65--25 {
+    min-width: calc(25% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--65--30 {
   max-width: 100% !important;
   width: calc((65em - 100%) * 1000) !important;
   min-width: 30% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--65--30 {
+    min-width: calc(30% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--65--33-333 {
@@ -6209,10 +6995,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 33.333% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--65--33-333 {
+    min-width: calc(33.333% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--65--40 {
   max-width: 100% !important;
   width: calc((65em - 100%) * 1000) !important;
   min-width: 40% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--65--40 {
+    min-width: calc(40% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--65--50 {
@@ -6221,10 +7019,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 50% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--65--50 {
+    min-width: calc(50% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--65--60 {
   max-width: 100% !important;
   width: calc((65em - 100%) * 1000) !important;
   min-width: 60% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--65--60 {
+    min-width: calc(60% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--65--66-666 {
@@ -6233,10 +7043,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 66.666% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--65--66-666 {
+    min-width: calc(66.666% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--65--70 {
   max-width: 100% !important;
   width: calc((65em - 100%) * 1000) !important;
   min-width: 70% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--65--70 {
+    min-width: calc(70% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--65--75 {
@@ -6245,10 +7067,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 75% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--65--75 {
+    min-width: calc(75% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--65--80 {
   max-width: 100% !important;
   width: calc((65em - 100%) * 1000) !important;
   min-width: 80% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--65--80 {
+    min-width: calc(80% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--70--20 {
@@ -6257,10 +7091,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 20% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--70--20 {
+    min-width: calc(20% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--70--25 {
   max-width: 100% !important;
   width: calc((70em - 100%) * 1000) !important;
   min-width: 25% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--70--25 {
+    min-width: calc(25% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--70--30 {
@@ -6269,10 +7115,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 30% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--70--30 {
+    min-width: calc(30% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--70--33-333 {
   max-width: 100% !important;
   width: calc((70em - 100%) * 1000) !important;
   min-width: 33.333% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--70--33-333 {
+    min-width: calc(33.333% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--70--40 {
@@ -6281,10 +7139,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 40% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--70--40 {
+    min-width: calc(40% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--70--50 {
   max-width: 100% !important;
   width: calc((70em - 100%) * 1000) !important;
   min-width: 50% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--70--50 {
+    min-width: calc(50% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--70--60 {
@@ -6293,10 +7163,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 60% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--70--60 {
+    min-width: calc(60% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--70--66-666 {
   max-width: 100% !important;
   width: calc((70em - 100%) * 1000) !important;
   min-width: 66.666% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--70--66-666 {
+    min-width: calc(66.666% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--70--70 {
@@ -6305,10 +7187,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 70% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--70--70 {
+    min-width: calc(70% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--70--75 {
   max-width: 100% !important;
   width: calc((70em - 100%) * 1000) !important;
   min-width: 75% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--70--75 {
+    min-width: calc(75% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--70--80 {
@@ -6317,10 +7211,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 80% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--70--80 {
+    min-width: calc(80% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--75--20 {
   max-width: 100% !important;
   width: calc((75em - 100%) * 1000) !important;
   min-width: 20% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--75--20 {
+    min-width: calc(20% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--75--25 {
@@ -6329,10 +7235,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 25% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--75--25 {
+    min-width: calc(25% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--75--30 {
   max-width: 100% !important;
   width: calc((75em - 100%) * 1000) !important;
   min-width: 30% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--75--30 {
+    min-width: calc(30% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--75--33-333 {
@@ -6341,10 +7259,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 33.333% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--75--33-333 {
+    min-width: calc(33.333% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--75--40 {
   max-width: 100% !important;
   width: calc((75em - 100%) * 1000) !important;
   min-width: 40% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--75--40 {
+    min-width: calc(40% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--75--50 {
@@ -6353,10 +7283,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 50% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--75--50 {
+    min-width: calc(50% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--75--60 {
   max-width: 100% !important;
   width: calc((75em - 100%) * 1000) !important;
   min-width: 60% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--75--60 {
+    min-width: calc(60% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--75--66-666 {
@@ -6365,10 +7307,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 66.666% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--75--66-666 {
+    min-width: calc(66.666% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--75--70 {
   max-width: 100% !important;
   width: calc((75em - 100%) * 1000) !important;
   min-width: 70% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--75--70 {
+    min-width: calc(70% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--75--75 {
@@ -6377,10 +7331,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 75% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--75--75 {
+    min-width: calc(75% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--75--80 {
   max-width: 100% !important;
   width: calc((75em - 100%) * 1000) !important;
   min-width: 80% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--75--80 {
+    min-width: calc(80% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--80--20 {
@@ -6389,10 +7355,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 20% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--80--20 {
+    min-width: calc(20% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--80--25 {
   max-width: 100% !important;
   width: calc((80em - 100%) * 1000) !important;
   min-width: 25% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--80--25 {
+    min-width: calc(25% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--80--30 {
@@ -6401,10 +7379,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 30% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--80--30 {
+    min-width: calc(30% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--80--33-333 {
   max-width: 100% !important;
   width: calc((80em - 100%) * 1000) !important;
   min-width: 33.333% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--80--33-333 {
+    min-width: calc(33.333% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--80--40 {
@@ -6413,10 +7403,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 40% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--80--40 {
+    min-width: calc(40% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--80--50 {
   max-width: 100% !important;
   width: calc((80em - 100%) * 1000) !important;
   min-width: 50% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--80--50 {
+    min-width: calc(50% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--80--60 {
@@ -6425,10 +7427,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 60% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--80--60 {
+    min-width: calc(60% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--80--66-666 {
   max-width: 100% !important;
   width: calc((80em - 100%) * 1000) !important;
   min-width: 66.666% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--80--66-666 {
+    min-width: calc(66.666% - var(--g, 0)) !important;
+  }
 }
 
 .ff-width-100--80--70 {
@@ -6437,16 +7451,34 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   min-width: 70% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--80--70 {
+    min-width: calc(70% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--80--75 {
   max-width: 100% !important;
   width: calc((80em - 100%) * 1000) !important;
   min-width: 75% !important;
 }
 
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--80--75 {
+    min-width: calc(75% - var(--g, 0)) !important;
+  }
+}
+
 .ff-width-100--80--80 {
   max-width: 100% !important;
   width: calc((80em - 100%) * 1000) !important;
   min-width: 80% !important;
+}
+
+@supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .ff-width-100--80--80 {
+    min-width: calc(80% - var(--g, 0)) !important;
+  }
 }
 
 /* ---------------------------------------------------------------------------------------------- */

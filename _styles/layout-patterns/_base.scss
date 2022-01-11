@@ -27,6 +27,20 @@ $layout-bases: (
     35
 ) !default;
 
+
+$layout-limits: (
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50,
+    55,
+    60
+) !default;
+
 .#{$layout-namespace}box,
 .#{$layout-namespace}layout,
 .#{$layout-namespace}layout__inner {
@@ -48,7 +62,7 @@ $layout-bases: (
     flex-direction: column;
     height: 100%; /* 1 */
     
-    --g: 0;
+    --g: 0rem;
 }
 
 /*
@@ -63,8 +77,12 @@ $layout-bases: (
     //min-width: 100%; /* 1 */
 }
 
+/*
+    Use this to for things like sticky footers (main layout) or to allow a row item to fill the row.
+*/
 .#{$layout-namespace}box--expand {
-    flex-grow: 1;
+    flex-grow: 1 !important;
+    min-width: 100% !important;
 }
 
 
@@ -254,9 +272,17 @@ $layout-bases: (
 
 // Item bases:
 @each $basis in $layout-bases {
-    .#{$layout-namespace}layout.#{$layout-namespace}basis-#{$basis} > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
+    .#{$layout-namespace}layout.#{$layout-namespace}basis--#{$basis} > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
         flex-basis: #{$basis}rem;
         --b: #{$basis}rem;
+    }
+}
+
+
+// Item limits:
+@each $limit in $layout-limits {
+    .#{$layout-namespace}layout.#{$layout-namespace}limit--#{$limit} > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
+        max-width: #{$limit}rem;
     }
 }
 
