@@ -3915,6 +3915,14 @@ $featurette-cta--border-radius: 3px !default;
 }
 
 /*
+    1. In case layout is applied to an inline element for fallback reasons.
+*/
+.l-layout {
+  display: block;
+  /* 1 */
+}
+
+/*
     1. This allows for --expand to work.
 */
 .l-layout__inner {
@@ -4150,8 +4158,28 @@ $featurette-cta--border-radius: 3px !default;
 }
 
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  /*
+        1. IE11 hack to make width behave properly.
+    */
   .l-layout__inner {
+    width: 0px;
+    /* 1 */
+    min-width: 100%;
+    /* 1 */
     max-width: 100%;
+  }
+  .l-gutter--s.l-flush-edge-gutter > .l-layout__inner {
+    min-width: calc(100% + 1.2rem);
+    /* 1 */
+  }
+  .l-gutter.l-flush-edge-gutter > .l-layout__inner,
+  .l-gutter--m.l-flush-edge-gutter > .l-layout__inner {
+    min-width: calc(100% + 2.4rem);
+    /* 1 */
+  }
+  .l-gutter--l.l-flush-edge-gutter > .l-layout__inner {
+    min-width: calc(100% + 4.8rem);
+    /* 1 */
   }
   .l-gutter > .l-layout__inner,
   .l-gutter--m > .l-layout__inner {

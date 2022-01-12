@@ -364,7 +364,7 @@ var cookie_html                   =
     var close_button_html  =
 '<button' + close_button_id_string + close_button_class_string + close_button_focus_target_selector_string + '>' +
 '    <span hidden="" aria-hidden="false">Close</span>' +
-'    <svg focusable="false" class="icon  icon--is-open"><use xlink:href="#icon-cross"></use></svg></button>' +
+'    <svg focusable="false" class="icon  icon--is-open" width="20" height="20"><use xlink:href="#icon-cross"></use></svg></button>' +
 '</button>' + "\n";
 
     var ready = function(fn) {

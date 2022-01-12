@@ -44,6 +44,30 @@
     <style>
         /* Tiny Fall-Back Styles continued ... */
         [data-fs-text~=right]{text-align:right}[data-fs-text~=center]{text-align:center}[data-fs-text~=larger]{font-size:larger}[data-fs-text~=nowrap]{white-space:nowrap}[data-fs-block~=background]{background:#eee}[data-fs-block~=border]{border:1px solid;margin:1em 0;padding:1em}[data-fs-block~=padding]{padding:1em}[data-fs-block~=table]{display:table;width:100%;table-layout:fixed}[data-fs-block~=table]>*{display:table-cell;padding:.5em}[data-fs-block~=flex]{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}[data-fs-block~=flex]>*{-webkit-box-flex:1;-webkit-flex:1 0 auto;-moz-box-flex:1;-ms-flex:1 0 auto;flex:1 0 auto}[data-fs-block=video]{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%}[data-fs-block=video] embed,[data-fs-block=video] iframe,[data-fs-block=video] object{position:absolute;top:0;left:0;width:100%;height:100%}[data-fs-hr=larger]{border-top-width:10px}
+    
+    
+        /* Some fallback decoration: */
+        
+        html {
+            background-color: #57504a;
+        }
+        
+        body {
+            background-color: #ffffff;
+        }
+        
+        .c-card {
+            border-color: #57504a;
+            border-radius: 0.5em;
+            /*background-color: #5D4777;*/
+            background-color: #57504a;
+            color: #ffffff;
+        }
+        
+        .c-card * {
+            color: inherit;
+        }
+        
     </style>
 
     <!--

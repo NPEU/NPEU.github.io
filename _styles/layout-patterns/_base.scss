@@ -50,7 +50,11 @@ $layout-limits: (
     list-style-type: none;
 }
 
+/*
+    1. In case layout is applied to an inline element for fallback reasons.
+*/
 .#{$layout-namespace}layout {
+    display: block; /* 1 */
 }
 
 
@@ -61,7 +65,7 @@ $layout-limits: (
     display: flex;
     flex-direction: column;
     height: 100%; /* 1 */
-    
+
     --g: 0rem;
 }
 
@@ -292,9 +296,32 @@ $layout-limits: (
 
 @media #{$s__ie10-11} {
 
+    /*
+        1. IE11 hack to make width behave properly.
+    */
     .#{$layout-namespace}layout__inner {
+        width: 0px; /* 1 */
+        min-width: 100%; /* 1 */
         max-width: 100%;
     }
+
+    // Small /**/
+    .#{$layout-namespace}gutter--s.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
+         min-width: calc(100% + #{$layout-spacing-unit--s * 2}); /* 1 */
+    }
+
+    // Medium (default) /**/
+    .#{$layout-namespace}gutter.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner,
+    .#{$layout-namespace}gutter--m.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
+        min-width: calc(100% + #{$layout-spacing-unit * 2}); /* 1 */
+    }
+
+    // Large /**/
+    .#{$layout-namespace}gutter--l.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
+        min-width: calc(100% + #{$layout-spacing-unit--l * 2}); /* 1 */;
+    }
+
+
 
     .#{$layout-namespace}gutter > .#{$layout-namespace}layout__inner,
     .#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner {
