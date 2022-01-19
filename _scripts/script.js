@@ -1,189 +1,3 @@
-/*------------------------------------------------------------------------------------------------*\
-    Fall-Back Cookie Notice Pattern v0.1
-    ------------------------------------
-
-    To avoid any confusion, it's probably best to copy these settings to another file that you're
-    concatenating and then make any changes to the defaults.
-\*------------------------------------------------------------------------------------------------*/
-
-var cookie_name                   = 'fallback_accept_cookies';
-var cookie_expire_days            = 60;
-var cookie_notice_id              = 'cookie_notice';
-var cookie_button_id              = 'accept_cookies';
-var cookie_notice_class           = 'cookie_notice';
-var cookie_button_class           = '';
-var cookie_close_class            = 'cookie_notice--close';
-var cookie_notice_effect_duration = 1000;
-var cookie_html                   =
-'<div id="' + cookie_notice_id + '" class="' + cookie_notice_class + '">' + "\n" +
-'<p class="cookie_notice__message">This site uses <a href="http://www.allaboutcookies.org/" rel="external noopener noreferrer" target="_blank">cookies</a> to improve user experience. By using this site you agree to our use of cookies.</p>' + "\n" +
-'<span class="cookie_notice__action"><button id="' + cookie_button_id + '" class="' + cookie_button_class + '">Dismiss</button></span>' + "\n" +
-'</div>';
-
-/*
-    iframe - fit height to contents.
-*/
-
-(function() {
-
-    var setIframeHeight = function(iframe) {
-        
-        var newHeight = iframe.contentDocument.querySelector('html').offsetHeight;
-        iframe.style.height = newHeight + 'px';
-    };
-
-    var fit_content = function() {
-        // Get all elements we want to apply this to:
-        var elements = document.querySelectorAll('iframe.js-fit-contents');
-
-        Array.prototype.forEach.call(elements, function(el, i) {
-            var iframe        = el;
-            var iframe_window = iframe.contentWindow;
-            
-            iframe.addEventListener('load', function() {
-                setIframeHeight(iframe);
-            });
-
-            iframe_window.addEventListener('resize', function(e) {
-                setIframeHeight(iframe);
-            });
-        });
-    };
-
-    var ready = function(fn) {
-        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
-            fn();
-        } else {
-            document.addEventListener('DOMContentLoaded', fn);
-        }
-    }
-
-    ready(fit_content);
-})();
-
-/*
-    Can't be totally sure what this is for, now...
-    It'll come back to me...
-*/
-
-(function() {
-    var ready = function(fn) {
-        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
-            fn();
-        } else {
-            document.addEventListener('DOMContentLoaded', fn);
-        }
-    }
-
-    var adjustJustifyContent = {
-        run: function() {
-            var containers = document.querySelectorAll('.js-adjust-me');
-            Array.prototype.forEach.call(containers, function(container, i) {
-                var item = container.querySelector('.js-adjust-me__reference');
-                if (getComputedStyle(container)['height'] > getComputedStyle(item)['height']) {
-                    container.style.justifyContent = 'center';
-                } else {
-                    container.style.justifyContent = 'space-between';
-                }
-            });
-        }
-    }
-
-
-
-    ready(adjustJustifyContent.run);
-    window.onresize = adjustJustifyContent.run;
-})();
-
-/*
-    Object-fit polyfill.
-    Browsers that don't support object-fit:
-    IE
-    Edge 15-
-    FF 35-
-    Chrome 30-
-    Safari 9.1-
-    Opera 18-
-    iOS Safari 9.3-
-    Android 4.4-
-*/
-
-(function() {
-    //if(('objectFit' in document.documentElement.style !== false) || !(navigator.userAgent.indexOf('UCBrowser') > -1)) {
-    if('objectFit' in document.documentElement.style !== false) {
-        return;
-    }
-
-    // https://davidwalsh.name/javascript-debounce-function
-    // Returns a function, that, as long as it continues to be invoked, will not be triggered. 
-    // The function will be called after it stops being called for N milliseconds. If `immediate` 
-    // is passed, trigger the function on the leading edge, instead of the trailing.
-    var debounce = function(func, wait, immediate) {
-        var timeout;
-        return function() {
-            var context = this, args = arguments;
-            var later = function() {
-                timeout = null;
-                if (!immediate) func.apply(context, args);
-            };
-            var callNow = immediate && !timeout;
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-            if (callNow) func.apply(context, args);
-        };
-    };
-
-    var compare_heights = function() {
-        // Get all elements we want to apply this to:
-        var elements = document.querySelectorAll('.js-image-cover');
-
-        Array.prototype.forEach.call(elements, function(el, i) {
-
-            var img = el.querySelector('img');
-
-            // Get the container dimensions:
-            var container_rect = el.getBoundingClientRect();
-
-            // Get the image dimensions:
-            var image_rect = img.getBoundingClientRect();
-            //console.log(container_rect.height, image_rect.height, img.height < container_rect.height);
-
-            // Remove the style. Note the behaviour here isn't ideal, but it's better than the image
-            // getting stuck at a small size which can happen otherwise.
-            img.removeAttribute('style');
-
-            // If the image is not tall enough to fill the container, swap width/height styles:
-            if (img.height <= container_rect.height) {
-
-                img.style.width  = 'auto';
-                img.style.height = '100%';
-            }
-        });
-    };
-
-    var polyfill = function() {
-        // Run on page load...
-        compare_heights();
-
-        var checkresize = debounce(function() {
-            compare_heights();
-        }, 250);
-
-        // .. and whenever the window resizes:
-        window.addEventListener('resize', checkresize);
-    };
-
-    var ready = function(fn) {
-        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
-            fn();
-        } else {
-            document.addEventListener('DOMContentLoaded', fn);
-        }
-    }
-
-    ready(polyfill);
-})();
-
 /*
     Card enhancements
 */
@@ -248,6 +62,263 @@ var cookie_html                   =
     }
 
     ready(card);
+})();
+
+/*------------------------------------------------------------------------------------------------*\
+    Fall-Back Cookie Notice Pattern v0.1
+    ------------------------------------
+
+    To avoid any confusion, it's probably best to copy these settings to another file that you're
+    concatenating and then make any changes to the defaults.
+\*------------------------------------------------------------------------------------------------*/
+
+var cookie_name                   = 'fallback_accept_cookies';
+var cookie_expire_days            = 60;
+var cookie_notice_id              = 'cookie_notice';
+var cookie_button_id              = 'accept_cookies';
+var cookie_notice_class           = 'cookie_notice';
+var cookie_button_class           = '';
+var cookie_close_class            = 'cookie_notice--close';
+var cookie_notice_effect_duration = 1000;
+var cookie_html                   =
+'<div id="' + cookie_notice_id + '" class="' + cookie_notice_class + '">' + "\n" +
+'<p class="cookie_notice__message">This site uses <a href="http://www.allaboutcookies.org/" rel="external noopener noreferrer" target="_blank">cookies</a> to improve user experience. By using this site you agree to our use of cookies.</p>' + "\n" +
+'<span class="cookie_notice__action"><button id="' + cookie_button_id + '" class="' + cookie_button_class + '">Dismiss</button></span>' + "\n" +
+'</div>';
+
+/*
+    iframe - fit height to contents.
+*/
+
+(function() {
+
+    var setIframeHeight = function(iframe) {
+        
+        var newHeight = iframe.contentDocument.querySelector('html').offsetHeight;
+        iframe.style.height = newHeight + 'px';
+    };
+
+    var fit_content = function() {
+        // Get all elements we want to apply this to:
+        var elements = document.querySelectorAll('iframe.js-fit-contents');
+
+        Array.prototype.forEach.call(elements, function(el, i) {
+            var iframe        = el;
+            var iframe_window = iframe.contentWindow;
+            
+            iframe.addEventListener('load', function() {
+                setIframeHeight(iframe);
+            });
+
+            iframe_window.addEventListener('resize', function(e) {
+                setIframeHeight(iframe);
+            });
+        });
+    };
+
+    var ready = function(fn) {
+        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+    }
+
+    ready(fit_content);
+})();
+
+/*
+    Glimpse enhancements
+*/
+
+(function() {
+
+    var glimpse = function() {
+        // Get all elements we want to apply this to:
+        var elements = document.querySelectorAll('.js-c-glimpse');
+        
+        var detectLeftButton = function(event) {
+            if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) {
+                return false;
+            } else if ('buttons' in event) {
+                return event.buttons === 1;
+            } else if ('which' in event) {
+                return event.which === 1;
+            } else {
+                return (event.button == 1 || event.type == 'click');
+            }
+        }
+
+        Array.prototype.forEach.call(elements, function(el, i) {
+
+            el.classList.add('c-glimpse--has-js');
+
+            var h_link = el.querySelector('.c-glimpse__title > a');
+            var down = false, up = false;
+
+            el.addEventListener('mousedown', function(e) {
+                // Detect left click only:
+                var left_click = glimpse.detectLeftButton(e);
+                console.log(left_click);
+                if (!left_click) {
+                    down = false;
+                    return false;
+                }
+                el.classList.add('c-glimpse--is-mousedown');
+                down = +new Date();
+            });
+
+            el.addEventListener('mouseup', function(e) {
+                el.classList.remove('c-glimpse--is-mousedown');
+                if (!down) {
+                    return;
+                }
+                up = +new Date();
+                if ((up - down) < 200) {
+                    //h_link.click();
+                }
+            });
+        });
+    };
+
+    var ready = function(fn) {
+        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+    }
+
+    ready(glimpse);
+})();
+
+/*
+    Can't be totally sure what this is for, now...
+    It'll come back to me...
+*/
+
+(function() {
+    var ready = function(fn) {
+        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+    }
+
+    var adjustJustifyContent = {
+        run: function() {
+            var containers = document.querySelectorAll('.js-adjust-me');
+            Array.prototype.forEach.call(containers, function(container, i) {
+                var item = container.querySelector('.js-adjust-me__reference');
+                if (getComputedStyle(container)['height'] > getComputedStyle(item)['height']) {
+                    container.style.justifyContent = 'center';
+                } else {
+                    container.style.justifyContent = 'space-between';
+                }
+            });
+        }
+    }
+
+
+
+    ready(adjustJustifyContent.run);
+    window.onresize = adjustJustifyContent.run;
+})();
+
+/*
+    Object-fit polyfill.
+    Browsers that don't support object-fit:
+    IE
+    Edge 15-
+    FF 35-
+    Chrome 30-
+    Safari 9.1-
+    Opera 18-
+    iOS Safari 9.3-
+    Android 4.4-
+*/
+
+(function() {
+    if('objectFit' in document.documentElement.style !== false) {
+        return;
+    }
+
+    // https://davidwalsh.name/javascript-debounce-function
+    // Returns a function, that, as long as it continues to be invoked, will not be triggered. 
+    // The function will be called after it stops being called for N milliseconds. If `immediate` 
+    // is passed, trigger the function on the leading edge, instead of the trailing.
+    var debounce = function(func, wait, immediate) {
+        var timeout;
+        return function() {
+            var context = this, args = arguments;
+            var later = function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    };
+
+    var compare_heights = function() {
+        // Get all elements we want to apply this to:
+        var elements = document.querySelectorAll('.js-image-cover');
+
+        Array.prototype.forEach.call(elements, function(el, i) {
+
+            var img = el.querySelector('img');
+
+            // Get the container dimensions:
+            var container_rect = el.getBoundingClientRect();
+
+            // Get the image dimensions:
+            var image_rect = img.getBoundingClientRect();
+
+            // Remove the style. Note the behaviour here isn't ideal, but it's better than the image
+            // getting stuck at a small size which can happen otherwise.
+            img.removeAttribute('style');
+            
+            // If we're using the 'contain' variant:
+            if (new RegExp('(^| )js-image-cover--contain( |$)', 'gi').test(el.className)) {
+                if (image_rect.height >= container_rect.height) {
+                    img.style.width  = 'auto';
+                    img.style.height = '100%';
+                }
+                return;
+            }
+
+            // If the image is not tall enough to fill the container, swap width/height styles:
+            if (image_rect.height <= container_rect.height) {
+                img.style.width  = 'auto';
+                img.style.height = '100%';
+            }
+        });
+    };
+
+    var polyfill = function() {
+        // Run on page load...
+        compare_heights();
+
+        var checkresize = debounce(function() {
+            compare_heights();
+        }, 250);
+
+        // .. and whenever the window resizes:
+        window.addEventListener('resize', checkresize);
+    };
+
+    var ready = function(fn) {
+        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+    }
+
+    ready(polyfill);
 })();
 
 /*!

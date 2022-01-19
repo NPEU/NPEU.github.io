@@ -1,5 +1,5 @@
 {% if include.title and include.url %}
-<article class="c-card  js-c-card{% if include.unpublished | default: false %}  c-card--unpublished{% endif %}  d-border  d-background">
+<article class="c-card  js-c-card{% if include.unpublished | default: false %}  c-card--unpublished{% endif %}  d-border  d-background{% if include.wrapper_classes | default: false %}  {{ include.wrapper_classes }}{% endif %}">
     <div data-fs-block="border">
         <header class="c-card__header">
             <h{{ include.hx | default: 3 }} class="c-card__title"><a href="{{ include.url }}"{% if include.cta %} aria-describedby="desc-{{ include.title | slugify }}"{% endif %}><span>{{ include.title }}</span></a></h{{ include.hx | default: 3 }}>
@@ -49,7 +49,7 @@
         <div class="c-card__footer-image{% if include.footer_img_padded %}  c-card__footer-image--padded{% endif %}">
             <div class="u-image-cover  js-image-cover  u-image-cover--min-{{ include.footer_img_ratio | default: '20' }}">
                 <div class="u-image-cover__inner">
-                    <img src="{{ include.footer_img_src }}--small.jpg" sizes="100vw" srcset="{{ include.footer_img_src }}--large.jpg 1600w, {{ include.footer_img_src }}--medium.jpg 900w, /assets/images/patterns/{{ include.footer_img_src }}--small.jpg 300w" alt="" class="u-image-cover__image" width="{{ include.footer_img_w | default: 200 }}" height="{{ include.footer_img_h | default: 133 }}">
+                    <img src="{{ include.footer_img_src }}--small.jpg" sizes="100vw" srcset="{{ include.footer_img_src }}--large.jpg 1600w, {{ include.footer_img_src }}--medium.jpg 900w, {{ include.footer_img_src }}--small.jpg 300w" alt="" class="u-image-cover__image" width="{{ include.footer_img_w | default: 200 }}" height="{{ include.footer_img_h | default: 133 }}">
                 </div>
             </div>
         </div>

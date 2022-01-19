@@ -27,6 +27,13 @@ $neutral-text-color   : s__set_color_for_background($neutral-color, $s__base-tex
 //@debug #{round(saturation($primary-color))};
 //@debug #{round(lightness($primary-color))};
 
+/*
+    1. Declared twice so it can be part of a lightening calculation. Also see start_tweaks where I
+       override the details border-colour - the light background sets:
+       --t-primary-color-l: var(--t-primary-color-l--light)
+       which then affects a border declared with --t-primary-color-l, so using the copy.
+       Not sure how to make this less clunky.
+*/
 :root {
     --t-text-color: #{$s__base-text-color};
     --t-text-color-inverse: #{$s__base-text-color-inverse};
@@ -40,7 +47,7 @@ $neutral-text-color   : s__set_color_for_background($neutral-color, $s__base-tex
     //--t-primary-color-h: #{round(hue($primary-color))};
     //--t-primary-color-s: #{round(saturation($primary-color))};
     //--t-primary-color-l: #{round(lightness($primary-color))};
-    //--t-primary-color-l-copy: #{round(lightness($primary-color))}; /* Declared twice so it can be part of a lightening calculation) */
+    //--t-primary-color-l-copy: #{round(lightness($primary-color))}; /* 1 */
     //--t-primary-fore-text-color: #{$primary-text-color}; /* SASS would generate this from the base colour. */
     //
     //
@@ -48,35 +55,35 @@ $neutral-text-color   : s__set_color_for_background($neutral-color, $s__base-tex
     //--t-secondary-color-h: 202;
     //--t-secondary-color-s: 74%;
     //--t-secondary-color-l: 53%;
-    //--t-secondary-color-l-copy: 53%; /* Declared twice so it can be part of a lightening calculation) */
+    //--t-secondary-color-l-copy: 53%; /* 1 */
     //--t-secondary-fore-text-color: var(--t-text-color); /* SASS would generate this from the base colour. */
     //
     //--t-neutral-color: #8e8279; /* hsl(26, 9%, 52%) */
     //--t-neutral-color-h: 26;
     //--t-neutral-color-s: 9%;
     //--t-neutral-color-l: 52%;
-    //--t-neutral-color-l-copy: 52%; /* Declared twice so it can be part of a lightening calculation) */
+    //--t-neutral-color-l-copy: 52%; /* 1 */
     //--t-neutral-fore-text-color: var(--t-text-color); /* SASS would generate this from the base colour. */
     
     --t-primary-color: #{$primary-color};
     --t-primary-color-h: #{s__strip-unit(round(hue($primary-color)))};
     --t-primary-color-s: #{round(saturation($primary-color))};
     --t-primary-color-l: #{round(lightness($primary-color))};
-    --t-primary-color-l-copy: #{round(lightness($primary-color))}; /* Declared twice so it can be part of a lightening calculation) */
+    --t-primary-color-l-copy: #{round(lightness($primary-color))}; /* 1 */
     --t-primary-fore-text-color: #{$primary-text-color}; /* SASS would generate this from the base colour. */
     
     --t-secondary-color: #{$secondary-color};
     --t-secondary-color-h: #{s__strip-unit(round(hue($secondary-color)))};
     --t-secondary-color-s: #{round(saturation($secondary-color))};
     --t-secondary-color-l: #{round(lightness($secondary-color))};
-    --t-secondary-color-l-copy: #{round(lightness($secondary-color))}; /* Declared twice so it can be part of a lightening calculation) */
+    --t-secondary-color-l-copy: #{round(lightness($secondary-color))}; /* 1 */
     --t-secondary-fore-text-color: #{$secondary-text-color}; /* SASS would generate this from the base colour. */
     
     --t-neutral-color: #{$neutral-color};
     --t-neutral-color-h: #{s__strip-unit(round(hue($neutral-color)))};
     --t-neutral-color-s: #{round(saturation($neutral-color))};
     --t-neutral-color-l: #{round(lightness($neutral-color))};
-    --t-neutral-color-l-copy: #{round(lightness($neutral-color))}; /* Declared twice so it can be part of a lightening calculation) */
+    --t-neutral-color-l-copy: #{round(lightness($neutral-color))}; /* 1 */
     --t-neutral-fore-text-color: #{$neutral-text-color}; /* SASS would generate this from the base colour. */
 
     /*

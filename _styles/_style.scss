@@ -21,6 +21,7 @@ $neutral-color   : #8e8279;
 
 $border-thick: 0.3rem;
 
+
 $s__base-ui-color: $primary-color;
 
 $s__base-text-color: #111;
@@ -58,6 +59,7 @@ $s__text_zoom_scales_all: true;
 $s__border-width: 0.1rem;
 $s__border-radius: 0.3rem;
 
+
 //$s__focus-outline-width: 0.2rem;
 //$s__focus-outline-offset: 0.2rem;
 
@@ -81,9 +83,15 @@ $s__anchor-text-color: currentColor;
 $s__anchor-text-color--alt: $s__anchor-text-color;
 
 
+$s__button-border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
+$s__button-background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
+$s__button-background-color--alt: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--dark));
 
 
+$s__pre-background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-light));
 
+
+$s__html-background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-dark));
 /*
 //@debug $s__base-ui-color;
 
@@ -146,6 +154,13 @@ $s__experimental_checkradios: true;
 
 /* ---------------------------------------------------------------------------------------------- */
 
+/* --| MORE SETTINGS (USING START VARS |--------------------------------------------------------- */
+
+$focus-shadow: 0 0 0 $s__sz-xxs #fff, 0 0 0 $s__sz-xs rgba(0,0,0,.2);
+
+/* ---------------------------------------------------------------------------------------------- */
+
+
 /* --| THEME |----------------------------------------------------------------------------------- */
 
 @import "_themer.scss";
@@ -169,6 +184,8 @@ $s__experimental_checkradios: true;
 @import "component-patterns/_featurette.scss";
 
 @import "component-patterns/_forms.scss";
+
+@import "component-patterns/_glimpse.scss";
 
 @import "component-patterns/_page-wrap.scss";
 
@@ -246,8 +263,10 @@ $s__over-panel__overlay--background-color: #000;
 @import "../bower_components/Fall-Back-Patterns/Over Panel/scss/_over-panel-next";
 
 
-//$s__search-form--background-color:              transparent;
+$s__search-form--background-color:              transparent;
 //$s__search-form__submit--text-color:            #fff;
+$s__search-form__submit--background-color:      hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--light));
+$s__search-form__submit--background-color--alt: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-light));
 //$s__search-form__submit--background-color:      darken($s__base-ui-color, 5%);
 //$s__search-form__submit--background-color--alt: darken($s__base-ui-color, 15%);
 //$s__search-form-max-width:                      35em;

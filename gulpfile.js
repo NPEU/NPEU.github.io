@@ -187,11 +187,12 @@ function do_concat_js(cb) {
 
     // Common script:
     gulp.src([
+        './_scripts/js/card.js',
         './_scripts/js/cookie-notice-settings.js',
         './_scripts/js/fit-contents.js',
+        './_scripts/js/glimpse.js',
         './_scripts/js/layout-adjustments.js',
         './_scripts/js/image-cover.js',
-        './_scripts/js/card.js',
         './bower_components/Fall-Back-Cookie-Notice/cookie-notice.js',
         './bower_components/Fall-Back-Patterns/Close Button/js/close-button.js',
         './bower_components/Fall-Back-Patterns/Content Min Row/js/content-min-row-v1.js',

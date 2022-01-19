@@ -27,11 +27,12 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
     }
 
         /*
-            The markup pattern allows for a TFS border, so zap that:
+            The pattern markup allows for a TFS border, so zap that:
         */
         & > div {
             display: flex;
             flex-direction: column;
+            flex-grow: 1;
 
             height: 100%;
 
@@ -123,7 +124,15 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
             position: relative;
             z-index: 2;
         }
+        
+        /* If there's no body, the footer should grow: */
+        
 
+        #{&}__header + #{&}__footer {
+            margin-top: auto;
+        }
+        
+        
         #{&}__footer {
             margin-top: $s__sz-m;
             margin-bottom: 0;
@@ -160,7 +169,7 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
 }
 
 .#{$card-namespace}card:focus-within {
-    box-shadow: 0 0 0 $s__sz-xs #fff, 0 0 0 $s__sz-s rgba(0,0,0,.2);
+    box-shadow: $focus-shadow;
 }
 
 .#{$card-namespace}card--has-js {
@@ -169,7 +178,7 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
     &:hover,
     &:active,
     &:focus {
-        box-shadow: 0 0 0 $s__sz-xs #fff, 0 0 0 $s__sz-s rgba(0,0,0,.2);
+        box-shadow: $focus-shadow;
     }
 }
 

@@ -5,55 +5,7 @@
 
 $featurette-namespace: c- !default;
 
-
-$featurette--base-color: #eee !default;
-
-$featurette-spacing-unit: 2rem !default;
-
-// featurette outer:
-
-$featurette--text-color: #333 !default;
-$featurette--background-color: #fff !default;
-
-$featurette--border-or-outline: false !default;
-$featurette--border-width:  1px !default;
-$featurette--border-style:  solid  !default;
-$featurette--border-radius: 0  !default;
-$featurette--border-color:  darken($featurette--background-color, 10%) !default;
-
-
-$featurette-breakpoint: 45em !default;
-
-
-// featurette body:
-
-$featurette-body--text-color: $featurette--text-color !default;
-$featurette-body--background-color: $featurette--background-color !default;
-
-$featurette-title--text-color: $featurette--text-color !default;
-$featurette-title--background-color: $featurette--background-color !default;
-
-
-$featurette--padding: 0 !default;
-
-
-/*
-$featurette-cta--border-width: 1px !default;
-$featurette-cta--border-style: solid !default;
-$featurette-cta--border-radius: 3px !default;
-*/
-$featurette-body--padding:       $featurette-spacing-unit !default;
-$featurette-body--margin-left:   0 !default;
-$featurette-body--margin-right:  0 !default;
-$featurette-body--margin-top:    0 !default;
-$featurette-body--margin-bottom: 0 !default;
-
-
-
-// featurette title:
-$featurette-title--font-size: 3rem !default;
-
-
+$featurette-breakpoint: 35em !default;
 
 /*
     1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
@@ -79,7 +31,6 @@ $featurette-title--font-size: 3rem !default;
         width: 100%;
     }
 
-
     #{&}__image {
         align-self: center;
         margin-bottom: 0;
@@ -96,7 +47,6 @@ $featurette-title--font-size: 3rem !default;
         &-link:hover {
             border-bottom: 0;
         }
-
     }
 
     #{&}__image--round {
@@ -118,6 +68,9 @@ $featurette-title--font-size: 3rem !default;
 
     #{&}__body {
         padding: $s__sz-m  calc(8% - #{$s__sz-s});
+        
+        max-width: 100%;
+        width: calc((#{$featurette-breakpoint} - 100%) * 1000);
 
 
         // Featurettes are designed for Power Quotes, so putting these styles here, though they do
@@ -132,4 +85,26 @@ $featurette-title--font-size: 3rem !default;
             border-bottom: 1px dotted currentColor;
         }
     }
+    
+    #{&}__body,
+    #{&}__body--50 {
+        min-width: 50%;
+    }
+
+    #{&}__body--55 {
+        min-width: 55%;
+    }
+
+    #{&}__body--60 {
+        min-width: 60%;
+    }
+
+    #{&}__body--65 {
+        min-width: 65%;
+    }
+
+    #{&}__body--70 {
+        min-width: 70%;
+    }
+
 }

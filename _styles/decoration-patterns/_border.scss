@@ -8,67 +8,196 @@ $border-namespace: d- !default;
 $border-size: $s__border-width;
 $border-size--thick: $s__border-width * 3;
 
-[class~="#{$background-namespace}border"] {
+[class*="#{$border-namespace}border"] {
     border-width: $border-size;
     border-style: solid;
+
+    --t-bd-color: var(--t-primary-color);
+    --t-bd-color-h: var(--t-primary-color-h);
+    --t-bd-color-s: var(--t-primary-color-s);
+    --t-bd-color-l: var(--t-primary-color-l);
+    //border-color: var(--t-primary-color);
+    border-color: hsl(var(--t-bd-color-h), var(--t-bd-color-s), var(--t-bd-color-l));
+}
+
+[class*="#{$border-namespace}border"].t-secondary {
+    //border-color: var(--t-secondary-color);
+    --t-bd-color: var(--t-secondary-color);
+    --t-bd-color-h: var(--t-secondary-color-h);
+    --t-bd-color-s: var(--t-secondary-color-s);
+    --t-bd-color-l: var(--t-secondary-color-l);
+}
+
+[class*="#{$border-namespace}border"].t-neutral {
+    //border-color: var(--t-neutral-color);
+    --t-bd-color: var(--t-neutral-color);
+    --t-bd-color-h: var(--t-neutral-color-h);
+    --t-bd-color-s: var(--t-neutral-color-s);
+    --t-bd-color-l: var(--t-neutral-color-l);
 }
 
 
-[class*="#{$background-namespace}border"] {
-    border-color: var(--t-primary-color);
-}
 
-[class*="#{$background-namespace}border"].t-secondary {
-    border-color: var(--t-secondary-color);
-}
-
-[class*="#{$background-namespace}border"].t-neutral {
-    border-color: var(--t-neutral-color);
-}
-
-
-
-.#{$background-namespace}border--thick {
+.#{$border-namespace}border--thick {
     border-width: $border-size--thick;
-    border-style: solid;
 }
 
-.#{$background-namespace}border--bottom {
+.#{$border-namespace}border--bottom {
     border-bottom-width: $border-size;
-    border-bottom-style: solid;
 }
 
-.#{$background-namespace}border--bottom--thick {
+.#{$border-namespace}border--bottom--thick {
     border-bottom-width: $border-size--thick;
-    border-bottom-style: solid;
 }
 
-.#{$background-namespace}border--top {
+.#{$border-namespace}border--top {
     border-top-width: $border-size;
-    border-top-style: solid;
 }
 
-.#{$background-namespace}border--top--thick {
+.#{$border-namespace}border--top--thick {
     border-top-width: $border-size--thick;
-    border-top-style: solid;
 }
 
-.#{$background-namespace}border--left {
+.#{$border-namespace}border--left {
     border-left-width: $border-size;
-    border-left-style: solid;
 }
 
-.#{$background-namespace}border--left--thick {
+.#{$border-namespace}border--left--thick {
     border-left-width: $border-size--thick;
     border-left-style: solid;
 }
 
-.#{$background-namespace}border--right {
+.#{$border-namespace}border--right {
     border-right-width: $border-size;
-    border-right-style: solid;
 }
 
-.#{$background-namespace}border--right--thick {
+.#{$border-namespace}border--right--thick {
     border-right-width: $border-size--thick;
-    border-right-style: solid;
 }
+
+
+
+
+.#{$border-namespace}border--light {
+    /* For IE11: */
+    --t-bd-color-l: var(--t-primary-color-l--light);
+    /**/
+
+}
+.#{$border-namespace}border--light.t-secondary {
+    /* For IE11: */
+    --t-bd-color-l: var(--t-secondary-color-l--light);
+    /**/
+
+}
+.#{$border-namespace}border--light.t-neutral {
+    /* For IE11: */
+    --t-bd-color-l: var(--t-neutral-color-l--light);
+    /**/
+}
+
+/*
+    This isn't necessary while the IE11 stuff is present above, but keep it here for when the
+    IE11 stuff isn't needed any more.
+*
+@supports (--css: variables) {
+    .#{$border-namespace}border--light {
+        --t-primary-color-l: calc(var(--t-primary-color-l-copy) + ((100% - var(--t-primary-color-l-copy)) * var(--t-light-adjust)));
+        --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) + ((100% - var(--t-secondary-color-l-copy)) * var(--t-light-adjust)));
+        --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) + ((100% - var(--t-neutral-color-l-copy)) * var(--t-light-adjust)));
+    }
+}
+/**/
+
+.#{$border-namespace}border--very-light {
+    /* For IE11: */
+    --t-bd-color-l: var(--t-primary-color-l--very-light);
+    /**/
+
+}
+.#{$border-namespace}border--very-light.t-secondary {
+    /* For IE11: */
+    --t-bd-color-l: var(--t-secondary-color-l--very-light);
+    /**/
+
+}
+.#{$border-namespace}border--very-light.t-neutral {
+    /* For IE11: */
+    --t-bd-color-l: var(--t-neutral-color-l--very-light);
+    /**/
+}
+
+/*
+    This isn't necessary while the IE11 stuff is present above, but keep it here for when the
+    IE11 stuff isn't needed any more.
+*
+@supports (--css: variables) {
+    .#{$border-namespace}border--very-light {
+        --t-primary-color-l: calc(var(--t-primary-color-l-copy) + ((100% - var(--t-primary-color-l-copy)) * var(--t-very-light-adjust)));
+        --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) + ((100% - var(--t-secondary-color-l-copy)) * var(--t-very-light-adjust)));
+        --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) + ((100% - var(--t-neutral-color-l-copy)) * var(--t-very-light-adjust)));
+    }
+}
+/**/
+
+.#{$border-namespace}border--dark {
+    /* For IE11: */
+    --t-bd-color-l: var(--t-primary-color-l--dark);
+    /**/
+
+}
+.#{$border-namespace}border--dark.t-secondary {
+    /* For IE11: */
+    --t-bd-color-l: var(--t-secondary-color-l--dark);
+    /**/
+
+}
+.#{$border-namespace}border--dark.t-neutral {
+    /* For IE11: */
+    --t-bd-color-l: var(--t-neutral-color-l--dark);
+    /**/
+}
+
+/*
+    This isn't necessary while the IE11 stuff is present above, but keep it here for when the
+    IE11 stuff isn't needed any more.
+*
+@supports (--css: variables) {
+    .#{$border-namespace}border--dark {
+        --t-primary-color-l: calc(var(--t-primary-color-l-copy) * var(--t-dark-adjust));
+        --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) * var(--t-dark-adjust));
+        --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) * var(--t-dark-adjust));
+    }
+}
+/**/
+
+.#{$border-namespace}border--very-dark {
+    /* For IE11: */
+    --t-bd-color-l: var(--t-primary-color-l--very-dark);
+    /**/
+
+}
+.#{$border-namespace}border--very-dark.t-secondary {
+    /* For IE11: */
+    --t-bd-color-l: var(--t-secondary-color-l--very-dark);
+    /**/
+
+}
+.#{$border-namespace}border--very-dark.t-neutral {
+    /* For IE11: */
+    --t-bd-color-l: var(--t-neutral-color-l--very-dark);
+    /**/
+}
+
+/*
+    This isn't necessary while the IE11 stuff is present above, but keep it here for when the
+    IE11 stuff isn't needed any more.
+*
+@supports (--css: variables) {
+    .#{$border-namespace}border--very-dark {
+        --t-primary-color-l: calc(var(--t-primary-color-l-copy) * var(--t-very-dark-adjust));
+        --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) * var(--t-very-dark-adjust));
+        --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) * var(--t-very-dark-adjust));
+    }
+}
+/**/

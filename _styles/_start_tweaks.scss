@@ -41,3 +41,9 @@ blockquote > p:last-child::after {
     position: relative;
     top: 2.5rem;
 }
+
+
+details,
+fieldset {
+    border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l-copy));
+}

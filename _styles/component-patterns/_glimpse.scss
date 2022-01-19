@@ -1,0 +1,243 @@
+/*
+    Glimpse
+    =======
+*/
+
+$glimpse-namespace: c- !default;
+/**/
+$glimpse--breakpoint: 30rem !default;
+
+//$glimpse--max-width: 30em !default;
+
+$glimpse--image-size: 9.6rem !default;
+$glimpse--image-size-large: 17.2rem !default;
+
+$glimpse-heading--font-size: 1.8rem !default;
+$glimpse-footer--font-size:  1.4rem !default;
+
+
+.#{$glimpse-namespace}glimpse {
+    /*
+        1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
+    */
+    &#{&} {
+        position: relative;
+        z-index: 0;
+        //max-width: $glimpse--max-width;
+        //min-height: $glimpse--image-size;
+
+        //width: 0; /* [1] */
+        //min-width: 100%; /* [1] */
+
+
+        border-radius: $s__sz-s;
+        padding: $s__sz-s $s__sz-m;
+
+
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        height: 100%;
+
+
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+
+            background: #fff;
+
+            width: $glimpse--image-size;
+            height: 2.3rem;
+
+            border-radius: $s__sz-s $s__sz-s 0 0;
+
+            position: absolute;
+
+            top: -#{($glimpse--image-size / 2) - $s__sz-s};
+            z-index: -1;
+        }
+
+        &:hover::before {
+            box-shadow: $focus-shadow;
+        }
+
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: -0.7rem;
+            z-index: 0;
+            width: $glimpse--image-size;
+            height: 0;
+            box-shadow: 0 0 0 $s__sz-xxs #fff;
+        }
+    }
+
+    /*
+        The pattern markup allows for a TFS border, so zap that:
+    */
+    & > div {
+
+        height: 100%;
+        flex-grow: 1;
+
+        border: 0;
+        padding: 0;
+        margin: 0;
+
+        z-index: 1;
+    }
+
+
+
+    #{&}__body {
+        max-width: 100%;
+        width: calc((#{$glimpse--breakpoint} - 100%) * 1000);
+        min-width: calc(100% - #{$glimpse--image-size + $s__sz-m});
+        margin-left: auto;
+    }
+
+    #{&}__title {
+        font-size: $glimpse-heading--font-size;
+        line-height: $s__sz-m * 1.5;
+        margin-bottom: 0;
+
+
+        &::before {
+            content: "";
+            display: inline-block;
+
+            height: #{($glimpse--image-size / 2) + $s__sz-s};
+
+            max-width: 100%;
+            width: calc((30rem - 100%) * 1000);
+            min-width: 12rem;
+
+            vertical-align: text-top;
+
+            float: left;
+        }
+
+        a {
+            text-decoration: none;
+
+            &:hover,
+            &:focus {
+                text-decoration: none;
+            }
+
+
+             &::before {
+                content: "";
+                display: block;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                z-index: 1;
+            }
+
+            & span {
+                position: relative;
+                z-index: 2;
+            }
+        }
+    }
+
+    #{&}__body {
+        font-size: $glimpse-footer--font-size;
+    }
+
+
+    #{&}__image {
+        width: $glimpse--image-size;
+        height: $glimpse--image-size;
+
+        border-radius: $s__sz-s;
+        overflow: hidden;
+
+        position: absolute;
+
+        top: -#{($glimpse--image-size / 2) - $s__sz-s};
+
+
+
+        /*& > * {
+            border-radius: $s__sz-s;
+            overflow: hidden;
+        }*/
+
+        img[src] {
+            border: 0;
+            padding: 0;
+
+            &:hover,
+            &:active {
+                border: 0;
+            }
+        }
+    }
+
+    #{&}__image--roundedX {
+        border-radius: 99999px;
+        overflow: hidden;
+
+        top: -#{$s__sz-s * 3};
+        left: -#{$s__sz-s * 3};
+    }
+
+
+
+    &#{&}--large-image #{&}__content {
+        //min-width: calc(100% - #{$glimpse--image-size-large + $s__sz-m});
+        padding: $s__sz-m;
+    }
+
+    &#{&}--large-image #{&}__imageX {
+        width: $glimpse--image-size-large;
+        height: $glimpse--image-size-large;
+
+        top: -#{$s__sz-s * 3};
+        left: -#{$s__sz-s * 3};
+
+
+        /*
+        margin-right: 0;
+        margin-top: -$s__sz-m;
+        margin-bottom: -$s__sz-m;
+        margin-left: -#{$s__sz-m / 2};
+        */
+    }
+
+}
+
+
+.#{$glimpse-namespace}glimpse:focus-within,
+.#{$glimpse-namespace}glimpse:focus-within::before {
+    box-shadow: $focus-shadow;
+}
+/*
+.#{$glimpse-namespace}glimpse::before {
+    &:hover {
+        box-shadow: $focus-shadow;
+    }
+}
+*/
+
+.#{$glimpse-namespace}glimpse--has-js {
+    cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus {
+        box-shadow: $focus-shadow;
+    }
+}
+
+.#{$glimpse-namespace}glimpse--is-mousedown {
+    .#{$glimpse-namespace}card__title a::after {
+        display: none;
+    }
+}

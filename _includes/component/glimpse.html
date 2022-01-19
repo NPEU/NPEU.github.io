@@ -1,0 +1,103 @@
+<!--
+
+    GLIMPSE
+
+-->
+
+<h2 id="glimpse">Glimpse</h2>
+
+<p class="u-space--below--xl">A glimpse provides a brief look or summary of the content the use will be presented with if the Glimpse's link is followed.</p>
+
+<div class="u-space--below--xl  u-padding--sides">
+    {% include glimpse.html
+        title="Headline"
+        url="/patterns/component"
+        content="<p>Just a glimpse at what's inside...</p>"
+        img_src="/assets/images/patterns/placeholder-3"
+    %}
+</div>
+
+<div class="u-padding--sides">
+    {% include glimpse.html
+        title="Headline"
+        url="/patterns/component"
+        content="<p>Just a glimpse at what's inside...</p><p>However, this content is quite a bit longer - more verbose you might say. This is so we can see the impact of the text wrapping on the layout of this(now so-called) 'glimpse'.</p>"
+        img_src="/assets/images/patterns/placeholder-2"
+    %}
+</div>
+
+<h3 class="u-space--below--xl">Large image</h3>
+
+
+<div class="u-space--below--xl  u-padding--sides">
+    {% include glimpse.html
+        title="Headline"
+        url="/patterns/component"
+        content="<p>Just a glimpse at what's inside...</p>"
+        img_src="/assets/images/patterns/placeholder-3"
+        large_img=true
+    %}
+</div>
+
+<div class="u-padding--sides">
+    {% include glimpse.html
+        title="Headline"
+        url="/patterns/component"
+        content="<p>Just a glimpse at what's inside...</p><p>However, this content is quite a bit longer - more verbose you might say. This is so we can see the impact of the text wrapping on the layout of this(now so-called) 'glimpse'.</p>"
+        img_src="/assets/images/patterns/placeholder-2"
+        large_img=true
+    %}
+</div>
+
+<h3 class="u-space--below--xl">Round image</h3>
+
+<div class="u-space--below--xl  u-padding--sides">
+    {% include glimpse.html
+        title="Person Name"
+        url="/patterns/component"
+        content="<p>Job title</p>"
+        img_src="/assets/images/patterns/placeholder-person"
+        round_img=true
+    %}
+</div>
+
+<div class="u-padding--sides">
+    {% include glimpse.html
+        title="Personwitha Longernamethanusual-Smith"
+        url="/patterns/component"
+        content="<p>Averymuch longerthanusual job title / Anotherlong positionorjob title</p>"
+        img_src="/assets/images/patterns/placeholder-person"
+        round_img=true
+    %}
+</div>
+
+<h3 class="u-space--below--xl">Large Round image</h3>
+
+<div class="u-space--below--xl  u-padding--sides">
+    {% include glimpse.html
+        title="Person Name"
+        url="/patterns/component"
+        content="<p>Job title</p>"
+        img_src="/assets/images/patterns/placeholder-person"
+        large_img=true
+        round_img=true
+    %}
+</div>
+
+<div class="u-space--below--xl  u-padding--sides">
+    {% include glimpse.html
+        title="Personwitha Longernamethanusual-Smith"
+        url="/patterns/component"
+        content="<p>Averymuch longerthanusual job title / Anotherlong positionorjob title</p>"
+        img_src="/assets/images/patterns/placeholder-person"
+        large_img=true
+        round_img=true
+    %}
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html"></code></pre>
+    </details>
+</div>

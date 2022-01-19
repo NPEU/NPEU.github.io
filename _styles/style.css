@@ -290,7 +290,7 @@ html {
   overflow-y: scroll;
   /* 3 */
   color: #111;
-  background-color: #1f1726;
+  background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-dark));
   font-size: 0.625em;
   /* 4 */
   -ms-text-size-adjust: 100%;
@@ -664,12 +664,12 @@ button {
   padding-bottom: -moz-calc(0);
   padding-bottom: calc(0.3rem - 0.1rem);
   padding-left: 0.6rem;
-  border-color: rgba(0, 0, 0, 0.2);
+  border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
   border-style: solid;
   border-width: 0.1rem;
   border-radius: 0.3rem;
   color: #fff;
-  background-color: #5F4776;
+  background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
   font-weight: inherit;
   font-style: inherit;
   font-size: inherit;
@@ -687,7 +687,7 @@ button {
 }
 
 button:hover, button:active {
-  background-color: #453456;
+  background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--dark));
 }
 
 button:focus {
@@ -1419,12 +1419,12 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
   padding-bottom: -moz-calc(0);
   padding-bottom: calc(0.3rem - 0.1rem);
   padding-left: 0.6rem;
-  border-color: rgba(0, 0, 0, 0.2);
+  border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
   border-style: solid;
   border-width: 0.1rem;
   border-radius: 0.3rem;
   color: #fff;
-  background-color: #5F4776;
+  background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
   font-weight: inherit;
   font-style: inherit;
   font-size: inherit;
@@ -1446,7 +1446,7 @@ _::-webkit-full-page-media, _:future, :root [type="radio"]:focus {
 [type="reset"]:active,
 [type="submit"]:hover,
 [type="submit"]:active {
-  background-color: #453456;
+  background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--dark));
 }
 
 [type="button"]:focus,
@@ -1858,7 +1858,7 @@ pre {
   margin-bottom: 2.4rem;
   margin-bottom: 3.1rem;
   /* 1 */
-  background-color: #ebe6f0;
+  background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-light));
   /*1 */
   font-size: 1em;
   /* 2 */
@@ -2753,6 +2753,11 @@ blockquote > p:last-child::after {
   top: 2.5rem;
 }
 
+details,
+fieldset {
+  border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l-copy));
+}
+
 /*! Start-CSS Experimental. See SCSS file for documentation. */
 /*-------------------------------------------------------------------------------------------------|
 
@@ -2845,8 +2850,17 @@ blockquote > p:last-child::after {
 }
 
 /* ---------------------------------------------------------------------------------------------- */
+/* --| MORE SETTINGS (USING START VARS |--------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- */
 /* --| THEME |----------------------------------------------------------------------------------- */
 /**/
+/*
+    1. Declared twice so it can be part of a lightening calculation. Also see start_tweaks where I
+       override the details border-colour - the light background sets:
+       --t-primary-color-l: var(--t-primary-color-l--light)
+       which then affects a border declared with --t-primary-color-l, so using the copy.
+       Not sure how to make this less clunky.
+*/
 :root {
   --t-text-color: #111;
   --t-text-color-inverse: #fff;
@@ -2859,7 +2873,7 @@ blockquote > p:last-child::after {
   --t-primary-color-s: 25%;
   --t-primary-color-l: 37%;
   --t-primary-color-l-copy: 37%;
-  /* Declared twice so it can be part of a lightening calculation) */
+  /* 1 */
   --t-primary-fore-text-color: #fff;
   /* SASS would generate this from the base colour. */
   --t-secondary-color: #b9975b;
@@ -2867,7 +2881,7 @@ blockquote > p:last-child::after {
   --t-secondary-color-s: 40%;
   --t-secondary-color-l: 54%;
   --t-secondary-color-l-copy: 54%;
-  /* Declared twice so it can be part of a lightening calculation) */
+  /* 1 */
   --t-secondary-fore-text-color: #111;
   /* SASS would generate this from the base colour. */
   --t-neutral-color: #8e8279;
@@ -2875,7 +2889,7 @@ blockquote > p:last-child::after {
   --t-neutral-color-s: 9%;
   --t-neutral-color-l: 52%;
   --t-neutral-color-l-copy: 52%;
-  /* Declared twice so it can be part of a lightening calculation) */
+  /* 1 */
   --t-neutral-fore-text-color: #111;
   /* SASS would generate this from the base colour. */
   /*
@@ -3174,6 +3188,18 @@ a[href][rel~="external"].c-badge:focus::after {
     visual importance. Reset the inherited weight and style.
 */
 .c-cta.c-cta {
+  /*@include s__button(
+            $s__button-background-color,
+            $s__button-text-color,
+            20,
+            $s__button-background-color
+        );*/
+  /*@include s__button(
+            currentColor,
+            transparent,
+            hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-light)),
+            currentColor
+        );*/
   display: inline-block;
   /* AK. IE9 needs this. Hmmm, for what exactly?*/
   min-height: 3rem;
@@ -3188,12 +3214,12 @@ a[href][rel~="external"].c-badge:focus::after {
   padding-bottom: -moz-calc(0);
   padding-bottom: calc(0.3rem - 0.1rem);
   padding-left: 0.6rem;
-  border-color: #5F4776;
+  border-color: currentColor;
   border-style: solid;
   border-width: 0.1rem;
   border-radius: 0.3rem;
-  color: #5F4776;
-  background-color: #fff;
+  color: currentColor;
+  background-color: transparent;
   font-weight: inherit;
   font-style: inherit;
   font-size: inherit;
@@ -3208,16 +3234,36 @@ a[href][rel~="external"].c-badge:focus::after {
   touch-action: manipulation;
   /* 1 */
   -webkit-appearance: none;
+  position: relative;
+  z-index: 0;
   text-decoration: none;
   position: relative;
   font-weight: normal;
-  /* [1] */
   font-style: normal;
-  /* [1] */
+  /*
+                1. So to explain these, I need the hover background-color to be light on darker
+                   backgrounds, and dark on lighter backgrounds. I don't want to use border to
+                   visualise this state because it affects layout, and box-shadow is reserved for
+                   focus/active states. Outline doesn't round corners in most browsers, and filters
+                   and similar don't work in older browsers. Using `calc` on hsl would be a way of
+                   doing it, but IE11 doesn't support it, so I'm using semi-transparent pseudo 
+                   elements, one white, one black. Then I'm using the essence of the Fab Four
+                   technique combined with the current known `l` var to show or hide the relevant
+                   pseudo element. This works in IE11 because I'm using a custom properties 
+                   polyfill, and IE11 gets the fallback styles if JS isn't available, so it's 
+                   pretty watertight.
+                   
+                   Note this may move out of this file if it's needed on other components.
+                   Not sure yet.
+                   
+                   2. All sorts of effects are possible since this is an element - position, size, 
+                      rotation etc.
+            */
+  overflow: hidden;
 }
 
 .c-cta.c-cta:hover, .c-cta.c-cta:active {
-  background-color: white;
+  background-color: transparent;
 }
 
 .c-cta.c-cta:focus {
@@ -3225,9 +3271,37 @@ a[href][rel~="external"].c-badge:focus::after {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
 }
 
+.c-cta.c-cta::before, .c-cta.c-cta::after {
+  content: "";
+  display: block;
+  width: 0;
+  max-width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  position: absolute;
+}
+
+.c-cta.c-cta::before {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.c-cta.c-cta::after {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 .c-cta.c-cta:hover, .c-cta.c-cta:active {
-  background-color: #ebe6f0;
   text-decoration: none;
+  /* [1]: */
+}
+
+.c-cta.c-cta:hover::before, .c-cta.c-cta:active::before {
+  width: calc((50% - var(--t-bg-color-l)) * -100);
+}
+
+.c-cta.c-cta:hover::after, .c-cta.c-cta:active::after {
+  width: calc((50% - var(--t-bg-color-l)) * 100);
 }
 
 .c-cta.c-cta svg {
@@ -3265,8 +3339,9 @@ a[href].c-cta--has-icon .icon {
 */
 .c-card {
   /*
-            The markup pattern allows for a TFS border, so zap that:
+            The pattern markup allows for a TFS border, so zap that:
         */
+  /* If there's no body, the footer should grow: */
 }
 
 .c-card.c-card {
@@ -3281,6 +3356,7 @@ a[href].c-cta--has-icon .icon {
 .c-card > div {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   height: 100%;
   border: 0;
   padding: 0;
@@ -3370,6 +3446,10 @@ a[href].c-cta--has-icon .icon {
   z-index: 2;
 }
 
+.c-card .c-card__header + .c-card__footer {
+  margin-top: auto;
+}
+
 .c-card .c-card__footer {
   margin-top: 2.4rem;
   margin-bottom: 0;
@@ -3405,7 +3485,7 @@ a[href].c-cta--has-icon .icon {
 }
 
 .c-card:focus-within {
-  box-shadow: 0 0 0 0.6rem #fff, 0 0 0 1.2rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 0.3rem #fff, 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
 }
 
 .c-card--has-js {
@@ -3413,7 +3493,7 @@ a[href].c-cta--has-icon .icon {
 }
 
 .c-card--has-js:hover, .c-card--has-js:active, .c-card--has-js:focus {
-  box-shadow: 0 0 0 0.6rem #fff, 0 0 0 1.2rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 0.3rem #fff, 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
 }
 
 .c-card--is-mousedown .c-card__title a::after {
@@ -3538,11 +3618,6 @@ a[href].c-cta--has-icon .icon {
     ok here - we don't need to worry about other contexts and container-queries.
 */
 /*
-$featurette-cta--border-width: 1px !default;
-$featurette-cta--border-style: solid !default;
-$featurette-cta--border-radius: 3px !default;
-*/
-/*
     1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
 */
 .c-featurette.c-featurette {
@@ -3598,6 +3673,8 @@ $featurette-cta--border-radius: 3px !default;
 
 .c-featurette .c-featurette__body {
   padding: 2.4rem calc(8% - 1.2rem);
+  max-width: 100%;
+  width: calc((35em - 100%) * 1000);
 }
 
 .c-featurette .c-featurette__body > blockquote {
@@ -3607,6 +3684,27 @@ $featurette-cta--border-radius: 3px !default;
   color: inherit;
   border-top: 1px dotted currentColor;
   border-bottom: 1px dotted currentColor;
+}
+
+.c-featurette .c-featurette__body,
+.c-featurette .c-featurette__body--50 {
+  min-width: 50%;
+}
+
+.c-featurette .c-featurette__body--55 {
+  min-width: 55%;
+}
+
+.c-featurette .c-featurette__body--60 {
+  min-width: 60%;
+}
+
+.c-featurette .c-featurette__body--65 {
+  min-width: 65%;
+}
+
+.c-featurette .c-featurette__body--70 {
+  min-width: 70%;
 }
 
 /*
@@ -3627,7 +3725,7 @@ $featurette-cta--border-radius: 3px !default;
 .c-form--tool-form.c-form--tool-form {
   background-color: #fff;
   border-style: solid;
-  border-color: var(--t-primary-color);
+  border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
   border-width: 0.3rem;
   border-radius: 1.2rem;
   padding: calc(2.4rem - 0.3rem);
@@ -3699,6 +3797,190 @@ $featurette-cta--border-radius: 3px !default;
 }
 
 /*
+    Glimpse
+    =======
+*/
+/**/
+.c-glimpse {
+  /*
+        1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
+    */
+  /*
+        The pattern markup allows for a TFS border, so zap that:
+    */
+}
+
+.c-glimpse.c-glimpse {
+  position: relative;
+  z-index: 0;
+  border-radius: 1.2rem;
+  padding: 1.2rem 2.4rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.c-glimpse.c-glimpse::before {
+  content: "";
+  display: block;
+  position: absolute;
+  background: #fff;
+  width: 9.6rem;
+  height: 2.3rem;
+  border-radius: 1.2rem 1.2rem 0 0;
+  position: absolute;
+  top: -3.6rem;
+  z-index: -1;
+}
+
+.c-glimpse.c-glimpse:hover::before {
+  box-shadow: 0 0 0 0.3rem #fff, 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
+}
+
+.c-glimpse.c-glimpse::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -0.7rem;
+  z-index: 0;
+  width: 9.6rem;
+  height: 0;
+  box-shadow: 0 0 0 0.3rem #fff;
+}
+
+.c-glimpse > div {
+  height: 100%;
+  flex-grow: 1;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  z-index: 1;
+}
+
+.c-glimpse .c-glimpse__body {
+  max-width: 100%;
+  width: calc((30rem - 100%) * 1000);
+  min-width: calc(100% - 12rem);
+  margin-left: auto;
+}
+
+.c-glimpse .c-glimpse__title {
+  font-size: 1.8rem;
+  line-height: 3.6rem;
+  margin-bottom: 0;
+}
+
+.c-glimpse .c-glimpse__title::before {
+  content: "";
+  display: inline-block;
+  height: 6rem;
+  max-width: 100%;
+  width: calc((30rem - 100%) * 1000);
+  min-width: 12rem;
+  vertical-align: text-top;
+  float: left;
+}
+
+.c-glimpse .c-glimpse__title a {
+  text-decoration: none;
+}
+
+.c-glimpse .c-glimpse__title a:hover, .c-glimpse .c-glimpse__title a:focus {
+  text-decoration: none;
+}
+
+.c-glimpse .c-glimpse__title a::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.c-glimpse .c-glimpse__title a span {
+  position: relative;
+  z-index: 2;
+}
+
+.c-glimpse .c-glimpse__body {
+  font-size: 1.4rem;
+}
+
+.c-glimpse .c-glimpse__image {
+  width: 9.6rem;
+  height: 9.6rem;
+  border-radius: 1.2rem;
+  overflow: hidden;
+  position: absolute;
+  top: -3.6rem;
+  /*& > * {
+            border-radius: $s__sz-s;
+            overflow: hidden;
+        }*/
+}
+
+.c-glimpse .c-glimpse__image img[src] {
+  border: 0;
+  padding: 0;
+}
+
+.c-glimpse .c-glimpse__image img[src]:hover, .c-glimpse .c-glimpse__image img[src]:active {
+  border: 0;
+}
+
+.c-glimpse .c-glimpse__image--roundedX {
+  border-radius: 99999px;
+  overflow: hidden;
+  top: -3.6rem;
+  left: -3.6rem;
+}
+
+.c-glimpse.c-glimpse--large-image .c-glimpse__content {
+  padding: 2.4rem;
+}
+
+.c-glimpse.c-glimpse--large-image .c-glimpse__imageX {
+  width: 17.2rem;
+  height: 17.2rem;
+  top: -3.6rem;
+  left: -3.6rem;
+  /*
+        margin-right: 0;
+        margin-top: -$s__sz-m;
+        margin-bottom: -$s__sz-m;
+        margin-left: -1.2rem;
+        */
+}
+
+.c-glimpse:focus-within,
+.c-glimpse:focus-within::before {
+  box-shadow: 0 0 0 0.3rem #fff, 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
+}
+
+/*
+.c-glimpse::before {
+    &:hover {
+        box-shadow: $focus-shadow;
+    }
+}
+*/
+.c-glimpse--has-js {
+  cursor: pointer;
+}
+
+.c-glimpse--has-js:hover, .c-glimpse--has-js:active, .c-glimpse--has-js:focus {
+  box-shadow: 0 0 0 0.3rem #fff, 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
+}
+
+.c-glimpse--is-mousedown .c-card__title a::after {
+  display: none;
+}
+
+/*
     Page Wrap
     ========
 */
@@ -3716,25 +3998,45 @@ $featurette-cta--border-radius: 3px !default;
     ===========
 */
 [class*="d-background"] {
-  background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
+  --t-bg-color: var(--t-primary-color);
+  --t-bg-color-h: var(--t-primary-color-h);
+  --t-bg-color-s: var(--t-primary-color-s);
+  --t-bg-color-l: var(--t-primary-color-l);
+  background-color: hsl(var(--t-bg-color-h), var(--t-bg-color-s), var(--t-bg-color-l));
   color: var(--t-primary-fore-text-color);
 }
 
 [class*="d-background"].t-secondary {
-  background-color: hsl(var(--t-secondary-color-h), var(--t-secondary-color-s), var(--t-secondary-color-l));
+  --t-bg-color: var(--t-secondary-color);
+  --t-bg-color-h: var(--t-secondary-color-h);
+  --t-bg-color-s: var(--t-secondary-color-s);
+  --t-bg-color-l: var(--t-secondary-color-l);
   color: var(--t-secondary-fore-text-color);
 }
 
 [class*="d-background"].t-neutral {
-  background-color: hsl(var(--t-neutral-color-h), var(--t-neutral-color-s), var(--t-neutral-color-l));
+  --t-bg-color: var(--t-neutral-color);
+  --t-bg-color-h: var(--t-neutral-color-h);
+  --t-bg-color-s: var(--t-neutral-color-s);
+  --t-bg-color-l: var(--t-neutral-color-l);
   color: var(--t-neutral-fore-text-color);
 }
 
 .d-background--light {
   /* For IE11: */
-  --t-primary-color-l: var(--t-primary-color-l--light);
-  --t-secondary-color-l: var(--t-secondary-color-l--light);
-  --t-neutral-color-l: var(--t-neutral-color-l--light);
+  --t-bg-color-l: var(--t-primary-color-l--light);
+  /**/
+}
+
+.d-background--light.t-secondary {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-secondary-color-l--light);
+  /**/
+}
+
+.d-background--light.t-neutral {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-neutral-color-l--light);
   /**/
 }
 
@@ -3752,9 +4054,19 @@ $featurette-cta--border-radius: 3px !default;
 /**/
 .d-background--very-light {
   /* For IE11: */
-  --t-primary-color-l: var(--t-primary-color-l--very-light);
-  --t-secondary-color-l: var(--t-secondary-color-l--very-light);
-  --t-neutral-color-l: var(--t-neutral-color-l--very-light);
+  --t-bg-color-l: var(--t-primary-color-l--very-light);
+  /**/
+}
+
+.d-background--very-light.t-secondary {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-secondary-color-l--very-light);
+  /**/
+}
+
+.d-background--very-light.t-neutral {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-neutral-color-l--very-light);
   /**/
 }
 
@@ -3772,9 +4084,19 @@ $featurette-cta--border-radius: 3px !default;
 /**/
 .d-background--dark {
   /* For IE11: */
-  --t-primary-color-l: var(--t-primary-color-l--dark);
-  --t-secondary-color-l: var(--t-secondary-color-l--dark);
-  --t-neutral-color-l: var(--t-neutral-color-l--dark);
+  --t-bg-color-l: var(--t-primary-color-l--dark);
+  /**/
+}
+
+.d-background--dark.t-secondary {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-secondary-color-l--dark);
+  /**/
+}
+
+.d-background--dark.t-neutral {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-neutral-color-l--dark);
   /**/
 }
 
@@ -3792,9 +4114,19 @@ $featurette-cta--border-radius: 3px !default;
 /**/
 .d-background--very-dark {
   /* For IE11: */
-  --t-primary-color-l: var(--t-primary-color-l--very-dark);
-  --t-secondary-color-l: var(--t-secondary-color-l--very-dark);
-  --t-neutral-color-l: var(--t-neutral-color-l--very-dark);
+  --t-bg-color-l: var(--t-primary-color-l--very-dark);
+  /**/
+}
+
+.d-background--very-dark.t-secondary {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-secondary-color-l--very-dark);
+  /**/
+}
+
+.d-background--very-dark.t-neutral {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-neutral-color-l--very-dark);
   /**/
 }
 
@@ -3826,51 +4158,52 @@ $featurette-cta--border-radius: 3px !default;
     Border
     ======
 */
-[class~="d-border"] {
+[class*="d-border"] {
   border-width: 0.1rem;
   border-style: solid;
-}
-
-[class*="d-border"] {
-  border-color: var(--t-primary-color);
+  --t-bd-color: var(--t-primary-color);
+  --t-bd-color-h: var(--t-primary-color-h);
+  --t-bd-color-s: var(--t-primary-color-s);
+  --t-bd-color-l: var(--t-primary-color-l);
+  border-color: hsl(var(--t-bd-color-h), var(--t-bd-color-s), var(--t-bd-color-l));
 }
 
 [class*="d-border"].t-secondary {
-  border-color: var(--t-secondary-color);
+  --t-bd-color: var(--t-secondary-color);
+  --t-bd-color-h: var(--t-secondary-color-h);
+  --t-bd-color-s: var(--t-secondary-color-s);
+  --t-bd-color-l: var(--t-secondary-color-l);
 }
 
 [class*="d-border"].t-neutral {
-  border-color: var(--t-neutral-color);
+  --t-bd-color: var(--t-neutral-color);
+  --t-bd-color-h: var(--t-neutral-color-h);
+  --t-bd-color-s: var(--t-neutral-color-s);
+  --t-bd-color-l: var(--t-neutral-color-l);
 }
 
 .d-border--thick {
   border-width: 0.3rem;
-  border-style: solid;
 }
 
 .d-border--bottom {
   border-bottom-width: 0.1rem;
-  border-bottom-style: solid;
 }
 
 .d-border--bottom--thick {
   border-bottom-width: 0.3rem;
-  border-bottom-style: solid;
 }
 
 .d-border--top {
   border-top-width: 0.1rem;
-  border-top-style: solid;
 }
 
 .d-border--top--thick {
   border-top-width: 0.3rem;
-  border-top-style: solid;
 }
 
 .d-border--left {
   border-left-width: 0.1rem;
-  border-left-style: solid;
 }
 
 .d-border--left--thick {
@@ -3880,14 +4213,132 @@ $featurette-cta--border-radius: 3px !default;
 
 .d-border--right {
   border-right-width: 0.1rem;
-  border-right-style: solid;
 }
 
 .d-border--right--thick {
   border-right-width: 0.3rem;
-  border-right-style: solid;
 }
 
+.d-border--light {
+  /* For IE11: */
+  --t-bd-color-l: var(--t-primary-color-l--light);
+  /**/
+}
+
+.d-border--light.t-secondary {
+  /* For IE11: */
+  --t-bd-color-l: var(--t-secondary-color-l--light);
+  /**/
+}
+
+.d-border--light.t-neutral {
+  /* For IE11: */
+  --t-bd-color-l: var(--t-neutral-color-l--light);
+  /**/
+}
+
+/*
+    This isn't necessary while the IE11 stuff is present above, but keep it here for when the
+    IE11 stuff isn't needed any more.
+*
+@supports (--css: variables) {
+    .d-border--light {
+        --t-primary-color-l: calc(var(--t-primary-color-l-copy) + ((100% - var(--t-primary-color-l-copy)) * var(--t-light-adjust)));
+        --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) + ((100% - var(--t-secondary-color-l-copy)) * var(--t-light-adjust)));
+        --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) + ((100% - var(--t-neutral-color-l-copy)) * var(--t-light-adjust)));
+    }
+}
+/**/
+.d-border--very-light {
+  /* For IE11: */
+  --t-bd-color-l: var(--t-primary-color-l--very-light);
+  /**/
+}
+
+.d-border--very-light.t-secondary {
+  /* For IE11: */
+  --t-bd-color-l: var(--t-secondary-color-l--very-light);
+  /**/
+}
+
+.d-border--very-light.t-neutral {
+  /* For IE11: */
+  --t-bd-color-l: var(--t-neutral-color-l--very-light);
+  /**/
+}
+
+/*
+    This isn't necessary while the IE11 stuff is present above, but keep it here for when the
+    IE11 stuff isn't needed any more.
+*
+@supports (--css: variables) {
+    .d-border--very-light {
+        --t-primary-color-l: calc(var(--t-primary-color-l-copy) + ((100% - var(--t-primary-color-l-copy)) * var(--t-very-light-adjust)));
+        --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) + ((100% - var(--t-secondary-color-l-copy)) * var(--t-very-light-adjust)));
+        --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) + ((100% - var(--t-neutral-color-l-copy)) * var(--t-very-light-adjust)));
+    }
+}
+/**/
+.d-border--dark {
+  /* For IE11: */
+  --t-bd-color-l: var(--t-primary-color-l--dark);
+  /**/
+}
+
+.d-border--dark.t-secondary {
+  /* For IE11: */
+  --t-bd-color-l: var(--t-secondary-color-l--dark);
+  /**/
+}
+
+.d-border--dark.t-neutral {
+  /* For IE11: */
+  --t-bd-color-l: var(--t-neutral-color-l--dark);
+  /**/
+}
+
+/*
+    This isn't necessary while the IE11 stuff is present above, but keep it here for when the
+    IE11 stuff isn't needed any more.
+*
+@supports (--css: variables) {
+    .d-border--dark {
+        --t-primary-color-l: calc(var(--t-primary-color-l-copy) * var(--t-dark-adjust));
+        --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) * var(--t-dark-adjust));
+        --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) * var(--t-dark-adjust));
+    }
+}
+/**/
+.d-border--very-dark {
+  /* For IE11: */
+  --t-bd-color-l: var(--t-primary-color-l--very-dark);
+  /**/
+}
+
+.d-border--very-dark.t-secondary {
+  /* For IE11: */
+  --t-bd-color-l: var(--t-secondary-color-l--very-dark);
+  /**/
+}
+
+.d-border--very-dark.t-neutral {
+  /* For IE11: */
+  --t-bd-color-l: var(--t-neutral-color-l--very-dark);
+  /**/
+}
+
+/*
+    This isn't necessary while the IE11 stuff is present above, but keep it here for when the
+    IE11 stuff isn't needed any more.
+*
+@supports (--css: variables) {
+    .d-border--very-dark {
+        --t-primary-color-l: calc(var(--t-primary-color-l-copy) * var(--t-very-dark-adjust));
+        --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) * var(--t-very-dark-adjust));
+        --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) * var(--t-very-dark-adjust));
+    }
+}
+/**/
 /* ---------------------------------------------------------------------------------------------- */
 /* --| Layout Patterns |------------------------------------------------------------------------- */
 /*
@@ -5385,7 +5836,7 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
         1. Prevent extra bottom space when form is inside a container.
     */
 .search-form.search-form {
-  background: #5F4776;
+  background: transparent;
   display: flex;
   flex-wrap: wrap;
   margin: 0;
@@ -5463,7 +5914,7 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 .search-form .search-form__submit {
   border-radius: 0;
   border: 0;
-  background: #ded6e6;
+  background: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--light));
   color: #111;
   height: 1.875em;
   line-height: 0;
@@ -5474,7 +5925,7 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 
 .search-form .search-form__submit:hover,
 .search-form .search-form__submit:focus {
-  background-color: #ab96c0;
+  background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-light));
 }
 
 .search-form .search-form__submit:focus {
@@ -7616,9 +8067,14 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 
     ! NOTE: test this in all non-object-fit-supporting browsers as it may be a fix for those too.
 
-    This only works for landscape containers. If it's portrait it breaks unless the width and
-    translate are inverted, and that can't be detected if size changes.
-    Will be replying on JS to check for change to portrait and apply portrait class.
+    The default styles work for scenarios where an image is TALLER than it's container. If it's 
+    SHORTER things break unless the width and translate are inverted, and that can't be detected if 
+    size changes.
+    Will be relying on JS to check for change SHORTER images and apply local styles.
+    See _scripts/js/image-cover.js and add the `js-image-cover` class.
+    ALso note that when using the 'contain' variant, this is inverted, so the default styles work
+    when an image is SHORTER than it's container, but not TALLER, so the JS looks for the 
+    `js-image-cover--contain` class and inverts the logic.
 
     Also note:
     Where a 'cover' image is in a flexible box, and especially in a ff-width pair where the two parts

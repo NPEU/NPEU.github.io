@@ -44,30 +44,31 @@
     <style>
         /* Tiny Fall-Back Styles continued ... */
         [data-fs-text~=right]{text-align:right}[data-fs-text~=center]{text-align:center}[data-fs-text~=larger]{font-size:larger}[data-fs-text~=nowrap]{white-space:nowrap}[data-fs-block~=background]{background:#eee}[data-fs-block~=border]{border:1px solid;margin:1em 0;padding:1em}[data-fs-block~=padding]{padding:1em}[data-fs-block~=table]{display:table;width:100%;table-layout:fixed}[data-fs-block~=table]>*{display:table-cell;padding:.5em}[data-fs-block~=flex]{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}[data-fs-block~=flex]>*{-webkit-box-flex:1;-webkit-flex:1 0 auto;-moz-box-flex:1;-ms-flex:1 0 auto;flex:1 0 auto}[data-fs-block=video]{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%}[data-fs-block=video] embed,[data-fs-block=video] iframe,[data-fs-block=video] object{position:absolute;top:0;left:0;width:100%;height:100%}[data-fs-hr=larger]{border-top-width:10px}
-    
-    
+
+
         /* Some fallback decoration: */
-        
+
         html {
-            background-color: #57504a;
+            background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-dark));
         }
-        
+
         body {
             background-color: #ffffff;
         }
-        
+
+        /*
         .c-card {
-            border-color: #57504a;
+            border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
             border-radius: 0.5em;
             /*background-color: #5D4777;*/
-            background-color: #57504a;
+            background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
             color: #ffffff;
         }
-        
+
         .c-card * {
             color: inherit;
         }
-        
+        */
     </style>
 
     <!--
@@ -114,8 +115,8 @@
         script.type  = 'text/javascript';
         script.src = '/js/ie11.min.js';
         document.getElementsByTagName('head')[0].appendChild(script);
-        
-        
+
+
         var script2  = document.createElement('script');
         script2.type  = 'text/javascript';
         script2.src = '/js/ie11-custom-properties.min.js';
@@ -194,6 +195,112 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-config" content="{{ project_base_url }}/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
+
+    <!-- Brand theme (added by CMS -->
+    <style>
+        :root {
+        
+            --t-bg-color: #FFFFFF; /* hsl(0, 0%, 100%) */
+            --t-bg-color-h: 0;
+            --t-bg-color-s: 0%;
+            --t-bg-color-l: 100%;
+            --t-bg-color-l-copy: 100%;
+
+            --t-primary-color: #253A8E; /* hsl(228, 59%, 35%) */
+            --t-primary-color-h: 228;
+            --t-primary-color-s: 59%;
+            --t-primary-color-l: 35%;
+            --t-primary-color-l-copy: 35%;
+
+            --t-secondary-color: #E84B5E; /* hsl(353, 77%, 60%) */
+            --t-secondary-color-h: 353;
+            --t-secondary-color-s: 77%;
+            --t-secondary-color-l: 60%;
+            --t-secondary-color-l-copy: 60%;
+            
+            --t-neutral-color: #8e8279;
+            --t-neutral-color-h: 26;
+            --t-neutral-color-s: 9%;
+            --t-neutral-color-l: 52%;
+            --t-neutral-color-l-copy: 52%;
+            
+            
+            
+            --t-primary-color-l--very-light: 95%;
+            --t-primary-color-l--light: 81%;
+            --t-primary-color-l--dark: 26%;
+            --t-primary-color-l--very-dark: 18%;
+
+            --t-secondary-color-l--very-light: 96%;
+            --t-secondary-color-l--light: 86%;
+            --t-secondary-color-l--dark: 37%;
+            --t-secondary-color-l--very-dark: 27%;
+            
+            --t-neutral-color-l--very-light: 96%;
+            --t-neutral-color-l--light: 86%;
+            --t-neutral-color-l--dark: 36%;
+            --t-neutral-color-l--very-dark: 26%;
+
+            {% comment %}
+
+            /* All vars (for reference): */
+            --t-text-color: #111;
+            --t-text-color-inverse: #fff;
+            --t-light-adjust: 0.7;
+            --t-very-light-adjust: 0.92;
+            --t-dark-adjust: 0.7;
+            --t-very-dark-adjust: 0.5;
+            --t-primary-color: #5F4776;
+            --t-primary-color-h: 271;
+            --t-primary-color-s: 25%;
+            --t-primary-color-l: 37%;
+            --t-primary-color-l-copy: 37%;
+
+            /* Declared twice so it can be part of a lightening calculation) */
+            --t-primary-fore-text-color: #fff;
+
+            /* SASS would generate this from the base colour. */
+            --t-secondary-color: #b9975b;
+            --t-secondary-color-h: 38;
+            --t-secondary-color-s: 40%;
+            --t-secondary-color-l: 54%;
+            --t-secondary-color-l-copy: 54%;
+
+            /* Declared twice so it can be part of a lightening calculation) */
+            --t-secondary-fore-text-color: #111;
+
+            /* SASS would generate this from the base colour. */
+            --t-neutral-color: #8e8279;
+            --t-neutral-color-h: 26;
+            --t-neutral-color-s: 9%;
+            --t-neutral-color-l: 52%;
+            --t-neutral-color-l-copy: 52%;
+
+            /* Declared twice so it can be part of a lightening calculation) */
+            --t-neutral-fore-text-color: #111;
+
+            /* SASS would generate this from the base colour. */
+            /*
+            Without being able to perform a calc in the hsl function (grrr IE11 even with polyfill) we
+            need to create adjusted -l values in SASS (stylesheet) and/or php (on-page themer)
+            */
+            --t-primary-color-l--very-light: 95%;
+            --t-primary-color-l--light: 81%;
+            --t-primary-color-l--dark: 26%;
+            --t-primary-color-l--very-dark: 18%;
+            --t-secondary-color-l--very-light: 96%;
+            --t-secondary-color-l--light: 86%;
+            --t-secondary-color-l--dark: 37%;
+            --t-secondary-color-l--very-dark: 27%;
+            --t-neutral-color-l--very-light: 96%;
+            --t-neutral-color-l--light: 86%;
+            --t-neutral-color-l--dark: 36%;
+            --t-neutral-color-l--very-dark: 26%;
+            /**/
+
+            {% endcomment %}
+        }
+    </style>
 </head>
 <body role="document" class="{{ project_data.theme_class }}" data-layout="{{ page.layout_name }}">
 
@@ -351,7 +458,7 @@
     </div>
 
     {{ content }}
-    
+
     {% if page.translate != false %}
     <div id="google_translate_element"></div>
 

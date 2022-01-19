@@ -36,7 +36,7 @@ Patterns are styled with assumption that script is unavailable.
 The script itself is responsible for adding a js-xyz class to the HTML tag (for reasons explained later) and styling that's dependant on the JS being available is scoped to that class.
 E.g. `.js-xyc c-xyz {...}`
 
-#### Why the HTML Tag for .js-xyz Classes?
+#### Why use the HTML Tag for the `js-` Classes?
 
 The reason for this is so that we can inform the entire document that the the given script has loaded.
 Whilst each pattern is meant to be self-contained in that it's base and js styles are included in the same SCSS file, we can't say for sure that there may be other changes elsewhere in the page not related to the pattern that may need to occur only if the script is available.

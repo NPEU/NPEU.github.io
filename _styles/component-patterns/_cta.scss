@@ -11,23 +11,91 @@ $cta-namespace: c- !default;
 */
 .#{$cta-namespace}cta {
     &#{&} {
-        @include s__button(
+        /*@include s__button(
             $s__button-background-color,
             $s__button-text-color,
             20,
             $s__button-background-color
+        );*/
+        
+        /*@include s__button(
+            currentColor,
+            transparent,
+            hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-light)),
+            currentColor
+        );*/
+        @include s__button(
+            currentColor,
+            transparent,
+            transparent,
+            currentColor
         );
+
+        position: relative;
+        z-index: 0;
+
+        
 
         text-decoration: none;
         position: relative;
 
-        font-weight: normal; /* [1] */
-        font-style: normal; /* [1] */
+        font-weight: normal;
+        font-style: normal;
 
+            /*
+                1. So to explain these, I need the hover background-color to be light on darker
+                   backgrounds, and dark on lighter backgrounds. I don't want to use border to
+                   visualise this state because it affects layout, and box-shadow is reserved for
+                   focus/active states. Outline doesn't round corners in most browsers, and filters
+                   and similar don't work in older browsers. Using `calc` on hsl would be a way of
+                   doing it, but IE11 doesn't support it, so I'm using semi-transparent pseudo 
+                   elements, one white, one black. Then I'm using the essence of the Fab Four
+                   technique combined with the current known `l` var to show or hide the relevant
+                   pseudo element. This works in IE11 because I'm using a custom properties 
+                   polyfill, and IE11 gets the fallback styles if JS isn't available, so it's 
+                   pretty watertight.
+                   
+                   Note this may move out of this file if it's needed on other components.
+                   Not sure yet.
+                   
+                   2. All sorts of effects are possible since this is an element - position, size, 
+                      rotation etc.
+            */
+            overflow: hidden;
+            &::before,
+            &::after {
+                content: "";
+                display: block;
+                width: 0;
+                max-width: 100%;
+                height: 100%;
+                top: 0;
+                //top: 100%; /* [2] */
+                left: 0;
+                z-index: -1;
+                position: absolute;
+                //transition: all 0.3s; /* [2] */
+            }
+            &::before {
+                background-color: rgba(0,0,0,0.1);
+            }
+            &::after {
+                background-color: rgba(255,255,255,0.2);
+            }
+            
             &:hover,
             &:active {
-                background-color: lighten($s__button-background-color, 55%);
                 text-decoration: none;
+                
+                /* [1]: */
+                &::before {
+                    //top: 0; /* [2] */
+                    width: calc((50% - var(--t-bg-color-l)) * -100);
+                }
+                &::after {
+                    //top: 0; /* [2] */
+                    width: calc((50% - var(--t-bg-color-l)) * 100);
+                }
             }
 
             svg {

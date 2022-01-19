@@ -12,7 +12,6 @@
 */
 
 (function() {
-    //if(('objectFit' in document.documentElement.style !== false) || !(navigator.userAgent.indexOf('UCBrowser') > -1)) {
     if('objectFit' in document.documentElement.style !== false) {
         return;
     }
@@ -49,15 +48,22 @@
 
             // Get the image dimensions:
             var image_rect = img.getBoundingClientRect();
-            //console.log(container_rect.height, image_rect.height, img.height < container_rect.height);
 
             // Remove the style. Note the behaviour here isn't ideal, but it's better than the image
             // getting stuck at a small size which can happen otherwise.
             img.removeAttribute('style');
+            
+            // If we're using the 'contain' variant:
+            if (new RegExp('(^| )js-image-cover--contain( |$)', 'gi').test(el.className)) {
+                if (image_rect.height >= container_rect.height) {
+                    img.style.width  = 'auto';
+                    img.style.height = '100%';
+                }
+                return;
+            }
 
             // If the image is not tall enough to fill the container, swap width/height styles:
-            if (img.height <= container_rect.height) {
-
+            if (image_rect.height <= container_rect.height) {
                 img.style.width  = 'auto';
                 img.style.height = '100%';
             }

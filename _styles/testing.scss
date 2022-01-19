@@ -61,17 +61,27 @@ h1 {
     -ms-word-break: break-all;
 }
 
+$ts: 2.4rem;
+
 .u-padding--s {
-    padding: 1.2rem;
+    padding: #{$ts / 2};
 }
 
 .u-padding--sides {
-    padding-left: 2.4rem;
-    padding-right: 2.4rem;
+    padding-left: $ts;
+    padding-right: $ts;
 }
 
 .u-space--below {
-    margin-bottom: 2.4rem;
+    margin-bottom: $ts;
+}
+
+.u-space--below--l {
+    margin-bottom: #{$ts * 2};
+}
+
+.u-space--below--xl {
+    margin-bottom: #{$ts * 4};
 }
 
 

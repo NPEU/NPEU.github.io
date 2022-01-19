@@ -1,0 +1,160 @@
+/*
+    Border
+    ======
+*/
+
+$border-namespace: d- !default;
+
+$border-size: $s__border-width;
+$border-size--thick: $s__border-width * 3;
+
+[class~="#{$border-namespace}border"] {
+    border-width: $border-size;
+    border-style: solid;
+}
+
+
+[class*="#{$border-namespace}border"] {
+    //border-color: var(--t-primary-color);
+    border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
+}
+
+[class*="#{$border-namespace}border"].t-secondary {
+    //border-color: var(--t-secondary-color);
+    border-color: hsl(var(--t-secondary-color-h), var(--t-secondary-color-s), var(--t-secondary-color-l));
+}
+
+[class*="#{$border-namespace}border"].t-neutral {
+    //border-color: var(--t-neutral-color);
+    border-color: hsl(var(--t-neutral-color-h), var(--t-neutral-color-s), var(--t-neutral-color-l));
+}
+
+
+
+.#{$border-namespace}border--thick {
+    border-width: $border-size--thick;
+    border-style: solid;
+}
+
+.#{$border-namespace}border--bottom {
+    border-bottom-width: $border-size;
+    border-bottom-style: solid;
+}
+
+.#{$border-namespace}border--bottom--thick {
+    border-bottom-width: $border-size--thick;
+    border-bottom-style: solid;
+}
+
+.#{$border-namespace}border--top {
+    border-top-width: $border-size;
+    border-top-style: solid;
+}
+
+.#{$border-namespace}border--top--thick {
+    border-top-width: $border-size--thick;
+    border-top-style: solid;
+}
+
+.#{$border-namespace}border--left {
+    border-left-width: $border-size;
+    border-left-style: solid;
+}
+
+.#{$border-namespace}border--left--thick {
+    border-left-width: $border-size--thick;
+    border-left-style: solid;
+}
+
+.#{$border-namespace}border--right {
+    border-right-width: $border-size;
+    border-right-style: solid;
+}
+
+.#{$border-namespace}border--right--thick {
+    border-right-width: $border-size--thick;
+    border-right-style: solid;
+}
+
+
+
+.#{$border-namespace}border--light {
+    /* For IE11: */
+    --t-primary-color-l: var(--t-primary-color-l--light);
+    --t-secondary-color-l: var(--t-secondary-color-l--light);
+    --t-neutral-color-l: var(--t-neutral-color-l--light);
+    /**/
+
+}
+/*
+    This isn't necessary while the IE11 stuff is present above, but keep it here for when the
+    IE11 stuff isn't needed any more.
+*
+@supports (--css: variables) {
+    .#{$border-namespace}background--light {
+        --t-primary-color-l: calc(var(--t-primary-color-l-copy) + ((100% - var(--t-primary-color-l-copy)) * var(--t-light-adjust)));
+        --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) + ((100% - var(--t-secondary-color-l-copy)) * var(--t-light-adjust)));
+        --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) + ((100% - var(--t-neutral-color-l-copy)) * var(--t-light-adjust)));
+    }
+}
+/**/
+
+.#{$border-namespace}border--very-light {
+    /* For IE11: */
+    --t-primary-color-l: var(--t-primary-color-l--very-light);
+    --t-secondary-color-l: var(--t-secondary-color-l--very-light);
+    --t-neutral-color-l: var(--t-neutral-color-l--very-light);
+    /**/
+}
+/*
+    This isn't necessary while the IE11 stuff is present above, but keep it here for when the
+    IE11 stuff isn't needed any more.
+*
+@supports (--css: variables) {
+    .#{$border-namespace}background--very-light {
+        --t-primary-color-l: calc(var(--t-primary-color-l-copy) + ((100% - var(--t-primary-color-l-copy)) * var(--t-very-light-adjust)));
+        --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) + ((100% - var(--t-secondary-color-l-copy)) * var(--t-very-light-adjust)));
+        --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) + ((100% - var(--t-neutral-color-l-copy)) * var(--t-very-light-adjust)));
+    }
+}
+/**/
+
+.#{$border-namespace}border--dark {
+    /* For IE11: */
+    --t-primary-color-l: var(--t-primary-color-l--dark);
+    --t-secondary-color-l: var(--t-secondary-color-l--dark);
+    --t-neutral-color-l: var(--t-neutral-color-l--dark);
+    /**/
+}
+/*
+    This isn't necessary while the IE11 stuff is present above, but keep it here for when the
+    IE11 stuff isn't needed any more.
+*
+@supports (--css: variables) {
+    .#{$border-namespace}background--dark {
+        --t-primary-color-l: calc(var(--t-primary-color-l-copy) * var(--t-dark-adjust));
+        --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) * var(--t-dark-adjust));
+        --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) * var(--t-dark-adjust));
+    }
+}
+/**/
+
+.#{$border-namespace}border--very-dark {
+    /* For IE11: */
+    --t-primary-color-l: var(--t-primary-color-l--very-dark);
+    --t-secondary-color-l: var(--t-secondary-color-l--very-dark);
+    --t-neutral-color-l: var(--t-neutral-color-l--very-dark);
+    /**/
+}
+/*
+    This isn't necessary while the IE11 stuff is present above, but keep it here for when the
+    IE11 stuff isn't needed any more.
+*
+@supports (--css: variables) {
+    .#{$border-namespace}background--very-dark {
+        --t-primary-color-l: calc(var(--t-primary-color-l-copy) * var(--t-very-dark-adjust));
+        --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) * var(--t-very-dark-adjust));
+        --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) * var(--t-very-dark-adjust));
+    }
+}
+/**/

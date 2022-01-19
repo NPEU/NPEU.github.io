@@ -20,7 +20,7 @@ $forms-namespace: c- !default;
         &#{&} {
             background-color: #fff;
             border-style: solid;
-            border-color: var(--t-primary-color);
+            border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
             border-width: $border-thick;
             border-radius: $s__sz-s;
             padding: calc(#{$s__sz-m} - #{$border-thick});
