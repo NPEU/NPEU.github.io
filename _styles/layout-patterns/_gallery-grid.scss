@@ -1,0 +1,148 @@
+/*
+    Gallery Grid.
+
+*/
+$gallery-grid-namespace: l- !default;
+
+$gallery-grid-bases: (
+    15,
+    20,
+) !default;
+
+.#{$layout-namespace}layout.#{$gallery-grid-namespace}gallery-grid {
+
+    /*
+        1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
+    */
+    &#{&} {
+        display: flex;
+        flex-wrap: wrap;
+
+
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+
+        width: 0; /* [1] */
+        min-width: 100%; /* [1] */
+    }
+
+    & > * {
+        margin: 0;
+        flex: 1 1 auto;
+    }
+
+    /* MODIFIERS */
+
+    /* Widths */
+    /*
+        1. In Flexbox, with these settings, incomplete rows will have their items stretched to fill,
+           (due to flex-grow: 1), so a max-width is necessary.
+           This is why Grid is preferred and if supported, added below.
+    */
+    // Item bases:
+    @each $gallery-grid-basis in $gallery-grid-bases {
+        &.#{$gallery-grid-namespace}gallery-grid--basis-#{$gallery-grid-basis} > * {
+            flex-basis: #{$gallery-grid-basis}em;
+            max-width: #{$gallery-grid-basis}em;
+        }
+    }
+
+
+    /* Gutters */
+
+    &.#{$gallery-grid-namespace}gallery-grid--gutter--small,
+    &.#{$gallery-grid-namespace}gallery-grid--gutter--s {
+        margin-left: -($s__sz-s / 2);
+        margin-right: -($s__sz-s / 2);
+
+        > * {
+            padding: 0 ($s__sz-s / 2) $s__sz-s ($s__sz-s / 2);
+        }
+    }
+
+    &.#{$gallery-grid-namespace}gallery-grid--gutter--medium,
+    &.#{$gallery-grid-namespace}gallery-grid--gutter--m {
+        margin-left: -($s__sz-m / 2);
+        margin-right: -($s__sz-m / 2);
+
+        > * {
+            padding: 0 ($s__sz-m / 2) $s__sz-m ($s__sz-m / 2);
+        }
+    }
+
+
+    &.#{$gallery-grid-namespace}gallery-grid--gutter--large,
+    &.#{$gallery-grid-namespace}gallery-grid--gutter--l {
+        margin-left: -($s__sz-l / 2);
+        margin-right: -($s__sz-l / 2);
+
+        > * {
+            padding: 0 ($s__sz-l / 2) $s__sz-l ($s__sz-l / 2);
+        }
+    }
+
+
+    /* Alignment */
+
+    &.#{$gallery-grid-namespace}gallery-grid--align-center {
+        justify-content: center;
+    }
+
+
+}
+
+/* GRID */
+@supports (display: grid) {
+    .#{$layout-namespace}layout.#{$gallery-grid-namespace}gallery-grid {
+        & > .#{$layout-namespace}layout__inner {
+            display: grid;
+            min-width: 100%;
+
+            & > * {
+                max-width: none;
+            }
+        }
+
+        // Item bases:
+        @each $gallery-grid-basis in $gallery-grid-bases {
+            &.#{$gallery-grid-namespace}gallery-grid--basis-#{$gallery-grid-basis} > .#{$layout-namespace}layout__inner  {
+                grid-template-columns: repeat(auto-fit, minmax(#{$gallery-grid-basis}em, 1fr));
+            }
+        }
+
+
+        /* Gutters */
+
+        &.#{$gallery-grid-namespace}gallery-grid--gutter--small > .#{$layout-namespace}layout__inner,
+        &.#{$gallery-grid-namespace}gallery-grid--gutter--s > .#{$layout-namespace}layout__inner  {
+            margin: 0;
+            grid-gap: $s__sz-s;
+
+            & > * {
+                padding: 0;
+            }
+        }
+
+        &.#{$gallery-grid-namespace}gallery-grid--gutter--medium > .#{$layout-namespace}layout__inner,
+        &.#{$gallery-grid-namespace}gallery-grid--gutter--m  > .#{$layout-namespace}layout__inner {
+            margin: 0;
+            grid-gap: $s__sz-m;
+
+            & > * {
+                padding: 0;
+            }
+        }
+
+
+        &.#{$gallery-grid-namespace}gallery-grid--gutter--large > .#{$layout-namespace}layout__inner,
+        &.#{$gallery-grid-namespace}gallery-grid--gutter--l > .#{$layout-namespace}layout__inner  {
+            margin: 0;
+            grid-gap: $s__sz-l;
+
+            & > * {
+                padding: 0;
+            }
+        }
+    }
+}

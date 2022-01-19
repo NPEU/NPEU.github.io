@@ -1,10 +1,10 @@
 {% if include.title and include.url %}
-<article class="c-glimpse  js-c-glimpse{% if include.round_img | default: false %}  c-glimpse--round_img{% endif %}{% if include.large_img | default: false %}  c-glimpse--large_img{% endif %}  t-neutral  d-border  d-border--light">
+<article class="c-glimpse  js-c-glimpse{% if include.round_img | default: false %}  c-glimpse--image-round{% endif %}{% if include.large_img | default: false %}  c-glimpse--image-large{% endif %}  t-neutral  d-border  d-border--light">
     <div data-fs-block="border">
         <h{{ include.hx | default: 3 }} class="c-glimpse__title"><a href="{{ include.url }}"{% if include.cta %} aria-describedby="desc-{{ include.title | slugify }}"{% endif %}><span>{{ include.title }}</span></a></h{{ include.hx | default: 3 }}>
 
         {% if include.img_src %}
-        <div class="c-glimpse__image  t-neutral  d-border  d-border">
+        <div class="c-glimpse__image  t-neutral  d-border">
             <div class="u-image-cover  js-image-cover  u-image-cover--min-100">
                 <div class="u-image-cover__inner">
                     <img src="{{ include.img_src }}--small.jpg" sizes="100vw" srcset="{{ include.img_src }}--large.jpg 1600w, {{ include.img_src }}--medium.jpg 900w, {{ include.img_src }}--small.jpg 300w" alt="" class="u-image-cover__image" width="{{ include.img_w | default: 120 }}" height="{{ include.img_h | default: 100 }}">

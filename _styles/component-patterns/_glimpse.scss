@@ -22,23 +22,16 @@ $glimpse-footer--font-size:  1.4rem !default;
     */
     &#{&} {
         position: relative;
-        z-index: 0;
-        //max-width: $glimpse--max-width;
-        //min-height: $glimpse--image-size;
-
-        //width: 0; /* [1] */
-        //min-width: 100%; /* [1] */
-
 
         border-radius: $s__sz-s;
         padding: $s__sz-s $s__sz-m;
-
 
         display: flex;
         flex-direction: column;
         flex-grow: 1;
         height: 100%;
 
+        background-color: #fff;
 
         &::before {
             content: "";
@@ -48,29 +41,18 @@ $glimpse-footer--font-size:  1.4rem !default;
             background: #fff;
 
             width: $glimpse--image-size;
-            height: 2.3rem;
+            height: $glimpse--image-size;
 
-            border-radius: $s__sz-s $s__sz-s 0 0;
+            border-radius: $s__sz-s;
 
             position: absolute;
 
             top: -#{($glimpse--image-size / 2) - $s__sz-s};
-            z-index: -1;
         }
 
-        &:hover::before {
+        &:hover::before,
+        &:active::before {
             box-shadow: $focus-shadow;
-        }
-
-        &::after {
-            content: "";
-            display: block;
-            position: absolute;
-            top: -0.7rem;
-            z-index: 0;
-            width: $glimpse--image-size;
-            height: 0;
-            box-shadow: 0 0 0 $s__sz-xxs #fff;
         }
     }
 
@@ -111,8 +93,8 @@ $glimpse-footer--font-size:  1.4rem !default;
             height: #{($glimpse--image-size / 2) + $s__sz-s};
 
             max-width: 100%;
-            width: calc((30rem - 100%) * 1000);
-            min-width: 12rem;
+            width: calc((#{$glimpse--breakpoint} - 100%) * 1000);
+            min-width: #{$glimpse--image-size + $s__sz-m};
 
             vertical-align: text-top;
 
@@ -126,7 +108,6 @@ $glimpse-footer--font-size:  1.4rem !default;
             &:focus {
                 text-decoration: none;
             }
-
 
              &::before {
                 content: "";
@@ -150,7 +131,12 @@ $glimpse-footer--font-size:  1.4rem !default;
         font-size: $glimpse-footer--font-size;
     }
 
-
+    /*
+        1. This prevents an issue where thin white lines can appear on some monitors with various
+           zoom levels set.
+           Noticed on a 48" monitor at 125% scale on Chrome, but not FF so probably a Chrome pixel
+           rounding issue.
+    */
     #{&}__image {
         width: $glimpse--image-size;
         height: $glimpse--image-size;
@@ -163,11 +149,8 @@ $glimpse-footer--font-size:  1.4rem !default;
         top: -#{($glimpse--image-size / 2) - $s__sz-s};
 
 
+        background-color: hsl(var(--t-bd-color-h),var(--t-bd-color-s),var(--t-bd-color-l)); /* [1] */
 
-        /*& > * {
-            border-radius: $s__sz-s;
-            overflow: hidden;
-        }*/
 
         img[src] {
             border: 0;
@@ -180,37 +163,39 @@ $glimpse-footer--font-size:  1.4rem !default;
         }
     }
 
-    #{&}__image--roundedX {
-        border-radius: 99999px;
-        overflow: hidden;
-
-        top: -#{$s__sz-s * 3};
-        left: -#{$s__sz-s * 3};
+    &#{&}--image-large::before {
+        width: $glimpse--image-size * 1.5;
+        height: $glimpse--image-size * 1.5;
+        left: -#{$s__sz-m};
     }
 
-
-
-    &#{&}--large-image #{&}__content {
-        //min-width: calc(100% - #{$glimpse--image-size-large + $s__sz-m});
-        padding: $s__sz-m;
+    &#{&}--image-large #{&}__image {
+        width: $glimpse--image-size * 1.5;
+        height: $glimpse--image-size * 1.5;
+        left: -#{$s__sz-m};
     }
 
-    &#{&}--large-image #{&}__imageX {
-        width: $glimpse--image-size-large;
-        height: $glimpse--image-size-large;
+    &#{&}--image-large #{&}__title::before {
+        height: #{($glimpse--image-size / 2) + $s__sz-l + $s__sz-s};
 
-        top: -#{$s__sz-s * 3};
-        left: -#{$s__sz-s * 3};
-
-
-        /*
-        margin-right: 0;
-        margin-top: -$s__sz-m;
-        margin-bottom: -$s__sz-m;
-        margin-left: -#{$s__sz-m / 2};
-        */
+        width: calc((#{$glimpse--breakpoint + $s__sz-xl} - 100%) * 1000);
+        min-width: #{$glimpse--image-size + $s__sz-m};
     }
 
+    &#{&}--image-large #{&}__body {
+        width: calc((#{$glimpse--breakpoint + $s__sz-xl} - 100%) * 1000);
+        min-width: calc(100% - #{$glimpse--image-size + $s__sz-m});
+    }
+
+    &#{&}--image-round {
+        &::before {
+            border-radius: 100%;
+        }
+    }
+
+    &#{&}--image-round #{&}__image {
+        border-radius: 100%;
+    }
 }
 
 
@@ -218,13 +203,7 @@ $glimpse-footer--font-size:  1.4rem !default;
 .#{$glimpse-namespace}glimpse:focus-within::before {
     box-shadow: $focus-shadow;
 }
-/*
-.#{$glimpse-namespace}glimpse::before {
-    &:hover {
-        box-shadow: $focus-shadow;
-    }
-}
-*/
+
 
 .#{$glimpse-namespace}glimpse--has-js {
     cursor: pointer;

@@ -3808,17 +3808,23 @@ a[href].c-cta--has-icon .icon {
   /*
         The pattern markup allows for a TFS border, so zap that:
     */
+  /*
+        1. This prevents an issue where thin white lines can appear on some monitors with various
+           zoom levels set.
+           Noticed on a 48" monitor at 125% scale on Chrome, but not FF so probably a Chrome pixel
+           rounding issue.
+    */
 }
 
 .c-glimpse.c-glimpse {
   position: relative;
-  z-index: 0;
   border-radius: 1.2rem;
   padding: 1.2rem 2.4rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   height: 100%;
+  background-color: #fff;
 }
 
 .c-glimpse.c-glimpse::before {
@@ -3827,26 +3833,14 @@ a[href].c-cta--has-icon .icon {
   position: absolute;
   background: #fff;
   width: 9.6rem;
-  height: 2.3rem;
-  border-radius: 1.2rem 1.2rem 0 0;
+  height: 9.6rem;
+  border-radius: 1.2rem;
   position: absolute;
   top: -3.6rem;
-  z-index: -1;
 }
 
-.c-glimpse.c-glimpse:hover::before {
+.c-glimpse.c-glimpse:hover::before, .c-glimpse.c-glimpse:active::before {
   box-shadow: 0 0 0 0.3rem #fff, 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
-}
-
-.c-glimpse.c-glimpse::after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: -0.7rem;
-  z-index: 0;
-  width: 9.6rem;
-  height: 0;
-  box-shadow: 0 0 0 0.3rem #fff;
 }
 
 .c-glimpse > div {
@@ -3917,10 +3911,8 @@ a[href].c-cta--has-icon .icon {
   overflow: hidden;
   position: absolute;
   top: -3.6rem;
-  /*& > * {
-            border-radius: $s__sz-s;
-            overflow: hidden;
-        }*/
+  background-color: hsl(var(--t-bd-color-h), var(--t-bd-color-s), var(--t-bd-color-l));
+  /* [1] */
 }
 
 .c-glimpse .c-glimpse__image img[src] {
@@ -3932,28 +3924,35 @@ a[href].c-cta--has-icon .icon {
   border: 0;
 }
 
-.c-glimpse .c-glimpse__image--roundedX {
-  border-radius: 99999px;
-  overflow: hidden;
-  top: -3.6rem;
-  left: -3.6rem;
+.c-glimpse.c-glimpse--image-large::before {
+  width: 14.4rem;
+  height: 14.4rem;
+  left: -2.4rem;
 }
 
-.c-glimpse.c-glimpse--large-image .c-glimpse__content {
-  padding: 2.4rem;
+.c-glimpse.c-glimpse--image-large .c-glimpse__image {
+  width: 14.4rem;
+  height: 14.4rem;
+  left: -2.4rem;
 }
 
-.c-glimpse.c-glimpse--large-image .c-glimpse__imageX {
-  width: 17.2rem;
-  height: 17.2rem;
-  top: -3.6rem;
-  left: -3.6rem;
-  /*
-        margin-right: 0;
-        margin-top: -$s__sz-m;
-        margin-bottom: -$s__sz-m;
-        margin-left: -1.2rem;
-        */
+.c-glimpse.c-glimpse--image-large .c-glimpse__title::before {
+  height: 10.8rem;
+  width: calc((39.6rem - 100%) * 1000);
+  min-width: 12rem;
+}
+
+.c-glimpse.c-glimpse--image-large .c-glimpse__body {
+  width: calc((39.6rem - 100%) * 1000);
+  min-width: calc(100% - 12rem);
+}
+
+.c-glimpse.c-glimpse--image-round::before {
+  border-radius: 100%;
+}
+
+.c-glimpse.c-glimpse--image-round .c-glimpse__image {
+  border-radius: 100%;
 }
 
 .c-glimpse:focus-within,
@@ -3961,13 +3960,6 @@ a[href].c-cta--has-icon .icon {
   box-shadow: 0 0 0 0.3rem #fff, 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
 }
 
-/*
-.c-glimpse::before {
-    &:hover {
-        box-shadow: $focus-shadow;
-    }
-}
-*/
 .c-glimpse--has-js {
   cursor: pointer;
 }
@@ -4769,6 +4761,130 @@ a[href].c-cta--has-icon .icon {
   .l-layout.l-distribute.l-distribute--balance-top > .l-layout__inner > .l-box:nth-last-child(n+12),
   .l-layout.l-distribute.l-distribute--balance-top > .l-layout__inner > .l-box:nth-last-child(n+12) ~ * {
     flex-basis: min(max((50% - var(--g)), ((var(--b) * 2) - 100%) * 999), max((33% - var(--g)), ((var(--b) * 3) - 100%) * 999), max((25% - var(--g)), ((var(--b) * 4) - 100%) * 999), max((16% - var(--g)), ((var(--b) * 6) - 100%) * 999), max((8% - var(--g)), ((var(--b) * 12) - 100%) * 999));
+  }
+}
+
+/*
+    Gallery Grid.
+
+*/
+.l-layout.l-gallery-grid {
+  /*
+        1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
+    */
+  /* MODIFIERS */
+  /* Widths */
+  /*
+        1. In Flexbox, with these settings, incomplete rows will have their items stretched to fill,
+           (due to flex-grow: 1), so a max-width is necessary.
+           This is why Grid is preferred and if supported, added below.
+    */
+  /* Gutters */
+  /* Alignment */
+}
+
+.l-layout.l-gallery-grid.l-layout.l-gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  width: 0;
+  /* [1] */
+  min-width: 100%;
+  /* [1] */
+}
+
+.l-layout.l-gallery-grid > * {
+  margin: 0;
+  flex: 1 1 auto;
+}
+
+.l-layout.l-gallery-grid.l-gallery-grid--basis-15 > * {
+  flex-basis: 15em;
+  max-width: 15em;
+}
+
+.l-layout.l-gallery-grid.l-gallery-grid--basis-20 > * {
+  flex-basis: 20em;
+  max-width: 20em;
+}
+
+.l-layout.l-gallery-grid.l-gallery-grid--gutter--small, .l-layout.l-gallery-grid.l-gallery-grid--gutter--s {
+  margin-left: -0.6rem;
+  margin-right: -0.6rem;
+}
+
+.l-layout.l-gallery-grid.l-gallery-grid--gutter--small > *, .l-layout.l-gallery-grid.l-gallery-grid--gutter--s > * {
+  padding: 0 0.6rem 1.2rem 0.6rem;
+}
+
+.l-layout.l-gallery-grid.l-gallery-grid--gutter--medium, .l-layout.l-gallery-grid.l-gallery-grid--gutter--m {
+  margin-left: -1.2rem;
+  margin-right: -1.2rem;
+}
+
+.l-layout.l-gallery-grid.l-gallery-grid--gutter--medium > *, .l-layout.l-gallery-grid.l-gallery-grid--gutter--m > * {
+  padding: 0 1.2rem 2.4rem 1.2rem;
+}
+
+.l-layout.l-gallery-grid.l-gallery-grid--gutter--large, .l-layout.l-gallery-grid.l-gallery-grid--gutter--l {
+  margin-left: -2.4rem;
+  margin-right: -2.4rem;
+}
+
+.l-layout.l-gallery-grid.l-gallery-grid--gutter--large > *, .l-layout.l-gallery-grid.l-gallery-grid--gutter--l > * {
+  padding: 0 2.4rem 4.8rem 2.4rem;
+}
+
+.l-layout.l-gallery-grid.l-gallery-grid--align-center {
+  justify-content: center;
+}
+
+/* GRID */
+@supports (display: grid) {
+  .l-layout.l-gallery-grid {
+    /* Gutters */
+  }
+  .l-layout.l-gallery-grid > .l-layout__inner {
+    display: grid;
+    min-width: 100%;
+  }
+  .l-layout.l-gallery-grid > .l-layout__inner > * {
+    max-width: none;
+  }
+  .l-layout.l-gallery-grid.l-gallery-grid--basis-15 > .l-layout__inner {
+    grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+  }
+  .l-layout.l-gallery-grid.l-gallery-grid--basis-20 > .l-layout__inner {
+    grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+  }
+  .l-layout.l-gallery-grid.l-gallery-grid--gutter--small > .l-layout__inner,
+  .l-layout.l-gallery-grid.l-gallery-grid--gutter--s > .l-layout__inner {
+    margin: 0;
+    grid-gap: 1.2rem;
+  }
+  .l-layout.l-gallery-grid.l-gallery-grid--gutter--small > .l-layout__inner > *,
+  .l-layout.l-gallery-grid.l-gallery-grid--gutter--s > .l-layout__inner > * {
+    padding: 0;
+  }
+  .l-layout.l-gallery-grid.l-gallery-grid--gutter--medium > .l-layout__inner,
+  .l-layout.l-gallery-grid.l-gallery-grid--gutter--m > .l-layout__inner {
+    margin: 0;
+    grid-gap: 2.4rem;
+  }
+  .l-layout.l-gallery-grid.l-gallery-grid--gutter--medium > .l-layout__inner > *,
+  .l-layout.l-gallery-grid.l-gallery-grid--gutter--m > .l-layout__inner > * {
+    padding: 0;
+  }
+  .l-layout.l-gallery-grid.l-gallery-grid--gutter--large > .l-layout__inner,
+  .l-layout.l-gallery-grid.l-gallery-grid--gutter--l > .l-layout__inner {
+    margin: 0;
+    grid-gap: 4.8rem;
+  }
+  .l-layout.l-gallery-grid.l-gallery-grid--gutter--large > .l-layout__inner > *,
+  .l-layout.l-gallery-grid.l-gallery-grid--gutter--l > .l-layout__inner > * {
+    padding: 0;
   }
 }
 
