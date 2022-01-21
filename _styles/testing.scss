@@ -64,37 +64,37 @@ h1 {
 $ts: 2.4rem;
 
 .u-padding--s {
-    padding: #{$ts / 2};
+    padding: #{$ts / 2} !important;
 }
 
 .u-padding--sides {
-    padding-left: $ts;
-    padding-right: $ts;
+    padding-left: $ts !important;
+    padding-right: $ts !important;
 }
 
 .u-space--below {
-    margin-bottom: $ts;
+    margin-bottom: $ts !important;
 }
 
 .u-space--below--l {
-    margin-bottom: #{$ts * 2};
+    margin-bottom: #{$ts * 2} !important;
 }
 
 .u-space--below--xl {
-    margin-bottom: #{$ts * 4};
+    margin-bottom: #{$ts * 4} !important;
 }
 
 
 .u-space--above {
-    margin-top: $ts;
+    margin-top: $ts !important;
 }
 
 .u-space--above--l {
-    margin-top: #{$ts * 2};
+    margin-top: #{$ts * 2} !important;
 }
 
 .u-space--above--xl {
-    margin-top: #{$ts * 4};
+    margin-top: #{$ts * 4} !important;
 }
 
 

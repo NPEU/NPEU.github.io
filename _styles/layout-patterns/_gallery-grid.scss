@@ -14,9 +14,10 @@ $gallery-grid-bases: (
     /*
         1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
     */
-    &#{&} {
+    & > .#{$layout-namespace}layout__inner {
         display: flex;
         flex-wrap: wrap;
+        flex-direction: row;
 
 
         margin: 0;
@@ -25,11 +26,16 @@ $gallery-grid-bases: (
 
         width: 0; /* [1] */
         min-width: 100%; /* [1] */
-    }
 
-    & > * {
-        margin: 0;
-        flex: 1 1 auto;
+        & > .#{$layout-namespace}box {
+            margin: 0;
+            flex: 1 1 auto;
+
+            & > * {
+                width: 100%;
+            }
+        }
+
     }
 
     /* MODIFIERS */
@@ -42,7 +48,7 @@ $gallery-grid-bases: (
     */
     // Item bases:
     @each $gallery-grid-basis in $gallery-grid-bases {
-        &.#{$gallery-grid-namespace}gallery-grid--basis-#{$gallery-grid-basis} > * {
+        &.#{$gallery-grid-namespace}gallery-grid--basis-#{$gallery-grid-basis} > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box  {
             flex-basis: #{$gallery-grid-basis}em;
             max-width: #{$gallery-grid-basis}em;
         }
@@ -51,33 +57,33 @@ $gallery-grid-bases: (
 
     /* Gutters */
 
-    &.#{$gallery-grid-namespace}gallery-grid--gutter--small,
-    &.#{$gallery-grid-namespace}gallery-grid--gutter--s {
+    &.#{$gallery-grid-namespace}gallery-grid--gutter--small > .#{$layout-namespace}layout__inner {
         margin-left: -($s__sz-s / 2);
         margin-right: -($s__sz-s / 2);
+        min-width: calc(100% + #{$s__sz-s});
 
-        > * {
+        & > .#{$layout-namespace}box {
             padding: 0 ($s__sz-s / 2) $s__sz-s ($s__sz-s / 2);
         }
     }
 
-    &.#{$gallery-grid-namespace}gallery-grid--gutter--medium,
-    &.#{$gallery-grid-namespace}gallery-grid--gutter--m {
+    &.#{$gallery-grid-namespace}gallery-grid--gutter--medium > .#{$layout-namespace}layout__inner {
         margin-left: -($s__sz-m / 2);
         margin-right: -($s__sz-m / 2);
+        min-width: calc(100% + #{$s__sz-m});
 
-        > * {
+        & > .#{$layout-namespace}box {
             padding: 0 ($s__sz-m / 2) $s__sz-m ($s__sz-m / 2);
         }
     }
 
 
-    &.#{$gallery-grid-namespace}gallery-grid--gutter--large,
-    &.#{$gallery-grid-namespace}gallery-grid--gutter--l {
+    &.#{$gallery-grid-namespace}gallery-grid--gutter--large > .#{$layout-namespace}layout__inner {
         margin-left: -($s__sz-l / 2);
         margin-right: -($s__sz-l / 2);
+        min-width: calc(100% + #{$s__sz-l});
 
-        > * {
+        & > .#{$layout-namespace}box {
             padding: 0 ($s__sz-l / 2) $s__sz-l ($s__sz-l / 2);
         }
     }
@@ -85,21 +91,20 @@ $gallery-grid-bases: (
 
     /* Alignment */
 
-    &.#{$gallery-grid-namespace}gallery-grid--align-center {
+    &.#{$gallery-grid-namespace}gallery-grid--align-center > .#{$layout-namespace}layout__inner {
         justify-content: center;
     }
-
 
 }
 
 /* GRID */
 @supports (display: grid) {
     .#{$layout-namespace}layout.#{$gallery-grid-namespace}gallery-grid {
-        & > .#{$layout-namespace}layout__inner {
+        & > .#{$layout-namespace}layout__inner.#{$layout-namespace}layout__inner {
             display: grid;
             min-width: 100%;
 
-            & > * {
+            & > .#{$layout-namespace}box.#{$layout-namespace}box {
                 max-width: none;
             }
         }
@@ -119,7 +124,7 @@ $gallery-grid-bases: (
             margin: 0;
             grid-gap: $s__sz-s;
 
-            & > * {
+            & > .#{$layout-namespace}box {
                 padding: 0;
             }
         }
@@ -129,7 +134,7 @@ $gallery-grid-bases: (
             margin: 0;
             grid-gap: $s__sz-m;
 
-            & > * {
+            & > .#{$layout-namespace}box {
                 padding: 0;
             }
         }
@@ -140,7 +145,7 @@ $gallery-grid-bases: (
             margin: 0;
             grid-gap: $s__sz-l;
 
-            & > * {
+            & > .#{$layout-namespace}box {
                 padding: 0;
             }
         }

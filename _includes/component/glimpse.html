@@ -4,11 +4,11 @@
 
 -->
 
-<h2 id="glimpse">Glimpse</h2>
+<h2 id="{{ page.title | slugify }}">Glimpse</h2>
 
-<p class="u-space--below--xl">A glimpse provides a brief look or summary of the content the use will be presented with if the Glimpse's link is followed.</p>
+<p class="u-space--below--l">A glimpse provides a brief look or summary of the content the use will be presented with if the Glimpse's link is followed.</p>
 
-<div class="u-space--below--xl  u-padding--sides">
+<div class="u-space--below  u-padding--sides">
     {% include glimpse.html
         title="Headline"
         url="/patterns/component"
@@ -17,87 +17,131 @@
     %}
 </div>
 
-<div class="u-padding--sides">
-    {% include glimpse.html
-        title="Headline"
-        url="/patterns/component"
-        content="<p>Just a glimpse at what's inside...</p><p>However, this content is quite a bit longer - more verbose you might say. This is so we can see the impact of the text wrapping on the layout of this(now so-called) 'glimpse'.</p>"
-        img_src="/assets/images/patterns/placeholder-2"
-    %}
-</div>
-
-<h3 class="u-space--below--xl">Large image</h3>
-
-
-<div class="u-space--below--xl  u-padding--sides">
-    {% include glimpse.html
-        title="Headline"
-        url="/patterns/component"
-        content="<p>Just a glimpse at what's inside...</p>"
-        img_src="/assets/images/patterns/placeholder-3"
-        large_img=true
-    %}
-</div>
-
-<div class="u-padding--sides">
-    {% include glimpse.html
-        title="Headline"
-        url="/patterns/component"
-        content="<p>Just a glimpse at what's inside...</p><p>However, this content is quite a bit longer - more verbose you might say. This is so we can see the impact of the text wrapping on the layout of this(now so-called) 'glimpse'.</p>"
-        img_src="/assets/images/patterns/placeholder-2"
-        large_img=true
-    %}
-</div>
-
-<h3 class="u-space--below--xl">Round image</h3>
-
-<div class="u-space--below--xl  u-padding--sides">
-    {% include glimpse.html
-        title="Person Name"
-        url="/patterns/component"
-        content="<p>Job title</p>"
-        img_src="/assets/images/patterns/placeholder-person"
-        round_img=true
-    %}
-</div>
-
-<div class="u-padding--sides">
-    {% include glimpse.html
-        title="Personwitha Longernamethanusual-Smith"
-        url="/patterns/component"
-        content="<p>Averymuch longerthanusual job title / Anotherlong positionorjob title</p>"
-        img_src="/assets/images/patterns/placeholder-person"
-        round_img=true
-    %}
-</div>
-
-<h3 class="u-space--below--xl">Large Round image</h3>
-
-<div class="u-space--below--xl  u-padding--sides">
-    {% include glimpse.html
-        title="Person Name"
-        url="/patterns/component"
-        content="<p>Job title</p>"
-        img_src="/assets/images/patterns/placeholder-person"
-        large_img=true
-        round_img=true
-    %}
-</div>
-
-<div class="u-space--below--xl  u-padding--sides">
-    {% include glimpse.html
-        title="Personwitha Longernamethanusual-Smith"
-        url="/patterns/component"
-        content="<p>Averymuch longerthanusual job title / Anotherlong positionorjob title</p>"
-        img_src="/assets/images/patterns/placeholder-person"
-        large_img=true
-        round_img=true
-    %}
-</div>
-
-<div class="u-padding--s">
+<div class="u-space--below--l">
     <details class="u-padding  d-background--light">
         <summary>Show code:</summary>
-        <pre><code class="html"></code></pre>
+        <pre><code class="html">&lt;article class=&quot;c-glimpse  js-c-glimpse  t-neutral  d-border  d-border--light&quot;&gt;
+    &lt;div data-fs-block=&quot;border&quot;&gt;
+        &lt;h3 class=&quot;c-glimpse__title&quot;&gt;&lt;a href=&quot;/patterns/component&quot;&gt;&lt;span&gt;Headline&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+
+        &lt;div class=&quot;c-glimpse__image  t-neutral  d-border&quot;&gt;
+            &lt;div class=&quot;u-image-cover  js-image-cover  u-image-cover--min-100&quot;&gt;
+                &lt;div class=&quot;u-image-cover__inner&quot;&gt;
+                    &lt;img src=&quot;/assets/images/patterns/placeholder-3--small.jpg&quot; sizes=&quot;100vw&quot; srcset=&quot;/assets/images/patterns/placeholder-3--large.jpg 1600w, /assets/images/patterns/placeholder-3--medium.jpg 900w, /assets/images/patterns/placeholder-3--small.jpg 300w&quot; alt=&quot;&quot; class=&quot;u-image-cover__image&quot; width=&quot;120&quot; height=&quot;100&quot;&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;c-glimpse__body&quot;&gt;
+            &lt;p&gt;Just a glimpse at what&apos;s inside...&lt;/p&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/article&gt;</code></pre>
     </details>
+</div>
+
+<div class="u-padding--sides">
+    {% include glimpse.html
+        title="Headline"
+        url="/patterns/component"
+        content="<p>Just a glimpse at what's inside...</p><p>However, this content is quite a bit longer - more verbose you might say. This is so we can see the impact of the text wrapping on the layout of this(now so-called) 'glimpse'.</p>"
+        img_src="/assets/images/patterns/placeholder-2"
+    %}
+</div>
+
+<h3 class="u-space--below--l">Large image</h3>
+
+
+<div class="u-space--below  u-padding--sides">
+    {% include glimpse.html
+        title="Headline"
+        url="/patterns/component"
+        content="<p>Just a glimpse at what's inside...</p>"
+        img_src="/assets/images/patterns/placeholder-3"
+        large_img=true
+    %}
+</div>
+
+<div class="u-space--below--l">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;article class=&quot;c-glimpse  <strong>c-glimpse--image-large</strong> ...&quot;&gt;
+    ...
+&lt;/article&gt;</code></pre>
+    </details>
+</div>
+
+<div class="u-padding--sides">
+    {% include glimpse.html
+        title="Headline"
+        url="/patterns/component"
+        content="<p>Just a glimpse at what's inside...</p><p>However, this content is quite a bit longer - more verbose you might say. This is so we can see the impact of the text wrapping on the layout of this(now so-called) 'glimpse'.</p>"
+        img_src="/assets/images/patterns/placeholder-2"
+        large_img=true
+    %}
+</div>
+
+<h3 class="u-space--below--l">Round image</h3>
+
+<div class="u-space--below  u-padding--sides">
+    {% include glimpse.html
+        title="Person Name"
+        url="/patterns/component"
+        content="<p>Job title</p>"
+        img_src="/assets/images/patterns/placeholder-person"
+        round_img=true
+    %}
+</div>
+
+<div class="u-space--below--l">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;article class=&quot;c-glimpse  <strong>c-glimpse--image-round</strong> ...&quot;&gt;
+    ...
+&lt;/article&gt;</code></pre>
+    </details>
+</div>
+
+<div class="u-padding--sides">
+    {% include glimpse.html
+        title="Personwitha Longernamethanusual-Smith"
+        url="/patterns/component"
+        content="<p>Averymuch longerthanusual job title / Anotherlong positionorjob title</p>"
+        img_src="/assets/images/patterns/placeholder-person"
+        round_img=true
+    %}
+</div>
+
+<h3 class="u-space--below--l">Large Round image</h3>
+
+<div class="u-space--below  u-padding--sides">
+    {% include glimpse.html
+        title="Person Name"
+        url="/patterns/component"
+        content="<p>Job title</p>"
+        img_src="/assets/images/patterns/placeholder-person"
+        large_img=true
+        round_img=true
+    %}
+</div>
+
+<div class="u-space--below--l">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;article class=&quot;c-glimpse  <strong>c-glimpse--image-large  c-glimpse--image-round</strong> ...&quot;&gt;
+    ...
+&lt;/article&gt;</code></pre>
+    </details>
+</div>
+
+<div class="u-space--below  u-padding--sides">
+    {% include glimpse.html
+        title="Personwitha Longernamethanusual-Smith"
+        url="/patterns/component"
+        content="<p>Averymuch longerthanusual job title / Anotherlong positionorjob title</p>"
+        img_src="/assets/images/patterns/placeholder-person"
+        large_img=true
+        round_img=true
+    %}
 </div>

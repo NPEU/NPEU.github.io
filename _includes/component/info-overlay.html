@@ -1,0 +1,107 @@
+<!--
+
+    INFO OVERLAY
+
+-->
+
+
+<h2 id="{{ page.title | slugify }}">Info Overlay</h2>
+
+<p>This is main used to overlay an image credit, but could be used for other things if needed..</p>
+
+<h3 id="info-overlay">Info Overlay - natural width</h3>
+
+<div class="u-space--below">
+    <div class="c-info-overlay-wrap" style="max-width: 650px">
+        <img src="/assets/images/patterns/placeholder-1--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns/placeholder-1--small.jpg 300w" alt="" class="" width="650">
+        <details class="c-info-overlay">
+            <summary><span>Details</span><svg display="none" width="24" height="24" focusable="false" class="icon  icon--is-closed"><use xlink:href="#icon-info"></use></svg><svg display="none" width="24" height="24" focusable="false" class="icon  icon--is-open"><use xlink:href="#icon-cross"></use></svg></summary>
+            <div>Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please.</div>
+        </details>
+    </div>
+</div>
+
+<div class="u-space--below">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;div class=&quot;c-info-overlay-wrap&quot; style=&quot;max-width: 650px&quot;&gt;
+    &lt;img src=&quot;/assets/images/patterns/placeholder-1--small.jpg&quot; sizes=&quot;100vw&quot; srcset=&quot;/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns/placeholder-1--small.jpg 300w&quot; alt=&quot;&quot; class=&quot;&quot; width=&quot;600&quot;&gt;
+    &lt;details class=&quot;c-info-overlay&quot;&gt;
+        &lt;summary&gt;&lt;span&gt;Details&lt;/span&gt;&lt;svg display=&quot;none&quot; focusable=&quot;false&quot; class=&quot;icon  icon--is-closed&quot;&gt;&lt;use xlink:href=&quot;#icon-info&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;svg display=&quot;none&quot; focusable=&quot;false&quot; class=&quot;icon  icon--is-open&quot;&gt;&lt;use xlink:href=&quot;#icon-cross&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/summary&gt;
+        &lt;div&gt;Image credit info goes here. Can contain &lt;a href=&quot;#&quot;&gt;links&lt;/a&gt; and so on. Just not too long please.&lt;/div&gt;
+    &lt;/details&gt;
+&lt;/div&gt;
+</code></pre>
+    </details>
+</div>
+
+<p>Longer content to test wrapping and containment.</p>
+
+<div class="u-space--below">
+    <div class="c-info-overlay-wrap" style="max-width: 650px">
+        <img src="/assets/images/patterns/placeholder-2--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-2--large.jpg 1600w, /assets/images/patterns/placeholder-2--medium.jpg 900w, /assets/images/patterns/placeholder-2--small.jpg 300w" alt="" class="" width="650">
+        <details class="c-info-overlay">
+            <summary><span>Details</span><svg display="none" width="24" height="24" focusable="false" class="icon  icon--is-closed"><use xlink:href="#icon-info"></use></svg><svg display="none" width="24" height="24" focusable="false" class="icon  icon--is-open"><use xlink:href="#icon-cross"></use></svg></summary>
+            <div>Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please. Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please. Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please.</div>
+        </details>
+    </div>
+</div>
+
+
+<h3 id="info-overlay-2">Info Overlay - force full width</h3>
+
+<div class="u-space--below">
+    <div class="c-info-overlay-wrap" style="max-width: 650px">
+        <img src="/assets/images/patterns/placeholder-3--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-3--large.jpg 1600w, /assets/images/patterns/placeholder-3--medium.jpg 900w, /assets/images/patterns/placeholder-3--small.jpg 300w" alt="" class="" width="650">
+        <details class="c-info-overlay  c-info-overlay--full-width">
+            <summary><span>Details</span><svg display="none" width="24" height="24" focusable="false" class="icon  icon--is-closed"><use xlink:href="#icon-info"></use></svg><svg display="none" width="24" height="24" focusable="false" class="icon  icon--is-open"><use xlink:href="#icon-cross"></use></svg></summary>
+            <div>Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please.</div>
+        </details>
+    </div>
+</div>
+
+<div>
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;details class=&quot;c-info-overlay  <strong>c-info-overlay--full-width</strong>&quot;&gt;
+    ...
+&lt;/details&gt;</code></pre>
+    </details>
+</div>
+
+
+<h3 id="info-overlay-2">Info Overlay - force half width</h3>
+
+<div class="u-space--below">
+    <div class="c-info-overlay-wrap" style="max-width: 650px">
+        <img src="/assets/images/patterns/placeholder-1--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns/placeholder-1--small.jpg 300w" alt="" class="" width="650">
+        <details class="c-info-overlay  c-info-overlay--half-width">
+            <summary><span>Details</span><svg display="none" width="24" height="24" focusable="false" class="icon  icon--is-closed"><use xlink:href="#icon-info"></use></svg><svg display="none" width="24" height="24" focusable="false" class="icon  icon--is-open"><use xlink:href="#icon-cross"></use></svg></summary>
+            <div>Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please.</div>
+        </details>
+    </div>
+</div>
+
+<div>
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;details class=&quot;c-info-overlay  <strong>c-info-overlay--half-width</strong>&quot;&gt;
+    ...
+&lt;/details&gt;</code></pre>
+    </details>
+</div>
+
+
+<h3 id="info-overlay-2">Info Overlay - large content test</h3>
+
+<p>Forced a small image and overly long content.</p>
+
+<div class="u-space--below">
+    <div class="c-info-overlay-wrap" style="max-width: 300px">
+        <img src="/assets/images/patterns/placeholder-1--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns/placeholder-1--small.jpg 300w" alt="" class="" width="300">
+        <details class="c-info-overlay">
+            <summary><span>Details</span><svg display="none" width="24" height="24" focusable="false" class="icon  icon--is-closed"><use xlink:href="#icon-info"></use></svg><svg display="none" width="24" height="24" focusable="false" class="icon  icon--is-open"><use xlink:href="#icon-cross"></use></svg></summary>
+            <div>Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please. Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please. Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please. Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please.Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please.</div>
+        </details>
+    </div>
+</div>
