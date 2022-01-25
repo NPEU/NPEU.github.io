@@ -1,0 +1,42 @@
+<!--
+
+    MAP
+
+-->
+{% assign include_title = "Map" %}
+
+<h2 id="{{ include_title | slugify }}">{{ include_title }}</h2>
+
+<p>This pattern is more about tweaking Leaflet maps and resetting properties that have been overridden than applying new styles.</p>
+<p>This may change in the future if more custom styles are required.</p>
+<p>This pattern takes into account a no-js scenario and uses a static image as the default.</p>
+
+
+<div class="u-space--below">
+
+    <div class="c-map  c-map--300" id="test_map" tabindex="0">
+        <p class="u-text-align--center">
+            <img src="https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/-1.21574715729,51.751613839,13,0,0/600x600?access_token=pk.eyJ1IjoiYW5keWtraXJrIiwiYSI6ImNqbGh3a3FnbzA1aDMza204eDJnMmVhMmMifQ.I7diR0BZvQWzn2okKy6qIQ" alt="">
+        </p>
+        <p class="u-text-align--center">No javascript available, can't display an interactive map.
+    </div>
+    <script>
+    leafletMapInitialize('test_map', {"lat":51.7516138390000008939750841818749904632568359375,"lng":-1.215747157290000046714339987374842166900634765625,"zoom":13,"token":"pk.eyJ1IjoiYW5keWtraXJrIiwiYSI6ImNqbGh3a3FnbzA1aDMza204eDJnMmVhMmMifQ.I7diR0BZvQWzn2okKy6qIQ"}, [{"lat":"true","lng":"true","color":"blue","popup":"NPEU Address"}]);
+    </script>
+
+</div>
+
+<div>
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;div class=&quot;c-map  c-map--300&quot; id=&quot;test_map&quot; tabindex=&quot;0&quot;&gt;
+    &lt;p class=&quot;u-text-align--center&quot;&gt;
+        &lt;img src=&quot;https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/-1.21574715729,51.751613839,13,0,0/600x600?access_token=pk.eyJ1IjoiYW5keWtraXJrIiwiYSI6ImNqbGh3a3FnbzA1aDMza204eDJnMmVhMmMifQ.I7diR0BZvQWzn2okKy6qIQ&quot; alt=&quot;&quot;&gt;
+    &lt;/p&gt;
+    &lt;p class=&quot;u-text-align--center&quot;&gt;No javascript available, can&apos;t display an interactive map.
+&lt;/div&gt;
+&lt;script&gt;
+leafletMapInitialize(&apos;test_map&apos;, {&quot;lat&quot;:51.7516138390000008939750841818749904632568359375,&quot;lng&quot;:-1.215747157290000046714339987374842166900634765625,&quot;zoom&quot;:13,&quot;token&quot;:&quot;pk.eyJ1IjoiYW5keWtraXJrIiwiYSI6ImNqbGh3a3FnbzA1aDMza204eDJnMmVhMmMifQ.I7diR0BZvQWzn2okKy6qIQ&quot;}, [{&quot;lat&quot;:&quot;true&quot;,&quot;lng&quot;:&quot;true&quot;,&quot;color&quot;:&quot;blue&quot;,&quot;popup&quot;:&quot;NPEU Address&quot;}]);
+&lt;/script&gt;</code></pre>
+    </details>
+</div>

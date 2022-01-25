@@ -92,6 +92,11 @@ $s__pre-background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s)
 
 
 $s__html-background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-dark));
+
+
+$s__target-highlight-color-a: hsla(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l), 0.4);
+$s__target-highlight-color-b: hsla(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l), 0);
+
 /*
 //@debug $s__base-ui-color;
 
@@ -161,6 +166,14 @@ $focus-shadow: 0 0 0 $s__sz-xxs #fff, 0 0 0 $s__sz-xs rgba(0,0,0,.2);
 /* ---------------------------------------------------------------------------------------------- */
 
 
+/* --| FUNCTIONS AND MIXINS --------------------------------------------------------------------- */
+
+@import "__functions.scss";
+@import "__mixins.scss";
+
+/* ---------------------------------------------------------------------------------------------- */
+
+
 /* --| THEME |----------------------------------------------------------------------------------- */
 
 @import "_themer.scss";
@@ -187,7 +200,11 @@ $focus-shadow: 0 0 0 $s__sz-xxs #fff, 0 0 0 $s__sz-xs rgba(0,0,0,.2);
 
 @import "component-patterns/_glimpse.scss";
 
+@import "component-patterns/_hero.scss";
+
 @import "component-patterns/_info-overlay.scss";
+
+@import "component-patterns/_map.scss";
 
 @import "component-patterns/_page-wrap.scss";
 

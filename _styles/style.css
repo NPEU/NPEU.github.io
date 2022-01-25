@@ -2510,34 +2510,34 @@ main :target {
 
 @-moz-keyframes target-fade {
   0% {
-    background-color: rgba(171, 150, 192, 0.4);
-    box-shadow: 0 0 0 1.2rem rgba(171, 150, 192, 0.4);
+    background-color: hsla(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l), 0.4);
+    box-shadow: 0 0 0 1.2rem hsla(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l), 0.4);
   }
   100% {
-    background-color: rgba(171, 150, 192, 0);
-    box-shadow: 0 0 0 1.2rem rgba(171, 150, 192, 0);
+    background-color: hsla(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l), 0);
+    box-shadow: 0 0 0 1.2rem hsla(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l), 0);
   }
 }
 
 @-webkit-keyframes target-fade {
   0% {
-    background-color: rgba(171, 150, 192, 0.4);
-    box-shadow: 0 0 0 1.2rem rgba(171, 150, 192, 0.4);
+    background-color: hsla(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l), 0.4);
+    box-shadow: 0 0 0 1.2rem hsla(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l), 0.4);
   }
   100% {
-    background-color: rgba(171, 150, 192, 0);
-    box-shadow: 0 0 0 1.2rem rgba(171, 150, 192, 0);
+    background-color: hsla(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l), 0);
+    box-shadow: 0 0 0 1.2rem hsla(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l), 0);
   }
 }
 
 @keyframes target-fade {
   0% {
-    background-color: rgba(171, 150, 192, 0.4);
-    box-shadow: 0 0 0 1.2rem rgba(171, 150, 192, 0.4);
+    background-color: hsla(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l), 0.4);
+    box-shadow: 0 0 0 1.2rem hsla(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l), 0.4);
   }
   100% {
-    background-color: rgba(171, 150, 192, 0);
-    box-shadow: 0 0 0 1.2rem rgba(171, 150, 192, 0);
+    background-color: hsla(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l), 0);
+    box-shadow: 0 0 0 1.2rem hsla(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l), 0);
   }
 }
 
@@ -2852,6 +2852,14 @@ fieldset {
 /* ---------------------------------------------------------------------------------------------- */
 /* --| MORE SETTINGS (USING START VARS |--------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
+/* --| FUNCTIONS AND MIXINS --------------------------------------------------------------------- */
+/*
+    FUNCTIONS
+*/
+/*
+    MIXINS
+*/
+/* ---------------------------------------------------------------------------------------------- */
 /* --| THEME |----------------------------------------------------------------------------------- */
 /**/
 /*
@@ -3068,7 +3076,7 @@ body {
 
 a[href].c-badge:hover, a[href].c-badge:active, a[href].c-badge:focus {
   border: 0;
-  box-shadow: 0 0 0 0.6rem #fff, 0 0 0 1.2rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 0.3rem #fff, 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
 }
 
 a[href].c-badge:hover img, a[href].c-badge:active img, a[href].c-badge:focus img {
@@ -3335,7 +3343,7 @@ a[href].c-cta--has-icon .icon {
 }*/
 /*
     Card
-    =====
+    ====
 */
 .c-card {
   /*
@@ -3520,6 +3528,8 @@ a[href].c-cta--has-icon .icon {
 }
 
 /*
+    Contact List
+    ============
 
 */
 .c-contact-list.c-contact-list dt {
@@ -3551,6 +3561,9 @@ a[href].c-cta--has-icon .icon {
 }
 
 /*
+    Event
+    =====
+
     The `height: 100%;` in the `.event` class below allows the event to fill it's container (if inside,
     say, a list-grid). However, it doesn't work in Safari OSX/iOS.
     Applying a `event-wrap` class to a list item to make those items flex-containers seems to work
@@ -3614,6 +3627,9 @@ a[href].c-cta--has-icon .icon {
 }
 
 /*
+    Featurettes
+    ===========
+
     Note featurettes should only appear in the main body and fill the width, so media queries are
     ok here - we don't need to worry about other contexts and container-queries.
 */
@@ -3973,15 +3989,316 @@ a[href].c-cta--has-icon .icon {
 }
 
 /*
+    Hero
+    ====
+*/
+.c-hero-wrap.c-hero-carousel {
+  padding: 0;
+  margin: 0;
+  min-inline-size: auto;
+  border: 0;
+  width: 100%;
+}
+
+.c-hero-wrap.c-hero-carousel > div {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.c-hero-wrap.c-hero-carousel .c-hero-carousel__nav {
+  padding: 0 0.6rem;
+  margin: -3.6rem 0 0 0;
+  z-index: 2;
+}
+
+.c-hero-wrap.c-hero-carousel .c-hero-carousel__nav p {
+  margin: 0;
+}
+
+.c-hero-wrap.c-hero-carousel .c-hero-carousel__nav a[href] {
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 0.6rem;
+  height: 1.2rem;
+  width: 1.2rem;
+  background: #bbb;
+  text-indent: 1.2rem;
+  border: 0.1rem solid #333;
+  padding: 0;
+  margin: 0 0.3rem;
+}
+
+.c-hero-wrap.c-hero-carousel .c-hero-carousel__nav a[href]:hover {
+  background: #888;
+}
+
+.c-hero-wrap.c-hero-carousel hr {
+  display: none;
+}
+
+.c-hero-wrap.c-hero-carousel .c-hero-carousel__scroll-area {
+  order: -1;
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-type: mandatory;
+  /* [1] */
+  scroll-snap-points-x: repeat(100%);
+  /* [1] */
+  scroll-snap-type: x mandatory;
+  /* [2] */
+  -webkit-overflow-scrolling: touch;
+  /* [3] */
+  -ms-scroll-snap-type: mandatory;
+  /* [4] */
+  -ms-scroll-snap-points-x: repeat(100%);
+  /* [4] */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.c-hero-wrap.c-hero-carousel .c-hero-carousel__scroll-area:focus {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.3);
+  outline: 0 none;
+}
+
+.c-hero-wrap.c-hero-carousel .c-hero-carousel__scroll-area::-webkit-scrollbar {
+  display: none;
+}
+
+.c-hero-wrap.c-hero-carousel .c-hero-carousel__scroll-area .c-hero {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /*
+                Turn off :target highlighting animation.
+            */
+  -moz-animation: none;
+  -webkit-animation: none;
+  animation: none;
+}
+
+.c-hero-wrap.c-hero-carousel .c-hero-carousel__scroll-area .c-hero__message {
+  padding-bottom: 4.8rem;
+}
+
+.c-hero-wrap .c-hero {
+  position: relative;
+  background: #fff;
+  /*
+            The pattern markup allows for a TFS border, so zap that:
+        */
+}
+
+.c-hero-wrap .c-hero > div {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.c-hero-wrap .c-hero .c-hero__message {
+  padding-top: 2.4rem;
+  padding-right: 2.4rem;
+  padding-bottom: 2.4rem;
+  padding-left: 2.4rem;
+  flex-grow: 1;
+  /*.c-hero-wrap .c-hero .c-hero__message__image-credit {
+        font-size: 0.875em;
+        line-height: 1.3;
+        padding: 0.2em 0.5em;
+        color: #fff;
+        background-color: rgba(0,0,0,0.4);
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        max-width: 50%;
+
+        a[href] {
+            background-color: transparent;
+            color: #fff;
+            border-width: 1px;
+
+            &:hover,
+            &:active,
+            &:focus {
+                background-color: transparent;
+                color: #fff;
+            }
+        }
+    }*/
+}
+
+.c-hero-wrap .c-hero .c-hero__message * {
+  margin: 0;
+}
+
+.c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_text,
+.c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_heading {
+  /*
+                1. For IE10 to wrap text.
+            */
+  line-height: 1.3;
+  font-weight: bold;
+  margin: 0;
+  max-width: 100%;
+  /* [1] */
+}
+
+.c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_text,
+.c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_heading {
+  font-size: 16px;
+}
+
+@media screen and (min-width: 640px) {
+  .c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_text,
+  .c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_heading {
+    font-size: calc(16px + 10 * ((100vw - 640px) / 960));
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_text,
+  .c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_heading {
+    font-size: 26px;
+  }
+}
+
+.c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_heading {
+  font-size: 24px;
+}
+
+@media screen and (min-width: 640px) {
+  .c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_heading {
+    font-size: calc(24px + 22 * ((100vw - 640px) / 960));
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_heading {
+    font-size: 46px;
+  }
+}
+
+.c-hero-wrap .c-hero .c-hero__message .c-hero__cta {
+  margin-left: auto;
+  margin-top: 1.2rem;
+}
+
+/*.c-hero--reversed .c-hero__image-credit {
+    right: auto;
+    left: 0;
+}*/
+@media only screen and (max-width: 40rem) {
+  .c-hero-wrap .c-hero .c-hero__message {
+    /*
+                    1. This is here to override the inline style width declaration.
+                       Allowing Joomla interface to specify width so it can be tweaked to suit the text,
+                       but we want it full-width on narrow screens and we can't do MQ's in inline styles,
+                */
+    width: 100% !important;
+    /* [1] */
+    background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
+    color: #fff;
+  }
+  /*.c-hero-carousel {
+        __nav {
+            margin: 0;
+
+        }
+    }*/
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .c-hero .c-hero__message {
+    /*
+                1. IE11 is just not behaving well :-(
+            */
+    max-width: calc(100vw - 1.7rem) !important;
+    /* [1] */
+  }
+}
+
+@media only screen and (max-width: 64rem) {
+  .c-hero-wrap.c-hero--wide-message .c-hero .c-hero__message {
+    /*
+                    1. This is here to override the inline style width declaration.
+                       Allowing Joomla interface to specify width so it can be tweaked to suit the text,
+                       but we want it full-width on narrow screens and we can't do MQ's in inline styles,
+                */
+    width: 100% !important;
+    /* [1] */
+    background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
+    color: #fff;
+  }
+}
+
+@media only screen and (min-width: 40rem) {
+  .c-hero-wrap:not(.c-hero--wide-message) .c-hero .c-hero__message {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    width: calc(10em + 20%);
+    top: 0;
+    background: rgba(255, 255, 255, 0.75);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-start;
+  }
+  .c-hero-wrap:not(.c-hero--wide-message) .c-hero .c-hero__message > * {
+    flex: 1 0 100%;
+  }
+  .c-hero-wrap.c-hero--reversed:not(.c-hero--wide-message) .c-hero .c-hero__message {
+    right: 0;
+    left: auto;
+  }
+}
+
+@media only screen and (min-width: 64rem) {
+  .c-hero-wrap.c-hero--wide-message .c-hero .c-hero__message {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    width: calc(20em + 20%);
+    max-width: 50%;
+    top: 0;
+    background: rgba(255, 255, 255, 0.75);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-start;
+  }
+  .c-hero-wrap.c-hero--wide-message .c-hero .c-hero__message > * {
+    flex: 1 0 100%;
+  }
+  .c-hero-wrap.c-hero--reversed .c-hero .c-hero__message {
+    right: 0;
+    left: auto;
+  }
+}
+
+/*
     Info Overlay
     ============
 */
 .c-info-overlay-wrap {
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .c-info-overlay.c-info-overlay {
-  position: relative;
   padding: 0;
   /*margin-top: -3rem;
         margin-right: 0;
@@ -3991,48 +4308,51 @@ a[href].c-cta--has-icon .icon {
   border: 0;
 }
 
-.c-info-overlay > summary {
+.c-info-overlay.c-info-overlay > summary {
   color: #fff;
   background: rgba(0, 0, 0, 0.5);
   width: 2.4rem;
   height: 2.4rem;
   padding: 0;
-  margin: 0;
-  /*margin-top: 0;
-        margin-right: 0;
-        margin-bottom: 0;
-        margin-left: 0.6rem;*/
-  position: absolute;
+  margin-top: -3rem;
+  margin-right: 0;
+  margin-bottom: 0.6rem;
+  margin-left: 0;
+  position: relative;
   left: 1.2rem;
-  bottom: 0.6rem;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 100%;
 }
 
-.c-info-overlay > summary > span:first-child {
+.c-info-overlay.c-info-overlay > summary > span:first-child {
   display: none;
 }
 
-.c-info-overlay > summary > svg:nth-child(2) {
+.c-info-overlay.c-info-overlay > summary > svg:nth-child(2) {
   display: inline;
 }
 
-.c-info-overlay > summary > svg:last-child {
+.c-info-overlay.c-info-overlay > summary > svg:last-child {
   display: none;
 }
 
-.c-info-overlay > summary::before {
+.c-info-overlay.c-info-overlay > summary::before {
   display: none;
 }
 
-.c-info-overlay > summary:hover {
+.c-info-overlay.c-info-overlay > summary:hover {
   color: #222;
   background: rgba(255, 255, 255, 0.3);
 }
 
-.c-info-overlay > summary + * {
+.c-info-overlay.c-info-overlay--from-right > summary {
+  left: auto;
+  right: 1.2rem;
+}
+
+.c-info-overlay.c-info-overlay > summary + * {
   /*position: relative;
         left: 2.4rem;
         margin-top: -2.4rem;
@@ -4043,7 +4363,11 @@ a[href].c-cta--has-icon .icon {
   color: #fff;
 }
 
-.c-info-overlay[open]::before {
+.c-info-overlay.c-info-overlay[open] {
+  position: relative;
+}
+
+.c-info-overlay.c-info-overlay[open]::before {
   content: "";
   display: block;
   position: absolute;
@@ -4056,18 +4380,27 @@ a[href].c-cta--has-icon .icon {
   border-bottom: 0.6rem solid #333;
 }
 
-.c-info-overlay[open] > summary {
-  margin: 0;
-  bottom: auto;
-  top: -3rem;
+.c-info-overlay.c-info-overlay[open] > summary {
+  margin-top: -3rem;
+  margin-bottom: 0.6rem;
 }
 
-@media only all and (min-width: 35em) {
+.c-info-overlay.c-info-overlay--from-right > summary {
+  left: calc(100% - 2.4rem - 1.2rem);
+}
+
+.c-info-overlay.c-info-overlay--from-right[open]::before {
+  left: auto;
+  right: 1.8rem;
+}
+
+@media only screen and (min-width: 35rem) {
   .c-info-overlay.c-info-overlay {
     position: absolute;
     top: 0;
     color: #fff;
     background: rgba(0, 0, 0, 0.8);
+    width: 100%;
     margin-top: 0;
     margin-right: 0;
     margin-bottom: 0;
@@ -4081,15 +4414,27 @@ a[href].c-cta--has-icon .icon {
   .c-info-overlay.c-info-overlay a[href]:active {
     color: #fff;
   }
-  .c-info-overlay > summary {
+  .c-info-overlay.c-info-overlay > summary {
+    position: absolute;
     bottom: auto;
-    top: 0.6rem;
+    top: 1.2rem;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
   }
-  .c-info-overlay[open]::before {
+  .c-info-overlay.c-info-overlay[open] {
+    position: absolute;
+    width: auto;
+  }
+  .c-info-overlay.c-info-overlay[open]::before {
     display: none;
   }
-  .c-info-overlay[open] > summary {
-    top: 0.6rem;
+  .c-info-overlay.c-info-overlay[open] > summary {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
     /*& > svg:nth-child(2) {
                     display: none;
                 }
@@ -4098,24 +4443,81 @@ a[href].c-cta--has-icon .icon {
                     display: inline;
                 }*/
   }
-  .c-info-overlay > summary + * {
-    padding: 0.6rem 2.4rem 0.6rem 7.2rem;
+  .c-info-overlay.c-info-overlay > summary + * {
+    padding: 1.2rem 2.4rem 1.2rem 7.2rem;
     background: transparent;
+  }
+  .c-info-overlay.c-info-overlay--from-right[open] {
+    right: 0;
+  }
+  .c-info-overlay.c-info-overlay--from-right > summary + * {
+    padding: 1.2rem 7.2rem 1.2rem 2.4rem;
   }
   .c-info-overlay * {
     margin: 0;
   }
-  .c-info-overlay--full-width[open] {
+  .c-info-overlay.c-info-overlay--full-width[open] {
     width: 100%;
   }
-  .c-info-overlay--half-width[open] {
+  .c-info-overlay.c-info-overlay--half-width[open] {
     width: 50%;
   }
 }
 
 /*
+    Map
+    ===
+*/
+/**/
+.js-map .c-map {
+  display: flex;
+  width: 100%;
+  /*.c-map .leaflet-control-zoom.leaflet-bar.leaflet-control {
+            padding-bottom: 2px;
+        }*/
+}
+
+.js-map .c-map > * {
+  width: 100%;
+  height: 100%;
+  flex: 1 0 auto;
+}
+
+.js-map .c-map .leaflet-container:hover, .js-map .c-map .leaflet-container:active, .js-map .c-map .leaflet-container:focus {
+  box-shadow: 0 0 0 0.3rem #fff, 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
+}
+
+.js-map .c-map .leaflet-container a[href] {
+  background-color: transparent;
+  margin-bottom: 0;
+  border-bottom: 0;
+  color: #0078A8 !important;
+}
+
+.js-map .c-map .leaflet-container a[href]:hover, .js-map .c-map .leaflet-container a[href]:active, .js-map .c-map .leaflet-container a[href]:focus {
+  color: #002b41 !important;
+}
+
+.js-map .c-map .leaflet-container .leaflet-bar a[href] {
+  background-color: #fff;
+  color: #000 !important;
+}
+
+.js-map .c-map .leaflet-container .leaflet-bar a[href]:hover, .js-map .c-map .leaflet-container .leaflet-bar a[href]:active, .js-map .c-map .leaflet-container .leaflet-bar a[href]:focus {
+  background-color: #f4f4f4 !important;
+}
+
+.c-map.c-map--300 > * {
+  min-height: 300px;
+}
+
+.c-map.c-map--500 > * {
+  min-height: 500px;
+}
+
+/*
     Page Wrap
-    ========
+    =========
 */
 .c-page-wrap.c-page-wrap {
   width: 100%;
@@ -4292,7 +4694,7 @@ a[href].c-cta--has-icon .icon {
     ======
 */
 [class*="d-border"] {
-  border-width: 0.1rem;
+  border-width: 0;
   border-style: solid;
   --t-bd-color: var(--t-primary-color);
   --t-bd-color-h: var(--t-primary-color-h);
@@ -8376,8 +8778,16 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   padding-top: 20%;
 }
 
+.u-image-cover.u-image-cover--min-25::before {
+  padding-top: 25%;
+}
+
 .u-image-cover.u-image-cover--min-30::before {
   padding-top: 30%;
+}
+
+.u-image-cover.u-image-cover--min-33-33::before {
+  padding-top: 33.33%;
 }
 
 .u-image-cover.u-image-cover--min-40::before {
@@ -8414,6 +8824,51 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 
 .u-image-cover.u-image-cover--min-100::before {
   padding-top: 100%;
+}
+
+@media only screen and (min-width: 40rem) {
+  .u-image-cover.u-image-cover--min-10--wide::before {
+    padding-top: 10%;
+  }
+  .u-image-cover.u-image-cover--min-20--wide::before {
+    padding-top: 20%;
+  }
+  .u-image-cover.u-image-cover--min-25--wide::before {
+    padding-top: 25%;
+  }
+  .u-image-cover.u-image-cover--min-30--wide::before {
+    padding-top: 30%;
+  }
+  .u-image-cover.u-image-cover--min-33-33--wide::before {
+    padding-top: 33.33%;
+  }
+  .u-image-cover.u-image-cover--min-40--wide::before {
+    padding-top: 40%;
+  }
+  .u-image-cover.u-image-cover--min-50--wide::before {
+    padding-top: 50%;
+  }
+  .u-image-cover.u-image-cover--min-56-25--wide::before {
+    padding-top: 56.25%;
+  }
+  .u-image-cover.u-image-cover--min-60--wide::before {
+    padding-top: 60%;
+  }
+  .u-image-cover.u-image-cover--min-70--wide::before {
+    padding-top: 70%;
+  }
+  .u-image-cover.u-image-cover--min-75--wide::before {
+    padding-top: 75%;
+  }
+  .u-image-cover.u-image-cover--min-80--wide::before {
+    padding-top: 80%;
+  }
+  .u-image-cover.u-image-cover--min-90--wide::before {
+    padding-top: 90%;
+  }
+  .u-image-cover.u-image-cover--min-100--wide::before {
+    padding-top: 100%;
+  }
 }
 
 .u-image-cover .u-image-cover__inner {
@@ -8460,7 +8915,13 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   .u-image-cover.u-image-cover--min-20 {
     min-height: auto;
   }
+  .u-image-cover.u-image-cover--min-25 {
+    min-height: auto;
+  }
   .u-image-cover.u-image-cover--min-30 {
+    min-height: auto;
+  }
+  .u-image-cover.u-image-cover--min-33.33 {
     min-height: auto;
   }
   .u-image-cover.u-image-cover--min-40 {

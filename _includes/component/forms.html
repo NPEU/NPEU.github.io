@@ -70,7 +70,9 @@
 
 <hr>
 -->
-<h2 id="{{ page.title | slugify }}">Forms</h2>
+{% assign include_title = "Forms" %}
+
+<h2 id="{{ include_title | slugify }}">{{ include_title }}</h2>
 
 <h3 id="tool-form">Tool Form</h3>
 

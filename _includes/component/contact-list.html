@@ -4,8 +4,9 @@
 
 -->
 
+{% assign include_title = "Contact List" %}
 
-<h2 id="{{ page.title | slugify }}">Contact List</h2>
+<h2 id="{{ include_title | slugify }}">{{ include_title }}</h2>
 
 <div class="u-space--below">
     <div>
@@ -51,7 +52,7 @@
     </dl>
 </div>
 
-<div class="u-padding--s">
+<div>
     <details class="u-padding  d-background--light">
         <summary>Show code:</summary>
         <pre><code class="html">&lt;div&gt;
@@ -100,7 +101,7 @@
 
 <h3>Contact List - short</h3>
 
-<div class="u-padding--sides  u-space--below">
+<div class="u-space--below">
     <dl class="c-contact-list" itemscope="itemscope" itemtype="http://schema.org/Person">
         <dt>Name</dt>
         <dd>
@@ -120,7 +121,7 @@
     </dl>
 </div>
 
-<div class="u-padding--s">
+<div>
     <details class="u-padding  d-background--light">
         <summary>Show code:</summary>
         <pre><code class="html">&lt;dl class=&quot;c-contact-list&quot; itemscope=&quot;itemscope&quot; itemtype=&quot;http://schema.org/Person&quot;&gt;

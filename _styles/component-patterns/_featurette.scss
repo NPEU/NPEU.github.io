@@ -1,4 +1,7 @@
 /*
+    Featurettes
+    ===========
+
     Note featurettes should only appear in the main body and fill the width, so media queries are
     ok here - we don't need to worry about other contexts and container-queries.
 */
@@ -53,8 +56,8 @@ $featurette-breakpoint: 35em !default;
         border-radius: 100%;
         overflow: hidden;
     }
-    
-    
+
+
     &#{&}--pull-image {
         margin-top: $s__sz-l + $s__sz-m;
     }
@@ -68,7 +71,7 @@ $featurette-breakpoint: 35em !default;
 
     #{&}__body {
         padding: $s__sz-m  calc(8% - #{$s__sz-s});
-        
+
         max-width: 100%;
         width: calc((#{$featurette-breakpoint} - 100%) * 1000);
 
@@ -85,7 +88,7 @@ $featurette-breakpoint: 35em !default;
             border-bottom: 1px dotted currentColor;
         }
     }
-    
+
     #{&}__body,
     #{&}__body--50 {
         min-width: 50%;

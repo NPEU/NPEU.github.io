@@ -23,6 +23,8 @@
 
 $image-cover-namespace: u- !default;
 
+$image-cover-breakpoint: 40rem !default;
+
 /*
     56.25% = 16:9 ratio
     75%    = 4:3 ratio
@@ -31,7 +33,9 @@ $image-cover-namespace: u- !default;
 $image-cover-min-heights: (
     10%,
     20%,
+    25%,
     30%,
+    33.33%,
     40%,
     50%,
     56.25%,
@@ -63,6 +67,16 @@ $image-cover-min-heights: (
             &#{&}--min-#{s__str-replace(#{s__strip-unit($n)}, '.', '-')} {
                 &::before {
                     padding-top: $n;
+                }
+            }
+        }
+        
+        @media only screen and (min-width: $image-cover-breakpoint) {
+            @each $n in $image-cover-min-heights {
+                &#{&}--min-#{s__str-replace(#{s__strip-unit($n)}, '.', '-')}--wide {
+                    &::before {
+                        padding-top: $n;
+                    }
                 }
             }
         }

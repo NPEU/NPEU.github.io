@@ -4,11 +4,13 @@
 
 -->
 
-<h2 id="{{ page.title | slugify }}">Glimpse</h2>
+{% assign include_title = "Glimpse" %}
+
+<h2 id="{{ include_title | slugify }}">{{ include_title }}</h2>
 
 <p class="u-space--below--l">A glimpse provides a brief look or summary of the content the use will be presented with if the Glimpse's link is followed.</p>
 
-<div class="u-space--below  u-padding--sides">
+<div class="u-space--below">
     {% include glimpse.html
         title="Headline"
         url="/patterns/component"
@@ -41,7 +43,7 @@
     </details>
 </div>
 
-<div class="u-padding--sides">
+<div>
     {% include glimpse.html
         title="Headline"
         url="/patterns/component"
@@ -84,7 +86,7 @@
 
 <h3 class="u-space--below--l">Round image</h3>
 
-<div class="u-space--below  u-padding--sides">
+<div class="u-space--below">
     {% include glimpse.html
         title="Person Name"
         url="/patterns/component"
@@ -103,7 +105,7 @@
     </details>
 </div>
 
-<div class="u-padding--sides">
+<div>
     {% include glimpse.html
         title="Personwitha Longernamethanusual-Smith"
         url="/patterns/component"

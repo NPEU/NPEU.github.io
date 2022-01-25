@@ -14304,6 +14304,48 @@ L.marker.svgMarker = function(latlng, options) {
 */
 
 function leafletMapInitialize(map_container_id, map_data, markers) {
+    // Things break if the CSS isn't loaded, so check for that:
+    var check_for_css = function(selector) {
+
+        var rules;
+        var haveRule = false;
+        if (typeof document.styleSheets != "undefined") {// is this supported
+            var cssSheets = document.styleSheets;
+
+            // IE doesn't have document.location.origin, so fix that:
+            if (!document.location.origin) {
+                document.location.origin = document.location.protocol + "//" + document.location.hostname + (document.location.port ? ':' + document.location.port: '');
+            }
+            var domain_regex  = RegExp('^' + document.location.origin);
+
+            outerloop:
+            for (var i = 0; i < cssSheets.length; i++) {
+                var sheet = cssSheets[i];
+
+                // Some browsers don't allow checking of rules if not on the same domain (CORS), so
+                // checking for that here:
+                if (sheet.href !== null && domain_regex.exec(sheet.href) === null) {
+                    continue;
+                }
+
+                // Check for IE or standards:
+                rules = (typeof sheet.cssRules != "undefined") ? sheet.cssRules : sheet.rules;
+                for (var j = 0; j < rules.length; j++) {
+                    if (rules[j].selectorText == selector) {
+                        haveRule = true;
+                        break outerloop;
+                    }
+                }
+            }
+        }
+        return haveRule;
+    }
+    var css_is_loaded = check_for_css('.leaflet-pane');
+    if (!css_is_loaded) {
+        return;
+    }
+    
+    
     // @TODO: should check for SVG support before proceeding.
 
     markers = markers ? markers : null;

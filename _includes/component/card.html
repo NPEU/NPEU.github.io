@@ -3,11 +3,14 @@
     CARD
 
 -->
+{% assign include_title = "Card" %}
+
+
 {% capture date_content %}
 <p>{% include date.html date=1632939147 %}</p>
 {% endcapture %}
 
-<h2 id="{{ page.title | slugify }}">Card</h2>
+<h2 id="{{ include_title | slugify }}">{{ include_title }}</h2>
 
 <p>Cards are more complex than you might think.</p>
 

@@ -5,19 +5,19 @@
 
 $info-overlay-namespace: c- !default;
 
-$info-overlay-breakpoint: 40rem !default;
+$info-overlay-breakpoint: 35rem !default;
 $info-overlay-max-message-breakpoint: 100rem !default;
 $info-overlay-min-message-size: 20px !default;
 $info-overlay-max-message-size: 52px !default;
 
 .#{$info-overlay-namespace}info-overlay-wrap {
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .#{$info-overlay-namespace}info-overlay {
     &#{&} {
-        position: relative;
-
         padding: 0;
         /*margin-top: -#{$s__sz-m + $s__sz-xs};
         margin-right: 0;
@@ -28,23 +28,23 @@ $info-overlay-max-message-size: 52px !default;
     }
 
 
-    & > summary {
+    &#{&} > summary {
         color: #fff;
         background: rgba(0,0,0,0.5);
 
         width: #{$s__sz-m};
         height: #{$s__sz-m};
         padding: 0;
-        margin: 0;
-        /*margin-top: 0;
+        //margin: 0;
+        margin-top: -#{$s__sz-m + $s__sz-xs};
         margin-right: 0;
-        margin-bottom: 0;
-        margin-left: #{$s__sz-xs};*/
+        margin-bottom: $s__sz-xs;
+        margin-left: 0;
 
 
-        position: absolute;
+        position: relative;
         left: #{$s__sz-s};
-        bottom: #{$s__sz-xs};
+        //bottom: #{$s__sz-xs};
 
         display: flex;
         justify-content: center;
@@ -75,7 +75,12 @@ $info-overlay-max-message-size: 52px !default;
         }
     }
 
-    & > summary + * {
+    &#{&}--from-right > summary {
+        left: auto;
+        right: #{$s__sz-s};
+    }
+
+    &#{&} > summary + * {
         /*position: relative;
         left: 2.4rem;
         margin-top: -2.4rem;
@@ -87,12 +92,14 @@ $info-overlay-max-message-size: 52px !default;
         color: #fff;
     }
 
-    &[open] {
+    &#{&}[open] {
+        position: relative;
+
         &::before {
             content: "";
             display: block;
             position: absolute;
-            top: -#{$s__sz-xs};
+            top: -$s__sz-xs;
             left: #{$s__sz-s + $s__sz-xs};
             width: 0px;
             height: 0px;
@@ -102,14 +109,25 @@ $info-overlay-max-message-size: 52px !default;
         }
 
         & > summary {
-            margin: 0;
-            bottom: auto;
-            top: -#{$s__sz-m + $s__sz-xs};
+            margin-top: -#{$s__sz-m + $s__sz-xs};
+            margin-bottom: $s__sz-xs;
+                //margin: 0;
+                //bottom: auto;
+                //top: -#{$s__sz-m + $s__sz-xs};
         }
+    }
+
+    &#{&}--from-right > summary {
+        left: calc(100% - 2.4rem - 1.2rem);
+    }
+    
+    &#{&}--from-right[open]::before {
+        left: auto;
+        right: #{$s__sz-s + $s__sz-xs};
     }
 }
 
-@media only all and (min-width: 35em) {
+@media only screen and (min-width: $info-overlay-breakpoint) {
 
     .#{$info-overlay-namespace}info-overlay {
         &#{&} {
@@ -117,6 +135,7 @@ $info-overlay-max-message-size: 52px !default;
             top: 0;
             color: #fff;
             background: rgba(0,0,0,0.8);
+            width: 100%;
 
             margin-top: 0;
             margin-right: 0;
@@ -135,20 +154,35 @@ $info-overlay-max-message-size: 52px !default;
             }
         }
 
-        & > summary {
+        &#{&} > summary {
+            position: absolute;
             bottom: auto;
-            top: #{$s__sz-xs};
+            top: #{$s__sz-s};
+            
+            margin-top: 0;
+            margin-right: 0;
+            margin-bottom: 0;
+            margin-left: 0;
         }
 
-        &[open] {
+        &#{&}[open] {
+            position: absolute;
+            width: auto;
 
+            
             &::before {
                 display: none;
             }
 
             & > summary {
-                top: #{$s__sz-xs};
+                //top: #{$s__sz-xs};
                 
+                
+                margin-top: 0;
+                margin-right: 0;
+                margin-bottom: 0;
+                margin-left: 0;
+
                 /*& > svg:nth-child(2) {
                     display: none;
                 }
@@ -159,21 +193,29 @@ $info-overlay-max-message-size: 52px !default;
             }
         }
 
-        & > summary + * {
+        &#{&} > summary + * {
             //max-width: calc(100% - #{$s__sz-m});
-            padding: $s__sz-xs $s__sz-m $s__sz-xs #{$s__sz-l + $s__sz-m};
+            padding: $s__sz-s $s__sz-m $s__sz-s #{$s__sz-l + $s__sz-m};
             background: transparent;
+        }
+        
+        &#{&}--from-right[open] {
+            right: 0;
+        }
+        
+        &#{&}--from-right > summary + * {
+            padding: $s__sz-s #{$s__sz-l + $s__sz-m} $s__sz-s $s__sz-m;
         }
 
         * {
             margin: 0;
         }
 
-        &--full-width[open] {
+        &#{&}--full-width[open] {
             width: 100%;
         }
 
-        &--half-width[open] {
+        &#{&}--half-width[open] {
             width: 50%;
         }
 

@@ -1,4 +1,7 @@
 /*
+    Event
+    =====
+
     The `height: 100%;` in the `.event` class below allows the event to fill it's container (if inside,
     say, a list-grid). However, it doesn't work in Safari OSX/iOS.
     Applying a `event-wrap` class to a list item to make those items flex-containers seems to work
@@ -12,17 +15,17 @@ $event-title--line-height: $s__base-rem-space-unit * 1.5;
 
 
 .#{$event-namespace}event {
-    &#{&} {   
+    &#{&} {
         display: flex;
         flex-wrap: wrap;
-        flex-direction: row;    
+        flex-direction: row;
         justify-content: space-between;
         align-items: flex-end;
 
         height: 100%;
 
         padding: $s__sz-m;
-        
+
         border: 1px solid currentColor;
         border-radius: $s__sz-s;
 
@@ -30,7 +33,7 @@ $event-title--line-height: $s__base-rem-space-unit * 1.5;
         // so hide it:
 
         overflow: hidden;
-        
+
         width: 0;
         min-width: 100%;
     }

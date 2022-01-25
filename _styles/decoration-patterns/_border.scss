@@ -9,7 +9,7 @@ $border-size: $s__border-width;
 $border-size--thick: $s__border-width * 3;
 
 [class*="#{$border-namespace}border"] {
-    border-width: $border-size;
+    border-width: 0;
     border-style: solid;
 
     --t-bd-color: var(--t-primary-color);
