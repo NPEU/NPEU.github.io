@@ -41,318 +41,338 @@ $layout-limits: (
     60
 ) !default;
 
-.#{$layout-namespace}box,
-.#{$layout-namespace}layout,
-.#{$layout-namespace}layout__inner {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    list-style-type: none;
-}
-
-/*
-    1. In case layout is applied to an inline element for fallback reasons.
-*/
 .#{$layout-namespace}layout {
-    display: block; /* 1 */
-}
-
-
-/*
-    1. This allows for --expand to work.
-*/
-.#{$layout-namespace}layout__inner {
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* 1 */
-
-    --g: 0rem;
-}
-
-/*
-    1. Ensure boxes fill their containers in cases where inline elements are used (I THINK)
-      (I'm not not 100% sure of why this is here.)
-*/
-.#{$layout-namespace}box {
-    display: block;
-    flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: auto;
-    //min-width: 100%; /* 1 */
-}
-
-/*
-    Use this to for things like sticky footers (main layout) or to allow a row item to fill the row.
-*/
-.#{$layout-namespace}box--expand {
-    flex-grow: 1 !important;
-    min-width: 100% !important;
-}
-
-
-// Switch to row:
-.#{$layout-namespace}row .#{$layout-namespace}layout__inner {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: stretch;
-
-    .#{$layout-namespace}box {
-        min-width: auto;
-        flex-grow: 1;
-    }
-}
-
-.#{$layout-namespace}row.#{$layout-namespace}row--start .#{$layout-namespace}layout__inner {
-    justify-content: flex-start;
-
-    .#{$layout-namespace}box {
-        flex-grow: 0;
-    }
-}
-
-.#{$layout-namespace}row.#{$layout-namespace}row--end .#{$layout-namespace}layout__inner {
-    justify-content: flex-end;
-
-    .#{$layout-namespace}box {
-        flex-grow: 0;
-    }
-}
-
-.#{$layout-namespace}row.#{$layout-namespace}row--center .#{$layout-namespace}layout__inner {
-    justify-content: center;
-
-    .#{$layout-namespace}box {
-        flex-grow: 0;
-    }
-}
-
-.#{$layout-namespace}row.#{$layout-namespace}row--push-apart .#{$layout-namespace}layout__inner {
-    justify-content: space-between;
-
-    .#{$layout-namespace}box {
-        flex-grow: 0;
-    }
-}
-
-// Add gutters:
-// Small /**/
-.#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner {
-    padding: $layout-spacing-unit--s;
-}
-
-.#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
-    padding: $layout-spacing-unit--s;
-
-    .#{$layout-namespace}box__separator {
-        padding-left: $layout-spacing-unit--s;
-    }
-}
-
-
-// Medium (default) /**/
-.#{$layout-namespace}gutter > .#{$layout-namespace}layout__inner,
-.#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner {
-    padding: $layout-spacing-unit;
-}
-
-.#{$layout-namespace}gutter > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box,
-.#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
-    padding: $layout-spacing-unit;
-
-    .#{$layout-namespace}box__separator {
-        padding-left: $layout-spacing-unit;
-    }
-}
-
-
-// Large /**/
-.#{$layout-namespace}gutter--l > .#{$layout-namespace}layout__inner {
-    padding: $layout-spacing-unit--l;
-}
-
-.#{$layout-namespace}gutter--l > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
-    padding: $layout-spacing-unit--l;
-
-    .#{$layout-namespace}box__separator {
-        padding-left: $layout-spacing-unit--l;
-    }
-}
-
-
-// Add option to flush the edge gutters:
-
-.#{$layout-namespace}flush-edge-gutter {
-    //overflow: hidden;
-}
-
-.#{$layout-namespace}flush-edge-gutter  .#{$layout-namespace}layout__inner {
-    padding: 0;
-}
-
-// Small /**/
-.#{$layout-namespace}gutter--s.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
-    //margin: -$layout-spacing-unit--s * 2;
-    margin: -$layout-spacing-unit--s;
-}
-
-
-// Medium (default) /**/
-.#{$layout-namespace}gutter.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner,
-.#{$layout-namespace}gutter--m.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
-    //margin: -$layout-spacing-unit * 2;
-    margin: -$layout-spacing-unit;
-}
-
-
-// Large /**/
-.#{$layout-namespace}gutter--l.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
-    //margin: -$layout-spacing-unit--l * 2;
-    margin: -$layout-spacing-unit--l;
-}
-
-
-// Flexbox gap support: https://gist.github.com/OliverJAsh/7f29d0fa1d35216ec681d2949c3fe8b7#gistcomment-3978504
-@supports (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
-
-    // Small /**/
-    .#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner {
-        --g: #{$layout-spacing-unit--s * 2};
-    }
-
-    // Medium (default) /**/
-    .#{$layout-namespace}gutter > .#{$layout-namespace}layout__inner,
-    .#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner {
-        --g: #{$layout-spacing-unit * 2};
-    }
-
-    // Large /**/
-    .#{$layout-namespace}gutter--l > .#{$layout-namespace}layout__inner {
-        --g: #{$layout-spacing-unit--l * 2};
-    }
-
-
-
-    .#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner,
-    .#{$layout-namespace}gutter > .#{$layout-namespace}layout__inner,
-    .#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner,
-    .#{$layout-namespace}gutter--l > .#{$layout-namespace}layout__inner {
-        gap: var(--g);
-    }
-
-    .#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box,
-    .#{$layout-namespace}gutter > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box,
-    .#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box,
-    .#{$layout-namespace}gutter--l > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
-        padding: 0;
+    &,
+    .#{$layout-namespace}box,
+    .#{$layout-namespace}layout__inner {
         margin: 0;
-    }
-
-
-    // We're NOT flushing the gutter by default so add padding:
-    // Small /**/
-    .#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner,
-    .#{$layout-namespace}gutter > .#{$layout-namespace}layout__inner,
-    .#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner,
-    .#{$layout-namespace}gutter--l > .#{$layout-namespace}layout__inner {
-        padding: var(--g);
-    }
-
-
-    // Add option to flush the edge gutters (so remove the padding we just added):
-
-    .#{$layout-namespace}flush-edge-gutter.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
         padding: 0;
-        margin: 0;
+        box-sizing: border-box;
+        list-style-type: none;
     }
-}
-
-// Preserve space between items (used for text groups):
-.#{$layout-namespace}preserve-space .#{$layout-namespace}box {
-    &::after {
-        content: "\00a0";
-    }
-}
-
-// Item bases:
-@each $basis in $layout-bases {
-    .#{$layout-namespace}layout.#{$layout-namespace}basis--#{$basis} > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
-        flex-basis: #{$basis}rem;
-        --b: #{$basis}rem;
-    }
-}
-
-
-// Item limits:
-@each $limit in $layout-limits {
-    .#{$layout-namespace}layout.#{$layout-namespace}limit--#{$limit} > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
-        max-width: #{$limit}rem;
-    }
-}
-
-
-
-
-
-@media #{$s__ie10-11} {
 
     /*
-        1. IE11 hack to make width behave properly.
+        1. In case layout is applied to an inline element for fallback reasons.
+    */
+    & {
+        display: block; /* 1 */
+    }
+
+
+    /*
+        1. This allows for --expand to work.
     */
     .#{$layout-namespace}layout__inner {
-        width: 0px; /* 1 */
-        min-width: 100%; /* 1 */
-        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 100%; /* 1 */
+
+        --g: 0rem;
+    }
+
+    /*
+        1. Ensure boxes fill their containers in cases where inline elements are used (I THINK)
+          (I'm not not 100% sure of why this is here.)
+    */
+    .#{$layout-namespace}box {
+        display: block;
+        
+        //display: flex;
+        //flex-direction: column;
+        //height: 100%; /* 1 */
+        
+        //flex-grow: 0;
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: auto;
+        //min-width: 100%; /* 1 */
+    }
+
+    /*
+        Use this to for things like sticky footers (main layout) or to allow a row item to fill the row.
+    */
+    .#{$layout-namespace}box--expand {
+        flex-grow: 9999 !important;
+        min-width: 100% !important;
+    }
+
+
+    // Switch to row:
+    &.#{$layout-namespace}row > .#{$layout-namespace}layout__inner {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: stretch;
+
+        .#{$layout-namespace}box {
+            //min-width: auto;
+            flex-grow: 1;
+        }
+    }
+
+    &.#{$layout-namespace}row.#{$layout-namespace}row--start > .#{$layout-namespace}layout__inner {
+        justify-content: flex-start;
+
+        .#{$layout-namespace}box {
+            flex-grow: 0;
+        }
+    }
+
+    &.#{$layout-namespace}row.#{$layout-namespace}row--end > .#{$layout-namespace}layout__inner {
+        justify-content: flex-end;
+
+        .#{$layout-namespace}box {
+            flex-grow: 0;
+        }
+    }
+
+    &.#{$layout-namespace}row.#{$layout-namespace}row--center > .#{$layout-namespace}layout__inner {
+        justify-content: center;
+
+        .#{$layout-namespace}box {
+            flex-grow: 0;
+        }
+    }
+
+    &.#{$layout-namespace}row.#{$layout-namespace}row--push-apart > .#{$layout-namespace}layout__inner {
+        justify-content: space-between;
+
+        .#{$layout-namespace}box {
+            flex-grow: 0;
+        }
+    }
+
+    // Add gutters:
+    // Small /**/
+    &.#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner {
+        padding: $layout-spacing-unit--s;
+    }
+
+    &.#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
+        padding: $layout-spacing-unit--s;
+
+        .#{$layout-namespace}box__separator {
+            padding-left: $layout-spacing-unit--s;
+        }
+    }
+
+
+    // Medium (default) /**/
+    &.#{$layout-namespace}gutter > .#{$layout-namespace}layout__inner,
+    &.#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner {
+        padding: $layout-spacing-unit;
+    }
+
+    &.#{$layout-namespace}gutter > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box,
+    &.#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
+        padding: $layout-spacing-unit;
+
+        .#{$layout-namespace}box__separator {
+            padding-left: $layout-spacing-unit;
+        }
+    }
+
+
+    // Large /**/
+    &.#{$layout-namespace}gutter--l > .#{$layout-namespace}layout__inner {
+        padding: $layout-spacing-unit--l;
+    }
+
+    &.#{$layout-namespace}gutter--l > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
+        padding: $layout-spacing-unit--l;
+
+        .#{$layout-namespace}box__separator {
+            padding-left: $layout-spacing-unit--l;
+        }
+    }
+
+
+    // Add option to flush the edge gutters:
+
+    &.#{$layout-namespace}flush-edge-gutter {
+        //overflow: hidden;
+    }
+
+    &.#{$layout-namespace}flush-edge-gutter  .#{$layout-namespace}layout__inner {
+        padding: 0;
     }
 
     // Small /**/
-    .#{$layout-namespace}gutter--s.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
-         min-width: calc(100% + #{$layout-spacing-unit--s * 2}); /* 1 */
+    &.#{$layout-namespace}gutter--s.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
+        //margin: -$layout-spacing-unit--s * 2;
+        margin: -$layout-spacing-unit--s;
     }
+
 
     // Medium (default) /**/
-    .#{$layout-namespace}gutter.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner,
-    .#{$layout-namespace}gutter--m.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
-        min-width: calc(100% + #{$layout-spacing-unit * 2}); /* 1 */
+    &.#{$layout-namespace}gutter.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner,
+    &.#{$layout-namespace}gutter--m.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
+        //margin: -$layout-spacing-unit * 2;
+        margin: -$layout-spacing-unit;
     }
+
 
     // Large /**/
-    .#{$layout-namespace}gutter--l.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
-        min-width: calc(100% + #{$layout-spacing-unit--l * 2}); /* 1 */;
+    &.#{$layout-namespace}gutter--l.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
+        //margin: -$layout-spacing-unit--l * 2;
+        margin: -$layout-spacing-unit--l;
+    }
+
+
+    // Flexbox gap support: https://gist.github.com/OliverJAsh/7f29d0fa1d35216ec681d2949c3fe8b7#gistcomment-3978504
+    @supports (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+
+        // Small /**/
+        &.#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner {
+            --g: #{$layout-spacing-unit--s * 2};
+        }
+
+        // Medium (default) /**/
+        &.#{$layout-namespace}gutter > .#{$layout-namespace}layout__inner,
+        &.#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner {
+            --g: #{$layout-spacing-unit * 2};
+        }
+
+        // Large /**/
+        &.#{$layout-namespace}gutter--l > .#{$layout-namespace}layout__inner {
+            --g: #{$layout-spacing-unit--l * 2};
+        }
+
+
+
+        &.#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner,
+        &.#{$layout-namespace}gutter > .#{$layout-namespace}layout__inner,
+        &.#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner,
+        &.#{$layout-namespace}gutter--l > .#{$layout-namespace}layout__inner {
+            gap: var(--g);
+        }
+
+        &.#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box,
+        &.#{$layout-namespace}gutter > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box,
+        &.#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box,
+        &.#{$layout-namespace}gutter--l > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
+            padding: 0;
+            margin: 0;
+        }
+
+
+        // We're NOT flushing the gutter by default so add padding:
+        // Small /**/
+        &.#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner,
+        &.#{$layout-namespace}gutter > .#{$layout-namespace}layout__inner,
+        &.#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner,
+        &.#{$layout-namespace}gutter--l > .#{$layout-namespace}layout__inner {
+            padding: var(--g);
+        }
+
+
+        // Add option to flush the edge gutters (so remove the padding we just added):
+
+        &.#{$layout-namespace}flush-edge-gutter.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    // Preserve space between items (used for text groups):
+    &.#{$layout-namespace}preserve-space .#{$layout-namespace}box {
+        &::after {
+            content: "\00a0";
+        }
+    }
+
+    // Item bases:
+    @each $basis in $layout-bases {
+        &.#{$layout-namespace}basis--#{$basis} > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
+            flex-basis: #{$basis}rem;
+            --b: #{$basis}rem;
+        }
+    }
+
+
+    // Item limits:
+    @each $limit in $layout-limits {
+        &.#{$layout-namespace}limit--#{$limit} > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
+            max-width: #{$limit}rem;
+            // Helps IE behave, doesn't harm elsewhere:
+            flex-basis: #{$limit}rem;
+        }
     }
 
 
 
-    .#{$layout-namespace}gutter > .#{$layout-namespace}layout__inner,
-    .#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner {
-        max-width: calc(100% + #{$layout-spacing-unit * 2});
-    }
-
-    .#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner {
-        max-width: calc(100% + #{$layout-spacing-unit--s * 2});
-    }
-
-    .#{$layout-namespace}gutter--l > .#{$layout-namespace}layout__inner{
-        max-width: calc(100% + #{$layout-spacing-unit--l * 2});
-    }
 
 
-    .#{$layout-namespace}row .#{$layout-namespace}row > .#{$layout-namespace}layout__inner {
-        display: block;
-    }
+    @media #{$s__ie10-11} {
 
+        /*
+            1. IE11 hack to make width behave properly.
+            2. This hack takes into account the scrollbar (17px).
+        */
+        & > .#{$layout-namespace}layout__inner {
+            //width: 0px; /* 1 */
+            //min-width: 100%; /* 1 */
+            max-width: calc(100vw - 17px); /* [2] */
+        }
+        
+        
+        
+        //&.#{$layout-namespace}row > .#{$layout-namespace}layout__inner {
+        //    display: block;
+        //}
+        //
+        //
+        //&.#{$layout-namespace}row > .#{$layout-namespace}layout__inner::after {
+        //    content: "";
+        //    display: table;
+        //    clear: both;
+        //}
+        //
+        //&.#{$layout-namespace}row > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
+        //    float: left;
+        //}
+        //
+        
+        // Flexbox is so bad in IE, these inexplicably help things.
+        // E.g. on the Styleguide, without the min-height the section menu list-item creates extra
+        // space at the bottom of the l-box, but so does the svg link icon - weird.
+        .#{$layout-namespace}box {
+            max-width: 100%;
+            min-width: 1px;
+            min-height: 1px;
+        }
+        
 
-    .#{$layout-namespace}row .#{$layout-namespace}row > .#{$layout-namespace}layout__inner::after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-
-    .#{$layout-namespace}row .#{$layout-namespace}row > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
-        float: left;
-    }
-
-    .#{$layout-namespace}box {
-        max-width: 100%;
+        //// Small /**/
+        //&.#{$layout-namespace}gutter--s.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
+        //     min-width: calc(100% + #{$layout-spacing-unit--s * 2}); /* 1 */
+        //}
+        //
+        //// Medium (default) /**/
+        //&.#{$layout-namespace}gutter.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner,
+        //&.#{$layout-namespace}gutter--m.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
+        //    min-width: calc(100% + #{$layout-spacing-unit * 2}); /* 1 */
+        //}
+        //
+        //// Large /**/
+        //&.#{$layout-namespace}gutter--l.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
+        //    min-width: calc(100% + #{$layout-spacing-unit--l * 2}); /* 1 */;
+        //}
+        //
+        //
+        //
+        //&.#{$layout-namespace}gutter > .#{$layout-namespace}layout__inner,
+        //&.#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner {
+        //    max-width: calc(100% + #{$layout-spacing-unit * 2});
+        //}
+        //
+        //&.#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner {
+        //    max-width: calc(100% + #{$layout-spacing-unit--s * 2});
+        //}
+        //
+        //&.#{$layout-namespace}gutter--l > .#{$layout-namespace}layout__inner{
+        //    max-width: calc(100% + #{$layout-spacing-unit--l * 2});
+        //}
+        
     }
 }

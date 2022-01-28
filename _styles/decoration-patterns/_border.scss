@@ -36,7 +36,9 @@ $border-size--thick: $s__border-width * 3;
     --t-bd-color-l: var(--t-neutral-color-l);
 }
 
-
+.#{$border-namespace}border {
+    border-width: $border-size;
+}
 
 .#{$border-namespace}border--thick {
     border-width: $border-size--thick;

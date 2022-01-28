@@ -46,7 +46,10 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
         #{&}__header,
         #{&}__body,
         #{&}__footer {
-            margin: 0;
+            margin-top: 0;
+            margin-right: 0;
+            margin-bottom: 0;
+            margin-left: 0;
 
             & > * {
                 padding: 0;
@@ -67,6 +70,10 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
         #{&}__header {
             display: flex;
             flex-direction: column;
+
+            &:first-child {
+                margin-top: 0;
+            }
         }
 
             #{&}__image {
@@ -86,7 +93,7 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
                 line-height: $card-title--line-height;
                 margin-top: 0;
                 margin-bottom: 0;
-                
+
                 a {
                     text-decoration: none !important;
                 }
@@ -106,6 +113,14 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
                     position: relative;
                     z-index: 2;
                 }
+
+                &:first-child {
+                    margin-top: calc(#{$s__sz-m} - #{$s__border-width});
+                }
+
+                &:last-child {
+                    margin-bottom: calc(#{$s__sz-m} - #{$s__border-width});
+                }
             }
 
             #{&}__header-extra {
@@ -124,15 +139,15 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
             position: relative;
             z-index: 2;
         }
-        
+
         /* If there's no body, the footer should grow: */
-        
+
 
         #{&}__header + #{&}__footer {
             margin-top: auto;
         }
-        
-        
+
+
         #{&}__footer {
             margin-top: $s__sz-m;
             margin-bottom: 0;
@@ -162,7 +177,7 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
         #{&}__footer-image--padded {
             padding: $s__sz-m;
         }
-        
+
         .c-cta svg {
             display: inline;
         }

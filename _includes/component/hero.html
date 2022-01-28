@@ -9,6 +9,8 @@
 
 <p>Note the hero pattern used on the live site makes use of the  image cover classes <code>u-image-cover--min-33-33  u-image-cover--min-20--wide</code> but for the purposes of this styleguide various sizes are used.
 
+<p><a href="https://www.npeu.ox.ac.uk/dolfin/parents">Real use of info overlay on hero image</a>.</p>
+
 <div class="u-space--below">
 
     <div class="c-hero-wrap  d-border--top--thick  d-border--bottom--thick" data-fs-text="center">
@@ -43,12 +45,53 @@
     </details>
 </div>
 
+<h3 id="hero-limited-width">Hero - CMS limited width</h3>
+
+<p>In order to finely control the width of the message we allow Joomla to specify a width.
+The only practical way to implement with is to use an inline style output in the template.</p> 
+
+<div class="u-space--below">
+
+    <div class="c-hero-wrap  d-border--top--thick  d-border--bottom--thick" data-fs-text="center">
+        <div class="c-hero  c-info-overlay-wrap">
+            <div data-fs-block="border">
+                <div class="c-hero__image">
+                    <div class="u-image-cover  js-image-cover  u-image-cover--min-50  u-image-cover--min-33-33--wide">
+                        <div class="u-image-cover__inner">
+                            <img src="/assets/images/patterns/placeholder-3--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-3--large.jpg 1600w, /assets/images/patterns/placeholder-3--medium.jpg 900w, /assets/images/patterns/placeholder-3--small.jpg 300w" alt="" class="u-image-cover__image" width="200">
+                        </div>
+                    </div>
+                </div>
+                
+                <details class="c-info-overlay  c-info-overlay--half-width  c-info-overlay--from-right">
+                    <summary><span>Details</span><svg display="none" width="24" height="24" focusable="false" class="icon  icon--is-closed"><use xlink:href="#icon-info"></use></svg><svg display="none" width="24" height="24" focusable="false" class="icon  icon--is-open"><use xlink:href="#icon-cross"></use></svg></summary>
+                    <div>Image credit info goes here. Can contain <a href="#">links</a> and so on. Just not too long please.</div>
+                </details>
+
+                <div class="c-hero__message" style="width: calc(10em + 10%);">
+                    <p class="c-hero__message--fluid_text">Hero message or statement. Word count should be around 8-12 words.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="u-space--below">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html"></code></pre>
+    </details>
+</div>
+
+
+
 <h3 id="hero-reversed">Hero - reversed</h3>
 
 <div class="u-space--below">
 
-    <div class="c-hero-wrap  c-hero--reversed  d-border--top--thick  d-border--bottom--thick" data-fs-text="center">
-        <div class="c-hero  c-info-overlay-wrap">
+    <div class="c-hero-wrap  d-border--top--thick  d-border--bottom--thick" data-fs-text="center">
+        <div class="c-hero  c-hero--reversed  c-info-overlay-wrap">
             <div data-fs-block="border">
                 <div class="c-hero__image">
                     <div class="u-image-cover  js-image-cover  u-image-cover--min-33-33  u-image-cover--min-20--wide">
@@ -75,7 +118,7 @@
 <div class="u-space--below">
     <details class="u-padding  d-background--light">
         <summary>Show code:</summary>
-<pre><code class="html">&lt;div class=&quot;c-hero  <strong>c-hero--reversed</strong> ...&quot;&gt;</code></pre>
+<pre><code class="html">TO DO</code></pre>
     </details>
 </div>
 
@@ -83,8 +126,8 @@
 
 <div class="u-space--below">
 
-    <div class="c-hero-wrap  c-hero--reversed  c-hero--wide-message  d-border--top--thick  d-border--bottom--thick" data-fs-text="center">
-        <div class="c-hero  c-info-overlay-wrap">
+    <div class="c-hero-wrap  c-hero--wide-message  d-border--top--thick  d-border--bottom--thick" data-fs-text="center">
+        <div class="c-hero  c-hero--reversed  c-info-overlay-wrap">
             <div data-fs-block="border">
                 <div class="c-hero__image">
                     <div class="u-image-cover  js-image-cover  u-image-cover--min-50  u-image-cover--min-33-33--wide">

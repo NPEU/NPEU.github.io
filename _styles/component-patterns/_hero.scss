@@ -291,7 +291,7 @@ $hero-max-heading-size: 46px !default;
         }
     }
 
-    .#{$hero-namespace}hero-wrap.#{$hero-namespace}hero--reversed:not(.#{$hero-namespace}hero--wide-message) .#{$hero-namespace}hero .#{$hero-namespace}hero__message {
+    .#{$hero-namespace}hero-wrap:not(.#{$hero-namespace}hero--wide-message) .#{$hero-namespace}hero.#{$hero-namespace}hero--reversed .#{$hero-namespace}hero__message {
         right: 0;
         left: auto;
     }
@@ -327,7 +327,7 @@ $hero-max-heading-size: 46px !default;
         }
     }
 
-    .#{$hero-namespace}hero-wrap.#{$hero-namespace}hero--reversed .#{$hero-namespace}hero .#{$hero-namespace}hero__message {
+    .#{$hero-namespace}hero-wrap .#{$hero-namespace}hero.#{$hero-namespace}hero--reversed .#{$hero-namespace}hero__message {
         right: 0;
         left: auto;
     }
