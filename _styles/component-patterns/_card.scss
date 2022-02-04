@@ -3,7 +3,7 @@
     ====
 */
 
-$card-namespace: c- !default;
+$component-namespace: c- !default;
 
 
 // Card title:
@@ -13,7 +13,7 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
 //$card-stub-title--font-size: 2.4rem !default;
 //$card-stub-title--line-height: 1 !default;
 
-.#{$card-namespace}card {
+.#{$component-namespace}card {
     &#{&} {
         display: flex;
         flex-direction: column;
@@ -121,6 +121,10 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
                 &:last-child {
                     margin-bottom: calc(#{$s__sz-m} - #{$s__border-width});
                 }
+     
+                &:only-child {
+                    margin-bottom: 0;
+                }
             }
 
             #{&}__header-extra {
@@ -183,11 +187,11 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
         }
 }
 
-.#{$card-namespace}card:focus-within {
+.#{$component-namespace}card:focus-within {
     box-shadow: $focus-shadow;
 }
 
-.#{$card-namespace}card--has-js {
+.#{$component-namespace}card--has-js {
     cursor: pointer;
 
     &:hover,
@@ -197,13 +201,13 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
     }
 }
 
-.#{$card-namespace}card--is-mousedown {
-    .#{$card-namespace}card__title a::after {
+.#{$component-namespace}card--is-mousedown {
+    .#{$component-namespace}card__title a::after {
         display: none;
     }
 }
 
-.#{$card-namespace}card--unpublished {
+.#{$component-namespace}card--unpublished {
     opacity: 0.5;
     -webkit-filter: grayscale(1);
     filter: grayscale(1);

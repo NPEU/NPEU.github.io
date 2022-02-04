@@ -12,6 +12,15 @@
     }
 }
 
+// IE11 doesn't use the width/height attributes properly, so enforce those:
+@media #{$s__ie10-11} {
+    svg[width="1.25em"][height="1.25em"] {
+        width: 1.25em;
+        height: 1.25em;
+
+    }
+}
+
 
 .c-utilitext {
     font-size: 0.875em;

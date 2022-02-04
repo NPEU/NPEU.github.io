@@ -174,7 +174,26 @@
         only print,
         only all and (prefers-reduced-motion: no-preference), only all and (prefers-reduced-motion: reduce)
     ">
+    <!-- Load styles for IE11, UC -->
+    <script>
+    if (
+        (!!window.MSInputMethodContext && !!document.documentMode)
+     || (navigator.userAgent.indexOf('UCBrowser') > -1)
+    ) {
+        var link  = document.createElement('link');
+        link.rel  = 'stylesheet';
+        link.href = '/css/map.min.{{ site.data.cache_bust_css.date }}.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    }
+    </script>
     <script src="/js/map.min.js"></script>
+    <style>
+        /* Tiny Fall-Back Styles for map ... */
+        .leaflet-container {
+            height: 400px;
+            overflow: hidden;
+        }
+    </style>
     {% endif %}
 
     {% if page.has_highcharts %}
@@ -218,30 +237,36 @@
             --t-secondary-color-l: 60%;
             --t-secondary-color-l-copy: 60%;
             
+            {% comment %}<!--
             --t-neutral-color: #8e8279;
             --t-neutral-color-h: 26;
             --t-neutral-color-s: 9%;
             --t-neutral-color-l: 52%;
             --t-neutral-color-l-copy: 52%;
-            
+            -->{% endcomment %}
             
             
             --t-primary-color-l--very-light: 95%;
             --t-primary-color-l--light: 81%;
             --t-primary-color-l--dark: 26%;
             --t-primary-color-l--very-dark: 18%;
+            --t-primary-fore-text-color: var(--t-text-color-inverse); /* PHP would generate this from the base colour. */
 
             --t-secondary-color-l--very-light: 96%;
             --t-secondary-color-l--light: 86%;
             --t-secondary-color-l--dark: 37%;
             --t-secondary-color-l--very-dark: 27%;
+            --t-secondary-fore-text-color: var(--t-text-color-inverse); /* PHP would generate this from the base colour. */
             
+            {% comment %}<!--
             --t-neutral-color-l--very-light: 96%;
             --t-neutral-color-l--light: 86%;
             --t-neutral-color-l--dark: 36%;
             --t-neutral-color-l--very-dark: 26%;
-
-            {% comment %}
+            --t-neutral-fore-text-color: var(--t-text-color); /* PHP would generate this from the base colour. */
+            -->{% endcomment %}
+            
+            {% comment %}<!--
 
             /* All vars (for reference): */
             --t-text-color: #111;
@@ -298,7 +323,7 @@
             --t-neutral-color-l--very-dark: 26%;
             /**/
 
-            {% endcomment %}
+            -->{% endcomment %}
         }
     </style>
 </head>

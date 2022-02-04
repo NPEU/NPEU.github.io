@@ -1,0 +1,35 @@
+/*
+    Thumbnail
+    ========
+*/
+
+$component-namespace: c- !default;
+
+
+
+/**/
+.#{$component-namespace}thumbnail {
+
+    &#{&}[href] {
+        display: inline-block;
+
+        border-width: 0;
+        padding: 0;
+        margin: 0;
+
+        &:hover,
+        &:active,
+        &:focus {
+            box-shadow: $focus-shadow;
+            border-width: 0;
+            padding: 0;
+            margin: 0;
+        }
+
+        & img {
+            margin: 0;
+            padding: 0;
+            border: 1px solid currentColor;
+        }
+    }
+}

@@ -1,5 +1,5 @@
 // Narrower page wrap just for dev on laptop.
-.c-page-wrap.c-page-wrap {
+.page-wrap.page-wrap {
     //max-width: 1200px;
 }
 
@@ -63,6 +63,10 @@ h1 {
 
 $ts: 2.4rem;
 
+.u-padding {
+    padding: $ts !important;
+}
+
 .u-padding--s {
     padding: #{$ts / 2} !important;
 }
@@ -97,6 +101,10 @@ $ts: 2.4rem;
     margin-top: #{$ts * 4} !important;
 }
 
+
+.u-text-align--center {
+    text-align: center;
+}
 
 /*
     Groups.

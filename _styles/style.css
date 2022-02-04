@@ -2872,10 +2872,10 @@ fieldset {
 :root {
   --t-text-color: #111;
   --t-text-color-inverse: #fff;
-  --t-light-adjust: 0.7;
-  --t-very-light-adjust: 0.92;
-  --t-dark-adjust: 0.7;
-  --t-very-dark-adjust: 0.5;
+  --t-light-adjust: $light-adjust;
+  --t-very-light-adjust: $very-light-adjust;
+  --t-dark-adjust: $dark-adjust;
+  --t-very-dark-adjust: $very-dark-adjust;
   --t-primary-color: #5F4776;
   --t-primary-color-h: 271;
   --t-primary-color-s: 25%;
@@ -2900,22 +2900,71 @@ fieldset {
   /* 1 */
   --t-neutral-fore-text-color: #111;
   /* SASS would generate this from the base colour. */
+  --t-notice-color: #a5d1f1;
+  --t-notice-color-h: 205;
+  --t-notice-color-s: 73%;
+  --t-notice-color-l: 80%;
+  --t-notice-color-l-copy: 80%;
+  /* 1 */
+  --t-notice-fore-text-color: #111;
+  /* SASS would generate this from the base colour. */
+  --t-success-color: #aec492;
+  --t-success-color-h: 86;
+  --t-success-color-s: 30%;
+  --t-success-color-l: 67%;
+  --t-success-color-l-copy: 67%;
+  /* 1 */
+  --t-success-fore-text-color: #111;
+  /* SASS would generate this from the base colour. */
+  --t-warning-color: #ffc576;
+  --t-warning-color-h: 35;
+  --t-warning-color-s: 100%;
+  --t-warning-color-l: 73%;
+  --t-warning-color-l-copy: 73%;
+  /* 1 */
+  --t-warning-fore-text-color: #111;
+  /* SASS would generate this from the base colour. */
+  --t-error-color: #9b3259;
+  --t-error-color-h: 338;
+  --t-error-color-s: 51%;
+  --t-error-color-l: 40%;
+  --t-error-color-l-copy: 40%;
+  /* 1 */
+  --t-error-fore-text-color: #fff;
+  /* SASS would generate this from the base colour. */
   /*
         Without being able to perform a calc in the hsl function (grrr IE11 even with polyfill) we
         need to create adjusted -l values in SASS (stylesheet) and/or php (on-page themer)
+        Using SASS to perform the calculations here.
     */
   --t-primary-color-l--very-light: 95%;
   --t-primary-color-l--light: 81%;
-  --t-primary-color-l--dark: 26%;
-  --t-primary-color-l--very-dark: 18%;
+  --t-primary-color-l--dark: 81%;
+  --t-primary-color-l--very-dark: 69%;
   --t-secondary-color-l--very-light: 96%;
   --t-secondary-color-l--light: 86%;
-  --t-secondary-color-l--dark: 37%;
-  --t-secondary-color-l--very-dark: 27%;
+  --t-secondary-color-l--dark: 86%;
+  --t-secondary-color-l--very-dark: 77%;
   --t-neutral-color-l--very-light: 96%;
   --t-neutral-color-l--light: 86%;
-  --t-neutral-color-l--dark: 36%;
-  --t-neutral-color-l--very-dark: 26%;
+  --t-neutral-color-l--dark: 86%;
+  --t-neutral-color-l--very-dark: 76%;
+  --t-notice-color-l--very-light: 98%;
+  --t-notice-color-l--light: 94%;
+  --t-notice-color-l--dark: 94%;
+  --t-notice-color-l--very-dark: 90%;
+  --t-success-color-l--very-light: 97%;
+  --t-success-color-l--light: 90%;
+  --t-success-color-l--dark: 90%;
+  --t-success-color-l--very-dark: 84%;
+  --t-warning-color-l--very-light: 98%;
+  --t-warning-color-l--light: 92%;
+  --t-warning-color-l--dark: 92%;
+  --t-warning-color-l--very-dark: 87%;
+  --t-error-color-l--very-light: 95%;
+  --t-error-color-l--light: 82%;
+  --t-error-color-l--dark: 82%;
+  --t-error-color-l--very-dark: 70%;
   /**/
 }
 
@@ -3195,7 +3244,7 @@ a[href][rel~="external"].c-badge:focus::after {
     The FallBack for CTA's usually wraps the link in <b> tags to attempt to convey a modicum of
     visual importance. Reset the inherited weight and style.
 */
-.c-cta.c-cta {
+.c-cta.c-cta, .c-primary-cta[href] {
   /*@include s__button(
             $s__button-background-color,
             $s__button-text-color,
@@ -3227,7 +3276,6 @@ a[href][rel~="external"].c-badge:focus::after {
   border-width: 0.1rem;
   border-radius: 0.3rem;
   color: currentColor;
-  background-color: transparent;
   font-weight: inherit;
   font-style: inherit;
   font-size: inherit;
@@ -3270,16 +3318,12 @@ a[href][rel~="external"].c-badge:focus::after {
   overflow: hidden;
 }
 
-.c-cta.c-cta:hover, .c-cta.c-cta:active {
-  background-color: transparent;
-}
-
-.c-cta.c-cta:focus {
+.c-cta.c-cta:focus, .c-primary-cta:focus[href] {
   outline: 0;
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
 }
 
-.c-cta.c-cta::before, .c-cta.c-cta::after {
+.c-cta.c-cta::before, .c-primary-cta[href]::before, .c-cta.c-cta::after, .c-primary-cta[href]::after {
   content: "";
   display: block;
   width: 0;
@@ -3291,33 +3335,33 @@ a[href][rel~="external"].c-badge:focus::after {
   position: absolute;
 }
 
-.c-cta.c-cta::before {
+.c-cta.c-cta::before, .c-primary-cta[href]::before {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.c-cta.c-cta::after {
+.c-cta.c-cta::after, .c-primary-cta[href]::after {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.c-cta.c-cta:hover, .c-cta.c-cta:active {
+.c-cta.c-cta:hover, .c-primary-cta:hover[href], .c-cta.c-cta:active, .c-primary-cta:active[href] {
   text-decoration: none;
   /* [1]: */
 }
 
-.c-cta.c-cta:hover::before, .c-cta.c-cta:active::before {
+.c-cta.c-cta:hover::before, .c-primary-cta[href]:hover::before, .c-cta.c-cta:active::before, .c-primary-cta[href]:active::before {
   width: calc((50% - var(--t-bg-color-l)) * -100);
 }
 
-.c-cta.c-cta:hover::after, .c-cta.c-cta:active::after {
+.c-cta.c-cta:hover::after, .c-primary-cta[href]:hover::after, .c-cta.c-cta:active::after, .c-primary-cta[href]:active::after {
   width: calc((50% - var(--t-bg-color-l)) * 100);
 }
 
-.c-cta.c-cta svg {
+.c-cta.c-cta svg, .c-primary-cta[href] svg {
   vertical-align: text-top;
   height: 1.25em;
 }
 
-.c-cta.c-cta * {
+.c-cta.c-cta *, .c-primary-cta[href] * {
   font-weight: inherit;
   font-style: inherit;
 }
@@ -3454,6 +3498,10 @@ a[href].c-cta--has-icon .icon {
   margin-bottom: calc(2.4rem - 0.1rem);
 }
 
+.c-card .c-card__title:only-child {
+  margin-bottom: 0;
+}
+
 .c-card .c-card__header-extra {
   margin-top: 2.4rem;
   margin-bottom: 0;
@@ -3503,7 +3551,7 @@ a[href].c-cta--has-icon .icon {
   padding: 2.4rem;
 }
 
-.c-card .c-cta svg {
+.c-card .c-cta svg, .c-card .c-primary-cta[href] svg {
   display: inline;
 }
 
@@ -3554,6 +3602,8 @@ a[href].c-cta--has-icon .icon {
 .c-contact-list.c-contact-list dd {
   margin-bottom: 0.6rem;
   position: relative;
+  word-break: break-word;
+  min-width: 100px;
 }
 
 .c-contact-list svg {
@@ -4124,6 +4174,7 @@ a[href].c-cta--has-icon .icon {
   padding-bottom: 2.4rem;
   padding-left: 2.4rem;
   flex-grow: 1;
+  word-break: break-word;
   /*.c-hero-wrap .c-hero .c-hero__message__image-credit {
         font-size: 0.875em;
         line-height: 1.3;
@@ -4531,14 +4582,404 @@ a[href].c-cta--has-icon .icon {
 }
 
 /*
-    Page Wrap
-    =========
+    Meter
+    =====
 */
-.c-page-wrap.c-page-wrap {
+/**/
+.c-meter.c-meter {
+  position: relative;
+}
+
+.c-meter meter {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: block;
   width: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
-  background-color: #fff;
+  box-shadow: 0 0 0 1px currentColor inset;
+  background: transparent;
+  border-radius: 0.6rem;
+  height: 1.2rem;
+  margin: 0.6rem 0;
+  position: relative;
+  overflow: hidden;
+  color: currentColor;
+  /* 1. Edge */
+}
+
+.c-meter meter::-webkit-meter-bar {
+  border: 0 solid #f00;
+  /* [1] */
+  border: 1em 0;
+  background: transparent;
+}
+
+.c-meter meter::-webkit-meter-optimum-value {
+  background: currentColor;
+}
+
+.c-meter meter:-moz-meter-optimum::-moz-meter-bar {
+  background: currentColor;
+}
+
+.c-meter meter > span {
+  display: block;
+  text-indent: 100%;
+  background: currentColor;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 1.2rem;
+}
+
+.c-meter .c-meter__marker {
+  position: relative;
+  font-size: 0.75em;
+  height: 2.4rem;
+}
+
+.c-meter .c-meter__marker::before, .c-meter .c-meter__marker::after {
+  display: block;
+  position: absolute;
+  right: 0;
+  transform: translateX(50%);
+}
+
+.c-meter .c-meter__marker::before {
+  content: "";
+  top: -0.3rem;
+  width: 0px;
+  height: 0px;
+  border-left: 0.6rem solid transparent;
+  border-right: 0.6rem solid transparent;
+  border-bottom: 0.6rem solid currentColor;
+}
+
+.c-meter .c-meter__marker::after {
+  content: attr(data-value);
+}
+
+/*
+    Panel
+    =====
+    
+    SIDEBAR possible! - Note this pattern may appear in a Page Sidebar and has adjustments for this
+    context defined in the Page Sidebar special pattern file.
+    
+*/
+/**/
+.c-panel {
+  /*
+        1. We expect that panels may have border classes, so allow for those classes to apply a
+           modifier.
+    */
+}
+
+.c-panel.c-panel {
+  padding-top: calc(2.4rem - var(--p-adjust-t, 0rem));
+  /* 1 */
+  padding-right: calc(2.4rem - var(--p-adjust-r, 0rem));
+  /* 1 */
+  padding-bottom: calc(2.4rem - var(--p-adjust-b, 0rem));
+  /* 1 */
+  padding-left: calc(2.4rem - var(--p-adjust-l, 0rem));
+  /* 1 */
+}
+
+.c-panel .c-panel__header {
+  padding-bottom: 1.1rem;
+  border-bottom: 0.1rem solid currentColor;
+}
+
+.c-panel .c-panel__header > div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100%;
+}
+
+.c-panel .c-panel__header > div > :first-child {
+  margin: 0;
+  padding-right: 2.4rem;
+}
+
+.c-panel .c-panel__header > div > p {
+  margin: 1.2rem 0;
+}
+
+.c-panel__banner {
+  margin-top: -2.4rem;
+  margin-right: -2.4rem;
+  margin-bottom: 2.4rem;
+  margin-left: -2.4rem;
+}
+
+@supports (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+  .c-panel .c-panel__header > div {
+    gap: 0 2.4rem;
+  }
+  .c-panel .c-panel__header > div > :first-child {
+    padding-right: 0;
+  }
+}
+
+/*
+    Primary CTA
+    ===========
+*/
+/**/
+.c-primary-cta.c-primary-cta[href] {
+  border-radius: 0.6rem;
+  border-width: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.375em;
+  padding: 0.6rem 1.2rem;
+}
+
+/*
+    Signs
+    =====
+*/
+/**/
+/*
+    1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
+*/
+.c-signpost {
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 0;
+  /* [1] */
+  min-width: 100%;
+  /* [1] */
+}
+
+/*@media only screen and (min-width: $not-too-small) {
+
+    @supports (display: grid) {
+
+        .c-signpost {
+            display: grid;
+            grid-template-columns:repeat(auto-fit,minmax(calc(20% + 6em),1fr));
+
+            // Safari 10 needs this:
+            grid-auto-rows: minmax(min-content, 1fr);
+
+        }
+
+        .c-sign {
+            &--span-all {
+                grid-column: 1/-1;
+            }
+        }
+    }
+}*/
+.c-sign {
+  /*
+        1. IE11 doesn't handle flex sizing and word wrapping together well.
+           Longer words overflow their container and can cause H scrollbar, whereas it SHOULD
+           cause the sign box to expand and thus drop into single-col layout.
+           E.g. Trials 'Clinicians' sing. Make this 'Clinicianssssssssssss' to see the effect.
+           Currently I can't find a wAy to get it to behave properly so just making IE11 wrap
+           the text instead.
+    */
+}
+
+.c-sign.c-sign {
+  flex: 1 0 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.c-sign.c-sign--span-all {
+  flex-basis: 100%;
+}
+
+.c-sign .c-sign--padding--xs,
+.c-sign .c-sign--block-padding--xs {
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+.c-sign .c-sign--padding--s,
+.c-sign .c-sign--block-padding--s {
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+}
+
+.c-sign .c-sign--padding--m,
+.c-sign .c-sign--block-padding--m {
+  padding-top: 2.4rem;
+  padding-bottom: 2.4rem;
+}
+
+.c-sign .c-sign--padding--l,
+.c-sign .c-sign--block-padding--l {
+  padding-top: 4.8rem;
+  padding-bottom: 4.8rem;
+}
+
+.c-sign .c-sign--padding--xl,
+.c-sign .c-sign--block-padding--xl {
+  padding-top: 9.6rem;
+  padding-bottom: 9.6rem;
+}
+
+.c-sign .c-sign--padding--xs,
+.c-sign .c-sign--inline-padding--xs {
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+}
+
+.c-sign .c-sign--padding--s,
+.c-sign .c-sign--inline-padding--s {
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+}
+
+.c-sign .c-sign--padding--m,
+.c-sign .c-sign--inline-padding--m {
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+}
+
+.c-sign .c-sign--padding--l,
+.c-sign .c-sign--inline-padding--l {
+  padding-left: 4.8rem;
+  padding-right: 4.8rem;
+}
+
+.c-sign .c-sign--padding--xl,
+.c-sign .c-sign--inline-padding--xl {
+  padding-left: 9.6rem;
+  padding-right: 9.6rem;
+}
+
+.c-sign br {
+  display: none;
+}
+
+.c-sign a[href].c-sign__link {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  position: relative;
+  margin-bottom: 0;
+  color: #fff;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.c-sign a[href].c-sign__link:hover, .c-sign a[href].c-sign__link:active, .c-sign a[href].c-sign__link:focus {
+  color: #fff;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.c-sign a[href]:hover::before,
+.c-sign a[href]:active::before,
+.c-sign a[href]:focus::before {
+  border: 0;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0.2;
+  background: #000;
+}
+
+.c-sign .c-sign__text {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  -ms-word-break: break-all;
+  /* 1 */
+}
+
+.c-sign .c-sign__text--large {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.5em;
+}
+
+.c-sign .c-sign__text--small {
+  font-size: 0.875em;
+}
+
+.c-sign .c-sign__centered-content {
+  outline: 1px solid #fff;
+  position: relative;
+  flex: 1 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.c-sign .c-sign__centered-content > * {
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+
+.c-sign .c-sign__svg {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 90%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.2;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center bottom;
+}
+
+/*
+    System Messages
+    ===============
+*/
+/**/
+.c-system-message.c-system-message {
+  position: relative;
+  padding: 2.4rem;
+  position: relative;
+  border: 0;
+  margin: 0;
+}
+
+/*
+    Thumbnail
+    ========
+*/
+/**/
+.c-thumbnail.c-thumbnail[href] {
+  display: inline-block;
+  border-width: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.c-thumbnail.c-thumbnail[href]:hover, .c-thumbnail.c-thumbnail[href]:active, .c-thumbnail.c-thumbnail[href]:focus {
+  box-shadow: 0 0 0 0.3rem #fff, 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
+  border-width: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.c-thumbnail.c-thumbnail[href] img {
+  margin: 0;
+  padding: 0;
+  border: 1px solid currentColor;
 }
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -4548,6 +4989,59 @@ a[href].c-cta--has-icon .icon {
     ===========
 */
 [class*="d-background"] {
+  /*
+        This isn't necessary while the IE11 stuff is present above, but keep it here for when the
+        IE11 stuff isn't needed any more.
+    *
+    @supports (--css: variables) {
+        &.d-background--light {
+            --t-primary-color-l: calc(var(--t-primary-color-l-copy) + ((100% - var(--t-primary-color-l-copy)) * var(--t-light-adjust)));
+            --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) + ((100% - var(--t-secondary-color-l-copy)) * var(--t-light-adjust)));
+            --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) + ((100% - var(--t-neutral-color-l-copy)) * var(--t-light-adjust)));
+        }
+    }
+    /**/
+  /*
+        This isn't necessary while the IE11 stuff is present above, but keep it here for when the
+        IE11 stuff isn't needed any more.
+    *
+    @supports (--css: variables) {
+        &.d-background--very-light {
+            --t-primary-color-l: calc(var(--t-primary-color-l-copy) + ((100% - var(--t-primary-color-l-copy)) * var(--t-very-light-adjust)));
+            --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) + ((100% - var(--t-secondary-color-l-copy)) * var(--t-very-light-adjust)));
+            --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) + ((100% - var(--t-neutral-color-l-copy)) * var(--t-very-light-adjust)));
+        }
+    }
+    /**/
+  /*
+        This isn't necessary while the IE11 stuff is present above, but keep it here for when the
+        IE11 stuff isn't needed any more.
+    *
+    @supports (--css: variables) {
+        &.d-background--dark {
+            --t-primary-color-l: calc(var(--t-primary-color-l-copy) * var(--t-dark-adjust));
+            --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) * var(--t-dark-adjust));
+            --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) * var(--t-dark-adjust));
+        }
+    }
+    /**/
+  /*
+        This isn't necessary while the IE11 stuff is present above, but keep it here for when the
+        IE11 stuff isn't needed any more.
+    *
+    @supports (--css: variables) {
+        &.d-background--very-dark {
+            --t-primary-color-l: calc(var(--t-primary-color-l-copy) * var(--t-very-dark-adjust));
+            --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) * var(--t-very-dark-adjust));
+            --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) * var(--t-very-dark-adjust));
+        }
+    }
+    /**/
+  /**/
+  /* Overqualified selectors to raise specificity above the theme classes defined below. */
+}
+
+[class*="d-background"][class*="d-background"] {
   --t-bg-color: var(--t-primary-color);
   --t-bg-color-h: var(--t-primary-color-h);
   --t-bg-color-s: var(--t-primary-color-s);
@@ -4556,7 +5050,7 @@ a[href].c-cta--has-icon .icon {
   color: var(--t-primary-fore-text-color);
 }
 
-[class*="d-background"].t-secondary {
+[class*="d-background"][class*="d-background"].t-secondary {
   --t-bg-color: var(--t-secondary-color);
   --t-bg-color-h: var(--t-secondary-color-h);
   --t-bg-color-s: var(--t-secondary-color-s);
@@ -4564,7 +5058,7 @@ a[href].c-cta--has-icon .icon {
   color: var(--t-secondary-fore-text-color);
 }
 
-[class*="d-background"].t-neutral {
+[class*="d-background"][class*="d-background"].t-neutral {
   --t-bg-color: var(--t-neutral-color);
   --t-bg-color-h: var(--t-neutral-color-h);
   --t-bg-color-s: var(--t-neutral-color-s);
@@ -4572,141 +5066,245 @@ a[href].c-cta--has-icon .icon {
   color: var(--t-neutral-fore-text-color);
 }
 
-.d-background--light {
+[class*="d-background"][class*="d-background"].t-notice {
+  --t-bg-color: var(--t-notice-color);
+  --t-bg-color-h: var(--t-notice-color-h);
+  --t-bg-color-s: var(--t-notice-color-s);
+  --t-bg-color-l: var(--t-notice-color-l);
+  color: var(--t-notice-fore-text-color);
+}
+
+[class*="d-background"][class*="d-background"].t-success {
+  --t-bg-color: var(--t-success-color);
+  --t-bg-color-h: var(--t-success-color-h);
+  --t-bg-color-s: var(--t-success-color-s);
+  --t-bg-color-l: var(--t-success-color-l);
+  color: var(--t-success-fore-text-color);
+}
+
+[class*="d-background"][class*="d-background"].t-warning {
+  --t-bg-color: var(--t-warning-color);
+  --t-bg-color-h: var(--t-warning-color-h);
+  --t-bg-color-s: var(--t-warning-color-s);
+  --t-bg-color-l: var(--t-warning-color-l);
+  color: var(--t-warning-fore-text-color);
+}
+
+[class*="d-background"][class*="d-background"].t-error {
+  --t-bg-color: var(--t-error-color);
+  --t-bg-color-h: var(--t-error-color-h);
+  --t-bg-color-s: var(--t-error-color-s);
+  --t-bg-color-l: var(--t-error-color-l);
+  color: var(--t-error-fore-text-color);
+}
+
+[class*="d-background"].d-background--white {
+  /* For IE11: */
+  --t-bg-color-l: 100%;
+  /**/
+}
+
+[class*="d-background"].d-background--light {
   /* For IE11: */
   --t-bg-color-l: var(--t-primary-color-l--light);
   /**/
 }
 
-.d-background--light.t-secondary {
+[class*="d-background"].d-background--light.t-secondary {
   /* For IE11: */
   --t-bg-color-l: var(--t-secondary-color-l--light);
   /**/
 }
 
-.d-background--light.t-neutral {
+[class*="d-background"].d-background--light.t-neutral {
   /* For IE11: */
   --t-bg-color-l: var(--t-neutral-color-l--light);
   /**/
 }
 
-/*
-    This isn't necessary while the IE11 stuff is present above, but keep it here for when the
-    IE11 stuff isn't needed any more.
-*
-@supports (--css: variables) {
-    .d-background--light {
-        --t-primary-color-l: calc(var(--t-primary-color-l-copy) + ((100% - var(--t-primary-color-l-copy)) * var(--t-light-adjust)));
-        --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) + ((100% - var(--t-secondary-color-l-copy)) * var(--t-light-adjust)));
-        --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) + ((100% - var(--t-neutral-color-l-copy)) * var(--t-light-adjust)));
-    }
+[class*="d-background"].d-background--light.t-notice {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-neutral-color-l--light);
+  /**/
 }
-/**/
-.d-background--very-light {
+
+[class*="d-background"].d-background--light.t-success {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-neutral-color-l--light);
+  /**/
+}
+
+[class*="d-background"].d-background--light.t-warning {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-neutral-color-l--light);
+  /**/
+}
+
+[class*="d-background"].d-background--light.t-error {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-neutral-color-l--light);
+  /**/
+}
+
+[class*="d-background"].d-background--very-light {
   /* For IE11: */
   --t-bg-color-l: var(--t-primary-color-l--very-light);
   /**/
 }
 
-.d-background--very-light.t-secondary {
+[class*="d-background"].d-background--very-light.t-secondary {
   /* For IE11: */
   --t-bg-color-l: var(--t-secondary-color-l--very-light);
   /**/
 }
 
-.d-background--very-light.t-neutral {
+[class*="d-background"].d-background--very-light.t-neutral {
   /* For IE11: */
   --t-bg-color-l: var(--t-neutral-color-l--very-light);
   /**/
 }
 
-/*
-    This isn't necessary while the IE11 stuff is present above, but keep it here for when the
-    IE11 stuff isn't needed any more.
-*
-@supports (--css: variables) {
-    .d-background--very-light {
-        --t-primary-color-l: calc(var(--t-primary-color-l-copy) + ((100% - var(--t-primary-color-l-copy)) * var(--t-very-light-adjust)));
-        --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) + ((100% - var(--t-secondary-color-l-copy)) * var(--t-very-light-adjust)));
-        --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) + ((100% - var(--t-neutral-color-l-copy)) * var(--t-very-light-adjust)));
-    }
+[class*="d-background"].d-background--very-light.t-notice {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-neutral-color-l--very-light);
+  /**/
 }
-/**/
-.d-background--dark {
+
+[class*="d-background"].d-background--very-light.t-success {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-neutral-color-l--very-light);
+  /**/
+}
+
+[class*="d-background"].d-background--very-light.t-warning {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-neutral-color-l--very-light);
+  /**/
+}
+
+[class*="d-background"].d-background--very-light.t-error {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-neutral-color-l--very-light);
+  /**/
+}
+
+[class*="d-background"].d-background--dark {
   /* For IE11: */
   --t-bg-color-l: var(--t-primary-color-l--dark);
   /**/
 }
 
-.d-background--dark.t-secondary {
+[class*="d-background"].d-background--dark.t-secondary {
   /* For IE11: */
   --t-bg-color-l: var(--t-secondary-color-l--dark);
   /**/
 }
 
-.d-background--dark.t-neutral {
+[class*="d-background"].d-background--dark.t-neutral {
   /* For IE11: */
   --t-bg-color-l: var(--t-neutral-color-l--dark);
   /**/
 }
 
-/*
-    This isn't necessary while the IE11 stuff is present above, but keep it here for when the
-    IE11 stuff isn't needed any more.
-*
-@supports (--css: variables) {
-    .d-background--dark {
-        --t-primary-color-l: calc(var(--t-primary-color-l-copy) * var(--t-dark-adjust));
-        --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) * var(--t-dark-adjust));
-        --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) * var(--t-dark-adjust));
-    }
+[class*="d-background"].d-background--dark.t-notice {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-neutral-color-l--dark);
+  /**/
 }
-/**/
-.d-background--very-dark {
+
+[class*="d-background"].d-background--dark.t-success {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-neutral-color-l--dark);
+  /**/
+}
+
+[class*="d-background"].d-background--dark.t-warning {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-neutral-color-l--dark);
+  /**/
+}
+
+[class*="d-background"].d-background--dark.t-error {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-neutral-color-l--dark);
+  /**/
+}
+
+[class*="d-background"].d-background--very-dark {
   /* For IE11: */
   --t-bg-color-l: var(--t-primary-color-l--very-dark);
   /**/
 }
 
-.d-background--very-dark.t-secondary {
+[class*="d-background"].d-background--very-dark.t-secondary {
   /* For IE11: */
   --t-bg-color-l: var(--t-secondary-color-l--very-dark);
   /**/
 }
 
-.d-background--very-dark.t-neutral {
+[class*="d-background"].d-background--very-dark.t-neutral {
   /* For IE11: */
   --t-bg-color-l: var(--t-neutral-color-l--very-dark);
   /**/
 }
 
-/*
-    This isn't necessary while the IE11 stuff is present above, but keep it here for when the
-    IE11 stuff isn't needed any more.
-*
-@supports (--css: variables) {
-    .d-background--very-dark {
-        --t-primary-color-l: calc(var(--t-primary-color-l-copy) * var(--t-very-dark-adjust));
-        --t-secondary-color-l: calc(var(--t-secondary-color-l-copy) * var(--t-very-dark-adjust));
-        --t-neutral-color-l: calc(var(--t-neutral-color-l-copy) * var(--t-very-dark-adjust));
-    }
+[class*="d-background"].d-background--very-dark.t-notice {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-neutral-color-l--very-dark);
+  /**/
 }
-/**/
-/**/
-/* Overqualified selectors to raise specificity above the theme classes defined below. */
-[class*=d-background].d-background--dark.d-background--dark,
-[class*=d-background].d-background--very-dark.d-background--very-dark {
+
+[class*="d-background"].d-background--very-dark.t-success {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-neutral-color-l--very-dark);
+  /**/
+}
+
+[class*="d-background"].d-background--very-dark.t-warning {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-neutral-color-l--very-dark);
+  /**/
+}
+
+[class*="d-background"].d-background--very-dark.t-error {
+  /* For IE11: */
+  --t-bg-color-l: var(--t-neutral-color-l--very-dark);
+  /**/
+}
+
+[class*="d-background"][class*=d-background].d-background--dark.d-background--dark, [class*="d-background"][class*=d-background].d-background--very-dark.d-background--very-dark {
   color: var(--t-text-color-inverse);
 }
 
-[class*=d-background].d-background--light.d-background--light,
-[class*=d-background].d-background--very-light.d-background--very-light {
+[class*="d-background"][class*=d-background].d-background--light.d-background--light, [class*="d-background"][class*=d-background].d-background--very-light.d-background--very-light, [class*="d-background"][class*=d-background].d-background--white.d-background--white {
   color: var(--t-text-color);
+}
+
+[class*="d-background"].d-background--sloped {
+  position: relative;
+  z-index: 0;
+}
+
+[class*="d-background"].d-background--sloped::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
 }
 
 /*
     Border
     ======
+    
+    Note that to maintain the baseline rhythm and text-indents, border widths need to be deducted 
+    from the padding, so the `--p-adjust-t` vars set those adjustments up for other patterns to
+    make use of (e.g. c-panel).
+
 */
 [class*="d-border"] {
   border-width: 0;
@@ -4734,43 +5332,58 @@ a[href].c-cta--has-icon .icon {
 
 .d-border {
   border-width: 0.1rem;
+  --p-adjust-t: 0.1rem;
+  --p-adjust-r: 0.1rem;
+  --p-adjust-b: 0.1rem;
+  --p-adjust-l: 0.1rem;
 }
 
 .d-border--thick {
   border-width: 0.3rem;
-}
-
-.d-border--bottom {
-  border-bottom-width: 0.1rem;
-}
-
-.d-border--bottom--thick {
-  border-bottom-width: 0.3rem;
+  --p-adjust-t: 0.3rem;
+  --p-adjust-r: 0.3rem;
+  --p-adjust-b: 0.3rem;
+  --p-adjust-l: 0.3rem;
 }
 
 .d-border--top {
   border-top-width: 0.1rem;
+  --p-adjust-t: 0.1rem;
 }
 
 .d-border--top--thick {
   border-top-width: 0.3rem;
-}
-
-.d-border--left {
-  border-left-width: 0.1rem;
-}
-
-.d-border--left--thick {
-  border-left-width: 0.3rem;
-  border-left-style: solid;
+  --p-adjust-t: 0.3rem;
 }
 
 .d-border--right {
   border-right-width: 0.1rem;
+  --p-adjust-r: 0.1rem;
 }
 
 .d-border--right--thick {
   border-right-width: 0.3rem;
+  --p-adjust-r: 0.3rem;
+}
+
+.d-border--bottom {
+  border-bottom-width: 0.1rem;
+  --p-adjust-b: 0.1rem;
+}
+
+.d-border--bottom--thick {
+  border-bottom-width: 0.3rem;
+  --p-adjust-b: 0.3rem;
+}
+
+.d-border--left {
+  border-left-width: 0.1rem;
+  --p-adjust-l: 0.1rem;
+}
+
+.d-border--left--thick {
+  border-left-width: 0.3rem;
+  --p-adjust-l: 0.3rem;
 }
 
 .d-border--light {
@@ -8628,6 +9241,39 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   }
 }
 
+/*
+    Page Sidebar
+    ============
+    
+    In the context of a sidebar, font sizes and other things should be adjusted.
+    It's a tough call whether these things should be declared in the files for those things, or
+    centrally.
+    I've opted for centrally so it's easier to be consistent and avoid duplication, but it may be
+    confusing when looking at those files as to why things are different to what's expected, so
+    make sure to make a note in each of those files.
+*/
+.page-sidebar.page-sidebar h2 {
+  font-size: 1.5em;
+  line-height: 3.6rem;
+}
+
+.page-sidebar.page-sidebar h3 {
+  font-size: 1.25em;
+  line-height: 2.4rem;
+}
+
+/*
+    Page Wrap
+    =========
+*/
+.page-wrap.page-wrap {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  background-color: #fff;
+  min-height: 100vh;
+}
+
 /* ---------------------------------------------------------------------------------------------- */
 /* --| Utility Patterns |------------------------------------------------------------------------ */
 /*
@@ -8959,6 +9605,13 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   body {
     flex-direction: column;
+  }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  svg[width="1.25em"][height="1.25em"] {
+    width: 1.25em;
+    height: 1.25em;
   }
 }
 

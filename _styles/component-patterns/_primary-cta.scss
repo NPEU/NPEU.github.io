@@ -1,0 +1,27 @@
+/*
+    Primary CTA
+    ===========
+*/
+
+$component-namespace: c- !default;
+
+
+/**/
+
+
+.#{$component-namespace}primary-cta {
+
+    &#{&}[href]  {
+        @extend .#{$component-namespace}cta;
+
+        border-radius: $s__sz-xs;
+        border-width: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+
+        font-size: 1.375em;
+
+        padding: $s__sz-xs  $s__sz-s;
+    }
+
+}

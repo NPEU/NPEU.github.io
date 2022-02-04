@@ -1,6 +1,11 @@
 /*
     Border
     ======
+    
+    Note that to maintain the baseline rhythm and text-indents, border widths need to be deducted 
+    from the padding, so the `--p-adjust-t` vars set those adjustments up for other patterns to
+    make use of (e.g. c-panel).
+
 */
 
 $border-namespace: d- !default;
@@ -38,44 +43,61 @@ $border-size--thick: $s__border-width * 3;
 
 .#{$border-namespace}border {
     border-width: $border-size;
+    --p-adjust-t: #{$border-size};
+    --p-adjust-r: #{$border-size};
+    --p-adjust-b: #{$border-size};
+    --p-adjust-l: #{$border-size};
 }
 
 .#{$border-namespace}border--thick {
     border-width: $border-size--thick;
-}
-
-.#{$border-namespace}border--bottom {
-    border-bottom-width: $border-size;
-}
-
-.#{$border-namespace}border--bottom--thick {
-    border-bottom-width: $border-size--thick;
+    --p-adjust-t: #{$border-size--thick};
+    --p-adjust-r: #{$border-size--thick};
+    --p-adjust-b: #{$border-size--thick};
+    --p-adjust-l: #{$border-size--thick};
 }
 
 .#{$border-namespace}border--top {
     border-top-width: $border-size;
+    --p-adjust-t: #{$border-size};
 }
 
 .#{$border-namespace}border--top--thick {
     border-top-width: $border-size--thick;
-}
-
-.#{$border-namespace}border--left {
-    border-left-width: $border-size;
-}
-
-.#{$border-namespace}border--left--thick {
-    border-left-width: $border-size--thick;
-    border-left-style: solid;
+    --p-adjust-t: #{$border-size--thick};
 }
 
 .#{$border-namespace}border--right {
     border-right-width: $border-size;
+    --p-adjust-r: #{$border-size};
 }
 
 .#{$border-namespace}border--right--thick {
     border-right-width: $border-size--thick;
+    --p-adjust-r: #{$border-size--thick};
 }
+
+.#{$border-namespace}border--bottom {
+    border-bottom-width: $border-size;
+    --p-adjust-b: #{$border-size};
+}
+
+.#{$border-namespace}border--bottom--thick {
+    border-bottom-width: $border-size--thick;
+    --p-adjust-b: #{$border-size--thick};
+}
+
+.#{$border-namespace}border--left {
+    border-left-width: $border-size;
+    --p-adjust-l: #{$border-size};
+}
+
+.#{$border-namespace}border--left--thick {
+    border-left-width: $border-size--thick;
+    --p-adjust-l: #{$border-size--thick};
+}
+
+
 
 
 

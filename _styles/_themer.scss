@@ -14,6 +14,23 @@ $secondary-text-color : s__set_color_for_background($secondary-color, $s__base-t
 $neutral-color        : false !default; // Must be declared above StartCSS include
 $neutral-text-color   : s__set_color_for_background($neutral-color, $s__base-text-color-inverse, $s__base-text-color);
 
+$notice-color        : false !default; // Must be declared above StartCSS include
+$notice-text-color   : s__set_color_for_background($notice-color, $s__base-text-color-inverse, $s__base-text-color);
+
+$success-color        : false !default; // Must be declared above StartCSS include
+$success-text-color   : s__set_color_for_background($success-color, $s__base-text-color-inverse, $s__base-text-color);
+
+$warning-color        : false !default; // Must be declared above StartCSS include
+$warning-text-color   : s__set_color_for_background($warning-color, $s__base-text-color-inverse, $s__base-text-color);
+
+$error-color        : false !default; // Must be declared above StartCSS include
+$error-text-color   : s__set_color_for_background($error-color, $s__base-text-color-inverse, $s__base-text-color);
+
+$light-adjust: 0.7;
+$very-light-adjust: 0.92;
+$dark-adjust: 0.7;
+$very-dark-adjust: 0.5;
+
 
 //@debug #{$primary-text-color};
 //@debug #{$secondary-text-color};
@@ -34,15 +51,22 @@ $neutral-text-color   : s__set_color_for_background($neutral-color, $s__base-tex
        which then affects a border declared with --t-primary-color-l, so using the copy.
        Not sure how to make this less clunky.
 */
+
+@function adjust_lightness($value, $adjustment) {
+    $t: round(s__strip-unit($value) + ((100 - s__strip-unit($value)) * $adjustment));
+    @return $t * 1%;
+};
+
+//$p: adjust_lightness(37%, 0.92);
 :root {
     --t-text-color: #{$s__base-text-color};
     --t-text-color-inverse: #{$s__base-text-color-inverse};
 
-    --t-light-adjust: 0.7;
-    --t-very-light-adjust: 0.92;
-    --t-dark-adjust: 0.7;
-    --t-very-dark-adjust: 0.5;
-    
+    --t-light-adjust: $light-adjust;
+    --t-very-light-adjust: $very-light-adjust;
+    --t-dark-adjust: $dark-adjust;
+    --t-very-dark-adjust: $very-dark-adjust;
+
     //--t-primary-color: #5F4776; /* hsl(271, 25%, 37%) */
     //--t-primary-color-h: #{round(hue($primary-color))};
     //--t-primary-color-s: #{round(saturation($primary-color))};
@@ -64,46 +88,137 @@ $neutral-text-color   : s__set_color_for_background($neutral-color, $s__base-tex
     //--t-neutral-color-l: 52%;
     //--t-neutral-color-l-copy: 52%; /* 1 */
     //--t-neutral-fore-text-color: var(--t-text-color); /* SASS would generate this from the base colour. */
-    
+
+    $primary-color-l: round(lightness($primary-color));
     --t-primary-color: #{$primary-color};
     --t-primary-color-h: #{s__strip-unit(round(hue($primary-color)))};
     --t-primary-color-s: #{round(saturation($primary-color))};
-    --t-primary-color-l: #{round(lightness($primary-color))};
-    --t-primary-color-l-copy: #{round(lightness($primary-color))}; /* 1 */
+    --t-primary-color-l: #{$primary-color-l};
+    --t-primary-color-l-copy: #{$primary-color-l}; /* 1 */
     --t-primary-fore-text-color: #{$primary-text-color}; /* SASS would generate this from the base colour. */
-    
+
+    $secondary-color-l: round(lightness($secondary-color));
     --t-secondary-color: #{$secondary-color};
     --t-secondary-color-h: #{s__strip-unit(round(hue($secondary-color)))};
     --t-secondary-color-s: #{round(saturation($secondary-color))};
-    --t-secondary-color-l: #{round(lightness($secondary-color))};
-    --t-secondary-color-l-copy: #{round(lightness($secondary-color))}; /* 1 */
+    --t-secondary-color-l: #{$secondary-color-l};
+    --t-secondary-color-l-copy: #{$secondary-color-l}; /* 1 */
     --t-secondary-fore-text-color: #{$secondary-text-color}; /* SASS would generate this from the base colour. */
-    
+
+    $neutral-color-l: round(lightness($neutral-color));
     --t-neutral-color: #{$neutral-color};
     --t-neutral-color-h: #{s__strip-unit(round(hue($neutral-color)))};
     --t-neutral-color-s: #{round(saturation($neutral-color))};
-    --t-neutral-color-l: #{round(lightness($neutral-color))};
-    --t-neutral-color-l-copy: #{round(lightness($neutral-color))}; /* 1 */
+    --t-neutral-color-l: #{$neutral-color-l};
+    --t-neutral-color-l-copy: #{$neutral-color-l}; /* 1 */
     --t-neutral-fore-text-color: #{$neutral-text-color}; /* SASS would generate this from the base colour. */
+
+
+    $notice-color-l: round(lightness($notice-color));
+    --t-notice-color: #{$notice-color};
+    --t-notice-color-h: #{s__strip-unit(round(hue($notice-color)))};
+    --t-notice-color-s: #{round(saturation($notice-color))};
+    --t-notice-color-l: #{$notice-color-l};
+    --t-notice-color-l-copy: #{$notice-color-l}; /* 1 */
+    --t-notice-fore-text-color: #{$notice-text-color}; /* SASS would generate this from the base colour. */
+    
+    $success-color-l: round(lightness($success-color));
+    --t-success-color: #{$success-color};
+    --t-success-color-h: #{s__strip-unit(round(hue($success-color)))};
+    --t-success-color-s: #{round(saturation($success-color))};
+    --t-success-color-l: #{$success-color-l};
+    --t-success-color-l-copy: #{$success-color-l}; /* 1 */
+    --t-success-fore-text-color: #{$success-text-color}; /* SASS would generate this from the base colour. */
+
+    $warning-color-l: round(lightness($warning-color));
+    --t-warning-color: #{$warning-color};
+    --t-warning-color-h: #{s__strip-unit(round(hue($warning-color)))};
+    --t-warning-color-s: #{round(saturation($warning-color))};
+    --t-warning-color-l: #{$warning-color-l};
+    --t-warning-color-l-copy: #{$warning-color-l}; /* 1 */
+    --t-warning-fore-text-color: #{$warning-text-color}; /* SASS would generate this from the base colour. */
+
+     $error-color-l: round(lightness($error-color));
+    --t-error-color: #{$error-color};
+    --t-error-color-h: #{s__strip-unit(round(hue($error-color)))};
+    --t-error-color-s: #{round(saturation($error-color))};
+    --t-error-color-l: #{$error-color-l};
+    --t-error-color-l-copy: #{$error-color-l}; /* 1 */
+    --t-error-fore-text-color: #{$error-text-color}; /* SASS would generate this from the base colour. */
 
     /*
         Without being able to perform a calc in the hsl function (grrr IE11 even with polyfill) we
         need to create adjusted -l values in SASS (stylesheet) and/or php (on-page themer)
-    */
-    --t-primary-color-l--very-light: 95%;
-    --t-primary-color-l--light: 81%;
-    --t-primary-color-l--dark: 26%;
-    --t-primary-color-l--very-dark: 18%;
+        Using SASS to perform the calculations here.
+    */   
 
-    --t-secondary-color-l--very-light: 96%;
-    --t-secondary-color-l--light: 86%;
-    --t-secondary-color-l--dark: 37%;
-    --t-secondary-color-l--very-dark: 27%;
+   
+    --t-primary-color-l--very-light: #{adjust_lightness($primary-color-l, $very-light-adjust)};
+    --t-primary-color-l--light: #{adjust_lightness($primary-color-l, $light-adjust)};
+    --t-primary-color-l--dark: #{adjust_lightness($primary-color-l, $dark-adjust)};
+    --t-primary-color-l--very-dark: #{adjust_lightness($primary-color-l, $very-dark-adjust)};
 
-    --t-neutral-color-l--very-light: 96%;
-    --t-neutral-color-l--light: 86%;
-    --t-neutral-color-l--dark: 36%;
-    --t-neutral-color-l--very-dark: 26%;
+    --t-secondary-color-l--very-light: #{adjust_lightness($secondary-color-l, $very-light-adjust)};
+    --t-secondary-color-l--light: #{adjust_lightness($secondary-color-l, $light-adjust)};
+    --t-secondary-color-l--dark: #{adjust_lightness($secondary-color-l, $dark-adjust)};
+    --t-secondary-color-l--very-dark: #{adjust_lightness($secondary-color-l, $very-dark-adjust)};
+
+    --t-neutral-color-l--very-light: #{adjust_lightness($neutral-color-l, $very-light-adjust)};
+    --t-neutral-color-l--light: #{adjust_lightness($neutral-color-l, $light-adjust)};
+    --t-neutral-color-l--dark: #{adjust_lightness($neutral-color-l, $dark-adjust)};
+    --t-neutral-color-l--very-dark: #{adjust_lightness($neutral-color-l, $very-dark-adjust)};
+    
+        
+    --t-notice-color-l--very-light: #{adjust_lightness($notice-color-l, $very-light-adjust)};
+    --t-notice-color-l--light: #{adjust_lightness($notice-color-l, $light-adjust)};
+    --t-notice-color-l--dark: #{adjust_lightness($notice-color-l, $dark-adjust)};
+    --t-notice-color-l--very-dark: #{adjust_lightness($notice-color-l, $very-dark-adjust)};
+    
+    --t-success-color-l--very-light: #{adjust_lightness($success-color-l, $very-light-adjust)};
+    --t-success-color-l--light: #{adjust_lightness($success-color-l, $light-adjust)};
+    --t-success-color-l--dark: #{adjust_lightness($success-color-l, $dark-adjust)};
+    --t-success-color-l--very-dark: #{adjust_lightness($success-color-l, $very-dark-adjust)};
+    
+    --t-warning-color-l--very-light: #{adjust_lightness($warning-color-l, $very-light-adjust)};
+    --t-warning-color-l--light: #{adjust_lightness($warning-color-l, $light-adjust)};
+    --t-warning-color-l--dark: #{adjust_lightness($warning-color-l, $dark-adjust)};
+    --t-warning-color-l--very-dark: #{adjust_lightness($warning-color-l, $very-dark-adjust)};
+    
+    --t-error-color-l--very-light: #{adjust_lightness($error-color-l, $very-light-adjust)};
+    --t-error-color-l--light: #{adjust_lightness($error-color-l, $light-adjust)};
+    --t-error-color-l--dark: #{adjust_lightness($error-color-l, $dark-adjust)};
+    --t-error-color-l--very-dark: #{adjust_lightness($error-color-l, $very-dark-adjust)};
+    
+    //--t-primary-color-l--very-light: 95%;
+    //--t-primary-color-l--light: 81%;
+    //--t-primary-color-l--dark: 26%;
+    //--t-primary-color-l--very-dark: 18%;
+    //
+    //--t-secondary-color-l--very-light: 96%;
+    //--t-secondary-color-l--light: 86%;
+    //--t-secondary-color-l--dark: 37%;
+    //--t-secondary-color-l--very-dark: 27%;
+    //
+    //--t-neutral-color-l--very-light: 96%;
+    //--t-neutral-color-l--light: 86%;
+    //--t-neutral-color-l--dark: 36%;
+    //--t-neutral-color-l--very-dark: 26%;
+    //
+    //
+    //--t-success-color-l--very-light: 95%;
+    //--t-success-color-l--light: 76%;
+    //--t-success-color-l--dark: 26%;
+    //--t-success-color-l--very-dark: 18%;
+    //
+    //--t-warning-color-l--very-light: 95%;
+    //--t-warning-color-l--light: 81%;
+    //--t-warning-color-l--dark: 26%;
+    //--t-warning-color-l--very-dark: 18%;
+    //
+    //--t-error-color-l--very-light: 95%;
+    //--t-error-color-l--light: 81%;
+    //--t-error-color-l--dark: 26%;
+    //--t-error-color-l--very-dark: 18%;
     /**/
 }
 

@@ -4,10 +4,11 @@
 
 */
 
-$contact-list-namespace: c- !default;
+$component-namespace: c- !default;
 
-.#{$contact-list-namespace}contact-list {
+.#{$component-namespace}contact-list {
     &#{&} {
+ 
         dt {
             display: none;
         }
@@ -15,6 +16,9 @@ $contact-list-namespace: c- !default;
         dd {
             margin-bottom: $s__sz-xs;
             position: relative;
+            word-break: break-word;
+            // Ensure the list doesn't collapse next to an image.
+            min-width: 100px;
         }
     }
 
@@ -30,7 +34,7 @@ $contact-list-namespace: c- !default;
     }
 }
 
-.#{$contact-list-namespace}contact-avatar {
+.#{$component-namespace}contact-avatar {
     &#{&} {
         float: left;
         margin: 0.5em;

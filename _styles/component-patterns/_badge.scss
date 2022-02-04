@@ -3,9 +3,9 @@
     =====
 */
 
-$badge-namespace: c- !default;
+$component-namespace: c- !default;
 
-.#{$badge-namespace}badge {
+.#{$component-namespace}badge {
 
     /*
         1. For positioned pseudo elements, e.g. External indicator.
@@ -191,7 +191,7 @@ $badge-namespace: c- !default;
     }
 }
 
-a[href].#{$badge-namespace}badge {
+a[href].#{$component-namespace}badge {
     
     //width: 100%;
     //height: 100%;
@@ -214,13 +214,13 @@ a[href].#{$badge-namespace}badge {
 }
 
 /*
-a[href][rel~="external"].#{$badge-namespace}badge::after {
+a[href][rel~="external"].#{$component-namespace}badge::after {
     display: none;
 }
 
-a[href][rel~="external"].#{$badge-namespace}badge:hover::after,
-a[href][rel~="external"].#{$badge-namespace}badge:active::after,
-a[href][rel~="external"].#{$badge-namespace}badge:focus::after {
+a[href][rel~="external"].#{$component-namespace}badge:hover::after,
+a[href][rel~="external"].#{$component-namespace}badge:active::after,
+a[href][rel~="external"].#{$component-namespace}badge:focus::after {
     position: absolute;
     right: -1em;
     top: -1em;
@@ -233,7 +233,7 @@ a[href][rel~="external"].#{$badge-namespace}badge:focus::after {
 
 @if $s__anchor-add-external-link-indicator == true {
 
-    #{$s__namespace}a[href][rel~="external"].#{$badge-namespace}badge {
+    #{$s__namespace}a[href][rel~="external"].#{$component-namespace}badge {
     
         padding-right: 0;
         background-image: none;
@@ -245,9 +245,9 @@ a[href][rel~="external"].#{$badge-namespace}badge:focus::after {
         */
     }
 
-    a[href][rel~="external"].#{$badge-namespace}badge:hover::after,
-    a[href][rel~="external"].#{$badge-namespace}badge:active::after,
-    a[href][rel~="external"].#{$badge-namespace}badge:focus::after {
+    a[href][rel~="external"].#{$component-namespace}badge:hover::after,
+    a[href][rel~="external"].#{$component-namespace}badge:active::after,
+    a[href][rel~="external"].#{$component-namespace}badge:focus::after {
         display: block;
         content: "";
         position: absolute;
@@ -273,7 +273,7 @@ a[href][rel~="external"].#{$badge-namespace}badge:focus::after {
 
 @media #{$s__ie10-11} {
 
-    .#{$badge-namespace}badge {
+    .#{$component-namespace}badge {
     
         svg {
             width: 100%;
@@ -324,7 +324,7 @@ a[href][rel~="external"].#{$badge-namespace}badge:focus::after {
     /*
         Undo rule set above (commented out currently until I'm sure)
     */
-    /*a[href].#{$badge-namespace}badge img {
+    /*a[href].#{$component-namespace}badge img {
         margin: 0;
     }*/
 }

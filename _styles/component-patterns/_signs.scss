@@ -1,0 +1,236 @@
+/*
+    Signs
+    =====
+*/
+
+$component-namespace: c- !default;
+
+//$signs--text-color: currentColor !default;
+
+/**/
+
+/*
+    1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
+*/
+.#{$component-namespace}signpost {
+    flex-basis: 100%;
+
+    display: flex;
+    flex-direction: row;
+        flex-wrap: wrap;
+
+    width: 0; /* [1] */
+    min-width: 100%; /* [1] */
+}
+
+/*@media only screen and (min-width: $not-too-small) {
+
+    @supports (display: grid) {
+
+        .#{$component-namespace}signpost {
+            display: grid;
+            grid-template-columns:repeat(auto-fit,minmax(calc(20% + 6em),1fr));
+
+            // Safari 10 needs this:
+            grid-auto-rows: minmax(min-content, 1fr);
+
+        }
+
+        .#{$component-namespace}sign {
+            &#{&}--span-all {
+                grid-column: 1/-1;
+            }
+        }
+    }
+}*/
+
+.#{$component-namespace}sign {
+
+    &#{&} {
+        //background-color: $signs--background-color;
+
+        flex: 1 0 50%;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    &#{&}--span-all {
+         flex-basis: 100%;
+    }
+
+    & &--padding--xs,
+    & &--block-padding--xs {
+         padding-top: $s__sz-xs;
+         padding-bottom: $s__sz-xs;
+    }
+
+    & &--padding--s,
+    & &--block-padding--s {
+         padding-top: $s__sz-s;
+         padding-bottom: $s__sz-s;
+    }
+
+    & &--padding--m,
+    & &--block-padding--m {
+         padding-top: $s__sz-m;
+         padding-bottom: $s__sz-m;
+    }
+
+    & &--padding--l,
+    & &--block-padding--l {
+         padding-top: $s__sz-l;
+         padding-bottom: $s__sz-l;
+    }
+
+    & &--padding--xl,
+    & &--block-padding--xl {
+         padding-top: $s__sz-xl;
+         padding-bottom: $s__sz-xl;
+    }
+
+    & &--padding--xs,
+    & &--inline-padding--xs {
+         padding-left: $s__sz-xs;
+         padding-right: $s__sz-xs;
+    }
+
+    & &--padding--s,
+    & &--inline-padding--s {
+         padding-left: $s__sz-s;
+         padding-right: $s__sz-s;
+    }
+
+    & &--padding--m,
+    & &--inline-padding--m {
+         padding-left: $s__sz-m;
+         padding-right: $s__sz-m;
+    }
+
+    & &--padding--l,
+    & &--inline-padding--l {
+         padding-left: $s__sz-l;
+         padding-right: $s__sz-l;
+    }
+
+    & &--padding--xl,
+    & &--inline-padding--xl {
+         padding-left: $s__sz-xl;
+         padding-right: $s__sz-xl;
+    }
+
+    // FF and Chrome handle span breaks differently.
+    // Can't get FF to be like Chrome so making them like FF:
+    br {
+        display: none;
+    }
+
+
+    a[href]#{&}__link {
+
+        flex: 1 0 auto;
+
+        display: flex;
+        flex-direction: column;
+
+
+        //background: linear-gradient(to right, #007DB1 0%,#007DB1 25%,#64AED3 25%,#64AED3 50%,#B6B1C7 50%,#B6B1C7 75%,#6F6992 75%,#6F6992 100%);
+
+        border: 0;
+
+        position: relative;
+        margin-bottom: 0;
+
+        //height: 100%;
+        //transition: all 0.3s ease;
+
+        color: #fff;
+        background-color: transparent;
+
+        text-decoration: none;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: #fff;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+    }
+
+
+    a[href]:hover::before,
+    a[href]:active::before,
+    a[href]:focus::before {
+        border: 0;
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 0.2;
+        background: #000;
+    }
+
+    /*
+        1. IE11 doesn't handle flex sizing and word wrapping together well.
+           Longer words overflow their container and can cause H scrollbar, whereas it SHOULD
+           cause the sign box to expand and thus drop into single-col layout.
+           E.g. Trials 'Clinicians' sing. Make this 'Clinicianssssssssssss' to see the effect.
+           Currently I can't find a wAy to get it to behave properly so just making IE11 wrap
+           the text instead.
+    */
+    #{&}__text {
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+        -ms-word-break: break-all; /* 1 */
+    }
+
+
+    #{&}__text--large {
+        font-family: 'Nunito', sans-serif;
+        font-size: 1.5em;
+        //font-weight: bold;
+    }
+
+    #{&}__text--small {
+        font-size: 0.875em;
+    }
+
+
+    #{&}__centered-content {
+        outline: 1px solid #fff;
+        position: relative;
+
+        flex: 1 0 auto;
+
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+
+        & > * {
+            flex: 0 0 auto;
+            max-width: 100%;
+        }
+    }
+
+    #{&}__svg {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 90%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.2;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center bottom;
+    }
+}

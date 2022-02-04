@@ -17,6 +17,12 @@ $primary-color   : #5F4776;
 $secondary-color : #b9975b;
 $neutral-color   : #8e8279;
 
+
+$notice-color: #a5d1f1;//#69b3e7;
+$success-color: #aec492;//#789d4a;
+$warning-color: #ffc576;//#ff9e1b;
+$error-color: #9b3259;//#9b3259;
+
 /**/
 
 $border-thick: 0.3rem;
@@ -206,7 +212,17 @@ $focus-shadow: 0 0 0 $s__sz-xxs #fff, 0 0 0 $s__sz-xs rgba(0,0,0,.2);
 
 @import "component-patterns/_map.scss";
 
-@import "component-patterns/_page-wrap.scss";
+@import "component-patterns/_meter.scss";
+
+@import "component-patterns/_panel.scss";
+
+@import "component-patterns/_primary-cta.scss";
+
+@import "component-patterns/_signs.scss";
+
+@import "component-patterns/_system-message.scss";
+
+@import "component-patterns/_thumbnail.scss";
 
 /* ---------------------------------------------------------------------------------------------- */
 
@@ -343,6 +359,12 @@ $ff-min-widths: (
 );
 
 @import "special-patterns/_ff-widths.scss";
+
+// Page Sidebar is necessary but it doesn't fit nicely into another category:
+@import "special-patterns/_page-sidebar.scss";
+
+// Page Wrap is necessary but it doesn't fit nicely into another category:
+@import "special-patterns/_page-wrap.scss";
 
 /* ---------------------------------------------------------------------------------------------- */
 

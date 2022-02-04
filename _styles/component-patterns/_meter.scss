@@ -1,0 +1,104 @@
+/*
+    Meter
+    =====
+*/
+
+$component-namespace: c- !default;
+
+$meter--text-color: currentColor !default;
+
+/**/
+.#{$component-namespace}meter {
+
+    &#{&} {
+        position: relative;
+    }
+
+    & meter {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+        display: block;
+        width: 100%;
+        //border-style: solid;
+        //border-width: 1px;
+        //border-color: currentColor;
+        box-shadow: 0 0 0 1px currentColor inset;
+        background: transparent;
+        border-radius: 0.6rem;
+        height: #{$s__sz-m/ 2};
+        margin: #{$s__sz-m/ 4} 0;
+        position: relative;
+        overflow: hidden;
+
+        color: $meter--text-color;
+
+
+        // For some reason using a comma between selectors prevents things working properly, so
+        // repeating the declarations for now:
+
+        /* 1. Edge */
+        &::-webkit-meter-bar {
+            border: 0 solid #f00; /* [1] */
+            border: 1em 0;
+            background: transparent;
+
+        }
+
+        &::-webkit-meter-optimum-value {
+            background: currentColor;
+        }
+
+        &:-moz-meter-optimum::-moz-meter-bar {
+            background: currentColor;
+        }
+
+        // Fallback for non-supporting browsers:
+        > span {
+            display: block;
+            text-indent: 100%;
+            background: currentColor;
+            overflow: hidden;
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: #{$s__sz-m/ 2};
+
+        }
+    }
+
+        // Marker positioned using inline width rather than inline left because IE doesn't move
+        // the marker if the window is resized otherwise.
+        #{&}__marker {
+            position: relative;
+
+            font-size: 0.75em;
+
+            height: $s__sz-m;
+
+            &::before,
+            &::after {
+                display: block;
+                position: absolute;
+                right: 0;
+                transform: translateX(50%);
+            }
+
+            &::before {
+                content: "";
+                top: -#{$s__sz-m/ 8};
+
+                // Triangle:
+                width: 0px;
+                height: 0px;
+                border-left: #{$s__sz-m/ 4} solid transparent;
+                border-right: #{$s__sz-m/ 4} solid transparent;
+                border-bottom: #{$s__sz-m/ 4} solid currentColor;
+            }
+
+            &::after {
+                content: attr(data-value);
+            }
+        }
+}

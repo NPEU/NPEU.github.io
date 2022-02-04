@@ -3,7 +3,7 @@
     ===
 */
 
-$map-namespace: c- !default;
+$component-namespace: c- !default;
 $js-map-namespace: js- !default;
 
 $map-heights: (
@@ -14,7 +14,7 @@ $map-heights: (
 /**/
 
 .#{$js-map-namespace}map {
-    .#{$map-namespace}map {
+    .#{$component-namespace}map {
         display: flex;
         width: 100%;
 
@@ -59,14 +59,14 @@ $map-heights: (
             }
         }
 
-        /*.#{$map-namespace}map .leaflet-control-zoom.leaflet-bar.leaflet-control {
+        /*.#{$component-namespace}map .leaflet-control-zoom.leaflet-bar.leaflet-control {
             padding-bottom: 2px;
         }*/
     }
 }
 
 @each $height in $map-heights {
-    .#{$map-namespace}map.#{$map-namespace}map--#{$height} > * {
+    .#{$component-namespace}map.#{$component-namespace}map--#{$height} > * {
         min-height: #{$height}px;
     }
 }

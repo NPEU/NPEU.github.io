@@ -1,0 +1,21 @@
+/*
+    System Messages
+    ===============
+*/
+
+$component-namespace: c- !default;
+
+/**/
+.#{$component-namespace}system-message {
+
+    &#{&} {
+        position: relative;
+        
+        padding: $s__sz-m;
+        position: relative;
+        border: 0;
+        margin: 0;
+    }
+
+   
+}

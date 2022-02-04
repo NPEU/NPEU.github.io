@@ -1,0 +1,78 @@
+/*
+    Panel
+    =====
+    
+    SIDEBAR possible! - Note this pattern may appear in a Page Sidebar and has adjustments for this
+    context defined in the Page Sidebar special pattern file.
+    
+*/
+
+$component-namespace: c- !default;
+
+$panel-border-width: 0.1rem;
+
+/**/
+.#{$component-namespace}panel {
+
+    /*
+        1. We expect that panels may have border classes, so allow for those classes to apply a
+           modifier.
+    */
+    &#{&} {
+        padding-top: calc(#{$s__sz-m} - var(--p-adjust-t, 0rem)); /* 1 */
+        padding-right: calc(#{$s__sz-m} - var(--p-adjust-r, 0rem)); /* 1 */
+        padding-bottom: calc(#{$s__sz-m} - var(--p-adjust-b, 0rem)); /* 1 */
+        padding-left: calc(#{$s__sz-m} - var(--p-adjust-l, 0rem)); /* 1 */
+
+    }
+
+    & #{&}__header {
+        padding-bottom: #{$s__sz-s - $panel-border-width};
+        border-bottom: $panel-border-width solid currentColor;
+        
+
+        & > div {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 100%;
+
+
+            // Should be an hx element:
+            & > :first-child {
+                margin: 0;
+                padding-right: $s__sz-m;
+            }
+
+            // A container for any CTA:
+            & > p {
+                margin: $s__sz-s 0;
+            }
+        }
+
+    }
+    
+    &__banner {
+        margin-top: -$s__sz-m;
+        margin-right: -$s__sz-m;
+        margin-bottom: $s__sz-m;
+        margin-left: -$s__sz-m;
+    }
+}
+
+// Flexbox gap support: https://gist.github.com/OliverJAsh/7f29d0fa1d35216ec681d2949c3fe8b7#gistcomment-3978504
+@supports (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
+    .#{$component-namespace}panel {
+        & #{&}__header {
+            & > div {
+                gap: 0 $s__sz-m;
+
+                & > :first-child {
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+}

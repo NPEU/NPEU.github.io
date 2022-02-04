@@ -3,9 +3,9 @@
     =====
 */
 
-$forms-namespace: c- !default;
+$component-namespace: c- !default;
 
-.#{$forms-namespace}form {
+.#{$component-namespace}form {
 
     &#{&} {
 

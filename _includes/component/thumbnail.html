@@ -1,0 +1,66 @@
+<!--
+
+    THUMBNAIL
+
+-->
+{% assign include_title = "Thumbnail" %}
+
+<h2 id="{{ include_title | slugify }}">{{ include_title }}</h2>
+
+<p>Thumbnail pattern allowing for captions. Especially used for download previews.</p>
+<p>Classic standalone thumbnail:</p>
+
+<div class="u-space--below  u-text-align--center">
+    <p>
+        <a href="/assets/downloads/neoclear/parents/NeoCLEAR PIL v3.0 - 29-March-2019.pdf" type="application/pdf" class="c-thumbnail" style="max-width:300px;">
+            <img src="/assets/downloads/neoclear/parents/NeoCLEAR PIL v3.0 - 29-March-2019.pdf.png" alt="Parent Information Leaflet. Thumbnail preview of the file.">
+            <br>
+            <span>Parent Information Leaflet</span>
+        </a>
+    </p>
+
+</div>
+
+<p>Variants as part of user content:</p>
+
+<div class="u-space--below  u-text-align--center  c-user-content">
+
+    <p>Thumbnail only:</p>
+    <p>
+        <span data-contains="download" data-modified-time="1592237976">
+            <a data-contains="thumbnail" href="/assets/downloads/neoclear/parents/NeoCLEAR PIL v3.0 - 29-March-2019.pdf" type="application/pdf" class="delete-this-when-user-content-is-done  c-thumbnail">
+                <img alt="PIL. Thumbnail preview of the file." src="/assets/downloads/neoclear/parents/NeoCLEAR PIL v3.0 - 29-March-2019.pdf.png" width="150">
+            </a>
+        </span>
+    </p>
+
+    <p>Text only:</p>
+    <p>
+        <span data-contains="download" data-modified-time="1592237976">
+            <a href="/assets/downloads/neoclear/parents/NeoCLEAR PIL v3.0 - 29-March-2019.pdf" type="application/pdf">PIL</a>
+        </span>
+    </p>
+
+    <p>Thumbnail and text:</p>
+    <p>
+        <span data-contains="download" data-modified-time="1592237976">
+            <a data-contains="thumbnail" href="/assets/downloads/neoclear/parents/NeoCLEAR PIL v3.0 - 29-March-2019.pdf" type="application/pdf" class="delete-this-when-user-content-is-done  c-thumbnail">
+                <img alt="Thumbnail preview of the file." src="/assets/downloads/neoclear/parents/NeoCLEAR PIL v3.0 - 29-March-2019.pdf.png" width="150"><br>
+                <span>PIL</span>
+            </a>
+        </span>
+    </p>
+
+
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;a href=&quot;/assets/downloads/neoclear/parents/NeoCLEAR PIL v3.0 - 29-March-2019.pdf&quot; type=&quot;application/pdf&quot; class=&quot;c-thumbnail&quot;&gt;
+    &lt;img src=&quot;/assets/downloads/neoclear/parents/NeoCLEAR PIL v3.0 - 29-March-2019.pdf.png&quot; alt=&quot;&quot;&gt;
+    &lt;br&gt;
+    Parent Information Leaflet
+&lt;/a&gt;</code></pre>
+    </details>
+</div>

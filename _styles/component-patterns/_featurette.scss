@@ -6,14 +6,14 @@
     ok here - we don't need to worry about other contexts and container-queries.
 */
 
-$featurette-namespace: c- !default;
+$component-namespace: c- !default;
 
 $featurette-breakpoint: 35em !default;
 
 /*
     1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
 */
-.#{$featurette-namespace}featurette {
+.#{$component-namespace}featurette {
     &#{&} {
         display: flex;
         flex-direction: row;

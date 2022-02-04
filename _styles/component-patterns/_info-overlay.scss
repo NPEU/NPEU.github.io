@@ -3,20 +3,20 @@
     ============
 */
 
-$info-overlay-namespace: c- !default;
+$component-namespace: c- !default;
 
 $info-overlay-breakpoint: 35rem !default;
 $info-overlay-max-message-breakpoint: 100rem !default;
 $info-overlay-min-message-size: 20px !default;
 $info-overlay-max-message-size: 52px !default;
 
-.#{$info-overlay-namespace}info-overlay-wrap {
+.#{$component-namespace}info-overlay-wrap {
     position: relative;
     display: flex;
     flex-direction: column;
 }
 
-.#{$info-overlay-namespace}info-overlay {
+.#{$component-namespace}info-overlay {
     &#{&} {
         padding: 0;
         /*margin-top: -#{$s__sz-m + $s__sz-xs};
@@ -129,7 +129,7 @@ $info-overlay-max-message-size: 52px !default;
 
 @media only screen and (min-width: $info-overlay-breakpoint) {
 
-    .#{$info-overlay-namespace}info-overlay {
+    .#{$component-namespace}info-overlay {
         &#{&} {
             position: absolute;
             top: 0;

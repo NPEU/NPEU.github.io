@@ -1,0 +1,45 @@
+<!--
+
+    METER
+
+-->
+{% assign include_title = "Meter" %}
+
+<h2 id="{{ include_title | slugify }}">{{ include_title }}</h2>
+
+<p>This pattern uses width for the marker rather than positioning, because IE doesn't move the marker if the window is resized.</p>
+<p>Note that the tinted background is not part of the pattern - it's there to illustrate that the pattern has a transparent background.</p>
+
+<div class="u-space--below  u-padding" style="background: #fed;">
+    <div class="c-meter">
+        <meter min="0" max="1020" value="175">
+            <span style="width: calc(175 / 1020 * 100%);">175 out of 1020 recruited.</span>
+        </meter>
+        <div aria-hidden="true" class="c-meter__marker" style="width: calc(175 / 1020 * 100%);" data-value="175"></div>
+    </div>
+</div>
+
+<div class="u-space--below  u-padding" style="background: #def;">
+    <div class="c-meter">
+        <meter min="0" max="1020" value="1020">
+            <span style="width: calc(1020 / 1020 * 100%);">1020 out of 1020 recruited.</span>
+        </meter>
+        <div aria-hidden="true" class="c-meter__marker" style="width: calc(1020 / 1020 * 100%);" data-value="1020"></div>
+    </div>
+</div>
+
+
+<div>
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+<pre><code class="html">&lt;div class=&quot;c-meter&quot;&gt;
+        &lt;meter min=&quot;0&quot; max=&quot;<strong><i>1020</i></strong>&quot; value=&quot;<strong><u>175</u></strong>&quot;&gt;
+            &lt;span style=&quot;width: calc(<strong><u>175</u></strong> / <strong><i>1020</i></strong> * 100%);&quot;&gt;<strong><u>175</u></strong> out of <strong><i>1020</i></strong> recruited.&lt;/span&gt;
+        &lt;/meter&gt;
+        &lt;div aria-hidden=&quot;true&quot; class=&quot;c-meter__marker&quot; style=&quot;width: calc(<strong><u>175</u></strong> / <strong><i>1020</i></strong> * 100%);&quot; data-value=&quot;<strong><u>175</u></strong>&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+<p>Note the underlined values in the code example above (175) would come from the CMS as actual data (current value), and need to all the same.</p>
+<p>The same applies to the italicised values, but with the max value instead.</p>

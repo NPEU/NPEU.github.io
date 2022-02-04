@@ -3,7 +3,7 @@
     ====
 */
 
-$hero-namespace: c- !default;
+$component-namespace: c- !default;
 
 $hero-breakpoint: 40rem !default;
 $hero-breakpoint-wide: $hero-breakpoint * 1.6 !default;
@@ -18,7 +18,7 @@ $hero-max-heading-size: 46px !default;
 
 
 
-.#{$hero-namespace}hero-wrap.#{$hero-namespace}hero-carousel {
+.#{$component-namespace}hero-wrap.#{$component-namespace}hero-carousel {
     padding: 0;
     margin: 0;
     min-inline-size: auto;
@@ -32,7 +32,7 @@ $hero-max-heading-size: 46px !default;
     }
 
 
-    .#{$hero-namespace}hero-carousel__nav {
+    .#{$component-namespace}hero-carousel__nav {
 
         padding: 0 0.6rem;
         margin: -#{$s__sz-m + $s__sz-s} 0 0 0;
@@ -66,7 +66,7 @@ $hero-max-heading-size: 46px !default;
         display: none;
     }
 
-    .#{$hero-namespace}hero-carousel__scroll-area {
+    .#{$component-namespace}hero-carousel__scroll-area {
         order: -1;
 
         display: flex;
@@ -96,7 +96,7 @@ $hero-max-heading-size: 46px !default;
             display: none;
         }
 
-        .#{$hero-namespace}hero {
+        .#{$component-namespace}hero {
             flex: 0 0 100%;
 
             scroll-snap-align: start;
@@ -114,13 +114,13 @@ $hero-max-heading-size: 46px !default;
                     animation: none;
         }
 
-        .#{$hero-namespace}hero__message {
+        .#{$component-namespace}hero__message {
             padding-bottom: $s__sz-l;
         }
     }
 }
 
-.#{$hero-namespace}hero-wrap .#{$hero-namespace}hero {
+.#{$component-namespace}hero-wrap .#{$component-namespace}hero {
 
     position: relative;
     background: #fff;
@@ -139,7 +139,7 @@ $hero-max-heading-size: 46px !default;
             flex-direction: column;
         }
 
-    .#{$hero-namespace}hero__message {
+    .#{$component-namespace}hero__message {
         //@extend .u-word-wrap;
 
         padding-top: $s__sz-m;
@@ -147,14 +147,16 @@ $hero-max-heading-size: 46px !default;
         padding-bottom: $s__sz-m;
         padding-left: $s__sz-m;
         flex-grow: 1;
+        
+        word-break: break-word;
 
 
         & * {
             margin: 0;
         }
 
-        & > .#{$hero-namespace}hero__message--fluid_text,
-        & > .#{$hero-namespace}hero__message--fluid_heading {
+        & > .#{$component-namespace}hero__message--fluid_text,
+        & > .#{$component-namespace}hero__message--fluid_heading {
             /*
                 1. For IE10 to wrap text.
             */
@@ -167,7 +169,7 @@ $hero-max-heading-size: 46px !default;
             max-width: 100%; /* [1] */
         }
 
-        & > .#{$hero-namespace}hero__message--fluid_heading {
+        & > .#{$component-namespace}hero__message--fluid_heading {
             @include fluid-type(s__strip-unit($hero-breakpoint) * 16px, s__strip-unit($hero-max-message-breakpoint) * 16px, $hero-min-heading-size, $hero-max-heading-size);
         }
     
@@ -197,22 +199,22 @@ $hero-max-heading-size: 46px !default;
         }
     }*/
 
-        .#{$hero-namespace}hero__cta {
+        .#{$component-namespace}hero__cta {
             margin-left: auto;
             margin-top: $s__sz-s;
         }
     }
 }
 
-/*.#{$hero-namespace}hero--reversed .#{$hero-namespace}hero__image-credit {
+/*.#{$component-namespace}hero--reversed .#{$component-namespace}hero__image-credit {
     right: auto;
     left: 0;
 }*/
 
 @media only screen and (max-width:#{$hero-breakpoint}) {
-     .#{$hero-namespace}hero-wrap {
-        .#{$hero-namespace}hero {
-            .#{$hero-namespace}hero__message {
+     .#{$component-namespace}hero-wrap {
+        .#{$component-namespace}hero {
+            .#{$component-namespace}hero__message {
                 /*
                     1. This is here to override the inline style width declaration.
                        Allowing Joomla interface to specify width so it can be tweaked to suit the text,
@@ -225,7 +227,7 @@ $hero-max-heading-size: 46px !default;
             }
         }
     }
-    /*.#{$hero-namespace}hero-carousel {
+    /*.#{$component-namespace}hero-carousel {
         #{&}__nav {
             margin: 0;
 
@@ -234,7 +236,7 @@ $hero-max-heading-size: 46px !default;
 }
 
 @media #{$s__ie10-11} {
-    .#{$hero-namespace}hero {
+    .#{$component-namespace}hero {
         #{&}__message {
             /*
                 1. IE11 is just not behaving well :-(
@@ -245,9 +247,9 @@ $hero-max-heading-size: 46px !default;
 }
 
 @media only screen and (max-width:#{$hero-breakpoint-wide}) {
-    .#{$hero-namespace}hero-wrap.#{$hero-namespace}hero--wide-message {
-        .#{$hero-namespace}hero {
-            .#{$hero-namespace}hero__message {
+    .#{$component-namespace}hero-wrap.#{$component-namespace}hero--wide-message {
+        .#{$component-namespace}hero {
+            .#{$component-namespace}hero__message {
                 /*
                     1. This is here to override the inline style width declaration.
                        Allowing Joomla interface to specify width so it can be tweaked to suit the text,
@@ -264,10 +266,10 @@ $hero-max-heading-size: 46px !default;
 
 @media only screen and (min-width:#{$hero-breakpoint}) {
 
-    .#{$hero-namespace}hero-wrap:not(.#{$hero-namespace}hero--wide-message) {
+    .#{$component-namespace}hero-wrap:not(.#{$component-namespace}hero--wide-message) {
 
-        .#{$hero-namespace}hero {
-            .#{$hero-namespace}hero__message {
+        .#{$component-namespace}hero {
+            .#{$component-namespace}hero__message {
                 position: absolute;
                 z-index: 1;
 
@@ -291,7 +293,7 @@ $hero-max-heading-size: 46px !default;
         }
     }
 
-    .#{$hero-namespace}hero-wrap:not(.#{$hero-namespace}hero--wide-message) .#{$hero-namespace}hero.#{$hero-namespace}hero--reversed .#{$hero-namespace}hero__message {
+    .#{$component-namespace}hero-wrap:not(.#{$component-namespace}hero--wide-message) .#{$component-namespace}hero.#{$component-namespace}hero--reversed .#{$component-namespace}hero__message {
         right: 0;
         left: auto;
     }
@@ -300,9 +302,9 @@ $hero-max-heading-size: 46px !default;
 
 @media only screen and (min-width:#{$hero-breakpoint-wide}) {
 
-    .#{$hero-namespace}hero-wrap.#{$hero-namespace}hero--wide-message {
-        .#{$hero-namespace}hero {
-            .#{$hero-namespace}hero__message {
+    .#{$component-namespace}hero-wrap.#{$component-namespace}hero--wide-message {
+        .#{$component-namespace}hero {
+            .#{$component-namespace}hero__message {
                 position: absolute;
                 z-index: 1;
 
@@ -327,7 +329,7 @@ $hero-max-heading-size: 46px !default;
         }
     }
 
-    .#{$hero-namespace}hero-wrap .#{$hero-namespace}hero.#{$hero-namespace}hero--reversed .#{$hero-namespace}hero__message {
+    .#{$component-namespace}hero-wrap .#{$component-namespace}hero.#{$component-namespace}hero--reversed .#{$component-namespace}hero__message {
         right: 0;
         left: auto;
     }

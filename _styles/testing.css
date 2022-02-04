@@ -50,6 +50,10 @@ h1 {
   -ms-word-break: break-all;
 }
 
+.u-padding {
+  padding: 2.4rem !important;
+}
+
 .u-padding--s {
   padding: 1.2rem !important;
 }
@@ -81,6 +85,10 @@ h1 {
 
 .u-space--above--xl {
   margin-top: 9.6rem !important;
+}
+
+.u-text-align--center {
+  text-align: center;
 }
 
 /*

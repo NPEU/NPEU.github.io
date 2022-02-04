@@ -1,0 +1,169 @@
+<!--
+
+    PANEL
+
+-->
+{% assign include_title = "Panel" %}
+
+<h2 id="{{ include_title | slugify }}">{{ include_title }}</h2>
+
+<p>Panels should be though of as generic block containers that are likely to display content distinct from it's surrounds (e.g. has a border and/or background).</p>
+<p>Note what appears to be large borders around the first two panels are actually a container background to illustrate panels are often white.</p>
+<p>As usual, backgrounds and borders should be applied with the decoration classes.</p>
+
+<div class="u-padding--s  u-space--below  d-background  s-example--outer">
+    <div class="c-panel  u-space--below  d-background--white">
+        <header class="c-panel__header">
+            <h3>This is a heading in a panel header</h3>
+        </header>
+        <p>Some panel content. This panel has the 'white' decoration class applied.</p>
+    </div>
+    <div class="c-panel">
+        <p>Another panel content <a href="#">with a link</a>. No decoration class applied here, so the appearance is inherited from the wrapper's decoration class.</p>
+    </div>
+</div>
+
+<div class="u-space--below">
+    <div class="c-panel  d-background">
+        <p>Some different panel content, also <a href="#">with a link</a>.</p>
+    </div>
+</div>
+
+<div class="u-space--below">
+    <div class="c-panel  d-border--thick  u-text-align--center  u-text-size--large">
+        <p>A bordered panel content, also <a href="#">with a link</a>.</p>
+    </div>
+</div>
+
+
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;div class=&quot;c-panel  u-space--below&quot;&gt;
+    &lt;p&gt;Some panel content.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;c-panel  t-neutral--dark&quot;&gt;
+    &lt;p&gt;Another panel content.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+<h3>Panels with CTA's</h3>
+
+<p>Panel headers can have CTA's:</p>
+
+<div class="u-space--below">
+    <div class="c-panel  d-background">
+        <header class="c-panel__header">
+            <div>
+                <h2>This is a heading (h2) in a panel header</h2>
+                <p>
+                    <a href="#" class="c-cta">
+                        Call to Action<svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em"><use xlink:href="#icon-chevron-right"></use></svg>
+                    </a>        
+                </p>
+            </div>
+        </header>
+        <p>Some panel content.</p>
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+    </div>
+</div>
+
+
+<div class="u-space--below">
+    <div class="c-panel  d-background">
+        <header class="c-panel__header">
+            <div>
+                <h3>This is a heading (h3) in a panel header</h3>
+                <p>
+                    <a href="#" class="c-cta">
+                        Call to Action<svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em"><use xlink:href="#icon-chevron-right"></use></svg>
+                    </a>        
+                </p>
+            </div>
+        </header>
+        <p>Some panel content.</p>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;div class=&quot;c-panel  d-background&quot;&gt;
+    &lt;header class=&quot;c-panel__header&quot;&gt;
+        &lt;div&gt;
+            &lt;h3&gt;This is a heading (h3) in a panel header&lt;/h3&gt;
+            &lt;p&gt;
+                &lt;a href=&quot;#&quot; class=&quot;c-cta&quot;&gt;
+                    Call to Action&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot;&gt;&lt;use xlink:href=&quot;#icon-chevron-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+                &lt;/a&gt;        
+            &lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/header&gt;
+    ...
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+<h3>Panel with banners</h3>
+
+<p>Careful - these start to look like cards but they're meant to be used differently - more like 'postcards'. The source order of the image means that images should be decoration only.</p>
+
+<div class="u-space--below">
+    <div class="c-panel  d-background">
+        <div class="c-panel__banner">
+            <div class="u-image-cover  js-image-cover  u-image-cover--min-25">
+                <div class="u-image-cover__inner">
+                    <img src="/assets/images/pru-mnhc/pru-mnhc-hero--small.jpg" sizes="100vw" srcset="/assets/images/pru-mnhc/pru-mnhc-hero--large.jpg 1600w, /assets/images/pru-mnhc/pru-mnhc-hero--medium.jpg 900w, /assets/images/pru-mnhc/pru-mnhc-hero--small.jpg 300w" alt="" class="u-image-cover__image" width="200" height="67">
+                </div>
+            </div>
+        </div>
+        <header class="c-panel__header">
+            <div>
+                <h3>This is a heading in a panel header</h3>
+            </div>
+        </header>
+        <p>Some panel content.</p>
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+    </div>
+</div>
+
+<h2>Sidebars</h2>
+
+<p>Panels can appear in sidebars, and the adjustments necessary for this context are defined in the Page Sidebar pattern.</p>
+
+<div class="u-space--below  page-sidebar">
+    <div class="c-panel  d-background">
+        <header class="c-panel__header">
+            <div>
+                <h2>This is a heading (h2) in a panel header</h2>
+                <p>
+                    <a href="#" class="c-cta">
+                        Call to Action<svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em"><use xlink:href="#icon-chevron-right"></use></svg>
+                    </a>        
+                </p>
+            </div>
+        </header>
+        <p>Some panel content.</p>
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+    </div>
+</div>
+
+
+<div class="u-space--below  page-sidebar">
+    <div class="c-panel  d-background">
+        <header class="c-panel__header">
+            <div>
+                <h3>This is a heading (h3) in a panel header</h3>
+                <p>
+                    <a href="#" class="c-cta">
+                        Call to Action<svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em"><use xlink:href="#icon-chevron-right"></use></svg>
+                    </a>        
+                </p>
+            </div>
+        </header>
+        <p>Some panel content.</p>
+    </div>
+</div>
+

@@ -3,7 +3,7 @@
     =======
 */
 
-$glimpse-namespace: c- !default;
+$component-namespace: c- !default;
 /**/
 $glimpse--breakpoint: 30rem !default;
 
@@ -16,7 +16,7 @@ $glimpse-heading--font-size: 1.8rem !default;
 $glimpse-footer--font-size:  1.4rem !default;
 
 
-.#{$glimpse-namespace}glimpse {
+.#{$component-namespace}glimpse {
     /*
         1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
     */
@@ -199,13 +199,13 @@ $glimpse-footer--font-size:  1.4rem !default;
 }
 
 
-.#{$glimpse-namespace}glimpse:focus-within,
-.#{$glimpse-namespace}glimpse:focus-within::before {
+.#{$component-namespace}glimpse:focus-within,
+.#{$component-namespace}glimpse:focus-within::before {
     box-shadow: $focus-shadow;
 }
 
 
-.#{$glimpse-namespace}glimpse--has-js {
+.#{$component-namespace}glimpse--has-js {
     cursor: pointer;
 
     &:hover,
@@ -215,8 +215,8 @@ $glimpse-footer--font-size:  1.4rem !default;
     }
 }
 
-.#{$glimpse-namespace}glimpse--is-mousedown {
-    .#{$glimpse-namespace}card__title a::after {
+.#{$component-namespace}glimpse--is-mousedown {
+    .#{$component-namespace}card__title a::after {
         display: none;
     }
 }

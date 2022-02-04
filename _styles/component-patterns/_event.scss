@@ -8,13 +8,13 @@
     OK, but perhaps this would be better abstracted as a `fill-height` class or something?
 */
 
-$event-namespace: c- !default;
+$component-namespace: c- !default;
 
 $event-title--font-size: 2.2rem;
 $event-title--line-height: $s__base-rem-space-unit * 1.5;
 
 
-.#{$event-namespace}event {
+.#{$component-namespace}event {
     &#{&} {
         display: flex;
         flex-wrap: wrap;

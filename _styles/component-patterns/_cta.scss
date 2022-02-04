@@ -3,13 +3,13 @@
     ===
 */
 
-$cta-namespace: c- !default;
+$component-namespace: c- !default;
 
 /*
     The FallBack for CTA's usually wraps the link in <b> tags to attempt to convey a modicum of
     visual importance. Reset the inherited weight and style.
 */
-.#{$cta-namespace}cta {
+.#{$component-namespace}cta {
     &#{&} {
         /*@include s__button(
             $s__button-background-color,
@@ -26,8 +26,8 @@ $cta-namespace: c- !default;
         );*/
         @include s__button(
             currentColor,
-            transparent,
-            transparent,
+            false,
+            false,
             currentColor
         );
 
