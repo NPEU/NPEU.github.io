@@ -9373,26 +9373,12 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 
 /*
     Page Header
-    =========
+    ===========
 */
-.js-cmr--wide.page-header .l-layout__inner {
+.page-header .js-cmr--wide.l-layout__inner {
   justify-content: space-between;
 }
 
-/*
-.page-header {
-
-    & {
-        @media only screen and (max-width: 43em) {
-            p.l-box.l-box--center.l-box--push-apart {
-                display: none !important;
-            }
-        
-        }
-    }
-
-}
-*/
 /*
     Page Sidebar
     ============
