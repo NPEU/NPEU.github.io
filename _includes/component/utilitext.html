@@ -1,0 +1,148 @@
+<!--
+
+    UTILITEXT
+
+-->
+{% assign include_title = "Utilitext" %}
+
+<h2 id="{{ include_title | slugify }}">{{ include_title }}</h2>
+
+<p>This pattern deals with the appearance and behaviour of utilitarian text. Use the layout pattern "text-group" to handle any layout concerns.</p>
+
+<p>If a set of links should be considered a list, use list markup, unless it should fall back to an inline-list, in which case use this:</p>
+<pre><code class="html">&lt;p role=&quot;list&quot;&gt;
+    &lt;span role=&quot;listitem&quot;&gt;&lt;a ... /&gt;&amp;nbsp;|&lt;/span&gt;
+    &lt;span role=&quot;listitem&quot;&gt;&lt;a ... /&gt;&lt;/span&gt;
+    ...
+&lt;/p&gt;</code></pre>
+
+<p><A href="#{{ include_title | slugify }}--using-layout-classes">A this example re-done using layout classes can be found below.</a></p>
+
+<p>Notice how the nesting requirements for the layout pattern (<code>p.l-layout > spans.l-layout__inner</code>) would cause a problem with normal list markup (you'd have to include an outer wrapper) are not a problem using the ARIA syntax.</p>
+
+<h3>Line of text with links</h3>
+
+<div class="u-space--below">
+    <p class="c-utilitext">
+        <a href="#"><span>Logged in as stargazer (view profile)</span></a> | <a href="#"><span>Logout</span></a> | <a href="#"><span>Admin</span></a> | <a href="#"><span>Staff Area</span></a> | <a href="#" class="u-padding--right--s"><span>Edit page</span><svg display="none" focusable="false" class="icon  u-space--left--xs" aria-hidden="true"><use xlink:href="#icon-edit"></use></svg></a>
+    </p>
+</div>
+
+<h3>List of links</h3>
+
+<div class="u-space--below">
+    <ul class="c-utilitext">
+        <li><a href="/"><span>Home</span></a></li>
+        <li><a href="/contact"><span>Contact Us</span></a></li>
+        <li><a href="#top"><span>Top</span></a></li>
+    </ul>
+</div>
+
+<h3>Skip links</h3>
+
+<div class="u-space--below">
+    <p>Skip lists below here <button>focus me</button> then tab to reveal:</p>
+    <p role="list" class="c-utilitext  c-utilitext--skiplinks">
+        <span role="listitem"><a href="#main"><span>Skip to content</span></a></span>
+        <span role="listitem"><a href="#primary-nav"><span>Skip to navigation</span></a></span>
+        <span role="listitem"><a href="#page-footer"><span>Skip to footer</span></a></span>
+    </p>
+</div>
+
+<h3>Pale</h3>
+
+<div class="u-space--below">
+    <p class="c-utilitext  c-utilitext--pale">
+        <a href="/user-profile"><span>Logged in as stargazer (view profile)</span></a> | <a href="#"><span>Logout</span></a> | <a href="#"><span>Admin</span></a> | <a href="#"><span>Staff Area</span></a> | <a href="#" class="u-padding--right--sX"><span>Edit page</span><svg display="none" focusable="false" class="icon  u-space--left--xsX" aria-hidden="true"><use xlink:href="#icon-edit"></use></svg></a>
+    </p>
+</div>
+
+<h3>Smaller</h3>
+
+<div class="u-space--below">
+    <p class="c-utilitext  c-utilitext--smaller">
+        <a href="/user-profile"><span>Logged in as stargazer (view profile)</span></a> | <a href="#"><span>Logout</span></a> | <a href="#"><span>Admin</span></a> | <a href="#"><span>Staff Area</span></a> | <a href="#" class="u-padding--right--sX"><span>Edit page</span><svg display="none" focusable="false" class="icon  u-space--left--xsX" aria-hidden="true"><use xlink:href="#icon-edit"></use></svg></a>
+    </p>
+</div>
+
+<!--
+<h3>Spaced</h3>
+
+<div class="u-space--below">
+    <p class="c-utilitext  c-utilitext--spaced">
+        <a href="/user-profile"><span>Logged in as stargazer (view profile)</span></a> | <a href="#"><span>Logout</span></a> | <a href="#"><span>Admin</span></a> | <a href="#"><span>Staff Area</span></a> | <a href="#" class="u-padding--right--s"><span>Edit page</span><svg display="none" focusable="false" class="icon  u-space--left--xs" aria-hidden="true"><use xlink:href="#icon-edit"></use></svg></a>
+    </p>
+</div>
+-->
+
+<h2 id="{{ include_title | slugify }}--using-layout-classes">Using layout classes</h2>
+
+<p>An example adding layout classes:</p>
+
+<div class="u-space--below">
+    <p role="list" class="c-utilitext   l-layout  l-row  l-row--start  l-gutter--xs  l-flush-edge-gutter">
+        <span class="l-layout__inner">
+            <span role="listitem" class="l-box">
+                <a href="#"><span>Home</span></a><span class="l-box__separator">&nbsp;|</span>
+            </span>
+            <span role="listitem" class="l-box">
+                <a href="#"><span>Contact Us</span></a><span class="l-box__separator">&nbsp;|</span>
+            </span>
+            <span role="listitem" class="l-box">
+                <a href="#"><span>Privacy and Cookies</span></a><span class="l-box__separator">&nbsp;|</span>
+            </span>
+            <span role="listitem" class="l-box">
+                <a href="#"><span>Accessibility</span></a><span class="l-box__separator">&nbsp;|</span>
+            </span>
+            <span role="listitem" class="l-box">
+                <a href="#"><span>Data Protection</span></a><span class="l-box__separator">&nbsp;|</span>
+            </span>
+            <span role="listitem" class="l-box" >
+                <a href="#"><span>Top</span></a>
+            </span>
+        </span>
+    </p>
+</div>
+<pre><code class="html">&lt;p role=&quot;list&quot; class=&quot;l-layout  l-row  l-row--start  l-gutter--s  l-flush-edge-gutter&quot;&gt;
+    &lt;span class=&quot;l-layout__inner&quot;&gt;
+        &lt;span role=&quot;listitem&quot; class=&quot;l-box&quot;&gt;
+            &lt;a ...&gt;&lt;span&gt;Home&lt;/span&gt;&lt;/a&gt;&lt;span class=&quot;l-box__separator&quot;&gt;&amp;nbsp;|&lt;/span&gt;
+        &lt;/span&gt;
+        &lt;span role=&quot;listitem&quot; class=&quot;l-box&quot;&gt;
+            &lt;a ...&gt;&lt;span&gt;Contact Us&lt;/span&gt;&lt;/a&gt;&lt;span class=&quot;l-box__separator&quot;&gt;&amp;nbsp;|&lt;/span&gt;
+        &lt;/span&gt;
+        ...
+        &lt;span role=&quot;listitem&quot; class=&quot;l-box&quot;&gt;
+            &lt;a ...&gt;&lt;span&gt;Top&lt;/span&gt;&lt;/a&gt;
+        &lt;/span&gt;
+    &lt;/span&gt;
+&lt;/p&gt;</code></pre>
+
+<p>Notice how the nesting requirements for the layout pattern (<code>p.l-layout > spans.l-layout__inner</code>) would cause a problem with normal list markup (you'd have to include an outer wrapper) are not a problem using the ARIA syntax.</p>
+
+
+<h3>Spaced</h3>
+
+<p>Links spaced out using a larger guuter</p>
+
+<div class="u-space--below">
+    <p role="list" class="c-utilitext   l-layout  l-row  l-row--start  l-gutter--s  l-flush-edge-gutter">
+        <span class="l-layout__inner">
+            <span role="listitem" class="l-box">
+                <a href="#"><span>Logged in as stargazer (view profile)</span></a><span class="l-box__separator">&nbsp;|</span>
+            </span>
+            <span role="listitem" class="l-box">
+                <a href="#"><span>Logout</span></a><span class="l-box__separator">&nbsp;|</span>
+            </span>
+            <span role="listitem" class="l-box">
+                <a href="#"><span>Admin</span></a><span class="l-box__separator">&nbsp;|</span>
+            </span>
+            <span role="listitem" class="l-box">
+                <a href="#"><span>Staff Area</span></a><span class="l-box__separator">&nbsp;|</span>
+            </span>
+            <span role="listitem" class="l-box" >
+                <a href="#" class="u-padding--right--s"><span>Edit page</span><svg display="none" focusable="false" class="icon  u-space--left--xs" aria-hidden="true"><use xlink:href="#icon-edit"></use></svg>
+            </span>
+        </span>
+    </p>
+</div>

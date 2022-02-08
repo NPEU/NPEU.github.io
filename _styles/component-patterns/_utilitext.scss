@@ -1,0 +1,70 @@
+/*
+    Utilitext
+    =========
+*/
+
+$component-namespace: c- !default;
+
+$utilitext--text-color: currentColor !default;
+
+/**/
+.#{$component-namespace}utilitext {
+
+    &#{&} {
+        font-size: 0.875em;
+
+        a[href] {
+            span {
+
+            }
+
+            @supports(text-decoration-line: underline) {
+                &:hover,
+                &:active {
+                    text-decoration-style: dashed;
+                }
+            }
+        }
+    }
+    
+    &#{&}--skiplinks {
+        position: relative;    
+    }
+    
+    &#{&}--skiplinks a[href] {
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: auto;
+        margin: 0;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+        white-space: nowrap;
+        
+        &:active, &:focus {
+            clip: auto;
+            height: auto;
+            overflow: visible;
+            position: initial;
+            white-space: inherit;
+            width: auto;
+            position: relative;
+        }
+    }
+
+    &#{&}--pale,
+    &#{&}#{&}--pale a[href] {
+        color: lighten($s__base-text-color, 30%);
+    }
+
+    &#{&}--smaller {
+        font-size: 0.8125em;
+    }
+
+    //&#{&}--spaced > *,
+    //&#{&}--spaced > a[href] {
+    //    margin-right: $s__sz-s;
+    //}
+
+}

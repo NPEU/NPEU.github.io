@@ -1,3 +1,7 @@
+.t-box {
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.5) inset;
+}
+
 .t-box-1 {
   background: #fed;
   box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.5) inset;

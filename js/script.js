@@ -498,8 +498,8 @@ var cookie_html                   =
 
 (function() {
 
-    //var debug                                = true;
-    var debug                                = false;
+    var debug                                = true;
+    //var debug                                = false;
     var ident                                = 'cmr';
     var selector                             = '[data-js="' + ident + '"]';
     var js_classname_prefix                  = 'js';
@@ -564,6 +564,7 @@ var cookie_html                   =
                 clone.classList.add(js_classname_prefix + '-' + ident + '--' + container_js_classname_wide_suffix);
 
                 set_style(clone, {
+                    position: 'absolute',
                     border: '0',
                     left: '0',
                     top: '0',
@@ -572,27 +573,16 @@ var cookie_html                   =
                     justifyContent: 'flex-start'
                 });
                 cmr.parentNode.appendChild(clone);
-                var gap    = parseInt(getComputedStyle(cmr).gap);
-                var pLeft  = parseInt(getComputedStyle(cmr).paddingLeft);
-                var pRight = parseInt(getComputedStyle(cmr).paddingRight);
-                console.log(gap, pLeft, pRight);
+                
+                console.log(element.style['gap']);
+
                 var children   = clone.children;
-                var n_children = children.length;
                 var breakpoint = 0;
-                if (pLeft) {
-                    breakpoint += pLeft;
-                }
-                if (pRight) {
-                    breakpoint += pRight;
-                }
-                if (gap && n_children > 1) {
-                    breakpoint += (n_children - 1) * gap;
-                }
                 Array.prototype.forEach.call(children, function (child, i) {
                     // If this child is intended to be flexible, we need to add it's min-width,
                     // rather than actual width:
                     if (child.getAttribute('data-min-width')) {
-                        breakpoint += Math.round(child.getAttribute('data-min-width'));
+                        breakpoint += Math.ceil(child.getAttribute('data-min-width'));
                     } else {
                         breakpoint += Math.ceil(child.offsetWidth);
                     }
@@ -600,7 +590,7 @@ var cookie_html                   =
 
                 cmr.setAttribute('data-js-breakpoint', breakpoint);
 
-                clone.remove();
+                //clone.remove();
             });
         },
 
@@ -666,7 +656,7 @@ var cookie_html                   =
         }
     }
 
-    window.setTimeout(function(){ready($cmr.init)}, 50);
+    window.setTimeout(ready($cmr.init), 500);
 })();
 
 /*! --------------------------------------------------------------------------------------------- *\

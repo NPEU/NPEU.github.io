@@ -135,6 +135,7 @@
     {% endif %}
 
     <script src="/js/script.min.js"></script>
+    <!--<script src="/js/script.js"></script>-->
 
     {% if page.load_highlighter != false %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css" media="
@@ -215,7 +216,7 @@
     <meta name="msapplication-config" content="{{ project_base_url }}/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Brand theme (added by CMS -->
+    <!-- Brand theme (for testing purposes - will be added by CMS) -->
     <style>
         :root {
         
@@ -324,6 +325,105 @@
             /**/
 
             -->{% endcomment %}
+        }
+        
+        .t-surfon {
+          --t-text-color: #111;
+          --t-text-color-inverse: #fff;
+          --t-light-adjust: $light-adjust;
+          --t-very-light-adjust: $very-light-adjust;
+          --t-dark-adjust: $dark-adjust;
+          --t-very-dark-adjust: $very-dark-adjust;
+          --t-primary-color: #5c6dab;
+          --t-primary-color-h: 227;
+          --t-primary-color-s: 32%;
+          --t-primary-color-l: 52%;
+          --t-primary-color-l-copy: 52%;
+          /* 1 */
+          --t-primary-fore-text-color: #fff;
+          /* SASS would generate this from the base colour. */
+          --t-secondary-color: #ff9e1b;
+          --t-secondary-color-h: 34;
+          --t-secondary-color-s: 100%;
+          --t-secondary-color-l: 55%;
+          --t-secondary-color-l-copy: 55%;
+          /* 1 */
+          --t-secondary-fore-text-color: #111;
+          /* SASS would generate this from the base colour. */
+          --t-neutral-color: #8e8279;
+          --t-neutral-color-h: 26;
+          --t-neutral-color-s: 9%;
+          --t-neutral-color-l: 52%;
+          --t-neutral-color-l-copy: 52%;
+          /* 1 */
+          --t-neutral-fore-text-color: #111;
+          /* SASS would generate this from the base colour. */
+          --t-notice-color: #a5d1f1;
+          --t-notice-color-h: 205;
+          --t-notice-color-s: 73%;
+          --t-notice-color-l: 80%;
+          --t-notice-color-l-copy: 80%;
+          /* 1 */
+          --t-notice-fore-text-color: #111;
+          /* SASS would generate this from the base colour. */
+          --t-success-color: #aec492;
+          --t-success-color-h: 86;
+          --t-success-color-s: 30%;
+          --t-success-color-l: 67%;
+          --t-success-color-l-copy: 67%;
+          /* 1 */
+          --t-success-fore-text-color: #111;
+          /* SASS would generate this from the base colour. */
+          --t-warning-color: #ffc576;
+          --t-warning-color-h: 35;
+          --t-warning-color-s: 100%;
+          --t-warning-color-l: 73%;
+          --t-warning-color-l-copy: 73%;
+          /* 1 */
+          --t-warning-fore-text-color: #111;
+          /* SASS would generate this from the base colour. */
+          --t-error-color: #9b3259;
+          --t-error-color-h: 338;
+          --t-error-color-s: 51%;
+          --t-error-color-l: 40%;
+          --t-error-color-l-copy: 40%;
+          /* 1 */
+          --t-error-fore-text-color: #fff;
+          /* SASS would generate this from the base colour. */
+          /*
+                Without being able to perform a calc in the hsl function (grrr IE11 even with polyfill) we
+                need to create adjusted -l values in SASS (stylesheet) and/or php (on-page themer)
+                Using SASS to perform the calculations here.
+            */
+          --t-primary-color-l--very-light: 96%;
+          --t-primary-color-l--light: 86%;
+          --t-primary-color-l--dark: 86%;
+          --t-primary-color-l--very-dark: 76%;
+          --t-secondary-color-l--very-light: 96%;
+          --t-secondary-color-l--light: 87%;
+          --t-secondary-color-l--dark: 87%;
+          --t-secondary-color-l--very-dark: 78%;
+          --t-neutral-color-l--very-light: 96%;
+          --t-neutral-color-l--light: 86%;
+          --t-neutral-color-l--dark: 86%;
+          --t-neutral-color-l--very-dark: 76%;
+          --t-notice-color-l--very-light: 98%;
+          --t-notice-color-l--light: 94%;
+          --t-notice-color-l--dark: 94%;
+          --t-notice-color-l--very-dark: 90%;
+          --t-success-color-l--very-light: 97%;
+          --t-success-color-l--light: 90%;
+          --t-success-color-l--dark: 90%;
+          --t-success-color-l--very-dark: 84%;
+          --t-warning-color-l--very-light: 98%;
+          --t-warning-color-l--light: 92%;
+          --t-warning-color-l--dark: 92%;
+          --t-warning-color-l--very-dark: 87%;
+          --t-error-color-l--very-light: 95%;
+          --t-error-color-l--light: 82%;
+          --t-error-color-l--dark: 82%;
+          --t-error-color-l--very-dark: 70%;
+          /**/
         }
     </style>
 </head>

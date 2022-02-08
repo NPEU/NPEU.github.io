@@ -10,11 +10,9 @@
 /**/
 
 $primary-color   : #5F4776;
-//$primary-color   : #aaa;
-//$primary-color   : #66B7E7;
-//$primary-color   : #2C9CDF;
-//$secondary-color : #BC955C;
+//$primary-color : #5c6dab;
 $secondary-color : #b9975b;
+//$secondary-color : #ff9e1b;
 $neutral-color   : #8e8279;
 
 
@@ -224,6 +222,8 @@ $focus-shadow: 0 0 0 $s__sz-xxs #fff, 0 0 0 $s__sz-xs rgba(0,0,0,.2);
 
 @import "component-patterns/_thumbnail.scss";
 
+@import "component-patterns/_utilitext.scss";
+
 /* ---------------------------------------------------------------------------------------------- */
 
 
@@ -243,6 +243,8 @@ $focus-shadow: 0 0 0 $s__sz-xxs #fff, 0 0 0 $s__sz-xs rgba(0,0,0,.2);
 
 $layout-spacing-unit: $s__base-rem-space-unit / 2;
 @import "layout-patterns/_base.scss";
+
+@import "layout-patterns/_center.scss";
 
 @import "layout-patterns/_distribute.scss";
 
@@ -359,6 +361,9 @@ $ff-min-widths: (
 );
 
 @import "special-patterns/_ff-widths.scss";
+
+// Page Header is necessary but it doesn't fit nicely into another category:
+@import "special-patterns/_page-header.scss";
 
 // Page Sidebar is necessary but it doesn't fit nicely into another category:
 @import "special-patterns/_page-sidebar.scss";

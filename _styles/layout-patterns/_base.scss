@@ -15,6 +15,7 @@
 */
 $layout-namespace: l- !default;
 $layout-spacing-unit: 2rem !default;
+$layout-spacing-unit--xs: ($layout-spacing-unit / 4) !default;
 $layout-spacing-unit--s: ($layout-spacing-unit / 2) !default;
 $layout-spacing-unit--l: ($layout-spacing-unit * 2) !default;
 
@@ -76,11 +77,11 @@ $layout-limits: (
     */
     .#{$layout-namespace}box {
         display: block;
-        
+
         //display: flex;
         //flex-direction: column;
         //height: 100%; /* 1 */
-        
+
         //flex-grow: 0;
         flex-grow: 1;
         flex-shrink: 1;
@@ -95,6 +96,22 @@ $layout-limits: (
         flex-grow: 9999 !important;
         min-width: 100% !important;
     }
+    
+    .#{$layout-namespace}box--center {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-direction: column !important;
+
+        & > * {
+            flex: 0 1 auto !important;
+        }
+    }
+    
+    .#{$layout-namespace}box--push-apart {
+        margin: 0 auto !important;
+    }
+    
 
 
     // Switch to row:
@@ -143,19 +160,6 @@ $layout-limits: (
     }
 
     // Add gutters:
-    // Small /**/
-    &.#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner {
-        padding: $layout-spacing-unit--s;
-    }
-
-    &.#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
-        padding: $layout-spacing-unit--s;
-
-        .#{$layout-namespace}box__separator {
-            padding-left: $layout-spacing-unit--s;
-        }
-    }
-
 
     // Medium (default) /**/
     &.#{$layout-namespace}gutter > .#{$layout-namespace}layout__inner,
@@ -172,6 +176,31 @@ $layout-limits: (
         }
     }
 
+    // Extra Small /**/
+    &.#{$layout-namespace}gutter--xs > .#{$layout-namespace}layout__inner {
+        padding: $layout-spacing-unit--xs;
+    }
+
+    &.#{$layout-namespace}gutter--xs > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
+        padding: $layout-spacing-unit--xs;
+
+        .#{$layout-namespace}box__separator {
+            padding-left: $layout-spacing-unit--xs;
+        }
+    }
+
+    // Small /**/
+    &.#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner {
+        padding: $layout-spacing-unit--s;
+    }
+
+    &.#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
+        padding: $layout-spacing-unit--s;
+
+        .#{$layout-namespace}box__separator {
+            padding-left: $layout-spacing-unit--s;
+        }
+    }
 
     // Large /**/
     &.#{$layout-namespace}gutter--l > .#{$layout-namespace}layout__inner {
@@ -197,18 +226,23 @@ $layout-limits: (
         padding: 0;
     }
 
-    // Small /**/
-    &.#{$layout-namespace}gutter--s.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
-        //margin: -$layout-spacing-unit--s * 2;
-        margin: -$layout-spacing-unit--s;
-    }
-
-
     // Medium (default) /**/
     &.#{$layout-namespace}gutter.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner,
     &.#{$layout-namespace}gutter--m.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
         //margin: -$layout-spacing-unit * 2;
         margin: -$layout-spacing-unit;
+    }
+
+    // Extra Small /**/
+    &.#{$layout-namespace}gutter--xs.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
+        //margin: -$layout-spacing-unit--xs * 2;
+        margin: -$layout-spacing-unit--xs;
+    }
+
+    // Small /**/
+    &.#{$layout-namespace}gutter--s.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
+        //margin: -$layout-spacing-unit--s * 2;
+        margin: -$layout-spacing-unit--s;
     }
 
 
@@ -222,15 +256,20 @@ $layout-limits: (
     // Flexbox gap support: https://gist.github.com/OliverJAsh/7f29d0fa1d35216ec681d2949c3fe8b7#gistcomment-3978504
     @supports (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
 
-        // Small /**/
-        &.#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner {
-            --g: #{$layout-spacing-unit--s * 2};
-        }
-
         // Medium (default) /**/
         &.#{$layout-namespace}gutter > .#{$layout-namespace}layout__inner,
         &.#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner {
             --g: #{$layout-spacing-unit * 2};
+        }
+
+        // Extra Small /**/
+        &.#{$layout-namespace}gutter--xs > .#{$layout-namespace}layout__inner {
+            --g: #{$layout-spacing-unit--xs * 2};
+        }
+
+        // Small /**/
+        &.#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner {
+            --g: #{$layout-spacing-unit--s * 2};
         }
 
         // Large /**/
@@ -240,6 +279,7 @@ $layout-limits: (
 
 
 
+        &.#{$layout-namespace}gutter--xs > .#{$layout-namespace}layout__inner,
         &.#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner,
         &.#{$layout-namespace}gutter > .#{$layout-namespace}layout__inner,
         &.#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner,
@@ -247,6 +287,7 @@ $layout-limits: (
             gap: var(--g);
         }
 
+        &.#{$layout-namespace}gutter--xs > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box,
         &.#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box,
         &.#{$layout-namespace}gutter > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box,
         &.#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box,
@@ -257,7 +298,7 @@ $layout-limits: (
 
 
         // We're NOT flushing the gutter by default so add padding:
-        // Small /**/
+        &.#{$layout-namespace}gutter--xs > .#{$layout-namespace}layout__inner,
         &.#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner,
         &.#{$layout-namespace}gutter > .#{$layout-namespace}layout__inner,
         &.#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner,
@@ -314,9 +355,9 @@ $layout-limits: (
             //min-width: 100%; /* 1 */
             max-width: calc(100vw - 17px); /* [2] */
         }
-        
-        
-        
+
+
+
         //&.#{$layout-namespace}row > .#{$layout-namespace}layout__inner {
         //    display: block;
         //}
@@ -332,7 +373,7 @@ $layout-limits: (
         //    float: left;
         //}
         //
-        
+
         // Flexbox is so bad in IE, these inexplicably help things.
         // E.g. on the Styleguide, without the min-height the section menu list-item creates extra
         // space at the bottom of the l-box, but so does the svg link icon - weird.
@@ -341,7 +382,7 @@ $layout-limits: (
             min-width: 1px;
             min-height: 1px;
         }
-        
+
 
         //// Small /**/
         //&.#{$layout-namespace}gutter--s.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
@@ -373,6 +414,6 @@ $layout-limits: (
         //&.#{$layout-namespace}gutter--l > .#{$layout-namespace}layout__inner{
         //    max-width: calc(100% + #{$layout-spacing-unit--l * 2});
         //}
-        
+
     }
 }
