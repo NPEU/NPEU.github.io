@@ -25,6 +25,10 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
         border-radius: $s__sz-s;
         overflow: hidden;
     }
+    
+    // Safari 10.1 doesn't handle height correctly, so undoing the 100%. This means it won't expand
+    // in layout/grid scenarios, but there are hardly any users so this is acceptable.
+    @at-root _::-webkit-:host:not(:root:root), & { height: auto; }
 
         /*
             The pattern markup allows for a TFS border, so zap that:

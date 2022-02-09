@@ -3404,6 +3404,10 @@ a[href].c-cta--has-icon .icon {
   overflow: hidden;
 }
 
+_::-webkit-:host:not(:root:root), .c-card {
+  height: auto;
+}
+
 .c-card > div {
   display: flex;
   flex-direction: column;
