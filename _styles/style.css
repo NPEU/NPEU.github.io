@@ -3404,10 +3404,6 @@ a[href].c-cta--has-icon .icon {
   overflow: hidden;
 }
 
-_::-webkit-:host:not(:root:root), .c-card {
-  height: auto;
-}
-
 .c-card > div {
   display: flex;
   flex-direction: column;
@@ -3591,6 +3587,14 @@ _::-webkit-:host:not(:root:root), .c-card {
   font-size: 0.75em;
   color: #fff;
   background-color: #000;
+}
+
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    .card {
+      height: auto;
+    }
+  }
 }
 
 /*
