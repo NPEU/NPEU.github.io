@@ -3592,7 +3592,7 @@ a[href].c-cta--has-icon .icon {
 @media not all and (min-resolution: 0.001dpcm) {
   @supports (-webkit-appearance: none) {
     .card {
-      height: auto;
+      height: auto !important;
     }
   }
 }
