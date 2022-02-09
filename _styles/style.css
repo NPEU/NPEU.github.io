@@ -3022,7 +3022,6 @@ body {
   /* [1] */
   display: block;
   /* [2] */
-  width: 100%;
   max-width: 100%;
   border-style: none;
   background-color: transparent;
@@ -3111,6 +3110,10 @@ body {
   border-width: 0.3rem;
   border-style: solid;
   border-color: currentColor;
+}
+
+.c-badge.c-badge--decorated img {
+  margin: 0 auto;
 }
 
 .c-badge.c-badge--page-brand img {

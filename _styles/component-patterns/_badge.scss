@@ -40,9 +40,10 @@ $component-namespace: c- !default;
 
             display: block; /* [2] */
 
+            // Width 100% is causing problems in OSX (10-13 tested)
             //height: fit-content;
             //width: auto;
-            width: 100%;
+            //width: 100%;
 
             max-width: 100%;
 
@@ -177,6 +178,11 @@ $component-namespace: c- !default;
             border-width: $s__sz-xxs;
             border-style: solid;
             border-color: currentColor;
+        }
+        
+        // Center decorated badge images:
+        img {
+            margin: 0 auto;
         }
     }
 
