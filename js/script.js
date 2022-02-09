@@ -498,8 +498,8 @@ var cookie_html                   =
 
 (function() {
 
-    var debug                                = true;
-    //var debug                                = false;
+    //var debug                                = true;
+    var debug                                = false;
     var ident                                = 'cmr';
     var selector                             = '[data-js="' + ident + '"]';
     var js_classname_prefix                  = 'js';
@@ -513,10 +513,16 @@ var cookie_html                   =
             document.addEventListener('DOMContentLoaded', fn);
         }
     }
-    
+
     var set_style = function(element, style) {
         Object.keys(style).forEach(function(key) {
-            element.style[key] = style[key];
+            var val = style[key];
+            if (val.indexOf(' !important' ) !== -1) {
+                val = val.replace(' !important', '');
+                element.style.setProperty(key, val, 'important');
+            } else {
+                element.style.setProperty(key, val);
+            }
         });
     }
 
@@ -560,36 +566,57 @@ var cookie_html                   =
         set_breakpoints: function(cmrs) {
 
             Array.prototype.forEach.call(cmrs, function (cmr, i) {
+                set_style(cmr, {'position': 'relative'});
                 var clone = cmr.cloneNode(true);
                 clone.classList.add(js_classname_prefix + '-' + ident + '--' + container_js_classname_wide_suffix);
 
                 set_style(clone, {
-                    position: 'absolute',
-                    border: '0',
-                    left: '0',
-                    top: '0',
-                    width: '1000%',
-                    flexWrap: 'nowrap',
-                    justifyContent: 'flex-start'
+                    'border': '0',
+                    'left': '0',
+                    'top': '0',
+                    'width': 'intrinsic',
+                    'flex-wrap': 'nowrap',
+                    'justify-content': 'flex-start',
+                    'max-width': 'none'
                 });
+
                 cmr.parentNode.appendChild(clone);
-                
-                console.log(element.style['gap']);
 
                 var children   = clone.children;
+                var n_children = children.length;
                 var breakpoint = 0;
+
+                // Set widths for flexible children:
                 Array.prototype.forEach.call(children, function (child, i) {
-                    // If this child is intended to be flexible, we need to add it's min-width,
-                    // rather than actual width:
+                    //console.log(child);
                     if (child.getAttribute('data-min-width')) {
-                        breakpoint += Math.ceil(child.getAttribute('data-min-width'));
-                    } else {
-                        breakpoint += Math.ceil(child.offsetWidth);
+                        var w = parseInt(child.getAttribute('data-min-width'));
+                        //console.log('w', w);
+                        //console.log(getComputedStyle(child));
+
+                        var pLeft  = parseInt(getComputedStyle(child).paddingLeft);
+                        var pRight = parseInt(getComputedStyle(child).paddingRight);
+                        //console.log(w, pLeft, pRight);
+                        set_style(child, {
+                            'width': (w + pLeft + pRight) + 'px !important',
+                            'max-width': (w + pLeft + pRight) + 'px !important',
+                            'min-width': (w + pLeft + pRight) + 'px !important'
+                        })
                     }
                 });
 
-                cmr.setAttribute('data-js-breakpoint', breakpoint);
-
+                // Handle IE separately:
+                if (!!window.MSInputMethodContext && !!document.documentMode) {
+                    var pLeft  = parseInt(getComputedStyle(clone).paddingLeft);
+                    var pRight = parseInt(getComputedStyle(clone).paddingRight);
+                    breakpoint += pLeft + pRight;
+                    Array.prototype.forEach.call(children, function (child, i) {
+                        breakpoint += Math.ceil(child.offsetWidth);
+                    });
+                    cmr.setAttribute('data-js-breakpoint', breakpoint);
+                } else {
+                    cmr.setAttribute('data-js-breakpoint', clone.offsetWidth);
+                }
                 //clone.remove();
             });
         },
@@ -625,16 +652,19 @@ var cookie_html                   =
                     console.log('No ResizeObserver support.');
                 }
 
+                // When applied to a flex container, IE reserves space even if position:absolute,
+                // so using negative margin instead.
                 var style = {
-                    position: 'absolute',
-                    display: 'block',
-                    border: '0',
-                    left: '0',
-                    top: '0',
-                    width: '100%',
-                    height: '100%',
-                    pointerEvents: 'none',
-                    zIndex: '-1'
+                    'position': 'relative',
+                    'margin-top': '-100%',
+                    'display': 'block',
+                    'border': '0',
+                    'left': '0',
+                    'top': '0',
+                    'width': '100%',
+                    'height': '100%',
+                    'pointerEvents': 'none',
+                    'z-index': '-1'
                 };
 
                 // Note visibility: hidden prevents the resize event from occurring in FF.
@@ -656,7 +686,7 @@ var cookie_html                   =
         }
     }
 
-    window.setTimeout(ready($cmr.init), 500);
+    window.setTimeout(function(){ready($cmr.init)}, 50);
 })();
 
 /*! --------------------------------------------------------------------------------------------- *\
