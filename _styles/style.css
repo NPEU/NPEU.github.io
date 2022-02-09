@@ -481,10 +481,6 @@ a[href]:focus {
     Sometimes anchors can be used without an href, and may contain icons etc, so make sure styles
     are applied to ALL anchors where appropriate.
 */
-a svg:not(:only-child) {
-  margin-left: 0.25em;
-}
-
 a[href][rel~="external"] {
   padding-right: 1em;
   background-image: linear-gradient(45deg, transparent 65%, currentColor 65%);
