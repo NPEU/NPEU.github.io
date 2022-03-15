@@ -16,7 +16,11 @@ $hero-min-heading-size: 24px !default;
 $hero-max-heading-size: 46px !default;
 
 
-
+.#{$component-namespace}hero-wrap {
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
 
 .#{$component-namespace}hero-wrap.#{$component-namespace}hero-carousel {
     padding: 0;
@@ -35,7 +39,7 @@ $hero-max-heading-size: 46px !default;
     .#{$component-namespace}hero-carousel__nav {
 
         padding: 0 0.6rem;
-        margin: -#{$s__sz-m + $s__sz-s} 0 0 0;
+        margin: -#{$s__sz-m + $s__sz-s} 0 #{$s__sz-s} 0;
 
         z-index: 2;
 
@@ -147,7 +151,7 @@ $hero-max-heading-size: 46px !default;
         padding-bottom: $s__sz-m;
         padding-left: $s__sz-m;
         flex-grow: 1;
-        
+
         word-break: break-word;
 
 
@@ -164,7 +168,7 @@ $hero-max-heading-size: 46px !default;
             @include fluid-type(s__strip-unit($hero-breakpoint) * 16px, s__strip-unit($hero-max-message-breakpoint) * 16px, $hero-min-message-size, $hero-max-message-size);
 
             line-height: 1.3;
-            font-weight: bold;
+            //font-weight: bold;
             margin: 0;
             max-width: 100%; /* [1] */
         }
@@ -172,7 +176,7 @@ $hero-max-heading-size: 46px !default;
         & > .#{$component-namespace}hero__message--fluid_heading {
             @include fluid-type(s__strip-unit($hero-breakpoint) * 16px, s__strip-unit($hero-max-message-breakpoint) * 16px, $hero-min-heading-size, $hero-max-heading-size);
         }
-    
+
 
     /*#{&}__image-credit {
         font-size: 0.875em;
@@ -222,7 +226,7 @@ $hero-max-heading-size: 46px !default;
                 */
                 width: 100% !important; /* [1] */
 
-                background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
+                background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--dark));
                 color: #fff;
             }
         }
@@ -257,14 +261,14 @@ $hero-max-heading-size: 46px !default;
                 */
                 width: 100% !important; /* [1] */
 
-                background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
+                background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--dark));
                 color: #fff;
             }
         }
     }
 }
 
-@media only screen and (min-width:#{$hero-breakpoint}) {
+@media only screen and (min-width:#{$hero-breakpoint + 0.01rem}) {
 
     .#{$component-namespace}hero-wrap:not(.#{$component-namespace}hero--wide-message) {
 
@@ -300,7 +304,7 @@ $hero-max-heading-size: 46px !default;
 
 }
 
-@media only screen and (min-width:#{$hero-breakpoint-wide}) {
+@media only screen and (min-width:#{$hero-breakpoint-wide + 0.01rem}) {
 
     .#{$component-namespace}hero-wrap.#{$component-namespace}hero--wide-message {
         .#{$component-namespace}hero {
@@ -320,10 +324,10 @@ $hero-max-heading-size: 46px !default;
                 align-items: center;;
                 align-content: center;
                 justify-content: flex-start;
-                
+
                 & > * {
                     flex: 1 0 100%;
-                    
+
                 }
             }
         }

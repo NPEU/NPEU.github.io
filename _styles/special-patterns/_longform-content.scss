@@ -1,0 +1,47 @@
+/*
+*/
+
+$longform-content-max-width: 67rem !default;
+
+@mixin longform-content-styles {
+    width: 100%;
+    max-width: $longform-content-max-width;
+    margin-left: auto;
+    margin-right: auto;
+    
+    --inset: #{$s__sz-m};
+
+    padding-left: var(--inset, 0px);
+    padding-right: var(--inset, 0px);
+}
+
+.has-longform-content {
+    &#{&} > .longform-content__companion {
+        @include longform-content-styles();
+    }
+}
+
+.longform-content {
+
+    &#{&} > *:not([data-display-as~="blocks"]):not([data-display-as~="breakout-box"]) {
+        @include longform-content-styles();
+    }
+
+    &#{&} > figure[data-display-as~="blocks"],
+    &#{&} > figure[data-display-as~="breakout-box"] {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    details {
+        margin-bottom: $s__sz-m;
+        border: 0;
+        border-bottom: 1px solid #eee;
+        padding: $s__sz-xs 0 $s__sz-xs $s__sz-m;
+    }
+
+    summary {
+        margin-bottom: $s__sz-m;
+        font-weight: bold;
+    }
+}

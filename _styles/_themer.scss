@@ -28,8 +28,8 @@ $error-text-color   : s__set_color_for_background($error-color, $s__base-text-co
 
 $light-adjust: 0.7;
 $very-light-adjust: 0.92;
-$dark-adjust: 0.7;
-$very-dark-adjust: 0.5;
+$dark-adjust: -0.23;
+$very-dark-adjust: -0.36;
 
 
 //@debug #{$primary-text-color};
@@ -59,13 +59,19 @@ $very-dark-adjust: 0.5;
 
 //$p: adjust_lightness(37%, 0.92);
 :root {
+    --t-bg-color: #FFFFFF; /* hsl(0, 0%, 100%) */
+    --t-bg-color-h: 0;
+    --t-bg-color-s: 0%;
+    --t-bg-color-l: 100%;
+    --t-bg-color-l-copy: 100%;
+    
     --t-text-color: #{$s__base-text-color};
     --t-text-color-inverse: #{$s__base-text-color-inverse};
 
-    --t-light-adjust: $light-adjust;
-    --t-very-light-adjust: $very-light-adjust;
-    --t-dark-adjust: $dark-adjust;
-    --t-very-dark-adjust: $very-dark-adjust;
+    --t-light-adjust: #{$light-adjust};
+    --t-very-light-adjust: #{$very-light-adjust};
+    --t-dark-adjust: #{$dark-adjust};
+    --t-very-dark-adjust: #{$very-dark-adjust};
 
     //--t-primary-color: #5F4776; /* hsl(271, 25%, 37%) */
     //--t-primary-color-h: #{round(hue($primary-color))};

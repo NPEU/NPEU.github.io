@@ -7,7 +7,7 @@
 
 
 {% capture date_content %}
-<p>{% include date.html date=1632939147 %}</p>
+<span>{% include date.html date=1632939147 %}</span>
 {% endcapture %}
 
 <h2 id="{{ include_title | slugify }}">{{ include_title }}</h2>
@@ -27,7 +27,7 @@
     {% include card.html
         title="This is a typical card"
         url="/patterns/component"
-        header_extra=date_content
+        footer_extra=date_content
         content="<p>This card tells you something else about something else.</p>"
         cta="Read more"
         img_src="/assets/images/patterns/placeholder-1"
@@ -112,7 +112,7 @@
         cta="Read more"
         img_src="/assets/images/patterns/placeholder-2"
         img_alt="Father holding his child"
-        footer_extra="<p>- by <a href=\"#author\">Some Author</a></p>"
+        footer_extra="<span>- by <a href=\"#author\">Some Author</a></span>"
     %}
 </div>
 
@@ -216,7 +216,7 @@
         url="/patterns"
         header_extra=date_content
         cta="Read more"
-        footer_extra="<p>- by <a href=\"#author\">Some Author</a></p>"
+        footer_extra="<span>- by <a href=\"#author\">Some Author</a></span>"
     %}
 </div>
 
@@ -227,7 +227,7 @@
         title="So, another card"
         url="/patterns"
         header_extra=date_content
-        footer_extra="<p>- by <a href=\"#author\">Some Author</a></p>"
+        footer_extra="<span>- by <a href=\"#author\">Some Author</a></span>"
     %}
 </div>
 
@@ -238,7 +238,7 @@
         title="And another card"
         url="/patterns"
         content="<p>This card tells you something else about something else.</p><p>This card tells you something else about something else.</p><p>This card tells you something else about something else.</p>"
-        footer_extra="<p>- by <a href=\"#author\">Some Author</a></p>"
+        footer_extra="<span>- by <a href=\"#author\">Some Author</a></span>"
     %}
 </div>
 
@@ -249,7 +249,7 @@
         title="This card has no content"
         url="/patterns"
         cta="Read more"
-        footer_extra="<p>- by <a href=\"#author\">Some Author</a></p>"
+        footer_extra="<span>- by <a href=\"#author\">Some Author</a></span>"
     %}
 </div>
 
@@ -269,11 +269,133 @@
     {% include card.html
         title="This card has some footer text"
         url="/patterns"
-        footer_extra="<p>- by <a href=\"#author\">Some Author</a></p>"
+        footer_extra="<span>- by <a href=\"#author\">Some Author</a></span>"
     %}
 </div>
 
-<p>Special - Footer Image</p>
+
+<h3>Combinations - min height</h3>
+
+<p>
+If articles are in a layout, the chances are the content will vary, which means they'll all grow to the tallest on the row.<br>
+We want the cards to expand to fill the height smartly, so we're forcing the card height in this section to test this.
+</p>
+
+<div class="min-card-height">
+    <p>Image</p>
+
+    <div class="u-space--below">
+        {% include card.html
+            title="Another card here"
+            url="/patterns"
+            img_src="/assets/images/patterns/placeholder-2"
+            img_alt="Father holding his child"
+        %}
+    </div>
+
+    <p>Image, header extra</p>
+
+    <div class="u-space--below">
+        {% include card.html
+            title="This card has a longer title so we can test text wrapping"
+            url="/patterns"
+            header_extra=date_content
+            img_src="/assets/images/patterns/placeholder-3"
+            img_alt="Mother holding her child"
+        %}
+    </div>
+
+    <p>Header extra, content</p>
+
+    <div class="u-space--below">
+        {% include card.html
+            title="Yes another card"
+            url="/patterns"
+            header_extra=date_content
+            content="<p>This card tells you something else about something else.</p><p>This card tells you something else about something else.</p><p>This card tells you something else about something else.</p>"
+        %}
+    </div>
+
+    <p>Header extra, content, CTA</p>
+
+    <div class="u-space--below">
+        {% include card.html
+            title="This card is super great"
+            url="/patterns"
+            header_extra=date_content
+            content="<p>This card tells you something else about something else.</p><p>This card tells you something else about something else.</p><p>This card tells you something else about something else.</p>"
+            cta="Read more"
+        %}
+    </div>
+
+    <p>Header extra, CTA and footer extra</p>
+
+    <div class="u-space--below">
+        {% include card.html
+            title="This card is exciting"
+            url="/patterns"
+            header_extra=date_content
+            cta="Read more"
+            footer_extra="<span>- by <a href=\"#author\">Some Author</a></span>"
+        %}
+    </div>
+
+    <p>Header extra, footer extra</p>
+
+    <div class="u-space--below">
+        {% include card.html
+            title="So, another card"
+            url="/patterns"
+            header_extra=date_content
+            footer_extra="<span>- by <a href=\"#author\">Some Author</a></span>"
+        %}
+    </div>
+
+    <p>Content, footer extra</p>
+
+    <div class="u-space--below">
+        {% include card.html
+            title="And another card"
+            url="/patterns"
+            content="<p>This card tells you something else about something else.</p><p>This card tells you something else about something else.</p><p>This card tells you something else about something else.</p>"
+            footer_extra="<span>- by <a href=\"#author\">Some Author</a></span>"
+        %}
+    </div>
+
+    <p>CTA and footer extra</p>
+
+    <div class="u-space--below">
+        {% include card.html
+            title="This card has no content"
+            url="/patterns"
+            cta="Read more"
+            footer_extra="<span>- by <a href=\"#author\">Some Author</a></span>"
+        %}
+    </div>
+
+    <p>CTA</p>
+
+    <div class="u-space--below">
+        {% include card.html
+            title="This one only has a CTA"
+            url="/patterns"
+            cta="Read more"
+        %}
+    </div>
+
+    <p>Footer extra</p>
+
+    <div class="u-space--below">
+        {% include card.html
+            title="This card has some footer text"
+            url="/patterns"
+            footer_extra="<span>- by <a href=\"#author\">Some Author</a></span>"
+        %}
+    </div>
+</div>
+
+
+<h2>Special - Footer Image</h2>
 
 <div class="u-space--below">
     {% include card.html
@@ -328,7 +450,7 @@
 </div>
 
 
-<p>Special - Footer Image 2</p>
+<h2>Special - Footer Image 2</h2>
 
 <div class="u-space--below">
     {% include card.html
@@ -339,7 +461,7 @@
         cta="Read more"
         img_src="/assets/images/patterns/placeholder-3"
         img_alt="Mother holding her child"
-        footer_extra="<p>- by <a href=\"#author\">Some Author</a></p>"
+        footer_extra="<span>- by <a href=\"#author\">Some Author</a></span>"
         footer_img_src="/assets/images/patterns/footer-placeholder-1"
         footer_img_padded=true
         footer_img_w=270

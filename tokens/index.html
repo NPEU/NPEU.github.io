@@ -4,11 +4,11 @@ title: NPEU Tokens
 project_base_url: styleguide
 ---
 
-<p class="u-padding--sides">
+<p>
 Tokens are base units and settings that underpin the whole design system. Everything is based off of these.
 </p>
 
-<ul class="u-padding--sides">
+<ul>
     <li>Base size and the sizing scale</li>
     <li>Base colour, secondary colour and neutral colour and the tints thereof.</li>
     <li>Shadows, focus styles.</li>
@@ -16,4 +16,89 @@ Tokens are base units and settings that underpin the whole design system. Everyt
 </ul>
 
 <div style="width: 3em; height: 3em; background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));">
+</div>
+
+<h2>Icons</h2>
+
+<p>
+This pattern describes how an icon should be marked-up. It doesn't have any classes. There are different usage and fallback scenarios to consider.
+</p>
+
+<h3>Emphasis icon</h3>
+
+<p>
+An in-line right-pointing chevron icon: <svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em"><use xlink:href="#icon-chevron-right"></use></svg> (note this will be missing if SVG is not supported (NoSVG)).
+</p>
+
+<div>
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot;&gt;&lt;use xlink:href=&quot;#icon-chevron-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+    </details>
+</div>
+
+<p>In this scenario the icon adds visual emphasis to a link (CTA) - it does not add any information so can be accessibly-hidden with <code>aria-hidden=&quot;true&quot;</code>:</p>
+
+<p>
+    <a href="#" class="c-cta">
+        Call to Action<svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none"><use xlink:href="#icon-chevron-right"></use></svg>
+    </a>
+</p>
+
+<div>
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;a href=&quot;#&quot; class=&quot;c-cta&quot;&gt;
+    Call to Action&lt;svg focusable=&quot;false&quot; <strong>aria-hidden=&quot;true&quot;</strong> width=&quot;1.25em&quot; height=&quot;1.25em&quot; display=&quot;none&quot;&gt;&lt;use xlink:href=&quot;#icon-chevron-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+&lt;/a&gt;</code></pre>
+    </details>
+</div>
+
+
+<p>Note in the example above we've added <code>display=&quot;none&quot;</code> to the SVG. Most often these 'Emphasis Icons' should be hidden if CSS is unavailable.</p>
+<p>For example, with Info-Overlay a details/summary element is styled such that an icon acts as the open/close button, but if styles aren't loaded the icon looks out-of-place. Similarly the CTA chevron above positions itself badly in NoCSS scenario and is better not shown at all.</p>
+<p>Note that buttons not added via JS are better off having the <code>hidden</code> attribute instead.</p>
+<p>Test things on a case-by-case basis, if the icons <em>should</em> appear in NoCSS scenarios, then remove the <code>display=&quot;none&quot;</code>.
+
+
+<h3>Solo icon</h3>
+
+<p>
+An in-line right-pointing search icon: <svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em"><use xlink:href="#icon-search"></use><text visibility="hidden">Search</text></svg> (note in a NoSVG scenario the word 'Search' will appear instead).
+</p>
+
+<p>In this scenario the icon is the only thing visible so an accessible label needs to be present, and text needs to be visible for NoSVG scenarios:</p>
+
+
+<p>
+    <button aria-labelledby="search-button-label">
+        <svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em"><use xlink:href="#icon-search"></use><text visibility="hidden" id="search-button-label">Search</text></svg>
+    </button>
+</p>
+
+<div>
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;button aria-labelledby=&quot;search-button-label&quot;&gt;
+    &lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot;&gt;&lt;use xlink:href=&quot;#icon-search&quot;&gt;&lt;/use&gt;&lt;text visibility=&quot;hidden&quot; id=&quot;search-button-label&quot;&gt;Search&lt;/text&gt;&lt;/svg&gt;
+&lt;/button&gt;</code></pre>
+    </details>
+</div>
+
+<p>Another example:</p>
+
+<p>
+    <button id="env-msg-close" aria-labelledby="env-msg-close-button-label" onclick="this.parentNode.parentNode.parentNode.style.display='none'">
+        <svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em"><use xlink:href="#icon-cross"></use>
+        <text visibility="hidden" id="env-msg-close-button-label">Close this notice</text></svg>
+    </button>
+</p>
+
+<div>
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;button id=&quot;env-msg-close&quot; aria-labelledby=&quot;env-msg-close-button-label&quot; onclick=&quot;this.parentNode.parentNode.parentNode.style.display=&apos;none&apos;&quot;&gt;
+    &lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot;&gt;&lt;use xlink:href=&quot;#icon-cross&quot;&gt;&lt;/use&gt;&lt;text visibility=&quot;hidden&quot; id=&quot;env-msg-close-button-label&quot;&gt;Close this notice&lt;/text&gt;&lt;/svg&gt;
+&lt;/button&gt;</code></pre>
+    </details>
 </div>

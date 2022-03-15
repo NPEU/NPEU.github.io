@@ -449,25 +449,97 @@ body_end_script: |
 <p><a href="#">Test active link</a></p>
 <p><a href="#bottom">Skip to bottom</a></p>
 <p><a href="#tmp-lists">Skip to lists (temp)</a></p>
-<!--
-<h2>Notes</h2>
-<p>
-    <strong>Sizing issues:</strong><br>
-    Borders normally should be the same size regardless of font size.<br>
-    Vertical Rhythm (VR) preserved by using either padding or margin tweaks to offset border- Border Compensation Tweaks (BCT).<br>
-    VR is calculated by REMs so adjustment to <code>html</code> font-size should adjust whole VR.<br>
-    However, doing this DOES NOT adjust the BCT.<br>
-    So, perhaps have to consider changing all BCT values to <code>calc()</code> so that <code>html</code>  font-size adjustments (e.g. in Media Queries) will also adjust BCT.<br>
-    Although, it's possible to make font-size changes on the <code>body</code>  font-size, so this may not be necessary.
-</p>
+<h2 id="brief-intro">Brief Intro</h2>
 
 <p>
-    Double bottom space fix needs thought in how it relates to borders.
-    The border/padding combination works fine, but the bottom margin of the inner elements will be a full spacing-unit, not adjusted for border-width.
-    This means the combined margin is 1 full spacing unit and this negates the BCT.
-    Maybe will have to make BCT margin-based and not padding based after all?
+StartCSS is designed to be highly configurable, but also work out-of-the-box. The general idea is that you can apply it to a well-formed HTML document and things will generally look pretty decent and be accessible.
+You can also use it as starting point for a more comprehensive framework.
 </p>
--->
+<p>
+Because it's meant to be approach-agnostic, StartCSS doesn't use classes so there are a few edge cases where things doen't work quite as smoothly as I'd like, even in this test document.
+For example the video-inside-figure scenario results in the top-part of the focus-shadow being clipped, and the image-inside-link scenario also has a focus-shadow issue where little extra bits of shadow appear in the left top and bottom corners.
+If using StartCSS as part of framework you can add a class such as <code>has-media</code> to the figure or link respectively and fix these issues easily enough, but until we get the <code>:has</code> parent selector these are currently unfixable in raw StartCSS.
+</p>
+<p>E.g.</p>
+
+<pre><code>CSS:
+a.has-media {
+    box-shadow: none;
+}
+
+figure.has-media {
+    overflow: visible;
+}
+
+---
+
+HTML:
+
+&lt;figure class="has-media"&gt;
+    &lt;video&gt;...&lt;/video&gt;
+&lt;/figure&gt;
+
+...
+
+&lt;a href="" class="has-media"&gt;
+    &lt;img ... &gt;
+&lt;/a&gt;
+</code></pre>
+
+<p>StartCSS currently uses the <a href="https://github.com/Fall-Back/CSS-Mustard-Cut#prm-cut-prefers-reduced-motion" rel="external">PRM Mustard Cut</a> which supports the following browsers
+
+<p>
+Print (Edge doesn't apply to print otherwise)<br>
+Edge 79+, Chrome 74+, Firefox 63+, Opera 64+, Safari 10.1+, iOS 10.3+, Android 81+
+</p>
+
+<h2 id="accessibility">Accessibility</h2>
+
+<h3>Visually Hidden</h3>
+
+<p>What follows is a visually-hidden (or screen-reader only) bit of text:</p>
+<p><button>Focus shortcut</button></p>
+<p><a href="#">Read more<span data-hidden="visually">&nbsp;about a thing.</span></a></p>
+
+<p><a href="#"><span data-hidden="visually">Page&nbsp;</span>1</a></p>
+
+<p>Note that visually hidden elements contain a forced space (<code>&amp;nbsp;</code>) to separate it from the visible words, or NVDA Chome (at least) conflate the words. IN the first example without the space it's read as "Read moreabout at thing."
+
+<p>What follows is a skip-link that is visually-hidden until focussed:</p>
+<p><button>Focus shortcut</button></p>
+
+<p><a href="#bottom" data-hidden="visually">Skip to bottom</a></p>
+
+<p>More to add ...</p>
+
+<h2 id="semantic-elements">Semantic Elements</h2>
+
+<p>I'm having a think about these and why I wanted to add margins. Rethinking all margins anyway.</p>
+
+<h3>Section</h3>
+
+<section>
+    <p>This is a section element</p>
+</section>
+
+
+<h3>Article</h3>
+
+<article>
+    <p>This is a article element</p>
+</article>
+
+<h3>Nav</h3>
+
+<nav>
+    <p>This is a nav element</p>
+</nav>
+
+<h3>Aside</h3>
+
+<aside>
+<p>This is a aside element</p>
+</aside>
 
 <h2>Forms</h2>
 
@@ -755,9 +827,6 @@ lines.</textarea>
 </p>
 
 <hr>
-<h1>Heading 1</h1>
-<p>Pellentesque habitant morbi tristique <a href="#">some inline link</a> senectus et netus et <a href="#" rel="external">some inline external link</a> malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-
 <h2>Heading 2</h2>
 <p>Pellentesque habitant morbi tristique <a href="#">some inline link</a> senectus et netus et <a href="#" rel="external">some inline external link</a> malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
 
@@ -789,6 +858,32 @@ lines.</textarea>
 <h6>Heading 6<br>Simulate line-wrap</h6>
 <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
 
+<header>
+    <h2>Heading 2<br>Simulate line-wrap</h2>
+    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+</header>
+
+<header>
+    <h3>Heading 3<br>Simulate line-wrap</h3>
+    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+</header>
+
+<header>
+    <h4>Heading 4<br>Simulate line-wrap</h4>
+    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+</header>
+
+<header>
+    <h5>Heading 5<br>Simulate line-wrap</h5>
+    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+</header>
+
+<header>
+    <h6>Heading 6<br>Simulate line-wrap</h6>
+    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+</header>
+
 <h2>Blockquotes</h2>
 
 <blockquote>
@@ -815,9 +910,11 @@ lines.</textarea>
     <li>Norway</li>
 </ol>
 
-<p id="tmp-lists">Same list with various type attributes (the floated image tests the fix for <a href="https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists">list number/bullet position problem</a>).</p>
+<p id="tmp-lists">Same list with various type attributes (the floated image tests the fix for <a href="https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists" rel="external">list number/bullet position problem</a>).</p>
 
-<img src="/media/poster.jpg" style="float: left; width:40%;">
+<p class="float-img-test">
+    <img src="/dev/media/poster.jpg" alt="" width="300">
+</p>
 
 <ol type="1">
     <li>Switzerland</li>
@@ -941,7 +1038,6 @@ lines.</textarea>
     <dd>Daniel Jackson</dd>
 </dl>
 
-<div>
 <h2>Text-level elements</h2>
 <p>
     <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-a-element" rel="external">[a]</a>: <a href="#">With href</a>. <a>Without href</a>. <a href="https://www.w3.org/TR/html5/text-level-semantics.html#text-level-semantics" rel="external">External link</a>.
@@ -949,11 +1045,25 @@ lines.</textarea>
 <p>
     On a related note, very long words like "rindfleischetikettierungsüberwachungsaufgabenübertragungsgesetz" (see <a href="https://en.wikipedia.org/wiki/Rinderkennzeichnungs-_und_Rindfleischetikettierungs%C3%BCberwachungsaufgaben%C3%BCbertragungsgesetz" rel="external">rindfleischetikettierungsüberwachungsaufgabenübertragungsgesetz</a>) need to be catered for with regards to word-wrapping.
 </p>
+
+<p>Images that are links need extra styles and testing:<br>
+    <a href="#"><img src="https://lab.gridlight-design.co.uk/fallback/img/fallback-logo.svg" height="144" width="266.226" style="width: auto; max-height: 144px;" rel="external"></a>
+
+</p>
+
+<p>
+    <small>Here's a problem - if the image has a transparent background, the a's bounding box (which is
+    inline and smaller than the image) is visible.
+    Outlines actually work as expected in this case but I can't use them because of the lack of
+    rounded corners, hence the a > img selector reapplying the focus shadow.
+    I guess transparent images like this are an edge case, but it's something to keep an eye on.</small>
+</p>
+
 <p>
     <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-em-element" rel="external">[em]</a> and <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-strong-element" rel="external">[strong]</a>: <em>Stress emphasis</em> and <strong>strong importance, seriousness, or urgency</strong>.
 </p>
 <p>
-    <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-small-element" rel="external">[small]</a>: <small>side comments such as small print</small>.
+    <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-small-element" rel="external">[small]</a>: <small>side comments such as small print. <a href="#">Link border is adjusted to better suit smaller font size</a></small>.
 </p>
 <p>
     <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-s-element" rel="external">[s]</a>: <s>Contents that are no longer accurate or no longer relevant</s>.
@@ -1001,13 +1111,15 @@ lines.</textarea>
     <a href="https://www.w3.org/TR/html5/text-level-semantics.html#the-mark-element" rel="external">[mark]</a>: Represents a run of text in one document marked or highlighted for reference purposes, due to its relevance in another context. E.g. I also have some <mark>kitten</mark>s who are visiting me these days. They're really cute. I think they like my garden! Maybe I should adopt a <mark>kitten</mark>.
 </p>
 
+<p>
+    This is <b>paragraph</b><i> that has</i><code> a bunch</code> of <em>inline elements</em><s>that butt</s> up to one another to text out adjacency selectors.
+</p>
 
-</div>
 
 <h2>Text-level Combinations</h2>
 <p>
-    Sometimes links have other elements nested within them. For example a link to <a href="https://www.w3.org/TR/css-fonts-3/#font-family-prop">the <code>font-family</code> spec</a> containes a nested <code>&lt;code&gt;</code> element.
-    There's also the case where the <code>&lt;code&gt;</code> elements is the <em>only</em> child of a link, like this: <a href="https://www.w3.org/TR/css-fonts-3/#propdef-font-style"><code>font-style</code></a>.
+    Sometimes links have other elements nested within them. For example a link to <a href="https://www.w3.org/TR/css-fonts-3/#font-family-prop" rel="external">the <code>font-family</code> spec</a> containes a nested <code>&lt;code&gt;</code> element.
+    There's also the case where the <code>&lt;code&gt;</code> elements is the <em>only</em> child of a link, like this: <a href="https://www.w3.org/TR/css-fonts-3/#propdef-font-style" rel="external"><code>font-style</code></a>.
     If any element that can be nested within another is too-heavily styled, complicatatons can occur.
 </p>
 <p>
@@ -1025,6 +1137,13 @@ lines.</textarea>
 
 <p>Random text</p>
 
+
+<h2>Tables and Figures</h2>
+
+<p>
+    Content (especially tables__ that are inside <code>figures</code> are set to be responsive in a very basic way - by scrolling horizontally.
+</p>
+
 <figure>
     <figcaption>HTML</figcaption>
         <pre><code>&lt;!-- Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+, IE10+ (including Edge) --&gt;
@@ -1039,47 +1158,52 @@ media="only all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm
 <hr>
 
 <details>
-    <summary>Summary/details</summary>
+    <summary>Summary/details<br>Test line wrapping</summary>
     <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
 </details>
 
 <hr>
 
-<h2>Media</h2>
+<h3>Media</h3>
 
 <!--
 Improve/expand upon the SVG and link to dedicated page that contains more examples and
 explanation.
 -->
-
+<p>
+    Object loading an SVG:
+</p>
 <div class="box">
-    <object type="image/svg+xml" data="/media/fallback-logo.svg" height="144" class="svg__image">
+    <object type="image/svg+xml" data="https://lab.gridlight-design.co.uk/fallback/img/fallback-logo.svg" height="144" width="266" class="svg__image" style="width: auto; max-height: 144px;">
         <p>Object failed to load.</p>
     </object>
 </div>
 
 <p>
+    Image in a link:
+</p>
+<p>
     <a href="#">
-        <img src="/media/pexels-photo-172256.jpg" alt="" width="300">
+        <img src="https://lab.gridlight-design.co.uk/images/blogish/pexels-photo-172256.jpg" alt="" height="192" width="288" style="width: auto; max-height: 192px;">
     </a>
 </p>
 
 <figure>
-   <img src="/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny">
+   <img src="/dev/media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
    <figcaption>
         Image
     </figcaption>
 </figure>
 
 <figure>
-   <img src="/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny">
+   <img src="/dev/media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
    <figcaption>
         <p>Longer caption here. It's inside a paragraph.</p>
     </figcaption>
 </figure>
 
 <figure>
-   <img src="/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny">
+   <img src="/dev/media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
    <figcaption>
         <p>Even longer caption here.</p>
         <p>There's even a second paragraph.</p>
@@ -1087,7 +1211,28 @@ explanation.
 </figure>
 
 <p>Linked image:</p>
-<p><a href="#"><img src="/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny"></a></p>
+<p>The focus shadow doesn't work so well here. start.css uses <code>max-width: 100%;</code> for images and testing.css forces block display and center alignment. When focussed the shadow on the link displays some sort of text or whitespace artefacts.</p>
+<p>Press this <button>button</button> then tab twice to see this effect. <a href="#test-link">normal link for comparison</a>.</p>
+<p>
+    <a href="#">
+        <img src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 360px;">
+    </a>
+</p>
+<p>
+External linked image:
+</p>
+<p>
+    <a href="https://en.wikipedia.org/wiki/Big_Buck_Bunny" rel="external">
+        <img src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 360px;">
+    </a>
+</p>
+
+<p>Rounded linked image:</p>
+<p>
+    <a href="#">
+        <img src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 360px; border-radius: 400px;">
+    </a>
+</p>
 
 
 <figure>
@@ -1095,16 +1240,16 @@ explanation.
     <!-- warning: playback does not work on iPad/iPhone if you include the poster attribute! fixed in iOS4                   -->
     <video width="640" height="360" controls>
         <!-- MP4 must be first for iPad! -->
-        <source src="/media/big_buck_bunny.mp4" type="video/mp4"><!-- Safari / iOS, IE9 -->
-        <source src="/media/big_buck_bunny.webm" type="video/webm"><!-- Chrome10+, Ffx4+, Opera10.6+ -->
-        <source src="/media/big_buck_bunny.ogv" type="video/ogg"><!-- Firefox3.6+ / Opera 10.5+ -->
+        <source src="/dev/media/big_buck_bunny.mp4" type="video/mp4"><!-- Safari / iOS, IE9 -->
+        <source src="/dev/media/big_buck_bunny.webm" type="video/webm"><!-- Chrome10+, Ffx4+, Opera10.6+ -->
+        <source src="/dev/media/big_buck_bunny.ogv" type="video/ogg"><!-- Firefox3.6+ / Opera 10.5+ -->
         <!-- fallback to Flash: -->
         <object width="640" height="360" type="application/x-shockwave-flash" data="media/player.swf">
             <!-- Firefox uses the `data` attribute above, IE/Safari uses the param below -->
             <param name="movie" value="player.swf">
             <param name="flashvars" value="autostart=true&amp;controlbar=over&amp;image=poster.jpg&amp;file=media/big_buck_bunny.mp4">
             <!-- fallback image -->
-            <img src="/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny"
+            <img src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny"
                  title="No video playback capabilities, please download the video below">
         </object>
     </video>
@@ -1114,62 +1259,65 @@ explanation.
     </figcaption>
 </figure>
 
-<table id="Books" border="1">
-    <caption id="Cap1">Books I May or May Not Have Read</caption>
-    <thead>
-        <tr>
-            <th>Author</th>
-            <th>Title</th>
-            <th>Year</th>
-            <th>ISBN-13</th>
-            <th>ISBN-10</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Miguel De Cervantes</td>
-            <td>The Ingenious Gentleman Don Quixote of La Mancha</td>
-            <td>1605</td>
-            <td>9783125798502</td>
-            <td>3125798507</td>
+
+<figure>
+    <table id="Books" border="1">
+        <caption id="Cap1">Books I May or May Not Have Read</caption>
+        <thead>
+            <tr>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Year</th>
+                <th>ISBN-13</th>
+                <th>ISBN-10</th>
             </tr>
-        <tr>
-        <td>Mary Shelley</td>
-            <td>Frankenstein; or, The Modern Prometheus</td>
-            <td>1818</td>
-            <td>9781530278442</td>
-            <td>1530278449</td>
-        </tr>
-        <tr>
-            <td>Herman Melville</td>
-            <td>Moby-Dick; or, The Whale</td>
-            <td>1851</td>
-            <td>9781530697908</td>
-            <td>1530697905</td>
-        </tr>
-        <tr>
-            <td>Emma Dorothy Eliza Nevitte Southworth</td>
-            <td>The Hidden Hand</td>
-            <td>1888</td>
-            <td>9780813512969</td>
-            <td>0813512964</td>
-        </tr>
-        <tr>
-            <td>F. Scott Fitzgerald</td>
-            <td>The Great Gatsby</td>
-            <td>1925</td>
-            <td>9780743273565</td>
-            <td>0743273567</td>
-        </tr>
-        <tr>
-            <td>George Orwell</td>
-            <td>Nineteen Eighty-Four</td>
-            <td>1948</td>
-            <td>9780451524935</td>
-            <td>0451524934</td>
-        </tr>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Miguel De Cervantes</td>
+                <td>The Ingenious Gentleman Don Quixote of La Mancha</td>
+                <td>1605</td>
+                <td>9783125798502</td>
+                <td>3125798507</td>
+                </tr>
+            <tr>
+            <td>Mary Shelley</td>
+                <td>Frankenstein; or, The Modern Prometheus</td>
+                <td>1818</td>
+                <td>9781530278442</td>
+                <td>1530278449</td>
+            </tr>
+            <tr>
+                <td>Herman Melville</td>
+                <td>Moby-Dick; or, The Whale</td>
+                <td>1851</td>
+                <td>9781530697908</td>
+                <td>1530697905</td>
+            </tr>
+            <tr>
+                <td>Emma Dorothy Eliza Nevitte Southworth</td>
+                <td>The Hidden Hand</td>
+                <td>1888</td>
+                <td>9780813512969</td>
+                <td>0813512964</td>
+            </tr>
+            <tr>
+                <td>F. Scott Fitzgerald</td>
+                <td>The Great Gatsby</td>
+                <td>1925</td>
+                <td>9780743273565</td>
+                <td>0743273567</td>
+            </tr>
+            <tr>
+                <td>George Orwell</td>
+                <td>Nineteen Eighty-Four</td>
+                <td>1948</td>
+                <td>9780451524935</td>
+                <td>0451524934</td>
+            </tr>
+        </tbody>
+    </table>
+</figure>
 
 <table id="browser_info" border="1">
     <caption>Browser info</caption>
@@ -1185,11 +1333,12 @@ explanation.
     Some more text.
 </p>
 
-<footer>
+<footer id="bottom">
+    <hr>
     <p>Contact information for this page:</p>
     <address>
         someone@somewhere.com
     </address>
+    <hr>
 </footer>
 
-<div id="bottom"></div>

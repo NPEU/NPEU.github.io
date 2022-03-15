@@ -17,10 +17,15 @@ $menu-namespace: n- !default;
         margin: 0;
     }
 
+    /*
+        1. StartCSS uses display: table to fix lists that wrap around floated objects, but by
+           default doesn't force 100% width, so do that here.
+    */
     .#{$pagination-namespace}menu__links {
         list-style: none;
         padding: 0;
         margin: 0;
+        width: 100%; /* [1] */
 
         li {
             padding: 0;
@@ -29,6 +34,10 @@ $menu-namespace: n- !default;
 
         li:not(:last-child) {
             border-bottom: 1px solid #ccc;
+        }
+        
+        li[aria-current="page"] a span {
+            border-bottom: 0.2rem dashed currentColor;
         }
 
         a {

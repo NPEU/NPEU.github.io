@@ -1,0 +1,433 @@
+---
+layout: structure--pattern
+title:  User Content
+load_highlighter: true
+---
+
+<h2 id="components">Components</h2>
+
+<h3>Images</h3>
+
+<h4>Image - default</h4>
+
+<div class="u-space--below  user-content">
+    <p>
+        <img src="/assets/images/patterns/placeholder-1--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns/placeholder-1--small.jpg 300w" alt="" width="500">
+    </p>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;img src=&quot;/assets/images/patterns/placeholder-1--small.jpg&quot; sizes=&quot;100vw&quot; srcset=&quot;/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns/placeholder-1--small.jpg 300w&quot; alt=&quot;&quot; width=&quot;500&quot;&gt;</code></pre>
+    </details>
+</div>
+
+
+<h4>Image - with border</h4>
+
+<div class="u-space--below  user-content">
+    <p>
+        <b><img src="/assets/images/patterns/placeholder-1--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns/placeholder-1--small.jpg 300w" alt="" width="500"></b>
+    </p>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;b&gt;&lt;img ... &gt;&lt;/b&gt;</code></pre>
+    </details>
+</div>
+
+
+<h4>Image - with border and whitespace</h4>
+
+<div class="u-space--below  user-content">
+    <p>
+        <b><i><img src="/assets/images/patterns/placeholder-1--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns/placeholder-1--small.jpg 300w" alt="" width="500"></i></b>
+    </p>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;b&gt;&lt;i&gt;&lt;img ... &gt;&lt;/i&gt;&lt;/b&gt;</code></pre>
+    </details>
+</div>
+
+<h4>Avatar / Portrait</h4>
+
+<div class="u-space--below  user-content">
+    <p>
+        <span data-contains="image portrait"><b><img alt="Portrait of Jenny Kurinczuk" class="u-image-cover__image" sizes="100vw" src="/assets/images/patterns/placeholder-person--small.jpg" srcset="/assets/images/patterns/placeholder-person--medium.jpg 700w, /assets/images/patterns/placeholder-person--small.jpg 300w" width="300"></b></span>
+    </p>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;img alt=&quot;Portrait of Rachel Wiliams&quot; class=&quot;user-insert--border-tight&quot; src=&quot;/assets/images/avatars/portrait-of-rachel-wiliams.jpg?s=500&quot; width=&quot;200&quot;&gt;</code></pre>
+    </details>
+</div>
+
+
+<h4>Thumbnail</h4>
+
+<div class="u-space--below  user-content">
+    <p>
+        <span data-contains="download" data-modified-time="1592898116">
+            <a data-contains="thumbnail" href="/assets/downloads/neoclear/parents/NeoCLEAR%20PIL%20v3.0%20-%2029-March-2019.pdf" type="application/pdf"><img alt="NeoCLEAR Parent Information Leaflet. Thumbnail preview of the file." src="/assets/downloads/neoclear/parents/NeoCLEAR%20PIL%20v3.0%20-%2029-March-2019.pdf.png?s=300" width="300"></a>
+        </span>
+    </p>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;span data-contains=&quot;download&quot; data-modified-time=&quot;1592898116&quot;&gt;
+    &lt;a data-contains=&quot;thumbnail&quot; href=&quot;/assets/downloads/neoclear/parents/NeoCLEAR%20PIL%20v3.0%20-%2029-March-2019.pdf&quot; type=&quot;application/pdf&quot;&gt;&lt;img alt=&quot;NeoCLEAR Parent Information Leaflet. Thumbnail preview of the file.&quot; src=&quot;/assets/downloads/neoclear/parents/NeoCLEAR%20PIL%20v3.0%20-%2029-March-2019.pdf.png?s=300&quot; width=&quot;300&quot;&gt;&lt;/a&gt;
+&lt;/span&gt;</code></pre>
+    </details>
+</div>
+
+
+
+
+
+<hr>
+
+<h3>Contact List</h3>
+
+<div class="u-space--below  user-content">
+    <figure data-display-is="width-one-third  pulled-left">
+        <span data-contains="image portrait">
+            <b><img alt="Portrait of Jenny Kurinczuk" class="u-image-cover__image" sizes="100vw" src="/assets/images/patterns/placeholder-person--small.jpg" srcset="/assets/images/patterns/placeholder-person--medium.jpg 700w, /assets/images/patterns/placeholder-person--small.jpg 300w" width="300"></b>
+        </span>
+    </figure>
+
+    <dl data-contains="contact-details" itemscope="itemscope" itemtype="http://schema.org/Person">
+        <dt>Name</dt>
+        <dd>
+            <svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" ><use xlink:href="#icon-person"></use></svg>
+            <a href="https://www.npeu.ox.ac.uk/people/jenny-kurinczuk-659">
+                <b><span itemprop="honorificPrefix">Prof</span> <span itemprop="name">Jenny Kurinczuk</span></b>
+            </a>
+        </dd>
+        <dt>Organisation</dt>
+        <dd itemprop="worksFor">
+            <svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" ><use xlink:href="#icon-building"></use></svg>
+            Policy Research Unit in Maternal Health &amp; Care (PRU-MHC)
+        </dd>
+        <dt>Address</dt>
+        <dd itemprop="streetAddress" itemscope="itemscope" itemtype="http://schema.org/PostalAddress">
+            <span itemprop="addressLocality">National Perinatal Epidemiology Unit (NPEU)<br>
+            Nuffield Department of Population Health<br>
+            University of Oxford<br>
+            Old Road Campus</span><br>
+            <span itemprop="addressLocality">Oxford</span><br>
+            <span itemprop="postalCode">OX3 7LF</span>
+        </dd>
+        <dt>Email</dt>
+        <dd itemprop="email">
+            <svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" ><use xlink:href="#icon-email"></use></svg>
+            <span itemprop="email">jenny.kurinczuk@npeu.ox.ac.uk</span>
+        </dd>
+        <dt>Telephone</dt>
+        <dd itemprop="telephone">
+            <svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" ><use xlink:href="#icon-phone"></use></svg>
+            01865 289719
+        </dd>
+        <dt>Fax</dt>
+        <dd itemprop="faxNumber">
+            <svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" ><use xlink:href="#icon-fax"></use></svg>
+            01865 289701
+        </dd>
+    </dl>
+</div>
+
+<h3>Without Avatar</h3>
+
+<div class="u-space--below  user-content">
+    <dl data-contains="contact-details" itemscope="itemscope" itemtype="http://schema.org/Person">
+        <dt>Name</dt>
+        <dd>
+            <svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" ><use xlink:href="#icon-person"></use></svg>
+            <a href="https://www.npeu.ox.ac.uk/people/jenny-kurinczuk-659">
+                <b><span itemprop="honorificPrefix">Prof</span> <span itemprop="name">Jenny Kurinczuk</span></b>
+            </a>
+        </dd>
+        <dt>Organisation</dt>
+        <dd itemprop="worksFor">
+            <svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" ><use xlink:href="#icon-building"></use></svg>
+            Policy Research Unit in Maternal Health &amp; Care (PRU-MHC)
+        </dd>
+        <dt>Address</dt>
+        <dd itemprop="streetAddress" itemscope="itemscope" itemtype="http://schema.org/PostalAddress">
+            <span itemprop="addressLocality">National Perinatal Epidemiology Unit (NPEU)<br>
+            Nuffield Department of Population Health<br>
+            University of Oxford<br>
+            Old Road Campus</span><br>
+            <span itemprop="addressLocality">Oxford</span><br>
+            <span itemprop="postalCode">OX3 7LF</span>
+        </dd>
+        <dt>Email</dt>
+        <dd itemprop="email">
+            <svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" ><use xlink:href="#icon-email"></use></svg>
+            <span itemprop="email">jenny.kurinczuk@npeu.ox.ac.uk</span>
+        </dd>
+        <dt>Telephone</dt>
+        <dd itemprop="telephone">
+            <svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" ><use xlink:href="#icon-phone"></use></svg>
+            01865 289719
+        </dd>
+        <dt>Fax</dt>
+        <dd itemprop="faxNumber">
+            <svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" ><use xlink:href="#icon-fax"></use></svg>
+            01865 289701
+        </dd>
+    </dl>
+</div>
+
+<h3>Stub</h3>
+
+<div class="u-space--below  user-content">
+    <dl data-contains="contact-details" itemscope="itemscope" itemtype="http://schema.org/Person">
+        <dt>Name</dt>
+        <dd>
+            <svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" ><use xlink:href="#icon-person"></use></svg>
+            <a href="https://www.npeu.ox.ac.uk/people/jenny-kurinczuk-659">
+                <b><span itemprop="honorificPrefix">Prof</span> <span itemprop="name">Jenny Kurinczuk</span></b>
+            </a>
+        </dd>
+        <dt>Email</dt>
+        <dd itemprop="email">
+            <svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" ><use xlink:href="#icon-email"></use></svg>
+            <span itemprop="email">jenny.kurinczuk@npeu.ox.ac.uk</span>
+        </dd>
+        <dt>Telephone</dt>
+        <dd itemprop="telephone">
+            <svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" ><use xlink:href="#icon-phone"></use></svg>
+            01865 289719
+        </dd>
+    </dl>
+</div>
+
+<hr>
+
+
+
+
+<h2 id="boxes">Boxes</h2>
+
+<h3>Box</h3>
+
+<div class="u-space--below  user-content">
+    <div data-display-as="box">
+        <p>A gentle box</p>
+        <p>And <a href="#">a link</a>.</p>
+
+        <p><a href="#" data-display-as="cta"><span>CTA</span></a></p>
+        <p><a href="#" data-display-as="primary-cta"><span>Primary CTA</span></a></p>
+        <p><a href="#" data-display-as="primary-cta" rel="external"><span>Primary CTA</span></a></p>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;div data-display-as=&quot;themed-box&quot;&gt;
+    ...
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+<h3>Pale box</h3>
+
+<div class="u-space--below  user-content">
+    <div data-fs-block="border padding" data-display-as="pale-box">
+        <p>We are looking at 2 different methods to see if these affect the success of the lumbar puncture:</p>
+
+        <p><em>1. Sitting </em>versus <em>lying down </em></p>
+
+        <p>The lumbar puncture would be carried out with your baby held either sitting up or lying on their side.</p>
+
+        <p><em>2. Early stylet removal </em>versus <em>late stylet removal </em></p>
+
+        <p>And <a href="#">a link</a>.</p>
+
+        <p>A stylet sits inside the needle to prevent skin cells getting stuck in the needle. During the procedure, the stylet would either be removed after the needle is through the skin but before it reaches the cerebrospinal fluid, or it will be removed from the needle after it reaches the cerebrospinal fluid.</p>
+        <p><a href="#" data-display-as="cta"><span>CTA</span></a></p>
+        <p><a href="#" data-display-as="primary-cta"><span>Primary CTA</span></a></p>
+        <p><a href="#" data-display-as="primary-cta" rel="external"><span>Primary CTA</span></a></p>
+    </div>
+</div>
+
+
+<h3>Themed box - border</h3>
+
+<div class="u-space--below  user-content">
+    <div data-fs-block="border padding" data-display-as="themed-box--border">
+        <p>We are looking at 2 different methods to see if these affect the success of the lumbar puncture:</p>
+
+        <p><em>1. Sitting </em>versus <em>lying down </em></p>
+
+        <p>The lumbar puncture would be carried out with your baby held either sitting up or lying on their side.</p>
+
+        <p><em>2. Early stylet removal </em>versus <em>late stylet removal </em></p>
+
+        <p>And <a href="#">a link</a>.</p>
+
+        <p>A stylet sits inside the needle to prevent skin cells getting stuck in the needle. During the procedure, the stylet would either be removed after the needle is through the skin but before it reaches the cerebrospinal fluid, or it will be removed from the needle after it reaches the cerebrospinal fluid.</p>
+        <p><a href="#" data-display-as="cta"><span>CTA</span></a></p>
+        <p><a href="#" data-display-as="primary-cta"><span>Primary CTA</span></a></p>
+        <p><a href="#" data-display-as="primary-cta" rel="external"><span>Primary CTA</span></a></p>
+    </div>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;div data-display-as=&quot;themed-box--border&quot;&gt;
+    ...
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+<h3>Themed box - background</h3>
+
+<div class="u-space--below  user-content">
+    <fieldset role="presentation" data-display-as="themed-box--background">
+        <p>We are looking at 2 different methods to see if these affect the success of the lumbar puncture:</p>
+
+        <p><em>1. Sitting </em>versus <em>lying down </em></p>
+
+        <p>The lumbar puncture would be carried out with your baby held either sitting up or lying on their side.</p>
+
+        <p><em>2. Early stylet removal </em>versus <em>late stylet removal </em></p>
+
+        <p>And <a href="#">a link</a>.</p>
+
+        <p>A stylet sits inside the needle to prevent skin cells getting stuck in the needle. During the procedure, the stylet would either be removed after the needle is through the skin but before it reaches the cerebrospinal fluid, or it will be removed from the needle after it reaches the cerebrospinal fluid.</p>
+        <p><a href="#" data-display-as="cta"><span>CTA</span></a></p>
+        <p><a href="#" data-display-as="primary-cta"><span>Primary CTA</span></a></p>
+        <p><a href="#" data-display-as="primary-cta" rel="external"><span>Primary CTA</span></a></p>
+    </fieldset>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;div data-display-as=&quot;themed-box--background&quot;&gt;
+    ...
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+
+<h3>Notice box</h3>
+
+<div class="u-space--below  user-content">
+    <fieldset role="presentation" data-display-as="notice-box">
+        <p>This is important - not normal content. And <a href="#">a link</a>.</p>
+        <p><a href="#" data-display-as="cta"><span>CTA</span></a></p>
+        <p><a href="#" data-display-as="primary-cta"><span>Primary CTA</span></a></p>
+        <p><a href="#" data-display-as="primary-cta" rel="external"><span>Primary CTA</span></a></p>
+    </fieldset>
+</div>
+
+<div class="u-padding--s">
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;div data-display-as=&quot;notice-box&quot;&gt;
+    ...
+&lt;/div&gt;</code></pre>
+    </details>
+</div>
+
+
+<hr>
+
+
+
+
+<h2 id="blocks">Blocks</h2>
+<div class="u-space--below  user-content">
+    <div data-display-as="blocks">
+        <ul>
+            <li><span data-contains="download" data-modified-time="1592898116"><a data-contains="thumbnail" href="/assets/downloads/neoclear/guidance-sheets/NeoCLEAR%20Guidance%20Sheet%201%20Eligibility%20V2_05NOV2018.pdf" type="application/pdf"><img alt="Thumbnail preview of the file." src="/assets/downloads/neoclear/guidance-sheets/NeoCLEAR%20Guidance%20Sheet%201%20Eligibility%20V2_05NOV2018.pdf.png?s=150" width="150"><br>
+            <span>Guidance Sheet 1 - Eligibility&nbsp;</span></a></span></li>
+            <li><span data-contains="download" data-modified-time="1592898116"><a data-contains="thumbnail" href="/assets/downloads/neoclear/guidance-sheets/NeoCLEAR%20Guidance%20Sheet%202%20Parental%20Consent%20V3.0_09JUL2019.pdf" type="application/pdf"><img alt="Thumbnail preview of the file." src="/assets/downloads/neoclear/guidance-sheets/NeoCLEAR%20Guidance%20Sheet%202%20Parental%20Consent%20V3.0_09JUL2019.pdf.png?s=150" width="150"><br>
+            <span>Guidance Sheet 2 - Consent&nbsp;</span></a></span></li>
+            <li><span data-contains="download" data-modified-time="1592898116"><a data-contains="thumbnail" href="/assets/downloads/neoclear/guidance-sheets/NeoCLEAR%20Guidance%20Sheet%203%20-%20Randomisation%20V1_25JUN18.pdf" type="application/pdf"><img alt="Thumbnail preview of the file." src="/assets/downloads/neoclear/guidance-sheets/NeoCLEAR%20Guidance%20Sheet%203%20-%20Randomisation%20V1_25JUN18.pdf.png?s=150" width="150"><br>
+            <span>Guidance Sheet 3 - Randomisation&nbsp;</span></a></span></li>
+            <li><span data-contains="download" data-modified-time="1592898116"><a data-contains="thumbnail" href="/assets/downloads/neoclear/guidance-sheets/NeoCLEAR%20Guidance%20Sheet%204%20LP%20Procedure%20V3.0_09JUL2019.pdf" type="application/pdf"><img alt="Thumbnail preview of the file." src="/assets/downloads/neoclear/guidance-sheets/NeoCLEAR%20Guidance%20Sheet%204%20LP%20Procedure%20V3.0_09JUL2019.pdf.png?s=150" width="150"><br>
+            <span>Guidance Sheet 4 - LP Procedure&nbsp;</span></a></span></li>
+            <li><span data-contains="download" data-modified-time="1592898116"><a data-contains="thumbnail" href="/assets/downloads/neoclear/guidance-sheets/NeoCLEAR_Guidance%20Sheet%205%20Documentation%20V3.0_09JUL2019.pdf" type="application/pdf"><img alt="Thumbnail preview of the file." src="/assets/downloads/neoclear/guidance-sheets/NeoCLEAR_Guidance%20Sheet%205%20Documentation%20V3.0_09JUL2019.pdf.png?s=150" width="150"><br>
+            <span>Guidance Sheet 5 - Guidance Document CRF Guide&nbsp;</span></a></span></li>
+            <li><span data-contains="download" data-modified-time="1592898116"><a data-contains="thumbnail" href="/assets/downloads/neoclear/guidance-sheets/NeoCLEAR%20Guidance%20Sheet%206%20-%20SAE%20V1_25JUN2018.pdf" type="application/pdf"><img alt="Thumbnail preview of the file." src="/assets/downloads/neoclear/guidance-sheets/NeoCLEAR%20Guidance%20Sheet%206%20-%20SAE%20V1_25JUN2018.pdf.png?s=150" width="150"><br>
+            <span>Guidance Sheet 6 - SAE&nbsp;</span></a></span></li>
+            <li><span data-contains="download" data-modified-time="1592898116"><a data-contains="thumbnail" href="/assets/downloads/neoclear/guidance-sheets/NeoCLEAR%20Guidance%20Sheet%207%20-%20Continuing%20Care%20Centre%20Sheet%20V1_25JUN2018.pdf" type="application/pdf"><img alt="Thumbnail preview of the file." src="/assets/downloads/neoclear/guidance-sheets/NeoCLEAR%20Guidance%20Sheet%207%20-%20Continuing%20Care%20Centre%20Sheet%20V1_25JUN2018.pdf.png?s=150" width="150"><br>
+            <span>Guidance Sheet 7 - Continuing Care Centre Sheet&nbsp;</span></a></span></li>
+            <li><span data-contains="download" data-modified-time="1592898116"><a data-contains="thumbnail" href="/assets/downloads/neoclear/guidance-sheets/NeoCLEAR_Guidance%20Sheet%208%20Withdrawal%20V2_05NOV2018.pdf" type="application/pdf"><img alt="Thumbnail preview of the file." src="/assets/downloads/neoclear/guidance-sheets/NeoCLEAR_Guidance%20Sheet%208%20Withdrawal%20V2_05NOV2018.pdf.png?s=150" width="150"><br>
+            <span>Guidance Sheet 8 - Withdrawal&nbsp;</span></a></span></li>
+        </ul>
+    </div>
+</div>
+
+<hr>
+
+<div class="has-longform-content  ff-width-100--60--66-666">
+    <h2 id="pulled-blocks">Pulled Blocks</h2>
+
+    <p>Note: also uses longform content</p>
+
+    <div class="longform-content  user-content">
+        <figure data-display-is="width-one-quarter pulled-right"><a data-contains="image logo logo-large" href="https://www.advance-he.ac.uk/equality-charters/athena-swan-charter" rel="external"><span><img alt="ECU Gender Charter - Athena SWAN Silver Award" height="80" width="129" onerror="this.src='/assets/images/brand-logos/accolade/athena-swan-silver-logo.png'; this.onerror=null;" src="/assets/images/brand-logos/accolade/athena-swan-silver-logo.svg"></span></a></figure>
+
+        <p>The Athena SWAN Charter recognises commitment to gender equality in higher education.</p>
+
+        <p>Athena SWAN awards celebrate good practice in the promotion of gender equality for academic and professional and support staff in higher education institutions, and their individual departments. The University of Oxford has a Bronze University award. The NPEU held its own Silver Departmental Award until April 2019 and since then has been covered by the Athena SWAN Silver Award held by the Nuffield Department of Population Health (NDPH). NPEU Senior Researcher Rachel Rowe is a member of the NDPH Athena SWAN Self-Assessment Team.</p>
+
+        <figure data-display-is="width-one-half pulled-left"><span data-contains="image"> <img alt="Test pic" sizes="100vw" src="/assets/images/npeu-news/bigstock-Female-Doctor-Taking-Dose-Of-C-434561738--small.jpg" srcset="/assets/images/npeu-news/bigstock-Female-Doctor-Taking-Dose-Of-C-434561738--medium.jpg 700w, /assets/images/npeu-news/bigstock-Female-Doctor-Taking-Dose-Of-C-434561738--small.jpg 300w" width="300" height="200"></span></figure>
+
+        <p>Progress on activities related to Athena SWAN is communicated to Unit members through regular updates at Unit meetings and via email communication. If you would like to find out more about Athena SWAN, please contact Rachel Rowe.</p>
+
+        <p>The NPEU is a vibrant, multi-disciplinary research environment with an inclusive and supportive atmosphere for all staff and students that exemplifies the overarching principles of the Athena SWAN charter.</p>
+
+        <p>For information about some of the well-established practices which aim to support staff, please see Working in the NPEU.</p>
+        
+        <div data-display-as="themed-box--border">
+            <h2 id="mbrrace-uk-perinatal-mortality-surveillance-report-for-births-in-2018">MBRRACE-UK Perinatal Mortality Surveillance Report for births in 2018</h2>
+
+            <p>MBRRACE-UK is pleased to announce the publication on the 10th December 2020 the MBRRACE-UK Perinatal Mortality Surveillance Report for births in 2018</p>
+
+            <p><span data-contains="download" data-modified-time="1611082179"><a href="/assets/downloads/mbrrace-uk/reports/perinatal-surveillance-report-2018/MBRRACE-UK_Perinatal_Surveillance_Report_2018_-_final_v3.pdf" type="application/pdf">Full Report</a></span></p>
+
+            <p><span data-contains="download" data-modified-time="1611082229"><a href="/assets/downloads/mbrrace-uk/reports/perinatal-surveillance-report-2018/MBRRACE-UK_Perinatal_Surveillance_Report_2018_-_Tables_and_Figures_v3.pdf" type="application/pdf">Tables and Figures</a></span></p>
+
+            <p><span data-contains="download" data-modified-time="1607531220"><a href="/assets/downloads/mbrrace-uk/reports/perinatal-surveillance-report-2018/MBRRACE-UK_Perinatal_Surveillance_Report_-_Technical_document.pdf" type="application/pdf">Technical Report</a></span></p>
+
+            <p><span data-contains="download" data-modified-time="1607531308"><a href="/assets/downloads/mbrrace-uk/reports/perinatal-surveillance-report-2018/MBRRACE-UK_Perinatal_Surveillance_Report_2018_-_summary.pdf" type="application/pdf">Summary and infographic</a></span></p>
+
+            <p><span data-contains="download" data-modified-time="1635785066"><a href="/assets/downloads/mbrrace-uk/reports/perinatal-surveillance-report-2018/MBRRACE-UK_2018_-_Tables_by_organisation_v3.xlsx" type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">Downloadable tables in Excel</a></span></p>
+        </div>
+        <div data-display-as="themed-box--border">
+            <h2 id="mbrrace-uk-perinatal-mortality-surveillance-report-for-births-in-2018">MBRRACE-UK Perinatal Mortality Surveillance Report for births in 2018</h2>
+
+            <p>MBRRACE-UK is pleased to announce the publication on the 10th December 2020 the MBRRACE-UK Perinatal Mortality Surveillance Report for births in 2018</p>
+
+            <p><span data-contains="download" data-modified-time="1611082179"><a href="/assets/downloads/mbrrace-uk/reports/perinatal-surveillance-report-2018/MBRRACE-UK_Perinatal_Surveillance_Report_2018_-_final_v3.pdf" type="application/pdf">Full Report</a></span></p>
+
+            <p><span data-contains="download" data-modified-time="1611082229"><a href="/assets/downloads/mbrrace-uk/reports/perinatal-surveillance-report-2018/MBRRACE-UK_Perinatal_Surveillance_Report_2018_-_Tables_and_Figures_v3.pdf" type="application/pdf">Tables and Figures</a></span></p>
+
+            <p><span data-contains="download" data-modified-time="1607531220"><a href="/assets/downloads/mbrrace-uk/reports/perinatal-surveillance-report-2018/MBRRACE-UK_Perinatal_Surveillance_Report_-_Technical_document.pdf" type="application/pdf">Technical Report</a></span></p>
+
+            <p><span data-contains="download" data-modified-time="1607531308"><a href="/assets/downloads/mbrrace-uk/reports/perinatal-surveillance-report-2018/MBRRACE-UK_Perinatal_Surveillance_Report_2018_-_summary.pdf" type="application/pdf">Summary and infographic</a></span></p>
+
+            <p><span data-contains="download" data-modified-time="1635785066"><a href="/assets/downloads/mbrrace-uk/reports/perinatal-surveillance-report-2018/MBRRACE-UK_2018_-_Tables_by_organisation_v3.xlsx" type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">Downloadable tables in Excel</a></span></p>
+        </div>
+        
+        <p>The above boxes are from MBRRACE, they're nothing to do with the Athena SWAN content at the start of this section or anything, it's just there test out the behaviour of the margins etc.</p>
+
+    </div>
+</div>

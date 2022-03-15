@@ -19,10 +19,6 @@ $info-overlay-max-message-size: 52px !default;
 .#{$component-namespace}info-overlay {
     &#{&} {
         padding: 0;
-        /*margin-top: -#{$s__sz-m + $s__sz-xs};
-        margin-right: 0;
-        margin-bottom: 0;
-        margin-left: 0;*/
         margin: 0;
         border: 0;
     }
@@ -35,7 +31,7 @@ $info-overlay-max-message-size: 52px !default;
         width: #{$s__sz-m};
         height: #{$s__sz-m};
         padding: 0;
-        //margin: 0;
+
         margin-top: -#{$s__sz-m + $s__sz-xs};
         margin-right: 0;
         margin-bottom: $s__sz-xs;
@@ -44,7 +40,6 @@ $info-overlay-max-message-size: 52px !default;
 
         position: relative;
         left: #{$s__sz-s};
-        //bottom: #{$s__sz-xs};
 
         display: flex;
         justify-content: center;
@@ -56,9 +51,19 @@ $info-overlay-max-message-size: 52px !default;
         & > span:first-child {
             display: none;
         }
+        
+        /*
+            Safari 14.1- has a bug which mean a flexbox summary doesn't properly center it's contents.
+            I'm fudging this by adding margin to the svg.
+            Note the 1.25em is a really a 'magic number', but it's what's used for all icons and
+            is unlikely to change.
+        */
+        & > svg {
+            margin: calc(#{$s__sz-m} / 2 - 1.25em / 2);
+        }
 
-         & > svg:nth-child(2) {
-            display: inline;
+        & > svg:nth-child(2) {
+            display: block;
         }
 
         & > svg:last-child {
@@ -71,7 +76,7 @@ $info-overlay-max-message-size: 52px !default;
 
         &:hover {
             color: #222;
-            background: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.8);
         }
     }
 
@@ -81,13 +86,9 @@ $info-overlay-max-message-size: 52px !default;
     }
 
     &#{&} > summary + * {
-        /*position: relative;
-        left: 2.4rem;
-        margin-top: -2.4rem;
-        max-width: calc(100% - #{$s__sz-m});*/
         padding: $s__sz-m;
         font-size: 0.875em;
-        //background: rgba(0,0,0,0.8);
+
         background: #333;
         color: #fff;
     }
@@ -111,16 +112,21 @@ $info-overlay-max-message-size: 52px !default;
         & > summary {
             margin-top: -#{$s__sz-m + $s__sz-xs};
             margin-bottom: $s__sz-xs;
-                //margin: 0;
-                //bottom: auto;
-                //top: -#{$s__sz-m + $s__sz-xs};
+
+            & > svg:nth-child(2) {
+                display: none;
+            }
+
+            & > svg:last-child {
+                display: block;
+            }
         }
     }
 
     &#{&}--from-right > summary {
         left: calc(100% - 2.4rem - 1.2rem);
     }
-    
+
     &#{&}--from-right[open]::before {
         left: auto;
         right: #{$s__sz-s + $s__sz-xs};
@@ -158,7 +164,7 @@ $info-overlay-max-message-size: 52px !default;
             position: absolute;
             bottom: auto;
             top: #{$s__sz-s};
-            
+
             margin-top: 0;
             margin-right: 0;
             margin-bottom: 0;
@@ -169,15 +175,15 @@ $info-overlay-max-message-size: 52px !default;
             position: absolute;
             width: auto;
 
-            
+
             &::before {
                 display: none;
             }
 
             & > summary {
                 //top: #{$s__sz-xs};
-                
-                
+
+
                 margin-top: 0;
                 margin-right: 0;
                 margin-bottom: 0;
@@ -198,11 +204,11 @@ $info-overlay-max-message-size: 52px !default;
             padding: $s__sz-s $s__sz-m $s__sz-s #{$s__sz-l + $s__sz-m};
             background: transparent;
         }
-        
+
         &#{&}--from-right[open] {
             right: 0;
         }
-        
+
         &#{&}--from-right > summary + * {
             padding: $s__sz-s #{$s__sz-l + $s__sz-m} $s__sz-s $s__sz-m;
         }

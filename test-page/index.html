@@ -1,0 +1,72 @@
+---
+title: Test Page
+---
+<!doctype html>
+<html lang="en-gb" class="">
+<head>
+    <meta charset="utf-8">
+    <title>{{ page.title }} | NPEU Styleguide</title>
+    <meta name="description" content="NPEU Styleguide">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    var check_for_css = function(selector) {
+
+        console.log('Checking for CSS: ' + selector);
+
+        var rules;
+        var haveRule = false;
+        if (typeof document.styleSheets != "undefined") { // is this supported
+            var cssSheets = document.styleSheets;
+
+            // IE doesn't have document.location.origin, so fix that:
+            if (!document.location.origin) {
+                document.location.origin = document.location.protocol + "//" + document.location.hostname + (document.location.port ? ':' + document.location.port: '');
+            }
+            var domain_regex  = RegExp('^' + document.location.origin);
+
+            outerloop:
+            for (var i = 0; i < cssSheets.length; i++) {
+                var sheet = cssSheets[i];
+
+                // Some browsers don't allow checking of rules if not on the same domain (CORS), so
+                // checking for that here:
+                if (sheet.href !== null && domain_regex.exec(sheet.href) === null) {
+                    continue;
+                }
+
+                // Check for IE or standards:
+                rules = (typeof sheet.cssRules != "undefined") ? sheet.cssRules : sheet.rules;
+                console.log(rules);
+                for (var j = 0; j < rules.length; j++) {
+                    if (rules[j].selectorText == selector) {
+                        haveRule = true;
+                        break outerloop;
+                    }
+                }
+            }
+        }
+
+        console.log(selector + ' ' + (haveRule ? '' : 'not') + ' found');
+
+        return haveRule;
+    }
+    </script>
+    <!--
+        Print (Edge doesn't apply to print otherwise)
+        Edge 79+, Chrome 74+, Firefox 63+, Opera 64+, Safari 10.1+, iOS 10.3+, Android 81+
+    -->
+    <link rel="stylesheet" href="/css/style.min.{{ site.data.cache_bust_css.date }}.css" media="
+        only print,
+        only all and (prefers-reduced-motion: no-preference), only all and (prefers-reduced-motion: reduce)
+    "
+    onload="check_for_css('#css_has_loaded');"
+    >
+
+</head>
+<body role="document" class="">
+<h1>{{ page.title }}</h1>
+
+<p>Test text</p>
+</body>
+</html>

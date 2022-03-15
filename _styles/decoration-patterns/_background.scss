@@ -5,35 +5,63 @@
 
 $background-namespace: d- !default;
 
+@mixin bg {
+    background-color: hsl(var(--t-bg-color-h), var(--t-bg-color-s), var(--t-bg-color-l));
+    color: var(--t-primary-fore-text-color);
+}
+
+@mixin bg-primary {
+    --t-bg-color: var(--t-primary-color);
+    --t-bg-color-h: var(--t-primary-color-h);
+    --t-bg-color-s: var(--t-primary-color-s);
+    --t-bg-color-l: var(--t-primary-color-l);
+}
+
+@mixin bg-secondary {
+    --t-bg-color: var(--t-secondary-color);
+    --t-bg-color-h: var(--t-secondary-color-h);
+    --t-bg-color-s: var(--t-secondary-color-s);
+    --t-bg-color-l: var(--t-secondary-color-l);
+
+    color: var(--t-secondary-fore-text-color);
+}
+
+@mixin bg-neutral {
+    --t-bg-color: var(--t-neutral-color);
+    --t-bg-color-h: var(--t-neutral-color-h);
+    --t-bg-color-s: var(--t-neutral-color-s);
+    --t-bg-color-l: var(--t-neutral-color-l);
+
+    color: var(--t-neutral-fore-text-color);
+}
+
+//@mixin bg-white {
+//    --t-bg-color: #fff;
+//    --t-bg-color-h: 0;
+//    --t-bg-color-s: 0%;
+//    --t-bg-color-l: 100%;
+//
+//    color: var(--t-text-color);
+//}
+
 
 [class*="#{$background-namespace}background"] {
     &#{&} {
-        --t-bg-color: var(--t-primary-color);
-        --t-bg-color-h: var(--t-primary-color-h);
-        --t-bg-color-s: var(--t-primary-color-s);
-        --t-bg-color-l: var(--t-primary-color-l);
-
-        background-color: hsl(var(--t-bg-color-h), var(--t-bg-color-s), var(--t-bg-color-l));
-        color: var(--t-primary-fore-text-color);
+        @include bg();
+        @include bg-primary();
     }
 
     &[class*="#{$background-namespace}background"].t-secondary {
-        --t-bg-color: var(--t-secondary-color);
-        --t-bg-color-h: var(--t-secondary-color-h);
-        --t-bg-color-s: var(--t-secondary-color-s);
-        --t-bg-color-l: var(--t-secondary-color-l);
-
-        color: var(--t-secondary-fore-text-color);
+        @include bg-secondary();
     }
 
     &[class*="#{$background-namespace}background"].t-neutral {
-        --t-bg-color: var(--t-neutral-color);
-        --t-bg-color-h: var(--t-neutral-color-h);
-        --t-bg-color-s: var(--t-neutral-color-s);
-        --t-bg-color-l: var(--t-neutral-color-l);
-
-        color: var(--t-neutral-fore-text-color);
+        @include bg-neutral();
     }
+    
+    //&[class*="#{$background-namespace}background"].t-white {
+    //    @include bg-white();
+    //}
 
 
     &[class*="#{$background-namespace}background"].t-notice {

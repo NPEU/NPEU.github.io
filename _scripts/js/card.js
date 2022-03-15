@@ -30,7 +30,7 @@
 
             el.addEventListener('mousedown', function(e) {
                 // Detect left click only:
-                var left_click = card.detectLeftButton(e);
+                var left_click = detectLeftButton(e);
                 console.log(left_click);
                 if (!left_click) {
                     down = false;
@@ -47,7 +47,7 @@
                 }
                 up = +new Date();
                 if ((up - down) < 200) {
-                    //h_link.click();
+                    h_link.click();
                 }
             });
         });

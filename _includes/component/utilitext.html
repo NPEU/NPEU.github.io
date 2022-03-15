@@ -11,22 +11,38 @@
 
 <p>If a set of links should be considered a list, use list markup, unless it should fall back to an inline-list, in which case use this:</p>
 <pre><code class="html">&lt;p role=&quot;list&quot;&gt;
-    &lt;span role=&quot;listitem&quot;&gt;&lt;a ... /&gt;&amp;nbsp;|&lt;/span&gt;
+    &lt;span role=&quot;listitem&quot;&gt;&lt;a ... /&gt;&lt;/span&gt;
+    &lt;span&gt;|&lt;/span&gt;
     &lt;span role=&quot;listitem&quot;&gt;&lt;a ... /&gt;&lt;/span&gt;
     ...
 &lt;/p&gt;</code></pre>
 
-<p><A href="#{{ include_title | slugify }}--using-layout-classes">A this example re-done using layout classes can be found below.</a></p>
+<p><a href="#{{ include_title | slugify }}--using-layout-classes">This example re-done using layout classes can be found below.</a></p>
 
 <p>Notice how the nesting requirements for the layout pattern (<code>p.l-layout > spans.l-layout__inner</code>) would cause a problem with normal list markup (you'd have to include an outer wrapper) are not a problem using the ARIA syntax.</p>
 
 <h3>Line of text with links</h3>
 
+<p><strong>Note:</strong> this example just demonstrates a basic way of representing visually-separated links, but it's not ideal as it should really be represented as a list, so only use this markup as a last resort. The inline-list examples below should all really be using layout markup (bottom)</p>
+
 <div class="u-space--below">
     <p class="c-utilitext">
-        <a href="#"><span>Logged in as stargazer (view profile)</span></a> | <a href="#"><span>Logout</span></a> | <a href="#"><span>Admin</span></a> | <a href="#"><span>Staff Area</span></a> | <a href="#" class="u-padding--right--s"><span>Edit page</span><svg display="none" focusable="false" class="icon  u-space--left--xs" aria-hidden="true"><use xlink:href="#icon-edit"></use></svg></a>
+        <a href="#"><span>Logged in as stargazer (view profile)</span></a> |
+        <a href="#"><span>Log out</span></a> | 
+        <a href="#"><span>Admin</span></a> |
+        <a href="#"><span>Staff Area</span></a> |
+        <a href="#" class="u-padding--right--s"><span>Edit page</span><svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none"><use xlink:href="#icon-edit"></use></svg></a>
     </p>
 </div>
+
+<pre><code class="html">&lt;p class=&quot;c-utilitext&quot;&gt;
+    &lt;a href=&quot;#&quot;&gt;&lt;span&gt;Logged in as stargazer (view profile)&lt;/span&gt;&lt;/a&gt; |
+    &lt;a href=&quot;#&quot;&gt;&lt;span&gt;Log out&lt;/span&gt;&lt;/a&gt; | 
+    &lt;a href=&quot;#&quot;&gt;&lt;span&gt;Admin&lt;/span&gt;&lt;/a&gt; |
+    &lt;a href=&quot;#&quot;&gt;&lt;span&gt;Staff Area&lt;/span&gt;&lt;/a&gt; |
+    &lt;a href=&quot;#&quot; class=&quot;u-padding--right--s&quot;&gt;&lt;span&gt;Edit page&lt;/span&gt;&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot; display=&quot;none&quot;&gt;&lt;use xlink:href=&quot;#icon-edit&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/p&gt;
+</code></pre>
 
 <h3>List of links</h3>
 
@@ -49,11 +65,25 @@
     </p>
 </div>
 
+<h3>With a form</h3>
+
+<p>Forms be a utilitext component, so the default form styles need to be reset so it appears just as text.</p>
+
+<div class="u-space--below">
+    <form action="/" method="post" id="login-form" class="c-utilitext   mod_login">
+        <p>
+            <a href="/user-profile"><span><strong>username</strong></span></a>
+            ( <button name="Submit"><span>Log out</span></button> ) |
+            <a href="/administrator"><span>Admin</span></a>
+        </p>
+    </form>
+</div>
+
 <h3>Pale</h3>
 
 <div class="u-space--below">
     <p class="c-utilitext  c-utilitext--pale">
-        <a href="/user-profile"><span>Logged in as stargazer (view profile)</span></a> | <a href="#"><span>Logout</span></a> | <a href="#"><span>Admin</span></a> | <a href="#"><span>Staff Area</span></a> | <a href="#" class="u-padding--right--sX"><span>Edit page</span><svg display="none" focusable="false" class="icon  u-space--left--xsX" aria-hidden="true"><use xlink:href="#icon-edit"></use></svg></a>
+        <a href="/user-profile"><span>Logged in as stargazer (view profile)</span></a> | <a href="#"><span>Log out</span></a> | <a href="#"><span>Admin</span></a> | <a href="#"><span>Staff Area</span></a> | <a href="#"><span>Edit page</span><svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none"><use xlink:href="#icon-edit"></use></svg></a>
     </p>
 </div>
 
@@ -61,7 +91,7 @@
 
 <div class="u-space--below">
     <p class="c-utilitext  c-utilitext--smaller">
-        <a href="/user-profile"><span>Logged in as stargazer (view profile)</span></a> | <a href="#"><span>Logout</span></a> | <a href="#"><span>Admin</span></a> | <a href="#"><span>Staff Area</span></a> | <a href="#" class="u-padding--right--sX"><span>Edit page</span><svg display="none" focusable="false" class="icon  u-space--left--xsX" aria-hidden="true"><use xlink:href="#icon-edit"></use></svg></a>
+        <a href="/user-profile"><span>Logged in as stargazer (view profile)</span></a> | <a href="#"><span>Log out</span></a> | <a href="#"><span>Admin</span></a> | <a href="#"><span>Staff Area</span></a> | <a href="#"><span>Edit page</span><svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none"><use xlink:href="#icon-edit"></use></svg></a>
     </p>
 </div>
 
@@ -70,7 +100,7 @@
 
 <div class="u-space--below">
     <p class="c-utilitext  c-utilitext--spaced">
-        <a href="/user-profile"><span>Logged in as stargazer (view profile)</span></a> | <a href="#"><span>Logout</span></a> | <a href="#"><span>Admin</span></a> | <a href="#"><span>Staff Area</span></a> | <a href="#" class="u-padding--right--s"><span>Edit page</span><svg display="none" focusable="false" class="icon  u-space--left--xs" aria-hidden="true"><use xlink:href="#icon-edit"></use></svg></a>
+        <a href="/user-profile"><span>Logged in as stargazer (view profile)</span></a> | <a href="#"><span>Log out</span></a> | <a href="#"><span>Admin</span></a> | <a href="#"><span>Staff Area</span></a> | <a href="#" class="u-padding--right--s"><span>Edit page</span><svg display="none" focusable="false" aria-hidden="true"><use xlink:href="#icon-edit"></use></svg></a>
     </p>
 </div>
 -->
@@ -80,68 +110,103 @@
 <p>An example adding layout classes:</p>
 
 <div class="u-space--below">
-    <p role="list" class="c-utilitext   l-layout  l-row  l-row--start  l-gutter--xs  l-flush-edge-gutter">
-        <span class="l-layout__inner">
+    <p class="c-utilitext   l-layout  l-row  l-row--start  l-gutter--xs  l-flush-edge-gutter">
+        <span role="list" class="l-layout__inner">
             <span role="listitem" class="l-box">
-                <a href="#"><span>Home</span></a><span class="l-box__separator">&nbsp;|</span>
+                <a href="#"><span>Home</span></a>
             </span>
+
+            <span class="l-box__separator">|</span>
+
             <span role="listitem" class="l-box">
-                <a href="#"><span>Contact Us</span></a><span class="l-box__separator">&nbsp;|</span>
+                <a href="#"><span>Contact Us</span></a>
             </span>
+
+            <span class="l-box__separator">|</span>
+
             <span role="listitem" class="l-box">
-                <a href="#"><span>Privacy and Cookies</span></a><span class="l-box__separator">&nbsp;|</span>
+                <a href="#"><span>Privacy and Cookies</span></a>
             </span>
+
+            <span class="l-box__separator">|</span>
+
             <span role="listitem" class="l-box">
-                <a href="#"><span>Accessibility</span></a><span class="l-box__separator">&nbsp;|</span>
+                <a href="#"><span>Accessibility</span></a>
             </span>
+
+            <span class="l-box__separator">|</span>
+
             <span role="listitem" class="l-box">
-                <a href="#"><span>Data Protection</span></a><span class="l-box__separator">&nbsp;|</span>
+                <a href="#"><span>Data Protection</span></a>
             </span>
-            <span role="listitem" class="l-box" >
+
+            <span class="l-box__separator">|</span>
+
+            <span role="listitem" class="l-box">
                 <a href="#"><span>Top</span></a>
             </span>
         </span>
     </p>
 </div>
-<pre><code class="html">&lt;p role=&quot;list&quot; class=&quot;l-layout  l-row  l-row--start  l-gutter--s  l-flush-edge-gutter&quot;&gt;
-    &lt;span class=&quot;l-layout__inner&quot;&gt;
+<pre><code class="html">&lt;p class=&quot;c-utilitext   l-layout  l-row  l-row--start  l-gutter--xs  l-flush-edge-gutter&quot;&gt;
+    &lt;span role=&quot;list&quot; class=&quot;l-layout__inner&quot;&gt;
         &lt;span role=&quot;listitem&quot; class=&quot;l-box&quot;&gt;
-            &lt;a ...&gt;&lt;span&gt;Home&lt;/span&gt;&lt;/a&gt;&lt;span class=&quot;l-box__separator&quot;&gt;&amp;nbsp;|&lt;/span&gt;
+            &lt;a ...&gt;&lt;span&gt;Home&lt;/span&gt;&lt;/a&gt;
         &lt;/span&gt;
+
+        &lt;span class=&quot;l-box__separator&quot;&gt;|&lt;/span&gt;
+
         &lt;span role=&quot;listitem&quot; class=&quot;l-box&quot;&gt;
-            &lt;a ...&gt;&lt;span&gt;Contact Us&lt;/span&gt;&lt;/a&gt;&lt;span class=&quot;l-box__separator&quot;&gt;&amp;nbsp;|&lt;/span&gt;
+            &lt;a ...&gt;&lt;span&gt;Contact Us&lt;/span&gt;&lt;/a&gt;
         &lt;/span&gt;
+
+        &lt;span class=&quot;l-box__separator&quot;&gt;|&lt;/span&gt;
+
         ...
+
         &lt;span role=&quot;listitem&quot; class=&quot;l-box&quot;&gt;
             &lt;a ...&gt;&lt;span&gt;Top&lt;/span&gt;&lt;/a&gt;
         &lt;/span&gt;
     &lt;/span&gt;
-&lt;/p&gt;</code></pre>
+&lt;/p&gt;
+</code></pre>
 
 <p>Notice how the nesting requirements for the layout pattern (<code>p.l-layout > spans.l-layout__inner</code>) would cause a problem with normal list markup (you'd have to include an outer wrapper) are not a problem using the ARIA syntax.</p>
 
 
 <h3>Spaced</h3>
 
-<p>Links spaced out using a larger guuter</p>
+<p>Links spaced out using a <code>&amp;nbsp;</code> to preserve the effect in fallback scenarios. Note large gutters can be used as well but might be overkill.</p>
 
 <div class="u-space--below">
-    <p role="list" class="c-utilitext   l-layout  l-row  l-row--start  l-gutter--s  l-flush-edge-gutter">
-        <span class="l-layout__inner">
+    <p class="c-utilitext  l-layout  l-row  l-row--start  l-gutter--xs  l-flush-edge-gutter">
+        <span role="list" class="l-layout__inner">
             <span role="listitem" class="l-box">
-                <a href="#"><span>Logged in as stargazer (view profile)</span></a><span class="l-box__separator">&nbsp;|</span>
+                <a href="#"><span>Logged in as stargazer (view profile)</span></a>
             </span>
+            
+            <span class="l-box__separator">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+            
             <span role="listitem" class="l-box">
-                <a href="#"><span>Logout</span></a><span class="l-box__separator">&nbsp;|</span>
+                <a href="#"><span>Log out</span></a>
             </span>
+            
+            <span class="l-box__separator">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+            
             <span role="listitem" class="l-box">
-                <a href="#"><span>Admin</span></a><span class="l-box__separator">&nbsp;|</span>
+                <a href="#"><span>Admin</span></a>
             </span>
+            
+            <span class="l-box__separator">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+            
             <span role="listitem" class="l-box">
-                <a href="#"><span>Staff Area</span></a><span class="l-box__separator">&nbsp;|</span>
+                <a href="#"><span>Staff Area</span></a>
             </span>
-            <span role="listitem" class="l-box" >
-                <a href="#" class="u-padding--right--s"><span>Edit page</span><svg display="none" focusable="false" class="icon  u-space--left--xs" aria-hidden="true"><use xlink:href="#icon-edit"></use></svg>
+            
+            <span class="l-box__separator">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+            
+            <span role="listitem" class="l-box">
+                <a href="#" class="u-padding--right--s"><span>Edit page</span><svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none"><use xlink:href="#icon-edit"></use></svg></a>
             </span>
         </span>
     </p>

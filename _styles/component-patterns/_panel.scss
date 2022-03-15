@@ -1,18 +1,20 @@
 /*
     Panel
     =====
-    
+
     SIDEBAR possible! - Note this pattern may appear in a Page Sidebar and has adjustments for this
     context defined in the Page Sidebar special pattern file.
-    
+
 */
 
 $component-namespace: c- !default;
 
 $panel-border-width: 0.1rem;
 
+$__SEL: '.#{$component-namespace}panel';
+
 /**/
-.#{$component-namespace}panel {
+#{$__SEL} {
 
     /*
         1. We expect that panels may have border classes, so allow for those classes to apply a
@@ -23,13 +25,43 @@ $panel-border-width: 0.1rem;
         padding-right: calc(#{$s__sz-m} - var(--p-adjust-r, 0rem)); /* 1 */
         padding-bottom: calc(#{$s__sz-m} - var(--p-adjust-b, 0rem)); /* 1 */
         padding-left: calc(#{$s__sz-m} - var(--p-adjust-l, 0rem)); /* 1 */
+    }
+
+    &#{&}--s {
+        padding-top: calc(#{$s__sz-s} - var(--p-adjust-t, 0rem)); /* 1 */
+        padding-right: calc(#{$s__sz-s} - var(--p-adjust-r, 0rem)); /* 1 */
+        padding-bottom: calc(#{$s__sz-s} - var(--p-adjust-b, 0rem)); /* 1 */
+        padding-left: calc(#{$s__sz-s} - var(--p-adjust-l, 0rem)); /* 1 */
+
+        //
 
     }
 
+    &#{&}--rounded {
+        border-radius: $s__sz-s;
+        overflow: hidden;
+    }
+
+    &#{&}--s#{&}--rounded {
+        border-radius: $s__sz-xs;
+        overflow: hidden;
+    }
+
     & #{&}__header {
-        padding-bottom: #{$s__sz-s - $panel-border-width};
-        border-bottom: $panel-border-width solid currentColor;
-        
+        position: relative;
+        padding-top: $s__sz-s;
+        padding-bottom: $s__sz-s;
+
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: calc(100% - (var(--inset, 0px) * 2));
+            bottom: 0;
+            border-bottom: $panel-border-width solid currentColor;
+            opacity: 0.5;
+        }
+
 
         & > div {
             display: flex;
@@ -53,18 +85,40 @@ $panel-border-width: 0.1rem;
         }
 
     }
-    
-    &__banner {
+
+    & &__banner {
         margin-top: -$s__sz-m;
         margin-right: -$s__sz-m;
         margin-bottom: $s__sz-m;
         margin-left: -$s__sz-m;
     }
+
+    & &__module {
+        margin-bottom:0;
+        width: 100%;
+        //margin-bottom: $s__base-rem-space-unit / 2;
+
+        #{$__SEL}__header::after {
+            display: none;
+        }
+
+        h2 {
+            font-size: 24px / $s__base-font-size * 1em;
+            //margin-bottom: $s__base-rem-space-unit / 2;
+            margin-bottom: 0;
+        }
+
+        h3 {
+            font-size: 20px / $s__base-font-size * 1em;
+            //margin-bottom: $s__base-rem-space-unit / 2;
+            margin-bottom: 0;
+        }
+    }
 }
 
 // Flexbox gap support: https://gist.github.com/OliverJAsh/7f29d0fa1d35216ec681d2949c3fe8b7#gistcomment-3978504
 @supports (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
-    .#{$component-namespace}panel {
+    #{$__SEL} {
         & #{&}__header {
             & > div {
                 gap: 0 $s__sz-m;

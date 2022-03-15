@@ -1,85 +1,142 @@
 ---
 layout: structure--pattern
-title:  Primary content - with pull-outs TO DO
+title:  Primary content - with pull-outs
 ---
 
-<ul>
-    <li><a href="/patterns/layout/primary-content--main-only">Primary content - main only</a></li>
-    <li><a href="/patterns/layout/primary-content--pull-outs">Primary content - with pull-outs</a></li>
-    <li><a href="/patterns/layout/primary-content--pull-outs--super">Primary content - with pull-outs and super pull-out</a></li>
-    <li><a href="/patterns/layout/primary-content--pull-outs--super-only">Primary content - with super pull-out only</a></li>
-</ul>
+{% include pull-out-top.html %}
 
-<hr>
-
-<h2 class="d-background  t-white">Primary Content</h2>
-<p>
-This pattern should only really be used once per page, where the primary content of the page is text (like an article) as opposed to being composed of different blocks where it's harder to establish and single primary focus.
-</p>
-
-<div class="l-primary-content  l-primary-content--has-pull-outs  d-background  t-white  u-space--below">
+<div class="l-primary-content  l-primary-content--has-pull-outs">
 
     <div class="l-primary-content__header">
-        <h1 style="border-bottom: 1px solid #aaa;">Main heading</h1>
-        <p>- By line (or whatever)</p>
+        <div class="c-panel">
+            <header class="c-panel__header">
+                <h1>Primary content heading</h1>
+            </header>
+            <div class="l-primary-content__hidden--wide">
+                <p class="c-utilitext  u-text-align--right">
+                    <a href="#menu"><span>Menu</span></a> |
+                    <a href="#in-this-section"><span>In this section</span></a>
+                </p>
+            </div>
+        </div>
     </div>
 
-    <div class="l-primary-content__pull-out  l-primary-content__pull-out--top" style="background-color: #eee;">
-        <div class="l-primary-content__pull-out__padded--@small">
-            <h2>Side bar - top section</h2>
-            
-             <p>
-                This area includes padding @small screen widths. We want to apply this on a
-                case-by-case basis as there are plenty of pull-outs that don't need padding at this
-                width and should snap to full-width.
-            </p>
+    <div class="l-primary-content__pull-out  l-primary-content__pull-out--top">
+        <div class="c-panel">
+            <div class="c-panel__module">
+                <header class="c-panel__header">
+                    <h2>Side bar - top section</h2>
+                </header>
+
+                <p>
+                    Suspendisse pellentesque, elit et laoreet gravida, nunc arcu eleifend sem, luctus pellentesque diam lorem quis justo. Curabitur id ex id tellus viverra cursus. In faucibus et nunc ut egestas. Suspendisse accumsan mi id maximus gravida. Donec vitae nunc ex. Quisque gravida ultricies sapien viverra tristique. Ut vitae libero viverra, faucibus dolor semper, dignissim lectus.
+                </p>
+
+                <details>
+                    <summary>More content</summary>
+                    <div>
+                        <p>
+                            Suspendisse pellentesque, elit et laoreet gravida, nunc arcu eleifend sem, luctus pellentesque diam lorem quis justo. Curabitur id ex id tellus viverra cursus. In faucibus et nunc ut egestas. Suspendisse accumsan mi id maximus gravida. Donec vitae nunc ex. Quisque gravida ultricies sapien viverra tristique. Ut vitae libero viverra, faucibus dolor semper, dignissim lectus.
+                        </p>
+
+                        <p>
+                            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim congue, non molestie arcu aliquam. Vestibulum sagittis feugiat vulputate. Sed pharetra aliquam diam, eu euismod quam ullamcorper in. Sed a tempor tellus. Suspendisse in tellus hendrerit, aliquam ipsum nec, faucibus neque. Fusce a neque urna.
+                        </p>
+
+                        <p>
+                            Maecenas vehicula, felis a tincidunt ultrices, ante velit aliquet lectus, sed sollicitudin libero tellus at elit. Fusce eget quam et tortor gravida hendrerit. In urna libero, vulputate sit amet mauris eget, efficitur luctus tortor.
+                        </p>
+                    </div>
+                </details>
+            </div>
         </div>
-    </div>  
+    </div>
 
     <div class="l-primary-content__main">
+        <div class="longform-content  user-content">
 
-        <p>
-            Suspendisse pellentesque, elit et laoreet gravida, nunc arcu eleifend sem, luctus pellentesque diam lorem quis justo. Curabitur id ex id tellus viverra cursus. In faucibus et nunc ut egestas. Suspendisse accumsan mi id maximus gravida. Donec vitae nunc ex. Quisque gravida ultricies sapien viverra tristique. Ut vitae libero viverra, faucibus dolor semper, dignissim lectus.
-        </p>
-        
-        <p>
-            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim congue, non molestie arcu aliquam. Vestibulum sagittis feugiat vulputate. Sed pharetra aliquam diam, eu euismod quam ullamcorper in. Sed a tempor tellus. Suspendisse in tellus hendrerit, aliquam ipsum nec, faucibus neque. Fusce a neque urna.
-        </p>
+            <h2>Primary content - main content section</h2>
 
-        <p>
-            Maecenas vehicula, felis a tincidunt ultrices, ante velit aliquet lectus, sed sollicitudin libero tellus at elit. Fusce eget quam et tortor gravida hendrerit. In urna libero, vulputate sit amet mauris eget, efficitur luctus tortor.
-        </p>
+            <p>
+                Suspendisse pellentesque, elit et laoreet gravida, nunc arcu eleifend sem, luctus pellentesque diam lorem quis justo. Curabitur id ex id tellus viverra cursus. In faucibus et nunc ut egestas. Suspendisse accumsan mi id maximus gravida. Donec vitae nunc ex. Quisque gravida ultricies sapien viverra tristique. Ut vitae libero viverra, faucibus dolor semper, dignissim lectus.
+            </p>
 
-   
-        <h2>Main - bottom section</h2>
-        
-        <p>
-            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim congue, non molestie arcu aliquam. Vestibulum sagittis feugiat vulputate. Sed pharetra aliquam diam, eu euismod quam ullamcorper in. Sed a tempor tellus. Suspendisse in tellus hendrerit, aliquam ipsum nec, faucibus neque. Fusce a neque urna.
-        </p>
+            <details>
+                <summary>More content</summary>
+                <div>
+                    <p>
+                        Suspendisse pellentesque, elit et laoreet gravida, nunc arcu eleifend sem, luctus pellentesque diam lorem quis justo. Curabitur id ex id tellus viverra cursus. In faucibus et nunc ut egestas. Suspendisse accumsan mi id maximus gravida. Donec vitae nunc ex. Quisque gravida ultricies sapien viverra tristique. Ut vitae libero viverra, faucibus dolor semper, dignissim lectus.
+                    </p>
 
-        <p>
-            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim congue, non molestie arcu aliquam. Vestibulum sagittis feugiat vulputate. Sed pharetra aliquam diam, eu euismod quam ullamcorper in. Sed a tempor tellus. Suspendisse in tellus hendrerit, aliquam ipsum nec, faucibus neque. Fusce a neque urna.
-        </p>
+                    <p>
+                        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim congue, non molestie arcu aliquam. Vestibulum sagittis feugiat vulputate. Sed pharetra aliquam diam, eu euismod quam ullamcorper in. Sed a tempor tellus. Suspendisse in tellus hendrerit, aliquam ipsum nec, faucibus neque. Fusce a neque urna.
+                    </p>
 
-        <p>
-            Maecenas vehicula, felis a tincidunt ultrices, ante velit aliquet lectus, sed sollicitudin libero tellus at elit. Fusce eget quam et tortor gravida hendrerit. In urna libero, vulputate sit amet mauris eget, efficitur luctus tortor.
-        </p>
-           
+                    <p>
+                        Maecenas vehicula, felis a tincidunt ultrices, ante velit aliquet lectus, sed sollicitudin libero tellus at elit. Fusce eget quam et tortor gravida hendrerit. In urna libero, vulputate sit amet mauris eget, efficitur luctus tortor.
+                    </p>
+                </div>
+            </details>
+
+            <details>
+                <summary>More content</summary>
+                <div>
+                    <p>
+                        Suspendisse pellentesque, elit et laoreet gravida, nunc arcu eleifend sem, luctus pellentesque diam lorem quis justo. Curabitur id ex id tellus viverra cursus. In faucibus et nunc ut egestas. Suspendisse accumsan mi id maximus gravida. Donec vitae nunc ex. Quisque gravida ultricies sapien viverra tristique. Ut vitae libero viverra, faucibus dolor semper, dignissim lectus.
+                    </p>
+
+                    <p>
+                        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim congue, non molestie arcu aliquam. Vestibulum sagittis feugiat vulputate. Sed pharetra aliquam diam, eu euismod quam ullamcorper in. Sed a tempor tellus. Suspendisse in tellus hendrerit, aliquam ipsum nec, faucibus neque. Fusce a neque urna.
+                    </p>
+
+                    <p>
+                        Maecenas vehicula, felis a tincidunt ultrices, ante velit aliquet lectus, sed sollicitudin libero tellus at elit. Fusce eget quam et tortor gravida hendrerit. In urna libero, vulputate sit amet mauris eget, efficitur luctus tortor.
+                    </p>
+                </div>
+            </details>
+
+        </div>
     </div>
-    
-    <div class="l-primary-content__pull-out  l-primary-content__pull-out--bottom" style="background-color: #eee;">
-        <h2>Side bar - bottom section</h2>
-        <p>
-            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim congue, non molestie arcu aliquam. Vestibulum sagittis feugiat vulputate. Sed pharetra aliquam diam, eu euismod quam ullamcorper in. Sed a tempor tellus. Suspendisse in tellus hendrerit, aliquam ipsum nec, faucibus neque. Fusce a neque urna.
-        </p>
 
-        <p>
-            Maecenas vehicula, felis a tincidunt ultrices, ante velit aliquet lectus, sed sollicitudin libero tellus at elit. Fusce eget quam et tortor gravida hendrerit. In urna libero, vulputate sit amet mauris eget, efficitur luctus tortor.
-        </p>
-           
+    <div class="l-primary-content__pull-out  l-primary-content__pull-out--bottom">
+        <div class="c-panel">
+            <div class="c-panel__module">
+                <header class="c-panel__header">
+                    <h2>Side bar - bottom section</h2>
+                </header>
+
+                <p>
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim congue, non molestie arcu aliquam. Vestibulum sagittis feugiat vulputate. Sed pharetra aliquam diam, eu euismod quam ullamcorper in. Sed a tempor tellus. Suspendisse in tellus hendrerit, aliquam ipsum nec, faucibus neque. Fusce a neque urna.
+                </p>
+
+                <p>
+                    Maecenas vehicula, felis a tincidunt ultrices, ante velit aliquet lectus, sed sollicitudin libero tellus at elit. Fusce eget quam et tortor gravida hendrerit. In urna libero, vulputate sit amet mauris eget, efficitur luctus tortor.
+                </p>
+
+                <details>
+                    <summary>More content</summary>
+                    <div>
+                        <p>
+                            Suspendisse pellentesque, elit et laoreet gravida, nunc arcu eleifend sem, luctus pellentesque diam lorem quis justo. Curabitur id ex id tellus viverra cursus. In faucibus et nunc ut egestas. Suspendisse accumsan mi id maximus gravida. Donec vitae nunc ex. Quisque gravida ultricies sapien viverra tristique. Ut vitae libero viverra, faucibus dolor semper, dignissim lectus.
+                        </p>
+
+                        <p>
+                            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt lorem sit amet enim congue, non molestie arcu aliquam. Vestibulum sagittis feugiat vulputate. Sed pharetra aliquam diam, eu euismod quam ullamcorper in. Sed a tempor tellus. Suspendisse in tellus hendrerit, aliquam ipsum nec, faucibus neque. Fusce a neque urna.
+                        </p>
+
+                        <p>
+                            Maecenas vehicula, felis a tincidunt ultrices, ante velit aliquet lectus, sed sollicitudin libero tellus at elit. Fusce eget quam et tortor gravida hendrerit. In urna libero, vulputate sit amet mauris eget, efficitur luctus tortor.
+                        </p>
+                    </div>
+                </details>
+            </div>
+        </div>
     </div>
-    
+
+    <div class="l-primary-content__footer">
+        <div class="c-panel">
+            <p>Footer - maybe a logo strip like PRU COVID pages.</p>
+        </div>
+    </div>
+
 </div>
-
-<hr>
-<hr>

@@ -122,7 +122,7 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
                 &:last-child {
                     margin-bottom: calc(#{$s__sz-m} - #{$s__border-width});
                 }
-     
+
                 &:only-child {
                     margin-bottom: 0;
                 }
@@ -151,6 +151,10 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
         #{&}__header + #{&}__footer {
             margin-top: auto;
         }
+        
+        #{&}__header + #{&}__footer > div {
+            margin-top: $s__sz-m;
+        }
 
 
         #{&}__footer {
@@ -159,6 +163,7 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
             z-index: 2;
         }
 
+        /*
         #{&}__footer > div {
             margin-top: 0;
             margin-bottom: 0;
@@ -172,6 +177,7 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
         #{&}__footer > div + footer {
             margin-top: $s__sz-m;
         }
+        */
 
         #{&}__footer-image {
             margin-top: $s__sz-m;
@@ -227,8 +233,9 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
     }
 }
 
-    
+
 // Safari 10.1 doesn't handle height correctly, so undoing the 100%. This means it won't expand
 // in layout/grid scenarios, but there are hardly any users so this is acceptable.
-@media not all and (min-resolution:.001dpcm) { @supports (-webkit-appearance:none) { .card { height: auto; } } }
-// _::-webkit-:host:not(:root:root), .card { height: auto; }
+//@media not all and (min-resolution:.001dpcm) { @supports (-webkit-appearance:none) { .c-card { height: auto !important; } } }
+//_::-webkit-:host:not(:root:root), .c-card { height: auto !important; }
+@media not all and (min-resolution:.001dpcm) { @supports (-webkit-appearance:none) and (not (stroke-color:transparent)) { .c-card, .c-card > div  { height: auto !important; } } }

@@ -1,3 +1,11 @@
+/* --| CSS LOADED |------------------------------------------------------------------------------ */
+// This does nothing in the CSS, but gives JS something to look for so it can check if the CSS has
+// loaded.
+#css_has_loaded {
+    border: 0;
+}
+/* ---------------------------------------------------------------------------------------------- */
+
 /* --| SETTINGS |-------------------------------------------------------------------------------- */
 
 // NOTE - Needs an overhaul because of updated StartCSS
@@ -95,6 +103,9 @@ $s__button-background-color--alt: hsl(var(--t-primary-color-h), var(--t-primary-
 $s__pre-background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-light));
 
 
+$s__hr-border: $s__border-width solid hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
+
+
 $s__html-background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-dark));
 
 
@@ -186,6 +197,45 @@ $focus-shadow: 0 0 0 $s__sz-xxs #fff, 0 0 0 $s__sz-xs rgba(0,0,0,.2);
 
 /* --| PATTERNS |-------------------------------------------------------------------------------- */
 
+/* --| Special Patterns |------------------------------------------------------------------------ */
+// Special patterns are intended to be utility patterns that work in isolation from anything else,
+// and/or do not share the u- prefix naming convention. This one is here so it's mixin is available
+// to other patterns.
+
+$ff-breakpoints: (
+    10em,
+    15em,
+    20em,
+    25em,
+    30em,
+    35em,
+    40em,
+    45em,
+    50em,
+    55em,
+    60em,
+    65em,
+    70em,
+    75em,
+    80em
+);
+
+$ff-min-widths: (
+    20%,
+    25%,
+    30%,
+    33.333%,
+    40%,
+    50%,
+    60%,
+    66.666%,
+    70%,
+    75%,
+    80%
+);
+
+@import "special-patterns/_ff-widths.scss";
+
 /* --| Component Patterns |---------------------------------------------------------------------- */
 
 @import "component-patterns/_badge.scss";
@@ -250,7 +300,7 @@ $layout-spacing-unit: $s__base-rem-space-unit / 2;
 
 @import "layout-patterns/_gallery-grid.scss";
 
-//@import "layout-patterns/_col-to-row.scss";
+@import "layout-patterns/_primary-content.scss";
 
 /* ---------------------------------------------------------------------------------------------- */
 
@@ -273,24 +323,27 @@ $layout-spacing-unit: $s__base-rem-space-unit / 2;
 /* --| Fall-Back Patterns |---------------------------------------------------------------------- */
 
 
+@import "../bower_components/Fall-Back-Patterns/Close Button/scss/_close-button";
+
+
 $s__dropdown--base-ui-color: transparent;
 $s__dropdown--base-text-color: inherit;
 //$s__dropdown--background-color:                transparent;
 $s__dropdown--text-color:                        inherit;
 //$s__dropdown__control--color:                  $s__nav-bar__link--color;
-//$s__dropdown__control--background-color:       $s__nav-bar__link--background-color;
-//$s__dropdown__control--background-color--alt:  $s__nav-bar__link--background-color--alt;
+$s__dropdown__control--background-color:         false;
+$s__dropdown__control--background-color--alt:    rgba(255,255,255,0.15);
 //$s__dropdown__control--background-color--alt2: $s__nav-bar__link--background-color--alt;
 $s__dropdown-z-index: 2;
 @import "../bower_components/Fall-Back-Patterns/Dropdown/scss/_dropdown-next";
 
 
-$s__nav-bar--base-ui-color:                transparent;
+$s__nav-bar--base-ui-color:                false;
 $s__nav-bar--base-ui-text-color:           inherit;
 $s__nav-bar__link--color:                  inherit;
-$s__nav-bar__link--background-color:       transparent;
+$s__nav-bar__link--background-color:       false;
 $s__nav-bar__link--background-color--alt:  rgba(255,255,255,0.15);
-$s__sub-nav__link--background-color:       transparent;
+$s__sub-nav__link--background-color:       false;
 $s__sub-nav__link--background-color--alt:  rgba(255,255,255,0.15);
 @import '../bower_components/Fall-Back-Patterns/Nav Bar/scss/_nav-bar-next.scss';
 
@@ -299,6 +352,7 @@ $s__over-panel--base-ui-color: transparent;
 $s__over-panel--base-text-color: inherit;
 $s__over-panel__contents--padding: 0;
 $s__over-panel__overlay--background-color: #000;
+$s__over-panel__control--background-color: false;
 @import "../bower_components/Fall-Back-Patterns/Over Panel/scss/_over-panel-next";
 
 
@@ -320,47 +374,18 @@ $s__search-form__submit--background-color--alt: hsl(var(--t-primary-color-h), va
     padding-left: 0.5em;
 }
 
+
+
 /* ---------------------------------------------------------------------------------------------- */
 
 
 
-/* --| Special Patterns |------------------------------------------------------------------------ */
+/* --| More Special Patterns |------------------------------------------------------------------------ */
 // Special patterns are intended to be utility patterns that work in isolation from anything else,
 // and/or do not share the u- prefix naming convention.
 
-$ff-breakpoints: (
-    10em,
-    15em,
-    20em,
-    25em,
-    30em,
-    35em,
-    40em,
-    45em,
-    50em,
-    55em,
-    60em,
-    65em,
-    70em,
-    75em,
-    80em
-);
-
-$ff-min-widths: (
-    20%,
-    25%,
-    30%,
-    33.333%,
-    40%,
-    50%,
-    60%,
-    66.666%,
-    70%,
-    75%,
-    80%
-);
-
-@import "special-patterns/_ff-widths.scss";
+// Longform Content is necessary but it doesn't fit nicely into another category:
+@import "special-patterns/_longform-content.scss";
 
 // Page Header is necessary but it doesn't fit nicely into another category:
 @import "special-patterns/_page-header.scss";
@@ -370,6 +395,9 @@ $ff-min-widths: (
 
 // Page Wrap is necessary but it doesn't fit nicely into another category:
 @import "special-patterns/_page-wrap.scss";
+
+// User Content is necessary but it doesn't fit nicely into another category:
+@import "special-patterns/_user_content.scss";
 
 /* ---------------------------------------------------------------------------------------------- */
 
@@ -382,6 +410,8 @@ $ff-min-widths: (
 @import "utility-patterns/_fill-width.scss";
 
 @import "utility-patterns/_image-cover.scss";
+
+@import "utility-patterns/_text-align.scss";
 
 
 /* ---------------------------------------------------------------------------------------------- */

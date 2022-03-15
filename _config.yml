@@ -21,6 +21,7 @@ defaults:
       display_support: true
       display_toc: true
       display_page_footer: true
+      alt_theme: true
       is_home: false
       is_contact: false
       is_updates: false

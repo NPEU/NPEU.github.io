@@ -16,10 +16,10 @@
 
             <div class="nav-bar__start" data-area="navbar-controls">
                 <div class="nav-bar__item">
-                    <button class="over-panel-control  d-background" hidden="" aria-controls="menu-panel" aria-label="Main menu" aria-expanded="false" data-js="overpanel__control"><svg display="none" focusable="false" class="icon  icon--is-closed" width="1.25em" height="1.25em"><use xlink:href="#icon-menu"></use></svg><svg display="none" focusable="false" class="icon  icon--is-open" width="1.25em" height="1.25em"><use xlink:href="#icon-cross"></use></svg></button>
+                    <button class="over-panel-control" hidden="" aria-controls="menu-panel" aria-label="Main menu" aria-expanded="false" data-js="overpanel__control"><svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" class="icon  icon--is-closed"><use xlink:href="#icon-menu"></use></svg><svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" class="icon  icon--is-open"><use xlink:href="#icon-cross"></use></svg></button>
                 </div>
                 <div class="nav-bar__item">
-                    <button class="over-panel-control  d-background" hidden="" aria-controls="search-panel" aria-label="Search" aria-expanded="false" data-js="overpanel__control"><svg display="none" focusable="false" class="icon  icon--is-closed" width="1.25em" height="1.25em"><use xlink:href="#icon-search"></use></svg><svg display="none" focusable="false" class="icon  icon--is-open" width="1.25em" height="1.25em"><use xlink:href="#icon-cross"></use></svg></button>
+                    <button class="over-panel-control" hidden="" aria-controls="search-panel" aria-label="Search" aria-expanded="false" data-js="overpanel__control"><svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" class="icon  icon--is-closed"><use xlink:href="#icon-search"></use></svg><svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" class="icon  icon--is-open"><use xlink:href="#icon-cross"></use></svg></button>
                 </div>
             </div>
 
@@ -35,7 +35,7 @@
                             <li class="nav-bar__item  dropdown-container">
                                 <a href="/about" class="nav-bar__link"><span>About Us</span></a>
                                 <div class="dropdown  dropdown--only-wide" data-js="dropdown">
-                                    <button id="about-alias-sub-menu" class="dropdown__control" data-js="dropdown__control" hidden="" aria-label="About Us sub-menu" aria-expanded="false"><svg display="none" focusable="false" class="icon  icon--is-closed" width="1.25em" height="1.25em"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" focusable="false" class="icon  icon--is-open" width="1.25em" height="1.25em"><use xlink:href="#icon-chevron-up"></use></svg></button>
+                                    <button id="about-alias-sub-menu" class="dropdown__control" data-js="dropdown__control" hidden="" aria-label="About Us sub-menu" aria-expanded="false"><svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
                                     <div class="dropdown__area" id="about-alias-sub-menu--target">
                                         <ul class="sub-nav__items  sub-nav__items--stacked  d-background--dark">
                                             <li class="sub-nav__item">
@@ -63,7 +63,7 @@
                             <li class="nav-bar__item  dropdown-container">
                                 <a href="/research" class="nav-bar__link"><span>Research</span></a>
                                 <div class="dropdown  dropdown--only-wide" data-js="dropdown">
-                                    <button id="research-alias-sub-menu" class="dropdown__control" data-js="dropdown__control" hidden="" aria-label="Research sub-menu" aria-expanded="false"><svg display="none" focusable="false" class="icon  icon--is-closed" width="1.25em" height="1.25em"><use xlink:href="#icon-chevron-down"></use></svg><svg display="none" focusable="false" class="icon  icon--is-open" width="1.25em" height="1.25em"><use xlink:href="#icon-chevron-up"></use></svg></button>
+                                    <button id="research-alias-sub-menu" class="dropdown__control" data-js="dropdown__control" hidden="" aria-label="Research sub-menu" aria-expanded="false"><svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" class="icon  icon--is-closed"><use xlink:href="#icon-chevron-down"></use></svg><svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none" class="icon  icon--is-open"><use xlink:href="#icon-chevron-up"></use></svg></button>
                                     <div class="dropdown__area" id="research-alias-sub-menu--target">
                                         <ul class="sub-nav__items  sub-nav__items--stacked  d-background--dark">
                                             <li class="sub-nav__item">
@@ -112,12 +112,9 @@
                     <div class="over-panel__contents  d-background" data-js="over-panel__contents">
                         <form action="/search" id="searchform" class="search-form  search-form---restrict-width" method="GET">
                             <input type="search" class="search-form__field" id="search" placeholder="Search (e.g. Randomisation)" name="q" value="" aria-label="Search">
-                            <button class="search-form__submit" type="submit">
+                            <button class="search-form__submit" type="submit" aria-labelledby="search-button-label">
                                 <span>
-                                    <svg width="1.25em" height="1.25em" viewBox="0 0 20 20" focusable="false">
-                                        <path fill="currentColor" d="M12.917 11.667h-0.662l-0.229-0.229c0.817-0.946 1.308-2.175 1.308-3.521 0-2.992-2.425-5.417-5.417-5.417s-5.417 2.425-5.417 5.417 2.425 5.417 5.417 5.417c1.346 0 2.575-0.492 3.521-1.304l0.229 0.229v0.658l4.167 4.158 1.242-1.242-4.158-4.167zM7.917 11.667c-2.071 0-3.75-1.679-3.75-3.75s1.679-3.75 3.75-3.75 3.75 1.679 3.75 3.75-1.679 3.75-3.75 3.75z"></path>
-                                        <text y="-10">Search</text>
-                                    </svg>
+                                    <svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em"><use xlink:href="#icon-search"></use><text visibility="hidden" id="search-button-label">Search</text></svg>
                                 </span>
                             </button>
                         </form>

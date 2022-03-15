@@ -1,14 +1,21 @@
 /*
+    Center Layout
+    =============
 
 */
-$center-namespace: l- !default;
+
+@if not variable-exists(layout-base) {
+    @error "Center layout requires Base layout.";
+}
+
+$layout-namespace: l- !default;
 
 /*
     I'm considering using grid for this.
     It is already necessary for IE11
 */
 
-.#{$center-namespace}center {
+.#{$layout-namespace}center {
     &#{&} {
         display: flex;
         align-items: center;
@@ -18,7 +25,7 @@ $center-namespace: l- !default;
     & > * {
         flex: 0 1 auto;
     }
-    
+
     /*
         IE10-11
 
@@ -35,7 +42,7 @@ $center-namespace: l- !default;
             -ms-grid-rows: 100%;
         }
 
-        & > * {            
+        & > * {
             -ms-grid-column-align: center;
             -ms-grid-row-align: center;
         }

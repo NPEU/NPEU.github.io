@@ -175,7 +175,6 @@ const js_filter_filename                 = 'filter.js';
 const js_slimselect_filename             = 'slimselect.js';
 const js_whatson_filename                = 'whatson.js';
 const js_ie11_filename                   = 'ie11.js';
-const js_ie11_custom_properties_filename = 'ie11-custom-properties.js';
 
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
@@ -260,8 +259,7 @@ function do_uglify(cb) {
             js_src + js_filter_filename,
             js_src + js_slimselect_filename,
             js_src + js_whatson_filename,
-            js_src + js_ie11_filename,
-            js_src + 'js/' + js_ie11_custom_properties_filename
+            js_src + js_ie11_filename
         ]),
         uglify(),
         rename({extname: '.min.js'}),

@@ -12,10 +12,13 @@ $utilitext--text-color: currentColor !default;
 
     &#{&} {
         font-size: 0.875em;
+        margin-top: 0;
+        margin-bottom: 0;
 
         a[href] {
-            span {
 
+            svg:last-child {
+                margin-left: 0.3em;
             }
 
             @supports(text-decoration-line: underline) {
@@ -26,11 +29,11 @@ $utilitext--text-color: currentColor !default;
             }
         }
     }
-    
+
     &#{&}--skiplinks {
-        position: relative;    
+        position: relative;
     }
-    
+
     &#{&}--skiplinks a[href] {
         border: 0;
         clip: rect(0 0 0 0);
@@ -41,7 +44,7 @@ $utilitext--text-color: currentColor !default;
         position: absolute;
         width: 1px;
         white-space: nowrap;
-        
+
         &:active, &:focus {
             clip: auto;
             height: auto;
@@ -67,4 +70,70 @@ $utilitext--text-color: currentColor !default;
     //    margin-right: $s__sz-s;
     //}
 
+    &#{&} button {
+        border-radius: 0;
+        min-height: 0;
+        color: $s__anchor-text-color;
+        background-color: transparent;
+        vertical-align: baseline;
+        line-height: normal;
+        display: inline;
+        padding: 0;
+        margin: 0;
+
+        border: 0 none;
+
+        text-decoration: underline;
+
+
+        text-decoration-line:      underline;
+        text-decoration-style:     $s__anchor-line-style;
+        text-decoration-thickness: $s__anchor-line-width;
+        //text-underline-offset:     $s__anchor-line-offset;
+
+        -webkit-text-decoration-skip: objects; /* 1 */
+
+        touch-action: manipulation; /* 2 */
+
+
+        &:hover,
+        &:active {
+            //box-shadow:      0px 0.5px 0px 0px currentColor; /* [1] */
+            text-decoration: none;
+
+            @if $s__anchor-text-color--alt != $s__anchor-text-color {
+                color: $s__anchor-text-color--alt;
+            }
+
+            // @TODO - maybe support filters here too, e.g. filter: brightness(0.5);
+
+        }
+
+        @supports(text-decoration-line: underline) {
+            &:hover,
+            &:active {
+                text-decoration: underline dashed currentColor $s__anchor-line-width; /* [1] */
+                box-shadow: none;
+
+                //text-underline-offset: $s__anchor-line-offset--alt;
+                //text-decoration-style: $s__anchor-text-decoration-style--alt;
+
+                @if $s__anchor-text-color--alt != $s__anchor-text-color {
+                    color: $s__anchor-text-color--alt;
+                }
+            }
+        }
+
+        /*
+            1. Make sure focus is still visible in Forced Colour modes.
+               (https://www.sarasoueidan.com/blog/focus-indicators/)
+        */
+        @if $s__use-focus-shadow {
+
+            &:focus {
+                outline: 1px solid transparent; /* [1] */
+                box-shadow: $s__outline-shadow;
+            }
+        }
+    }
 }

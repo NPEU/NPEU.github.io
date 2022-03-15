@@ -22,6 +22,12 @@ $component-namespace: c- !default;
         font-size: 1.375em;
 
         padding: $s__sz-xs  $s__sz-s;
+        
+        text-align: center;
+        
+        &[rel="external"] {
+            background-position: right 0.23em bottom 0.85em;
+        }
     }
 
 }

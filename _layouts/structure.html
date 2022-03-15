@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en-gb" class="">
+<html lang="en-gb" class="env-development">
 <head>
     <meta charset="utf-8">
     <title>{{ page.title }} | NPEU Styleguide</title>
@@ -18,8 +18,8 @@
 
     <!-- Built with Jekyll and Fall-Back patterns -->
 
-    <!--<base href="http://localhost:4001/">-->
-
+    <!--<base href="http://localhost:4001/">
+    <meta name="css_loaded_check" id="css_loaded_check" content="check_css">-->
     <!-- Ultra-light fallback styles for ancient browsers: -->
     <style>
         /*
@@ -35,6 +35,14 @@
             There's a much long essay on this brewing and I'll add the link when it's done.
         */
         body{font:1em/1.2 sans-serif;padding:1em;margin:0 auto;max-width:50em}details,dialog,main,summary{display:block}@supports (list-style-type:disclosure-closed){summary{display:list-item}}mark{background:#ff0;color:# 000}[hidden],template{display:none}fieldset{border:1px solid;border-color:#777;margin:1em 0;padding:1em}image,img,svg{max-width:100%;-ms-interpolation-mode:bicubic;vertical-align:middle;height:auto;border:0}figure{max-width:100%;overflow-x:auto}_:-o-prefocus,:root figure{max-width:initial;overflow-x:visible}hr{border-style:solid;border-width:0 0 1px 0;margin:1em 0;color:#777}pre{width:100%;overflow-x:scroll;overflow-y:auto}video{max-width:100%;height:auto}button,input,label,select,textarea{vertical-align:middle;vertical-align:middle;min-height:2.2em;margin:.2em 0}button,input[type=checkbox],input[type=radio],label,select,textarea{cursor:pointer}button,input,textarea{padding:0 .5em;line-height:1.5}table{width:100%;border:1px solid #777;border-collapse:collapse}table[role=presentation]{border:0;table-layout:fixed}table[role=presentation] td{border:0}th{background:#eee}caption,td,th{padding:.5em}
+
+        [data-fs-text~=right]{text-align:right}[data-fs-text~=center]{text-align:center}[data-fs-text~=larger]{font-size:larger}[data-fs-text~=nowrap]{white-space:nowrap}
+
+        /* For YouTube via http://embedresponsively.com. May or may not be needed. */
+        .embed-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;} .embed-container iframe, .embed-container object, .embed-container embed{position:absolute;top:0;left:0;width:100%;height:100%;}
+
+        /* IE needs SVG icons to NOT be auto height: */
+        svg[height="1.25em"] {height: 1.25em;}
     </style>
 
 
@@ -43,7 +51,7 @@
 
     <style>
         /* Tiny Fall-Back Styles continued ... */
-        [data-fs-text~=right]{text-align:right}[data-fs-text~=center]{text-align:center}[data-fs-text~=larger]{font-size:larger}[data-fs-text~=nowrap]{white-space:nowrap}[data-fs-block~=background]{background:#eee}[data-fs-block~=border]{border:1px solid;margin:1em 0;padding:1em}[data-fs-block~=padding]{padding:1em}[data-fs-block~=table]{display:table;width:100%;table-layout:fixed}[data-fs-block~=table]>*{display:table-cell;padding:.5em}[data-fs-block~=flex]{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}[data-fs-block~=flex]>*{-webkit-box-flex:1;-webkit-flex:1 0 auto;-moz-box-flex:1;-ms-flex:1 0 auto;flex:1 0 auto}[data-fs-block=video]{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%}[data-fs-block=video] embed,[data-fs-block=video] iframe,[data-fs-block=video] object{position:absolute;top:0;left:0;width:100%;height:100%}[data-fs-hr=larger]{border-top-width:10px}
+        [data-fs-block~=background]{background:#eee}[data-fs-block~=border]{border:1px solid;margin:1em 0;padding:1em}[data-fs-block~=padding]{padding:1em}[data-fs-block~=table]{display:table;width:100%;table-layout:fixed}[data-fs-block~=table]>*{display:table-cell;padding:.5em}[data-fs-block~=flex]{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}[data-fs-block~=flex]>*{-webkit-box-flex:1;-webkit-flex:1 0 auto;-moz-box-flex:1;-ms-flex:1 0 auto;flex:1 0 auto}[data-fs-block=video]{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%}[data-fs-block=video] embed,[data-fs-block=video] iframe,[data-fs-block=video] object{position:absolute;top:0;left:0;width:100%;height:100%}[data-fs-hr=larger]{border-top-width:10px}
 
 
         /* Some fallback decoration: */
@@ -115,12 +123,6 @@
         script.type  = 'text/javascript';
         script.src = '/js/ie11.min.js';
         document.getElementsByTagName('head')[0].appendChild(script);
-
-
-        var script2  = document.createElement('script');
-        script2.type  = 'text/javascript';
-        script2.src = '/js/ie11-custom-properties.min.js';
-        document.getElementsByTagName('head')[0].appendChild(script2);
     }
     </script>
 
@@ -134,8 +136,8 @@
     </style>
     {% endif %}
 
-    <!--<script src="/js/script.min.js"></script>-->
-    <script src="/js/script.js"></script>
+    <script src="/js/script.min.js"></script>
+    <!--<script src="/js/script.js"></script>-->
 
     {% if page.load_highlighter != false %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css" media="
@@ -216,15 +218,10 @@
     <meta name="msapplication-config" content="{{ project_base_url }}/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
+    {% if page.alt_theme %}
     <!-- Brand theme (for testing purposes - will be added by CMS) -->
     <style>
         :root {
-        
-            --t-bg-color: #FFFFFF; /* hsl(0, 0%, 100%) */
-            --t-bg-color-h: 0;
-            --t-bg-color-s: 0%;
-            --t-bg-color-l: 100%;
-            --t-bg-color-l-copy: 100%;
 
             --t-primary-color: #253A8E; /* hsl(228, 59%, 35%) */
             --t-primary-color-h: 228;
@@ -237,7 +234,7 @@
             --t-secondary-color-s: 77%;
             --t-secondary-color-l: 60%;
             --t-secondary-color-l-copy: 60%;
-            
+
             {% comment %}<!--
             --t-neutral-color: #8e8279;
             --t-neutral-color-h: 26;
@@ -245,8 +242,8 @@
             --t-neutral-color-l: 52%;
             --t-neutral-color-l-copy: 52%;
             -->{% endcomment %}
-            
-            
+
+
             --t-primary-color-l--very-light: 95%;
             --t-primary-color-l--light: 81%;
             --t-primary-color-l--dark: 26%;
@@ -258,7 +255,7 @@
             --t-secondary-color-l--dark: 37%;
             --t-secondary-color-l--very-dark: 27%;
             --t-secondary-fore-text-color: var(--t-text-color-inverse); /* PHP would generate this from the base colour. */
-            
+
             {% comment %}<!--
             --t-neutral-color-l--very-light: 96%;
             --t-neutral-color-l--light: 86%;
@@ -266,7 +263,7 @@
             --t-neutral-color-l--very-dark: 26%;
             --t-neutral-fore-text-color: var(--t-text-color); /* PHP would generate this from the base colour. */
             -->{% endcomment %}
-            
+
             {% comment %}<!--
 
             /* All vars (for reference): */
@@ -326,108 +323,137 @@
 
             -->{% endcomment %}
         }
-        
+
         .t-surfon {
-          --t-text-color: #111;
-          --t-text-color-inverse: #fff;
-          --t-light-adjust: $light-adjust;
-          --t-very-light-adjust: $very-light-adjust;
-          --t-dark-adjust: $dark-adjust;
-          --t-very-dark-adjust: $very-dark-adjust;
-          --t-primary-color: #5c6dab;
-          --t-primary-color-h: 227;
-          --t-primary-color-s: 32%;
-          --t-primary-color-l: 52%;
-          --t-primary-color-l-copy: 52%;
-          /* 1 */
-          --t-primary-fore-text-color: #fff;
-          /* SASS would generate this from the base colour. */
-          --t-secondary-color: #ff9e1b;
-          --t-secondary-color-h: 34;
-          --t-secondary-color-s: 100%;
-          --t-secondary-color-l: 55%;
-          --t-secondary-color-l-copy: 55%;
-          /* 1 */
-          --t-secondary-fore-text-color: #111;
-          /* SASS would generate this from the base colour. */
-          --t-neutral-color: #8e8279;
-          --t-neutral-color-h: 26;
-          --t-neutral-color-s: 9%;
-          --t-neutral-color-l: 52%;
-          --t-neutral-color-l-copy: 52%;
-          /* 1 */
-          --t-neutral-fore-text-color: #111;
-          /* SASS would generate this from the base colour. */
-          --t-notice-color: #a5d1f1;
-          --t-notice-color-h: 205;
-          --t-notice-color-s: 73%;
-          --t-notice-color-l: 80%;
-          --t-notice-color-l-copy: 80%;
-          /* 1 */
-          --t-notice-fore-text-color: #111;
-          /* SASS would generate this from the base colour. */
-          --t-success-color: #aec492;
-          --t-success-color-h: 86;
-          --t-success-color-s: 30%;
-          --t-success-color-l: 67%;
-          --t-success-color-l-copy: 67%;
-          /* 1 */
-          --t-success-fore-text-color: #111;
-          /* SASS would generate this from the base colour. */
-          --t-warning-color: #ffc576;
-          --t-warning-color-h: 35;
-          --t-warning-color-s: 100%;
-          --t-warning-color-l: 73%;
-          --t-warning-color-l-copy: 73%;
-          /* 1 */
-          --t-warning-fore-text-color: #111;
-          /* SASS would generate this from the base colour. */
-          --t-error-color: #9b3259;
-          --t-error-color-h: 338;
-          --t-error-color-s: 51%;
-          --t-error-color-l: 40%;
-          --t-error-color-l-copy: 40%;
-          /* 1 */
-          --t-error-fore-text-color: #fff;
-          /* SASS would generate this from the base colour. */
-          /*
+            --t-text-color: #111;
+            --t-text-color-inverse: #fff;
+            --t-light-adjust: $light-adjust;
+            --t-very-light-adjust: $very-light-adjust;
+            --t-dark-adjust: $dark-adjust;
+            --t-very-dark-adjust: $very-dark-adjust;
+            --t-primary-color: #5c6dab;
+            --t-primary-color-h: 227;
+            --t-primary-color-s: 32%;
+            --t-primary-color-l: 52%;
+            --t-primary-color-l-copy: 52%;
+            /* 1 */
+            --t-primary-fore-text-color: #fff;
+            /* SASS would generate this from the base colour. */
+            --t-secondary-color: #ff9e1b;
+            --t-secondary-color-h: 34;
+            --t-secondary-color-s: 100%;
+            --t-secondary-color-l: 55%;
+            --t-secondary-color-l-copy: 55%;
+            /* 1 */
+            --t-secondary-fore-text-color: #111;
+            /* SASS would generate this from the base colour. */
+            --t-neutral-color: #8e8279;
+            --t-neutral-color-h: 26;
+            --t-neutral-color-s: 9%;
+            --t-neutral-color-l: 52%;
+            --t-neutral-color-l-copy: 52%;
+            /* 1 */
+            --t-neutral-fore-text-color: #111;
+            /* SASS would generate this from the base colour. */
+            --t-notice-color: #a5d1f1;
+            --t-notice-color-h: 205;
+            --t-notice-color-s: 73%;
+            --t-notice-color-l: 80%;
+            --t-notice-color-l-copy: 80%;
+            /* 1 */
+            --t-notice-fore-text-color: #111;
+            /* SASS would generate this from the base colour. */
+            --t-success-color: #aec492;
+            --t-success-color-h: 86;
+            --t-success-color-s: 30%;
+            --t-success-color-l: 67%;
+            --t-success-color-l-copy: 67%;
+            /* 1 */
+            --t-success-fore-text-color: #111;
+            /* SASS would generate this from the base colour. */
+            --t-warning-color: #ffc576;
+            --t-warning-color-h: 35;
+            --t-warning-color-s: 100%;
+            --t-warning-color-l: 73%;
+            --t-warning-color-l-copy: 73%;
+            /* 1 */
+            --t-warning-fore-text-color: #111;
+            /* SASS would generate this from the base colour. */
+            --t-error-color: #9b3259;
+            --t-error-color-h: 338;
+            --t-error-color-s: 51%;
+            --t-error-color-l: 40%;
+            --t-error-color-l-copy: 40%;
+            /* 1 */
+            --t-error-fore-text-color: #fff;
+            /* SASS would generate this from the base colour. */
+            /*
                 Without being able to perform a calc in the hsl function (grrr IE11 even with polyfill) we
                 need to create adjusted -l values in SASS (stylesheet) and/or php (on-page themer)
                 Using SASS to perform the calculations here.
             */
-          --t-primary-color-l--very-light: 96%;
-          --t-primary-color-l--light: 86%;
-          --t-primary-color-l--dark: 86%;
-          --t-primary-color-l--very-dark: 76%;
-          --t-secondary-color-l--very-light: 96%;
-          --t-secondary-color-l--light: 87%;
-          --t-secondary-color-l--dark: 87%;
-          --t-secondary-color-l--very-dark: 78%;
-          --t-neutral-color-l--very-light: 96%;
-          --t-neutral-color-l--light: 86%;
-          --t-neutral-color-l--dark: 86%;
-          --t-neutral-color-l--very-dark: 76%;
-          --t-notice-color-l--very-light: 98%;
-          --t-notice-color-l--light: 94%;
-          --t-notice-color-l--dark: 94%;
-          --t-notice-color-l--very-dark: 90%;
-          --t-success-color-l--very-light: 97%;
-          --t-success-color-l--light: 90%;
-          --t-success-color-l--dark: 90%;
-          --t-success-color-l--very-dark: 84%;
-          --t-warning-color-l--very-light: 98%;
-          --t-warning-color-l--light: 92%;
-          --t-warning-color-l--dark: 92%;
-          --t-warning-color-l--very-dark: 87%;
-          --t-error-color-l--very-light: 95%;
-          --t-error-color-l--light: 82%;
-          --t-error-color-l--dark: 82%;
-          --t-error-color-l--very-dark: 70%;
-          /**/
+            --t-primary-color-l--very-light: 96%;
+            --t-primary-color-l--light: 86%;
+            --t-primary-color-l--dark: 86%;
+            --t-primary-color-l--very-dark: 76%;
+            --t-secondary-color-l--very-light: 96%;
+            --t-secondary-color-l--light: 87%;
+            --t-secondary-color-l--dark: 87%;
+            --t-secondary-color-l--very-dark: 78%;
+            --t-neutral-color-l--very-light: 96%;
+            --t-neutral-color-l--light: 86%;
+            --t-neutral-color-l--dark: 86%;
+            --t-neutral-color-l--very-dark: 76%;
+            --t-notice-color-l--very-light: 98%;
+            --t-notice-color-l--light: 94%;
+            --t-notice-color-l--dark: 94%;
+            --t-notice-color-l--very-dark: 90%;
+            --t-success-color-l--very-light: 97%;
+            --t-success-color-l--light: 90%;
+            --t-success-color-l--dark: 90%;
+            --t-success-color-l--very-dark: 84%;
+            --t-warning-color-l--very-light: 98%;
+            --t-warning-color-l--light: 92%;
+            --t-warning-color-l--dark: 92%;
+            --t-warning-color-l--very-dark: 87%;
+            --t-error-color-l--very-light: 95%;
+            --t-error-color-l--light: 82%;
+            --t-error-color-l--dark: 82%;
+            --t-error-color-l--very-dark: 70%;
+            /**/
         }
     </style>
+    {% else %}
+    <style>
+        :root {
+            --t-primary-color: #5d4777;
+            --t-primary-color-h: 268;
+            --t-primary-color-s: 25%;
+            --t-primary-color-l: 37%;
+            --t-primary-color-l-copy: 37%;
+
+            --t-secondary-color: #b9975b;
+            --t-secondary-color-h: 353;
+            --t-secondary-color-s: 77%;
+            --t-secondary-color-l: 60%;
+            --t-secondary-color-l-copy: 60%;
+
+            --t-primary-color-l--very-light: 95%;
+            --t-primary-color-l--light: 81%;
+            --t-primary-color-l--dark: 26%;
+            --t-primary-color-l--very-dark: 18%;
+            --t-primary-fore-text-color: var(--t-text-color-inverse);
+
+            --t-secondary-color-l--very-light: 96%;
+            --t-secondary-color-l--light: 86%;
+            --t-secondary-color-l--dark: 37%;
+            --t-secondary-color-l--very-dark: 27%;
+            --t-secondary-fore-text-color: var(--t-text-color-inverse);
+        }
+    </style>
+    {% endif %}
 </head>
-<body role="document" class="{{ project_data.theme_class }}" data-layout="{{ page.layout_name }}">
+<body id="top" role="document" class="{{ project_data.theme_class }}" data-layout="{{ page.layout_name }}">
 
     <svg xmlns="http://www.w3.org/2000/svg" display="none">
         <symbol id="icon-building" viewBox="0 0 24 24"
@@ -580,7 +606,7 @@
         </symbol>
     </svg>
 
-    <div data-hidden="if-css">
+    <div data-hidden="if-css" data-fs-text="center">
         <fieldset role="presentation">
             <p>
                 <strong>Notice:</strong> You are viewing an unstyled version of this page. Are you using a very old browser? If so, <a href="https://browsehappy.com/?locale=en">please consider upgrading</a>

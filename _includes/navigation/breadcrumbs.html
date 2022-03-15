@@ -7,24 +7,26 @@
 <h2 id="breadcrumbs">Breadcrumbs</h2>
 
 <p>This pattern is markup-only; it makes use of the layout patterns and introduces no new styles.
-Howeever, the the markup is important so implement correctly.</p>
+However, the the markup is important so implement correctly.</p>
 
 <div class="u-space--below">    
     <nav aria-label="Breadcrumbs" class="l-layout  l-row  l-row--start  l-gutter--s  l-flush-edge-gutter">
-        <div class="l-layout__inner">
+        <div class="l-layout__inner  c-utilitext">
             <p class="l-box">You are here: </p>
             <p role="list" class="l-box" itemscope="" itemtype="https://schema.org/BreadcrumbList">
-                <span class="l-layout  l-row  l-row--start  l-gutter--s  l-flush-edge-gutter">
+                <span class="l-layout  l-row  l-row--start  l-gutter--xs  l-flush-edge-gutter">
                     <span class="l-layout__inner">
                         <span role="listitem" class="l-box" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-                            <a itemprop="item" href="#"><span itemprop="name">NeoCLEAR</span></a><span class="l-box__separator">&nbsp;/&nbsp;</span>
+                            <a itemprop="item" href="#"><span itemprop="name">NeoCLEAR</span></a>
                             
                             <meta itemprop="position" content="1">
                         </span>
+                        <span class="l-box__separator">&nbsp;&nbsp;/&nbsp;&nbsp;</span>
                         <span role="listitem" class="l-box" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-                            <a itemprop="item" href="#"><span itemprop="name">Clinicians</span></a><span class="l-box__separator">&nbsp;/&nbsp;</span>
+                            <a itemprop="item" href="#"><span itemprop="name">Clinicians</span></a>
                             <meta itemprop="position" content="2">
                         </span>
+                        <span class="l-box__separator">&nbsp;&nbsp;/&nbsp;&nbsp;</span>
                         <span role="listitem" class="l-box" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
                             <a itemprop="name" aria-current="page"><span>DCFs</span></a>
                             <meta itemprop="position" content="3">
@@ -40,20 +42,22 @@ Howeever, the the markup is important so implement correctly.</p>
     <details class="u-padding  d-background--light">
         <summary>Show code:</summary>
         <pre><code class="html">&lt;nav aria-label=&quot;Breadcrumbs&quot; class=&quot;l-layout  l-row  l-row--start  l-gutter--s  l-flush-edge-gutter&quot;&gt;
-    &lt;div class=&quot;l-layout__inner&quot;&gt;
+    &lt;div class=&quot;l-layout__inner  c-utilitext&quot;&gt;
         &lt;p class=&quot;l-box&quot;&gt;You are here: &lt;/p&gt;
         &lt;p role=&quot;list&quot; class=&quot;l-box&quot; itemscope=&quot;&quot; itemtype=&quot;https://schema.org/BreadcrumbList&quot;&gt;
-            &lt;span class=&quot;l-layout  l-row  l-row--start  l-gutter--s  l-flush-edge-gutter&quot;&gt;
+            &lt;span class=&quot;l-layout  l-row  l-row--start  l-gutter--xs  l-flush-edge-gutter&quot;&gt;
                 &lt;span class=&quot;l-layout__inner&quot;&gt;
                     &lt;span role=&quot;listitem&quot; class=&quot;l-box&quot; itemprop=&quot;itemListElement&quot; itemscope=&quot;&quot; itemtype=&quot;https://schema.org/ListItem&quot;&gt;
-                        &lt;a itemprop=&quot;item&quot; href=&quot;#&quot;&gt;&lt;span itemprop=&quot;name&quot;&gt;NeoCLEAR&lt;/span&gt;&lt;/a&gt;&lt;span class=&quot;l-box__separator&quot;&gt;&amp;nbsp;/&amp;nbsp;&lt;/span&gt;
+                        &lt;a itemprop=&quot;item&quot; href=&quot;#&quot;&gt;&lt;span itemprop=&quot;name&quot;&gt;NeoCLEAR&lt;/span&gt;&lt;/a&gt;
                         
                         &lt;meta itemprop=&quot;position&quot; content=&quot;1&quot;&gt;
                     &lt;/span&gt;
+                    &lt;span class=&quot;l-box__separator&quot;&gt;&amp;nbsp;&amp;nbsp;/&amp;nbsp;&amp;nbsp;&lt;/span&gt;
                     &lt;span role=&quot;listitem&quot; class=&quot;l-box&quot; itemprop=&quot;itemListElement&quot; itemscope=&quot;&quot; itemtype=&quot;https://schema.org/ListItem&quot;&gt;
-                        &lt;a itemprop=&quot;item&quot; href=&quot;#&quot;&gt;&lt;span itemprop=&quot;name&quot;&gt;Clinicians&lt;/span&gt;&lt;/a&gt;&lt;span class=&quot;l-box__separator&quot;&gt;&amp;nbsp;/&amp;nbsp;&lt;/span&gt;
+                        &lt;a itemprop=&quot;item&quot; href=&quot;#&quot;&gt;&lt;span itemprop=&quot;name&quot;&gt;Clinicians&lt;/span&gt;&lt;/a&gt;
                         &lt;meta itemprop=&quot;position&quot; content=&quot;2&quot;&gt;
                     &lt;/span&gt;
+                    &lt;span class=&quot;l-box__separator&quot;&gt;&amp;nbsp;&amp;nbsp;/&amp;nbsp;&amp;nbsp;&lt;/span&gt;
                     &lt;span role=&quot;listitem&quot; class=&quot;l-box&quot; itemprop=&quot;itemListElement&quot; itemscope=&quot;&quot; itemtype=&quot;https://schema.org/ListItem&quot;&gt;
                         &lt;a itemprop=&quot;name&quot; aria-current=&quot;page&quot;&gt;&lt;span&gt;DCFs&lt;/span&gt;&lt;/a&gt;
                         &lt;meta itemprop=&quot;position&quot; content=&quot;3&quot;&gt;
@@ -75,17 +79,19 @@ Howeever, the the markup is important so implement correctly.</p>
         <div class="l-layout__inner">
             <p class="l-box">You are here: </p>
             <p role="list" class="l-box" itemscope="" itemtype="https://schema.org/BreadcrumbList">
-                <span class="l-layout  l-row  l-row--start  l-gutter--s  l-flush-edge-gutter">
+                <span class="l-layout  l-row  l-row--start  l-gutter--xs  l-flush-edge-gutter">
                     <span class="l-layout__inner">
                         <span role="listitem" class="l-box" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-                            <a itemprop="item" href="#"><span itemprop="name">NeoCLEAR</span></a><span class="l-box__separator">&nbsp;&raquo;&nbsp;</span>
+                            <a itemprop="item" href="#"><span itemprop="name">NeoCLEAR</span></a>
                             
                             <meta itemprop="position" content="1">
                         </span>
+                        <span class="l-box__separator">&nbsp;&nbsp;/&nbsp;&nbsp;</span>
                         <span role="listitem" class="l-box" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-                            <a itemprop="item" href="#"><span itemprop="name">Clinicians</span></a><span class="l-box__separator">&nbsp;&raquo;&nbsp;</span>
+                            <a itemprop="item" href="#"><span itemprop="name">Clinicians</span></a>
                             <meta itemprop="position" content="2">
                         </span>
+                        <span class="l-box__separator">&nbsp;&nbsp;/&nbsp;&nbsp;</span>
                         <span role="listitem" class="l-box" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
                             <a itemprop="name" aria-current="page"><span>DCFs</span></a>
                             <meta itemprop="position" content="3">

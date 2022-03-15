@@ -24,5 +24,9 @@
             font-size: 20px / $s__base-font-size * 1em;
             line-height: $s__base-rem-space-unit;
         }
+        
+        .c-panel:not(:last-child) {
+            margin-bottom: $s__sz-m;
+        }
     }
 }

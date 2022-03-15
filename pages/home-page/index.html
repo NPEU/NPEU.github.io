@@ -1,218 +1,187 @@
 ---
 layout: structure--page
 title: Home Page
+alt_theme: false
 ---
-
-<fieldset class="c-hero-wrap" role="presentation">
-    <div>
-        <div align="center">
-            <div class="c-hero c-hero--reversed d-bands--bottom t-npeu" id="banner">
-                <div class="c-hero__image">
-                    <div class="l-proportional-container l-proportional-container--3-1 l-proportional-container--5-1--wide">
-                        <div class="l-proportional-container__content">
-                            <div class="u-image-coverX js-image-cover">
-                                <div class="u-image-cover__inner">
-                                    <img alt="" class="u-image-cover__image" sizes="100vw" src="/assets/images/npeu/npeu-hero--small.jpg" srcset="/assets/images/npeu/npeu-hero--large.jpg 1600w, /assets/images/npeu/npeu-hero--medium.jpg 900w, /assets/images/npeu/npeu-hero--small.jpg 300w" width="200">
-                                </div>
-                            </div>
-                        </div>
+<fieldset role="presentation" class="c-hero-wrap  c-hero--wide-message  d-border--top--thick  d-border--bottom--thick" data-fs-text="center">
+    <div class="c-hero  c-hero--reversed  c-info-overlay-wrap">
+        <div data-fs-block="border">
+            <div class="c-hero__image">
+                <div class="u-image-cover  js-image-cover  u-image-cover--min-40  u-image-cover--min-25--wide">
+                    <div class="u-image-cover__inner">
+                        <img src="/assets/images/npeu/npeu-hero--small.jpg" sizes="100vw" srcset="/assets/images/npeu/npeu-hero--large.jpg 1600w, /assets/images/npeu/npeu-hero--medium.jpg 900w, /assets/images/npeu/npeu-hero--small.jpg 300w" alt="" class="u-image-cover__image" width="200">
                     </div>
                 </div>
+            </div>
 
-
-                <div class="c-hero__message c-hero__message--wide" style="width: calc(18em + 20%);">
-                    <h1 class="c-hero__message--fluid_heading" id="welcome" tabindex="-1">Welcome to the NPEU</h1>
-
-
-                    <p class="c-hero__message--fluid_text">The National Perinatal Epidemiology Unit - Conducting robust research to improve care for mothers, babies and families since 1978</p>
-
-
-                    <p class="u-space--left--auto"><a class="c-cta c-cta--has-icon" href="https://dev.npeu.ox.ac.uk/about">About the NPEU<svg aria-hidden="true" class="icon" display="none" focusable="false">
-                    <use xlink:href="#icon-chevron-right">
-                    </use></svg></a>
-                    </p>
-                </div>
+            <div class="c-hero__message">
+                <h1 class="c-hero__message--fluid_heading">Welcome to the NPEU</h1>
+                <p class="c-hero__message--fluid_text">The National Perinatal Epidemiology Unit - Conducting robust research to improve care for mothers, babies and families since 1978</p>
+                <p class="c-hero__cta">
+                    <a href="/about" class="c-cta">About the NPEU<svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none"><use xlink:href="#icon-chevron-right"></use></svg></a>
+                </p>
             </div>
         </div>
     </div>
 </fieldset>
+
 <br id="highlighter-start">
 
+<!-- deleted blockrow wrapper as it doesn't do anything -->
+<div class="d-border--bottom--thick">
+    <!-- Page is landing -->
 
-<div class="l-blockrow">
-    <div class="d-bands--bottom t-npeu">
-        <!-- Page is landing -->
-
-
-        <div class="l-blockrow c-bespoke">
-            <div class=" t-npeu">
-                <div class="c-panel c-panel--dark t-npeu modstyle_bespoke--wrapper">
-                    <section class="c-panel__module">
-                        <div>
-                            <header class="u-text-group u-text-group--push-apart u-space--below modstyle_bespoke--header">
+    <div class="com-bespoke"><!-- was .c-bespoke but it doesn't do anything - use .com-bespoke to demarcate the block to differentiate for .c- style classes -->
+        <div class="d-border--bottom--thick">
+            <div class="c-panel  d-background--very-dark  modstyle_bespoke--wrapper">
+                <section class="c-panel__module">
+                    <div>
+                        <header class="c-panel__header  modstyle_bespoke--header">
+                            <div>
                                 <h2 class="modstyle_bespoke--heading" id="areas-of-research">Areas of Research</h2>
 
-
-                                <p><a class="c-cta c-cta--has-icon" href="https://dev.npeu.ox.ac.uk/research/projects">Search our projects<svg aria-hidden="true" class="icon" display="none" focusable="false">
-                                <use xlink:href="#icon-chevron-right">
-                                </use></svg></a>
+                                <p>
+                                    <a class="c-cta" href="https://dev.npeu.ox.ac.uk/research/projects">Search our projects<svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none"><use xlink:href="#icon-chevron-right"></use></svg></a>
                                 </p>
-                            </header>
+                            </div>
+                        </header>
 
 
-                            <div class="l-layout l-row l-gutter l-flush-edge-gutter mod_cardlist">
-                                <div class="l-layout__inner">
-                                    <div class="ff-width-100--45--33-333 l-box">
-                                        {% include card.html
-                                            title="PRU-MNHC"
-                                            url="/pru-mnhc"
-                                            content="<p>The Policy Research Unit in Maternal and Neonatal Health and Care (PRU-MNHC) began a programme of work in January 2019 with funding from the Policy Research Programme at the Department of Health and Social Care (England) via the National Institute for Health Research.</p>"
-                                            cta="Read more"
-                                            img_src="/assets/images/pru-mnhc/pru-mnhc-hero"
-                                            img_alt=""
-                                            img_h="67"
-                                            footer_img_src="/assets/images/pru-mnhc/pru-mnhc-footer"
-                                            footer_img_h="40"
-                                        %}
-                                    </div>
+                        <div class="l-layout l-row l-gutter l-flush-edge-gutter mod_cardlist">
+                            <div class="l-layout__inner">
+                                <div class="ff-width-100--45--33-333 l-box">
+                                    {% include card.html
+                                        title="PRU-MNHC"
+                                        url="/pru-mnhc"
+                                        content="<p>The Policy Research Unit in Maternal and Neonatal Health and Care (PRU-MNHC) began a programme of work in January 2019 with funding from the Policy Research Programme at the Department of Health and Social Care (England) via the National Institute for Health Research.</p>"
+                                        img_src="/assets/images/pru-mnhc/pru-mnhc-hero"
+                                        img_alt=""
+                                        img_h="67"
+                                        footer_img_src="/assets/images/pru-mnhc/pru-mnhc-footer"
+                                        footer_img_h="40"
+                                    %}
+                                </div>
 
 
-                                    <div class="ff-width-100--45--33-333 l-box">
-                                        {% include card.html
-                                            title="Clinical Trials Unit"
-                                            url="/ctu"
-                                            content="<p>The NPEU Clinical Trials Unit (NPEU CTU) is a fully registered UKCRC Clinical Trials Unit and typically runs a number of large multi-centre Randomised Controlled Trials.</p>"
-                                            cta="Read more"
-                                            img_src="/assets/images/ctu/ctu-hero"
-                                            img_alt=""
-                                            img_h="67"
-                                            footer_img_src="/assets/images/ctu/ctu-footer"
-                                            footer_img_h="40"
-                                        %}
-                                    </div>
+                                <div class="ff-width-100--45--33-333 l-box">
+                                    {% include card.html
+                                        title="Clinical Trials Unit"
+                                        url="/ctu"
+                                        content="<p>The NPEU Clinical Trials Unit (NPEU CTU) is a fully registered UKCRC Clinical Trials Unit and typically runs a number of large multi-centre Randomised Controlled Trials.</p>"
+                                        img_src="/assets/images/ctu/ctu-hero"
+                                        img_alt=""
+                                        img_h="67"
+                                        footer_img_src="/assets/images/ctu/ctu-footer"
+                                        footer_img_h="40"
+                                    %}
+                                </div>
 
 
-                                    <div class="ff-width-100--45--33-333 l-box">
-                                        {% include card.html
-                                            title="Clinical Trials Unit"
-                                            url="/ctu"
-                                            content="<p>The NPEU also conducts Social Sciences, Health Economics and Epidemiological Research (SHEER) which includes on-going influential studies.</p>"
-                                            cta="Read more"
-                                            img_src="/assets/images/sheer/sheer-hero"
-                                            img_alt=""
-                                            img_h="67"
-                                            footer_img_src="/assets/images/sheer/sheer-footer"
-                                            footer_img_h="40"
-                                        %}
-                                    </div>
+                                <div class="ff-width-100--45--33-333 l-box">
+                                    {% include card.html
+                                        title="SHEER"
+                                        url="/ctu"
+                                        content="<p>The NPEU also conducts Social Sciences, Health Economics and Epidemiological Research (SHEER) which includes on-going influential studies.</p>"
+                                        img_src="/assets/images/sheer/sheer-hero"
+                                        img_alt=""
+                                        img_h="67"
+                                        footer_img_src="/assets/images/sheer/sheer-footer"
+                                        footer_img_h="40"
+                                    %}
                                 </div>
                             </div>
                         </div>
-                    </section>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="l-blockrow c-bespoke">
-            <div class="d-bands--bottom t-npeu">
-                <div class="l-layout l-row">
-                    <div class="l-layout__inner">
-                        <div class="l-box ff-width-100--40--50">
-                        </div>
-
-
-                        <div class="l-box ff-width-100--40--50">
-                        </div>
                     </div>
-                </div>
+                </section>
             </div>
         </div>
+    </div>
 
-
-        <div class="l-blockrow c-bespoke">
-            <div class="d-bands--bottom t-npeu">
-                <div class="c-panel c-panel--dark t-npeu modstyle_bespoke--wrapper">
-                    <section class="c-panel__module">
-                        <div>
-                            <header class="u-text-group u-text-group--push-apart u-space--below modstyle_bespoke--header">
+    <div class="com-bespoke">
+        <div class=""><!-- (probably) keep this here as it should specify theme/decoration for bespoke LEFT panel -->
+            <div class="c-panel  d-background--dark  modstyle_bespoke--wrapper">
+                <section class="c-panel__module">
+                    <div>
+                        <header class="c-panel__header  modstyle_bespoke--header">
+                            <div>
                                 <h2 class="modstyle_bespoke--heading" id="latest-news">Latest News</h2>
 
-
-                                <p><a class="c-cta c-cta--has-icon" href="https://dev.npeu.ox.ac.uk/news">See all news<svg aria-hidden="true" class="icon" display="none" focusable="false">
-                                <use xlink:href="#icon-chevron-right">
-                                </use></svg></a>
+                                <p>
+                                    <a class="c-cta" href="https://dev.npeu.ox.ac.uk/news">See all news<svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none"><use xlink:href="#icon-chevron-right"></use></svg></a>
                                 </p>
-                            </header>
+                            </div>
+                        </header>
 
-
-                            <div class="l-layout l-row l-gutter l-flush-edge-gutter mod_articles_latest">
-                                <div class="l-layout__inner">
-                                    <div class="l-box ff-width-100--55--50">
-                                        <div class="u-fill-height">
-                                            {% include card.html
-                                                title="Pregnant women now a priority group for COVID-19 vaccination"
-                                                url="/news/2194-pregnant-women-now-a-priority-group-for-covid-19-vaccination"
-                                                content="<p><i>Pregnant women are to be considered a 'vulnerable' group, emphasising the urgency of them receiving COVID-19 vaccination and booster doses, according to</i>  <a href=\"https://www.gov.uk/government/organisations/uk-health-security-agency\" rel=\"external\"><i>a new announcement from the UK Government's Department of Health and Social Care (DHSC)</a>.</i></p><p>The announcement is based on new evidence that outcomes from COVID-19 infection for pregnant women and babies have worsened since the Delta variant became dominant. This is based on data from three studies coordinated by NPEU: The <a href=\"https://dev.npeu.ox.ac.uk/ukoss\">UK Obstetric Surveillance System (UKOSS)</a>, the <a href=\"https://dev.npeu.ox.ac.uk/pru-mnhc/research-themes/theme-4/covid-19\">British Paediatric Surveillance Unit (BPSU) study of neonatal complications of COVID-19</a>, and the <a href=\"https://dev.npeu.ox.ac.uk/mbrrace-uk\">MBRRACE-UK</a> collaboration's maternal, newborn and infant clinical outcome reviews.</p>"
-                                                img_src="/assets/images/npeu-news/bigstock-Female-Doctor-Taking-Dose-Of-C-434561738"
-                                                img_alt="Female doctor taking dose of Covid-19 vaccine for pregnant lady"
-                                                cta="Read more"
-                                                footer_extra="<p>16 Dec 2021</p>"
-                                            %}
-                                        </div>
+                        <div class="l-layout l-row l-gutter l-flush-edge-gutter mod_articles_latest">
+                            <div class="l-layout__inner">
+                                <div class="l-box ff-width-100--55--40">
+                                    <div class="u-fill-height">
+                                        {% include card.html
+                                            title="Pregnant women now a priority group for COVID-19 vaccination"
+                                            url="/news/2194-pregnant-women-now-a-priority-group-for-covid-19-vaccination"
+                                            content="<p><i>Pregnant women are to be considered a 'vulnerable' group, emphasising the urgency of them receiving COVID-19 vaccination and booster doses, according to</i>  <a href=\"https://www.gov.uk/government/organisations/uk-health-security-agency\" rel=\"external\"><i>a new announcement from the UK Government's Department of Health and Social Care (DHSC)</a>.</i></p><p>The announcement is based on new evidence that outcomes from COVID-19 infection for pregnant women and babies have worsened since the Delta variant became dominant. This is based on data from three studies coordinated by NPEU: The <a href=\"https://dev.npeu.ox.ac.uk/ukoss\">UK Obstetric Surveillance System (UKOSS)</a>, the <a href=\"https://dev.npeu.ox.ac.uk/pru-mnhc/research-themes/theme-4/covid-19\">British Paediatric Surveillance Unit (BPSU) study of neonatal complications of COVID-19</a>, and the <a href=\"https://dev.npeu.ox.ac.uk/mbrrace-uk\">MBRRACE-UK</a> collaboration's maternal, newborn and infant clinical outcome reviews.</p>"
+                                            img_src="/assets/images/npeu-news/bigstock-Female-Doctor-Taking-Dose-Of-C-434561738"
+                                            img_alt="Female doctor taking dose of Covid-19 vaccine for pregnant lady"
+                                            cta="Read more"
+                                            footer_extra="16 Dec 2021"
+                                        %}
                                     </div>
+                                </div>
 
 
-                                    <div class="l-box ff-width-100--55--50">
-                                        <div class="l-layout l-distribute l-distribute--balance-top l-gutter l-basis--30 l-flush-edge-gutter u-fill-height">
-                                            <div class="l-layout__inner">
-                                                <div class="l-box">
-                                                    <div class="u-fill-height">
-                                                        {% include card.html
-                                                            title="Study finds a marked decline in women’s satisfaction with postnatal care during the COVID-19 pandemic, but many were satisfied with care during pregnancy and birth"
-                                                            url="/news/2192-study-finds-a-marked-decline-in-women-s-satisfaction-with-postnatal-care-during-the-covid-19-pandemic-but-many-were-satisfied-with-care-during-pregnancy-and-birth"
-                                                            img_src="/assets/images/npeu-news/You_and_Your_Baby_Logo__Mother_-_2020_-_NEWS"
-                                                            img_alt=""
-                                                            img_h="113"
-                                                            footer_extra="<p>09 Dec 2021</p>"
-                                                        %}
-                                                    </div>
+                                <div class="l-box ff-width-100--55--60">
+                                    <div class="l-layout l-distribute l-distribute--balance-top l-gutter l-basis--25 l-flush-edge-gutter u-fill-height">
+                                        <div class="l-layout__inner">
+                                            <div class="l-box">
+                                                <div class="u-fill-height">
+                                                    {% include card.html
+                                                        title="Study finds a marked decline in women’s satisfaction with postnatal care during the COVID-19 pandemic, but many were satisfied with care during pregnancy and birth"
+                                                        url="/news/2192-study-finds-a-marked-decline-in-women-s-satisfaction-with-postnatal-care-during-the-covid-19-pandemic-but-many-were-satisfied-with-care-during-pregnancy-and-birth"
+                                                        img_src="/assets/images/npeu-news/You_and_Your_Baby_Logo__Mother_-_2020_-_NEWS"
+                                                        img_alt=""
+                                                        img_h="113"
+                                                        cta="Read more"
+                                                        footer_extra="09 Dec 2021"
+                                                    %}
                                                 </div>
+                                            </div>
 
 
-                                                <div class="l-box">
-                                                    <div class="u-fill-height">
-                                                        {% include card.html
-                                                            title="New report highlights persistent inequalities and continued inequitable care for pregnant women"
-                                                            url="/news/2188-new-report-highlights-persistent-inequalities-and-continued-inequitable-care-for-pregnant-women"
-                                                            img_src="/assets/images/npeu-news/MBRRACE-UK_-_blog_101121"
-                                                            img_alt=""
-                                                            img_h="100"
-                                                            footer_extra="<p>11 Nov 2021</p>"
-                                                        %}
-                                                    </div>
+                                            <div class="l-box">
+                                                <div class="u-fill-height">
+                                                    {% include card.html
+                                                        title="New report highlights persistent inequalities and continued inequitable care for pregnant women"
+                                                        url="/news/2188-new-report-highlights-persistent-inequalities-and-continued-inequitable-care-for-pregnant-women"
+                                                        img_src="/assets/images/npeu-news/MBRRACE-UK_-_blog_101121"
+                                                        img_alt=""
+                                                        img_h="100"
+                                                        cta="Read more"
+                                                        footer_extra="11 Nov 2021"
+                                                    %}
                                                 </div>
+                                            </div>
 
 
-                                                <div class="l-box">
-                                                    <div class="u-fill-height">
-                                                        {% include card.html
-                                                            title="DIGITAL LAUNCH EVENT: Zero Separation - Together for better care"
-                                                            url="/news/2182-zero-separation-together-for-better-care"
-                                                            footer_extra="<p>03 Nov 2021</p>"
-                                                        %}
-                                                    </div>
+                                            <div class="l-box">
+                                                <div class="u-fill-height">
+                                                    {% include card.html
+                                                        title="DIGITAL LAUNCH EVENT: Zero Separation - Together for better care"
+                                                        url="/news/2182-zero-separation-together-for-better-care"
+                                                        cta="Read more"
+                                                        footer_extra="03 Nov 2021"
+                                                    %}
                                                 </div>
+                                            </div>
 
 
-                                                <div class="l-box">
-                                                    <div class="u-fill-height">
-                                                        {% include card.html
-                                                            title="Researcher honoured for outstanding contributions to maternal health"
-                                                            url="/news/2178-researcher-honoured-for-outstanding-contributions-to-maternal-health"
-                                                            footer_extra="<p>21 Oct 2021</p>"
-                                                        %}
-                                                    </div>
+                                            <div class="l-box">
+                                                <div class="u-fill-height">
+                                                    {% include card.html
+                                                        title="Researcher honoured for outstanding contributions to maternal health"
+                                                        url="/news/2178-researcher-honoured-for-outstanding-contributions-to-maternal-health"
+                                                        cta="Read more"
+                                                        footer_extra="21 Oct 2021"
+                                                    %}
                                                 </div>
                                             </div>
                                         </div>
@@ -220,8 +189,8 @@ title: Home Page
                                 </div>
                             </div>
                         </div>
-                    </section>
-                </div>
+                    </div>
+                </section>
             </div>
         </div>
     </div>

@@ -519,6 +519,8 @@ Put together these form a 'stack' layout, which should be considered the default
     </div><!-- End layout-inner -->
 </div><!-- End layout -->
 
+<p>Note that <code>flush-edge-gutter</code> removes all padding. There's also the option to <code>flush-inline-gutter</code> to remove left/right padding and <code>flush-block-gutter</code> to remove top/bottom padding.</p>
+
 
 <h3>Row</h3>
 
@@ -1358,6 +1360,50 @@ Put together these form a 'stack' layout, which should be considered the default
             <div class="t-box-1  l-box--center">
                 <p>
                     DDDD This is also some Centered content in the box. This is some content in the box.
+                </p>
+                <p>
+                    EEEE This is some content in the box
+                </p>
+            </div>
+
+        </div>
+
+    </div><!-- End layout-inner -->
+</div><!-- End layout -->
+
+
+<h3>Spacing</h3>
+<p>Add space (padding) to the box.</p>
+
+<div class="l-layout  l-row  t-box-1">
+    <div class="l-layout__inner">
+
+        <div class="l-box  l-box--space--inline--l">
+
+            <div class="t-box-1">
+                <p>
+                    l-box--space-inline--l
+                </p>
+                <p>
+                    BBBB This is some content in the box
+                </p>
+            </div>
+
+        </div>
+        <div class="l-box  l-box--space--block--s">
+
+            <div class="t-box-1">
+                <p>
+                    l-box--space--block--s
+                </p>
+            </div>
+
+        </div>
+        <div class="l-box  l-box--space--edge">
+
+            <div class="t-box-1">
+                <p>
+                    l-box--space--edge
                 </p>
                 <p>
                     EEEE This is some content in the box

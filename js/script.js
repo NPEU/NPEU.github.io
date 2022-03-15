@@ -501,6 +501,7 @@ var cookie_html                   =
     //var debug                                = true;
     var debug                                = false;
     var ident                                = 'cmr';
+    var css_check_selector                   = "#css_has_loaded";
     var selector                             = '[data-js="' + ident + '"]';
     var js_classname_prefix                  = 'js';
     var container_js_classname_wide_suffix   = 'wide';
@@ -512,6 +513,53 @@ var cookie_html                   =
         } else {
             document.addEventListener('DOMContentLoaded', fn);
         }
+    }
+    
+    var check_for_css = function(selector) {
+
+        if (debug) {
+            console.log('Checking for CSS: ' + selector);
+        }
+
+        var rules;
+        var haveRule = false;
+        if (typeof document.styleSheets != "undefined") { // is this supported
+            var cssSheets = document.styleSheets;
+            
+
+            // IE doesn't have document.location.origin, so fix that:
+            if (!document.location.origin) {
+                document.location.origin = document.location.protocol + "//" + document.location.hostname + (document.location.port ? ':' + document.location.port: '');
+            }
+            var domain_regex  = RegExp('^' + document.location.origin);
+
+            outerloop:
+            for (var i = 0; i < cssSheets.length; i++) {
+                var sheet = cssSheets[i];
+
+                // Some browsers don't allow checking of rules if not on the same domain (CORS), so
+                // checking for that here:
+                if (sheet.href !== null && domain_regex.exec(sheet.href) === null) {
+                    continue;
+                }
+
+                // Check for IE or standards:
+                rules = (typeof sheet.cssRules != "undefined") ? sheet.cssRules : sheet.rules;
+                
+                for (var j = 0; j < rules.length; j++) {
+                    if (rules[j].selectorText == selector) {
+                        haveRule = true;
+                        break outerloop;
+                    }
+                }
+            }
+        }
+        
+        if (debug) {
+            console.log(selector + ' ' + (haveRule ? '' : 'not') + ' found');
+        }
+
+        return haveRule;
     }
 
     var set_style = function(element, style) {
@@ -574,7 +622,7 @@ var cookie_html                   =
                     'border': '0',
                     'left': '0',
                     'top': '0',
-                    'width': 'intrinsic',
+                    'width': 'max-content',
                     'flex-wrap': 'nowrap',
                     'justify-content': 'flex-start',
                     'max-width': 'none'
@@ -617,11 +665,21 @@ var cookie_html                   =
                 } else {
                     cmr.setAttribute('data-js-breakpoint', clone.offsetWidth);
                 }
-                //clone.remove();
+                clone.remove();
             });
         },
 
         init: function() {
+
+            var css_is_loaded = check_for_css(css_check_selector);
+
+            if (debug) {
+                console.log('css_is_loaded:', css_is_loaded);
+            }
+
+            if (!css_is_loaded) {
+                return false;
+            }
 
             if (debug) {
                 console.log('Initialising ' + ident);

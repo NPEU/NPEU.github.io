@@ -1,15 +1,21 @@
 /*
-    Gallery Grid.
+    Gallery Grid
+    ============
 
 */
-$gallery-grid-namespace: l- !default;
+
+@if not variable-exists(layout-base) {
+    @error "Gallery Grid layout requires Base layout.";
+}
+
+$layout-namespace: l- !default;
 
 $gallery-grid-bases: (
     15,
     20,
 ) !default;
 
-.#{$layout-namespace}layout.#{$gallery-grid-namespace}gallery-grid {
+.#{$layout-namespace}layout.#{$layout-namespace}gallery-grid {
 
     /*
         1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
@@ -48,7 +54,7 @@ $gallery-grid-bases: (
     */
     // Item bases:
     @each $gallery-grid-basis in $gallery-grid-bases {
-        &.#{$gallery-grid-namespace}gallery-grid--basis-#{$gallery-grid-basis} > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box  {
+        &.#{$layout-namespace}gallery-grid--basis-#{$gallery-grid-basis} > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box  {
             flex-basis: #{$gallery-grid-basis}em;
             max-width: #{$gallery-grid-basis}em;
         }
@@ -57,7 +63,7 @@ $gallery-grid-bases: (
 
     /* Gutters */
 
-    &.#{$gallery-grid-namespace}gallery-grid--gutter--small > .#{$layout-namespace}layout__inner {
+    &.#{$layout-namespace}gallery-grid--gutter--small > .#{$layout-namespace}layout__inner {
         margin-left: -($s__sz-s / 2);
         margin-right: -($s__sz-s / 2);
         min-width: calc(100% + #{$s__sz-s});
@@ -67,7 +73,7 @@ $gallery-grid-bases: (
         }
     }
 
-    &.#{$gallery-grid-namespace}gallery-grid--gutter--medium > .#{$layout-namespace}layout__inner {
+    &.#{$layout-namespace}gallery-grid--gutter--medium > .#{$layout-namespace}layout__inner {
         margin-left: -($s__sz-m / 2);
         margin-right: -($s__sz-m / 2);
         min-width: calc(100% + #{$s__sz-m});
@@ -78,7 +84,7 @@ $gallery-grid-bases: (
     }
 
 
-    &.#{$gallery-grid-namespace}gallery-grid--gutter--large > .#{$layout-namespace}layout__inner {
+    &.#{$layout-namespace}gallery-grid--gutter--large > .#{$layout-namespace}layout__inner {
         margin-left: -($s__sz-l / 2);
         margin-right: -($s__sz-l / 2);
         min-width: calc(100% + #{$s__sz-l});
@@ -91,7 +97,7 @@ $gallery-grid-bases: (
 
     /* Alignment */
 
-    &.#{$gallery-grid-namespace}gallery-grid--align-center > .#{$layout-namespace}layout__inner {
+    &.#{$layout-namespace}gallery-grid--align-center > .#{$layout-namespace}layout__inner {
         justify-content: center;
     }
 
@@ -99,7 +105,7 @@ $gallery-grid-bases: (
 
 /* GRID */
 @supports (display: grid) {
-    .#{$layout-namespace}layout.#{$gallery-grid-namespace}gallery-grid {
+    .#{$layout-namespace}layout.#{$layout-namespace}gallery-grid {
         & > .#{$layout-namespace}layout__inner.#{$layout-namespace}layout__inner {
             display: grid;
             min-width: 100%;
@@ -111,7 +117,7 @@ $gallery-grid-bases: (
 
         // Item bases:
         @each $gallery-grid-basis in $gallery-grid-bases {
-            &.#{$gallery-grid-namespace}gallery-grid--basis-#{$gallery-grid-basis} > .#{$layout-namespace}layout__inner  {
+            &.#{$layout-namespace}gallery-grid--basis-#{$gallery-grid-basis} > .#{$layout-namespace}layout__inner  {
                 grid-template-columns: repeat(auto-fit, minmax(#{$gallery-grid-basis}em, 1fr));
             }
         }
@@ -119,8 +125,8 @@ $gallery-grid-bases: (
 
         /* Gutters */
 
-        &.#{$gallery-grid-namespace}gallery-grid--gutter--small > .#{$layout-namespace}layout__inner,
-        &.#{$gallery-grid-namespace}gallery-grid--gutter--s > .#{$layout-namespace}layout__inner  {
+        &.#{$layout-namespace}gallery-grid--gutter--small > .#{$layout-namespace}layout__inner,
+        &.#{$layout-namespace}gallery-grid--gutter--s > .#{$layout-namespace}layout__inner  {
             margin: 0;
             grid-gap: $s__sz-s;
 
@@ -129,8 +135,8 @@ $gallery-grid-bases: (
             }
         }
 
-        &.#{$gallery-grid-namespace}gallery-grid--gutter--medium > .#{$layout-namespace}layout__inner,
-        &.#{$gallery-grid-namespace}gallery-grid--gutter--m  > .#{$layout-namespace}layout__inner {
+        &.#{$layout-namespace}gallery-grid--gutter--medium > .#{$layout-namespace}layout__inner,
+        &.#{$layout-namespace}gallery-grid--gutter--m  > .#{$layout-namespace}layout__inner {
             margin: 0;
             grid-gap: $s__sz-m;
 
@@ -140,8 +146,8 @@ $gallery-grid-bases: (
         }
 
 
-        &.#{$gallery-grid-namespace}gallery-grid--gutter--large > .#{$layout-namespace}layout__inner,
-        &.#{$gallery-grid-namespace}gallery-grid--gutter--l > .#{$layout-namespace}layout__inner  {
+        &.#{$layout-namespace}gallery-grid--gutter--large > .#{$layout-namespace}layout__inner,
+        &.#{$layout-namespace}gallery-grid--gutter--l > .#{$layout-namespace}layout__inner  {
             margin: 0;
             grid-gap: $s__sz-l;
 

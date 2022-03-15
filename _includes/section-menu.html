@@ -11,7 +11,7 @@
             {% assign t = item.dir | remove: page.dir %}
 
             {% unless t == "" %}
-                {% capture list_item %}<li><a href="#{{ item.title | slugify }}"><svg title="in page link to {{ item.title }}" focusable="false" aria-hidden="true" width="1.25em" height="1.25em"><use xlink:href="#icon-link"></use></svg></a> | <a href="{{ item.url }}">{{ item.title }}</a></li>{% endcapture %}
+                {% capture list_item %}<li><a href="#{{ item.title | slugify }}"><svg title="in page link to {{ item.title }}" focusable="false" width="1.25em" height="1.25em"><use xlink:href="#icon-link"></use></svg></a> | <a href="{{ item.url }}">{{ item.title }}</a></li>{% endcapture %}
                 {% assign list_items = list_items |  append: newline | append: list_item %}
             {% endunless %}
         {% endif %}

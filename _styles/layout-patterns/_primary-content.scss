@@ -1,0 +1,87 @@
+/*
+    Note that with browsers that don't support grid, things just appear in a single column.
+    This is fine for such an old browser. Don't attempt to fix this.
+*/
+$layout-namespace: l- !default;
+
+$primary-content-breakpoint: 60em !default;
+
+$__SEL: '.#{$layout-namespace}primary-content';
+
+/*
+    1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
+*/
+#{$__SEL} {
+
+    &#{&} {
+        clear: both;
+        padding-right: $s__sz-m;
+        padding-left: $s__sz-m;
+
+        &::before,
+        &::after {
+          content: "";
+          display: table;
+        }
+
+        &::after {
+          clear: both;
+        }
+
+        & > * {
+            margin-bottom: $s__sz-m;
+            float: left;
+            width: 100%;
+        }
+
+        #{$__SEL}__header {
+            margin-bottom: 0;
+        }
+    }
+
+
+    &#{&}--has-pull-outs {
+        padding-top: $s__sz-m;
+
+        #{$__SEL}__header {
+            margin-top: -$s__sz-m;
+        }
+
+        //#{$__SEL}__pull-out--super {
+        //}
+
+        #{$__SEL}__pull-out--super + #{$layout-namespace}primary-content__header {
+            margin-top: 0;
+        }
+
+        #{$__SEL}__pull-out--top,
+        #{$__SEL}__pull-out--bottom {
+            clear: right;
+        }
+
+        #{$__SEL}__footer {
+            clear: both;
+            width: 100%;
+        }
+
+
+    }
+}
+
+@media only screen and (min-width: $primary-content-breakpoint) {
+    #{$__SEL}#{$__SEL}--has-pull-outs {
+        #{$__SEL}__header,
+        #{$__SEL}__main {
+            width: calc(66% - #{$s__sz-m});
+        }
+
+        #{$__SEL}__pull-out {
+            float: right;
+            width: 34%;
+        }
+    }
+
+    #{$__SEL} #{$__SEL}__hidden--wide {
+        display: none;
+    }
+}

@@ -21,8 +21,10 @@ $featurette-breakpoint: 35em !default;
         align-items: center;
         justify-content: center;
 
-        padding-left: calc(8% - #{$s__sz-l});
-        padding-right: calc(8% - #{$s__sz-l});
+        //padding-left: calc(8% - #{$s__sz-l});
+        //padding-right: calc(8% - #{$s__sz-l});
+        padding-left: $s__sz-m;
+        padding-right: $s__sz-m;
 
         width: 0; /* [1] */
         min-width: 100%; /* [1] */
@@ -37,6 +39,8 @@ $featurette-breakpoint: 35em !default;
     #{&}__image {
         align-self: center;
         margin-bottom: 0;
+        margin-left: $s__sz-s;
+        margin-right: $s__sz-s;
         position: relative;
         text-align: center;
         max-width: 13em;

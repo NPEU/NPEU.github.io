@@ -13,32 +13,47 @@ $border-namespace: d- !default;
 $border-size: $s__border-width;
 $border-size--thick: $s__border-width * 3;
 
-[class*="#{$border-namespace}border"] {
+@mixin bd() {
     border-width: 0;
     border-style: solid;
+    border-color: hsl(var(--t-bd-color-h), var(--t-bd-color-s), var(--t-bd-color-l));
+}
 
+@mixin bd-primary() {    
     --t-bd-color: var(--t-primary-color);
     --t-bd-color-h: var(--t-primary-color-h);
     --t-bd-color-s: var(--t-primary-color-s);
     --t-bd-color-l: var(--t-primary-color-l);
-    //border-color: var(--t-primary-color);
-    border-color: hsl(var(--t-bd-color-h), var(--t-bd-color-s), var(--t-bd-color-l));
 }
 
-[class*="#{$border-namespace}border"].t-secondary {
-    //border-color: var(--t-secondary-color);
+@mixin bd-secondary() {    
     --t-bd-color: var(--t-secondary-color);
     --t-bd-color-h: var(--t-secondary-color-h);
     --t-bd-color-s: var(--t-secondary-color-s);
     --t-bd-color-l: var(--t-secondary-color-l);
 }
 
-[class*="#{$border-namespace}border"].t-neutral {
-    //border-color: var(--t-neutral-color);
+@mixin bd-neutral() {    
     --t-bd-color: var(--t-neutral-color);
     --t-bd-color-h: var(--t-neutral-color-h);
     --t-bd-color-s: var(--t-neutral-color-s);
     --t-bd-color-l: var(--t-neutral-color-l);
+}
+
+
+[class*="#{$border-namespace}border"] {
+    @include bd();
+    @include bd-primary();
+
+}
+
+[class*="#{$border-namespace}border"].t-secondary {
+    @include bd-secondary();
+    
+}
+
+[class*="#{$border-namespace}border"].t-neutral {
+    @include bd-neutral();
 }
 
 .#{$border-namespace}border {

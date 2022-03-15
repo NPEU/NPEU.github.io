@@ -3,13 +3,13 @@
 
     ! NOTE: test this in all non-object-fit-supporting browsers as it may be a fix for those too.
 
-    The default styles work for scenarios where an image is TALLER than it's container. If it's 
-    SHORTER things break unless the width and translate are inverted, and that can't be detected if 
+    The default styles work for scenarios where an image is TALLER than it's container. If it's
+    SHORTER things break unless the width and translate are inverted, and that can't be detected if
     size changes.
     Will be relying on JS to check for change SHORTER images and apply local styles.
     See _scripts/js/image-cover.js and add the `js-image-cover` class.
     ALso note that when using the 'contain' variant, this is inverted, so the default styles work
-    when an image is SHORTER than it's container, but not TALLER, so the JS looks for the 
+    when an image is SHORTER than it's container, but not TALLER, so the JS looks for the
     `js-image-cover--contain` class and inverts the logic.
 
     Also note:
@@ -70,7 +70,7 @@ $image-cover-min-heights: (
                 }
             }
         }
-        
+
         @media only screen and (min-width: $image-cover-breakpoint) {
             @each $n in $image-cover-min-heights {
                 &#{&}--min-#{s__str-replace(#{s__strip-unit($n)}, '.', '-')}--wide {
@@ -120,7 +120,7 @@ $image-cover-min-heights: (
             width: 100%;
         }
     }
-    
+
     .#{$image-cover-namespace}image-cover--contain {
 
         .#{$image-cover-namespace}image-cover__image {
@@ -130,7 +130,7 @@ $image-cover-min-heights: (
 
     .#{$image-cover-namespace}image-cover {
         min-height: auto;
-        
+
         @each $n in $image-cover-min-heights {
             &#{&}--min-#{s__strip-unit($n)} {
                 min-height: auto;

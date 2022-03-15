@@ -1,5 +1,5 @@
 {% if include.title and include.url %}
-<article class="c-card  js-c-card{% if include.unpublished | default: false %}  c-card--unpublished{% endif %}  d-border  d-background{% if include.wrapper_classes | default: false %}  {{ include.wrapper_classes }}{% endif %}">
+<article class="c-card  js-c-card{% if include.unpublished | default: false %}  c-card--unpublished{% endif %}  d-background{% if include.wrapper_classes | default: false %}  {{ include.wrapper_classes }}{% endif %}">
     <div data-fs-block="border">
         <header class="c-card__header">
             <h{{ include.hx | default: 3 }} class="c-card__title"><a href="{{ include.url }}"{% if include.cta %} aria-describedby="desc-{{ include.title | slugify }}"{% endif %}><span>{{ include.title }}</span></a></h{{ include.hx | default: 3 }}>
@@ -7,7 +7,7 @@
             <div class="c-card__image  l-box">
                 <div class="u-image-cover  js-image-cover  u-image-cover--min-{{ include.img_ratio | default: '56-25' }}">
                     <div class="u-image-cover__inner">
-                        <img src="{{ include.img_src }}--small.jpg" sizes="100vw" srcset="{{ include.img_src }}--large.jpg 1600w, {{ include.img_src }}--medium.jpg 900w, {{ include.img_src }}--small.jpg 300w" alt="{{ include.img_alt | default: '' }}" class="u-image-cover__image" width="{{ include.img_w | default: 200 }}" height="{{ include.img_h | default: 133 }}">
+                        <img src="{{ include.img_src }}--medium.jpg" sizes="100vw" srcset="{{ include.img_src }}--large.jpg 1600w, {{ include.img_src }}--medium.jpg 900w, {{ include.img_src }}--small.jpg 300w" alt="{{ include.img_alt | default: '' }}" class="u-image-cover__image" width="{{ include.img_w | default: 200 }}" height="{{ include.img_h | default: 133 }}">
                     </div>
                 </div>
             </div>
@@ -26,30 +26,28 @@
         {% endif %}
 
         {% if include.footer_extra or (include.url and include.cta) %}
-        <div class="c-card__footer">
-            {% if include.url and include.cta %}
-            <div class="layout  l-row  l-row--end">
-                <p class="l-layout__inner">
-
-                    <b><a href="{{ include.url }}" class="c-cta" id="desc-{{ include.title | slugify }}" tabindex="-1" aria-hidden="true">{{ include.cta }}<svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none"><use xlink:href="#icon-chevron-right"></use></a></b>
-                    {% comment %}<!--
-                    <span class="c-cta" hidden>{{ include.cta }}<svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em"><use xlink:href="#icon-chevron-right"></use></span>
-                    -->{% endcomment %}
-                </p>
+        <footer class="c-card__footer">
+            <div class="l-layout  l-row  l-row--push-apart  l-gutter--s  l-flush-edge-gutter">
+                <div class="l-layout__inner">
+                    {% if include.footer_extra %}
+                    <p class="l-box  l-box--center">
+                        {{ include.footer_extra }}
+                    </p>
+                    {% endif %}
+                    {% if include.url and include.cta %}
+                    <p class="l-box  l-box--center">
+                        <b><a href="{{ include.url }}" class="c-cta" id="desc-{{ include.title | slugify }}" tabindex="-1" aria-hidden="true">{{ include.cta }}<svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none"><use xlink:href="#icon-chevron-right"></use></a></b>
+                    </p>
+                    {% endif %}
+                </div>
             </div>
-            {% endif %}
-            {% if include.footer_extra %}
-            <footer>
-                {{ include.footer_extra }}
-            </footer>
-            {% endif %}
-        </div>
+        </footer>
         {% endif %}
         {% if include.footer_img_src %}
         <div class="c-card__footer-image{% if include.footer_img_padded %}  c-card__footer-image--padded{% endif %}">
-            <div class="u-image-cover  js-image-cover  u-image-cover--min-{{ include.footer_img_ratio | default: '20' }}">
+            <div class="u-image-cover  js-image-cover  u-image-cover--min-{{ include.footer_img_ratio | default: '30' }}">
                 <div class="u-image-cover__inner">
-                    <img src="{{ include.footer_img_src }}--small.jpg" sizes="100vw" srcset="{{ include.footer_img_src }}--large.jpg 1600w, {{ include.footer_img_src }}--medium.jpg 900w, {{ include.footer_img_src }}--small.jpg 300w" alt="" class="u-image-cover__image" width="{{ include.footer_img_w | default: 200 }}" height="{{ include.footer_img_h | default: 133 }}">
+                    <img src="{{ include.footer_img_src }}--medium.jpg" sizes="100vw" srcset="{{ include.footer_img_src }}--large.jpg 1600w, {{ include.footer_img_src }}--medium.jpg 900w, {{ include.footer_img_src }}--small.jpg 300w" alt="" class="u-image-cover__image" width="{{ include.footer_img_w | default: 200 }}" height="{{ include.footer_img_h | default: 133 }}">
                 </div>
             </div>
         </div>

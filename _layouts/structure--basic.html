@@ -1,19 +1,24 @@
 ---
 layout: structure
 ---
-<div class="sticky-footer-wrap  d-background  t-white">
-    <header class="">
+<div class="l-layout  page-wrap">
+    <div class="l-layout__inner">
 
-        <h1 class="u-padding--s" tabindex="-1">{{ page.title }}</h1>
+        <div class="l-box">
+            <header class="c-panel">
 
-    </header>
+                <h1 tabindex="-1">{{ page.title }}</h1>
 
-    <div class="t-npeu  sticky-footer-expand">
+            </header>
+        </div>
 
-        <main class="c-panel">
-        {{ content }}
-        </main>
+        <div class="l-box  l-box--expand">
 
+            <main class="c-panel" id="main">
+            {{ content }}
+            </main>
+
+        </div>
+        
     </div>
-
 </div>
