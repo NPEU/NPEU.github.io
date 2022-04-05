@@ -26,6 +26,18 @@
     display: none;
 }
 
+/*---------------------*/
+
+// For use on PRU homepage - not sure where this best fits in.
+.video-center.video-center.video-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #333;
+}
+
+/*---------------------*/
+
 // Utilitext improvements
 /*
 p[role="list"] {

@@ -54,7 +54,7 @@
             img.removeAttribute('style');
             
             // If we're using the 'contain' variant:
-            if (new RegExp('(^| )js-image-cover--contain( |$)', 'gi').test(el.className)) {
+            if (new RegExp('(^| )u-image-cover--contain( |$)', 'gi').test(el.className)) {
                 if (image_rect.height >= container_rect.height) {
                     img.style.width  = 'auto';
                     img.style.height = '100%';

@@ -4,10 +4,20 @@
 
 (function() {
 
+    var debug = true;
+    //var debug = false;
+
+    var ident = 'glimpse';
+
     var glimpse = function() {
+
+        if ($flbk.s.debug) {
+            console.log(ident + ' started');
+        }
+
         // Get all elements we want to apply this to:
         var elements = document.querySelectorAll('.js-c-glimpse');
-        
+
         var detectLeftButton = function(event) {
             if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) {
                 return false;
@@ -28,8 +38,14 @@
             var down = false, up = false;
 
             el.addEventListener('mousedown', function(e) {
+                // Don't run this if we're not in full support mode:
+                var check = $flbk.u.css_rule_applied($flbk.s.general_css_check_selector, $flbk.s.general_css_check_property, $flbk.s.general_css_check_value);
+                if (!check) {
+                    return true;
+                }
+
                 // Detect left click only:
-                var left_click = glimpse.detectLeftButton(e);
+                var left_click = detectLeftButton(e);
                 console.log(left_click);
                 if (!left_click) {
                     down = false;
@@ -40,25 +56,23 @@
             });
 
             el.addEventListener('mouseup', function(e) {
+                // Don't run this if we're not in full support mode:
+                var check = $flbk.u.css_rule_applied($flbk.s.general_css_check_selector, $flbk.s.general_css_check_property, $flbk.s.general_css_check_value);
+                if (!check) {
+                    return true;
+                }
+
                 el.classList.remove('c-glimpse--is-mousedown');
                 if (!down) {
                     return;
                 }
                 up = +new Date();
                 if ((up - down) < 200) {
-                    //h_link.click();
+                    h_link.click();
                 }
             });
         });
     };
 
-    var ready = function(fn) {
-        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
-            fn();
-        } else {
-            document.addEventListener('DOMContentLoaded', fn);
-        }
-    }
-
-    ready(glimpse);
+    $flbk.u.ready(glimpse);
 })();

@@ -91,7 +91,7 @@ $image-cover-min-heights: (
         overflow: hidden;
     }
 
-        .#{$image-cover-namespace}image-cover__image {
+        &:not(#{&}--contain) .#{$image-cover-namespace}image-cover__image {
             position: absolute;
             left: 50%;
             top: 50%;
@@ -102,6 +102,17 @@ $image-cover-min-heights: (
             max-height: none;
         }
 
+        &#{&}--contain .#{$image-cover-namespace}image-cover__image {
+            display: block;
+            margin: 0 auto;
+            width: auto;
+            height: auto;
+            max-height: 100%;
+            max-width: 100%;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
 }
 
 
@@ -109,7 +120,7 @@ $image-cover-min-heights: (
 @supports (object-fit:cover) {
     .#{$image-cover-namespace}image-cover {
 
-        .#{$image-cover-namespace}image-cover__image {
+        &#{&} .#{$image-cover-namespace}image-cover__image {
             position: relative;
             left: 0;
             top: 0;
@@ -118,13 +129,16 @@ $image-cover-min-heights: (
             object-fit: cover;
             height: 100%;
             width: 100%;
+
+            image-rendering: -webkit-optimize-contrast;
         }
     }
 
     .#{$image-cover-namespace}image-cover--contain {
 
-        .#{$image-cover-namespace}image-cover__image {
+        &#{&} .#{$image-cover-namespace}image-cover__image {
             object-fit: contain;
+            height: inherit;
         }
     }
 

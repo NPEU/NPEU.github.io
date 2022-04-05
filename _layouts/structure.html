@@ -18,9 +18,9 @@
 
     <!-- Built with Jekyll and Fall-Back patterns -->
 
-    <!--<base href="http://localhost:4001/">
-    <meta name="css_loaded_check" id="css_loaded_check" content="check_css">-->
+    <!--<base href="http://localhost:4001/">-->
     <!-- Ultra-light fallback styles for ancient browsers: -->
+    <meta id="css_has_loaded">
     <style>
         /*
             Tiny Fall-Back Styles (https://github.com/Fall-Back/Patterns/edit/master/Page/README.md)
@@ -86,13 +86,14 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
 
     <!--
+        https://github.com/Fall-Back/CSS-Mustard-Cut#prm-cut-prefers-reduced-motion
         Print (Edge doesn't apply to print otherwise)
-        Edge 79+, Chrome 74+, Firefox 63+, Opera 64+, Safari 10.1+, iOS 10.3+, Android 81+
+        Edge 79+, Chrome 74+, Firefox 63+, Opera 64+, Safari 10.1+, iOS 10.3+, Android 81+  
     -->
     <link rel="stylesheet" href="/css/style.min.{{ site.data.cache_bust_css.date }}.css" media="
         only print,
         only all and (prefers-reduced-motion: no-preference), only all and (prefers-reduced-motion: reduce)
-    ">
+    " id="main_stylesheet">
     <link rel="stylesheet" href="/css/testing.min.{{ site.data.cache_bust_css.date }}.css" media="
         only print,
         only all and (prefers-reduced-motion: no-preference), only all and (prefers-reduced-motion: reduce)
@@ -103,6 +104,7 @@
         (!!window.MSInputMethodContext && !!document.documentMode)
      || (navigator.userAgent.indexOf('UCBrowser') > -1)
     ) {
+        console.log('IE11');
         var link  = document.createElement('link');
         link.rel  = 'stylesheet';
         link.href = '/css/style.min.{{ site.data.cache_bust_css.date }}.css';

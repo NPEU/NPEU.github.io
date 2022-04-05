@@ -91,7 +91,7 @@ $layout-limits: (
         flex-basis: auto;
         //min-width: 100%; /* 1 */
     }
-    
+
     .#{$layout-namespace}box__separator {
         flex-grow: 0;
     }
@@ -122,70 +122,142 @@ $layout-limits: (
     // Medium padding (default)
     .#{$layout-namespace}box--space--edge,
     .#{$layout-namespace}box--space--edge--m,
-    .#{$layout-namespace}box--space--inline,
-    .#{$layout-namespace}box--space--inline--m {
-        padding-left: $s__sz-m;
-        padding-right: $s__sz-m;
+    .#{$layout-namespace}box--space--block,
+    .#{$layout-namespace}box--space--block--m,
+    .#{$layout-namespace}box--space--block-start,
+    .#{$layout-namespace}box--space--block-start--m {
+        padding-top: $s__sz-m !important;
     }
 
     .#{$layout-namespace}box--space--edge,
     .#{$layout-namespace}box--space--edge--m,
     .#{$layout-namespace}box--space--block,
-    .#{$layout-namespace}box--space--block--m {
-        padding-top: $s__sz-m;
-        padding-bottom: $s__sz-m;
+    .#{$layout-namespace}box--space--block--m,
+    .#{$layout-namespace}box--space--block-end,
+    .#{$layout-namespace}box--space--block-end--m {
+        padding-bottom: $s__sz-m !important;
     }
+
+    .#{$layout-namespace}box--space--edge,
+    .#{$layout-namespace}box--space--edge--m,
+    .#{$layout-namespace}box--space--inline,
+    .#{$layout-namespace}box--space--inline--m,
+    .#{$layout-namespace}box--space--inline-start,
+    .#{$layout-namespace}box--space--inline-start--m {
+        padding-left: $s__sz-m !important;
+    }
+
+    .#{$layout-namespace}box--space--edge,
+    .#{$layout-namespace}box--space--edge--m,
+    .#{$layout-namespace}box--space--inline,
+    .#{$layout-namespace}box--space--inline--m,
+    .#{$layout-namespace}box--space--inline-end,
+    .#{$layout-namespace}box--space--inline-end--m {
+        padding-right: $s__sz-m !important;
+    }
+
 
     // XS padding
     .#{$layout-namespace}box--space--edge--xs,
-    .#{$layout-namespace}box--space--inline--xs {
-        padding-left: $s__sz-xs;
-        padding-right: $s__sz-xs;
+    .#{$layout-namespace}box--space--block--xs,
+    .#{$layout-namespace}box--space--block-start--xs {
+        padding-top: $s__sz-xs !important;
     }
 
     .#{$layout-namespace}box--space--edge--xs,
-    .#{$layout-namespace}box--space--block--xs {
-        padding-top: $s__sz-xs;
-        padding-bottom: $s__sz-xs;
+    .#{$layout-namespace}box--space--block--xs,
+    .#{$layout-namespace}box--space--block-end--xs {
+        padding-bottom: $s__sz-xs !important;
     }
+
+    .#{$layout-namespace}box--space--edge--xs,
+    .#{$layout-namespace}box--space--inline--xs,
+    .#{$layout-namespace}box--space--sinline-tart--xs {
+        padding-left: $s__sz-xs !important;
+    }
+
+    .#{$layout-namespace}box--space--edge--xs,
+    .#{$layout-namespace}box--space--inline--xs,
+    .#{$layout-namespace}box--space--inline-end--xs {
+        padding-right: $s__sz-xs !important;
+    }
+
 
     // S padding
     .#{$layout-namespace}box--space--edge--s,
-    .#{$layout-namespace}box--space--inline--s {
-        padding-left: $s__sz-s;
-        padding-right: $s__sz-s;
+    .#{$layout-namespace}box--space--block--s,
+    .#{$layout-namespace}box--space--block-start--s {
+        padding-top: $s__sz-s !important;
     }
 
     .#{$layout-namespace}box--space--edge--s,
-    .#{$layout-namespace}box--space--block--s {
-        padding-top: $s__sz-s;
-        padding-bottom: $s__sz-s;
+    .#{$layout-namespace}box--space--block--s,
+    .#{$layout-namespace}box--space--block-end--s {
+        padding-bottom: $s__sz-s !important;
     }
+
+    .#{$layout-namespace}box--space--edge--s,
+    .#{$layout-namespace}box--space--inline--s,
+    .#{$layout-namespace}box--space--inline-start--s {
+        padding-left: $s__sz-s !important;
+    }
+
+    .#{$layout-namespace}box--space--edge--s,
+    .#{$layout-namespace}box--space--inline--s,
+    .#{$layout-namespace}box--space--inline-end--s {
+        padding-right: $s__sz-s !important;
+    }
+
 
     // L padding
     .#{$layout-namespace}box--space--edge--l,
-    .#{$layout-namespace}box--space--inline--l {
-        padding-left: $s__sz-l;
-        padding-right: $s__sz-l;
+    .#{$layout-namespace}box--space--block--l,
+    .#{$layout-namespace}box--space--block-start--l {
+        padding-top: $s__sz-l !important;
     }
 
     .#{$layout-namespace}box--space--edge--l,
-    .#{$layout-namespace}box--space--block--l {
-        padding-top: $s__sz-l;
-        padding-bottom: $s__sz-l;
+    .#{$layout-namespace}box--space--block--l,
+    .#{$layout-namespace}box--space--block-end--l {
+        padding-bottom: $s__sz-l !important;
     }
+
+    .#{$layout-namespace}box--space--edge--l,
+    .#{$layout-namespace}box--space--inline--l,
+    .#{$layout-namespace}box--space--inline-start--l {
+        padding-left: $s__sz-l !important;
+    }
+
+    .#{$layout-namespace}box--space--edge--l,
+    .#{$layout-namespace}box--space--inline--l,
+    .#{$layout-namespace}box--space--inline-end--l {
+        padding-right: $s__sz-l !important;
+    }
+
 
     // XL padding
     .#{$layout-namespace}box--space--edge--xl,
-    .#{$layout-namespace}box--space--block--xl {
-        padding-top: $s__sz-xl;
-        padding-bottom: $s__sz-xl;
+    .#{$layout-namespace}box--space--block--xl,
+    .#{$layout-namespace}box--space--block-start--xl {
+        padding-top: $s__sz-xl !important;
     }
 
     .#{$layout-namespace}box--space--edge--xl,
-    .#{$layout-namespace}box--space--inline--xl {
-        padding-left: $s__sz-xl;
-        padding-right: $s__sz-xl;
+    .#{$layout-namespace}box--space--block--xl,
+    .#{$layout-namespace}box--space--block-end--xl {
+        padding-bottom: $s__sz-xl !important;
+    }
+
+    .#{$layout-namespace}box--space--edge--xl,
+    .#{$layout-namespace}box--space--inline--xl,
+    .#{$layout-namespace}box--space--inline-start--xl {
+        padding-left: $s__sz-xl !important;
+    }
+
+    .#{$layout-namespace}box--space--edge--xl,
+    .#{$layout-namespace}box--space--inline--xl,
+    .#{$layout-namespace}box--space--inline-end--xl {
+        padding-right: $s__sz-xl !important;
     }
 
 

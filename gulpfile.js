@@ -186,18 +186,21 @@ function do_concat_js(cb) {
 
     // Common script:
     gulp.src([
+        './bower_components/Fall-Back-Patterns/base.js',
         './_scripts/js/card.js',
+        './_scripts/js/carousel.js',
         './_scripts/js/cookie-notice-settings.js',
         './_scripts/js/fit-contents.js',
         './_scripts/js/glimpse.js',
         './_scripts/js/layout-adjustments.js',
         './_scripts/js/image-cover.js',
-        './bower_components/Fall-Back-Cookie-Notice/cookie-notice.js',
-        './bower_components/Fall-Back-Patterns/Close Button/js/close-button.js',
-        './bower_components/Fall-Back-Patterns/Content Min Row/js/content-min-row-v1.js',
-        './bower_components/Fall-Back-Patterns/Dropdown/js/dropdown-v2.js',
-        './bower_components/Fall-Back-Patterns/Over Panel/js/over-panel-v2.js',
+        './bower_components/Fall-Back-Patterns/base.js',
+        './bower_components/Fall-Back-Patterns/Close Button/js/close-button-v2.js',
+        './bower_components/Fall-Back-Patterns/Content Min Row/js/content-min-row-v2.js',
+        './bower_components/Fall-Back-Patterns/Dropdown/js/dropdown-v3.js',
+        './bower_components/Fall-Back-Patterns/Over Panel/js/over-panel-v3.js',
         './bower_components/Details-Polyfill/dist/details-element-polyfill.js',
+        './bower_components/Fall-Back-Cookie-Notice/cookie-notice-v2.js',
         './bower_components/picturefill/dist/picturefill.js'
     ])
     .pipe(concat(js_filename))

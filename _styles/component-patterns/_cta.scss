@@ -30,6 +30,7 @@ $component-namespace: c- !default;
             false,
             currentColor
         );
+        border-radius: $s__sz-xs;
 
         position: relative;
         z-index: 0;

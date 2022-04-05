@@ -15,327 +15,347 @@ $hero-max-message-size: 26px !default;
 $hero-min-heading-size: 24px !default;
 $hero-max-heading-size: 46px !default;
 
+$theme-only: false !default;
 
-.#{$component-namespace}hero-wrap {
-    padding: 0;
-    border: 0;
-    margin: 0;
-}
+// Note - no theme yet!
 
-.#{$component-namespace}hero-wrap.#{$component-namespace}hero-carousel {
-    padding: 0;
-    margin: 0;
-    min-inline-size: auto;
-    border: 0;
-    width: 100%;
-
-    & > div {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-    }
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
 
 
-    .#{$component-namespace}hero-carousel__nav {
+    .#{$component-namespace}hero-wrap {
+        padding: 0;
+        margin: 0;
+        min-inline-size: auto;
+        border: 0;
+        width: 100%;
 
-        padding: 0 0.6rem;
-        margin: -#{$s__sz-m + $s__sz-s} 0 #{$s__sz-s} 0;
-
-        z-index: 2;
-
-        p {
-            margin: 0;
+        // Note this won't be needed when moving to :last-child margin method.
+        &::after {
+            display: none;
         }
 
-        a[href] {
-            display: inline-block;
-            overflow: hidden;
-            border-radius: 0.6rem;
-            height: $s__sz-s;
-            width: $s__sz-s;
-            background: #bbb;
-            text-indent: $s__sz-s;;
-            border: 0.1rem solid #333;
-            padding: 0;
-            margin: 0 0.3rem;
+        & > div {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
 
-            &:hover {
-                background: #888;
+    }
+
+    .#{$component-namespace}hero-carousel {
+
+
+        #{&}__nav {
+
+            padding: 0.6rem;
+            margin-top: -$s__sz-s;
+            //margin-top: 0;
+            margin-right: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+            z-index: 2;
+
+            //box-shadow: 0 0 $s__sz-s 0 rgba(0,0,0,0.5);
+            //background-color: lighten(map-get($theme, primary-color), 45%);
+            //@include sloped-background(map-get($theme, primary-color));
+
+            p {
+                margin: 0;
+            }
+
+            a[href] {
+                display: inline-block;
+                overflow: hidden;
+                border-radius: 0.8rem;
+                height: 1.4rem;
+                width: 1.4rem;
+                background: #bbb;
+                text-indent: 1.2rem;
+                border: 1px solid #333;
+                padding: 0;
+                margin: 0 0.3rem;
+
+                &:hover {
+                    background: #888;
+                }
+            }
+        }
+
+
+        hr {
+            display: none;
+        }
+
+        #{&}__scroll-area {
+            order: -1;
+
+            display: flex;
+            overflow-x: scroll;
+
+            scroll-behavior: smooth;
+
+            scroll-snap-type: mandatory; /* [1] */
+            scroll-snap-points-x: repeat(100%); /* [1] */
+
+            scroll-snap-type: x mandatory; /* [2] */
+            -webkit-overflow-scrolling: touch; /* [3] */
+
+            -ms-scroll-snap-type: mandatory; /* [4] */
+            -ms-scroll-snap-points-x: repeat(100%);  /* [4] */
+
+            &:focus {
+                box-shadow: 0 0 0 3px rgba(0,0,0,0.3);
+                outline: 0 none;
+            }
+
+
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            .#{$component-namespace}hero {
+                flex: 0 0 100%;
+
+                scroll-snap-align: start;
+
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                //justify-content: space-between;
+
+                background: transparent;
+                color: #fff;
+
+                /*
+                    Turn off :target highlighting animation.
+                */
+                   -moz-animation: none;
+                -webkit-animation: none;
+                        animation: none;
             }
         }
     }
 
-
-    hr {
-        display: none;
-    }
-
-    .#{$component-namespace}hero-carousel__scroll-area {
-        order: -1;
-
-        display: flex;
-        overflow-x: scroll;
-
-        scroll-behavior: smooth;
-
-        scroll-snap-type: mandatory; /* [1] */
-        scroll-snap-points-x: repeat(100%); /* [1] */
-
-        scroll-snap-type: x mandatory; /* [2] */
-        -webkit-overflow-scrolling: touch; /* [3] */
-
-        -ms-scroll-snap-type: mandatory; /* [4] */
-        -ms-scroll-snap-points-x: repeat(100%);  /* [4] */
-
-        &:focus {
-            box-shadow: 0 0 0 3px rgba(0,0,0,0.3);
-            outline: 0 none;
-        }
-
-
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-
-        &::-webkit-scrollbar {
-            display: none;
-        }
-
-        .#{$component-namespace}hero {
-            flex: 0 0 100%;
-
-            scroll-snap-align: start;
-
+    .#{$component-namespace}hero {
+        &#{&} {
             position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-            /*
-                Turn off :target highlighting animation.
-            */
-               -moz-animation: none;
-            -webkit-animation: none;
-                    animation: none;
         }
 
-        .#{$component-namespace}hero__message {
-            padding-bottom: $s__sz-l;
-        }
-    }
-}
+        #{&}__message {
+            //@extend .u-word-wrap;
 
-.#{$component-namespace}hero-wrap .#{$component-namespace}hero {
-
-    position: relative;
-    background: #fff;
-
-
-        /*
-            The pattern markup allows for a TFS border, so zap that:
-        */
-        & > div {
-            border: 0;
-            padding: 0;
-            margin: 0;
+            padding-top: $s__sz-m;
+            padding-right: $s__sz-m;
+            padding-bottom: $s__sz-m;
+            padding-left: $s__sz-m;
 
             flex-grow: 1;
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
+            align-items: center;
+            align-content: center;
+            justify-content: center;
         }
 
-    .#{$component-namespace}hero__message {
-        //@extend .u-word-wrap;
 
-        padding-top: $s__sz-m;
-        padding-right: $s__sz-m;
-        padding-bottom: $s__sz-m;
-        padding-left: $s__sz-m;
-        flex-grow: 1;
-
-        word-break: break-word;
-
-
-        & * {
-            margin: 0;
+        #{&}__message > * {
+            margin:  $s__sz-xs 0;
+            flex: 0 0 auto;
         }
 
-        & > .#{$component-namespace}hero__message--fluid_text,
-        & > .#{$component-namespace}hero__message--fluid_heading {
+        #{&}__message > #{&}__message--fluid_text,
+        #{&}__message > #{&}__message--fluid_heading {
             /*
                 1. For IE10 to wrap text.
             */
 
-            @include fluid-type(s__strip-unit($hero-breakpoint) * 16px, s__strip-unit($hero-max-message-breakpoint) * 16px, $hero-min-message-size, $hero-max-message-size);
+            @include fluid-type(strip-unit($hero-breakpoint) * 16px, strip-unit($hero-max-message-breakpoint) * 16px, $hero-min-message-size, $hero-max-message-size);
 
             line-height: 1.3;
-            //font-weight: bold;
+            font-weight: bold;
             margin: 0;
             max-width: 100%; /* [1] */
         }
 
-        & > .#{$component-namespace}hero__message--fluid_heading {
-            @include fluid-type(s__strip-unit($hero-breakpoint) * 16px, s__strip-unit($hero-max-message-breakpoint) * 16px, $hero-min-heading-size, $hero-max-heading-size);
+        #{&}__message > #{&}__message--fluid_heading {
+            @include fluid-type(strip-unit($hero-breakpoint) * 16px, strip-unit($hero-max-message-breakpoint) * 16px, $hero-min-heading-size, $hero-max-heading-size);
         }
 
-
-    /*#{&}__image-credit {
-        font-size: 0.875em;
-        line-height: 1.3;
-        padding: 0.2em 0.5em;
-        color: #fff;
-        background-color: rgba(0,0,0,0.4);
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        max-width: 50%;
-
-        a[href] {
-            background-color: transparent;
+        #{&}__image-credit {
+            font-size: 0.875em;
+            line-height: 1.3;
+            padding: 0.2em 0.5em;
             color: #fff;
-            border-width: 1px;
+            background-color: rgba(0,0,0,0.4);
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            max-width: 50%;
 
-            &:hover,
-            &:active,
-            &:focus {
+            a[href] {
                 background-color: transparent;
                 color: #fff;
+                border-width: 1px;
+
+                &:hover,
+                &:active,
+                &:focus {
+                    background-color: transparent;
+                    color: #fff;
+                }
             }
         }
-    }*/
-
-        .#{$component-namespace}hero__cta {
-            margin-left: auto;
-            margin-top: $s__sz-s;
-        }
     }
-}
 
-/*.#{$component-namespace}hero--reversed .#{$component-namespace}hero__image-credit {
-    right: auto;
-    left: 0;
-}*/
+    .#{$component-namespace}hero--right .#{$component-namespace}hero__image-credit {
+        right: auto;
+        left: 0;
+    }
 
-@media only screen and (max-width:#{$hero-breakpoint}) {
-     .#{$component-namespace}hero-wrap {
+    @media only screen and (max-width:#{$hero-breakpoint}) {
         .#{$component-namespace}hero {
-            .#{$component-namespace}hero__message {
+            #{&}__message {
                 /*
                     1. This is here to override the inline style width declaration.
                        Allowing Joomla interface to specify width so it can be tweaked to suit the text,
                        but we want it full-width on narrow screens and we can't do MQ's in inline styles,
                 */
                 width: 100% !important; /* [1] */
+            }
+        }
 
-                background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--dark));
-                color: #fff;
+        .#{$component-namespace}hero-carousel {
+            #{&}__nav {
+                //margin: 0;
+
             }
         }
     }
-    /*.#{$component-namespace}hero-carousel {
-        #{&}__nav {
-            margin: 0;
 
-        }
-    }*/
-}
-
-@media #{$s__ie10-11} {
-    .#{$component-namespace}hero {
-        #{&}__message {
-            /*
-                1. IE11 is just not behaving well :-(
-            */
-            max-width: calc(100vw - 1.7rem) !important; /* [1] */
+    @media #{$s__ie10-11} {
+        .#{$component-namespace}hero {
+            #{&}__message {
+                /*
+                    1. IE11 is just not behaving well :-(
+                */
+                max-width: calc(100vw - 1.7rem) !important; /* [1] */
+            }
         }
     }
-}
 
-@media only screen and (max-width:#{$hero-breakpoint-wide}) {
-    .#{$component-namespace}hero-wrap.#{$component-namespace}hero--wide-message {
+    @media only screen and (max-width:#{$hero-breakpoint-wide}) {
         .#{$component-namespace}hero {
-            .#{$component-namespace}hero__message {
+            #{&}__message--wide {
                 /*
                     1. This is here to override the inline style width declaration.
                        Allowing Joomla interface to specify width so it can be tweaked to suit the text,
                        but we want it full-width on narrow screens and we can't do MQ's in inline styles,
                 */
                 width: 100% !important; /* [1] */
-
-                background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--dark));
-                color: #fff;
             }
         }
     }
-}
 
-@media only screen and (min-width:#{$hero-breakpoint + 0.01rem}) {
+    @media only screen and (min-width:#{$hero-breakpoint}) {
 
-    .#{$component-namespace}hero-wrap:not(.#{$component-namespace}hero--wide-message) {
+        .#{$component-namespace}hero-wrap:not(.#{$component-namespace}hero--message-wide) .#{$component-namespace}hero .#{$component-namespace}hero__message {
+            position: absolute;
+            z-index: 1;
 
-        .#{$component-namespace}hero {
-            .#{$component-namespace}hero__message {
-                position: absolute;
-                z-index: 1;
+            bottom: 0;
+            left: 0;
+            //width: calc(20em + 20%);
+            min-width: 30%;
+            max-width: 40%;
+            top: 0;
+            background: rgba(255,255,255,0.75);
+            color: #333;
 
-                bottom: 0;
-                left: 0;
-                width: calc(10em + 20%);
+            //display: flex;
+            //flex-wrap: wrap;
+            //align-items: center;
+            //align-content: center;
+            justify-content: flex-start;
 
-                top: 0;
-                background: rgba(255,255,255,0.75);
+            & > * {
+                flex: 1 0 100%;
+            }
+        }
 
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                align-content: center;
-                justify-content: flex-start;
 
-                & > * {
-                    flex: 1 0 100%;
+        .#{$component-namespace}hero-wrap:not(.#{$component-namespace}hero--message-wide) .#{$component-namespace}hero.#{$component-namespace}hero--message-right .#{$component-namespace}hero__message {
+            right: 0;
+            left: auto;
+        }
+
+        .#{$component-namespace}hero-wrap:not(.#{$component-namespace}hero--message-wide) .#{$component-namespace}hero.#{$component-namespace}hero--message-bottom .#{$component-namespace}hero__message {
+            width: 100%;
+            max-width: none;
+            bottom: 0;
+            top: auto;
+        }
+    }
+
+    @media only screen and (min-width:#{$hero-breakpoint-wide}) {
+
+        .#{$component-namespace}hero-wrap.#{$component-namespace}hero--message-wide .#{$component-namespace}hero .#{$component-namespace}hero__message {
+            position: absolute;
+            z-index: 1;
+
+            bottom: 0;
+            left: 0;
+            //width: calc(20em + 20%);
+            min-width: 30%;
+            max-width: 50%;
+            top: 0;
+            background: rgba(255,255,255,0.75);
+            color: #333;
+
+            //display: flex;
+            //flex-wrap: wrap;
+            //align-items: center;
+            //align-content: center;
+            justify-content: flex-start;
+
+            & > * {
+                flex: 1 0 100%;
+            }
+        }
+
+
+        .#{$component-namespace}hero-wrap.#{$component-namespace}hero--message-wide .#{$component-namespace}hero.#{$component-namespace}hero--message-right .#{$component-namespace}hero__message {
+            right: 0;
+            left: auto;
+        }
+
+        .#{$component-namespace}hero-wrap.#{$component-namespace}hero--message-wide .#{$component-namespace}hero.#{$component-namespace}hero--message-bottom .#{$component-namespace}hero__message {
+            width: 100%;
+            max-width: none;
+            bottom: 0;
+            top: auto;
+        }
+
+
+        .#{$component-namespace}hero-carousel {
+
+            #{&}__nav {
+                margin-top: -#{$s__sz-s + $s__sz-m};
+                //background-color: transparent;
+                //box-shadow: none;
+
+                p {
+                    text-align: right;
                 }
             }
-        }
-    }
 
-    .#{$component-namespace}hero-wrap:not(.#{$component-namespace}hero--wide-message) .#{$component-namespace}hero.#{$component-namespace}hero--reversed .#{$component-namespace}hero__message {
-        right: 0;
-        left: auto;
-    }
-
-}
-
-@media only screen and (min-width:#{$hero-breakpoint-wide + 0.01rem}) {
-
-    .#{$component-namespace}hero-wrap.#{$component-namespace}hero--wide-message {
-        .#{$component-namespace}hero {
-            .#{$component-namespace}hero__message {
-                position: absolute;
-                z-index: 1;
-
-                bottom: 0;
-                left: 0;
-                width: calc(20em + 20%);
-                max-width: 50%;
-                top: 0;
-                background: rgba(255,255,255,0.75);
-
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;;
-                align-content: center;
-                justify-content: flex-start;
-
-                & > * {
-                    flex: 1 0 100%;
-
-                }
+            .#{$component-namespace}hero__message--wide {
+                padding-bottom: #{$s__sz-s + $s__sz-m};
             }
         }
-    }
 
-    .#{$component-namespace}hero-wrap .#{$component-namespace}hero.#{$component-namespace}hero--reversed .#{$component-namespace}hero__message {
-        right: 0;
-        left: auto;
     }
-
 }

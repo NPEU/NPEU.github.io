@@ -1,13 +1,198 @@
+/*!
+    Fall-Back Patterns - Base JS
+    https://github.com/Fall-Back/Patterns/tree/master/
+    Copyright (c) 2022, Andy Kirk
+    Released under the MIT license https://git.io/vwTVl
+*/
+
+// Utilties and Polyfills common to Fall-Back Patterns.
+// Creates a single global var called $flbk.
+// Must be in the markup AFTER the main stylesheet
+
+// POLYFILLS
+// Remove polyfill:
+(function() {
+    function remove() { this.parentNode && this.parentNode.removeChild(this); }
+    if (!Element.prototype.remove) Element.prototype.remove = remove;
+    if (Text && !Text.prototype.remove) Text.prototype.remove = remove;
+})();
+
+
+var $flbk = {};
+
+
+// SETTINGS AND UTILITIES
+(function($flbk) {
+    $flbk.s = {};
+    $flbk.u = {};
+
+
+    $flbk.u.css_has_rule = function(selector) {
+
+        if ($flbk.s.debug) {
+            console.log('Checking for CSS rule:', selector);
+        }
+
+        var rules;
+        var haveRule = false;
+        if (typeof document.styleSheets != "undefined") { // is this supported
+            var cssSheets = document.styleSheets;
+
+
+            // IE doesn't have document.location.origin, so fix that:
+            if (!document.location.origin) {
+                document.location.origin = document.location.protocol + "//" + document.location.hostname + (document.location.port ? ':' + document.location.port: '');
+            }
+            var domain_regex  = RegExp('^' + document.location.origin);
+
+            outerloop:
+            for (var i = 0; i < cssSheets.length; i++) {
+                var sheet = cssSheets[i];
+
+                // Some browsers don't allow checking of rules if not on the same domain (CORS), so
+                // checking for that here:
+                if (sheet.href !== null && domain_regex.exec(sheet.href) === null) {
+                    continue;
+                }
+
+                // Check for IE or standards:
+                rules = (typeof sheet.cssRules != "undefined") ? sheet.cssRules : sheet.rules;
+
+                for (var j = 0; j < rules.length; j++) {
+                    if (rules[j].selectorText == selector) {
+                        haveRule = true;
+                        break outerloop;
+                    }
+                }
+            }
+        }
+
+        if ($flbk.s.debug) {
+            console.log(selector + ' ' + (haveRule ? '' : 'not') + ' found');
+        }
+
+        return haveRule;
+    };
+
+
+    $flbk.u.css_rule_applied = function(selector, property, value) {
+        var el = document.querySelector(selector);
+        var style = window.getComputedStyle(el);
+        if (property in style) {
+            if (style[property] == value) {
+                return true;
+            }
+        }
+        return false;
+    };
+    
+    
+    $flbk.u.debounce = function(func, wait, immediate) {
+        var timeout;
+        return function() {
+            var context = this;
+            var args = arguments;
+            var later = function() {
+                timeout = null;
+                if (!immediate) {
+                    func.apply(context, args);
+                }
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) {
+                func.apply(context, args);
+            }
+        };
+    }
+    
+    
+    $flbk.u.ready = function(fn) {
+        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+    };
+    
+    
+    $flbk.u.set_style = function(element, style) {
+        Object.keys(style).forEach(function(key) {
+            var val = style[key];
+            if (val.indexOf(' !important' ) !== -1) {
+                val = val.replace(' !important', '');
+                element.style.setProperty(key, val, 'important');
+            } else {
+                element.style.setProperty(key, val);
+            }
+        });
+    }
+
+    
+    
+
+    $flbk.s.debug = true;
+    //$flbk.s.debug = false;
+
+    $flbk.s.main_stylesheet_id = 'main_stylesheet';
+    $flbk.s.support_ie11 = true;
+    $flbk.s.ie11 = $flbk.s.support_ie11 && (!!window.MSInputMethodContext && !!document.documentMode);
+    $flbk.s.media_to_match   = false;
+    $flbk.s.media_is_matched = false;
+    $flbk.s.general_css_check_selector = "#css_has_loaded";
+    $flbk.s.general_css_check_property = "visibility";
+    $flbk.s.general_css_check_value    = "hidden";
+    $flbk.s.general_css_is_loaded = false;
+    $flbk.s.general_css_is_present = false;
+
+    var main_stylesheet_el = document.getElementById($flbk.s.main_stylesheet_id);
+    if ($flbk.s.debug) {
+        console.log('main_stylesheet_el:', main_stylesheet_el);
+    }
+
+    if (main_stylesheet_el) {
+        $flbk.s.media_to_match = main_stylesheet_el.media;
+        var mq = window.matchMedia($flbk.s.media_to_match);
+        if ($flbk.s.debug) {
+            console.log('mq:', mq.matches);
+        }
+        $flbk.s.media_is_matched = mq.matches;
+    }
+
+
+    $flbk.s.general_css_is_loaded = $flbk.u.css_has_rule($flbk.s.general_css_check_selector);
+    if ($flbk.s.debug) {
+        console.log('general_css_is_loaded:', $flbk.s.general_css_is_loaded);
+    }
+
+    $flbk.s.general_css_is_present = $flbk.s.general_css_is_loaded && ($flbk.s.media_is_matched || $flbk.s.ie11);
+
+    if ($flbk.s.debug) {
+        console.log('general_css_is_present:', $flbk.s.general_css_is_present);
+    }
+
+})($flbk);
 /*
     Card enhancements
 */
 
 (function() {
 
+    var debug = true;
+    //var debug = false;
+
+    var ident = 'card';
+
     var card = function() {
+
+        if ($flbk.s.debug) {
+            console.log(ident + ' started');
+        }
+
         // Get all elements we want to apply this to:
         var elements = document.querySelectorAll('.js-c-card');
-        
+
         var detectLeftButton = function(event) {
             if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) {
                 return false;
@@ -25,10 +210,15 @@
             el.classList.add('c-card--has-js');
 
             var h_link = el.querySelector('.c-card__title > a');
-            var cta = el.querySelector('.c-cta');
             var down = false, up = false;
 
             el.addEventListener('mousedown', function(e) {
+                // Don't run this if we're not in full support mode:
+                var check = $flbk.u.css_rule_applied($flbk.s.general_css_check_selector, $flbk.s.general_css_check_property, $flbk.s.general_css_check_value);
+                if (!check) {
+                    return true;
+                }
+
                 // Detect left click only:
                 var left_click = detectLeftButton(e);
                 console.log(left_click);
@@ -41,6 +231,12 @@
             });
 
             el.addEventListener('mouseup', function(e) {
+                // Don't run this if we're not in full support mode:
+                var check = $flbk.u.css_rule_applied($flbk.s.general_css_check_selector, $flbk.s.general_css_check_property, $flbk.s.general_css_check_value);
+                if (!check) {
+                    return true;
+                }
+
                 el.classList.remove('c-card--is-mousedown');
                 if (!down) {
                     return;
@@ -53,15 +249,81 @@
         });
     };
 
-    var ready = function(fn) {
-        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
-            fn();
-        } else {
-            document.addEventListener('DOMContentLoaded', fn);
-        }
-    }
+    $flbk.u.ready(card);
+})();
 
-    ready(card);
+/*
+    Carousel enhancements
+*/
+
+(function() {
+
+    var debug = true;
+    //var debug = false;
+
+    var ident = 'carousel';
+
+    var carousel = function() {
+
+        if ($flbk.s.debug) {
+            console.log(ident + ' started');
+        }
+
+        // Get all elements we want to apply this to:
+        var elements = document.querySelectorAll('.js-c-carousel');
+
+        Array.prototype.forEach.call(elements, function(el, i) {
+
+            el.classList.add('c-carousel--has-js');
+
+            var nav_links = el.querySelectorAll('.c-hero-carousel__nav a');
+
+            Array.prototype.forEach.call(nav_links, function(nl, i) {
+                nl.addEventListener('click', function(e) {
+
+                    if (debug) {
+                        console.log('nav link clicked');
+                    }
+
+                    // Don't run this if we're not in full support mode:
+                    var check = $flbk.u.css_rule_applied($flbk.s.general_css_check_selector, $flbk.s.general_css_check_property, $flbk.s.general_css_check_value);
+                    if (!check) {
+                        return true;
+                    }
+
+                    var x = window.pageXOffset,
+                    y = window.pageYOffset,
+                    done = false;
+
+                    window.onscroll = function (e) {
+                        if (!done) {
+                            document.documentElement.scrollTop = document.body.scrollTop = y;
+                            document.documentElement.scrollLeft = document.body.scrollLeft = x;
+                            done = true;
+                        }
+                    }
+
+                    return false;
+                });
+            });
+
+
+
+        });
+        
+        window.addEventListener('hashchange', function() {
+            // Add the 'current' class to the link, as this isn't possible in CSS alone:
+            var links = document.querySelectorAll('.c-hero-carousel__nav a');
+            Array.prototype.forEach.call(links, function(a, i){
+                a.classList.remove('current');
+            });
+            
+            var a = document.querySelector('a[href="' + window.location.hash + '"]');
+            a.classList.add('current');
+        }, false);
+    };
+
+    $flbk.u.ready(carousel);
 })();
 
 /*------------------------------------------------------------------------------------------------*\
@@ -133,10 +395,20 @@ var cookie_html                   =
 
 (function() {
 
+    var debug = true;
+    //var debug = false;
+
+    var ident = 'glimpse';
+
     var glimpse = function() {
+
+        if ($flbk.s.debug) {
+            console.log(ident + ' started');
+        }
+
         // Get all elements we want to apply this to:
         var elements = document.querySelectorAll('.js-c-glimpse');
-        
+
         var detectLeftButton = function(event) {
             if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) {
                 return false;
@@ -157,8 +429,14 @@ var cookie_html                   =
             var down = false, up = false;
 
             el.addEventListener('mousedown', function(e) {
+                // Don't run this if we're not in full support mode:
+                var check = $flbk.u.css_rule_applied($flbk.s.general_css_check_selector, $flbk.s.general_css_check_property, $flbk.s.general_css_check_value);
+                if (!check) {
+                    return true;
+                }
+
                 // Detect left click only:
-                var left_click = glimpse.detectLeftButton(e);
+                var left_click = detectLeftButton(e);
                 console.log(left_click);
                 if (!left_click) {
                     down = false;
@@ -169,27 +447,25 @@ var cookie_html                   =
             });
 
             el.addEventListener('mouseup', function(e) {
+                // Don't run this if we're not in full support mode:
+                var check = $flbk.u.css_rule_applied($flbk.s.general_css_check_selector, $flbk.s.general_css_check_property, $flbk.s.general_css_check_value);
+                if (!check) {
+                    return true;
+                }
+
                 el.classList.remove('c-glimpse--is-mousedown');
                 if (!down) {
                     return;
                 }
                 up = +new Date();
                 if ((up - down) < 200) {
-                    //h_link.click();
+                    h_link.click();
                 }
             });
         });
     };
 
-    var ready = function(fn) {
-        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
-            fn();
-        } else {
-            document.addEventListener('DOMContentLoaded', fn);
-        }
-    }
-
-    ready(glimpse);
+    $flbk.u.ready(glimpse);
 })();
 
 /*
@@ -282,7 +558,7 @@ var cookie_html                   =
             img.removeAttribute('style');
             
             // If we're using the 'contain' variant:
-            if (new RegExp('(^| )js-image-cover--contain( |$)', 'gi').test(el.className)) {
+            if (new RegExp('(^| )u-image-cover--contain( |$)', 'gi').test(el.className)) {
                 if (image_rect.height >= container_rect.height) {
                     img.style.width  = 'auto';
                     img.style.height = '100%';
@@ -321,77 +597,9 @@ var cookie_html                   =
     ready(polyfill);
 })();
 
-/*!
-    Fall-Back Cookie Notice v1.1.0
-    https://github.com/Fall-Back/Cookie-Notice
-    Copyright (c) 2017, Andy Kirk
-    Released under the MIT license https://git.io/vwTVl
-*/
-(function() {
-    var ready = function(fn) {
-        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
-            fn();
-        } else {
-            document.addEventListener('DOMContentLoaded', fn);
-        }
-    }
-    
-    var createCookie = function(name,value,days) {
-        if (days) {
-            var date = new Date();
-            date.setTime(date.getTime()+(days*24*60*60*1000));
-            var expires = "; expires="+date.toGMTString();
-        }
-        else var expires = "";
-        document.cookie = name+"="+value+expires+"; path=/";
-    }
-
-    var readCookie = function(name) {
-        var nameEQ = name + "=";
-        var ca = document.cookie.split(';');
-        for(var i=0;i < ca.length;i++) {
-            var c = ca[i];
-            while (c.charAt(0)==' ') c = c.substring(1,c.length);
-            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-        }
-        return null;
-    }
-
-    var eraseCookie = function(name) {
-        createCookie(name,"",-1);
-    }
-    
-    var cookienotice = {
-
-        init: function() {
-            var accepted_cookies = readCookie(cookie_name);
-            if (!accepted_cookies) {
-                var body_el = document.getElementsByTagName('body')[0];
-                body_el.insertAdjacentHTML('afterbegin', cookie_html);
-                
-                document.getElementById(cookie_button_id).onclick = function(){
-                    createCookie(cookie_name, 'true', cookie_expire_days);
-                    document.getElementById(cookie_notice_id).setAttribute('data-close', true);
-                    //document.getElementById(cookie_notice_id).className += '  ' + cookie_close_class;
-                    /*
-                        Without CSS (or transition support - IE9) the notice won't disappear, so wait until fade 
-                        has finished then remove:
-                    */
-                    setTimeout(function(){
-                        var c = document.getElementById(cookie_notice_id);
-                        c.parentNode.removeChild(c);
-                    }, cookie_notice_effect_duration);
-                };
-            }
-        }
-    }
-    
-    ready(cookienotice.init);
-})();
-
 /*! --------------------------------------------------------------------------------------------- *\
 
-    Fall-Back Close Button v1.0.0
+    Fall-Back Close Button v2.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Close%20Button
     Copyright (c) 2021, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
@@ -435,16 +643,9 @@ var cookie_html                   =
     var close_button_html  =
 '<button' + close_button_id_string + close_button_class_string + close_button_focus_target_selector_string + '>' +
 '    <span hidden="" aria-hidden="false">Close</span>' +
-'    <svg focusable="false" class="icon  icon--is-open" width="20" height="20"><use xlink:href="#icon-cross"></use></svg></button>' +
+'    <svg focusable="false" class="icon  icon--is-open"><use xlink:href="#icon-cross"></use></svg></button>' +
 '</button>' + "\n";
 
-    var ready = function(fn) {
-        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
-            fn();
-        } else {
-            document.addEventListener('DOMContentLoaded', fn);
-        }
-    }
 
     var $close_button = {
 
@@ -479,11 +680,11 @@ var cookie_html                   =
         }
     }
 
-    ready($close_button.init);
+    $flbk.u.ready($close_button.init);
 })();
 
 /*!
-    Fall-Back Content Min-row v1.0.1
+    Fall-Back Content Min-row v2.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Content%20Min%20Row
     Copyright (c) 2021, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
@@ -501,78 +702,12 @@ var cookie_html                   =
     //var debug                                = true;
     var debug                                = false;
     var ident                                = 'cmr';
-    var css_check_selector                   = "#css_has_loaded";
     var selector                             = '[data-js="' + ident + '"]';
     var js_classname_prefix                  = 'js';
     var container_js_classname_wide_suffix   = 'wide';
     var container_js_classname_narrow_suffix = 'narrow';
+    var detector_n                           = 0;
 
-    var ready = function(fn) {
-        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
-            fn();
-        } else {
-            document.addEventListener('DOMContentLoaded', fn);
-        }
-    }
-    
-    var check_for_css = function(selector) {
-
-        if (debug) {
-            console.log('Checking for CSS: ' + selector);
-        }
-
-        var rules;
-        var haveRule = false;
-        if (typeof document.styleSheets != "undefined") { // is this supported
-            var cssSheets = document.styleSheets;
-            
-
-            // IE doesn't have document.location.origin, so fix that:
-            if (!document.location.origin) {
-                document.location.origin = document.location.protocol + "//" + document.location.hostname + (document.location.port ? ':' + document.location.port: '');
-            }
-            var domain_regex  = RegExp('^' + document.location.origin);
-
-            outerloop:
-            for (var i = 0; i < cssSheets.length; i++) {
-                var sheet = cssSheets[i];
-
-                // Some browsers don't allow checking of rules if not on the same domain (CORS), so
-                // checking for that here:
-                if (sheet.href !== null && domain_regex.exec(sheet.href) === null) {
-                    continue;
-                }
-
-                // Check for IE or standards:
-                rules = (typeof sheet.cssRules != "undefined") ? sheet.cssRules : sheet.rules;
-                
-                for (var j = 0; j < rules.length; j++) {
-                    if (rules[j].selectorText == selector) {
-                        haveRule = true;
-                        break outerloop;
-                    }
-                }
-            }
-        }
-        
-        if (debug) {
-            console.log(selector + ' ' + (haveRule ? '' : 'not') + ' found');
-        }
-
-        return haveRule;
-    }
-
-    var set_style = function(element, style) {
-        Object.keys(style).forEach(function(key) {
-            var val = style[key];
-            if (val.indexOf(' !important' ) !== -1) {
-                val = val.replace(' !important', '');
-                element.style.setProperty(key, val, 'important');
-            } else {
-                element.style.setProperty(key, val);
-            }
-        });
-    }
 
     var $cmr = {
 
@@ -583,13 +718,31 @@ var cookie_html                   =
         switcher: function(cmr) {
 
             // Check for browser font change and reset breakpoints if it has:
-            if ($cmr.root_font_size != window.getComputedStyle(document.documentElement).getPropertyValue('font-size')) {
-                $cmr.set_breakpoints($cmr.cmrs);
+            // (Note IE11 does some REALLY strange things with the font size - there's a slight
+            // difference in the output depending on whether the page is refreshed or reloaded!
+            var cached_font_size   = Math.ceil(parseFloat($cmr.root_font_size));
+            var document_font_size = Math.ceil(parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue('font-size')));
+
+            if (debug) {
+                console.log($cmr.root_font_size, window.getComputedStyle(document.documentElement).getPropertyValue('font-size'));
+                console.log(cached_font_size, document_font_size);
             }
 
+            if (cached_font_size != document_font_size) {
+                $cmr.root_font_size = document_font_size;
+                $cmr.set_breakpoints($cmr.cmrs);
+                window.setTimeout(function(){
+                    $cmr.do_switch(cmr);
+                }, 250);
+            } else {
+                $cmr.do_switch(cmr);
+            }
+        },
+
+        do_switch: function(cmr) {
             // Note using getAttribute('data-') instead of dataset so it doesn't fail on older
             // browsers and leave behind the clone.
-            // May rethink this as I don't NEED to support older browsers witht this - I just don't
+            // May rethink this as I don't NEED to support older browsers with this - I just don't
             // want it broken. Maybe I should quit out of this if dataset isn't supported, but it's
             // ok for now.
             var wide = cmr.offsetWidth > cmr.getAttribute('data-js-breakpoint');
@@ -614,11 +767,12 @@ var cookie_html                   =
         set_breakpoints: function(cmrs) {
 
             Array.prototype.forEach.call(cmrs, function (cmr, i) {
-                //set_style(cmr, {'position': 'relative'});
+                //$flbk.u.set_style(cmr, {'position': 'relative'});
                 var clone = cmr.cloneNode(true);
                 clone.classList.add(js_classname_prefix + '-' + ident + '--' + container_js_classname_wide_suffix);
+                clone.classList.add(js_classname_prefix + '-' + ident + '--' + 'clone');
 
-                set_style(clone, {
+                $flbk.u.set_style(clone, {
                     'border': '0',
                     'left': '0',
                     'top': '0',
@@ -637,15 +791,12 @@ var cookie_html                   =
                 // Set widths for flexible children:
                 Array.prototype.forEach.call(children, function (child, i) {
                     //console.log(child);
-                    if (child.getAttribute('data-min-width')) {
-                        var w = parseInt(child.getAttribute('data-min-width'));
-                        //console.log('w', w);
-                        //console.log(getComputedStyle(child));
-
+                    if (child.getAttribute('data-width')) {
+                        var w = parseInt(child.getAttribute('data-width'));
                         var pLeft  = parseInt(getComputedStyle(child).paddingLeft);
                         var pRight = parseInt(getComputedStyle(child).paddingRight);
                         //console.log(w, pLeft, pRight);
-                        set_style(child, {
+                        $flbk.u.set_style(child, {
                             'width': (w + pLeft + pRight) + 'px !important',
                             'max-width': (w + pLeft + pRight) + 'px !important',
                             'min-width': (w + pLeft + pRight) + 'px !important'
@@ -659,19 +810,27 @@ var cookie_html                   =
                     var pRight = parseInt(getComputedStyle(clone).paddingRight);
                     breakpoint += pLeft + pRight;
                     Array.prototype.forEach.call(children, function (child, i) {
+                        console.log(child, child.offsetWidth);
                         breakpoint += Math.ceil(child.offsetWidth);
                     });
+                    if (debug) {
+                        console.log('breakpoint: ', breakpoint);
+                    }
                     cmr.setAttribute('data-js-breakpoint', breakpoint);
                 } else {
+                    if (debug) {
+                        console.log('breakpoint: ', clone.offsetWidth);
+                    }
                     cmr.setAttribute('data-js-breakpoint', clone.offsetWidth);
                 }
+                
                 clone.remove();
             });
         },
 
         init: function() {
 
-            var css_is_loaded = check_for_css(css_check_selector);
+            var css_is_loaded = $flbk.u.css_has_rule($flbk.s.general_css_check_selector);
 
             if (debug) {
                 console.log('css_is_loaded:', css_is_loaded);
@@ -714,8 +873,6 @@ var cookie_html                   =
                     'position': 'absolute',
                     'display': 'block',
                     'border': '0',
-                    'left': '0',
-                    'top': '0',
                     'width': '100%',
                     'height': '100%',
                     'pointerEvents': 'none',
@@ -729,10 +886,14 @@ var cookie_html                   =
                 // the CMR element.
 
                 Array.prototype.forEach.call($cmr.cmrs, function (cmr, i) {
+
                     var detector = document.createElement('iframe');
-                    set_style(detector, style);
+                    detector.id = 'detector-' + (++detector_n);
+                    cmr.detector_id = detector.id;
+
+                    $flbk.u.set_style(detector, style);
                     detector.setAttribute('aria-hidden', 'true');
-                    
+
                     var n = cmr.getAttribute('data-ie-safe-parent-level');
                     var safe_parent = cmr;
                     if (n) {
@@ -740,38 +901,43 @@ var cookie_html                   =
                             safe_parent = safe_parent.parentNode;
                             if (!safe_parent) {
                                 // to avoid a possible "TypeError: Cannot read property 'parentNode' of null" if the requested level is higher than document
-                                break; 
+                                break;
                             }
                         }
-                        set_style(safe_parent, {'position': 'relative'});
+                        $flbk.u.set_style(safe_parent, {'position': 'relative'});
                         safe_parent.appendChild(detector);
                     } else {
-                        set_style(cmr, {'position': 'relative'});
+                        $flbk.u.set_style(cmr, {'position': 'relative'});
                         cmr.appendChild(detector);
                     }
 
                     detector.contentWindow.addEventListener('resize', function() {
+                        if (debug) {
+                            console.log('Reszing ' + detector.id + ' (1)');
+                        }
                         $cmr.switcher(cmr);
                     });
                     $cmr.switcher(cmr);
+
                 });
             }
             return;
         }
     }
 
-    window.setTimeout(function(){ready($cmr.init)}, 50);
+    window.setTimeout(function(){$flbk.u.ready($cmr.init)}, 50);
 })();
 /*! --------------------------------------------------------------------------------------------- *\
     
-    Fall-Back Dropdown v2.0.0
+    Fall-Back Dropdown v3.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Dropdown
     Copyright (c) 2021, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
 
-    Designed for use with the EM2 [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
-    Edge, Chrome 39+, Opera 26+, Safari 9+, iOS 9+, Android ~5+, Android UCBrowser ~11.8+
-    FF 47+
+    Designed for use with the [PRM CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut#prm-cut-prefers-reduced-motion)
+    
+    Print (Edge doesn't apply to print otherwise)
+    Edge 79+, Chrome 74+, Firefox 63+, Opera 64+, Safari 10.1+, iOS 10.3+, Android 81+
 
     PLUS IE11
 
@@ -783,66 +949,11 @@ var cookie_html                   =
     var debug                 = false;
     var ident                 = 'dropdown';
     var selector              = '[data-js="' + ident + '"]';
-
     var dropdown_js_has_classname = 'js-has--' + ident;
-    
     var dropdown_is_open_classname      = ident + '__area--is-open';
     var dropdown_is_animating_classname = ident + '__area--is-animating';
 
-    var check_for_css = function(selector) {
-
-        if (debug) {
-            console.log('Checking for CSS: ' + selector);
-        }
-
-        var rules;
-        var haveRule = false;
-        if (typeof document.styleSheets != "undefined") { // is this supported
-            var cssSheets = document.styleSheets;
-
-            // IE doesn't have document.location.origin, so fix that:
-            if (!document.location.origin) {
-                document.location.origin = document.location.protocol + "//" + document.location.hostname + (document.location.port ? ':' + document.location.port: '');
-            }
-            var domain_regex  = RegExp('^' + document.location.origin);
-
-            outerloop:
-            for (var i = 0; i < cssSheets.length; i++) {
-                var sheet = cssSheets[i];
-
-                // Some browsers don't allow checking of rules if not on the same domain (CORS), so
-                // checking for that here:
-                if (sheet.href !== null && domain_regex.exec(sheet.href) === null) {
-                    continue;
-                }
-
-                // Check for IE or standards:
-                rules = (typeof sheet.cssRules != "undefined") ? sheet.cssRules : sheet.rules;
-                for (var j = 0; j < rules.length; j++) {
-                    if (rules[j].selectorText == selector) {
-                        haveRule = true;
-                        break outerloop;
-                    }
-                }
-            }
-        }
-
-        if (debug) {
-            console.log(selector + ' ' + (haveRule ? '' : 'not') + ' found');
-        }
-
-        return haveRule;
-    }
-
-    var ready = function(fn) {
-        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
-            fn();
-        } else {
-            document.addEventListener('DOMContentLoaded', fn);
-        }
-    }
-
-	var dropdown = {
+	var $dropdown = {
 
         init: function() {
 
@@ -850,7 +961,7 @@ var cookie_html                   =
                 console.log('Initialising ' + ident);
             }
 
-            if (css_is_loaded) {
+            if (css_has_rule) {
 
                 var dropdowns = document.querySelectorAll(selector);
 
@@ -910,28 +1021,31 @@ var cookie_html                   =
 	}
 
     // This is _here_ to mitigate a Flash of Basic Styled Dropdown:
-    var css_is_loaded = check_for_css('.' + dropdown_js_has_classname);
+    //var css_is_loaded = check_for_css('.' + dropdown_js_has_classname);
+    var css_has_rule = $flbk.u.css_has_rule('.' + dropdown_js_has_classname);
 
-    if (css_is_loaded) {
+    if (css_has_rule) {
         // Add the JS class name ...
         var html_el = document.querySelector('html');
 
         html_el.classList.add(dropdown_js_has_classname);
     }
 
-	ready(dropdown.init);
+
+    $flbk.u.ready($dropdown.init);
 })();
 
 /*! --------------------------------------------------------------------------------------------- *\
     
-    Fall-Back Over Panel v2.0.0
+    Fall-Back Over Panel v3.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Over%20Panel
-    Copyright (c) 2021, Andy Kirk
+    Copyright (c) 2022, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
 
-    Designed for use with the EM2 [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
-    Edge, Chrome 39+, Opera 26+, Safari 9+, iOS 9+, Android ~5+, Android UCBrowser ~11.8+
-    FF 47+
+    Designed for use with the [PRM CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut#prm-cut-prefers-reduced-motion)
+    
+    Print (Edge doesn't apply to print otherwise)
+    Edge 79+, Chrome 74+, Firefox 63+, Opera 64+, Safari 10.1+, iOS 10.3+, Android 81+  
 
     PLUS IE11
 
@@ -953,61 +1067,7 @@ var cookie_html                   =
     var over_panel_is_open_classname      = ident + '--is-open';
     var over_panel_is_animating_classname = ident + '--is-animating';
 
-    var check_for_css = function(selector) {
-
-        if (debug) {
-            console.log('Checking for CSS: ' + selector);
-        }
-
-        var rules;
-        var haveRule = false;
-        if (typeof document.styleSheets != "undefined") { // is this supported
-            var cssSheets = document.styleSheets;
-
-            // IE doesn't have document.location.origin, so fix that:
-            if (!document.location.origin) {
-                document.location.origin = document.location.protocol + "//" + document.location.hostname + (document.location.port ? ':' + document.location.port: '');
-            }
-            var domain_regex  = RegExp('^' + document.location.origin);
-
-            outerloop:
-            for (var i = 0; i < cssSheets.length; i++) {
-                var sheet = cssSheets[i];
-
-                // Some browsers don't allow checking of rules if not on the same domain (CORS), so
-                // checking for that here:
-                if (sheet.href !== null && domain_regex.exec(sheet.href) === null) {
-                    continue;
-                }
-
-                // Check for IE or standards:
-                rules = (typeof sheet.cssRules != "undefined") ? sheet.cssRules : sheet.rules;
-                for (var j = 0; j < rules.length; j++) {
-                    if (rules[j].selectorText == selector) {
-                        haveRule = true;
-                        break outerloop;
-                    }
-                }
-            }
-        }
-
-        if (debug) {
-            console.log(selector + ' ' + (haveRule ? '' : 'not') + ' found');
-        }
-
-        return haveRule;
-    }
-
-    var ready = function(fn) {
-        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
-            fn();
-        } else {
-            document.addEventListener('DOMContentLoaded', fn);
-        }
-    }
-
-
-	var over_panel = {
+	var $over_panel = {
 
         init: function() {
 
@@ -1015,7 +1075,7 @@ var cookie_html                   =
                 console.log('Initialising ' + ident);
             }
 
-            if (css_is_loaded) {
+            if (css_has_rule) {
 
                 var over_panels = document.querySelectorAll(selector);
 
@@ -1098,16 +1158,17 @@ var cookie_html                   =
 	}
 
     // This is _here_ to mitigate a Flash of Basic Styled OverPanel:
-    var css_is_loaded = check_for_css('.' + over_panel_js_has_classname);
+    //var css_is_loaded = check_for_css('.' + over_panel_js_has_classname);
+    var css_has_rule = $flbk.u.css_has_rule('.' + over_panel_js_has_classname);
 
-    if (css_is_loaded) {
+    if (css_has_rule) {
         // Add the JS class name ...
         var html_el = document.querySelector('html');
 
         html_el.classList.add(over_panel_js_has_classname);
     }
 
-	ready(over_panel.init);
+    $flbk.u.ready($over_panel.init);
 })();
 
 /*
@@ -1304,6 +1365,66 @@ Copyright © 2019 Javan Makhmali
       }
     }
   }
+})();
+
+/*!
+    Fall-Back Cookie Notice v2.0.0
+    https://github.com/Fall-Back/Cookie-Notice
+    Copyright (c) 2017, Andy Kirk
+    Released under the MIT license https://git.io/vwTVl
+*/
+(function() {
+    var createCookie = function(name,value,days) {
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime()+(days*24*60*60*1000));
+            var expires = "; expires="+date.toGMTString();
+        }
+        else var expires = "";
+        document.cookie = name+"="+value+expires+"; path=/";
+    }
+
+    var readCookie = function(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+
+    var eraseCookie = function(name) {
+        createCookie(name,"",-1);
+    }
+    
+    var $cookienotice = {
+
+        init: function() {
+            var accepted_cookies = readCookie(cookie_name);
+            if (!accepted_cookies) {
+                var body_el = document.getElementsByTagName('body')[0];
+                body_el.insertAdjacentHTML('afterbegin', cookie_html);
+                
+                document.getElementById(cookie_button_id).onclick = function(){
+                    createCookie(cookie_name, 'true', cookie_expire_days);
+                    document.getElementById(cookie_notice_id).setAttribute('data-close', true);
+                    //document.getElementById(cookie_notice_id).className += '  ' + cookie_close_class;
+                    /*
+                        Without CSS (or transition support - IE9) the notice won't disappear, so wait until fade 
+                        has finished then remove:
+                    */
+                    setTimeout(function(){
+                        var c = document.getElementById(cookie_notice_id);
+                        c.parentNode.removeChild(c);
+                    }, cookie_notice_effect_duration);
+                };
+            }
+        }
+    }
+    
+    $flbk.u.ready($cookienotice.init);
 })();
 
 /*! picturefill - v3.0.2 - 2016-02-12

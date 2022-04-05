@@ -3,7 +3,7 @@
 /* --| START THEME |----------------------------------------------------------------------------- */
 /* --| CSS LOADED |------------------------------------------------------------------------------ */
 #css_has_loaded {
-  border: 0;
+  visibility: hidden;
 }
 
 /* ---------------------------------------------------------------------------------------------- */
@@ -5301,6 +5301,7 @@ a[href][rel~="external"].c-badge:focus::after {
   touch-action: manipulation;
   /* 1 */
   -webkit-appearance: none;
+  border-radius: 0.6rem;
   position: relative;
   z-index: 0;
   text-decoration: none;
@@ -6085,56 +6086,57 @@ a[href].c-cta--has-icon .icon {
 */
 .c-hero-wrap {
   padding: 0;
-  border: 0;
-  margin: 0;
-}
-
-.c-hero-wrap.c-hero-carousel {
-  padding: 0;
   margin: 0;
   min-inline-size: auto;
   border: 0;
   width: 100%;
 }
 
-.c-hero-wrap.c-hero-carousel > div {
+.c-hero-wrap::after {
+  display: none;
+}
+
+.c-hero-wrap > div {
   position: relative;
   display: flex;
   flex-direction: column;
 }
 
-.c-hero-wrap.c-hero-carousel .c-hero-carousel__nav {
-  padding: 0 0.6rem;
-  margin: -3.6rem 0 1.2rem 0;
+.c-hero-carousel .c-hero-carousel__nav {
+  padding: 0.6rem;
+  margin-top: -1.2rem;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 0;
   z-index: 2;
 }
 
-.c-hero-wrap.c-hero-carousel .c-hero-carousel__nav p {
+.c-hero-carousel .c-hero-carousel__nav p {
   margin: 0;
 }
 
-.c-hero-wrap.c-hero-carousel .c-hero-carousel__nav a[href] {
+.c-hero-carousel .c-hero-carousel__nav a[href] {
   display: inline-block;
   overflow: hidden;
-  border-radius: 0.6rem;
-  height: 1.2rem;
-  width: 1.2rem;
+  border-radius: 0.8rem;
+  height: 1.4rem;
+  width: 1.4rem;
   background: #bbb;
   text-indent: 1.2rem;
-  border: 0.1rem solid #333;
+  border: 1px solid #333;
   padding: 0;
   margin: 0 0.3rem;
 }
 
-.c-hero-wrap.c-hero-carousel .c-hero-carousel__nav a[href]:hover {
+.c-hero-carousel .c-hero-carousel__nav a[href]:hover {
   background: #888;
 }
 
-.c-hero-wrap.c-hero-carousel hr {
+.c-hero-carousel hr {
   display: none;
 }
 
-.c-hero-wrap.c-hero-carousel .c-hero-carousel__scroll-area {
+.c-hero-carousel .c-hero-carousel__scroll-area {
   order: -1;
   display: flex;
   overflow-x: scroll;
@@ -6155,145 +6157,130 @@ a[href].c-cta--has-icon .icon {
   -ms-overflow-style: none;
 }
 
-.c-hero-wrap.c-hero-carousel .c-hero-carousel__scroll-area:focus {
+.c-hero-carousel .c-hero-carousel__scroll-area:focus {
   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.3);
   outline: 0 none;
 }
 
-.c-hero-wrap.c-hero-carousel .c-hero-carousel__scroll-area::-webkit-scrollbar {
+.c-hero-carousel .c-hero-carousel__scroll-area::-webkit-scrollbar {
   display: none;
 }
 
-.c-hero-wrap.c-hero-carousel .c-hero-carousel__scroll-area .c-hero {
+.c-hero-carousel .c-hero-carousel__scroll-area .c-hero {
   flex: 0 0 100%;
   scroll-snap-align: start;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  background: transparent;
+  color: #fff;
   /*
-                Turn off :target highlighting animation.
-            */
+                    Turn off :target highlighting animation.
+                */
   -moz-animation: none;
   -webkit-animation: none;
   animation: none;
 }
 
-.c-hero-wrap.c-hero-carousel .c-hero-carousel__scroll-area .c-hero__message {
-  padding-bottom: 4.8rem;
-}
-
-.c-hero-wrap .c-hero {
+.c-hero.c-hero {
   position: relative;
-  background: #fff;
-  /*
-            The pattern markup allows for a TFS border, so zap that:
-        */
 }
 
-.c-hero-wrap .c-hero > div {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.c-hero-wrap .c-hero .c-hero__message {
+.c-hero .c-hero__message {
   padding-top: 2.4rem;
   padding-right: 2.4rem;
   padding-bottom: 2.4rem;
   padding-left: 2.4rem;
   flex-grow: 1;
-  word-break: break-word;
-  /*.c-hero-wrap .c-hero .c-hero__message__image-credit {
-        font-size: 0.875em;
-        line-height: 1.3;
-        padding: 0.2em 0.5em;
-        color: #fff;
-        background-color: rgba(0,0,0,0.4);
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        max-width: 50%;
-
-        a[href] {
-            background-color: transparent;
-            color: #fff;
-            border-width: 1px;
-
-            &:hover,
-            &:active,
-            &:focus {
-                background-color: transparent;
-                color: #fff;
-            }
-        }
-    }*/
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
 }
 
-.c-hero-wrap .c-hero .c-hero__message * {
-  margin: 0;
+.c-hero .c-hero__message > * {
+  margin: 0.6rem 0;
+  flex: 0 0 auto;
 }
 
-.c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_text,
-.c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_heading {
+.c-hero .c-hero__message > .c-hero__message--fluid_text,
+.c-hero .c-hero__message > .c-hero__message--fluid_heading {
   /*
                 1. For IE10 to wrap text.
             */
   line-height: 1.3;
+  font-weight: bold;
   margin: 0;
   max-width: 100%;
   /* [1] */
 }
 
-.c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_text,
-.c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_heading {
+.c-hero .c-hero__message > .c-hero__message--fluid_text,
+.c-hero .c-hero__message > .c-hero__message--fluid_heading {
   font-size: 16px;
 }
 
 @media screen and (min-width: 640px) {
-  .c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_text,
-  .c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_heading {
+  .c-hero .c-hero__message > .c-hero__message--fluid_text,
+  .c-hero .c-hero__message > .c-hero__message--fluid_heading {
     font-size: calc(16px + 10 * ((100vw - 640px) / 960));
   }
 }
 
 @media screen and (min-width: 1600px) {
-  .c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_text,
-  .c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_heading {
+  .c-hero .c-hero__message > .c-hero__message--fluid_text,
+  .c-hero .c-hero__message > .c-hero__message--fluid_heading {
     font-size: 26px;
   }
 }
 
-.c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_heading {
+.c-hero .c-hero__message > .c-hero__message--fluid_heading {
   font-size: 24px;
 }
 
 @media screen and (min-width: 640px) {
-  .c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_heading {
+  .c-hero .c-hero__message > .c-hero__message--fluid_heading {
     font-size: calc(24px + 22 * ((100vw - 640px) / 960));
   }
 }
 
 @media screen and (min-width: 1600px) {
-  .c-hero-wrap .c-hero .c-hero__message > .c-hero__message--fluid_heading {
+  .c-hero .c-hero__message > .c-hero__message--fluid_heading {
     font-size: 46px;
   }
 }
 
-.c-hero-wrap .c-hero .c-hero__message .c-hero__cta {
-  margin-left: auto;
-  margin-top: 1.2rem;
+.c-hero .c-hero__image-credit {
+  font-size: 0.875em;
+  line-height: 1.3;
+  padding: 0.2em 0.5em;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  max-width: 50%;
 }
 
-/*.c-hero--reversed .c-hero__image-credit {
-    right: auto;
-    left: 0;
-}*/
+.c-hero .c-hero__image-credit a[href] {
+  background-color: transparent;
+  color: #fff;
+  border-width: 1px;
+}
+
+.c-hero .c-hero__image-credit a[href]:hover, .c-hero .c-hero__image-credit a[href]:active, .c-hero .c-hero__image-credit a[href]:focus {
+  background-color: transparent;
+  color: #fff;
+}
+
+.c-hero--right .c-hero__image-credit {
+  right: auto;
+  left: 0;
+}
+
 @media only screen and (max-width: 40rem) {
-  .c-hero-wrap .c-hero .c-hero__message {
+  .c-hero .c-hero__message {
     /*
                     1. This is here to override the inline style width declaration.
                        Allowing Joomla interface to specify width so it can be tweaked to suit the text,
@@ -6301,29 +6288,21 @@ a[href].c-cta--has-icon .icon {
                 */
     width: 100% !important;
     /* [1] */
-    background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--dark));
-    color: #fff;
   }
-  /*.c-hero-carousel {
-        __nav {
-            margin: 0;
-
-        }
-    }*/
 }
 
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   .c-hero .c-hero__message {
     /*
-                1. IE11 is just not behaving well :-(
-            */
+                    1. IE11 is just not behaving well :-(
+                */
     max-width: calc(100vw - 1.7rem) !important;
     /* [1] */
   }
 }
 
 @media only screen and (max-width: 64rem) {
-  .c-hero-wrap.c-hero--wide-message .c-hero .c-hero__message {
+  .c-hero .c-hero__message--wide {
     /*
                     1. This is here to override the inline style width declaration.
                        Allowing Joomla interface to specify width so it can be tweaked to suit the text,
@@ -6331,57 +6310,71 @@ a[href].c-cta--has-icon .icon {
                 */
     width: 100% !important;
     /* [1] */
-    background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--dark));
-    color: #fff;
   }
 }
 
-@media only screen and (min-width: 40.01rem) {
-  .c-hero-wrap:not(.c-hero--wide-message) .c-hero .c-hero__message {
+@media only screen and (min-width: 40rem) {
+  .c-hero-wrap:not(.c-hero--message-wide) .c-hero .c-hero__message {
     position: absolute;
     z-index: 1;
     bottom: 0;
     left: 0;
-    width: calc(10em + 20%);
+    min-width: 30%;
+    max-width: 40%;
     top: 0;
     background: rgba(255, 255, 255, 0.75);
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    align-content: center;
+    color: #333;
     justify-content: flex-start;
   }
-  .c-hero-wrap:not(.c-hero--wide-message) .c-hero .c-hero__message > * {
+  .c-hero-wrap:not(.c-hero--message-wide) .c-hero .c-hero__message > * {
     flex: 1 0 100%;
   }
-  .c-hero-wrap:not(.c-hero--wide-message) .c-hero.c-hero--reversed .c-hero__message {
+  .c-hero-wrap:not(.c-hero--message-wide) .c-hero.c-hero--message-right .c-hero__message {
     right: 0;
     left: auto;
   }
+  .c-hero-wrap:not(.c-hero--message-wide) .c-hero.c-hero--message-bottom .c-hero__message {
+    width: 100%;
+    max-width: none;
+    bottom: 0;
+    top: auto;
+  }
 }
 
-@media only screen and (min-width: 64.01rem) {
-  .c-hero-wrap.c-hero--wide-message .c-hero .c-hero__message {
+@media only screen and (min-width: 64rem) {
+  .c-hero-wrap.c-hero--message-wide .c-hero .c-hero__message {
     position: absolute;
     z-index: 1;
     bottom: 0;
     left: 0;
-    width: calc(20em + 20%);
+    min-width: 30%;
     max-width: 50%;
     top: 0;
     background: rgba(255, 255, 255, 0.75);
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    align-content: center;
+    color: #333;
     justify-content: flex-start;
   }
-  .c-hero-wrap.c-hero--wide-message .c-hero .c-hero__message > * {
+  .c-hero-wrap.c-hero--message-wide .c-hero .c-hero__message > * {
     flex: 1 0 100%;
   }
-  .c-hero-wrap .c-hero.c-hero--reversed .c-hero__message {
+  .c-hero-wrap.c-hero--message-wide .c-hero.c-hero--message-right .c-hero__message {
     right: 0;
     left: auto;
+  }
+  .c-hero-wrap.c-hero--message-wide .c-hero.c-hero--message-bottom .c-hero__message {
+    width: 100%;
+    max-width: none;
+    bottom: 0;
+    top: auto;
+  }
+  .c-hero-carousel .c-hero-carousel__nav {
+    margin-top: -3.6rem;
+  }
+  .c-hero-carousel .c-hero-carousel__nav p {
+    text-align: right;
+  }
+  .c-hero-carousel .c-hero__message--wide {
+    padding-bottom: 3.6rem;
   }
 }
 
@@ -7824,66 +7817,134 @@ a[href].c-cta--has-icon .icon {
 
 .l-layout .l-box--space--edge,
 .l-layout .l-box--space--edge--m,
-.l-layout .l-box--space--inline,
-.l-layout .l-box--space--inline--m {
-  padding-left: 2.4rem;
-  padding-right: 2.4rem;
+.l-layout .l-box--space--block,
+.l-layout .l-box--space--block--m,
+.l-layout .l-box--space--block-start,
+.l-layout .l-box--space--block-start--m {
+  padding-top: 2.4rem !important;
 }
 
 .l-layout .l-box--space--edge,
 .l-layout .l-box--space--edge--m,
 .l-layout .l-box--space--block,
-.l-layout .l-box--space--block--m {
-  padding-top: 2.4rem;
-  padding-bottom: 2.4rem;
+.l-layout .l-box--space--block--m,
+.l-layout .l-box--space--block-end,
+.l-layout .l-box--space--block-end--m {
+  padding-bottom: 2.4rem !important;
+}
+
+.l-layout .l-box--space--edge,
+.l-layout .l-box--space--edge--m,
+.l-layout .l-box--space--inline,
+.l-layout .l-box--space--inline--m,
+.l-layout .l-box--space--inline-start,
+.l-layout .l-box--space--inline-start--m {
+  padding-left: 2.4rem !important;
+}
+
+.l-layout .l-box--space--edge,
+.l-layout .l-box--space--edge--m,
+.l-layout .l-box--space--inline,
+.l-layout .l-box--space--inline--m,
+.l-layout .l-box--space--inline-end,
+.l-layout .l-box--space--inline-end--m {
+  padding-right: 2.4rem !important;
 }
 
 .l-layout .l-box--space--edge--xs,
-.l-layout .l-box--space--inline--xs {
-  padding-left: 0.6rem;
-  padding-right: 0.6rem;
+.l-layout .l-box--space--block--xs,
+.l-layout .l-box--space--block-start--xs {
+  padding-top: 0.6rem !important;
 }
 
 .l-layout .l-box--space--edge--xs,
-.l-layout .l-box--space--block--xs {
-  padding-top: 0.6rem;
-  padding-bottom: 0.6rem;
+.l-layout .l-box--space--block--xs,
+.l-layout .l-box--space--block-end--xs {
+  padding-bottom: 0.6rem !important;
+}
+
+.l-layout .l-box--space--edge--xs,
+.l-layout .l-box--space--inline--xs,
+.l-layout .l-box--space--sinline-tart--xs {
+  padding-left: 0.6rem !important;
+}
+
+.l-layout .l-box--space--edge--xs,
+.l-layout .l-box--space--inline--xs,
+.l-layout .l-box--space--inline-end--xs {
+  padding-right: 0.6rem !important;
 }
 
 .l-layout .l-box--space--edge--s,
-.l-layout .l-box--space--inline--s {
-  padding-left: 1.2rem;
-  padding-right: 1.2rem;
+.l-layout .l-box--space--block--s,
+.l-layout .l-box--space--block-start--s {
+  padding-top: 1.2rem !important;
 }
 
 .l-layout .l-box--space--edge--s,
-.l-layout .l-box--space--block--s {
-  padding-top: 1.2rem;
-  padding-bottom: 1.2rem;
+.l-layout .l-box--space--block--s,
+.l-layout .l-box--space--block-end--s {
+  padding-bottom: 1.2rem !important;
+}
+
+.l-layout .l-box--space--edge--s,
+.l-layout .l-box--space--inline--s,
+.l-layout .l-box--space--inline-start--s {
+  padding-left: 1.2rem !important;
+}
+
+.l-layout .l-box--space--edge--s,
+.l-layout .l-box--space--inline--s,
+.l-layout .l-box--space--inline-end--s {
+  padding-right: 1.2rem !important;
 }
 
 .l-layout .l-box--space--edge--l,
-.l-layout .l-box--space--inline--l {
-  padding-left: 4.8rem;
-  padding-right: 4.8rem;
+.l-layout .l-box--space--block--l,
+.l-layout .l-box--space--block-start--l {
+  padding-top: 4.8rem !important;
 }
 
 .l-layout .l-box--space--edge--l,
-.l-layout .l-box--space--block--l {
-  padding-top: 4.8rem;
-  padding-bottom: 4.8rem;
+.l-layout .l-box--space--block--l,
+.l-layout .l-box--space--block-end--l {
+  padding-bottom: 4.8rem !important;
+}
+
+.l-layout .l-box--space--edge--l,
+.l-layout .l-box--space--inline--l,
+.l-layout .l-box--space--inline-start--l {
+  padding-left: 4.8rem !important;
+}
+
+.l-layout .l-box--space--edge--l,
+.l-layout .l-box--space--inline--l,
+.l-layout .l-box--space--inline-end--l {
+  padding-right: 4.8rem !important;
 }
 
 .l-layout .l-box--space--edge--xl,
-.l-layout .l-box--space--block--xl {
-  padding-top: 9.6rem;
-  padding-bottom: 9.6rem;
+.l-layout .l-box--space--block--xl,
+.l-layout .l-box--space--block-start--xl {
+  padding-top: 9.6rem !important;
 }
 
 .l-layout .l-box--space--edge--xl,
-.l-layout .l-box--space--inline--xl {
-  padding-left: 9.6rem;
-  padding-right: 9.6rem;
+.l-layout .l-box--space--block--xl,
+.l-layout .l-box--space--block-end--xl {
+  padding-bottom: 9.6rem !important;
+}
+
+.l-layout .l-box--space--edge--xl,
+.l-layout .l-box--space--inline--xl,
+.l-layout .l-box--space--inline-start--xl {
+  padding-left: 9.6rem !important;
+}
+
+.l-layout .l-box--space--edge--xl,
+.l-layout .l-box--space--inline--xl,
+.l-layout .l-box--space--inline-end--xl {
+  padding-right: 9.6rem !important;
 }
 
 .l-layout.l-row > .l-layout__inner, .l-layout.l-distribute > .l-layout__inner {
@@ -8866,7 +8927,6 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 
 .dropdown .dropdown__control {
   color: inherit;
-  background-color: false;
 }
 
 /*
@@ -8883,7 +8943,6 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 
 .dropdown .dropdown__control:focus {
   color: inherit;
-  background-color: rgba(0, 0, 0, 0);
 }
 
 .dropdown .dropdown__control {
@@ -9397,12 +9456,24 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 }
 
 /* -------------------------------------------------------------------------------------------*/
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  /*
+            In IE the width of some containers gets pushed to 100% instead of natural width, so the
+            CMR breakpoint is mis-calculated. Since the clones are disposabled, I think it should be
+            OK to force them as inline-flex so the calculations are correct:
+        */
+  .nav-bar.js-cmr--clone,
+  .nav-bar.js-cmr--clone > * {
+    display: inline-block !important;
+  }
+}
+
 /* -----------------------------------------------------------------------------------------------*/
 /*! --------------------------------------------------------------------------------------------- *\
-    
+
     Fall-Back Over Panel v3.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Over%20Panel
-    Copyright (c) 2021, Andy Kirk
+    Copyright (c) 2022, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
 
     Designed for use with the EM2 [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
@@ -9442,11 +9513,28 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   display: none !important;
 }
 
-/*.over-panel__contents {
-        background-color: $s__over-panel__contents--background-color;
-        color: $s__over-panel__contents--text-color;
-        padding: $s__over-panel__contents--padding;
-    }*/
+.over-panel__contents {
+  background-color: transparent;
+}
+
+.over-panel__contents {
+  color: #fff;
+}
+
+.over-panel__contents {
+  padding: 0;
+}
+
+.over-panel__contents a {
+  color: inherit;
+}
+
+.over-panel__contents a:hover,
+.over-panel__contents a:active,
+.over-panel__contents a:focus {
+  color: inherit;
+}
+
 /*
         iOS/OSX seem to apply mystery margins.
     */
@@ -9459,17 +9547,6 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   flex: 0 1 auto;
 }
 
-/*
-    .over-panel__contents a {
-        color: $s__over-panel__contents--link-color;
-    }
-
-    .over-panel__contents a:hover,
-    .over-panel__contents a:active,
-    .over-panel__contents a:focus {
-        color: $s__over-panel__contents--link-color--alt;
-    }
-    */
 /* -----------------------------------------------------------------------------------------------*/
 /* ********************************************************************************************** */
 /* -- Enhanced layout --------------------------------------------------------------------------- */
@@ -9664,10 +9741,31 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   background-color: #000;
 }
 
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  /*
+            In IE the width of some containers gets pushed to 100% instead of natural width, so the
+            CMR breakpoint is mis-calculated. Since the clones are disposabled, I think it should be
+            OK to force them as inline-flex so the calculations are correct:
+        */
+  .js-has--over-panel .js-cmr--clone,
+  .js-has--over-panel .js-cmr--clone .over-panel,
+  .js-has--over-panel .js-cmr--clone .over-panel__contents {
+    display: inline-block !important;
+  }
+  .js-has--over-panel .js-cmr--clone .over-panel__contents {
+    white-space: nowrap !important;
+  }
+  .js-has--over-panel .js-cmr--narrow .over-panel {
+    width: auto;
+    left: 0;
+    right: 0;
+  }
+}
+
 /* ---------------------------------------------------------------------------------------------- */
 /*! --------------------------------------------------------------------------------------------- *\
     
-    Fall-Back Search Form v3.0.0
+    Fall-Back Search Form v2.0.0
     https://github.com/Fall-Back/Patterns/tree/master/Search%20Form
     Copyright (c) 2021, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
@@ -9714,6 +9812,8 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
            width AND min-width.
     */
 .search-form .search-form__field {
+  position: relative;
+  z-index: 1;
   border-radius: 0;
   border: 0;
   background-color: #fff;
@@ -9729,31 +9829,26 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   /* [1] */
 }
 
-/*
-    // Reset the width for FF8-27: ...
-    @media screen and (min--moz-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
-        .search-form .search-form__field {
-            width: auto;
-        }
-    }
-    // And IE9
-    @media all and (min-width: 0\0) and (min-resolution: .001dpcm) {
-        .search-form .search-form__field {
-            width: auto;
-        }
-    }
-    
-    // ... but put it back for FF28+:
-    @supports (-moz-appearance:none) and (list-style-type:japanese-formal) {
-        .search-form .search-form__field {
-            width: 1%;
-        }
-    }
-    */
+@media screen and (min--moz-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+  .search-form .search-form__field {
+    width: auto;
+  }
+}
+
+@media all and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
+  .search-form .search-form__field {
+    width: auto;
+  }
+}
+
+@supports (-moz-appearance: none) and (list-style-type: japanese-formal) {
+  .search-form .search-form__field {
+    width: 1%;
+  }
+}
+
 .search-form .search-form__field:focus {
   background-color: #ffffdc;
-  position: relative;
-  z-index: 1;
 }
 
 /* -------------------------------------------------------------------------------------------*/
@@ -9761,6 +9856,8 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 /*
     */
 .search-form .search-form__submit {
+  position: relative;
+  z-index: 1;
   border-radius: 0;
   border: 0;
   background: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--light));
@@ -9775,11 +9872,6 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 .search-form .search-form__submit:hover,
 .search-form .search-form__submit:focus {
   background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-light));
-}
-
-.search-form .search-form__submit:focus {
-  position: relative;
-  z-index: 1;
 }
 
 .js-cmr--wide .serach-form--push-right--wide {
@@ -10840,7 +10932,7 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   overflow: hidden;
 }
 
-.u-image-cover .u-image-cover__image {
+.u-image-cover:not(.u-image-cover--contain) .u-image-cover__image {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -10851,9 +10943,21 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   max-height: none;
 }
 
+.u-image-cover.u-image-cover--contain .u-image-cover__image {
+  display: block;
+  margin: 0 auto;
+  width: auto;
+  height: auto;
+  max-height: 100%;
+  max-width: 100%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 /* If `object-fit` is supported, use that and override vertical centering: */
 @supports (object-fit: cover) {
-  .u-image-cover .u-image-cover__image {
+  .u-image-cover.u-image-cover .u-image-cover__image {
     position: relative;
     left: 0;
     top: 0;
@@ -10861,9 +10965,11 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
     object-fit: cover;
     height: 100%;
     width: 100%;
+    image-rendering: -webkit-optimize-contrast;
   }
-  .u-image-cover--contain .u-image-cover__image {
+  .u-image-cover--contain.u-image-cover--contain .u-image-cover__image {
     object-fit: contain;
+    height: inherit;
   }
   .u-image-cover {
     min-height: auto;
@@ -10952,6 +11058,15 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   display: none;
 }
 
+/*---------------------*/
+.video-center.video-center.video-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #333;
+}
+
+/*---------------------*/
 /*
 p[role="list"] {
     overflow-x: hidden;

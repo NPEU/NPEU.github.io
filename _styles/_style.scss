@@ -2,8 +2,9 @@
 // This does nothing in the CSS, but gives JS something to look for so it can check if the CSS has
 // loaded.
 #css_has_loaded {
-    border: 0;
+    visibility: hidden;
 }
+
 /* ---------------------------------------------------------------------------------------------- */
 
 /* --| SETTINGS |-------------------------------------------------------------------------------- */
@@ -335,7 +336,7 @@ $s__dropdown__control--background-color:         false;
 $s__dropdown__control--background-color--alt:    rgba(255,255,255,0.15);
 //$s__dropdown__control--background-color--alt2: $s__nav-bar__link--background-color--alt;
 $s__dropdown-z-index: 2;
-@import "../bower_components/Fall-Back-Patterns/Dropdown/scss/_dropdown-next";
+@import "../bower_components/Fall-Back-Patterns/Dropdown/scss/_dropdown-v3";
 
 
 $s__nav-bar--base-ui-color:                false;
@@ -345,7 +346,7 @@ $s__nav-bar__link--background-color:       false;
 $s__nav-bar__link--background-color--alt:  rgba(255,255,255,0.15);
 $s__sub-nav__link--background-color:       false;
 $s__sub-nav__link--background-color--alt:  rgba(255,255,255,0.15);
-@import '../bower_components/Fall-Back-Patterns/Nav Bar/scss/_nav-bar-next.scss';
+@import '../bower_components/Fall-Back-Patterns/Nav Bar/scss/_nav-bar-v3.scss';
 
 
 $s__over-panel--base-ui-color: transparent;
@@ -353,7 +354,7 @@ $s__over-panel--base-text-color: inherit;
 $s__over-panel__contents--padding: 0;
 $s__over-panel__overlay--background-color: #000;
 $s__over-panel__control--background-color: false;
-@import "../bower_components/Fall-Back-Patterns/Over Panel/scss/_over-panel-next";
+@import "../bower_components/Fall-Back-Patterns/Over Panel/scss/_over-panel-v3";
 
 
 $s__search-form--background-color:              transparent;
@@ -363,7 +364,7 @@ $s__search-form__submit--background-color--alt: hsl(var(--t-primary-color-h), va
 //$s__search-form__submit--background-color:      darken($s__base-ui-color, 5%);
 //$s__search-form__submit--background-color--alt: darken($s__base-ui-color, 15%);
 //$s__search-form-max-width:                      35em;
-@import "../bower_components/Fall-Back-Patterns/Search Form/scss/_search-form-next";
+@import "../bower_components/Fall-Back-Patterns/Search Form/scss/_search-form-v2";
 
 .search-form.search-form {
     margin-left: auto;
@@ -373,7 +374,6 @@ $s__search-form__submit--background-color--alt: hsl(var(--t-primary-color-h), va
     border-radius: 50px 0 0 50px;
     padding-left: 0.5em;
 }
-
 
 
 /* ---------------------------------------------------------------------------------------------- */

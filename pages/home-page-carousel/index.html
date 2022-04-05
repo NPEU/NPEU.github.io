@@ -1,24 +1,91 @@
 ---
 layout: structure--page
-title: Home Page
+title: Home Page - Carousel
 alt_theme: false
 ---
-<fieldset role="presentation" class="c-hero-wrap  c-hero--message-wide  d-border--top--thick  d-border--bottom--thick  d-background--dark" data-fs-text="center">
-    <div class="c-hero  c-hero--message-right  c-info-overlay-wrap">
-        <div class="c-hero__image">
-            <div class="u-image-cover  js-image-cover  u-image-cover--min-33-33">
-                <div class="u-image-cover__inner">
-                    <img src="/assets/images/npeu/npeu-hero--small.jpg" sizes="100vw" srcset="/assets/images/npeu/npeu-hero--large.jpg 1600w, /assets/images/npeu/npeu-hero--medium.jpg 900w, /assets/images/npeu/npeu-hero--small.jpg 300w" alt="" class="u-image-cover__image" width="200">
-                </div>
-            </div>
-        </div>
+<fieldset role="region" aria-label="banner slides" class="c-hero-wrap  c-hero-carousel  c-hero--message-wide  js-c-carousel  d-border--top--thick  d-border--bottom--thick  d-background--dark">
+    <div>
+        <nav class="c-hero-carousel__nav" aria-label="banner slides">
+            <p data-fs-text="center" role="list">
 
-        <div class="c-hero__message">
-            <h1 class="c-hero__message--fluid_heading">Welcome to the NPEU</h1>
-            <p class="c-hero__message--fluid_text">The National Perinatal Epidemiology Unit - Conducting robust research to improve care for mothers, babies and families since 1978</p>
-            <p class="c-hero__cta">
-                <a href="/about" class="c-cta">About the NPEU<svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none"><use xlink:href="#icon-chevron-right"></use></svg></a>
+                <span role="listitem">
+                    &ensp;<a href="#banner-slide-1">Slide 1</a>&ensp;
+                </span>
+
+                <span role="listitem">
+                    &ensp;<a href="#banner-slide-2">Slide 2</a>&ensp;
+                </span>
+
+                <span role="listitem">
+                    &ensp;<a href="#banner-slide-3">Slide 3</a>&ensp;
+                </span>
+
             </p>
+        </nav>
+
+        <div tabindex="0" class="c-hero-carousel__scroll-area" role="list">
+
+            <hr noshade size="1">
+
+            <div role="listitem" id="banner-slide-1" class="c-hero  c-hero--message-right" data-fs-text="center">
+
+                <div class="c-hero__image">
+                    <div class="u-image-cover  js-image-cover  u-image-cover--min-33-33">
+                        <div class="u-image-cover__inner">
+                            <img src="/assets/images/npeu/npeu-hero--small.jpg" sizes="100vw" srcset="/assets/images/npeu/npeu-hero--large.jpg 1600w, /assets/images/npeu/npeu-hero--medium.jpg 900w, /assets/images/npeu/npeu-hero--small.jpg 300w" alt="" class="u-image-cover__image" width="200">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="c-hero__message">
+                    <h1 class="c-hero__message--fluid_heading">Welcome to the NPEU</h1>
+                    <p class="c-hero__message--fluid_text">The NPEU (National Perinatal Epidemiology Unit) is a multi-disciplinary research unit which was established at the University of Oxford in 1978</p>
+                    <p class="c-hero__cta"><a href="/about" class="c-cta">About the NPEU<svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none"><use xlink:href="#icon-chevron-right"></use></svg></a></p>
+                </div>
+
+            </div>
+
+
+            <hr noshade size="1">
+
+
+            <div role="listitem" id="banner-slide-2" class="c-hero  c-hero--message-left" data-fs-text="center">
+
+                <div class="c-hero__image">
+                    <div class="u-image-cover  js-image-cover  u-image-cover--min-33-33">
+                        <div class="u-image-cover__inner">
+                            <img src="/assets/images/npeu/express-hero-image-4--small.jpg" sizes="100vw" srcset="/assets/images/npeu/express-hero-image-4--large.jpg 1600w, /assets/images/npeu/express-hero-image-4-medium.jpg 900w, /assets/images/npeu/express-hero-image-4--small.jpg 300w" alt="" class="u-image-cover__image" width="200">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="c-hero__message">
+                    <h1 class="c-hero__message--fluid_heading" id="welcome" tabindex="-1">This is another heading</h1>
+                    <p class="c-hero__message--fluid_text">Our research is world-leading and practice-informing</p>
+                </div>
+
+            </div>
+
+
+            <hr noshade size="1">
+
+
+            <div role="listitem" id="banner-slide-3" class="c-hero  c-hero--message-bottom" data-fs-text="center">
+
+                <div class="c-hero__image">
+                    <div class="u-image-cover  js-image-cover  u-image-cover--min-33-33">
+                        <div class="u-image-cover__inner">
+                            <img src="/assets/images/npeu/hero-image-newborns--small.jpg" sizes="100vw" srcset="/assets/images/npeu/hero-image-newborns--large.jpg 1600w, /assets/images/npeu/hero-image-newborns--medium.jpg 900w, /assets/images/npeu/hero-image-newborns--small.jpg 300w" alt="" class="u-image-cover__image" width="200">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="c-hero__message">
+                    <p class="c-hero__message--fluid_text">This photo is better off with text along the bottom</p>
+                </div>
+
+            </div>
+
         </div>
     </div>
 </fieldset>

@@ -1,13 +1,214 @@
+/*!
+    Fall-Back Patterns - Base JS
+    https://github.com/Fall-Back/Patterns/tree/master/
+    Copyright (c) 2022, Andy Kirk
+    Released under the MIT license https://git.io/vwTVl
+*/
+
+// Utilties and Polyfills common to Fall-Back Patterns.
+// Creates a single global var called $flbk.
+// Must be in the markup AFTER the main stylesheet
+
+// POLYFILLS
+// Remove polyfill:
+(function() {
+    function remove() { this.parentNode && this.parentNode.removeChild(this); }
+    if (!Element.prototype.remove) Element.prototype.remove = remove;
+    if (Text && !Text.prototype.remove) Text.prototype.remove = remove;
+})();
+
+
+var $flbk = {};
+
+
+// SETTINGS AND UTILITIES
+(function($flbk) {
+    $flbk.s = {};
+    $flbk.u = {};
+    
+    $flbk.u.ready = function(fn) {
+        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+    };
+    
+    $flbk.u.css_has_rule = function(selector) {
+
+        if ($flbk.s.debug) {
+            console.log('Checking for CSS rule:', selector);
+        }
+
+        var rules;
+        var haveRule = false;
+        if (typeof document.styleSheets != "undefined") { // is this supported
+            var cssSheets = document.styleSheets;
+
+
+            // IE doesn't have document.location.origin, so fix that:
+            if (!document.location.origin) {
+                document.location.origin = document.location.protocol + "//" + document.location.hostname + (document.location.port ? ':' + document.location.port: '');
+            }
+            var domain_regex  = RegExp('^' + document.location.origin);
+
+            outerloop:
+            for (var i = 0; i < cssSheets.length; i++) {
+                var sheet = cssSheets[i];
+
+                // Some browsers don't allow checking of rules if not on the same domain (CORS), so
+                // checking for that here:
+                if (sheet.href !== null && domain_regex.exec(sheet.href) === null) {
+                    continue;
+                }
+
+                // Check for IE or standards:
+                rules = (typeof sheet.cssRules != "undefined") ? sheet.cssRules : sheet.rules;
+
+                for (var j = 0; j < rules.length; j++) {
+                    if (rules[j].selectorText == selector) {
+                        haveRule = true;
+                        break outerloop;
+                    }
+                }
+            }
+        }
+
+        if ($flbk.s.debug) {
+            console.log(selector + ' ' + (haveRule ? '' : 'not') + ' found');
+        }
+
+        return haveRule;
+    };
+    
+    $flbk.u.css_rule_applied = function(selector, property, value) {
+        var el = document.querySelector(selector);
+        console.log(el.style);
+        if (property in el.style) {
+            if (el.style.property == value) {
+                return true;
+            }
+        }
+        return false;
+    };
+    
+    $flbk.s.debug = true;
+    //$flbk.s.debug = false;
+    
+    $flbk.s.main_stylesheet_id = 'main_stylesheet';
+    $flbk.s.support_ie11 = true;
+    $flbk.s.ie11 = $flbk.s.support_ie11 && (!!window.MSInputMethodContext && !!document.documentMode);
+    $flbk.s.media_to_match   = false;
+    $flbk.s.media_is_matched = false;
+    $flbk.s.general_css_check_selector = "#css_has_loaded";
+    $flbk.s.general_css_check_property = "border";
+    $flbk.s.general_css_check_value    = 0;
+    $flbk.s.general_css_is_loaded = false;
+    $flbk.s.general_css_is_present = false;
+    
+    var main_stylesheet_el = document.getElementById($flbk.s.main_stylesheet_id);
+    if ($flbk.s.debug) {
+        console.log('main_stylesheet_el:', main_stylesheet_el);
+    }
+    
+    if (main_stylesheet_el) {
+        $flbk.s.media_to_match = main_stylesheet_el.media;
+        var mq = window.matchMedia($flbk.s.media_to_match);
+        if ($flbk.s.debug) {
+            console.log('mq:', mq.matches);
+        }
+        $flbk.s.media_is_matched = mq.matches;
+    }
+    
+    
+    $flbk.s.general_css_is_loaded = $flbk.u.css_has_rule($flbk.s.general_css_check_selector);
+    if ($flbk.s.debug) {
+        console.log('general_css_is_loaded:', $flbk.s.general_css_is_loaded);
+    }
+    
+    $flbk.s.general_css_is_present = $flbk.s.general_css_is_loaded && ($flbk.s.media_is_matched || $flbk.s.ie11);
+    
+    if ($flbk.s.debug) {
+        console.log('general_css_is_present:', $flbk.s.general_css_is_present);
+    }
+    
+})($flbk);
+
 /*
     Card enhancements
 */
 
 (function() {
 
+    var debug = true;
+    //var debug = false;
+
+    var ident = 'card';
+
+    var css_check_selector = "#css_has_loaded";
+
+    var check_for_css = function(selector) {
+
+        if (debug) {
+            console.log('Checking for CSS: ' + selector);
+        }
+
+        var rules;
+        var haveRule = false;
+        if (typeof document.styleSheets != "undefined") { // is this supported
+            var cssSheets = document.styleSheets;
+
+
+            // IE doesn't have document.location.origin, so fix that:
+            if (!document.location.origin) {
+                document.location.origin = document.location.protocol + "//" + document.location.hostname + (document.location.port ? ':' + document.location.port: '');
+            }
+            var domain_regex  = RegExp('^' + document.location.origin);
+
+            outerloop:
+            for (var i = 0; i < cssSheets.length; i++) {
+                var sheet = cssSheets[i];
+
+                // Some browsers don't allow checking of rules if not on the same domain (CORS), so
+                // checking for that here:
+                if (sheet.href !== null && domain_regex.exec(sheet.href) === null) {
+                    continue;
+                }
+
+                // Check for IE or standards:
+                rules = (typeof sheet.cssRules != "undefined") ? sheet.cssRules : sheet.rules;
+
+                for (var j = 0; j < rules.length; j++) {
+                    if (rules[j].selectorText == selector) {
+                        haveRule = true;
+                        break outerloop;
+                    }
+                }
+            }
+        }
+
+        if (debug) {
+            console.log(selector + ' ' + (haveRule ? '' : 'not') + ' found');
+        }
+
+        return haveRule;
+    }
+
     var card = function() {
+
+        var css_is_loaded = check_for_css(css_check_selector);
+
+        if (debug) {
+            console.log(ident + ' css_is_loaded:', css_is_loaded);
+        }
+
+        if (!css_is_loaded) {
+            return false;
+        }
+
         // Get all elements we want to apply this to:
         var elements = document.querySelectorAll('.js-c-card');
-        
+
         var detectLeftButton = function(event) {
             if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) {
                 return false;
@@ -30,7 +231,7 @@
 
             el.addEventListener('mousedown', function(e) {
                 // Detect left click only:
-                var left_click = card.detectLeftButton(e);
+                var left_click = detectLeftButton(e);
                 console.log(left_click);
                 if (!left_click) {
                     down = false;
@@ -47,7 +248,7 @@
                 }
                 up = +new Date();
                 if ((up - down) < 200) {
-                    //h_link.click();
+                    h_link.click();
                 }
             });
         });
@@ -62,6 +263,70 @@
     }
 
     ready(card);
+})();
+
+/*
+    Carousel enhancements
+*/
+
+(function() {
+
+    var debug = true;
+    //var debug = false;
+    
+    var ident = 'carousel';
+    
+    var css_check_selector = "#css_has_loaded";
+
+    var carousel = function() {
+        
+        
+        if ($flbk.s.debug) {
+            console.log(ident + ' started');
+        }
+        
+        // Get all elements we want to apply this to:
+        var elements = document.querySelectorAll('.js-c-carousel');
+
+        Array.prototype.forEach.call(elements, function(el, i) {
+
+            el.classList.add('c-carousel--has-js');
+
+            var nav_links = el.querySelectorAll('.c-hero-carousel__nav a');
+
+            Array.prototype.forEach.call(nav_links, function(nl, i) {
+                nl.addEventListener('click', function(e) {
+                    if (debug) {
+                        console.log('nav link clicked');
+                    }
+                    console.log($flbk.u.css_rule_applied($flbk.s.general_css_check_selector, $flbk.s.general_css_check_property, $flbk.s.general_css_check_value));
+                    // Don't run this if we're not in full support mode:
+                    if (!$flbk.s.general_css_is_present) {
+                        return true;
+                    }
+
+                    var x = window.pageXOffset,
+                    y = window.pageYOffset,
+                    done = false;
+
+                    window.onscroll = function (e) {
+                        if (!done) {
+                            document.documentElement.scrollTop = document.body.scrollTop = y;
+                            document.documentElement.scrollLeft = document.body.scrollLeft = x;
+                            done = true;
+                        }
+                    }
+
+                    return false;
+                });
+            });
+
+
+
+        });
+    };
+
+    $flbk.u.ready(carousel);
 })();
 
 /*------------------------------------------------------------------------------------------------*\
@@ -282,7 +547,7 @@ var cookie_html                   =
             img.removeAttribute('style');
             
             // If we're using the 'contain' variant:
-            if (new RegExp('(^| )js-image-cover--contain( |$)', 'gi').test(el.className)) {
+            if (new RegExp('(^| )u-image-cover--contain( |$)', 'gi').test(el.className)) {
                 if (image_rect.height >= container_rect.height) {
                     img.style.width  = 'auto';
                     img.style.height = '100%';
@@ -506,6 +771,7 @@ var cookie_html                   =
     var js_classname_prefix                  = 'js';
     var container_js_classname_wide_suffix   = 'wide';
     var container_js_classname_narrow_suffix = 'narrow';
+    var detector_n                           = 0;
 
     var ready = function(fn) {
         if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
@@ -514,7 +780,27 @@ var cookie_html                   =
             document.addEventListener('DOMContentLoaded', fn);
         }
     }
-    
+
+    var debounce = function(func, wait, immediate) {
+        var timeout;
+        return function() {
+            var context = this;
+            var args = arguments;
+            var later = function() {
+                timeout = null;
+                if (!immediate) {
+                    func.apply(context, args);
+                }
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) {
+                func.apply(context, args);
+            }
+        };
+    }
+
     var check_for_css = function(selector) {
 
         if (debug) {
@@ -525,7 +811,7 @@ var cookie_html                   =
         var haveRule = false;
         if (typeof document.styleSheets != "undefined") { // is this supported
             var cssSheets = document.styleSheets;
-            
+
 
             // IE doesn't have document.location.origin, so fix that:
             if (!document.location.origin) {
@@ -545,7 +831,7 @@ var cookie_html                   =
 
                 // Check for IE or standards:
                 rules = (typeof sheet.cssRules != "undefined") ? sheet.cssRules : sheet.rules;
-                
+
                 for (var j = 0; j < rules.length; j++) {
                     if (rules[j].selectorText == selector) {
                         haveRule = true;
@@ -554,7 +840,7 @@ var cookie_html                   =
                 }
             }
         }
-        
+
         if (debug) {
             console.log(selector + ' ' + (haveRule ? '' : 'not') + ' found');
         }
@@ -583,13 +869,31 @@ var cookie_html                   =
         switcher: function(cmr) {
 
             // Check for browser font change and reset breakpoints if it has:
-            if ($cmr.root_font_size != window.getComputedStyle(document.documentElement).getPropertyValue('font-size')) {
-                $cmr.set_breakpoints($cmr.cmrs);
+            // (Note IE11 does some REALLY strange things with the font size - there's a slight
+            // difference in the output depending on whether the page is refreshed or reloaded!
+            var cached_font_size   = Math.ceil(parseFloat($cmr.root_font_size));
+            var document_font_size = Math.ceil(parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue('font-size')));
+
+            if (debug) {
+                console.log($cmr.root_font_size, window.getComputedStyle(document.documentElement).getPropertyValue('font-size'));
+                console.log(cached_font_size, document_font_size);
             }
 
+            if (cached_font_size != document_font_size) {
+                $cmr.root_font_size = document_font_size;
+                $cmr.set_breakpoints($cmr.cmrs);
+                window.setTimeout(function(){
+                    $cmr.do_switch(cmr);
+                }, 250);
+            } else {
+                $cmr.do_switch(cmr);
+            }
+        },
+
+        do_switch: function(cmr) {
             // Note using getAttribute('data-') instead of dataset so it doesn't fail on older
             // browsers and leave behind the clone.
-            // May rethink this as I don't NEED to support older browsers witht this - I just don't
+            // May rethink this as I don't NEED to support older browsers with this - I just don't
             // want it broken. Maybe I should quit out of this if dataset isn't supported, but it's
             // ok for now.
             var wide = cmr.offsetWidth > cmr.getAttribute('data-js-breakpoint');
@@ -614,7 +918,7 @@ var cookie_html                   =
         set_breakpoints: function(cmrs) {
 
             Array.prototype.forEach.call(cmrs, function (cmr, i) {
-                set_style(cmr, {'position': 'relative'});
+                //set_style(cmr, {'position': 'relative'});
                 var clone = cmr.cloneNode(true);
                 clone.classList.add(js_classname_prefix + '-' + ident + '--' + container_js_classname_wide_suffix);
 
@@ -639,9 +943,6 @@ var cookie_html                   =
                     //console.log(child);
                     if (child.getAttribute('data-min-width')) {
                         var w = parseInt(child.getAttribute('data-min-width'));
-                        //console.log('w', w);
-                        //console.log(getComputedStyle(child));
-
                         var pLeft  = parseInt(getComputedStyle(child).paddingLeft);
                         var pRight = parseInt(getComputedStyle(child).paddingRight);
                         //console.log(w, pLeft, pRight);
@@ -661,11 +962,18 @@ var cookie_html                   =
                     Array.prototype.forEach.call(children, function (child, i) {
                         breakpoint += Math.ceil(child.offsetWidth);
                     });
+                    if (debug) {
+                        console.log('breakpoint: ', breakpoint);
+                    }
                     cmr.setAttribute('data-js-breakpoint', breakpoint);
+                    clone.remove();
                 } else {
+                    if (debug) {
+                        console.log('breakpoint: ', clone.offsetWidth);
+                    }
                     cmr.setAttribute('data-js-breakpoint', clone.offsetWidth);
+                    clone.remove();
                 }
-                clone.remove();
             });
         },
 
@@ -710,15 +1018,10 @@ var cookie_html                   =
                     console.log('No ResizeObserver support.');
                 }
 
-                // When applied to a flex container, IE reserves space even if position:absolute,
-                // so using negative margin instead.
                 var style = {
-                    'position': 'relative',
-                    'margin-top': '-100%',
+                    'position': 'absolute',
                     'display': 'block',
                     'border': '0',
-                    'left': '0',
-                    'top': '0',
                     'width': '100%',
                     'height': '100%',
                     'pointerEvents': 'none',
@@ -726,18 +1029,45 @@ var cookie_html                   =
                 };
 
                 // Note visibility: hidden prevents the resize event from occurring in FF.
+                // Also note that putting the detector iframe in a flex container causes problems
+                // for IE11 (it continues to take up space) - so we need to look for a safe non-flex
+                // container for it to use, so specify this in the markup as n parent levels above
+                // the CMR element.
 
                 Array.prototype.forEach.call($cmr.cmrs, function (cmr, i) {
+
                     var detector = document.createElement('iframe');
+                    detector.id = 'detector-' + (++detector_n);
+                    cmr.detector_id = detector.id;
+
                     set_style(detector, style);
                     detector.setAttribute('aria-hidden', 'true');
 
-                    cmr.appendChild(detector);
+                    var n = cmr.getAttribute('data-ie-safe-parent-level');
+                    var safe_parent = cmr;
+                    if (n) {
+                        while (n-- > 0) {
+                            safe_parent = safe_parent.parentNode;
+                            if (!safe_parent) {
+                                // to avoid a possible "TypeError: Cannot read property 'parentNode' of null" if the requested level is higher than document
+                                break;
+                            }
+                        }
+                        set_style(safe_parent, {'position': 'relative'});
+                        safe_parent.appendChild(detector);
+                    } else {
+                        set_style(cmr, {'position': 'relative'});
+                        cmr.appendChild(detector);
+                    }
 
                     detector.contentWindow.addEventListener('resize', function() {
+                        if (debug) {
+                            console.log('Reszing ' + detector.id + ' (1)');
+                        }
                         $cmr.switcher(cmr);
                     });
                     $cmr.switcher(cmr);
+
                 });
             }
             return;
@@ -746,7 +1076,6 @@ var cookie_html                   =
 
     window.setTimeout(function(){ready($cmr.init)}, 50);
 })();
-
 /*! --------------------------------------------------------------------------------------------- *\
     
     Fall-Back Dropdown v2.0.0
