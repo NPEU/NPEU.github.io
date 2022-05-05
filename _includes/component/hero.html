@@ -9,6 +9,13 @@
 
 <p><a href="https://www.npeu.ox.ac.uk/dolfin/parents">Real use of info overlay on hero image</a>.</p>
 
+<h3>Use of headings and slide titles</h3>
+
+<p>Since Heros annd Carousels generally appear above the main page title (h1) it's not appropriate for a slide title to be a h element.
+However, in at least one case (main homepage) there's no other appropriat place for a main page titel to sit, so it's ok for the slide title to be the page title (h1).
+This is an exception rather than the rule. The downside here is that the slides won't have headings so can't be navigated in that way, but I think it's the best compromise.
+</p>
+
 <div class="u-space--below">
 
     <fieldset role="presentation" class="c-hero-wrap  d-border--top--thick  d-border--bottom--thick  d-background--dark" data-fs-text="center">
@@ -85,7 +92,7 @@
             </details>
 
             <div class="c-hero__message">
-                <p class="c-hero__message--fluid_text">Hero message or statement. Word count should be around 8-12 words but if it's longer than 185 characters a 'wide' class is assinged to improve the presentation somewhat. It's better than nothing.</p>
+                <p class="c-hero__message--fluid_text">Hero message or statement. Word count should be around 8-12 words but if it's longer than 185 characters a 'wide' class is assigned to improve the presentation somewhat. It's better than nothing.</p>
             </div>
         </div>
     </fieldset>
@@ -124,6 +131,7 @@
             </details>
 
             <div class="c-hero__message">
+                <p class="c-hero__message--fluid_heading"><b>Slide Title - Not a Page Title</b></p>
                 <p class="c-hero__message--fluid_text">Long word for testing. Antidisestablishmentarianism.</p>
             </div>
         </div>
@@ -136,6 +144,8 @@
         <summary>Show code:</summary>
         <pre><code class="html">...
     &lt;div class=&quot;c-hero  <strong>c-hero--right</strong> ... &quot;&gt;
+...
+                &lt;p class=&quot;c-hero__message--fluid_heading&quot;&gt;&lt;b&gt;Slide Title - Not a Page Title&lt;/b&gt;&lt;/p&gt;
 ...</code></pre>
     </details>
 </div>
@@ -183,6 +193,8 @@ Otherwise the carousel version of the Hero breaks, so if one needs to be wide, t
 See the carousel entry below.
 </p>
 
+<p>This Hero uses it's slide title as a page title.</p>
+
 <div class="u-space--below">
 
     <fieldset role="presentation" class="c-hero-wrap  c-hero--message-wide  d-border--top--thick  d-border--bottom--thick  d-background--dark" data-fs-text="center">
@@ -213,7 +225,10 @@ See the carousel entry below.
 <div class="u-space--below">
     <details class="u-padding  d-background--light">
         <summary>Show code:</summary>
-        <pre><code class="html">&lt;div class=&quot;c-hero-wrap  <strong>c-hero--message-wide</strong>  ...&quot; ...&gt;</code></pre>
+        <pre><code class="html">&lt;div class=&quot;c-hero-wrap  <strong>c-hero--message-wide</strong>  ...&quot; ...&gt;
+...
+                &lt;h1 class=&quot;c-hero__message--fluid_heading&quot;&gt;Welcome to the NPEU&lt;/h1&gt;
+...</code></pre>
     </details>
 </div>
 
@@ -222,9 +237,11 @@ See the carousel entry below.
 <h3 id="hero-carousel">Hero - Carousel</h3>
 
 
+
+
 <div class="u-space--below">
 
-    <fieldset role="region" aria-label="banner slides" class="c-hero-wrap  c-hero-carousel  c-hero--message-wide  js-c-carousel  d-border--top--thick  d-border--bottom--thick  d-background--dark">
+    <fieldset role="region" aria-label="banner slides" class="c-hero-wrap  c-hero-carousel  c-hero--message-wide  js-c-carousel  d-border--top--thick  d-border--bottom--thick  d-background--dark" data-slide-name="banner-slide">
         <div>
             <nav class="c-hero-carousel__nav" aria-label="banner slides">
                 <p data-fs-text="center" role="list">
@@ -273,7 +290,7 @@ See the carousel entry below.
                             <p class="c-hero__message--fluid_text">The NPEU (National Perinatal Epidemiology Unit) is a multi-disciplinary research unit which was established at the University of Oxford in 1978</p>
                             <p class="c-hero__cta"><a href="/about" class="c-cta">About the NPEU<svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none"><use xlink:href="#icon-chevron-right"></use></svg></a></p>
                         </div>
-    
+
                     </div>
 
                     <hr noShade size="1">
@@ -317,7 +334,7 @@ See the carousel entry below.
                         </details>
 
                         <div class="c-hero__message">
-                            <h1 class="c-hero__message--fluid_heading">Welcome to the NPEU</h1>
+                            <p class="c-hero__message--fluid_heading">Welcome to the NPEU</p>
                             <p class="c-hero__message--fluid_text">The NPEU (National Perinatal Epidemiology Unit) is a multi-disciplinary research unit which was established at the University of Oxford in 1978</p>
                         </div>
 
@@ -359,7 +376,7 @@ See the carousel entry below.
             &lt;p data-fs-text=&quot;center&quot; role=&quot;list&quot;&gt;
 
                 &lt;span role=&quot;listitem&quot;&gt;
-                    &amp;ensp;&lt;a href=&quot;#banner-slide-1&quot;&gt;Slide 1&lt;/a&gt;&amp;ensp;
+                    &amp;ensp;&lt;a href=&quot;#banner-slide-1&quot; class=&quot;current&quot;&gt;Slide 1&lt;/a&gt;&amp;ensp;
                 &lt;/span&gt;
 
                 &lt;span role=&quot;listitem&quot;&gt;
@@ -383,98 +400,95 @@ See the carousel entry below.
                 &lt;hr noShade size=&quot;1&quot;&gt;
 
                 &lt;div role=&quot;listitem&quot; id=&quot;banner-slide-1&quot; class=&quot;c-hero  c-hero--message-right  c-info-overlay-wrap&quot; data-fs-text=&quot;center&quot;&gt;
-                    &lt;div data-fs-block=&quot;border&quot;&gt;
-                        &lt;div class=&quot;c-hero__image&quot;&gt;
-                            &lt;div class=&quot;u-image-cover  js-image-cover  u-image-cover--min-33-33&quot;&gt;
-                                &lt;div class=&quot;u-image-cover__inner&quot;&gt;
-                                    &lt;img src=&quot;/assets/images/patterns/placeholder-hero--small.jpg&quot; sizes=&quot;100vw&quot; srcset=&quot;/assets/images/patterns/placeholder-hero--large.jpg 1600w, /assets/images/patterns/placeholder-hero--medium.jpg 900w, /assets/images/patterns/placeholder-hero--small.jpg 300w&quot; alt=&quot;&quot; class=&quot;u-image-cover__image&quot; width=&quot;200&quot;&gt;
-                                &lt;/div&gt;
+
+                    &lt;div class=&quot;c-hero__image&quot;&gt;
+                        &lt;div class=&quot;u-image-cover  js-image-cover  u-image-cover--min-33-33&quot;&gt;
+                            &lt;div class=&quot;u-image-cover__inner&quot;&gt;
+                                &lt;img src=&quot;/assets/images/patterns/placeholder-hero--small.jpg&quot; sizes=&quot;100vw&quot; srcset=&quot;/assets/images/patterns/placeholder-hero--large.jpg 1600w, /assets/images/patterns/placeholder-hero--medium.jpg 900w, /assets/images/patterns/placeholder-hero--small.jpg 300w&quot; alt=&quot;&quot; class=&quot;u-image-cover__image&quot; width=&quot;200&quot;&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
-
-                        &lt;details class=&quot;c-info-overlay  c-info-overlay--half-width&quot;&gt;
-                            &lt;summary&gt;&lt;span&gt;Details&lt;/span&gt;&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot; display=&quot;none&quot; class=&quot;icon  icon--is-closed&quot;&gt;&lt;use xlink:href=&quot;#icon-info&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot; display=&quot;none&quot; class=&quot;icon  icon--is-open&quot;&gt;&lt;use xlink:href=&quot;#icon-cross&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/summary&gt;
-                            &lt;div&gt;Image credit info goes here. Can contain &lt;a href=&quot;#&quot;&gt;links&lt;/a&gt; and so on. Just not too long please.&lt;/div&gt;
-                        &lt;/details&gt;
-
-                        &lt;div class=&quot;c-hero__message&quot;&gt;
-                            &lt;h1 class=&quot;c-hero__message--fluid_heading&quot;&gt;Welcome to the NPEU&lt;/h1&gt;
-                            &lt;p class=&quot;c-hero__message--fluid_text&quot;&gt;The NPEU (National Perinatal Epidemiology Unit) is a multi-disciplinary research unit which was established at the University of Oxford in 1978&lt;/p&gt;
-                            &lt;p class=&quot;c-hero__cta&quot;&gt;&lt;a href=&quot;/about&quot; class=&quot;c-cta&quot;&gt;About the NPEU&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot; display=&quot;none&quot;&gt;&lt;use xlink:href=&quot;#icon-chevron-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/a&gt;&lt;/p&gt;
-                        &lt;/div&gt;
                     &lt;/div&gt;
+
+                    &lt;details class=&quot;c-info-overlay  c-info-overlay--half-width&quot;&gt;
+                        &lt;summary&gt;&lt;span&gt;Details&lt;/span&gt;&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot; display=&quot;none&quot; class=&quot;icon  icon--is-closed&quot;&gt;&lt;use xlink:href=&quot;#icon-info&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot; display=&quot;none&quot; class=&quot;icon  icon--is-open&quot;&gt;&lt;use xlink:href=&quot;#icon-cross&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/summary&gt;
+                        &lt;div&gt;Image credit info goes here. Can contain &lt;a href=&quot;#&quot;&gt;links&lt;/a&gt; and so on. Just not too long please.&lt;/div&gt;
+                    &lt;/details&gt;
+
+                    &lt;div class=&quot;c-hero__message&quot;&gt;
+                        &lt;h1 class=&quot;c-hero__message--fluid_heading&quot;&gt;Welcome to the NPEU&lt;/h1&gt;
+                        &lt;p class=&quot;c-hero__message--fluid_text&quot;&gt;The NPEU (National Perinatal Epidemiology Unit) is a multi-disciplinary research unit which was established at the University of Oxford in 1978&lt;/p&gt;
+                        &lt;p class=&quot;c-hero__cta&quot;&gt;&lt;a href=&quot;/about&quot; class=&quot;c-cta&quot;&gt;About the NPEU&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot; display=&quot;none&quot;&gt;&lt;use xlink:href=&quot;#icon-chevron-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/a&gt;&lt;/p&gt;
+                    &lt;/div&gt;
+
                 &lt;/div&gt;
 
                 &lt;hr noShade size=&quot;1&quot;&gt;
 
                 &lt;div role=&quot;listitem&quot; id=&quot;banner-slide-2&quot; class=&quot;c-hero  c-info-overlay-wrap&quot; data-fs-text=&quot;center&quot;&gt;
-                    &lt;div data-fs-block=&quot;border&quot;&gt;
-                        &lt;div class=&quot;c-hero__image&quot;&gt;
-                            &lt;div class=&quot;u-image-cover  js-image-cover  u-image-cover--min-33-33&quot;&gt;
-                                &lt;div class=&quot;u-image-cover__inner&quot;&gt;
-                                    &lt;img src=&quot;/assets/images/patterns/placeholder-3--small.jpg&quot; sizes=&quot;100vw&quot; srcset=&quot;/assets/images/patterns/placeholder-3--large.jpg 1600w, /assets/images/patterns/placeholder-3--medium.jpg 900w, /assets/images/patterns/placeholder-3--small.jpg 300w&quot; alt=&quot;&quot; class=&quot;u-image-cover__image&quot; width=&quot;200&quot;&gt;
-                                &lt;/div&gt;
+
+                    &lt;div class=&quot;c-hero__image&quot;&gt;
+                        &lt;div class=&quot;u-image-cover  js-image-cover  u-image-cover--min-33-33&quot;&gt;
+                            &lt;div class=&quot;u-image-cover__inner&quot;&gt;
+                                &lt;img src=&quot;/assets/images/patterns/placeholder-3--small.jpg&quot; sizes=&quot;100vw&quot; srcset=&quot;/assets/images/patterns/placeholder-3--large.jpg 1600w, /assets/images/patterns/placeholder-3--medium.jpg 900w, /assets/images/patterns/placeholder-3--small.jpg 300w&quot; alt=&quot;&quot; class=&quot;u-image-cover__image&quot; width=&quot;200&quot;&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
-
-                        &lt;details class=&quot;c-info-overlay  c-info-overlay--half-width  c-info-overlay--from-right&quot;&gt;
-                            &lt;summary&gt;&lt;span&gt;Details&lt;/span&gt;&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot; display=&quot;none&quot; class=&quot;icon  icon--is-closed&quot;&gt;&lt;use xlink:href=&quot;#icon-info&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot; display=&quot;none&quot; class=&quot;icon  icon--is-open&quot;&gt;&lt;use xlink:href=&quot;#icon-cross&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/summary&gt;
-                            &lt;div&gt;Image credit info goes here. Can contain &lt;a href=&quot;#&quot;&gt;links&lt;/a&gt; and so on. Just not too long please.&lt;/div&gt;
-                        &lt;/details&gt;
-
-                        &lt;div class=&quot;c-hero__message&quot;&gt;
-                            &lt;p class=&quot;c-hero__message--fluid_text&quot;&gt;Hero message or statement. Word count should be around 8-12 words.&lt;/p&gt;
-                        &lt;/div&gt;
                     &lt;/div&gt;
+
+                    &lt;details class=&quot;c-info-overlay  c-info-overlay--half-width  c-info-overlay--from-right&quot;&gt;
+                        &lt;summary&gt;&lt;span&gt;Details&lt;/span&gt;&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot; display=&quot;none&quot; class=&quot;icon  icon--is-closed&quot;&gt;&lt;use xlink:href=&quot;#icon-info&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot; display=&quot;none&quot; class=&quot;icon  icon--is-open&quot;&gt;&lt;use xlink:href=&quot;#icon-cross&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/summary&gt;
+                        &lt;div&gt;Image credit info goes here. Can contain &lt;a href=&quot;#&quot;&gt;links&lt;/a&gt; and so on. Just not too long please.&lt;/div&gt;
+                    &lt;/details&gt;
+
+                    &lt;div class=&quot;c-hero__message&quot;&gt;
+                        &lt;p class=&quot;c-hero__message--fluid_text&quot;&gt;Hero message or statement. Word count should be around 8-12 words.&lt;/p&gt;
+                    &lt;/div&gt;
+
                 &lt;/div&gt;
 
                 &lt;hr noShade size=&quot;1&quot;&gt;
 
                 &lt;div role=&quot;listitem&quot; id=&quot;banner-slide-3&quot; class=&quot;c-hero  c-hero--message-right  c-info-overlay-wrap&quot; data-fs-text=&quot;center&quot;&gt;
-                    &lt;div data-fs-block=&quot;border&quot;&gt;
-                        &lt;div class=&quot;c-hero__image&quot;&gt;
-                            &lt;div class=&quot;u-image-cover  js-image-cover  u-image-cover--min-33-33&quot;&gt;
-                                &lt;div class=&quot;u-image-cover__inner&quot;&gt;
-                                    &lt;img src=&quot;/assets/images/patterns/placeholder-2--small.jpg&quot; sizes=&quot;100vw&quot; srcset=&quot;/assets/images/patterns/placeholder-2--large.jpg 1600w, /assets/images/patterns/placeholder-2--medium.jpg 900w, /assets/images/patterns/placeholder-2--small.jpg 300w&quot; alt=&quot;&quot; class=&quot;u-image-cover__image&quot; width=&quot;200&quot;&gt;
-                                &lt;/div&gt;
+
+                    &lt;div class=&quot;c-hero__image&quot;&gt;
+                        &lt;div class=&quot;u-image-cover  js-image-cover  u-image-cover--min-33-33&quot;&gt;
+                            &lt;div class=&quot;u-image-cover__inner&quot;&gt;
+                                &lt;img src=&quot;/assets/images/patterns/placeholder-2--small.jpg&quot; sizes=&quot;100vw&quot; srcset=&quot;/assets/images/patterns/placeholder-2--large.jpg 1600w, /assets/images/patterns/placeholder-2--medium.jpg 900w, /assets/images/patterns/placeholder-2--small.jpg 300w&quot; alt=&quot;&quot; class=&quot;u-image-cover__image&quot; width=&quot;200&quot;&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
-
-                        &lt;details class=&quot;c-info-overlay  c-info-overlay--half-width&quot;&gt;
-                            &lt;summary&gt;&lt;span&gt;Details&lt;/span&gt;&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot; display=&quot;none&quot; class=&quot;icon  icon--is-closed&quot;&gt;&lt;use xlink:href=&quot;#icon-info&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot; display=&quot;none&quot; class=&quot;icon  icon--is-open&quot;&gt;&lt;use xlink:href=&quot;#icon-cross&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/summary&gt;
-                            &lt;div&gt;Image credit info goes here. Can contain &lt;a href=&quot;#&quot;&gt;links&lt;/a&gt; and so on. Just not too long please.&lt;/div&gt;
-                        &lt;/details&gt;
-
-                        &lt;div class=&quot;c-hero__message&quot;&gt;
-                            &lt;h1 class=&quot;c-hero__message--fluid_heading&quot;&gt;Welcome to the NPEU&lt;/h1&gt;
-                            &lt;p class=&quot;c-hero__message--fluid_text&quot;&gt;The NPEU (National Perinatal Epidemiology Unit) is a multi-disciplinary research unit which was established at the University of Oxford in 1978&lt;/p&gt;
-                        &lt;/div&gt;
-
                     &lt;/div&gt;
+
+                    &lt;details class=&quot;c-info-overlay  c-info-overlay--half-width&quot;&gt;
+                        &lt;summary&gt;&lt;span&gt;Details&lt;/span&gt;&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot; display=&quot;none&quot; class=&quot;icon  icon--is-closed&quot;&gt;&lt;use xlink:href=&quot;#icon-info&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot; display=&quot;none&quot; class=&quot;icon  icon--is-open&quot;&gt;&lt;use xlink:href=&quot;#icon-cross&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/summary&gt;
+                        &lt;div&gt;Image credit info goes here. Can contain &lt;a href=&quot;#&quot;&gt;links&lt;/a&gt; and so on. Just not too long please.&lt;/div&gt;
+                    &lt;/details&gt;
+
+                    &lt;div class=&quot;c-hero__message&quot;&gt;
+                        &lt;p class=&quot;c-hero__message--fluid_heading&quot;&gt;Welcome to the NPEU&lt;/p&gt;
+                        &lt;p class=&quot;c-hero__message--fluid_text&quot;&gt;The NPEU (National Perinatal Epidemiology Unit) is a multi-disciplinary research unit which was established at the University of Oxford in 1978&lt;/p&gt;
+                    &lt;/div&gt;
+
                 &lt;/div&gt;
 
                 &lt;hr noShade size=&quot;1&quot;&gt;
 
                 &lt;div role=&quot;listitem&quot; id=&quot;banner-slide-4&quot; class=&quot;c-hero  c-hero--message-bottom  c-info-overlay-wrap&quot; data-fs-text=&quot;center&quot;&gt;
-                    &lt;div data-fs-block=&quot;border&quot;&gt;
-                        &lt;div class=&quot;c-hero__image&quot;&gt;
-                            &lt;div class=&quot;u-image-cover  js-image-cover  u-image-cover--min-33-33&quot;&gt;
-                                &lt;div class=&quot;u-image-cover__inner&quot;&gt;
-                                    &lt;img src=&quot;/assets/images/patterns/placeholder-hero--small.jpg&quot; sizes=&quot;100vw&quot; srcset=&quot;/assets/images/patterns/placeholder-hero--large.jpg 1600w, /assets/images/patterns/placeholder-hero--medium.jpg 900w, /assets/images/patterns/placeholder-hero--small.jpg 300w&quot; alt=&quot;&quot; class=&quot;u-image-cover__image&quot; width=&quot;200&quot;&gt;
-                                &lt;/div&gt;
+                    &lt;div class=&quot;c-hero__image&quot;&gt;
+                        &lt;div class=&quot;u-image-cover  js-image-cover  u-image-cover--min-33-33&quot;&gt;
+                            &lt;div class=&quot;u-image-cover__inner&quot;&gt;
+                                &lt;img src=&quot;/assets/images/patterns/placeholder-hero--small.jpg&quot; sizes=&quot;100vw&quot; srcset=&quot;/assets/images/patterns/placeholder-hero--large.jpg 1600w, /assets/images/patterns/placeholder-hero--medium.jpg 900w, /assets/images/patterns/placeholder-hero--small.jpg 300w&quot; alt=&quot;&quot; class=&quot;u-image-cover__image&quot; width=&quot;200&quot;&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
-
-                        &lt;details class=&quot;c-info-overlay  c-info-overlay--half-width&quot;&gt;
-                            &lt;summary&gt;&lt;span&gt;Details&lt;/span&gt;&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot; display=&quot;none&quot; class=&quot;icon  icon--is-closed&quot;&gt;&lt;use xlink:href=&quot;#icon-info&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot; display=&quot;none&quot; class=&quot;icon  icon--is-open&quot;&gt;&lt;use xlink:href=&quot;#icon-cross&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/summary&gt;
-                            &lt;div&gt;Image credit info goes here. Can contain &lt;a href=&quot;#&quot;&gt;links&lt;/a&gt; and so on. Just not too long please.&lt;/div&gt;
-                        &lt;/details&gt;
-
-                        &lt;div class=&quot;c-hero__message&quot;&gt;
-                            &lt;p class=&quot;c-hero__message--fluid_text&quot;&gt;Long word for testing. Antidisestablishmentarianism.&lt;/p&gt;
-                        &lt;/div&gt;
-
                     &lt;/div&gt;
+
+                    &lt;details class=&quot;c-info-overlay  c-info-overlay--half-width&quot;&gt;
+                        &lt;summary&gt;&lt;span&gt;Details&lt;/span&gt;&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot; display=&quot;none&quot; class=&quot;icon  icon--is-closed&quot;&gt;&lt;use xlink:href=&quot;#icon-info&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;svg focusable=&quot;false&quot; aria-hidden=&quot;true&quot; width=&quot;1.25em&quot; height=&quot;1.25em&quot; display=&quot;none&quot; class=&quot;icon  icon--is-open&quot;&gt;&lt;use xlink:href=&quot;#icon-cross&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/summary&gt;
+                        &lt;div&gt;Image credit info goes here. Can contain &lt;a href=&quot;#&quot;&gt;links&lt;/a&gt; and so on. Just not too long please.&lt;/div&gt;
+                    &lt;/details&gt;
+
+                    &lt;div class=&quot;c-hero__message&quot;&gt;
+                        &lt;p class=&quot;c-hero__message--fluid_text&quot;&gt;Long word for testing. Antidisestablishmentarianism.&lt;/p&gt;
+                    &lt;/div&gt;
+
                 &lt;/div&gt;
 
         &lt;/div&gt;

@@ -1,3 +1,106 @@
+// Trying out a new blog article page:
+/*
+.is-blog-article {
+    .l-primary-content__header .c-panel {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 120rem;
+    }
+}
+
+@media only all and (min-width: 70em) {
+    .is-blog-article {
+        .l-primary-content__main.has-longform-content {
+            width: 75%;
+        }
+    }
+    
+}
+*/
+/*
+@media only all and (min-width: 70em) {
+    .is-blog-article {
+
+        .l-primary-content__header .c-panel {
+            padding-top: 0;
+            margin-left: $s__sz-m;
+            margin-right: $s__sz-m;
+            margin-top: -6rem;
+            background: #fff;
+            position: relative;
+        }
+
+
+        .c-hero {
+            width: 75%;
+        }
+
+        .l-primary-content.l-primary-content > * {
+            width: 75%;
+        }
+        
+        .tmp.tmp.tmp {
+            width: calc(25% - #{$s__sz-m * 2});
+            position: absolute;
+            top: $s__sz-m;
+            right: $s__sz-m;
+        }
+
+    }
+}
+*/
+
+/*.is-blog-article {
+
+
+
+    @media only all and (min-width: 50em) {
+
+
+        .c-hero {
+            width: 75%;
+        }
+
+        .l-primary-content__header .c-panel {
+            padding: $s__sz-m;
+            margin-left: $s__sz-m;
+            margin-right: $s__sz-m;
+            margin-top: -6rem;
+            background: #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+
+    }
+
+    .l-primary-content.l-primary-content > * {
+        width: 75%;
+    }
+
+
+}
+*/
+
+// So the current margin approach falls over a bit when there are hidden elements as the first or
+// last child of a container. E.g. Research filter form.
+// Attempt to correct these edge cases here: (note we can't do "one before last script element")
+script:first-child + * {
+    margin-top: 0;
+}
+
+// Filterability uses 'hidden' to hide unmatched items in the results list, but it's a weak selector
+// and easily overridden (e.g. Research page cards are in `li.l-box` which declares `display block`
+// and overrides the hidden attribute.
+// I don't want to use `!important` in StartCSS as I'm sure there are patterns that override the
+// hidden attribute for fallback purposes, so I'm having to scope it here. Filterability doesn't
+// have any stylesheet, so I'll have to think about how to incorporate this there.
+[filterable_item][hidden] {
+    display: none !important;
+}
+
+
+
 // Fix IE11 sticky footer - need to put this in proper place:
 
 @media #{$s__ie10-11} {
@@ -5,7 +108,7 @@
         //height: 10000vh;
         //max-height: 100%;
         flex-direction: column;
-        
+
         & > * {
             //flex: 1 0 auto;
         }
@@ -106,7 +209,7 @@ span[role="listitem"] > * {
 //    }
 //}
 //
-//// IE11 alternaive styles since it doesn't support text-decoration properties:
+//// IE11 alternative styles since it doesn't support text-decoration properties:
 //@media #{$s__ie10-11} {
 //    a[href] {
 //        &:hover, &:hover {

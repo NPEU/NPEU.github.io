@@ -39,6 +39,15 @@ $__SEL: '.#{$layout-namespace}primary-content';
         }
     }
 
+    #{$__SEL}__space-inline--\@small {
+        padding: 0 $s__sz-m;
+    }
+    
+    #{$__SEL}__space-inline--\@large {
+        padding: 0;
+    }
+
+
 
     &#{&}--has-pull-outs {
         padding-top: $s__sz-m;
@@ -67,7 +76,6 @@ $__SEL: '.#{$layout-namespace}primary-content';
 
     }
 }
-
 @media only screen and (min-width: $primary-content-breakpoint) {
     #{$__SEL}#{$__SEL}--has-pull-outs {
         #{$__SEL}__header,
@@ -80,8 +88,22 @@ $__SEL: '.#{$layout-namespace}primary-content';
             width: 34%;
         }
     }
+    
+    // Force full-width header where there's no super pull-out:
+    #{$__SEL}#{$__SEL}--has-pull-outs#{$__SEL}--has-pull-outs--only-bottom #{$__SEL}__header {
+        width: 100%;
+    }
 
     #{$__SEL} #{$__SEL}__hidden--wide {
         display: none;
     }
+
+    #{$__SEL} #{$__SEL}__space-inline--\@small {
+        padding: 0;
+    }
+    
+    #{$__SEL} #{$__SEL}__space-inline--\@large {
+        padding: 0 $s__sz-m;
+    }
+
 }

@@ -118,6 +118,10 @@ $layout-limits: (
     .#{$layout-namespace}box--push-apart {
         margin: 0 auto !important;
     }
+    
+    .#{$layout-namespace}box--push-end {
+        margin-left: auto !important;
+    }
 
     // Medium padding (default)
     .#{$layout-namespace}box--space--edge,

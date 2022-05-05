@@ -17,8 +17,14 @@ $utilitext--text-color: currentColor !default;
 
         a[href] {
 
-            svg:last-child {
+            svg:last-child:not(:only-child) {
                 margin-left: 0.3em;
+                margin-right: 0;
+            }
+            
+            svg:first-child:not(:only-child) {
+                margin-left: 0;
+                margin-right: 0.3em;
             }
 
             @supports(text-decoration-line: underline) {

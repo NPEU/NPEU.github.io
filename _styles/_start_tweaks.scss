@@ -5,6 +5,12 @@ a {
     word-break: break-word;
 }
 
+// Reduce opacity of external link marker to make less overbearing.
+// NO using a bg image now - look into using a StartCSS var for the color (default to currentColor)
+//a[href][rel~="external"]::after {
+//    opacity: 0.6;
+//}
+
 // This is an icon:
 svg[width="1.25em"][height="1.25em"] {
     display: inline;
@@ -52,8 +58,128 @@ blockquote > p:last-child::after {
     top: 2.5rem;
 }
 
+// Sort out font sizes for smaller screens:
+
+@media only all and (max-width: $s__measure) {
+    h1, h2, h3, h4 {
+        word-break: break-word;
+    }
+    
+    h1 {
+        line-height: 1.15;
+    }
+    
+    h2, h3 {
+        line-height: 1.2;
+    }
+        
+    h4 {
+        line-height: 1.6;
+    }
+}
+
+/*
+// Extra overscroll-behavior check to exclude Safari 13 because although it reports it supports
+// min/max it doesn't work properly with line-height.
+@supports (width: unquote("max(1px, 1px)")) and (overscroll-behavior: auto) {
+    h1, h2, h3, h4 {
+        line-height: unquote("max(2.4rem, min(3.6rem, ((20px - 100%) * -999)), min(4.8rem, ((32px - 100%) * -999)), min(6rem, ((44px - 100%) * -999)), min(7.2rem, ((56px - 100%) * -999)))");
+    }
+}*/
+
+h1 {
+    @include fluid-type(250px, 672px, 32px, 52px);
+}
+
+h2 {
+    @include fluid-type(250px, 672px, 28px, 40px);
+}
+
+h3 {
+    @include fluid-type(250px, 672px, 24px, 30px);
+}
+
+h4 {
+    @include fluid-type(250px, 672px, 20px, 22px);
+}
+
+
 
 details,
 fieldset {
     border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l-copy));
+}
+
+
+table {
+    @include fluid-type(250px, 672px, 10px, 14px);
+    line-height: 1.4;
+
+    a {
+        padding-bottom: 1px;
+    }
+}
+
+th:first-child {
+    text-align: left;
+}
+
+tfoot {
+    font-weight: bold;
+}
+
+td, th {
+    padding-top: 0.6rem;
+    padding-right: 0.6rem;
+    padding-bottom: calc(0.6rem - 1px);
+    padding-left: 0.6rem;
+}
+
+table[data-contains="numbers"] {
+
+    thead th:not(:first-child),
+    td {
+        text-align: right;
+    }
+
+}
+
+
+// WARNING the following has just been pasted from template v1 and not checked / verified:
+
+
+// Shouldn't this be in StartCSS?
+
+summary + * {
+    margin-top: $s__base-rem-space-unit;
+}
+
+
+// This is for the details polyfill - I removed the styles there so adding essential back here.
+// May move this to StartCSS
+
+details:not([open]) > *:not(summary) {
+    display: none;
+}
+
+
+// Not sure if this would have a negative impact anywhere if not class-scoped. Used for Staff Profile view:
+.user-profile dd:not(:first-of-type),
+.user-profile dt:not(:first-of-type) {
+    margin-top: $s__base-rem-space-unit / 4;
+    padding-top: $s__base-rem-space-unit / 4;
+    border-top: 1px solid #eee;
+}
+
+/* The following overrides TFS styles. I need to put this in STARTCSS when I have a chance:
+TFSL
+button,input,label,select,textarea {
+    vertical-align:middle;
+    vertical-align:middle;
+    min-height:2.2em;
+    margin:.2em 0
+}
+*/
+button,input,label,select,textarea {
+    margin: 0;
 }

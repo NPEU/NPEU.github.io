@@ -7,6 +7,15 @@
 
 /* ---------------------------------------------------------------------------------------------- */
 
+
+/* --| FUNCTIONS AND MIXINS --------------------------------------------------------------------- */
+
+@import "__functions.scss";
+@import "__mixins.scss";
+
+/* ---------------------------------------------------------------------------------------------- */
+
+
 /* --| SETTINGS |-------------------------------------------------------------------------------- */
 
 // NOTE - Needs an overhaul because of updated StartCSS
@@ -178,14 +187,7 @@ $s__experimental_checkradios: true;
 /* --| MORE SETTINGS (USING START VARS |--------------------------------------------------------- */
 
 $focus-shadow: 0 0 0 $s__sz-xxs #fff, 0 0 0 $s__sz-xs rgba(0,0,0,.2);
-
-/* ---------------------------------------------------------------------------------------------- */
-
-
-/* --| FUNCTIONS AND MIXINS --------------------------------------------------------------------- */
-
-@import "__functions.scss";
-@import "__mixins.scss";
+$focus-shadow--inset: 0 0 0 $s__sz-xxs #fff inset, 0 0 0 $s__sz-xs rgba(0,0,0,.2) inset;
 
 /* ---------------------------------------------------------------------------------------------- */
 
@@ -316,7 +318,6 @@ $layout-spacing-unit: $s__base-rem-space-unit / 2;
 @import "navigation-patterns/_menu.scss";
 
 
-
 /* ---------------------------------------------------------------------------------------------- */
 
 
@@ -324,7 +325,7 @@ $layout-spacing-unit: $s__base-rem-space-unit / 2;
 /* --| Fall-Back Patterns |---------------------------------------------------------------------- */
 
 
-@import "../bower_components/Fall-Back-Patterns/Close Button/scss/_close-button";
+@import "../bower_components/Fall-Back-Patterns/Close Button/scss/_close-button-v3";
 
 
 $s__dropdown--base-ui-color: transparent;
@@ -335,8 +336,11 @@ $s__dropdown--text-color:                        inherit;
 $s__dropdown__control--background-color:         false;
 $s__dropdown__control--background-color--alt:    rgba(255,255,255,0.15);
 //$s__dropdown__control--background-color--alt2: $s__nav-bar__link--background-color--alt;
-$s__dropdown-z-index: 2;
+//$s__dropdown-z-index: 2;
 @import "../bower_components/Fall-Back-Patterns/Dropdown/scss/_dropdown-v3";
+.dropdown__area--is-open {
+    box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.4);
+}
 
 
 $s__nav-bar--base-ui-color:                false;

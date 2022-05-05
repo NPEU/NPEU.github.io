@@ -195,7 +195,7 @@ function do_concat_js(cb) {
         './_scripts/js/layout-adjustments.js',
         './_scripts/js/image-cover.js',
         './bower_components/Fall-Back-Patterns/base.js',
-        './bower_components/Fall-Back-Patterns/Close Button/js/close-button-v2.js',
+        './bower_components/Fall-Back-Patterns/Close Button/js/close-button-v3.js',
         './bower_components/Fall-Back-Patterns/Content Min Row/js/content-min-row-v2.js',
         './bower_components/Fall-Back-Patterns/Dropdown/js/dropdown-v3.js',
         './bower_components/Fall-Back-Patterns/Over Panel/js/over-panel-v3.js',

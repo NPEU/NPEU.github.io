@@ -63,7 +63,8 @@ $gallery-grid-bases: (
 
     /* Gutters */
 
-    &.#{$layout-namespace}gallery-grid--gutter--small > .#{$layout-namespace}layout__inner {
+    &.#{$layout-namespace}gallery-grid--gutter--small > .#{$layout-namespace}layout__inner,
+    &.#{$layout-namespace}gallery-grid--gutter--s > .#{$layout-namespace}layout__inner {
         margin-left: -($s__sz-s / 2);
         margin-right: -($s__sz-s / 2);
         min-width: calc(100% + #{$s__sz-s});
@@ -73,7 +74,8 @@ $gallery-grid-bases: (
         }
     }
 
-    &.#{$layout-namespace}gallery-grid--gutter--medium > .#{$layout-namespace}layout__inner {
+    &.#{$layout-namespace}gallery-grid--gutter--medium > .#{$layout-namespace}layout__inner,
+    &.#{$layout-namespace}gallery-grid--gutter--m > .#{$layout-namespace}layout__inner {
         margin-left: -($s__sz-m / 2);
         margin-right: -($s__sz-m / 2);
         min-width: calc(100% + #{$s__sz-m});
@@ -84,7 +86,8 @@ $gallery-grid-bases: (
     }
 
 
-    &.#{$layout-namespace}gallery-grid--gutter--large > .#{$layout-namespace}layout__inner {
+    &.#{$layout-namespace}gallery-grid--gutter--large > .#{$layout-namespace}layout__inner,
+    &.#{$layout-namespace}gallery-grid--gutter--l > .#{$layout-namespace}layout__inner {
         margin-left: -($s__sz-l / 2);
         margin-right: -($s__sz-l / 2);
         min-width: calc(100% + #{$s__sz-l});

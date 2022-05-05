@@ -6,328 +6,19 @@ $uc-breakpoint: 35em !default;
 
 .user-content {
     &#{&}#{&} {
-   
-        // Clear float: 
+
+        // Clear float:
         clear: both;
         &::before,
         &::after {
             content: " ";
             display: table;
         }
-        
+
         &::after {
             clear: both;
         }
 
-
-        // Images:
-
-        img {
-            background: #fff;
-        }
-
-        b > img,
-        b > i > img {
-            @include bd();
-            @include bd-neutral();
-            border-width: $border-size--thick;
-        }
-
-        b > i > img {
-            padding: $s__sz-s;
-        }
-
-        /*
-            1. This is to provide positioning context for the ::after pseudo-element.
-            2. This is so a broken image is still 100%.
-            3. Center in container.
-            4. This prevents long-thin images appearing huge an narrow (100% width) sizes.
-               However, it's a bit of a magic number, so may not work in all cases.
-        */
-        [data-contains~="image"] {
-            //@extend .c-badge;
-            // No - extend is too messy. Maybe create a mixin, but duplicate it here for now:
-            display: inline-block;
-            vertical-align: middle;
-            position: relative; /* [1] */
-            width: 100%;
-            //margin: $s__sz-s;
-
-
-            svg {
-                max-width: 100%;
-            }
-
-            img {
-
-                position: relative; /* [1] */
-
-                display: block; /* [2] */
-
-                height: auto;
-                //width: 100%;
-                width: auto;
-
-                max-width: 100%;
-                max-height: 60vmin; /* [4] */
-
-                border-width: 0;
-                padding-bottom: 0;
-
-                margin: 0 auto; /* [3] */
-
-            }
-        }
-
-        a[href][data-contains~="image"] {
-            //border-width: 0;
-            padding: 0;
-            width: max-content;
-
-            &:hover,
-            &:active,
-            &:focus {
-                border: 0;
-                box-shadow: 0 0 0 0.6rem #fff, 0 0 0 1.2rem rgba(0,0,0,.2);
-            }
-        }
-
-        a[href][rel~="external"][data-contains~="image"] {
-            background-position: right 0 top 0;
-        }
-
-        a[href][rel~="external"][data-contains~="image"] span {
-            display: inline-block;
-        }
-
-        /*a[href][rel~="external"][data-contains~="image"]::after {
-            position: absolute;
-            right: -1em;
-            top: -1em;
-            width: 1.25em;
-            height: 1.25em;
-            display: block;
-        }*/
-
-        // Scale 16, 18, 24, 30, 36, 48, 60, 72  *3 =
-        // 48, 54, 72, 90, 108, 144, 180, 216
-
-        [data-contains~="logo"] img {
-            max-height: 9rem;
-            background-color: transparent;
-            width: auto;
-            height: auto;
-        }
-
-        [data-contains~="logo-xsmall"] img {
-            max-height: 5.4rem;
-        }
-
-        [data-contains~="logo-small"] img {
-            max-height: 7.2rem;
-        }
-
-        [data-contains~="logo-medium"] img {
-            // Repetition for clarity.
-            max-height: 9rem;
-        }
-
-        [data-contains~="logo-large"] img {
-            max-height: 10.8rem;
-        }
-
-        [data-contains~="logo-xlarge"] img {
-            max-height: 14.4rem;
-        }
-
-        [data-contains~="logo-xxlarge"] img {
-            max-height: 18rem;
-        }
-
-        [data-contains~="logo-xxxlarge"] img {
-            max-height: 21.6rem;
-        }
-
-        [data-contains~="thumbnail"] {
-            @extend .c-thumbnail;
-        }
-
-
-        [data-contains~="thumbnails"] a:first-of-type {
-            @extend .c-thumbnail;
-            margin-bottom: $s__sz-m;
-        }
-
-
-
-
-
-        // Avatar / portrait:
-        [data-contains~="portrait"] {
-            width: 100%;
-            max-width: 16em;
-            margin-left: auto;
-            margin-right: auto;
-            display: block;
-        }
-
-        [data-contains~="portrait"]::before {
-            content: "";
-            width: 1px;
-            margin-left: -1px;
-            float: left;
-            height: 0;
-            padding-top: 100%;
-        }
-
-        [data-contains~="portrait"]::after { /* to clear float */
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        [data-contains~="portrait"] img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            max-height: none;
-            object-fit: cover;
-        }
-
-        /*
-            Note this original method just assumed that images are square.
-            MaatHRI team page proves this is not the case, so the above, explicit portrait
-            declaration is needed.
-            It's still ok to assume square images in templates, though, where I know I'm just using
-            the avatars folder (where square is forced on upload).
-            So, it's really just user content that's the problem, so keep things as they are for
-            now.
-        */
-        img[src*="/assets/images/avatars/"],
-        [data-contains~="portrait"] img {
-            display: block;
-            width: 100%;
-            max-width: 16em;
-            margin: 0 auto;
-
-            border-radius: 99999px;
-            overflow: hidden;
-        }
-
-        // Text content:
-        [data-display-as~="smallprint"] {
-            font-size: 0.875em;
-        }
-
-        [data-display-as~="strapline"] {
-            font-size: 1.125em;
-        }
-
-        // Figures
-        // New TFS gives figures overflow-x for fallback a11y, but it causes scrollbars in this
-        // design, so override:
-        figure {
-            overflow-x: visible;
-            margin-left: 0;
-            margin-right: 0;
-        }
-
-        figcaption {
-            text-align: center;
-            font-size: 0.875em;
-            margin-top: $s__sz-s;
-        }
-
-
-        // Downloads
-        /*
-            1. IE11. Without this thumbnails can break out of their wrapper. E.g. Contact page.
-        */
-        [data-contains~="download"] {
-            display: inline-block;
-            max-width: 100%; /* [1] */
-        }
-
-        // Links 
-        // (So normal links should have the [FILE] marker, but not links that contain thumbnails,
-        // however, we apply it to a span after a break to follow the proper thumbnail pattern)
-        a[href$=".pdf"]:not([data-contains="thumbnail"])::before,
-        a[href$=".pdf"] br + span::before,
-        a[href$=".doc"]:not([data-contains="thumbnail"])::before,
-        a[href$=".doc"] br + span::before,
-        a[href$=".docx"]:not([data-contains="thumbnail"])::before,
-        a[href$=".docx"] br + span::before,
-        a[href$=".ppt"]:not([data-contains="thumbnail"])::before,
-        a[href$=".ppt"] br + span::before,
-        a[href$=".pptx"]:not([data-contains="thumbnail"])::before,
-        a[href$=".pptx"] br + span::before,
-        a[href$=".ppsx"]:not([data-contains="thumbnail"])::before,
-        a[href$=".ppsx"] br + span::before,
-        a[href$=".xls"]:not([data-contains="thumbnail"])::before,
-        a[href$=".xls"] br + span::before,
-        a[href$=".xlsx"]:not([data-contains="thumbnail"])::before,
-        a[href$=".xlsx"] br + span::before,
-        a[href$=".zip"]:not([data-contains="thumbnail"])::before,
-        a[href$=".zip"] br + span::before {
-            content: "[FILE] ";
-            position: relative;
-            display: inline-block;
-            font-size: 0.75em;
-            vertical-align: middle;
-            line-height: 1;
-            //color: #999;
-            opacity: .6;
-            margin-right: 0.5em;
-            //margin-top: -0.3125em;
-        }
-
-        // Contact list:
-        [data-contains~="contact-details"] {
-            @extend .c-contact-list;
-        }
-
-        [data-display-is~="width-one-quarter"] + [data-contains~="contact-details"],
-        [data-width="one-quarter"] + [data-contains~="contact-details"] {
-            @include ff-width(100%, $uc-breakpoint, unquote("calc(75% - #{$s__sz-m})"));
-        }
-
-        [data-display-is~="width-one-third"] + [data-contains~="contact-details"],
-        [data-width="one-third"] + [data-contains~="contact-details"] {
-            @include ff-width(100%, $uc-breakpoint, unquote("calc(67% - #{$s__sz-m})"));
-        }
-
-        [data-display-is~="width-one-half"] + [data-contains~="contact-details"],
-        [data-width="one-half"] + [data-contains~="contact-details"] {
-            @include ff-width(100%, $uc-breakpoint, unquote("calc(50% - #{$s__sz-m})"));
-        }
-
-        [data-display-is~="width-two-thirds"] + [data-contains~="contact-details"],
-        [data-width="two-thirds"] + [data-contains~="contact-details"] {
-            @include ff-width(100%, $uc-breakpoint, unquote("calc(33% - #{$s__sz-m})"));
-        }
-
-        [data-display-is*="width-"] + [data-contains~="contact-details"] + *,
-        [data-width] + [data-contains~="contact-details"] + * {
-            clear: both;
-        }
-
-
-
-        a[href][data-display-as~="cta"] {
-            @extend .c-cta;
-            /*@include s__button(
-                $s__base-text-color,
-                transparent,
-                lighten($s__button-background-color, 55%),
-                $s__base-text-color
-            );*/
-        }
-
-        a[href][data-display-as~="primary-cta"] {
-            @extend .c-primary-cta;
-
-            //@include primary-cta-theme($theme-name, map-get($themes, $theme-name));
-        }
 
 
         // For theme-specific settings, see _themes.scss
@@ -541,7 +232,7 @@ $uc-breakpoint: 35em !default;
             margin-bottom: $s__sz-s;
             margin-right: $s__sz-m;
             margin-left: $s__sz-m;
-            
+
             overflow: visible;
 
             padding: 0;
@@ -568,7 +259,7 @@ $uc-breakpoint: 35em !default;
             &[data-display-is~="width-one-half"]::after {
                 @include ff-width($s__sz-m, ($uc-breakpoint / 2), 0);
             }*/
-            
+
             // Fix height for IE11:
             [data-contains~="image"] {
                 min-height: 1px;
@@ -679,6 +370,331 @@ $uc-breakpoint: 35em !default;
                 max-width: 100%;
             }
         }
+
+
+
+
+        // Images:
+
+
+        /*
+            1. This is to provide positioning context for the ::after pseudo-element.
+            2. This is so a broken image is still 100%.
+            3. Center in container.
+            4. This prevents long-thin images appearing huge an narrow (100% width) sizes.
+               However, it's a bit of a magic number, so may not work in all cases.
+        */
+        [data-contains~="image"] {
+            //@extend .c-badge;
+            // No - extend is too messy. Maybe create a mixin, but duplicate it here for now:
+            display: inline-block;
+            vertical-align: middle;
+            position: relative; /* [1] */
+            width: 100%;
+            //margin: $s__sz-s;
+
+
+            svg {
+                max-width: 100%;
+            }
+
+            img {
+
+                position: relative; /* [1] */
+
+                display: block; /* [2] */
+
+                height: auto;
+                //width: 100%;
+                width: auto;
+
+                max-width: 100%;
+                max-height: 60vmin; /* [4] */
+
+                border-width: 0;
+                padding-bottom: 0;
+
+                margin: 0 auto; /* [3] */
+
+            }
+        }
+
+        a[href][data-contains~="image"] {
+            //border-width: 0;
+            padding: 0;
+            width: max-content;
+
+            &:hover,
+            &:active,
+            &:focus {
+                border: 0;
+                box-shadow: 0 0 0 0.6rem #fff, 0 0 0 1.2rem rgba(0,0,0,.2);
+            }
+        }
+
+        a[href][rel~="external"][data-contains~="image"] {
+            background-position: right 0 top 0;
+        }
+
+        a[href][rel~="external"][data-contains~="image"] span {
+            display: inline-block;
+        }
+
+        /*a[href][rel~="external"][data-contains~="image"]::after {
+            position: absolute;
+            right: -1em;
+            top: -1em;
+            width: 1.25em;
+            height: 1.25em;
+            display: block;
+        }*/
+
+        // Scale 16, 18, 24, 30, 36, 48, 60, 72  *3 =
+        // 48, 54, 72, 90, 108, 144, 180, 216
+
+        [data-contains~="logo"] img {
+            max-height: 9rem;
+            background-color: transparent;
+            width: auto;
+            height: auto;
+        }
+
+        [data-contains~="logo-xsmall"] img {
+            max-height: 5.4rem;
+        }
+
+        [data-contains~="logo-small"] img {
+            max-height: 7.2rem;
+        }
+
+        [data-contains~="logo-medium"] img {
+            // Repetition for clarity.
+            max-height: 9rem;
+        }
+
+        [data-contains~="logo-large"] img {
+            max-height: 10.8rem;
+        }
+
+        [data-contains~="logo-xlarge"] img {
+            max-height: 14.4rem;
+        }
+
+        [data-contains~="logo-xxlarge"] img {
+            max-height: 18rem;
+        }
+
+        [data-contains~="logo-xxxlarge"] img {
+            max-height: 21.6rem;
+        }
+
+        [data-contains~="thumbnail"] {
+            @extend .c-thumbnail;
+        }
+
+
+        [data-contains~="thumbnails"] a:first-of-type {
+            @extend .c-thumbnail;
+            margin-bottom: $s__sz-m;
+        }
+
+
+
+
+
+        // Avatar / portrait:
+        [data-contains~="portrait"] {
+            width: 100%;
+            max-width: 16em;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        [data-contains~="portrait"]::before {
+            content: "";
+            width: 1px;
+            margin-left: -1px;
+            float: left;
+            height: 0;
+            padding-top: 100%;
+        }
+
+        [data-contains~="portrait"]::after { /* to clear float */
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        [data-contains~="portrait"] img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            max-height: none;
+            object-fit: cover;
+        }
+
+        /*
+            Note this original method just assumed that images are square.
+            MaatHRI team page proves this is not the case, so the above, explicit portrait
+            declaration is needed.
+            It's still ok to assume square images in templates, though, where I know I'm just using
+            the avatars folder (where square is forced on upload).
+            So, it's really just user content that's the problem, so keep things as they are for
+            now.
+        */
+        img[src*="/assets/images/avatars/"],
+        [data-contains~="portrait"] img {
+            display: block;
+            width: 100%;
+            max-width: 16em;
+            margin: 0 auto;
+
+            border-radius: 99999px;
+            overflow: hidden;
+        }
+
+        // Text content:
+        [data-display-as~="smallprint"] {
+            font-size: 0.875em;
+        }
+
+        [data-display-as~="strapline"] {
+            font-size: 1.125em;
+        }
+
+
+        img {
+            background: #fff;
+        }
+
+        /*
+            1. Include inset shadow to disguise sub-pixel rounding issues leaving a white border in
+               some circumstances (Chrome, huge monitor)
+        */
+        b > img,
+        [data-contains~="image"] b > img,
+        b > i > img,
+        [data-contains~="image"] b > i > img {
+            @include bd();
+            @include bd-neutral();
+            border-width: $border-size--thick;
+            box-shadow: 0 0 0 3px var(--t-bd-color) inset;
+        }
+
+        b > i > img {
+            padding: $s__sz-s;
+        }
+
+
+
+        // Figures
+        // New TFS gives figures overflow-x for fallback a11y, but it causes scrollbars in this
+        // design, so override:
+        figure {
+            overflow-x: visible;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        figcaption {
+            text-align: center;
+            font-size: 0.875em;
+            margin-top: $s__sz-s;
+        }
+
+
+        // Downloads
+        /*
+            1. IE11. Without this thumbnails can break out of their wrapper. E.g. Contact page.
+        */
+        //[data-contains~="download"] {
+        //    display: inline-block;
+        //    max-width: 100%; /* [1] */
+        //}
+
+        // Links
+        // (So normal links should have the [FILE] marker, but not links that contain thumbnails,
+        // however, we apply it to a span after a break to follow the proper thumbnail pattern)
+        a[href$=".pdf"]:not([data-contains="thumbnail"])::before,
+        a[href$=".pdf"] br + span::before,
+        a[href$=".doc"]:not([data-contains="thumbnail"])::before,
+        a[href$=".doc"] br + span::before,
+        a[href$=".docx"]:not([data-contains="thumbnail"])::before,
+        a[href$=".docx"] br + span::before,
+        a[href$=".ppt"]:not([data-contains="thumbnail"])::before,
+        a[href$=".ppt"] br + span::before,
+        a[href$=".pptx"]:not([data-contains="thumbnail"])::before,
+        a[href$=".pptx"] br + span::before,
+        a[href$=".ppsx"]:not([data-contains="thumbnail"])::before,
+        a[href$=".ppsx"] br + span::before,
+        a[href$=".xls"]:not([data-contains="thumbnail"])::before,
+        a[href$=".xls"] br + span::before,
+        a[href$=".xlsx"]:not([data-contains="thumbnail"])::before,
+        a[href$=".xlsx"] br + span::before,
+        a[href$=".zip"]:not([data-contains="thumbnail"])::before,
+        a[href$=".zip"] br + span::before {
+            content: "[FILE] ";
+            position: relative;
+            display: inline-block;
+            font-size: 0.75em;
+            vertical-align: middle;
+            line-height: 1;
+            //color: #999;
+            opacity: .6;
+            margin-right: 0.5em;
+            //margin-top: -0.3125em;
+        }
+
+        // Contact list:
+        [data-contains~="contact-details"] {
+            @extend .c-contact-list;
+        }
+
+        [data-display-is~="width-one-quarter"] + [data-contains~="contact-details"],
+        [data-width="one-quarter"] + [data-contains~="contact-details"] {
+            @include ff-width(100%, $uc-breakpoint, unquote("calc(75% - #{$s__sz-m})"));
+        }
+
+        [data-display-is~="width-one-third"] + [data-contains~="contact-details"],
+        [data-width="one-third"] + [data-contains~="contact-details"] {
+            @include ff-width(100%, $uc-breakpoint, unquote("calc(67% - #{$s__sz-m})"));
+        }
+
+        [data-display-is~="width-one-half"] + [data-contains~="contact-details"],
+        [data-width="one-half"] + [data-contains~="contact-details"] {
+            @include ff-width(100%, $uc-breakpoint, unquote("calc(50% - #{$s__sz-m})"));
+        }
+
+        [data-display-is~="width-two-thirds"] + [data-contains~="contact-details"],
+        [data-width="two-thirds"] + [data-contains~="contact-details"] {
+            @include ff-width(100%, $uc-breakpoint, unquote("calc(33% - #{$s__sz-m})"));
+        }
+
+        [data-display-is*="width-"] + [data-contains~="contact-details"] + *,
+        [data-width] + [data-contains~="contact-details"] + * {
+            clear: both;
+        }
+
+
+
+        a[href][data-display-as~="cta"] {
+            @extend .c-cta;
+            /*@include s__button(
+                $s__base-text-color,
+                transparent,
+                lighten($s__button-background-color, 55%),
+                $s__base-text-color
+            );*/
+        }
+
+        a[href][data-display-as~="primary-cta"] {
+            @extend .c-primary-cta;
+
+            //@include primary-cta-theme($theme-name, map-get($themes, $theme-name));
+        }
+
+
     }
 }
 
