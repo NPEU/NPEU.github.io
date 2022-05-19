@@ -49,10 +49,6 @@ $longform-content-max-width: 67rem !default;
         margin-left: 0;
         margin-right: 0;
     }
-    
-    &#{&} > [data-display-as~="breakout-box"]:not(:last-child) {
-        margin-bottom: $s__sz-m;
-    }
 
     details {
         margin-bottom: $s__sz-m;
