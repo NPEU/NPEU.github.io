@@ -30,6 +30,8 @@ $uc-breakpoint: 35em !default;
         [data-display-as~="themed-box--border"],
         [data-display-as~="notice-box"] {
             @extend .c-panel;
+
+            border-radius: $s__sz-s;
             //padding: $panel--padding;
 
             margin-top: $s__sz-m;
@@ -272,19 +274,7 @@ $uc-breakpoint: 35em !default;
             //clear: left;
             ////margin-right: $s__sz-m;
             //
-            //&::before {
-            //    display: none;
-            //}
-            //
-            //& + ::before,
-            //& + ::after {
-            //    content: " ";
-            //    display: table;
-            //}
-            //
-            //& + ::after {
-            //    clear: both;
-            //}
+
             //
             //[data-contains~="image"] {
             //    //margin-left: auto;
@@ -297,23 +287,27 @@ $uc-breakpoint: 35em !default;
             //clear: right;
             ////margin-left: $s__sz-m;
             //
-            //&::after {
-            //    display: none;
-            //}
-            //
-            //& + ::before,
-            //& + ::after {
-            //    content: " ";
-            //    display: table;
-            //}
-            //
-            //& + ::after {
-            //    clear: both;
-            //}
-            //
+
             //[data-contains~="image"] {
             //    //margin-right: auto;
             //}
+        }
+
+        [data-display-is~="pulled-left"],
+        [data-display-is~="pulled-right"] {
+            &::after {
+                display: none;
+            }
+
+            & + ::before,
+            & + ::after {
+                content: " ";
+                display: table;
+            }
+
+            & + ::after {
+                clear: both;
+            }
         }
 
         [data-display-is~="pulled-center"],
@@ -434,6 +428,10 @@ $uc-breakpoint: 35em !default;
 
         a[href][rel~="external"][data-contains~="image"] {
             background-position: right 0 top 0;
+
+            img {
+                clip-path: polygon(0 0, 100% 0%, unquote('caLc(100% - 1.1rem)') 0, 100% 1.1rem, 100% 100%, 0% 100%);
+            }
         }
 
         a[href][rel~="external"][data-contains~="image"] span {
@@ -509,6 +507,15 @@ $uc-breakpoint: 35em !default;
             margin-left: auto;
             margin-right: auto;
             display: block;
+        }
+
+        // Force the width linked portraits:
+        a[href][data-contains~="image"][data-contains~="portrait"] {
+            width: 100%;
+
+            span {
+                display: inline;
+            }
         }
 
         [data-contains~="portrait"]::before {

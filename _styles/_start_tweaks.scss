@@ -64,15 +64,15 @@ blockquote > p:last-child::after {
     h1, h2, h3, h4 {
         word-break: break-word;
     }
-    
+
     h1 {
         line-height: 1.15;
     }
-    
+
     h2, h3 {
         line-height: 1.2;
     }
-        
+
     h4 {
         line-height: 1.6;
     }
@@ -110,10 +110,21 @@ fieldset {
     border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l-copy));
 }
 
+/*
+    This overrides StartCSS overflow handling - it set a white background to help figures show up,
+    but for rounded images (portraits) the white background shows when it shouldn't.
+    I should probably have a 'data-contains' on the figures, but seeing if I can get away with this.
+*/
+figure {
+    background: transparent;
+}
+
 
 table {
     @include fluid-type(250px, 672px, 10px, 14px);
     line-height: 1.4;
+
+    border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
 
     a {
         padding-bottom: 1px;
@@ -133,6 +144,7 @@ td, th {
     padding-right: 0.6rem;
     padding-bottom: calc(0.6rem - 1px);
     padding-left: 0.6rem;
+    border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
 }
 
 table[data-contains="numbers"] {

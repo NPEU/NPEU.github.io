@@ -1068,9 +1068,9 @@ return Mark;
 })));
 
 /*!
-    Filterability v0.0.1
+    Filterability v1.0.0
     https://github.com/Fall-Back/Filterability
-    Copyright (c) 2017, Andy Kirk
+    Copyright (c) 2022, Andy Kirk
     Released under the MIT license https://git.io/vwTVl
 */
 (function() {
@@ -1145,7 +1145,7 @@ return Mark;
             event.initEvent(event_type, true, false);
             element.dispatchEvent(event);
         }, 1);
-        
+
 
     }
 
@@ -1159,8 +1159,6 @@ return Mark;
             var filterable_groups = document.querySelectorAll('[filterable_group]');
 
             Array.prototype.forEach.call(filterable_groups, function(filterable_group, i) {
-                // Store items:
-                filterable_group.items = filterable_group.querySelectorAll('[filterable_item]');
 
                 // Action 'remove' selector:
                 var remove_selector = filterable_group.getAttribute('filterable_remove');
@@ -1219,10 +1217,13 @@ return Mark;
                     filterable_empty_list = filterable_empty_list_element.outerHTML;
                 }
 
+                // There may be more than one list in a group (for example if there were
+                // sub-headings within a larger group of lists
                 var filterable_lists = filterable_group.querySelectorAll('[filterable_list]');
                 Array.prototype.forEach.call(filterable_lists, function(filterable_list, i) {
                     filterable_list.insertAdjacentHTML('afterend', filterable_empty_list);
                 });
+
 
                 if (typeof form_added  === 'string') {
                     filterable_form = document.querySelector('#' + form_added);
@@ -1246,7 +1247,7 @@ return Mark;
                 if (input_val = getParameterByName(filterable_input.id)) {
                     filterable_input.value = input_val;
                 }
-                
+
                 // Trigger change event not natively fired:
                 triggerEvent(filterable_input, 'change');
 
@@ -1393,7 +1394,7 @@ return Mark;
 
 
                             filterability.filterList(filterable_group, '');
-                        }, 1);
+                        }, 10);
                     });
                 }
 
@@ -1457,7 +1458,7 @@ return Mark;
                             } else {
                                 filterable_input.value = el.value;
                             }
-                            
+
                             // Trigger change event not natively fired:
                             triggerEvent(filterable_input, 'change');
 
@@ -1468,7 +1469,7 @@ return Mark;
                             filterability.trigger_filter(filterable_submit, filterable_input);
                         });
 
-                        // If the prest origin has been set, update the form UI:
+                        // If the preset origin has been set, update the form UI:
                         /*if (
                             window.sessionStorage.getItem(filterable_input.preset_origin) == preset_input.name
                          || preset_origin.value == preset_input.name
@@ -1492,6 +1493,37 @@ return Mark;
 
                     });
                 }
+
+                // Observe the list in case something else makes changes to it (e.g. Sortability)
+                // and re-run the filter so everything stays as it should (e.g. odd/even attribs)
+                // From https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
+
+                var observe_list = function(list) {
+                    filterability.trigger_filter(filterable_submit, filterable_input);
+                }
+
+                // As mentioned above, I wrote this with the (odd) assumption there could be more
+                // than one list in a group and I can't see how that could be, but if I remember
+                // then this needs to be a loop as well:
+
+                // Options for the observer (which mutations to observe)
+                //var config = { attributes: true, childList: true, subtree: true };
+                var config = {childList: true};
+
+                Array.prototype.forEach.call(filterable_lists, function(filterable_list, i) {
+
+                    // Callback function to execute when mutations are observed
+                    var callback = function(mutationsList, observer) {
+                        observe_list(filterable_list);
+                    };
+
+                    // Create an observer instance linked to the callback function
+                    var observer = new MutationObserver(callback);
+
+                    // Start observing the target node for configured mutations
+                    observer.observe(filterable_list, config);
+                });
+
             });
 
         },
@@ -1501,7 +1533,7 @@ return Mark;
                 filterable_submit.click();
             } else {
                 var kbd_evt;
-                
+
                 try {
                     kbd_evt = new KeyboardEvent('keyup', {'key': '13', 'bubbles': true});
                 } catch (e) {
@@ -1518,7 +1550,7 @@ return Mark;
                         ''
                     );
                 }
-                
+
                 filterable_input.dispatchEvent(kbd_evt);
             }
         },
@@ -1553,7 +1585,7 @@ return Mark;
         },
 
         generateIndex: function(group) {
-            var items = group.items;
+            var items = group.querySelectorAll('[filterable_item]');
             var index_string;
             Array.prototype.forEach.call(items, function(item, i){
                 if (item.getAttribute('filterable_index') === '') {
@@ -1580,7 +1612,7 @@ return Mark;
         filterList: function(group, query) {
 
             query = query.toLowerCase().trim();
-            var items = group.items;
+            var items = group.querySelectorAll('[filterable_item]');
             var odd_even = 'odd';
 
             Array.prototype.forEach.call(items, function(item, i) {
@@ -1614,7 +1646,7 @@ return Mark;
                 var str_to_test = item.getAttribute('filterable_index_string');
 
                 if (regex.test(str_to_test)) {
-                    item.removeAttribute('hidden');
+                    //item.removeAttribute('hidden');
 
                     item.setAttribute('filterable_visible_item', odd_even);
                     odd_even = odd_even == 'odd' ? 'even' : 'odd';
@@ -1642,6 +1674,11 @@ return Mark;
                 // @TODO: should probably check the we've really selected a `filterable_empty_list_message`
 
                 list.setAttribute('filterable_visibile_items', n_items);
+
+                var counter = group.querySelector('[filterable_counter]');
+                if (counter) {
+                    counter.innerHTML = n_items;
+                }
 
                 if (list_is_empty) {
                     list.setAttribute('hidden', '');
@@ -1723,6 +1760,7 @@ return Mark;
                 }
             };
         }
+
     };
 
     ready(filterability.init);

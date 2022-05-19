@@ -2416,7 +2416,7 @@ th {
   padding-bottom: 1.2rem;
   padding-left: 1.2rem;
   border: 0.1rem solid #5F4776;
-  background-color: rgba(95, 71, 118, 0.3);
+  background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-light));
 }
 
 /*
@@ -2867,8 +2867,18 @@ fieldset {
   border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l-copy));
 }
 
+/*
+    This overrides StartCSS overflow handling - it set a white background to help figures show up,
+    but for rounded images (portraits) the white background shows when it shouldn't.
+    I should probably have a 'data-contains' on the figures, but seeing if I can get away with this.
+*/
+figure {
+  background: transparent;
+}
+
 table {
   line-height: 1.4;
+  border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
 }
 
 table {
@@ -2904,6 +2914,7 @@ td, th {
   padding-right: 0.6rem;
   padding-bottom: calc(0.6rem - 1px);
   padding-left: 0.6rem;
+  border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
 }
 
 table[data-contains="numbers"] thead th:not(:first-child),
@@ -7388,6 +7399,10 @@ a[href].c-cta--has-icon .icon {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
 }
 
+.c-panel--rounded .c-card {
+  border-radius: 0.6rem;
+}
+
 /* ---------------------------------------------------------------------------------------------- */
 /* --| Decoration Patterns |---------------------------------------------------------------------- */
 /*
@@ -10138,7 +10153,7 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 .has-longform-content {
   /*position: relative;
     padding-bottom: $s__sz-m;
-    
+
     &::before {
         display: block;
         content: "";
@@ -10179,6 +10194,10 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 .longform-content.longform-content > figure[data-display-as~="breakout-box"] {
   margin-left: 0;
   margin-right: 0;
+}
+
+.longform-content.longform-content > [data-display-as~="breakout-box"]:not(:last-child) {
+  margin-bottom: 2.4rem;
 }
 
 .longform-content details {
@@ -10301,6 +10320,7 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 .user-content.user-content.user-content [data-display-as~="themed-box--background"],
 .user-content.user-content.user-content [data-display-as~="themed-box--border"],
 .user-content.user-content.user-content [data-display-as~="notice-box"] {
+  border-radius: 1.2rem;
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
   width: 100%;
@@ -10536,6 +10556,24 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   float: right;
 }
 
+.user-content.user-content.user-content [data-display-is~="pulled-left"]::after,
+.user-content.user-content.user-content [data-display-is~="pulled-right"]::after {
+  display: none;
+}
+
+.user-content.user-content.user-content [data-display-is~="pulled-left"] + ::before,
+.user-content.user-content.user-content [data-display-is~="pulled-left"] + ::after,
+.user-content.user-content.user-content [data-display-is~="pulled-right"] + ::before,
+.user-content.user-content.user-content [data-display-is~="pulled-right"] + ::after {
+  content: " ";
+  display: table;
+}
+
+.user-content.user-content.user-content [data-display-is~="pulled-left"] + ::after,
+.user-content.user-content.user-content [data-display-is~="pulled-right"] + ::after {
+  clear: both;
+}
+
 .user-content.user-content.user-content [data-display-is~="pulled-center"],
 .user-content.user-content.user-content [data-position="center"] {
   margin-left: auto;
@@ -10670,6 +10708,10 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   background-position: right 0 top 0;
 }
 
+.user-content.user-content.user-content a[href][rel~="external"][data-contains~="image"] img {
+  clip-path: polygon(0 0, 100% 0%, caLc(100% - 1.1rem) 0, 100% 1.1rem, 100% 100%, 0% 100%);
+}
+
 .user-content.user-content.user-content a[href][rel~="external"][data-contains~="image"] span {
   display: inline-block;
 }
@@ -10719,6 +10761,14 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   margin-left: auto;
   margin-right: auto;
   display: block;
+}
+
+.user-content.user-content.user-content a[href][data-contains~="image"][data-contains~="portrait"] {
+  width: 100%;
+}
+
+.user-content.user-content.user-content a[href][data-contains~="image"][data-contains~="portrait"] span {
+  display: inline;
 }
 
 .user-content.user-content.user-content [data-contains~="portrait"]::before {

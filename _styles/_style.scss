@@ -119,6 +119,15 @@ $s__hr-border: $s__border-width solid hsl(var(--t-primary-color-h), var(--t-prim
 $s__html-background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-dark));
 
 
+//$s__table-border: $s__border-width solid hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
+
+//$s__td-border: $s__border-width solid hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
+
+//$s__th-border: $s__border-width solid hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
+$s__th-background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-light));
+
+
+
 $s__target-highlight-color-a: hsla(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l), 0.4);
 $s__target-highlight-color-b: hsla(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l), 0);
 
@@ -276,6 +285,12 @@ $ff-min-widths: (
 @import "component-patterns/_thumbnail.scss";
 
 @import "component-patterns/_utilitext.scss";
+
+// Special case for rounded cards inside rounded panels:
+
+.c-panel--rounded .c-card {
+    border-radius: #{$s__sz-s / 2};
+}
 
 /* ---------------------------------------------------------------------------------------------- */
 

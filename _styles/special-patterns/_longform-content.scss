@@ -8,7 +8,7 @@ $longform-content-max-width: 67rem !default;
     max-width: $longform-content-max-width;
     margin-left: auto;
     margin-right: auto;
-    
+
     --inset: #{$s__sz-m};
 
     padding-left: var(--inset, 0px);
@@ -18,7 +18,7 @@ $longform-content-max-width: 67rem !default;
 .has-longform-content {
     /*position: relative;
     padding-bottom: $s__sz-m;
-    
+
     &::before {
         display: block;
         content: "";
@@ -48,6 +48,10 @@ $longform-content-max-width: 67rem !default;
     &#{&} > figure[data-display-as~="breakout-box"] {
         margin-left: 0;
         margin-right: 0;
+    }
+
+    &#{&} > [data-display-as~="breakout-box"]:not(:last-child) {
+        margin-bottom: $s__sz-m;
     }
 
     details {

@@ -167,14 +167,16 @@ exports.img = series(do_svg2png, do_imagemin, do_svgmin);
 /*------------------------------------------------------------------------------------------------*\
     JS
 \*------------------------------------------------------------------------------------------------*/
-const js_src                             = './_scripts/';
-const js_dest                            = './js/';
-const js_filename                        = 'script.js';
-const js_map_filename                    = 'map.js';
-const js_filter_filename                 = 'filter.js';
-const js_slimselect_filename             = 'slimselect.js';
-const js_whatson_filename                = 'whatson.js';
-const js_ie11_filename                   = 'ie11.js';
+const js_src                 = './_scripts/';
+const js_dest                = './js/';
+const js_filename            = 'script.js';
+const js_map_filename        = 'map.js';
+const js_filter_filename     = 'filter.js';
+const js_sort_filename       = 'sort.js';
+
+const js_slimselect_filename = 'slimselect.js';
+const js_whatson_filename    = 'whatson.js';
+const js_ie11_filename       = 'ie11.js';
 
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
@@ -227,6 +229,15 @@ function do_concat_js(cb) {
 
     .pipe(concat(js_filter_filename))
     .pipe(gulp.dest(js_src));
+    
+    
+    // Separate sort script:
+    gulp.src([
+        './bower_components/Fall-Back-Sortability/sortability.js'
+    ])
+    
+    .pipe(concat(js_sort_filename))
+    .pipe(gulp.dest(js_src));
 
 
     // Separate SlimSelect script:
@@ -260,6 +271,7 @@ function do_uglify(cb) {
             js_src + js_filename,
             js_src + js_map_filename,
             js_src + js_filter_filename,
+            js_src + js_sort_filename,
             js_src + js_slimselect_filename,
             js_src + js_whatson_filename,
             js_src + js_ie11_filename
@@ -271,8 +283,6 @@ function do_uglify(cb) {
     cb);
 }
 
-exports.concat_js = do_concat_js;
-exports.uglify    = do_uglify;
 
 // This combined task makes it convenient to run all the steps together.
 exports.js = series(do_concat_js, do_uglify);
