@@ -1,0 +1,30 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: th
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    1. Opera Mini (no calc support).
+    2. Calc to deduct any border-width.
+*/
+#{$s__namespace}th {
+    padding-top: $s__th-cell-padding; /* 1 */
+    padding-top: calc(#{$s__th-cell-padding} - #{$s__th-border-width}); /* 2 */
+    padding-right: $s__th-cell-padding;
+    padding-bottom: $s__th-cell-padding;
+    padding-left: $s__th-cell-padding;
+
+    border: $s__th-border;
+    background-color: $s__th-background-color;
+}
+
+/*
+    Reduce last row table cell padding to counteract the table border to preserve the vertical 
+    rhythm.
+*/
+#{$s__namespace}tbody tr:last-child th {
+    padding-bottom: $s__th-cell-padding; /* 1 */
+    padding-bottom: calc(#{$s__th-cell-padding} - #{$s__th-border-width}); /* 2 */
+}

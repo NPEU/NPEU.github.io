@@ -1,0 +1,40 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: legend
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    Fieldsets and legends can be difficult to style so I'm keep their appearance basically the same
+    as the default - just a bit of theming.
+    More info here: https://thatemil.com/blog/2015/01/03/reset-your-fieldset/
+
+
+    1. Correct the text wrapping in Edge and IE.
+    2. Offset border width.
+    3. Correct the color inheritance from `fieldset` elements in IE.
+
+    Note $fieldset-border-width used deliberately (not $s__legend-border-width)- this is to account for
+    the fact that fieldset top border width is ignored if there's a legend so the spacing is wrong.
+*/
+#{$s__namespace}legend {
+    display: table; /* 1 */
+
+    max-width: 100%; /* 1 */
+
+    margin-top: -$s__legend-border-width; /* 2 */
+    margin-bottom: $s__fieldset-border-width; /* 2 */
+
+    padding: 0 $s__legend-h-padding;
+
+    border-width: $s__legend-border-width;
+
+    color: inherit; /* 3 */
+
+    font-weight: bold;
+    white-space: normal; /* 1 */
+
+
+    /*  */
+}

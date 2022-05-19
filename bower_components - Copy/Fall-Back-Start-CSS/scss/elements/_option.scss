@@ -1,0 +1,31 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: option
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    1. This v-centers the text in FF and Chrome. Edge doesn't apply this but looks ok regardless.
+       Just IE9-11 to sort out?
+*/
+#{$s__namespace}option {
+    display: flex; /* 1 */
+    align-items: center; /* 1 */
+
+    min-height: $s__base-rem-space-unit;
+
+    padding-right: $s__option-h-padding;
+    padding-left: $s__option-h-padding;
+
+    cursor: pointer;
+
+    background-color: $s__option-background-color;
+
+    &:hover {
+        background-color: $s__option-background-color--state-1;
+        color: $s__option-text-color;
+    }
+
+
+}

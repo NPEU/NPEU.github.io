@@ -1,0 +1,530 @@
+/*! --------------------------------------------------------------------------------------------- *\
+
+    Fall-Back Nav Bar v3.0.0
+    https://github.com/Fall-Back/Patterns/tree/master/Nav%20Bar
+    Copyright (c) 2021, Andy Kirk
+    Released under the MIT license https://git.io/vwTVl
+
+    Designed for use with the EM2 [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+    Edge, Chrome 39+, Opera 26+, Safari 9+, iOS 9+, Android ~5+, Android UCBrowser ~11.8+
+    FF 47+
+
+    PLUS IE11
+
+\* ---------------------------------------------------------------------------------------------- */
+
+$s__nav-bar--breakpoint--enhanced:         $s__breakpoint--enhanced;
+
+
+// Colours:
+
+$s__nav-bar--base-ui-color:                $s__base-ui-color !default;
+$s__nav-bar--base-text-color:              $s__base-text-color !default;
+
+
+$s__nav-bar--background-color:             $s__nav-bar--base-ui-color !default;
+
+$s__nav-bar__link--color:                  #fff !default;
+$s__nav-bar__link--color--alt:             $s__nav-bar__link--color !default;
+$s__nav-bar__link--background-color:       $s__nav-bar--background-color !default;
+$s__nav-bar__link--background-color--alt: false !default;
+//$s__nav-bar__link--background-color--alt2: false !default;
+@if $s__nav-bar--background-color != false {
+    $s__nav-bar__link--background-color--alt:  darken($s__nav-bar--background-color, 14%) !default;
+    //$s__nav-bar__link--background-color--alt2: darken($s__nav-bar--background-color, 7%) !default;
+}
+
+
+$s__nav-bar__link--border-color:           rgba(255,255,255,0.2) !default;
+$s__nav-bar__link--border-style:           solid !default;
+$s__nav-bar__link--border-width:           1px !default;
+$s__nav-bar__link--border-radius:          0 !default;
+
+$s__sub-nav--background-color: false !default;
+@if $s__nav-bar--base-ui-color != false {
+    $s__sub-nav--background-color: darken($s__nav-bar--base-ui-color, 20%) !default;
+}
+
+$s__sub-nav__link--border-color:           rgba(255,255,255,0.3) !default;
+$s__sub-nav__link--border-style:           dashed !default;
+$s__sub-nav__link--border-width:           1px !default;
+
+
+$s__sub-nav__link--color:                  $s__nav-bar__link--color !default;
+$s__sub-nav__link--color--alt:             $s__sub-nav__link--color !default;
+$s__sub-nav__link--background-color:       $s__sub-nav--background-color !default;
+$s__sub-nav__link--background-color--alt: false !default;
+@if $s__sub-nav__link--background-color != false {
+    $s__sub-nav__link--background-color--alt: lighten($s__sub-nav__link--background-color, 10%) !default;
+}
+
+// Not sure I need this:
+//$s__nav-bar__title--background-color:      $s__nav-bar--background-color !default;
+
+
+
+// Sizes:
+
+$s__nav-bar--font-size:                    $s__base-font-size !default;
+$s__nav-bar--height:                       ($s__base-em-ratio * 1.5em) !default;
+$s__nav-bar--spacing:                      ($s__nav-bar--height / 8) !default;
+$s__nav-bar--margin-bottom:                0 !default;
+$s__nav-bar__title--padding:               0 !default;
+
+
+
+// Transitions:
+
+$s__sub-nav--transition:                   margin-top 0.5s ease !default;
+
+
+
+// Other:
+
+$s__nav-bar__title--font-size:             1.5em !default;
+$s__nav-bar__title--font-style:            normal !default;
+$s__nav-bar__title--font-weight:           bold !default;
+$s__nav-bar__title--font-family:           Arial, Helvetica, sans-serif !default;
+
+$s__nav-bar-z-index:                       9999 !default;
+
+// Calculate title heights based on IT'S font size:
+$s__nav-bar__title--height:                (($s__base-line-height * 1.5) / (($s__nav-bar__title--font-size / 1em) * $s__base-font-size) * 1em);
+
+
+$s__nav-bar-divider-first-item:            false !default;
+
+
+// Tell the JS that the this CSS has loaded:
+
+/*
+    This is a bit of a hack, but it's a way of letting JS know that this CSS has loaded.
+    It doesn't work for Opera Mini, but I'm happy to provide this browser only with the
+    unenhanced version.
+    UPDATE: Due to problem with FOBP, now checking for existence of class in styesheet earlier
+    on, so this isn't needed:
+*/
+/*.nav-bar::before {
+    content: 'CSS Loaded';
+    display: none;
+}*/
+// Use this instead:
+.js-nav-bar {
+    // This could be any inconsequential declaration:
+    border: 0;
+}
+
+
+/* -- Basic/fallback layout --------------------------------------------------------------------- */
+.nav-bar {
+    /* -- Main wrapper ---------------------------------------------------------------------------*/
+
+    /*
+        1. Helps to position above subsequent elements so sub-navs sit on top.
+        There are problems with this, if z-index or position is declared it messes up positioning
+        if subsequent blocks also are nav-bars or similar.
+    */
+    &#{&} {
+        @if $s__nav-bar--background-color != false {
+            background-color: $s__nav-bar--background-color;
+        }
+        //position: relative;
+        //-index: $s__nav-bar-z-index; /* [1] */
+		width: 100%;
+
+        @if $s__nav-bar--font-size != $s__base-font-size {
+            font-size: $s__nav-bar--font-size;
+        }
+    }
+
+    /* -------------------------------------------------------------------------------------------*/
+
+    /* -- Layout ---------------------------------------------------------------------------------*/
+
+    /*
+        iOS/OSX seem to apply mystery margins.
+    */
+    .nav-bar__end,
+    .nav-bar__main,
+    .nav-bar__start,
+    .nav-bar__title {
+        //position: relative;
+        //z-index: $s__nav-bar-z-index; /* [1] */
+        margin: 0;
+    }
+
+    .sub-nav {
+        padding: 0;
+        margin: 0;
+    }
+
+
+    /*
+    */
+    .nav-bar__items,
+    .sub-nav__items {
+        display: block;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sub-nav__items {
+        margin-left: $s__nav-bar--spacing * 4;
+        @if $s__sub-nav--background-color != false {
+            background-color: $s__sub-nav--background-color;
+        }
+    }
+
+
+    .nav-bar__item,
+	.sub-nav__item {
+        margin: 0;
+    }
+
+    /* -------------------------------------------------------------------------------------------*/
+
+    /* -- Links and headings ---------------------------------------------------------------------*/
+
+    /*
+    */
+    .nav-bar__title .nav-bar__link {
+        height: $s__nav-bar__title--height;
+        line-height: $s__nav-bar__title--height;
+
+        font-family: $s__nav-bar__title--font-family;
+        font-weight: $s__nav-bar__title--font-weight;
+        font-style: $s__nav-bar__title--font-style;
+        font-size: $s__nav-bar__title--font-size;
+
+        white-space: nowrap;
+    }
+
+	/*
+		1. These override button styles defined as part of StartCSS. I may consider making these
+		   customisable via more variables.
+	*/
+    .nav-bar__link,
+    .sub-nav__link,
+    .sub-nav__heading {
+        display: block;
+        position: relative;
+        margin: 0;
+        padding-left: $s__nav-bar--spacing * 2;
+        padding-right: $s__nav-bar--spacing * 2;
+		padding-bottom: 0; /* 1 */
+		padding-top: 0; /* 1 */
+
+        border: 0;
+        border-radius: $s__nav-bar__link--border-radius;
+        line-height: $s__nav-bar--height;
+
+        text-decoration: none;
+        outline: 0;
+
+		box-shadow: none; /* 1 */
+    }
+
+    /*
+        FF15- fix button height.
+    */
+    .nav-bar button.nav-bar__link {
+        min-height: $s__nav-bar--height;
+    }
+
+
+
+    .nav-bar__link  {
+        color: $s__nav-bar__link--color;
+        @if $s__nav-bar__link--background-color != false {
+            background-color: $s__nav-bar__link--background-color;
+        }
+    }
+
+    .nav-bar__link--centered {
+		text-align: center;
+    }
+
+    .sub-nav__heading {
+        color: $s__nav-bar__link--color;
+    }
+
+    .sub-nav__link {
+        color: $s__sub-nav__link--color;
+        @if $s__sub-nav__link--background-color != false {
+            background-color: $s__sub-nav__link--background-color;
+        }
+    }
+
+
+    /*
+        Provide interaction effects for nav-bar links that ARE links:
+        (this excludes submenu heading links - note that submenu links should never also be
+        submenu heading links)
+    */
+
+    .nav-bar__link:hover,
+    .nav-bar__link:active {
+    // ??? WTF .nav-bar__link [aria-wide="true"] {
+        color: $s__nav-bar__link--color--alt;
+        @if $s__nav-bar__link--background-color--alt != false {
+            background-color: $s__nav-bar__link--background-color--alt;
+        }
+        border: 0;
+        text-decoration: none;
+    }
+
+    /*.nav-bar__link:focus {
+        color: $s__nav-bar__link--color--alt;
+        background-color: $s__nav-bar__link--background-color--alt2;
+        border: 0;
+        box-shadow: none;
+    }*/
+
+    .sub-nav__link:hover,
+    //.sub-nav__link:focus,
+    .sub-nav__link:active {
+        color: $s__sub-nav__link--color--alt;
+        @if $s__sub-nav__link--background-color--alt != false {
+            background-color: $s__sub-nav__link--background-color--alt;
+        }
+        border: 0;
+        text-decoration: none;
+        //box-shadow: none;
+    }
+
+    .nav-bar__link:focus,
+    .sub-nav__link:focus {
+        z-index: 2;
+    }
+
+
+    .sub-nav__control {
+        display: none;
+    }
+
+
+    /* -------------------------------------------------------------------------------------------*/
+}
+
+/* ********************************************************************************************** */
+/* -- Enhanced layout --------------------------------------------------------------------------- */
+/*
+    This layout can only be used if JS is there to support the toggling of hidden submenus.
+    (CSS only attempts weren't good enough)
+    So, scoping these styles to the 'js-nav-bar' class.
+*/
+
+	/*
+		Note we do only want these applied when JS is available, because it'll have adde buttons so
+		we need to adjust layout to that. In other words these styles break things in a no-js
+		scenario.
+
+	*/
+    .js-cmr--narrow {
+        .nav-bar__start {
+            display: -ms-flexbox;
+            display: flex;
+
+              -ms-flex-pack: justify;
+            justify-content: space-between;
+        }
+
+        .nav-bar__start > * {
+            -ms-flex: 0 0 auto;
+                flex: 0 0 auto;
+        }
+
+        .nav-bar__title {
+            -ms-flex: 1 0 auto;
+                flex: 1 0 auto;
+
+            margin: 0 auto;
+        }
+    }
+
+
+    //@media only screen and (min-width: $s__nav-bar--breakpoint--enhanced) {
+    .js-cmr--wide {
+
+        /*
+            Add dividers.
+            Dividers created by adding right borders to nav-bar__items.
+        */
+
+        .nav-bar__title,
+        .nav-bar__item {
+            border-style: $s__nav-bar__link--border-style;
+            border-color: $s__nav-bar__link--border-color;
+            border-top-width: 0;
+            border-bottom-width: 0;
+            border-left-width: 0;
+            border-right-width: $s__nav-bar__link--border-width;
+        }
+
+        @if $s__nav-bar-divider-first-item {
+            .nav-bar__title:first-child,
+            .nav-bar__item:first-child {
+                border-left-width: $s__nav-bar__link--border-width;
+            }
+        }
+
+        .nav-bar__link[href]  + * {
+            border-style: $s__sub-nav__link--border-style;
+            border-color: $s__sub-nav__link--border-color;
+            border-top-width: 0;
+            border-bottom-width: 0;
+            border-left-width: $s__sub-nav__link--border-width;
+            border-right-width: 0;
+        }
+
+        /* -- Layout -----------------------------------------------------------------------------*/
+
+        /*
+            Prevent anything wrapping (fixed height is crucial to making this work),
+            and make things float
+        */
+        &.nav-bar,
+		.nav-bar__title,
+        .nav-bar__main,
+        .nav-bar__items,
+        .nav-bar__item,
+        .nav-bar__item > *,
+        .sub-nav__link,
+        .sub-nav__heading {
+            display: -ms-flexbox;
+            display: flex;
+			white-space: nowrap;
+        }
+
+
+        &.nav-bar > * {
+            -ms-flex: 0 0 auto;
+                flex: 0 0 auto;
+        }
+
+        &.nav-bar > .nav-bar__fill-at-wide {
+            -ms-flex: 1 0 auto;
+                flex: 1 0 auto;
+        }
+
+        /*
+            1. Prevent content from increasing height of element.
+        */
+        .sub-nav__control[data-content]::before {
+            content: attr(data-content);
+            display: inline;
+            vertical-align: top; /* 1 */
+        }
+
+
+        .nav-bar__end {
+            white-space: nowrap;
+			margin-left: auto;
+
+            -ms-flex: 1 1 auto;
+                flex: 1 1 auto;
+        }
+
+        // It's often visually nicer for tne 'end' content to be pushed over to the right if it
+        // doesn't fill the space.
+        // Note I may need to make this a modifier class if it doesn't look right in all situations.
+        .nav-bar__end > * {
+            margin-left: auto !important;
+        }
+
+
+        /*
+			This pseudo element helps to cover any sub-navs to stop them being visible in the main
+			nav-bar.
+		*/
+        //.nav-bar::before {
+        &.nav-bar::before {
+			content: "";
+			display: block;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			z-index: -1;
+			@if $s__nav-bar--background-color != false {
+                background-color: $s__nav-bar--background-color;
+            }
+		}
+
+
+        /* -- Behaviour: -------------------------------------------------------------------------*/
+
+        // Hide the headings - we don't need those in Enhanced:
+        .sub-nav__heading {
+            display: none;
+        }
+
+        // But we do need the controls, so show those:
+        .sub-nav__control {
+            display: block;
+        }
+
+        // We only need one open/close icon displayed at a time, so hide one set:
+        .sub-nav__control .icon--is-open,
+        .sub-nav__control[aria-wide="true"] .icon--is-closed {
+            display: none;
+        }
+
+        // And show the inverse:
+        .sub-nav__control .icon--is-closed,
+        .sub-nav__control[aria-wide="true"] .icon--is-open {
+            display: inline;
+        }
+
+
+        /*
+            Set-up slide toggling for sub-navs:
+
+			1. This puts the sub-nav behind the covering pseudo element. See .nav-bar::before, above.
+            2. OSX/iOS needs this:
+		*/
+        .sub-nav {
+            position: absolute;
+            visibility: hidden;
+            left: 0;
+            right: 0;
+            top: 0;
+            z-index: -2; /* 1 */
+
+            height: $s__nav-bar--height; /* 2 */
+
+            transition: margin-top 0.5s ease,
+                        visibility 0s   ease 0.5s;
+        }
+
+        .sub-nav__items {
+            margin: 0;
+            padding: 0;
+        }
+
+        .sub-nav__control[aria-wide="true"] ~ .sub-nav {
+            visibility: visible;
+            margin-top: $s__nav-bar--height;
+
+            transition: margin-top 0.5s ease;
+        }
+
+	}
+    /* -------------------------------------------------------------------------------------------*/
+
+    @media #{$s__ie10-11} {
+
+        /*
+            In IE the width of some containers gets pushed to 100% instead of natural width, so the
+            CMR breakpoint is mis-calculated. Since the clones are disposabled, I think it should be
+            OK to force them as inline-flex so the calculations are correct:
+        */
+        .nav-bar.js-cmr--clone,
+        .nav-bar.js-cmr--clone > * {
+            display: inline-block !important;
+        }
+    }
+    
+/* -----------------------------------------------------------------------------------------------*/

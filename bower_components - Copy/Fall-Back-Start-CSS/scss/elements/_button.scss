@@ -1,0 +1,40 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: button
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+#{$s__namespace}button {
+    @include s__button;
+}
+
+#{$s__namespace}button svg {
+    vertical-align: text-bottom;
+}
+
+// _:-o-prefocus, :root .selector { property:value; }
+// Opera 9.5-12, Opera Mini 7.x (Opera 9.80)
+_:-o-prefocus, :root #{$s__namespace}button {
+    line-height: $s__base-rem-space-unit !important;
+}
+
+/*
+    FF15-
+
+    Remove the inner border and padding in Firefox and fix height.
+
+    Early FF doesn't correctly apply the box sizing to inputs (buttons?)
+    Adding margin to -moz-focus-inner helps to force the correct height.
+    It doesn't have any effect in newer FF.
+
+    NOTE: these adjustments don't seem very robust / dependent on font-family and font-size.
+*/
+#{$s__namespace}button::-moz-focus-inner {
+    margin: -0.0625em 0;
+}
+
+/*
+    Reset for FF16+
+*/
+_:-moz-meter-optimum, :root button::-moz-focus-inner {margin: 0; }

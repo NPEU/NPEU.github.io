@@ -1,0 +1,24 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: table
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    1. Opera Mini (no calc support).
+    2. Calc to deduct any border-width.
+*/
+#{$s__namespace}table {
+    width: 100%;
+    /* @TODO - possibly make this configurable to be 'natural' width but cantered instead. (http://alistapart.com/article/web-typography-tables) */
+
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
+    //@include s__margins(calc(#{$s__base-rem-space-unit} - #{$s__table-border-width}), $s__margin-type);
+    
+    background-color: $s__table-background-color;
+    
+    border: $s__table-border;
+    border-collapse: collapse;
+    border-spacing: 0;
+}

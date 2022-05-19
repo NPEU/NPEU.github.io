@@ -1,0 +1,57 @@
+/*! Start-CSS Accessibility. See SCSS file for documentation. */
+/*-------------------------------------------------------------------------------------------------|
+
+    ACCESSIBILITY / ARIA
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+//@if ($suppress_styles != true) {
+
+/*
+    Change the cursor on busy elements in all browsers. (S)
+*/
+[aria-busy="true"] {
+    cursor: progress;
+}
+
+
+/*
+    Specify the un-styled cursor of disabled, not-editable, or otherwise inoperable elements. (S)
+*/
+[aria-disabled="true"],
+[disabled] {
+    cursor: default;
+}
+
+/*
+    Elements with tabindex="-1" are NOT user focussable, but CAN be focussed via JS.
+    In this case elements focussed in such a way should not receive focus styles to avoid confusion.
+    (https://inclusive-components.design/a-todo-list#focusmanagement)
+*/
+[tabindex="-1"] {
+    outline: none;
+}
+
+
+/* Reduced Motion (S)
+    1. Remove animations when motion is reduced (opinionated).
+    2. Remove fixed background attachments when motion is reduced (opinionated).
+    3. Remove timed scrolling behaviors when motion is reduced (opinionated).
+    4. Remove transitions when motion is reduced (opinionated).
+*/
+@media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+        animation-delay: -1ms !important; /* 1 */
+        animation-duration: 1ms !important; /* 1 */
+        animation-iteration-count: 1 !important; /* 1 */
+        background-attachment: initial !important; /* 2 */
+        scroll-behavior: auto !important; /* 3 */
+        transition-delay: 0s !important; /* 4 */
+        transition-duration: 0s !important; /* 4 */
+    }
+}
+
+//}

@@ -1,0 +1,18 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: blockquote
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+#{$s__namespace}blockquote {
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
+    margin-left: $s__base-rem-space-unit;
+    margin-right: $s__base-rem-space-unit;
+
+    font-style: italic;
+    /*
+        @TODO - set up vars and styles for the most common quote styles.
+        I.e. left-border, and enclosing quotes.
+    */
+}

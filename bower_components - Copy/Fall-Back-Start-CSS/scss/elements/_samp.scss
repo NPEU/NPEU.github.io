@@ -1,0 +1,17 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: samp
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    1. Address odd `em`-unit font size rendering in all browsers.
+    2. Correct the inheritance and scaling of font size in all browsers.
+    3. Prevent the element increasing the line-height of the parent.
+*/
+#{$s__namespace}samp {
+    font-size: 1em; /* 1 */
+    font-family: $s__monospace-font-family, monospace; /* 2 */
+    line-height: 0; /* 3 */
+}

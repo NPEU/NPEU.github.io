@@ -1,0 +1,22 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: abbr
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    1. Remove the bottom border in Firefox 39-.
+    2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+*/
+#{$s__namespace}abbr {
+    cursor: help;
+
+    &[title] {
+        border-bottom: none; /* 1 */
+
+        text-decoration: underline; /* 2 */
+
+        text-decoration: underline dotted; /* 2 */
+    }
+}

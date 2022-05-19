@@ -1,0 +1,48 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: h
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+#{$s__namespace}h1 {
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
+
+    font-size: $s__h1-font-size;
+    line-height: $s__h1-height;
+}
+
+#{$s__namespace}h2 {
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
+
+    font-size: $s__h2-font-size;
+    line-height: $s__h2-height;
+}
+
+#{$s__namespace}h3 {
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
+
+    font-size: $s__h3-font-size;
+    line-height: $s__h3-height;
+}
+
+#{$s__namespace}h4 {
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
+
+    font-size: $s__h4-font-size;
+    line-height: $s__h4-height;
+}
+
+#{$s__namespace}h5 {
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
+
+    font-size: $s__h5-font-size;
+    line-height: $s__h5-height;
+}
+
+#{$s__namespace}h6 {
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
+
+    font-size: $s__h6-font-size;
+    line-height: $s__h6-height;
+}

@@ -1,0 +1,356 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS TOKENS
+    ============================================================================================
+
+    Fall-Back is designed for use with the basic
+    [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+
+    This determines a browser support base of:
+
+    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
+    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+
+
+    Any double-classing (e.g. `.class.class`) is deliberate and intended to increase specifity.
+    This allows any applicable Start-CSS declarations to be overidden.
+    E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
+    `.{pattern}.{pattren}`
+
+    https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
+
+|-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS SETTINGS
+    ============================================================================================
+
+    Fall-Back is designed for use with the basic
+    [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+
+    This determines a browser support base of:
+
+    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
+    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+
+
+    Any double-classing (e.g. `.class.class`) is deliberate and intended to increase specifity.
+    This allows any applicable Start-CSS declarations to be overidden.
+    E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
+    `.{pattern}.{pattren}`
+
+    https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
+
+|-------------------------------------------------------------------------------------------------*/
+/*
+    HTML
+*/
+/*
+    BODY
+*/
+/*
+    ANCHOR
+
+    1. This size allows 2px on normal fonts, 1px on smaller fonts.
+*/
+/* [1] */
+/* [1] */
+/* [1] */
+/*
+    ASIDE
+*/
+/*! --------------------------------------------------------------------------------------------- *\
+
+    Fall-Back Over Panel vNEXT
+    https://github.com/Fall-Back/Patterns/tree/master/Over%20Panel
+    Copyright (c) 2022, Andy Kirk
+    Released under the MIT license https://git.io/vwTVl
+
+    Designed for use with the EM2 [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+    Edge, Chrome 39+, Opera 26+, Safari 9+, iOS 9+, Android ~5+, Android UCBrowser ~11.8+
+    FF 47+
+
+    PLUS IE11
+
+\* ---------------------------------------------------------------------------------------------- */
+/*
+    This is a bit of a hack, but it's a way of letting JS know that this CSS has loaded.
+    It doesn't work for Opera Mini, but I'm happy to provide this browser only with the
+    unenhanced version.
+    UPDATE: Due to problem with FOBP, now checking for existence of class in styesheet earlier
+    on, so this isn't needed:
+*/
+/*.nav-bar::before {
+    content: 'CSS Loaded';
+    display: none;
+}*/
+.js-has--over-panel {
+  border: 0;
+}
+
+/* -- Basic/fallback layout --------------------------------------------------------------------- */
+/*
+        1. Helps compatibiliy with Nav-Bar. No down-sides I can see. May have to revise if some
+           become apparent.
+    */
+.over-panel {
+  width: 100%;
+  /* [1] */
+  position: relative;
+}
+
+.over-panel-control {
+  display: none !important;
+}
+
+.over-panel__contents {
+  background-color: #247BA0;
+}
+
+.over-panel__contents {
+  color: #fff;
+}
+
+.over-panel__contents {
+  padding: 0;
+}
+
+.over-panel__contents a {
+  color: inherit;
+}
+
+.over-panel__contents a:hover,
+.over-panel__contents a:active,
+.over-panel__contents a:focus {
+  color: inherit;
+}
+
+/*
+        iOS/OSX seem to apply mystery margins.
+    */
+.over-panel,
+.over-panel__contents {
+  margin: 0;
+}
+
+.over-panel__contents > * {
+  flex: 0 1 auto;
+}
+
+/* -----------------------------------------------------------------------------------------------*/
+/* ********************************************************************************************** */
+/* -- Enhanced layout --------------------------------------------------------------------------- */
+.js-has--over-panel .over-panel {
+  width: auto;
+  flex: 1 0 auto;
+}
+
+.js-has--over-panel .over-panel__contents {
+  display: flex;
+}
+
+.js-has--over-panel .js-cmr--narrow {
+  /*
+                1. Make sure the over-panel is on top.
+            */
+  /*
+                This extra wrapper allows the content of the panel to be absolutely positioned so that the
+                container doesn't create a positioning context which would prevent the overlay from filling
+                the body.
+                The :target id needs to stay in actual position so the fall-back works, so everything
+                affected by the :target must come after or inside the element with the id, but we want to
+                allow the position of the controls to be as flexible as possible, so some trickery is
+                needed.
+
+
+                1. Make the over-panel invisible in a way that's transition-able but also removes from tab
+                   order.
+            */
+  /* Fade effect: */
+  /*
+                2. Make the over-panel visible in a way that's transition-able.
+                1. This necessary to collapse the element in cases where the page content without
+                   the over-panel contents is shorter than the over-panel contents themselves.
+                   Take, for example, where short-ish page that's part of a large site, which therefore
+                   has a long menu. When the menu is revealed in the over-panel contents, the end result
+                   is higher than the page contents.
+                   Without these declarations, the page (with over-panel closed) renders with a
+                   scrollbar and what looks like mystery space at the bottom of the page (when in
+                   reality that space is just what's needed to display the over-panel contents).
+                   This could be confusing for users (it was confusing for me!) and makes the page look
+                   broken.
+                   So, collapsing the contents while hidden prevents this space from appearing until
+                   needed.
+            */
+  /*
+                1. These override button styles defined as part of StartCSS. I may consider making these
+                   customisable via more variables.
+                2. Ensure the control is above the overlay.
+            */
+  /*.over-panel-control:hover,
+            .over-panel-control:active,
+            .over-panel-control:focus {
+                border: 0;
+            }*/
+  /*
+                1. Ensure the control is above the overlay.
+            */
+  /*
+                1. This is the obvious place for this rule but there's a weird Chrome bug that means
+                   the position/dimensions are ignore if it's initially hidden.
+                   Moving to the is-open declaration fixes this, as it only gets applied when it's
+                   visible.
+                2. Using absolute instead so that it still collapses, preventing it unintentionally
+                   overlapping anything.
+            */
+  /* Bring the overlay to the front and fade in when there's an over-panel target: */
+}
+
+.js-has--over-panel .js-cmr--narrow .over-panel {
+  position: absolute;
+  /* [1] */
+  left: 0;
+  width: 100%;
+}
+
+.js-has--over-panel .js-cmr--narrow .over-panel-control {
+  display: inline-block !important;
+}
+
+.js-has--over-panel .js-cmr--narrow .over-panel__contents {
+  position: absolute;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  visibility: hidden;
+  /* [1] */
+  flex-direction: column;
+}
+
+.js-has--over-panel .js-cmr--narrow .over-panel__contents {
+  opacity: 0;
+  transform: scale(0);
+  /* [2] */
+}
+
+.js-has--over-panel .js-cmr--narrow .over-panel--is-animating .over-panel__contents {
+  transition: opacity ease 0.8s, visibility 0s 0.8s ease, transform 0s 0.8s ease;
+}
+
+.js-has--over-panel .js-cmr--narrow .over-panel--is-open .over-panel__contents {
+  visibility: visible;
+  /* [1] */
+  opacity: 1;
+  transform: scale(1);
+  /* [2] */
+  transition: opacity ease 0.8s;
+}
+
+.js-has--over-panel .js-cmr--narrow .over-panel-control {
+  display: block;
+  margin: 0;
+  padding-left: 0.5625em;
+  padding-right: 0.5625em;
+  padding-bottom: 0;
+  /* 1 */
+  padding-top: 0;
+  /* 1 */
+  border: 0;
+  border-radius: 0;
+  line-height: 2.25em;
+  text-decoration: none;
+  outline: 0;
+  box-shadow: none;
+  /* 1 */
+  color: #fff;
+  background-color: #247BA0;
+  position: relative;
+  z-index: 0;
+}
+
+.js-has--over-panel .js-cmr--narrow .over-panel-control[aria-expanded="true"] {
+  z-index: 99999;
+  /* [1] */
+}
+
+.js-has--over-panel .js-cmr--narrow .over-panel-control:hover,
+.js-has--over-panel .js-cmr--narrow .over-panel-control:active,
+.js-has--over-panel .js-cmr--narrow .over-panel-control[aria-expanded="true"] {
+  color: #fff;
+}
+
+.js-has--over-panel .js-cmr--narrow .over-panel-control:focus {
+  color: #fff;
+}
+
+.js-has--over-panel .js-cmr--narrow .over-panel-control .icon--is-open,
+.js-has--over-panel .js-cmr--narrow .over-panel-control[aria-expanded="true"] .icon--is-closed {
+  display: none;
+}
+
+.js-has--over-panel .js-cmr--narrow .over-panel-control .icon--is-closed,
+.js-has--over-panel .js-cmr--narrow .over-panel-control[aria-expanded="true"] .icon--is-open {
+  display: inline;
+}
+
+.js-has--over-panel .js-cmr--narrow .over-panel__overlay {
+  display: block;
+  position: absolute;
+  /* [2] */
+  z-index: -1;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  text-decoration: none;
+  visibility: hidden;
+  background-color: #000;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.js-has--over-panel .js-cmr--narrow .over-panel--is-open .over-panel__overlay {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  opacity: 0.6;
+  visibility: visible;
+}
+
+.js-has--over-panel .js-cmr--narrow .over-panel__overlay:hover,
+.js-has--over-panel .js-cmr--narrow .over-panel__overlay:active,
+.js-has--over-panel .js-cmr--narrow .over-panel__overlay:focus {
+  border: 0;
+  text-decoration: none;
+  background-color: #000;
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  /*
+            In IE the width of some containers gets pushed to 100% instead of natural width, so the
+            CMR breakpoint is mis-calculated. Since the clones are disposabled, I think it should be
+            OK to force them as inline-flex so the calculations are correct:
+        */
+  .js-has--over-panel .js-cmr--clone,
+  .js-has--over-panel .js-cmr--clone .over-panel,
+  .js-has--over-panel .js-cmr--clone .over-panel__contents {
+    display: inline-block !important;
+  }
+  .js-has--over-panel .js-cmr--clone .over-panel__contents {
+    white-space: nowrap !important;
+  }
+  .js-has--over-panel .js-cmr--narrow .over-panel {
+    width: auto;
+    left: -2.4rem;
+    right: -2.4rem;
+  }
+}
+
+/* ---------------------------------------------------------------------------------------------- */

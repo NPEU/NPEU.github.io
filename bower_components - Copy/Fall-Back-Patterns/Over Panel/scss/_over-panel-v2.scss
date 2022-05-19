@@ -1,0 +1,370 @@
+/*! --------------------------------------------------------------------------------------------- *\
+    
+    Fall-Back Over Panel v2.0.0
+    https://github.com/Fall-Back/Patterns/tree/master/Over%20Panel
+    Copyright (c) 2021, Andy Kirk
+    Released under the MIT license https://git.io/vwTVl
+
+    Designed for use with the EM2 [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+    Edge, Chrome 39+, Opera 26+, Safari 9+, iOS 9+, Android ~5+, Android UCBrowser ~11.8+
+    FF 47+
+
+    PLUS IE11
+
+\* ---------------------------------------------------------------------------------------------- */
+
+$s__over-panel--breakpoint--enhanced:            $s__breakpoint--enhanced !default;
+$s__over-panel__contents--z-index:               9999 !default;
+
+// Colours:
+
+$s__over-panel--base-ui-color:                   $s__base-ui-color !default;
+$s__over-panel--base-text-color:                 $s__base-text-color !default;
+
+
+$s__over-panel__contents--text-color:            #fff !default;
+$s__over-panel__contents--background-color:      $s__over-panel--base-ui-color !default;
+
+$s__over-panel__contents--link-color:            darken($s__over-panel__contents--text-color, 14%) !default;
+$s__over-panel__contents--link-color--alt:       darken($s__over-panel__contents--text-color, 7%) !default;
+
+$s__over-panel__control--color:                  #fff !default;
+$s__over-panel__control--color--alt:             $s__over-panel__control--color !default;
+$s__over-panel__control--background-color:       $s__over-panel--base-ui-color !default;
+$s__over-panel__control--background-color--alt:  darken($s__over-panel__control--background-color, 14%) !default;
+$s__over-panel__control--background-color--alt2: darken($s__over-panel__control--background-color, 7%) !default;
+
+$s__over-panel__control--border-color:           rgba(255,255,255,0.2) !default;
+$s__over-panel__control--border-style:           solid !default;
+$s__over-panel__control--border-width:           1px !default;
+$s__over-panel__control--border-radius:          0 !default;
+
+
+$s__over-panel__contents--offset-top:            0 !default;
+
+
+$s__over-panel__overlay--background-color:       #000 !default;
+
+
+
+// Sizes:
+
+$s__over-panel__control--height:                 ($s__base-em-ratio * 1.5em) !default;
+$s__over-panel--spacing:                         ($s__over-panel__control--height / 8) !default;
+
+
+$s__over-panel__contents--padding:                0 !default; //$s__base-rem-space-unit !default;
+
+
+// Transitions:
+$s__over-panel--transition-duration:             ease;
+$s__over-panel--transition-timing-function:      0.8s;
+
+$s__over-panel__overlay-transition:              opacity 0.5s ease !default;
+
+
+// Other:
+$s__over-panel__overlay-opacity:                 0.6 !default;
+//$s__over-panel__overlay-shadow:                  0 0 10px 5px #000 !default;
+
+
+// Tell the JS that the this CSS has loaded:
+
+/*
+    This is a bit of a hack, but it's a way of letting JS know that this CSS has loaded.
+    It doesn't work for Opera Mini, but I'm happy to provide this browser only with the
+    unenhanced version.
+    UPDATE: Due to problem with FOBP, now checking for existence of class in styesheet earlier
+    on, so this isn't needed:
+*/
+/*.nav-bar::before {
+    content: 'CSS Loaded';
+    display: none;
+}*/
+// Use this instead:
+.js-has--over-panel {
+    // This could be any inconsequential declaration:
+    border: 0;
+}
+
+/* -- Basic/fallback layout --------------------------------------------------------------------- */
+
+    /*
+        1. Helps compatibiliy with Nav-Bar. No down-sides I can see. May have to revise if some
+           become apparent.
+    */
+    .over-panel {
+        width: 100%; /* [1] */
+        
+        position: relative;
+    }
+
+
+    .over-panel-control {
+        display: none !important;
+    }
+
+
+    // Not 100% sure about this.
+    // May consider removing this, or making the whole section optional if user doesn't want to use:
+    .over-panel__contents {
+        background-color: $s__over-panel__contents--background-color;
+        color: $s__over-panel__contents--text-color;
+        padding: $s__over-panel__contents--padding;
+    }
+
+    /*
+        iOS/OSX seem to apply mystery margins.
+    */
+    .over-panel,
+    .over-panel__contents {
+        margin: 0;
+    }
+
+    .over-panel__contents > * {
+            flex: 0 1 auto;
+        }
+
+    .over-panel__contents a {
+        color: $s__over-panel__contents--link-color;
+    }
+
+    .over-panel__contents a:hover,
+    .over-panel__contents a:active,
+    .over-panel__contents a:focus {
+        color: $s__over-panel__contents--link-color--alt;
+    }
+
+/* -----------------------------------------------------------------------------------------------*/
+
+
+/* ********************************************************************************************** */
+/* -- Enhanced layout --------------------------------------------------------------------------- */
+
+    .js-has--over-panel {
+
+        .over-panel {
+            width: auto;
+            flex: 1 0 auto;
+        }
+
+        .over-panel__contents {
+            display: flex;
+        }
+
+
+        //@media only screen and (max-width: ($s__over-panel--breakpoint--enhanced - $s__mq-1-em-px)) {
+        .js-cmr--narrow {
+            /*
+                1. Make sure the over-panel is on top.
+            */
+            .over-panel {
+                position: absolute; /* [1] */
+                left: 0;
+                //top: 0;
+                width: 100%;
+                ////z-index: $s__over-panel--z-index; /* [1] */
+            }
+
+
+            .over-panel-control {
+                display: inline-block !important
+            }
+
+
+            /*
+                This extra wrapper allows the content of the panel to be absolutely positioned so that the
+                container doesn't create a positioning context which would prevent the overlay from filling
+                the body.
+                The :target id needs to stay in actual position so the fall-back works, so everything
+                affected by the :target must come after or inside the element with the id, but we want to
+                allow the position of the controls to be as flexible as possible, so some trickery is
+                needed.
+
+
+                1. Make the over-panel invisible in a way that's transition-able but also removes from tab
+                   order.
+            */
+            .over-panel__contents {
+
+                position: absolute;
+                z-index: $s__over-panel__contents--z-index;
+                left: 0;
+                //top: $s__over-panel__control--height;
+                top: $s__over-panel__contents--offset-top;
+                width: 100%;
+                //overflow: auto; Not sure why I needed this.
+
+                visibility: hidden; /* [1] */
+                
+                flex-direction: column;
+            }
+
+
+            // Variable aliases for ease of comprehension:
+            $td: $s__over-panel--transition-duration;
+            $tf: $s__over-panel--transition-timing-function;
+
+
+
+            /* Fade effect: */
+
+            /*
+                2. Make the over-panel visible in a way that's transition-able.
+                1. This necessary to collapse the element in cases where the page content without
+                   the over-panel contents is shorter than the over-panel contents themselves.
+                   Take, for example, where short-ish page that's part of a large site, which therefore
+                   has a long menu. When the menu is revealed in the over-panel contents, the end result
+                   is higher than the page contents.
+                   Without these declarations, the page (with over-panel closed) renders with a
+                   scrollbar and what looks like mystery space at the bottom of the page (when in
+                   reality that space is just what's needed to display the over-panel contents).
+                   This could be confusing for users (it was confusing for me!) and makes the page look
+                   broken.
+                   So, collapsing the contents while hidden prevents this space from appearing until
+                   needed.
+            */
+            .over-panel__contents {
+                opacity: 0;
+                transform: scale(0);  /* [2] */
+            }
+
+            .over-panel--is-animating .over-panel__contents {
+                transition: opacity    $td  $tf,
+                            visibility 0s   $tf  $td,
+                            transform  0s   $tf  $td;
+            }
+
+            .over-panel--is-open .over-panel__contents {
+                visibility: visible;  /* [1] */
+                opacity: 1;
+                transform: scale(1);  /* [2] */
+
+                transition: opacity $td  $tf;
+            }
+
+
+            /*
+                1. These override button styles defined as part of StartCSS. I may consider making these
+                   customisable via more variables.
+                2. Ensure the control is above the overlay.
+            */
+            .over-panel-control {
+                display: block;
+                margin: 0;
+
+                padding-left: $s__over-panel--spacing * 2;
+                padding-right: $s__over-panel--spacing * 2;
+                padding-bottom: 0; /* 1 */
+                padding-top: 0; /* 1 */
+
+                border: 0;
+                border-radius: $s__over-panel__control--border-radius;
+
+                line-height: $s__over-panel__control--height;
+
+                text-decoration: none;
+                outline: 0;
+
+                box-shadow: none; /* 1 */
+
+                color: $s__over-panel__control--color;
+                background-color: $s__over-panel__control--background-color;
+
+                position: relative;
+                z-index: 0;
+            }
+
+
+            // This is to turn off Start-CSS's hover border:
+            .over-panel-control:hover,
+            .over-panel-control:active,
+            .over-panel-control:focus {
+                border: 0;
+            }
+
+            /*
+                1. Ensure the control is above the overlay.
+            */
+            .over-panel-control[aria-expanded="true"] {
+                z-index: 99999; /* [1] */
+            }
+
+            .over-panel-control:hover,
+            .over-panel-control:active,
+            .over-panel-control[aria-expanded="true"] {
+                color: $s__over-panel__control--color--alt;
+                background-color: $s__over-panel__control--background-color--alt;
+            }
+
+            .over-panel-control:focus {
+                color: $s__over-panel__control--color--alt;
+                background-color: $s__over-panel__control--background-color--alt2;
+            }
+
+            .over-panel-control .icon--is-open,
+            .over-panel-control[aria-expanded="true"] .icon--is-closed {
+                display: none;
+            }
+
+            .over-panel-control .icon--is-closed,
+            .over-panel-control[aria-expanded="true"] .icon--is-open {
+                display: inline;
+            }
+
+
+            /*
+                1. This is the obvious place for this rule but there's a weird Chrome bug that means
+                   the position/dimensions are ignore if it's initially hidden.
+                   Moving to the is-open declaration fixes this, as it only gets applied when it's
+                   visible.
+                2. Using absolute instead so that it still collapses, preventing it unintentionally
+                   overlapping anything.
+            */
+            .over-panel__overlay {
+                display: block;
+                //position: fixed; /* [1] */
+                position: absolute; /* [2] */
+                z-index: -1;
+                left: 0;
+                top: 0;
+                width: 0;
+                height: 0;
+                padding: 0;
+                margin: 0;
+                border: 0;
+                text-decoration: none;
+
+                visibility: hidden;
+
+
+                background: $s__over-panel__overlay--background-color;
+                opacity: 0;
+
+                transition: $s__over-panel__overlay-transition;
+            }
+
+            /* Bring the overlay to the front and fade in when there's an over-panel target: */
+            .over-panel--is-open .over-panel__overlay {
+                position: fixed;
+                right: 0;
+                bottom: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                opacity: $s__over-panel__overlay-opacity;
+
+                visibility: visible;
+            }
+
+            .over-panel__overlay:hover,
+            .over-panel__overlay:active,
+            .over-panel__overlay:focus {
+                border: 0;
+                text-decoration: none;
+                background: $s__over-panel__overlay--background-color;
+            }
+        }
+    }
+
+/* ---------------------------------------------------------------------------------------------- */

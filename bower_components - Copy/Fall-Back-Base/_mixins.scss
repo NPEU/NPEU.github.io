@@ -1,0 +1,38 @@
+@mixin fallback-rem($property, $values, $important: false) {
+    $pxValues: unquote("");
+    $remValues: unquote("");
+    $val0: true;
+    @each $value in $values {
+        @if $value == auto {
+            $pxValues: append($pxValues, $value);
+            $remValues: append($remValues, $value);
+            $val0: false;
+        } @elseif $value == 0 {
+            $pxValues: append($pxValues, $value);
+            $remValues: append($remValues, $value);
+        } @else {
+            $pxValues: append($pxValues, $value);
+            $remValues: append($remValues, ($value / $fallback--base-font-size) * 1rem);
+            $val0: false;
+        }
+    }
+	
+	@if $important == true {
+        $pxValues: append($pxValues,  !important);
+        @if $val0 == false {
+            $remValues: append($remValues,  !important);
+        }
+	}
+	
+    #{$property}:$pxValues;
+    @if $val0 == false {
+        #{$property}:$remValues;
+    }
+}
+
+
+// E.g.
+// @include calc(padding-bottom, '#{$var1} - #{$var2}');
+@mixin calc($property, $expression) {
+    #{$property}: calc(#{$expression});
+}

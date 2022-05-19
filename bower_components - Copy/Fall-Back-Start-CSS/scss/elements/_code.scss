@@ -1,0 +1,17 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: code
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    1. Correct the inheritance and scaling of font size in all browsers. (N)
+    2. Address odd `em`-unit font size rendering in all browsers. (N)
+    3. Prevent the element increasing the line-height of the parent.
+*/
+#{$s__namespace}code {
+    font-family: $s__monospace-font-family, monospace; /* 1 */
+    font-size: 1em; /* 2 */
+    line-height: 0; /* 3 */
+}

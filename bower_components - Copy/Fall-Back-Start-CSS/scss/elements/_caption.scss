@@ -1,0 +1,20 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: caption
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+#{$s__namespace}caption {
+    display: table-caption;
+
+    padding-top: $s__caption-padding;
+    padding-right: $s__caption-padding;
+    padding-bottom: $s__caption-padding;
+    padding-left: $s__caption-padding;
+
+    color: $s__caption-text-color;
+    background-color: $s__caption-background-color;
+
+    font-weight: bold;
+}

@@ -1,0 +1,30 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: fieldset
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    Fieldsets and legends can be difficult to style so I'm keeping their appearance basically the
+    same as the default - just a bit of theming.
+    More info here: https://thatemil.com/blog/2015/01/03/reset-your-fieldset/
+*/
+#{$s__namespace}fieldset {
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
+
+    min-width: 0;
+
+    @include s__bordered($s__fieldset-padding, $s__fieldset-border-width);
+}
+
+    #{$s__namespace}fieldset fieldset {
+        margin: 0;
+
+        padding: 0;
+
+        border-width: 0;
+    }
+        #{$s__namespace}fieldset fieldset::after {
+            display: none;
+        }

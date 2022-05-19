@@ -1,0 +1,28 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: video
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    1. Allow video to center if container larger than video.
+*/
+#{$s__namespace}video {
+    display: block; /* 1 */
+
+    max-width: 100%;
+
+    height: auto;
+
+    margin: 0 auto; /* 1 */
+
+    background-color: $s__video-background-color;
+}
+
+@if $s__use-focus-shadow {
+    #{$s__namespace}video:focus {
+        outline: 0;
+        box-shadow: $s__outline-shadow;
+    }
+}

@@ -1,0 +1,118 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: a
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    a:link a:visited a:hover a:active a:focus
+
+    1. Remove the gaps in underlines in iOS 8+ and Safari 8+.
+    2. Remove the tapping delay from clickable elements .
+*/
+#{$s__namespace}a[href] {
+
+    color: $s__anchor-text-color;
+
+    //text-decoration: $s__anchor-text-decoration;
+    text-decoration: underline;
+
+
+    text-decoration-line:      underline;
+    text-decoration-style:     $s__anchor-line-style;
+    text-decoration-thickness: $s__anchor-line-width;
+    //text-underline-offset:     $s__anchor-line-offset;
+
+    -webkit-text-decoration-skip: objects; /* 1 */
+
+    -ms-touch-action: manipulation; /* 2 (IE10) */
+    touch-action: manipulation; /* 2 */
+
+    /*
+        1. For older browsers.
+    */
+    &:hover,
+    &:active {
+        //box-shadow:      0px 0.5px 0px 0px currentColor; /* [1] */
+        text-decoration: none;
+
+        @if $s__anchor-text-color--alt != $s__anchor-text-color {
+            color: $s__anchor-text-color--alt;
+        }
+
+        // @TODO - maybe support filters here too, e.g. filter: brightness(0.5);
+
+    }
+
+    @supports(text-decoration-line: underline) {
+        &:hover,
+        &:active {
+            text-decoration: underline $s__anchor-line-style--alt currentColor $s__anchor-line-width; /* [1] */
+            box-shadow: none;
+
+            //text-underline-offset: $s__anchor-line-offset--alt;
+            //text-decoration-style: $s__anchor-text-decoration-style--alt;
+
+            @if $s__anchor-text-color--alt != $s__anchor-text-color {
+                color: $s__anchor-text-color--alt;
+            }
+        }
+    }
+
+    /*
+        1. Make sure focus is still visible in Forced Colour modes.
+           (https://www.sarasoueidan.com/blog/focus-indicators/)
+    */
+    @if $s__use-focus-shadow {
+
+        &:focus {
+            outline: 1px solid transparent; /* [1] */
+            box-shadow: $s__outline-shadow;
+        }
+    }
+
+    // FF appears to calculate thickness very differently form Chrome.
+    /*@supports (-moz-appearance:none) {
+
+        text-decoration-thickness: $s__anchor-line-width - 0.04em;
+        //text-underline-offset:     $s__anchor-line-offset + 0.1em;
+
+        &:hover,
+        &:active {
+            text-decoration-thickness: 0.1em;
+        }
+    }*/
+
+    @media #{$s__ie10-11} {
+        & svg {
+            vertical-align: text-bottom;
+        }
+    }
+}
+
+/*
+    Sometimes anchors can be used without an href, and may contain icons etc, so make sure styles
+    are applied to ALL anchors where appropriate.
+*/
+#{$s__namespace}a {
+    // Give link icons some space unless they're the only child.
+    & svg:not(:only-child) {
+        margin-left: 0.25em;
+    }
+}
+
+@if $s__anchor-add-external-link-indicator == true {
+
+    #{$s__namespace}a[href][rel~="external"] {
+        padding-right: $s__anchor-external-link-indicator-padding;
+        background-image: linear-gradient(45deg, transparent 65%, $s__anchor-text-color 65%);
+        background-repeat: no-repeat;
+        background-position: right 0.4em bottom 0.4em;
+        background-size: 0.6em 0.6em;
+    }
+
+    #{$s__namespace}a[href][rel~="external"]:hover {
+        background-image: linear-gradient(45deg, transparent 65%, $s__anchor-text-color--alt 65%);
+    }
+}

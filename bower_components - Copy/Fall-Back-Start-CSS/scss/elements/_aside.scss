@@ -1,0 +1,17 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: aside
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+#{$s__namespace}aside {
+    display: block;
+
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
+
+    //padding: $s__aside-padding;
+
+    //background-color: $s__aside-background-color;
+    //color: $s__aside-text-color;
+}

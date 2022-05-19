@@ -1,0 +1,52 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS TOKENS
+    ============================================================================================
+
+    Fall-Back is designed for use with the basic
+    [CSS Mustard Cut](https://github.com/Fall-Back/CSS-Mustard-Cut)
+
+    This determines a browser support base of:
+
+    IE 9+, FF 8+, Opera 12, [Chrome 29+, Android ~4.4+]
+    Chrome 29+, Opera 16+, Safari 6.1+, iOS 7+, Android ~4.4+
+
+
+    Any double-classing (e.g. `.class.class`) is deliberate and intended to increase specifity.
+    This allows any applicable Start-CSS declarations to be overidden.
+    E.g. `.{pattern} .{pattern}__child` would `a[href]`, but just `.{pattern}` wouldn't, so we use
+    `.{pattern}.{pattren}`
+
+    https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
+
+|-------------------------------------------------------------------------------------------------*/
+
+// Consider:
+//$s__base-font-family:       -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif !default;
+// https://bitsofco.de/the-new-system-font-stack/ https://github.com/necolas/normalize.css/issues/665
+
+$s__base-font-family:        'Lato', sans-serif !default;
+$s__monospace-font-family:    monospace !default;
+
+
+$s__root-font-size:          10px !default; // 16px
+$s__base-font-size:          16px !default;
+$s__base-line-height:        24px !default; // 1.25
+
+$s__base-rem-space-unit:     ($s__base-line-height / $s__root-font-size) * 1rem;
+
+
+
+$s__breakpoint--enhanced:    50em !default;
+
+
+
+$s__base-ui-color:           #247BA0 !default;
+
+$s__base-background-color:   #fff !default;
+$s__base-text-color:         #333 !default;
+$s__base-text-color-inverse: #fff !default;
+
+// This is small so it's still visible in layout scenarios where overflow: hidden is used.
+$s__outline-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black !default;
+$s__outline-shadow-inset: 0 0 0 0.1rem white inset, 0 0 0 0.2rem black inset !default;

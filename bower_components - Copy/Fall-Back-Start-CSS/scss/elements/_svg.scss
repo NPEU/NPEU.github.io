@@ -1,0 +1,27 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: svg
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    1. Change the fill color to match the text color in all browsers.
+       (needs more testing)
+       
+    2. iOS7 (at least) adds a mystery top margin.
+*/
+#{$s__namespace}svg {
+    vertical-align: $s__media-element-vertical-align;
+
+    fill: currentColor; /* 1 */
+    
+    margin-top: 0 /* 2 */
+}
+
+/*
+    1. Correct overflow not hidden in IE 9-11.
+*/
+#{$s__namespace}svg:not(:root) {
+  overflow: hidden; /* 1 */
+}

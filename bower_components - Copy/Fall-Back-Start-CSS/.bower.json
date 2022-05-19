@@ -1,0 +1,25 @@
+{
+  "name": "Start-CSS",
+  "homepage": "https://github.com/Fall-Back/Start-CSS",
+  "authors": [
+    "Andy Kirk <andy@andykirk.net>"
+  ],
+  "description": "A CSS starting point",
+  "main": "dist/_start.scss",
+  "ignore": [],
+  "keywords": [
+    "fallback",
+    "css"
+  ],
+  "license": "MIT",
+  "dependencies": {},
+  "_release": "435ed1b781",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "435ed1b781cbc3020e3709101c0a599619efc8b3"
+  },
+  "_source": "https://github.com/Fall-Back/Start-CSS.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/Fall-Back/Start-CSS.git"
+}

@@ -1,0 +1,19 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: optgroup
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    1. The default cannot safely be changed in Chrome and Safari on OS X. ?? Not sure what this means now.
+*/
+#{$s__namespace}optgroup {
+    color: $s__optgroup-text-color;
+    background-color: $s__optgroup-background-color;
+
+    font-weight: bold; /* 1 */
+    font-style: inherit;
+    font-size: inherit;
+    font-family: inherit;
+}

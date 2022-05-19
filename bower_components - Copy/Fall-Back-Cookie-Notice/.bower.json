@@ -1,0 +1,30 @@
+{
+  "name": "Fall-Back-Cookie-Notice",
+  "homepage": "https://github.com/Fall-Back/Cookie-Notice",
+  "authors": [
+    "Andy Kirk <andy.kirk@gridlight-design.co.uk>"
+  ],
+  "description": "A simple pattern to include a dismissable cookie notice.",
+  "main": "_cookie-notice.scss",
+  "ignore": [],
+  "keywords": [
+    "fallback",
+    "css",
+    "js",
+    "cookies",
+    "cookie notice"
+  ],
+  "license": "Apache",
+  "dependencies": {
+    "Fall-Back-Base": "https://github.com/Fall-Back/Base.git"
+  },
+  "_release": "8003f6e0a1",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "8003f6e0a142c4b5fe78d6a5085589f093a4a0cf"
+  },
+  "_source": "https://github.com/Fall-Back/Cookie-Notice.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/Fall-Back/Cookie-Notice.git"
+}

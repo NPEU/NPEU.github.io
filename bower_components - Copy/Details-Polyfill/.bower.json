@@ -1,0 +1,14 @@
+{
+  "name": "Details-Polyfill",
+  "homepage": "https://github.com/javan/details-element-polyfill",
+  "version": "2.4.0",
+  "_release": "2.4.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.4.0",
+    "commit": "42286be687c77a84ecd4d5218fdb4f8526ed662e"
+  },
+  "_source": "https://github.com/javan/details-element-polyfill.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/javan/details-element-polyfill.git"
+}

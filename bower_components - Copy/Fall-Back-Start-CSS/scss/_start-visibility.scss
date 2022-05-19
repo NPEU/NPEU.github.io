@@ -1,0 +1,100 @@
+/*! Start-CSS Visibility. See SCSS file for documentation. */
+/*-------------------------------------------------------------------------------------------------|
+
+    VISIBILITY
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+
+/*
+    @DEPRECATED - use the clearer method below:
+    CSS only message
+
+[data-css-only="true"] {
+    display: none;
+}
+
+/*
+    New method hide stuff if CSS has loaded:
+
+[data-if-css="hide"] {
+    display: none;
+}
+
+/*
+    This method duplicates [hidden="false"][aria-hidden="false"] in accessibility.scss, but I'm
+    thinking of maybe deprecating that.
+
+[data-if-css="visually-hide"] {
+    clip: rect(0 0 0 0);
+    position: absolute;
+
+    display: inline;
+    /*border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    width: 1px;
+}
+
+*/
+
+/*
+    Method hide stuff if CSS has loaded:
+*/
+[data-hidden="if-css"] {
+    display: none !important;
+}
+
+
+/*
+    Method hide stuff if printing:
+*/
+@media print {
+    [data-hidden="if-print"] {
+        display: none !important;
+    }
+}
+
+/*
+    Method hide stuff if NOT printing:
+*/
+@media not print {
+    [data-hidden="if-not-print"] {
+        display: none !important;
+    }
+}
+
+
+/*
+    Address `[hidden]` styling not present in IE 8/9/10. (N)
+*/
+[hidden] {
+    display: none;
+}
+
+/*
+    Visually hidden.
+    https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html
+
+    Note previous Sanitize CSS option using [aria-hidden="false" i][hidden] causes problems on NVDA
+    on Chrome (at least).
+    For example take a pagination link:
+    <a href="#"><span hidden aria-hidden="false>Page </span>1</a>
+    NVDA announces "link page link 1". Annoying. This only happens with continuous reading but it's
+    still a problem.
+*/
+[data-hidden="visually"]:not(:focus):not(:active) {
+    border: 0 !important;
+    clip: rect(1px, 1px, 1px, 1px) !important;
+    -webkit-clip-path: inset(50%) !important;
+            clip-path: inset(50%) !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+    white-space: nowrap !important;
+}

@@ -1,0 +1,26 @@
+/*-------------------------------------------------------------------------------------------------|
+
+    START-CSS ELEMENT: ol
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+
+/*
+    1. Either of these will make lists behave properly next to floated items.
+       (https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists)
+       a. This causes problems with some decoration. E.g. if the last element in the list is a link,
+          bottom borders get cropped, so using b instead.
+       b. `flow-root` is the better option but support is low, so using table.
+          Edge breaks if flow-root is applied, even though it's meant to be ignored.
+          -moz-box / flex causes numbering to mess up (always 0) on FF8-50.
+          This is the only thing that works in early FF. However, width is content-width, not
+          available width so any 'boxy' decoration on the list might look weird.
+          Flex based options cause other problems, i.e. not wrapping properly.
+
+*/
+#{$s__namespace}ol {
+    @include s__margins($s__base-rem-space-unit, $s__margin-type);
+
+    //overflow: hidden; /* 1a */
+    display: table; /* 1b */
+}
