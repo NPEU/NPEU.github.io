@@ -27,9 +27,11 @@
 //$themes: map-merge($themes, $theme-map);
 /**/
 
-$primary-color   : #5F4776;
+$primary-color   : #5d4777;
 //$primary-color : #5c6dab;
+//$primary-color : #033963;
 $secondary-color : #b9975b;
+//$secondary-color : #033963;
 //$secondary-color : #ff9e1b;
 $neutral-color   : #8e8279;
 
@@ -409,6 +411,9 @@ $s__search-form__submit--background-color--alt: hsl(var(--t-primary-color-h), va
 // Page Header is necessary but it doesn't fit nicely into another category:
 @import "special-patterns/_page-header.scss";
 
+// Page Footer is necessary but it doesn't fit nicely into another category:
+@import "special-patterns/_page-footer.scss";
+
 // Page Sidebar is necessary but it doesn't fit nicely into another category:
 @import "special-patterns/_page-sidebar.scss";
 
@@ -429,6 +434,7 @@ $s__search-form__submit--background-color--alt: hsl(var(--t-primary-color-h), va
 @import "utility-patterns/_fill-width.scss";
 
 @import "utility-patterns/_image-cover.scss";
+@import "utility-patterns/_image-natural.scss";
 
 @import "utility-patterns/_text-align.scss";
 

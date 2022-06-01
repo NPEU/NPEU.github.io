@@ -426,6 +426,7 @@
         }
     </style>
     {% else %}
+    {% comment %}<!--
     <style>
         :root {
             --t-primary-color: #5d4777;
@@ -453,6 +454,7 @@
             --t-secondary-fore-text-color: var(--t-text-color-inverse);
         }
     </style>
+    -->{% endcomment %}
     {% endif %}
 </head>
 <body id="top" role="document" class="{{ project_data.theme_class }}" data-layout="{{ page.layout_name }}">

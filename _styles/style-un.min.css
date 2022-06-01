@@ -768,7 +768,7 @@ caption {
   padding-bottom: 1.2rem;
   padding-left: 1.2rem;
   color: #fff;
-  background-color: rgba(93, 71, 119, 0.7);
+  background-color: rgba(95, 71, 118, 0.7);
   font-weight: bold;
 }
 
@@ -815,7 +815,7 @@ details {
   margin-bottom: 2.4rem;
   border-width: 0.1rem;
   border-style: solid;
-  border-color: #5d4777;
+  border-color: #5F4776;
   padding: calc(2.4rem - 0.1rem);
   /*
     @if $s__use-last-child-margin-zero {
@@ -947,7 +947,7 @@ fieldset {
   min-width: 0;
   border-width: 0.1rem;
   border-style: solid;
-  border-color: #5d4777;
+  border-color: #5F4776;
   padding: calc(2.4rem - 0.1rem);
   /*
     @if $s__use-last-child-margin-zero {
@@ -1299,6 +1299,7 @@ img .gm-style {
     Special treatment for images inside links.
 */
 a[href] img {
+  border-top: 0;
   border-left: 0;
   border-right: 0;
   border-bottom: 0.1875em solid currentColor;
@@ -1306,15 +1307,8 @@ a[href] img {
 }
 
 a[href] img:active, a[href] img:hover {
-  border-bottom: 0.375em solid transparent;
+  border-bottom: 0.375em double currentColor;
   padding-bottom: 0;
-}
-
-@supports (text-decoration-line: underline) {
-  a[href] img:active, a[href] img:hover {
-    border-bottom: 0.375em double currentColor;
-    padding-bottom: 0;
-  }
 }
 
 /*
@@ -1514,7 +1508,7 @@ _:-moz-any-link, :root [type="file"] {
 }
 
 _:-ms-input-placeholder, :root [type="file"] {
-  background-color: #5d4777;
+  background-color: #5F4776;
 }
 
 @media screen and (min-width: 0\0) and (min-resolution: 72dpi) {
@@ -1830,7 +1824,7 @@ option {
 }
 
 option:hover {
-  background-color: #c4b6d4;
+  background-color: #c5b6d3;
   color: #111;
 }
 
@@ -2296,7 +2290,7 @@ table {
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
   background-color: transparent;
-  border: 0.1rem solid #5d4777;
+  border: 0.1rem solid #5F4776;
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -2327,7 +2321,7 @@ td {
   padding-right: 1.2rem;
   padding-bottom: 1.2rem;
   padding-left: 1.2rem;
-  border: 0.1rem solid #5d4777;
+  border: 0.1rem solid #5F4776;
   background-color: transparent;
 }
 
@@ -2422,7 +2416,7 @@ th {
   padding-right: 1.2rem;
   padding-bottom: 1.2rem;
   padding-left: 1.2rem;
-  border: 0.1rem solid #5d4777;
+  border: 0.1rem solid #5F4776;
   background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-light));
 }
 
@@ -2514,7 +2508,7 @@ video:focus {
 ::-moz-selection,
 ::selection {
   color: #fff;
-  background-color: #aa96c1;
+  background-color: #ab96c0;
   text-shadow: none;
 }
 
@@ -3075,10 +3069,10 @@ button, input, label, select, textarea {
   --t-text-color-inverse: #fff;
   --t-light-adjust: 0.7;
   --t-very-light-adjust: 0.92;
-  --t-dark-adjust: -0.34;
-  --t-very-dark-adjust: -0.52;
-  --t-primary-color: #5d4777;
-  --t-primary-color-h: 268;
+  --t-dark-adjust: -0.23;
+  --t-very-dark-adjust: -0.36;
+  --t-primary-color: #5F4776;
+  --t-primary-color-h: 271;
   --t-primary-color-s: 25%;
   --t-primary-color-l: 37%;
   --t-primary-color-l-copy: 37%;
@@ -3140,32 +3134,32 @@ button, input, label, select, textarea {
     */
   --t-primary-color-l--very-light: 95%;
   --t-primary-color-l--light: 81%;
-  --t-primary-color-l--dark: 24%;
-  --t-primary-color-l--very-dark: 18%;
+  --t-primary-color-l--dark: 23%;
+  --t-primary-color-l--very-dark: 14%;
   --t-secondary-color-l--very-light: 96%;
   --t-secondary-color-l--light: 86%;
-  --t-secondary-color-l--dark: 36%;
-  --t-secondary-color-l--very-dark: 26%;
+  --t-secondary-color-l--dark: 43%;
+  --t-secondary-color-l--very-dark: 37%;
   --t-neutral-color-l--very-light: 96%;
   --t-neutral-color-l--light: 86%;
-  --t-neutral-color-l--dark: 34%;
-  --t-neutral-color-l--very-dark: 25%;
+  --t-neutral-color-l--dark: 41%;
+  --t-neutral-color-l--very-dark: 35%;
   --t-notice-color-l--very-light: 98%;
   --t-notice-color-l--light: 94%;
-  --t-notice-color-l--dark: 53%;
-  --t-notice-color-l--very-dark: 38%;
+  --t-notice-color-l--dark: 75%;
+  --t-notice-color-l--very-dark: 73%;
   --t-success-color-l--very-light: 97%;
   --t-success-color-l--light: 90%;
-  --t-success-color-l--dark: 44%;
-  --t-success-color-l--very-dark: 32%;
+  --t-success-color-l--dark: 59%;
+  --t-success-color-l--very-dark: 55%;
   --t-warning-color-l--very-light: 98%;
   --t-warning-color-l--light: 92%;
-  --t-warning-color-l--dark: 48%;
-  --t-warning-color-l--very-dark: 35%;
+  --t-warning-color-l--dark: 67%;
+  --t-warning-color-l--very-dark: 63%;
   --t-error-color-l--very-light: 95%;
   --t-error-color-l--light: 82%;
   --t-error-color-l--dark: 26%;
-  --t-error-color-l--very-dark: 19%;
+  --t-error-color-l--very-dark: 18%;
   /**/
 }
 
@@ -7106,12 +7100,10 @@ a[href].c-cta--has-icon .icon {
   flex: 1 0 50%;
   display: flex;
   flex-direction: column;
-  min-width: max-content;
 }
 
 .c-sign.c-sign--span-all {
   flex-basis: 100%;
-  min-width: auto;
 }
 
 .c-sign .c-sign--padding--xs,
@@ -7219,21 +7211,13 @@ a[href].c-cta--has-icon .icon {
   /* 1 */
 }
 
-.c-sign .c-sign__text--xl,
-.c-sign .c-sign__text--extra-large {
-  font-family: 'Nunito', sans-serif;
-  font-size: 2.5em;
-}
-
-.c-sign .c-sign__text--l,
 .c-sign .c-sign__text--large {
   font-family: 'Nunito', sans-serif;
-  font-size: 1.875em;
+  font-size: 1.5em;
 }
 
-.c-sign .c-sign__text--s,
 .c-sign .c-sign__text--small {
-  font-size: 81.25%;
+  font-size: 0.875em;
 }
 
 .c-sign .c-sign__centered-content {
@@ -7331,6 +7315,12 @@ a[href].c-cta--has-icon .icon {
   margin-right: 0.3em;
 }
 
+@supports (text-decoration-line: underline) {
+  .c-utilitext.c-utilitext a[href]:hover, .c-utilitext.c-utilitext a[href]:active {
+    text-decoration-style: dashed;
+  }
+}
+
 .c-utilitext.c-utilitext--skiplinks {
   position: relative;
 }
@@ -7383,13 +7373,8 @@ a[href].c-cta--has-icon .icon {
   text-decoration-thickness: 0.0625em;
   -webkit-text-decoration-skip: objects;
   /* 1 */
-  -ms-touch-action: manipulation;
-  /* 2 (IE10) */
   touch-action: manipulation;
   /* 2 */
-  /*
-            1. For older browsers.
-        */
   /*
             1. Make sure focus is still visible in Forced Colour modes.
                (https://www.sarasoueidan.com/blog/focus-indicators/)
@@ -7398,12 +7383,11 @@ a[href].c-cta--has-icon .icon {
 
 .c-utilitext.c-utilitext button:hover, .c-utilitext.c-utilitext button:active {
   text-decoration: none;
-  color: inherit;
 }
 
 @supports (text-decoration-line: underline) {
   .c-utilitext.c-utilitext button:hover, .c-utilitext.c-utilitext button:active {
-    text-decoration: underline double currentColor 0.0625em;
+    text-decoration: underline dashed currentColor 0.0625em;
     /* [1] */
     box-shadow: none;
   }
@@ -10750,7 +10734,7 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 }
 
 .user-content.user-content.user-content a[href][rel~="external"][data-contains~="image"] img {
-  clip-path: polygon(0 0, 100% 0%, calc(100% - 1.1rem) 0, 100% 1.1rem, 100% 100%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0%, caLc(100% - 1.1rem) 0, 100% 1.1rem, 100% 100%, 0% 100%);
 }
 
 .user-content.user-content.user-content a[href][rel~="external"][data-contains~="image"] span {
@@ -11355,110 +11339,6 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 }
 
 /*
-    Fill and area with an image.
-*/
-.u-image-natural {
-  /*
-        1. For positioned pseudo elements, e.g. External indicator.
-        2. For IE11
-    */
-  /*&[href][rel~="external"] {
-        background-position: right 0em top 0em;
-
-        & .u-image-natural__image {
-            clip-path: polygon(0 0, 100% 0%, unquote('calc(100% - 1.2rem)') 0, 100% 1.2rem, 100% 100%, 0% 100%);
-        }
-    }*/
-}
-
-.u-image-natural.u-image-natural {
-  display: inline-block;
-  vertical-align: middle;
-  position: relative;
-  /* [1] */
-  max-width: 100%;
-  /* [2] */
-}
-
-.u-image-natural .u-image-natural__image {
-  /*
-            1. This is to provide positioning context for the ::after pseudo-element.
-            2. This is so a broken image is still 100%.
-            3. Center in container.
-        */
-  position: relative;
-  /* [1] */
-  display: block;
-  /* [2] */
-  height: auto;
-  width: auto;
-  max-width: 100%;
-  border-style: none;
-  background-color: transparent;
-  margin: 0 auto;
-  /* [3] */
-  padding: 0;
-}
-
-a[href].u-image-natural {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  position: relative;
-}
-
-a[href].u-image-natural:hover, a[href].u-image-natural:active, a[href].u-image-natural:focus {
-  border: 0;
-}
-
-a[href].u-image-natural:hover::before, a[href].u-image-natural:active::before, a[href].u-image-natural:focus::before {
-  content: "";
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  box-shadow: 0 0 0 0.6rem rgba(0, 0, 0, 0.2) inset;
-  z-index: 1;
-}
-
-/*
-a[href][rel~="external"].u-image-natural::after {
-    display: none;
-}
-*/
-a[href][rel~="external"].u-image-natural:hover::after,
-a[href][rel~="external"].u-image-natural:active::after,
-a[href][rel~="external"].u-image-natural:focus::after {
-  content: "";
-  display: block;
-  position: absolute;
-  right: 0.75em;
-  top: 0.75em;
-  width: 1.25em;
-  height: 1.25em;
-  display: block;
-  margin: 0;
-  background: linear-gradient(45deg, transparent 50%, rgba(0, 0, 0, 0.6) 50%);
-}
-
-/*
-    IE10-11
-
-    1. I can't figure this one out, but some images refuse to be limited to 100% of their
-       container (see https://dev.npeu.ox.ac.uk/toast podcast image) when viewport is less than
-       body max-width.
-       This hack takes into account the scrollbar (17px).
-*/
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-  .u-image-natural.u-image-natural img {
-    max-width: calc(100vw - 17px);
-    /* [1] */
-  }
-}
-
-/*
     Text alignment.
 
     @To Do: allow for responsive variations.
@@ -11606,7 +11486,6 @@ script:first-child + * {
   display: flex;
   flex-wrap: wrap;
   margin: 0;
-  max-width: 67rem;
 }
 
 .dl-2-col dt {
@@ -11625,11 +11504,6 @@ script:first-child + * {
   .dl-2-col {
     display: block;
   }
-}
-
-/*---------------------*/
-.u-negate-space-below {
-  margin-bottom: -2.4rem !important;
 }
 
 /*---------------------*/

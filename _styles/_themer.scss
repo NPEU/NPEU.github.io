@@ -14,8 +14,8 @@ $secondary-text-color : s__set_color_for_background($secondary-color, $s__base-t
 $neutral-color        : false !default; // Must be declared above StartCSS include
 $neutral-text-color   : s__set_color_for_background($neutral-color, $s__base-text-color-inverse, $s__base-text-color);
 
-$notice-color        : false !default; // Must be declared above StartCSS include
-$notice-text-color   : s__set_color_for_background($notice-color, $s__base-text-color-inverse, $s__base-text-color);
+$notice-color         : false !default; // Must be declared above StartCSS include
+$notice-text-color    : s__set_color_for_background($notice-color, $s__base-text-color-inverse, $s__base-text-color);
 
 $success-color        : false !default; // Must be declared above StartCSS include
 $success-text-color   : s__set_color_for_background($success-color, $s__base-text-color-inverse, $s__base-text-color);
@@ -23,13 +23,13 @@ $success-text-color   : s__set_color_for_background($success-color, $s__base-tex
 $warning-color        : false !default; // Must be declared above StartCSS include
 $warning-text-color   : s__set_color_for_background($warning-color, $s__base-text-color-inverse, $s__base-text-color);
 
-$error-color        : false !default; // Must be declared above StartCSS include
-$error-text-color   : s__set_color_for_background($error-color, $s__base-text-color-inverse, $s__base-text-color);
+$error-color          : false !default; // Must be declared above StartCSS include
+$error-text-color     : s__set_color_for_background($error-color, $s__base-text-color-inverse, $s__base-text-color);
 
 $light-adjust: 0.7;
 $very-light-adjust: 0.92;
-$dark-adjust: -0.23;
-$very-dark-adjust: -0.36;
+$dark-adjust: -0.34;
+$very-dark-adjust: -0.52;
 
 
 //@debug #{$primary-text-color};
@@ -53,7 +53,18 @@ $very-dark-adjust: -0.36;
 */
 
 @function adjust_lightness($value, $adjustment) {
-    $t: round(s__strip-unit($value) + ((100 - s__strip-unit($value)) * $adjustment));
+    $t: 0;
+    $v: s__strip-unit($value);
+    $r: 100 - $v;
+    
+    //@debug "#{$v}, #{$adjustment}, #{$r}";
+
+    @if $adjustment > 0 {
+        $t: round($v + ($r * $adjustment));
+    } @else {
+        $t: round($v - ($v * -$adjustment));
+    }
+
     @return $t * 1%;
 };
 
@@ -64,7 +75,7 @@ $very-dark-adjust: -0.36;
     --t-bg-color-s: 0%;
     --t-bg-color-l: 100%;
     --t-bg-color-l-copy: 100%;
-    
+
     --t-text-color: #{$s__base-text-color};
     --t-text-color-inverse: #{$s__base-text-color-inverse};
 
@@ -127,7 +138,7 @@ $very-dark-adjust: -0.36;
     --t-notice-color-l: #{$notice-color-l};
     --t-notice-color-l-copy: #{$notice-color-l}; /* 1 */
     --t-notice-fore-text-color: #{$notice-text-color}; /* SASS would generate this from the base colour. */
-    
+
     $success-color-l: round(lightness($success-color));
     --t-success-color: #{$success-color};
     --t-success-color-h: #{s__strip-unit(round(hue($success-color)))};
@@ -156,9 +167,9 @@ $very-dark-adjust: -0.36;
         Without being able to perform a calc in the hsl function (grrr IE11 even with polyfill) we
         need to create adjusted -l values in SASS (stylesheet) and/or php (on-page themer)
         Using SASS to perform the calculations here.
-    */   
+    */
 
-   
+
     --t-primary-color-l--very-light: #{adjust_lightness($primary-color-l, $very-light-adjust)};
     --t-primary-color-l--light: #{adjust_lightness($primary-color-l, $light-adjust)};
     --t-primary-color-l--dark: #{adjust_lightness($primary-color-l, $dark-adjust)};
@@ -173,28 +184,28 @@ $very-dark-adjust: -0.36;
     --t-neutral-color-l--light: #{adjust_lightness($neutral-color-l, $light-adjust)};
     --t-neutral-color-l--dark: #{adjust_lightness($neutral-color-l, $dark-adjust)};
     --t-neutral-color-l--very-dark: #{adjust_lightness($neutral-color-l, $very-dark-adjust)};
-    
-        
+
+
     --t-notice-color-l--very-light: #{adjust_lightness($notice-color-l, $very-light-adjust)};
     --t-notice-color-l--light: #{adjust_lightness($notice-color-l, $light-adjust)};
     --t-notice-color-l--dark: #{adjust_lightness($notice-color-l, $dark-adjust)};
     --t-notice-color-l--very-dark: #{adjust_lightness($notice-color-l, $very-dark-adjust)};
-    
+
     --t-success-color-l--very-light: #{adjust_lightness($success-color-l, $very-light-adjust)};
     --t-success-color-l--light: #{adjust_lightness($success-color-l, $light-adjust)};
     --t-success-color-l--dark: #{adjust_lightness($success-color-l, $dark-adjust)};
     --t-success-color-l--very-dark: #{adjust_lightness($success-color-l, $very-dark-adjust)};
-    
+
     --t-warning-color-l--very-light: #{adjust_lightness($warning-color-l, $very-light-adjust)};
     --t-warning-color-l--light: #{adjust_lightness($warning-color-l, $light-adjust)};
     --t-warning-color-l--dark: #{adjust_lightness($warning-color-l, $dark-adjust)};
     --t-warning-color-l--very-dark: #{adjust_lightness($warning-color-l, $very-dark-adjust)};
-    
+
     --t-error-color-l--very-light: #{adjust_lightness($error-color-l, $very-light-adjust)};
     --t-error-color-l--light: #{adjust_lightness($error-color-l, $light-adjust)};
     --t-error-color-l--dark: #{adjust_lightness($error-color-l, $dark-adjust)};
     --t-error-color-l--very-dark: #{adjust_lightness($error-color-l, $very-dark-adjust)};
-    
+
     //--t-primary-color-l--very-light: 95%;
     //--t-primary-color-l--light: 81%;
     //--t-primary-color-l--dark: 26%;

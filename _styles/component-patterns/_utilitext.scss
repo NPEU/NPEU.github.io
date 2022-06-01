@@ -27,12 +27,12 @@ $utilitext--text-color: currentColor !default;
                 margin-right: 0.3em;
             }
 
-            @supports(text-decoration-line: underline) {
-                &:hover,
-                &:active {
-                    text-decoration-style: dashed;
-                }
-            }
+            //@supports(text-decoration-line: underline) {
+            //    &:hover,
+            //    &:active {
+            //        text-decoration-style: dashed;
+            //    }
+            //}
         }
     }
 
@@ -99,9 +99,12 @@ $utilitext--text-color: currentColor !default;
 
         -webkit-text-decoration-skip: objects; /* 1 */
 
+        -ms-touch-action: manipulation; /* 2 (IE10) */
         touch-action: manipulation; /* 2 */
 
-
+        /*
+            1. For older browsers.
+        */
         &:hover,
         &:active {
             //box-shadow:      0px 0.5px 0px 0px currentColor; /* [1] */
@@ -109,6 +112,8 @@ $utilitext--text-color: currentColor !default;
 
             @if $s__anchor-text-color--alt != $s__anchor-text-color {
                 color: $s__anchor-text-color--alt;
+            } @else {
+                color: inherit;
             }
 
             // @TODO - maybe support filters here too, e.g. filter: brightness(0.5);
@@ -118,7 +123,7 @@ $utilitext--text-color: currentColor !default;
         @supports(text-decoration-line: underline) {
             &:hover,
             &:active {
-                text-decoration: underline dashed currentColor $s__anchor-line-width; /* [1] */
+                text-decoration: underline $s__anchor-line-style--alt currentColor $s__anchor-line-width; /* [1] */
                 box-shadow: none;
 
                 //text-underline-offset: $s__anchor-line-offset--alt;

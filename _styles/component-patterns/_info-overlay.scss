@@ -16,6 +16,8 @@ $info-overlay-max-message-size: 52px !default;
     flex-direction: column;
 }
 
+
+
 .#{$component-namespace}info-overlay {
     &#{&} {
         padding: 0;
@@ -51,7 +53,7 @@ $info-overlay-max-message-size: 52px !default;
         & > span:first-child {
             display: none;
         }
-        
+
         /*
             Safari 14.1- has a bug which mean a flexbox summary doesn't properly center it's contents.
             I'm fudging this by adding margin to the svg.
@@ -133,6 +135,8 @@ $info-overlay-max-message-size: 52px !default;
     }
 }
 
+
+
 @media only screen and (min-width: $info-overlay-breakpoint) {
 
     .#{$component-namespace}info-overlay {
@@ -152,12 +156,12 @@ $info-overlay-max-message-size: 52px !default;
             text-align: left;
             z-index: 2;
 
-            a[href],
-            a[href]:hover,
-            a[href]:focus,
-            a[href]:active {
-                color: #fff;
-            }
+            //a[href],
+            //a[href]:hover,
+            //a[href]:focus,
+            //a[href]:active {
+            //    color: #fff;
+            //}
         }
 
         &#{&} > summary {

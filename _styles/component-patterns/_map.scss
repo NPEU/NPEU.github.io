@@ -17,6 +17,7 @@ $map-heights: (
     .#{$component-namespace}map {
         display: flex;
         width: 100%;
+        height: auto;
         margin: 0;
 
         & > div {

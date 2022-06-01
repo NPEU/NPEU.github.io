@@ -53,6 +53,13 @@ $uc-breakpoint: 35em !default;
                 clear: both;
             }
 
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
 
         [data-display-as~="box"] {
@@ -430,7 +437,7 @@ $uc-breakpoint: 35em !default;
             background-position: right 0 top 0;
 
             img {
-                clip-path: polygon(0 0, 100% 0%, unquote('caLc(100% - 1.1rem)') 0, 100% 1.1rem, 100% 100%, 0% 100%);
+                clip-path: polygon(0 0, 100% 0%, unquote('calc(100% - 1.1rem)') 0, 100% 1.1rem, 100% 100%, 0% 100%);
             }
         }
 
@@ -575,10 +582,7 @@ $uc-breakpoint: 35em !default;
             background: #fff;
         }
 
-        /*
-            1. Include inset shadow to disguise sub-pixel rounding issues leaving a white border in
-               some circumstances (Chrome, huge monitor)
-        */
+
         b > img,
         [data-contains~="image"] b > img,
         b > i > img,
@@ -586,13 +590,20 @@ $uc-breakpoint: 35em !default;
             @include bd();
             @include bd-neutral();
             border-width: $border-size--thick;
-            box-shadow: 0 0 0 3px var(--t-bd-color) inset;
         }
 
         b > i > img {
             padding: $s__sz-s;
         }
 
+        /*
+            1. Include inset shadow to disguise sub-pixel rounding issues leaving a white border in
+               some circumstances (Chrome, huge monitor)
+        */
+        b > img,
+        [data-contains~="image"] b > img {
+            box-shadow: 0 0 0 3px var(--t-bd-color) inset; /* [1] */
+        }
 
 
         // Figures

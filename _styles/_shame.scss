@@ -141,6 +141,62 @@ script:first-child + * {
 
 /*---------------------*/
 
+
+// Used for 'invisible' iframe on https://www.npeu.ox.ac.uk/privacy-cookies
+.fluid-frame {
+    border: 0;
+    width: 100%;
+}
+
+/*---------------------*/
+
+// Note Safari 10- doesn't factor in min/max width/height when deciding how many items can fit on
+// a multi-line flex container.
+// This means that the usual fab-four technique doesn't work as expected.
+// This is used for Trial INfo modules (at least)
+.dl-2-col {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin: 0;
+    max-width: $longform-content-max-width;
+}
+
+.dl-2-col dt {
+    flex: 1 0 8em;
+
+    margin: 0;
+}
+
+.dl-2-col dd {
+    flex: 1 0 calc(100% - 9em);
+    align-self: flex-end;
+
+    margin: 0;
+    padding-left: 1em;
+}
+
+// IE11 needs a wrapper to make the flex behave properly, which I can't add to the markup.
+@media #{$s__ie10-11} {
+    .dl-2-col {
+        display: block;
+    }
+}
+
+
+
+/*---------------------*/
+
+// Currently only one use-case for this: TOAST - TOFS Podcast - image looks better pulled up to the 
+// header (negated header margin).
+.u-negate-space-below {
+    margin-bottom: -$s__sz-m !important;
+}
+
+
+/*---------------------*/
+
+
 // Utilitext improvements
 /*
 p[role="list"] {

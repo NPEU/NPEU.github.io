@@ -67,31 +67,47 @@
                 }
 
                 // Form controls and default sort order:
-                // (just a set of radios for now - other inputs like select can be added later)
-                var control_group = sortable_group.querySelector('[sortable_form_controls]');
-                var default_sort  = control_group.querySelector('[sortable_choice][checked]');
-                var default_dir   = (default_sort.hasAttribute('sortable_dir') ? default_sort.getAttribute('sortable_dir') : 'asc');
-                sortability.sortList(sortable_group, default_sort.value, default_dir);
+                var control_group = sortable_form.querySelector('[sortable_form_controls]');
+                // Are we dealing with a select element (if not it must be radio's):
+                var select_choice = control_group.querySelector('select[name="sort_choice"]');
+                if (select_choice) {
+                    var default_sort  = select_choice.querySelector('[selected]');
+                    var default_dir   = (default_sort.hasAttribute('sortable_dir') ? default_sort.getAttribute('sortable_dir') : 'asc');
+                    sortability.sortList(sortable_group, default_sort.value, default_dir);
 
-                var form_controls = control_group.querySelectorAll('[sortable_choice]');
-                Array.prototype.forEach.call(form_controls, function(form_control, i) {
-                    form_control.addEventListener('change', function(e) {
+                    select_choice.addEventListener('change', function(e) {
                         e.preventDefault();
+                        var selected_option = this.options[this.selectedIndex];
 
                         // sort the list:
-                        var dir   = (this.hasAttribute('sortable_dir') ? this.getAttribute('sortable_dir') : 'asc');
-                        sortability.sortList(sortable_group, this.value, dir);
+                        var dir   = (selected_option.hasAttribute('sortable_dir') ? selected_option.getAttribute('sortable_dir') : 'asc');
+                        sortability.sortList(sortable_group, selected_option.value, dir);
                         return false;
                     });
-                });
 
+                } else {
+                    var default_sort  = control_group.querySelector('[sortable_choice][checked]');
+                    var default_dir   = (default_sort.hasAttribute('sortable_dir') ? default_sort.getAttribute('sortable_dir') : 'asc');
+                    sortability.sortList(sortable_group, default_sort.value, default_dir);
+
+                    var form_controls = control_group.querySelectorAll('[sortable_choice]');
+                    Array.prototype.forEach.call(form_controls, function(form_control, i) {
+                        form_control.addEventListener('change', function(e) {
+                            e.preventDefault();
+
+                            // sort the list:
+                            var dir   = (this.hasAttribute('sortable_dir') ? this.getAttribute('sortable_dir') : 'asc');
+                            sortability.sortList(sortable_group, this.value, dir);
+                            return false;
+                        });
+                    });
+                }
 
                 return;
             });
         },
 
         sortList: function(group, index_name, dir) {
-            console.log(dir);
             // There may be more than one list in a group (for example if there were
             // sub-headings within a larger group of lists)
             var sortable_lists = group.querySelectorAll('[sortable_list]');

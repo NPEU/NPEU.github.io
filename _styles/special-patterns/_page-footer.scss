@@ -1,0 +1,15 @@
+/*
+    Page Footer
+    ============
+    ...
+*/
+
+
+[id="page-footer"] {
+
+    &#{&} {
+
+        /// Override [data-fs-text="center"]:
+        text-align: left;
+    }
+}

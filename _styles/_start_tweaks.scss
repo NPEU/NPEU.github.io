@@ -131,6 +131,10 @@ table {
     }
 }
 
+caption {
+    background-color: hsl(var(--t-primary-color-h),var(--t-primary-color-s),var(--t-primary-color-l));
+}
+
 th:first-child {
     text-align: left;
 }

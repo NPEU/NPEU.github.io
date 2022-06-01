@@ -53,10 +53,13 @@ $component-namespace: c- !default;
 
         display: flex;
         flex-direction: column;
+        
+        min-width: max-content;
     }
 
     &#{&}--span-all {
          flex-basis: 100%;
+          min-width: auto;
     }
 
     & &--padding--xs,
@@ -191,14 +194,23 @@ $component-namespace: c- !default;
     }
 
 
-    #{&}__text--large {
+    #{&}__text--xl,
+    #{&}__text--extra-large {
         font-family: 'Nunito', sans-serif;
-        font-size: 1.5em;
+        font-size: $s__h2-font-size;
         //font-weight: bold;
     }
 
+    #{&}__text--l,
+    #{&}__text--large {
+        font-family: 'Nunito', sans-serif;
+        font-size: $s__h3-font-size;
+        //font-weight: bold;
+    }
+
+    #{&}__text--s,
     #{&}__text--small {
-        font-size: 0.875em;
+        font-size: $s__small-font-size;
     }
 
 
