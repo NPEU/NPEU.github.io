@@ -196,6 +196,15 @@ script:first-child + * {
 
 /*---------------------*/
 
+// Better visibility for dropdowns (esp. single-item ones).
+.nav-bar__main .dropdown__area {
+    border: $s__sz-xs solid rgba(255,255,255,.7);
+    border-top-width: 0;
+    margin-left: -$s__sz-xs;
+}
+
+/*---------------------*/
+
 
 // Utilitext improvements
 /*

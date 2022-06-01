@@ -198,6 +198,7 @@ $component-namespace: c- !default;
     #{&}__text--extra-large {
         font-family: 'Nunito', sans-serif;
         font-size: $s__h2-font-size;
+        line-height: $s__sz-l;
         //font-weight: bold;
     }
 
@@ -205,6 +206,7 @@ $component-namespace: c- !default;
     #{&}__text--large {
         font-family: 'Nunito', sans-serif;
         font-size: $s__h3-font-size;
+        line-height: #{$s__sz-m + $s__sz-s};
         //font-weight: bold;
     }
 

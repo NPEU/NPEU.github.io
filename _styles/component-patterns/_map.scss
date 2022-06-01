@@ -33,6 +33,10 @@ $map-heights: (
         }
 
         & .leaflet-container {
+            border-radius: $s__sz-s;
+        }
+        
+        & .leaflet-container {
             &:hover,
             &:active,
             &:focus {
