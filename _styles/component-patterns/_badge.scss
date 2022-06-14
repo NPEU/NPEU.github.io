@@ -18,7 +18,7 @@ $component-namespace: c- !default;
 
         position: relative; /* [1] */
         max-width: 100%; /* [2] */
-        
+
         border: 0;
         padding: 0;
         margin: 0;
@@ -54,7 +54,7 @@ $component-namespace: c- !default;
             /* margin: 0 auto; /* [3] */
             margin: 0;
             padding: 0;
-            
+
             &:hover {
                 margin: 0;
                 padding: 0;
@@ -99,25 +99,25 @@ $component-namespace: c- !default;
             max-height: $s__sz-m;
         }
     }
-    
+
     &#{&}--limit-height--l {
         img {
             max-height: $s__sz-l;
         }
     }
-    
+
     &#{&}--limit-height--xl {
         img {
             max-height: $s__sz-xl;
         }
     }
-    
+
     &#{&}--limit-height--xxl {
         img {
             max-height: $s__sz-xxl;
         }
     }
-    
+
 
     &#{&}--small {
         height: 2em;
@@ -146,10 +146,10 @@ $component-namespace: c- !default;
         // pseudo element for the background:
         // Also href borders mess with these border settings, so use pseudo element for that
         // too.
-        position: relative; 
+        position: relative;
 
         padding: $s__sz-m;
-        
+
         height: 100%;
 
 
@@ -179,10 +179,17 @@ $component-namespace: c- !default;
             border-style: solid;
             border-color: currentColor;
         }
-        
+
         // Center decorated badge images:
         img {
             margin: 0 auto;
+        }
+    }
+
+    &#{&}--decorated--rounded {
+        border-radius: $s__sz-s;
+        &::after {
+            border-radius: $s__sz-s;
         }
     }
 
@@ -191,32 +198,35 @@ $component-namespace: c- !default;
         margin: 0 auto;
         max-height: 8.4rem;
     }
-    
+
     &#{&}--primary-logo {
         // Nothing needed.
     }
 }
 
 a[href].#{$component-namespace}badge {
-    
+
     //width: 100%;
     //height: 100%;
     //flex: 1 0px;
+
+    text-decoration: none;
 
     &:hover,
     &:active,
     &:focus {
         border: 0;
         box-shadow: $focus-shadow;
-        
+
         & img {
             box-shadow: none;
         }
     }
-    
+
     & img {
         border: 0;
     }
+
 }
 
 /*
@@ -240,7 +250,7 @@ a[href][rel~="external"].#{$component-namespace}badge:focus::after {
 @if $s__anchor-add-external-link-indicator == true {
 
     #{$s__namespace}a[href][rel~="external"].#{$component-namespace}badge {
-    
+
         padding-right: 0;
         background-image: none;
         /*padding-right: 1em;
@@ -280,11 +290,11 @@ a[href][rel~="external"].#{$component-namespace}badge:focus::after {
 @media #{$s__ie10-11} {
 
     .#{$component-namespace}badge {
-    
+
         svg {
             width: 100%;
         }
-    
+
         //img {
         //    height: auto; /* [1] */
         //}
@@ -326,7 +336,7 @@ a[href][rel~="external"].#{$component-namespace}badge:focus::after {
             }
         }*/
     }
-    
+
     /*
         Undo rule set above (commented out currently until I'm sure)
     */

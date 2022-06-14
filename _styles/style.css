@@ -5303,10 +5303,22 @@ body {
   margin: 0 auto;
 }
 
+.c-badge.c-badge--decorated--rounded {
+  border-radius: 1.2rem;
+}
+
+.c-badge.c-badge--decorated--rounded::after {
+  border-radius: 1.2rem;
+}
+
 .c-badge.c-badge--page-brand img {
   display: block;
   margin: 0 auto;
   max-height: 8.4rem;
+}
+
+a[href].c-badge {
+  text-decoration: none;
 }
 
 a[href].c-badge:hover, a[href].c-badge:active, a[href].c-badge:focus {
@@ -6767,22 +6779,23 @@ a[href].c-cta--has-icon .icon {
         }*/
 }
 
-.js-map .c-map > div {
+.js-map .c-map > div[id] {
   display: flex;
+  border-radius: 1.2rem;
 }
 
-.js-map .c-map > div,
-.js-map .c-map > div > div {
+.js-map .c-map > div[id]:hover, .js-map .c-map > div[id]:active, .js-map .c-map > div[id]:focus {
+  box-shadow: 0 0 0 0.3rem #fff, 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
+}
+
+.js-map .c-map > div[id],
+.js-map .c-map > div[id] > div {
   width: 100%;
   flex: 1 0 auto;
 }
 
 .js-map .c-map .leaflet-container {
   border-radius: 1.2rem;
-}
-
-.js-map .c-map .leaflet-container:hover, .js-map .c-map .leaflet-container:active, .js-map .c-map .leaflet-container:focus {
-  box-shadow: 0 0 0 0.3rem #fff, 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
 }
 
 .js-map .c-map .leaflet-container a[href] {
@@ -10553,6 +10566,7 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 .user-content.user-content.user-content [data-display-is~="pulled-right"],
 .user-content.user-content.user-content [data-display-is~="pulled-center"],
 .user-content.user-content.user-content [data-position] {
+  --g: 2.4rem;
   margin-top: 0;
   margin-bottom: 1.2rem;
   margin-right: 2.4rem;

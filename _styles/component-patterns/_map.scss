@@ -20,12 +20,20 @@ $map-heights: (
         height: auto;
         margin: 0;
 
-        & > div {
+        & > div[id] {
             display: flex;
+            
+            border-radius: $s__sz-s;
+
+            &:hover,
+            &:active,
+            &:focus {
+                box-shadow: $focus-shadow;
+            }
         }
 
-        & > div,
-        & > div > div {
+        & > div[id],
+        & > div[id] > div {
             width: 100%;
             //height: 100%;
 
@@ -34,14 +42,6 @@ $map-heights: (
 
         & .leaflet-container {
             border-radius: $s__sz-s;
-        }
-        
-        & .leaflet-container {
-            &:hover,
-            &:active,
-            &:focus {
-                box-shadow: $focus-shadow;
-            }
         }
 
         // Fix map links inheriting styles:

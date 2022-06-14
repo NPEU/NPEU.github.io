@@ -237,6 +237,7 @@ $uc-breakpoint: 35em !default;
         [data-display-is~="pulled-right"],
         [data-display-is~="pulled-center"],
         [data-position] {
+            --g: #{$s__sz-m};
             margin-top: 0;
             margin-bottom: $s__sz-s;
             margin-right: $s__sz-m;
