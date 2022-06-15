@@ -187,15 +187,3 @@ details:not([open]) > *:not(summary) {
     border-top: 1px solid #eee;
 }
 
-/* The following overrides TFS styles. I need to put this in STARTCSS when I have a chance:
-TFSL
-button,input,label,select,textarea {
-    vertical-align:middle;
-    vertical-align:middle;
-    min-height:2.2em;
-    margin:.2em 0
-}
-*/
-button,input,label,select,textarea {
-    margin: 0;
-}

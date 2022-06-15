@@ -165,6 +165,19 @@ $fs__include_class_poem:     false;
 
 /* --| STARTCSS |-------------------------------------------------------------------------------- */
 
+/* The following overrides TFS styles. I need to put this in STARTCSS when I have a chance:
+TFSL
+button,input,label,select,textarea {
+    vertical-align:middle;
+    vertical-align:middle;
+    min-height:2.2em;
+    margin:.2em 0
+}
+*/
+button,input,label,select,textarea {
+    margin: 0;
+}
+
 //@import '../bower_components/Fall-Back-Start-CSS/scss/_start_settings.scss';
 //@import '../bower_components/Fall-Back-Start-CSS/scss/_start_functions.scss';
 //@import '../bower_components/Fall-Back-Start-CSS/scss/_start_mixins.scss';
@@ -396,6 +409,8 @@ $s__search-form__submit--background-color--alt: hsl(var(--t-primary-color-h), va
     padding-left: 0.5em;
 }
 
+$s__cookie-notice--spacing: $s__sz-m;
+@import "../bower_components/Fall-Back-Cookie-Notice/_cookie-notice-v2";
 
 /* ---------------------------------------------------------------------------------------------- */
 

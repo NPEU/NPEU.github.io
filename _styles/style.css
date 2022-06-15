@@ -51,6 +51,19 @@ $fs__include_class_poem:     false;
 */
 /* ---------------------------------------------------------------------------------------------- */
 /* --| STARTCSS |-------------------------------------------------------------------------------- */
+/* The following overrides TFS styles. I need to put this in STARTCSS when I have a chance:
+TFSL
+button,input,label,select,textarea {
+    vertical-align:middle;
+    vertical-align:middle;
+    min-height:2.2em;
+    margin:.2em 0
+}
+*/
+button, input, label, select, textarea {
+  margin: 0;
+}
+
 /*! Start-CSS. See SCSS file for documentation. */
 /*-------------------------------------------------------------------------------------------------|
 
@@ -2940,19 +2953,6 @@ details:not([open]) > *:not(summary) {
   margin-top: 0.6rem;
   padding-top: 0.6rem;
   border-top: 1px solid #eee;
-}
-
-/* The following overrides TFS styles. I need to put this in STARTCSS when I have a chance:
-TFSL
-button,input,label,select,textarea {
-    vertical-align:middle;
-    vertical-align:middle;
-    min-height:2.2em;
-    margin:.2em 0
-}
-*/
-button, input, label, select, textarea {
-  margin: 0;
 }
 
 /*! Start-CSS Experimental. See SCSS file for documentation. */
@@ -6770,6 +6770,7 @@ a[href].c-cta--has-icon .icon {
 */
 /**/
 .js-map .c-map {
+  overflow: visible;
   display: flex;
   width: 100%;
   height: auto;
@@ -10175,6 +10176,61 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   padding-left: 0.5em;
 }
 
+/*-------------------------------------------------------------------------------------------------|
+
+    COOKIE NOTICE
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------*\
+    Import Fall-Back vars:
+
+    Slightly hacky way of allowing the main UI colour of this pattern to be:
+     - base-ui colour (if set)
+     - otherwise #999
+     - but can be specifically overridden
+\*------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------*/
+/* -- Basic styles ------------------------------------------------------------------------------ */
+#cookie_notice {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: flex-end;
+  padding: 2.4rem;
+  margin: 0;
+  background-color: #000;
+  color: #fff;
+  border: 0;
+  opacity: 1;
+  -webkit-transition: opacity 1s ease 0s, z-index 1s ease 1s;
+  transition: opacity 1s ease 0s, z-index 1s ease 1s;
+}
+
+#cookie_notice[data-close="true"] {
+  opacity: 0;
+  z-index: 0;
+}
+
+#cookie_notice p {
+  padding: 0 2.4rem;
+  margin: 1.2rem 0;
+}
+
+#cookie_notice p a[href] {
+  color: white;
+}
+
+#cookie_notice p a[href]:hover,
+#cookie_notice p a[href]:active,
+#cookie_notice p a[href]:focus {
+  color: #cccccc;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
 /* --| More Special Patterns |------------------------------------------------------------------------ */
 /*
