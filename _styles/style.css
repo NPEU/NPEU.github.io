@@ -44,10 +44,6 @@ $s__selection-background-color: lighten(map-get(map-get($themes, neutral), prima
 $s__experimental_checkradios: true;
 
 
-$s__class-namespace: c-;
-$fs__include_class_bordered: false;
-$fs__include_class_padded:   false;
-$fs__include_class_poem:     false;
 */
 /* ---------------------------------------------------------------------------------------------- */
 /* --| STARTCSS |-------------------------------------------------------------------------------- */
@@ -2953,6 +2949,87 @@ details:not([open]) > *:not(summary) {
   margin-top: 0.6rem;
   padding-top: 0.6rem;
   border-top: 1px solid #eee;
+}
+
+/*! Start CSS Classes. See SCSS file for documentation. */
+/*------------------------------------------------------------------------------------------------*\
+
+    Classes
+
+\*------------------------------------------------------------------------------------------------*/
+/*
+    Resources:
+    *
+*/
+/*
+        1. Collapse whitespace.
+        2. Prevent extra height being added.
+    */
+.c-composite {
+  display: inline-flex;
+  /* 1 */
+  vertical-align: middle;
+  /* 2 */
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+/*
+        1. Prevent extra height being added.
+    */
+.c-composite > * {
+  vertical-align: top;
+  /* 1 */
+  flex: 0 1 auto;
+}
+
+/*
+        Allow inputs to contract, but not so small as to be unusable.
+    */
+.c-composite > input {
+  width: 1%;
+  min-width: 5em;
+  flex: 1 1 auto;
+}
+
+/*
+        1. Prevent extra height being added.
+    */
+.c-composite > .c-composite--expand {
+  flex: 1 1 auto;
+}
+
+/*
+        IE9
+
+        1. Make sure there are no spaces between elements in the markup as the as the white space won't
+           collapse.
+
+        2. Hide button.
+    */
+@media screen and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
+  .c-composite {
+    display: inline-block;
+    /* 1 */
+    white-space: nowrap;
+    /* 1 */
+    overflow: hidden;
+    /* 2 */
+  }
+  .c-composite > * {
+    vertical-align: top;
+    display: inline-block;
+  }
+}
+
+.c-composite > *:not(:first-child) {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.c-composite > *:not(:last-child) {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
 }
 
 /*! Start-CSS Experimental. See SCSS file for documentation. */

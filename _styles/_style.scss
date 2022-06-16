@@ -45,7 +45,6 @@ $error-color: #9b3259;//#9b3259;
 
 $border-thick: 0.3rem;
 
-
 $s__base-ui-color: $primary-color;
 
 $s__base-text-color: #111;
@@ -156,10 +155,6 @@ $s__selection-background-color: lighten(map-get(map-get($themes, neutral), prima
 $s__experimental_checkradios: true;
 
 
-$s__class-namespace: c-;
-$fs__include_class_bordered: false;
-$fs__include_class_padded:   false;
-$fs__include_class_poem:     false;
 */
 /* ---------------------------------------------------------------------------------------------- */
 
@@ -188,16 +183,16 @@ button,input,label,select,textarea {
 
 $s__class-namespace: c-;
 
-//$fs__include_class_cta_button:    false;
+$fs__include_class_cta_button:    false;
 $fs__include_class_bordered:      false;
 $fs__include_class_padded:        false;
 $fs__include_class_subtitle:      false;
 $fs__include_class_tagline:       false;
-//$fs__include_class_composite:     false;
-//$fs__include_class_custom_inputs: false;
-//$fs__include_class_poem:          false;
+$fs__include_class_composite:     true;
+$fs__include_class_custom_inputs: false;
+$fs__include_class_poem:          false;
 
-///@import '../bower_components/Fall-Back-Start-CSS/scss/_start-classes.scss';
+@import '../bower_components/Fall-Back-Start-CSS/scss/_start-classes.scss';
 ///@import '../bower_components/Fall-Back-Start-CSS/scss/_start-accessibility.scss';
 ///@import '../bower_components/Fall-Back-Start-CSS/scss/_Xstart-utilities.scss';
 ///@import '../bower_components/Fall-Back-Start-CSS/scss/_Xstart-icons.scss';
@@ -353,7 +348,6 @@ $layout-spacing-unit: $s__base-rem-space-unit / 2;
 
 
 /* --| Fall-Back Patterns |---------------------------------------------------------------------- */
-
 
 @import "../bower_components/Fall-Back-Patterns/Close Button/scss/_close-button-v3";
 
