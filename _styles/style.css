@@ -3030,6 +3030,27 @@ details:not([open]) > *:not(summary) {
 .c-composite > *:not(:last-child) {
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
+  border-right: 0 !important;
+}
+
+.c-composite > .c-composite__info {
+  display: inline-block;
+  min-height: 3rem;
+  overflow: visible;
+  margin: .3rem 0;
+  padding-top: calc(.3rem - 1px);
+  padding-bottom: calc(.3rem - 1px);
+  padding-right: .6rem;
+  padding-left: .6rem;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  color: #333;
+  background-color: #f7f6f6;
+  font-size: 0.875em;
+  line-height: 2.4rem;
+  vertical-align: middle;
 }
 
 /*! Start-CSS Experimental. See SCSS file for documentation. */
