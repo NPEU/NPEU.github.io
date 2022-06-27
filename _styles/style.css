@@ -7084,7 +7084,7 @@ a[href].c-cta--has-icon .icon {
   content: "";
   display: block;
   position: absolute;
-  width: calc(100% - (var(--inset, 0px) * 2));
+  width: 100%;
   bottom: 0;
   border-bottom: 0.1rem solid currentColor;
   opacity: 0.5;
@@ -8982,10 +8982,16 @@ a[href].c-cta--has-icon .icon {
 }
 
 .n-pagination a {
-  padding-top: 0.6rem;
-  padding-bottom: 0.6rem;
-  margin-left: 0.6rem;
-  margin-right: 0.6rem;
+  background-color: hsl(var(--t-bg-color-h), var(--t-bg-color-s), var(--t-bg-color-l));
+  color: var(--t-primary-fore-text-color);
+  --t-bg-color: var(--t-neutral-color);
+  --t-bg-color-h: var(--t-neutral-color-h);
+  --t-bg-color-s: var(--t-neutral-color-s);
+  --t-bg-color-l: var(--t-neutral-color-l);
+  color: var(--t-neutral-fore-text-color);
+  --t-bg-color-l: var(--t-neutral-color-l--very-light);
+  padding: 0.6rem;
+  margin: 0.3rem 0.1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9000,9 +9006,7 @@ a[href].c-cta--has-icon .icon {
 }
 
 .n-pagination a[aria-current] {
-  border-radius: 100%;
-  margin-left: 1.2rem;
-  margin-right: 1.2rem;
+  --t-bg-color-l: var(--t-neutral-color-l--light);
 }
 
 .n-pagination .n-pagination__page-links a {
@@ -9010,19 +9014,13 @@ a[href].c-cta--has-icon .icon {
 }
 
 .n-pagination .n-pagination__start-links a {
-  padding-left: 0;
+  padding-left: 0.3rem;
   padding-right: 0.6rem;
 }
 
 .n-pagination .n-pagination__end-links a {
   padding-left: 0.6rem;
-  padding-right: 0;
-}
-
-.n-pagination .n-pagination__start-links .l-box,
-.n-pagination .n-pagination__page-links .l-box,
-.n-pagination .n-pagination__end-links .l-box:not(:last-child) {
-  border-right: 1px solid #ccc;
+  padding-right: 0.3rem;
 }
 
 /*
@@ -10353,14 +10351,17 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
     */
 }
 
+.has-longform-content.has-longform-content {
+  --inset: 2.4rem;
+  padding-left: var(--inset, 0px);
+  padding-right: var(--inset, 0px);
+}
+
 .has-longform-content.has-longform-content > .longform-content__companion {
   width: 100%;
   max-width: 67rem;
   margin-left: auto;
   margin-right: auto;
-  --inset: 2.4rem;
-  padding-left: var(--inset, 0px);
-  padding-right: var(--inset, 0px);
 }
 
 .longform-content.longform-content > *:not([data-display-as~="blocks"]):not([data-display-as~="breakout-box"]) {
@@ -10368,9 +10369,6 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   max-width: 67rem;
   margin-left: auto;
   margin-right: auto;
-  --inset: 2.4rem;
-  padding-left: var(--inset, 0px);
-  padding-right: var(--inset, 0px);
 }
 
 .longform-content.longform-content > figure[data-display-as~="blocks"],

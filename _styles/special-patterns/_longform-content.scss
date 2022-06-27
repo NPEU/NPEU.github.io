@@ -9,13 +9,19 @@ $longform-content-max-width: 67rem !default;
     margin-left: auto;
     margin-right: auto;
 
-    --inset: #{$s__sz-m};
-
-    padding-left: var(--inset, 0px);
-    padding-right: var(--inset, 0px);
+    //--inset: #{$s__sz-m};
+    //
+    //padding-left: var(--inset, 0px);
+    //padding-right: var(--inset, 0px);
 }
 
 .has-longform-content {
+     &#{&} {
+        --inset: #{$s__sz-m};
+        padding-left: var(--inset, 0px);
+        padding-right: var(--inset, 0px);
+    }
+
     /*position: relative;
     padding-bottom: $s__sz-m;
 
@@ -39,6 +45,12 @@ $longform-content-max-width: 67rem !default;
 }
 
 .longform-content {
+
+    //&#{&} {
+    //    --inset: #{$s__sz-m};
+    //    padding-left: var(--inset, 0px);
+    //    padding-right: var(--inset, 0px);
+    //}
 
     &#{&} > *:not([data-display-as~="blocks"]):not([data-display-as~="breakout-box"]) {
         @include longform-content-styles();

@@ -21,10 +21,17 @@ $pagination-namespace: n- !default;
     }
 
     a {
-        padding-top: $s__sz-xs;
-        padding-bottom: $s__sz-xs;
-        margin-left: $s__sz-xs;
-        margin-right: $s__sz-xs;
+        @include bg();
+        @include bg-neutral();
+        --t-bg-color-l: var(--t-neutral-color-l--very-light);
+            
+        //padding-top: $s__sz-xs;
+        //padding-bottom: $s__sz-xs;
+        padding: $s__sz-xs;
+        
+        //margin-left: $s__sz-xs;
+        //margin-right: $s__sz-xs;
+        margin: $s__sz-xxs 0.1rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -41,9 +48,11 @@ $pagination-namespace: n- !default;
     a[aria-current] {
         //background-color: #eee;
         //background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-light));
-        border-radius: 100%;
-        margin-left: $s__sz-s;
-        margin-right: $s__sz-s;
+        --t-bg-color-l: var(--t-neutral-color-l--light);
+        
+        //border-radius: 100%;
+        //margin-left: $s__sz-s;
+        //margin-right: $s__sz-s;
     }
     
 
@@ -52,19 +61,19 @@ $pagination-namespace: n- !default;
     }
     
     .#{$pagination-namespace}pagination__start-links a {
-        padding-left: 0;
+        padding-left: $s__sz-xxs;
         padding-right: $s__sz-xs;
     }
     
     .#{$pagination-namespace}pagination__end-links a {
         padding-left: $s__sz-xs;
-        padding-right: 0;
+        padding-right: $s__sz-xxs;
     }
     
-    .#{$pagination-namespace}pagination__start-links .l-box,
-    .#{$pagination-namespace}pagination__page-links .l-box,
-    .#{$pagination-namespace}pagination__end-links .l-box:not(:last-child) {
-        border-right: 1px solid #ccc;
-    }
+    //.#{$pagination-namespace}pagination__start-links .l-box,
+    //.#{$pagination-namespace}pagination__page-links .l-box,
+    //.#{$pagination-namespace}pagination__end-links .l-box:not(:last-child) {
+    //    border-right: 1px solid #ccc;
+    //}
 
 }
