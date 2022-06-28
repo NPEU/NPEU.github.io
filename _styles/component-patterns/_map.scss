@@ -83,3 +83,19 @@ $map-heights: (
         min-height: #{$height}px;
     }
 }
+
+
+// Add a border radius to non-bespoke maps:
+.#{$js-map-namespace}map {
+
+    .modstyle_bespoke--wrapper > .#{$component-namespace}map {
+
+        & > div[id] {     
+            border-radius: 0;
+        }
+
+        & .leaflet-container {
+            border-radius: 0;
+        }
+    }
+}

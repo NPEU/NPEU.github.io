@@ -1,0 +1,10 @@
+# Tmp fix for chrome dev/canary no longer handling lots of a[href] properly
+
+<IfModule mod_substitute.c>
+
+    <If "%{QUERY_STRING} =~ /.*sub=1.*/" >
+        SetOutputFilter INFLATE;SUBSTITUTE;DEFLATE
+        Substitute "s/a[href]/a:any-link/ni"
+    </If>
+
+</IfModule>
