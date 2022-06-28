@@ -97,6 +97,7 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
 
                 a {
                     text-decoration: none !important;
+                    color: currentColor;
                 }
 
                 a::before {
