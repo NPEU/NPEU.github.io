@@ -6115,6 +6115,7 @@ a[href].c-cta--has-icon .icon {
 
 .c-form.c-form > * {
   vertical-align: middle;
+  margin: 0;
 }
 
 .c-form--tool-form.c-form--tool-form {
@@ -11048,7 +11049,8 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   border-width: 0.3rem;
 }
 
-.user-content.user-content.user-content b > i > img {
+.user-content.user-content.user-content b > i > img,
+.user-content.user-content.user-content [data-contains~="image"] b > i > img {
   padding: 1.2rem;
 }
 

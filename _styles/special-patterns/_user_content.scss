@@ -593,7 +593,8 @@ $uc-breakpoint: 35em !default;
             border-width: $border-size--thick;
         }
 
-        b > i > img {
+        b > i > img,
+        [data-contains~="image"] b > i > img {
             padding: $s__sz-s;
         }
 

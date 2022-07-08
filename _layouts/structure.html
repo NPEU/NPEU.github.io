@@ -34,13 +34,19 @@
             is so as not to pollute the class space and help authors make distinctions.
             There's a much long essay on this brewing and I'll add the link when it's done.
         */
-        body,fieldset{padding:1em}fieldset,hr{margin:1em 0}a,hr{color:#2f4f4f}image,img,object,svg,video{max-width:100%;height:auto}pre,table{width:100%}fieldset,table{border:1px solid #2f4f4f}body{font:1em/1.2 sans-serif;margin:0 auto;max-width:50em;word-break:break-word}details,dialog,main,summary{display:block}@supports (list-style-type:disclosure-closed){summary{display:list-item}}mark{background:#ff0;color:#000}[hidden],template{display:none}image,img,object,svg{-ms-interpolation-mode:bicubic;vertical-align:middle;border:0}a img{border:1px solid currentColor}figure{max-width:100%;overflow-x:auto}_:-o-prefocus,:root figure{max-width:initial;overflow-x:visible}hr{border-style:solid;border-width:0 0 1px}pre{overflow-x:scroll;overflow-y:auto}button,input,label,select,textarea{vertical-align:middle;min-height:2.2em;margin:.2em 0}button,input[type=checkbox],input[type=radio],label,select,textarea{cursor:pointer}button,input,textarea{padding:0 .5em;line-height:1.5}table{border-collapse:collapse}table[role=presentation]{border:0;table-layout:fixed}table[role=presentation] td{border:0}th{background:silver}caption,td,th{padding:.5em}[data-fs-text~=right]{text-align:right}[data-fs-text~=center]{text-align:center}[data-fs-text~=larger]{font-size:larger}[data-fs-text~=nowrap]{white-space:nowrap}
+        body,fieldset{padding:1em}fieldset,hr{margin:1em 0}a[href],hr{color:#2f4f4f}image,img,object,svg,video{max-width:100%;height:auto}pre,table{width:100%}fieldset,table{border:1px solid #2f4f4f}body{font:1em/1.2 sans-serif;margin:0 auto;max-width:50em;}details,dialog,main,summary{display:block}@supports (list-style-type:disclosure-closed){summary{display:list-item}}mark{background:#ff0;color:#000}[hidden],template{display:none}image,img,object,svg{-ms-interpolation-mode:bicubic;vertical-align:middle;border:0}a[href] img{border:1px solid currentColor}figure{max-width:100%;overflow-x:auto}_:-o-prefocus,:root figure{max-width:initial;overflow-x:visible}hr{border-style:solid;border-width:0 0 1px}pre{overflow-x:scroll;overflow-y:auto}button,input,label,select,textarea{vertical-align:middle;min-height:2.2em;margin:.2em 0}button,input[type=checkbox],input[type=radio],label,select{cursor:pointer}button,input,textarea{padding:0 .5em;line-height:1.5}table{border-collapse:collapse}table[role=presentation]{border:0;table-layout:fixed}table[role=presentation] td{border:0}th{background:silver}caption,td,th{padding:.5em}[data-fs-text~=right]{text-align:right}[data-fs-text~=center]{text-align:center}[data-fs-text~=larger]{font-size:larger}[data-fs-text~=nowrap]{white-space:nowrap}
 
         /* For YouTube via http://embedresponsively.com. May or may not be needed. */
         .embed-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;} .embed-container iframe, .embed-container object, .embed-container embed{position:absolute;top:0;left:0;width:100%;height:100%;}
 
         /* IE needs SVG icons to NOT be auto height: */
         svg[height="1.25em"] {height: 1.25em;}
+
+        .c-map {
+            height: 200px;
+        }
+        
+        [data-fs-block=hidden]{display:none !important}
     </style>
 
 
