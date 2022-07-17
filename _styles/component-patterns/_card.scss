@@ -53,7 +53,7 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
             margin-left: 0;
 
             & > * {
-                padding: 0;
+                //padding: 0;
                 margin-right: calc(#{$s__sz-m} - #{$s__border-width});
                 margin-left: calc(#{$s__sz-m} - #{$s__border-width});
             }
@@ -152,7 +152,7 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
         #{&}__header + #{&}__footer {
             margin-top: auto;
         }
-        
+
         #{&}__header + #{&}__footer > div {
             margin-top: $s__sz-m;
         }

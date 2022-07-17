@@ -2822,6 +2822,7 @@ h1 {
 @media screen and (min-width: 672px) {
   h1 {
     font-size: 52px;
+    line-height: 6rem;
   }
 }
 
@@ -2838,6 +2839,7 @@ h2 {
 @media screen and (min-width: 672px) {
   h2 {
     font-size: 40px;
+    line-height: 4.8rem;
   }
 }
 
@@ -2854,6 +2856,7 @@ h3 {
 @media screen and (min-width: 672px) {
   h3 {
     font-size: 30px;
+    line-height: 3.6rem;
   }
 }
 
@@ -2870,6 +2873,7 @@ h4 {
 @media screen and (min-width: 672px) {
   h4 {
     font-size: 22px;
+    line-height: 3.6rem;
   }
 }
 
@@ -2883,12 +2887,8 @@ fieldset {
     but for rounded images (portraits) the white background shows when it shouldn't.
     I should probably have a 'data-contains' on the figures, but seeing if I can get away with this.
 */
-figure {
-  background: transparent;
-}
-
 table {
-  line-height: 1.4;
+  /*line-height: 1.4;*/
   border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
 }
 
@@ -2924,14 +2924,14 @@ tfoot {
   font-weight: bold;
 }
 
-td, th {
-  padding-top: 0.6rem;
-  padding-right: 0.6rem;
-  padding-bottom: calc(0.6rem - 1px);
-  padding-left: 0.6rem;
-  border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
+/*td, th {
+    padding-top: 0.6rem;
+    padding-right: 0.6rem;
+    padding-bottom: calc(0.6rem - 1px);
+    padding-left: 0.6rem;
+    border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
 }
-
+*/
 table[data-contains="numbers"] thead th:not(:first-child),
 table[data-contains="numbers"] td {
   text-align: right;
@@ -5740,7 +5740,6 @@ a[href].c-cta--has-icon .icon {
 .c-card .c-card__header > *,
 .c-card .c-card__body > *,
 .c-card .c-card__footer > * {
-  padding: 0;
   margin-right: calc(2.4rem - 0.1rem);
   margin-left: calc(2.4rem - 0.1rem);
 }

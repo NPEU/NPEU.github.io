@@ -4,7 +4,7 @@
 // Fluid Typography
 // https://css-tricks.com/snippets/css/fluid-typography/
 
-@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size, $min-line-height:false, $max-line-height:false) {
     $u1: unit($min-vw);
     $u2: unit($max-vw);
     $u3: unit($min-font-size);
@@ -13,11 +13,17 @@
     @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
             & {
             font-size: $min-font-size;
+            @if $min-line-height {
+                line-height: $min-line-height;
+            }
             @media screen and (min-width: $min-vw) {
                 font-size: calc(#{$min-font-size} + #{s__strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{s__strip-unit($max-vw - $min-vw)}));
             }
             @media screen and (min-width: $max-vw) {
                 font-size: $max-font-size;
+                @if $max-line-height {
+                    line-height: $max-line-height;
+                }
             }
         }
     }
@@ -34,7 +40,7 @@
 
 @mixin word-wrap() {
     //https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
-  
+
     /* These are technically the same, but use both */
     overflow-wrap: break-word;
     word-wrap: break-word;

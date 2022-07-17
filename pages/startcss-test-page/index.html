@@ -913,7 +913,7 @@ lines.</textarea>
 <p id="tmp-lists">Same list with various type attributes (the floated image tests the fix for <a href="https://paulbakaus.com/tutorials/css/block-formatting-contexts-and-lists" rel="external">list number/bullet position problem</a>).</p>
 
 <p class="float-img-test">
-    <img src="/dev/media/poster.jpg" alt="" width="300">
+    <img src="/pages/startcss-test-page/media/poster.jpg" alt="" width="300">
 </p>
 
 <ol type="1">
@@ -1179,31 +1179,76 @@ explanation.
     </object>
 </div>
 
+<style>
+    img {
+        display: inline-block;
+        position: relative;
+    }
+
+    /*img::before, */
+    img::after {
+        display: block;
+        content: "";
+    }
+
+    /*img::before {
+        background-color: #eee;
+        width: 100%;
+        height: 100%;
+    }*/
+
+    img::after {
+        background-color: #eee;
+        width: 100%;
+        height: 100%;
+        content: attr(alt);
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXgAAAF4CAYAAABeneKmAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDcuMi1jMDAwIDc5LjU2NmViYzViNCwgMjAyMi8wNS8wOS0wODoyNTo1NSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIzLjQgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkYwMEU3OEUxMDFDQTExRURBNzJBRDQwOTZEOTZGNTREIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkYwMEU3OEUyMDFDQTExRURBNzJBRDQwOTZEOTZGNTREIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RjAwRTc4REYwMUNBMTFFREE3MkFENDA5NkQ5NkY1NEQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RjAwRTc4RTAwMUNBMTFFREE3MkFENDA5NkQ5NkY1NEQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz452+M0AAAPYklEQVR42uzd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);
+        background-size: contain;
+        background-position: center;
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 1em;
+        display: flex;
+        align-items: center;
+    }
+
+</style>
+
 <p>
     Image in a link:
 </p>
 <p>
     <a href="#">
-        <img src="https://lab.gridlight-design.co.uk/images/blogish/pexels-photo-172256.jpg" alt="" height="192" width="288" style="width: auto; max-height: 192px;">
+        <img src="/pages/startcss-test-page/media/poster.jpg"  alt="Big Buck Bunny" height="200" width="355" style="width: auto; max-height: 200px;">
+    </a>
+</p>
+
+<p>
+    Broken image in a link:
+</p>
+<p>
+    <a href="#">
+        <img src="/pages/startcss-test-page/media/missing.jpg"  alt="Big Buck Bunny - testing alt-text" height="200" width="355" style="width: auto; max-height: 200px;">
     </a>
 </p>
 
 <figure>
-   <img src="/dev/media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
+   <img src="/pages/startcss-test-page/media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
    <figcaption>
         Image
     </figcaption>
 </figure>
 
 <figure>
-   <img src="/dev/media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
+   <img src="/pages/startcss-test-page/media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
    <figcaption>
         <p>Longer caption here. It's inside a paragraph.</p>
     </figcaption>
 </figure>
 
 <figure>
-   <img src="/dev/media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
+   <img src="/pages/startcss-test-page/media/poster.jpg" width="640" height="360" style="width: auto; max-height: 360px;" alt="Big Buck Bunny">
    <figcaption>
         <p>Even longer caption here.</p>
         <p>There's even a second paragraph.</p>
@@ -1215,24 +1260,24 @@ explanation.
 <p>Press this <button>button</button> then tab twice to see this effect. <a href="#test-link">normal link for comparison</a>.</p>
 <p>
     <a href="#">
-        <img src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 360px;">
+        <img src="/pages/startcss-test-page/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 360px;">
     </a>
 </p>
 <p>
 External linked image:
 </p>
-<p>
+<figure>
     <a href="https://en.wikipedia.org/wiki/Big_Buck_Bunny" rel="external">
-        <img src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 360px;">
+        <img src="/pages/startcss-test-page/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 360px;">
     </a>
-</p>
+</figure>
 
 <p>Rounded linked image:</p>
-<p>
+<figure>
     <a href="#">
-        <img src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 360px; border-radius: 400px;">
+        <img src="/pages/startcss-test-page/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny" style="width: auto; max-height: 360px; border-radius: 400px;">
     </a>
-</p>
+</figure>
 
 
 <figure>
@@ -1240,16 +1285,16 @@ External linked image:
     <!-- warning: playback does not work on iPad/iPhone if you include the poster attribute! fixed in iOS4                   -->
     <video width="640" height="360" controls>
         <!-- MP4 must be first for iPad! -->
-        <source src="/dev/media/big_buck_bunny.mp4" type="video/mp4"><!-- Safari / iOS, IE9 -->
-        <source src="/dev/media/big_buck_bunny.webm" type="video/webm"><!-- Chrome10+, Ffx4+, Opera10.6+ -->
-        <source src="/dev/media/big_buck_bunny.ogv" type="video/ogg"><!-- Firefox3.6+ / Opera 10.5+ -->
+        <source src="/pages/startcss-test-page/media/big_buck_bunny.mp4" type="video/mp4"><!-- Safari / iOS, IE9 -->
+        <source src="/pages/startcss-test-page/media/big_buck_bunny.webm" type="video/webm"><!-- Chrome10+, Ffx4+, Opera10.6+ -->
+        <source src="/pages/startcss-test-page/media/big_buck_bunny.ogv" type="video/ogg"><!-- Firefox3.6+ / Opera 10.5+ -->
         <!-- fallback to Flash: -->
         <object width="640" height="360" type="application/x-shockwave-flash" data="media/player.swf">
             <!-- Firefox uses the `data` attribute above, IE/Safari uses the param below -->
             <param name="movie" value="player.swf">
             <param name="flashvars" value="autostart=true&amp;controlbar=over&amp;image=poster.jpg&amp;file=media/big_buck_bunny.mp4">
             <!-- fallback image -->
-            <img src="/dev/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny"
+            <img src="/pages/startcss-test-page/media/poster.jpg" width="640" height="360" alt="Big Buck Bunny"
                  title="No video playback capabilities, please download the video below">
         </object>
     </video>
