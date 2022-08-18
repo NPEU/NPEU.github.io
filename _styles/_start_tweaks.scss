@@ -1,5 +1,53 @@
 // NEED A BETTER PLACE FOR THE FOLLOWING:
 
+
+/* The following overrides TFS styles. I need to put this in STARTCSS when I have a chance:
+TFS
+button,input,label,select,textarea {
+    vertical-align:middle;
+    vertical-align:middle;
+    min-height:2.2em;
+    margin:.2em 0
+}
+*/
+/*button,input,label,select,textarea {
+    margin: 0;
+}*/
+
+
+a[href] img[src$=svg] {
+    background: transparent;
+    padding: 0;
+    border: 0;
+}
+
+[data-fs-block~="inverted"] {
+    background-color: transparent;
+    padding: 0;
+}
+
+
+[data-fs-block~="inverted"] * {
+    color: currentColor;
+}
+
+[data-fs-block~="inverted"] img {
+    background: transparent;
+    padding: 0;
+}
+
+[data-fs-block~="flush"] {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+[data-fs-block~=flush]:last-child {
+    margin-bottom: 0;
+}
+
+
+// ---------
+
 // Links should always be allowed to break (wrap) so they never overflow their container:
 a {
     word-break: break-word;
@@ -114,6 +162,10 @@ fieldset {
     This overrides StartCSS overflow handling - it set a white background to help figures show up,
     but for rounded images (portraits) the white background shows when it shouldn't.
     I should probably have a 'data-contains' on the figures, but seeing if I can get away with this.
+    ...
+    So, setting this here turns it off for the styleguide StartCSS test page. Not the end of the
+    world, but I suspect it would also wipe out the 'overflow-box' setting. Not sure. So I think
+    I should apply this in the User / Longform content context.
 */
 figure {
     //background: transparent;

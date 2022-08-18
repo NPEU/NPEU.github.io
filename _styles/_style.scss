@@ -22,7 +22,6 @@
 
 //@import "_settings.scss";
 
-
 //$theme-map: ($theme-name: $theme);
 //$themes: map-merge($themes, $theme-map);
 /**/
@@ -158,18 +157,7 @@ $s__experimental_checkradios: true;
 
 /* --| STARTCSS |-------------------------------------------------------------------------------- */
 
-/* The following overrides TFS styles. I need to put this in STARTCSS when I have a chance:
-TFSL
-button,input,label,select,textarea {
-    vertical-align:middle;
-    vertical-align:middle;
-    min-height:2.2em;
-    margin:.2em 0
-}
-*/
-button,input,label,select,textarea {
-    margin: 0;
-}
+
 
 //@import '../bower_components/Fall-Back-Start-CSS/scss/_start_settings.scss';
 //@import '../bower_components/Fall-Back-Start-CSS/scss/_start_functions.scss';

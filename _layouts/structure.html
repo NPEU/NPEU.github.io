@@ -34,10 +34,9 @@
             is so as not to pollute the class space and help authors make distinctions.
             There's a much long essay on this brewing and I'll add the link when it's done.
         */
-        body,fieldset{padding:1em}fieldset,hr{margin:1em 0}a[href],hr{color:#2f4f4f}image,img,object,svg,video{max-width:100%;height:auto}pre,table{width:100%}fieldset,table{border:1px solid #2f4f4f}body{font:1em/1.2 sans-serif;margin:0 auto;max-width:50em;}details,dialog,main,summary{display:block}@supports (list-style-type:disclosure-closed){summary{display:list-item}}mark{background:#ff0;color:#000}[hidden],template{display:none}image,img,object,svg{-ms-interpolation-mode:bicubic;vertical-align:middle;border:0}a[href] img{border:1px solid currentColor}figure{max-width:100%;overflow-x:auto}_:-o-prefocus,:root figure{max-width:initial;overflow-x:visible}hr{border-style:solid;border-width:0 0 1px}pre{overflow-x:scroll;overflow-y:auto}button,input,label,select,textarea{vertical-align:middle;min-height:2.2em;margin:.2em 0}button,input[type=checkbox],input[type=radio],label,select{cursor:pointer}button,input,textarea{padding:0 .5em;line-height:1.5}table{border-collapse:collapse}table[role=presentation]{border:0;table-layout:fixed}table[role=presentation] td{border:0}th{background:silver}caption,td,th{padding:.5em}[data-fs-text~=right]{text-align:right}[data-fs-text~=center]{text-align:center}[data-fs-text~=larger]{font-size:larger}[data-fs-text~=nowrap]{white-space:nowrap}
-
+        fieldset,hr{margin:1em 0}image,img,object,svg,video{max-width:100%;height:auto}pre,table{width:100%}fieldset,table{border:1px solid currentColor}html{background:{{ site.data.colors.primary_color--dark }}}body{font:1em/1.2 sans-serif;padding:2em;margin:0 auto;max-width:50em;background:#fff}details,dialog,main,summary{display:block}@supports (list-style-type:disclosure-closed){summary{display:list-item}}mark{background:#ff0;color:#000}[hidden],template{display:none}fieldset{padding:1em}image,img,object,svg{-ms-interpolation-mode:bicubic;vertical-align:middle;border:0}a[href]{color:inherit}a[href]:hover{text-decoration:none}a[href] img{padding:.3em;margin:.2em}figure{max-width:100%;overflow-x:auto}_:-o-prefocus,:root figure{max-width:initial;overflow-x:visible}hr{border-style:solid;border-width:0 0 1px;color:currentColor}pre{overflow-x:scroll;overflow-y:auto}button{background-color:{{ site.data.colors.primary_color }};color:#fff}button,input,label,select,textarea{vertical-align:middle;min-height:2.2em;margin:.2em 0}button,input[type=checkbox],input[type=radio],label,select{cursor:pointer}button,input,textarea{padding:0 .5em;line-height:1.5}table{border-collapse:collapse}table[role=presentation]{border:0;table-layout:fixed}table[role=presentation] td{border:0}th{background:{{ site.data.colors.primary_color--very-light }}}caption,td,th{padding:.5em}[data-fs-text~=right]{text-align:right}[data-fs-text~=center]{text-align:center}[data-fs-text~=larger]{font-size:larger}[data-fs-text~=nowrap]{white-space:nowrap}
         /* For YouTube via http://embedresponsively.com. May or may not be needed. */
-        .embed-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;} .embed-container iframe, .embed-container object, .embed-container embed{position:absolute;top:0;left:0;width:100%;height:100%;}
+        /*.embed-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;} .embed-container iframe, .embed-container object, .embed-container embed{position:absolute;top:0;left:0;width:100%;height:100%;}*/
 
         /* IE needs SVG icons to NOT be auto height: */
         svg[height="1.25em"] {height: 1.25em;}
@@ -45,7 +44,7 @@
         .c-map {
             height: 200px;
         }
-        
+
         [data-fs-block=hidden]{display:none !important}
     </style>
 
@@ -55,23 +54,13 @@
 
     <style>
         /* Tiny Fall-Back Styles continued ... */
-        [data-fs-block]{display:block}[data-fs-block~=background]{background:silver;padding:1em}[data-fs-block=inverted]{background-color:#2f4f4f;padding:1em}[data-fs-block=inverted] *{color:#fff}[data-fs-block~=border]{border:1px solid #2f4f4f;margin:1em 0;padding:1em}[data-fs-block~=padding]{padding:1em}[data-fs-block~=table]{display:table;width:100%;table-layout:fixed}[data-fs-block~=table]>*{display:table-cell;padding:.5em}[data-fs-block~=flex]{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}[data-fs-block~=flex]>*{-webkit-box-flex:1;-webkit-flex:1 1 auto;-moz-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto}[data-fs-block=video]{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%}[data-fs-block=video] embed,[data-fs-block=video] iframe,[data-fs-block=video] object{position:absolute;top:0;left:0;width:100%;height:100%}[data-fs-hr=larger]{border-top-width:10px}
-
-        /* Some fallback decoration: */
-
-        html {
-            background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-dark));
-        }
-
-        body {
-            background-color: #ffffff;
-        }
+        [data-fs-block]{display:block}[data-fs-block~=background]{background:{{ site.data.colors.primary_color--light }};padding:1em}[data-fs-block~=inverted]{background-color:{{ site.data.colors.primary_color }};padding:1em}[data-fs-block~=inverted] *{color:#fff}[data-fs-block~=inverted] img{background:#fff;padding:.5em;border:0}[data-fs-block~=border]{border:1px solid {{ site.data.colors.primary_color }};margin:1em 0;padding:1em}[data-fs-block~=rounded]{border-radius:1em}[data-fs-block~=padding]{padding:1em}[data-fs-block~=flush]{margin-left:-2em;margin-right:-2em}[data-fs-block~=flush]:last-child{margin-bottom:-2em}[data-fs-block~=table]{display:table;width:100%;table-layout:fixed}[data-fs-block~=table]>*{display:table-cell;padding:.5em}[data-fs-block~=flex]{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap}[data-fs-block~=flex]>*{-webkit-box-flex:1;-webkit-flex:1 1 auto;-moz-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto}[data-fs-block=video]{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%}[data-fs-block=video] embed,[data-fs-block=video] iframe,[data-fs-block=video] object{position:absolute;top:0;left:0;width:100%;height:100%}[data-fs-hr=larger]{border-top-width:10px}
 
         /*
         .c-card {
             border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
             border-radius: 0.5em;
-            /*background-color: #5D4777;*/
+            /*background-color: #5D4777;* /
             background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
             color: #ffffff;
         }
@@ -117,6 +106,7 @@
         link.rel  = 'stylesheet';
         link.href = '/css/testing.min.{{ site.data.cache_bust_css.date }}.css';
         document.getElementsByTagName('head')[0].appendChild(link);
+    }
     }
     </script>
     <!-- Load IE11 fixes -->
@@ -167,7 +157,7 @@
         .hljs {
             display: inline-block;
             overflow-x: auto;
-            padding: 1.2rem;
+            padding: 1.2em;
             background: transparent;
         }
     </style>
@@ -227,26 +217,18 @@
     <!-- Brand theme (for testing purposes - will be added by CMS) -->
     <style>
         :root {
-
-            --t-primary-color: #253A8E; /* hsl(228, 59%, 35%) */
+            {% comment %}<!--
+            --t-primary-color: {{ site.data.colors.primary_color }}; /* hsl(228, 59%, 35%) */
             --t-primary-color-h: 228;
             --t-primary-color-s: 59%;
             --t-primary-color-l: 35%;
             --t-primary-color-l-copy: 35%;
 
-            --t-secondary-color: #E84B5E; /* hsl(353, 77%, 60%) */
+            --t-secondary-color: {{ site.data.colors.secondary_color }} /* hsl(353, 77%, 60%) */
             --t-secondary-color-h: 353;
             --t-secondary-color-s: 77%;
             --t-secondary-color-l: 60%;
             --t-secondary-color-l-copy: 60%;
-
-            {% comment %}<!--
-            --t-neutral-color: #8e8279;
-            --t-neutral-color-h: 26;
-            --t-neutral-color-s: 9%;
-            --t-neutral-color-l: 52%;
-            --t-neutral-color-l-copy: 52%;
-            -->{% endcomment %}
 
 
             --t-primary-color-l--very-light: 95%;
@@ -261,172 +243,9 @@
             --t-secondary-color-l--very-dark: 27%;
             --t-secondary-fore-text-color: var(--t-text-color-inverse); /* PHP would generate this from the base colour. */
 
-            {% comment %}<!--
-            --t-neutral-color-l--very-light: 96%;
-            --t-neutral-color-l--light: 86%;
-            --t-neutral-color-l--dark: 36%;
-            --t-neutral-color-l--very-dark: 26%;
-            --t-neutral-fore-text-color: var(--t-text-color); /* PHP would generate this from the base colour. */
-            -->{% endcomment %}
-
-            {% comment %}<!--
-
-            /* All vars (for reference): */
-            --t-text-color: #111;
-            --t-text-color-inverse: #fff;
-            --t-light-adjust: 0.7;
-            --t-very-light-adjust: 0.92;
-            --t-dark-adjust: 0.7;
-            --t-very-dark-adjust: 0.5;
-            --t-primary-color: #5F4776;
-            --t-primary-color-h: 271;
-            --t-primary-color-s: 25%;
-            --t-primary-color-l: 37%;
-            --t-primary-color-l-copy: 37%;
-
-            /* Declared twice so it can be part of a lightening calculation) */
-            --t-primary-fore-text-color: #fff;
-
-            /* SASS would generate this from the base colour. */
-            --t-secondary-color: #b9975b;
-            --t-secondary-color-h: 38;
-            --t-secondary-color-s: 40%;
-            --t-secondary-color-l: 54%;
-            --t-secondary-color-l-copy: 54%;
-
-            /* Declared twice so it can be part of a lightening calculation) */
-            --t-secondary-fore-text-color: #111;
-
-            /* SASS would generate this from the base colour. */
-            --t-neutral-color: #8e8279;
-            --t-neutral-color-h: 26;
-            --t-neutral-color-s: 9%;
-            --t-neutral-color-l: 52%;
-            --t-neutral-color-l-copy: 52%;
-
-            /* Declared twice so it can be part of a lightening calculation) */
-            --t-neutral-fore-text-color: #111;
-
-            /* SASS would generate this from the base colour. */
-            /*
-            Without being able to perform a calc in the hsl function (grrr IE11 even with polyfill) we
-            need to create adjusted -l values in SASS (stylesheet) and/or php (on-page themer)
-            */
-            --t-primary-color-l--very-light: 95%;
-            --t-primary-color-l--light: 81%;
-            --t-primary-color-l--dark: 26%;
-            --t-primary-color-l--very-dark: 18%;
-            --t-secondary-color-l--very-light: 96%;
-            --t-secondary-color-l--light: 86%;
-            --t-secondary-color-l--dark: 37%;
-            --t-secondary-color-l--very-dark: 27%;
-            --t-neutral-color-l--very-light: 96%;
-            --t-neutral-color-l--light: 86%;
-            --t-neutral-color-l--dark: 36%;
-            --t-neutral-color-l--very-dark: 26%;
-            /**/
-
             -->{% endcomment %}
         }
 
-        .t-surfon {
-            --t-text-color: #111;
-            --t-text-color-inverse: #fff;
-            --t-light-adjust: $light-adjust;
-            --t-very-light-adjust: $very-light-adjust;
-            --t-dark-adjust: $dark-adjust;
-            --t-very-dark-adjust: $very-dark-adjust;
-            --t-primary-color: #5c6dab;
-            --t-primary-color-h: 227;
-            --t-primary-color-s: 32%;
-            --t-primary-color-l: 52%;
-            --t-primary-color-l-copy: 52%;
-            /* 1 */
-            --t-primary-fore-text-color: #fff;
-            /* SASS would generate this from the base colour. */
-            --t-secondary-color: #ff9e1b;
-            --t-secondary-color-h: 34;
-            --t-secondary-color-s: 100%;
-            --t-secondary-color-l: 55%;
-            --t-secondary-color-l-copy: 55%;
-            /* 1 */
-            --t-secondary-fore-text-color: #111;
-            /* SASS would generate this from the base colour. */
-            --t-neutral-color: #8e8279;
-            --t-neutral-color-h: 26;
-            --t-neutral-color-s: 9%;
-            --t-neutral-color-l: 52%;
-            --t-neutral-color-l-copy: 52%;
-            /* 1 */
-            --t-neutral-fore-text-color: #111;
-            /* SASS would generate this from the base colour. */
-            --t-notice-color: #a5d1f1;
-            --t-notice-color-h: 205;
-            --t-notice-color-s: 73%;
-            --t-notice-color-l: 80%;
-            --t-notice-color-l-copy: 80%;
-            /* 1 */
-            --t-notice-fore-text-color: #111;
-            /* SASS would generate this from the base colour. */
-            --t-success-color: #aec492;
-            --t-success-color-h: 86;
-            --t-success-color-s: 30%;
-            --t-success-color-l: 67%;
-            --t-success-color-l-copy: 67%;
-            /* 1 */
-            --t-success-fore-text-color: #111;
-            /* SASS would generate this from the base colour. */
-            --t-warning-color: #ffc576;
-            --t-warning-color-h: 35;
-            --t-warning-color-s: 100%;
-            --t-warning-color-l: 73%;
-            --t-warning-color-l-copy: 73%;
-            /* 1 */
-            --t-warning-fore-text-color: #111;
-            /* SASS would generate this from the base colour. */
-            --t-error-color: #9b3259;
-            --t-error-color-h: 338;
-            --t-error-color-s: 51%;
-            --t-error-color-l: 40%;
-            --t-error-color-l-copy: 40%;
-            /* 1 */
-            --t-error-fore-text-color: #fff;
-            /* SASS would generate this from the base colour. */
-            /*
-                Without being able to perform a calc in the hsl function (grrr IE11 even with polyfill) we
-                need to create adjusted -l values in SASS (stylesheet) and/or php (on-page themer)
-                Using SASS to perform the calculations here.
-            */
-            --t-primary-color-l--very-light: 96%;
-            --t-primary-color-l--light: 86%;
-            --t-primary-color-l--dark: 86%;
-            --t-primary-color-l--very-dark: 76%;
-            --t-secondary-color-l--very-light: 96%;
-            --t-secondary-color-l--light: 87%;
-            --t-secondary-color-l--dark: 87%;
-            --t-secondary-color-l--very-dark: 78%;
-            --t-neutral-color-l--very-light: 96%;
-            --t-neutral-color-l--light: 86%;
-            --t-neutral-color-l--dark: 86%;
-            --t-neutral-color-l--very-dark: 76%;
-            --t-notice-color-l--very-light: 98%;
-            --t-notice-color-l--light: 94%;
-            --t-notice-color-l--dark: 94%;
-            --t-notice-color-l--very-dark: 90%;
-            --t-success-color-l--very-light: 97%;
-            --t-success-color-l--light: 90%;
-            --t-success-color-l--dark: 90%;
-            --t-success-color-l--very-dark: 84%;
-            --t-warning-color-l--very-light: 98%;
-            --t-warning-color-l--light: 92%;
-            --t-warning-color-l--dark: 92%;
-            --t-warning-color-l--very-dark: 87%;
-            --t-error-color-l--very-light: 95%;
-            --t-error-color-l--light: 82%;
-            --t-error-color-l--dark: 82%;
-            --t-error-color-l--very-dark: 70%;
-            /**/
-        }
     </style>
     {% else %}
     {% comment %}<!--

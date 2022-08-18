@@ -1,0 +1,8 @@
+ primary_color: "#5d4776"
+ primary_color: "#5d4776"
+ primary_color--light: "#cec2db"
+ primary_color--very-light: "#f2eff5"
+ primary_color--dark: "#463659"
+ primary_color--very-dark: "#3c2e4d"
+ secondary_color: "#b9975b"
+ neutral_color: "#8e8279"

@@ -56,14 +56,24 @@ $longform-content-max-width: 67rem !default;
         @include longform-content-styles();
     }
 
-    &#{&} > figure[data-display-as~="blocks"],
-    &#{&} > figure[data-display-as~="breakout-box"] {
+    &#{&} > [data-display-as~="blocks"],
+    &#{&} > [data-display-as~="breakout-box"] {
+
         margin-left: 0;
         margin-right: 0;
     }
 
     &#{&} > [data-display-as~="breakout-box"]:not(:last-child) {
         margin-bottom: $s__sz-m;
+    }
+
+    &#{&} > [data-display-as~="overflow-box"] {
+        @include s__overflow-scroll();
+    }
+
+    &#{&} > [data-display-as~="overflow-box"][data-display-as~="overflow-box"][data-display-as~="overflow-box"][data-display-as~="overflow-box"][data-display-as~="overflow-box"] {
+        margin-left: auto;
+        margin-right: auto;
     }
 
     details {

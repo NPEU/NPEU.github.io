@@ -47,19 +47,6 @@ $s__experimental_checkradios: true;
 */
 /* ---------------------------------------------------------------------------------------------- */
 /* --| STARTCSS |-------------------------------------------------------------------------------- */
-/* The following overrides TFS styles. I need to put this in STARTCSS when I have a chance:
-TFSL
-button,input,label,select,textarea {
-    vertical-align:middle;
-    vertical-align:middle;
-    min-height:2.2em;
-    margin:.2em 0
-}
-*/
-button, input, label, select, textarea {
-  margin: 0;
-}
-
 /*! Start-CSS. See SCSS file for documentation. */
 /*-------------------------------------------------------------------------------------------------|
 
@@ -2745,6 +2732,47 @@ main :target {
 }
 
 /*! End Start-CSS */
+/* The following overrides TFS styles. I need to put this in STARTCSS when I have a chance:
+TFS
+button,input,label,select,textarea {
+    vertical-align:middle;
+    vertical-align:middle;
+    min-height:2.2em;
+    margin:.2em 0
+}
+*/
+/*button,input,label,select,textarea {
+    margin: 0;
+}*/
+a[href] img[src$=svg] {
+  background: transparent;
+  padding: 0;
+  border: 0;
+}
+
+[data-fs-block~="inverted"] {
+  background-color: transparent;
+  padding: 0;
+}
+
+[data-fs-block~="inverted"] * {
+  color: currentColor;
+}
+
+[data-fs-block~="inverted"] img {
+  background: transparent;
+  padding: 0;
+}
+
+[data-fs-block~="flush"] {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+[data-fs-block~=flush]:last-child {
+  margin-bottom: 0;
+}
+
 a {
   word-break: break-word;
 }
@@ -2886,6 +2914,10 @@ fieldset {
     This overrides StartCSS overflow handling - it set a white background to help figures show up,
     but for rounded images (portraits) the white background shows when it shouldn't.
     I should probably have a 'data-contains' on the figures, but seeing if I can get away with this.
+    ...
+    So, setting this here turns it off for the styleguide StartCSS test page. Not the end of the
+    world, but I suspect it would also wipe out the 'overflow-box' setting. Not sure. So I think
+    I should apply this in the User / Longform content context.
 */
 table {
   /*line-height: 1.4;*/
@@ -6875,6 +6907,7 @@ a[href].c-cta--has-icon .icon {
   width: 100%;
   height: auto;
   margin: 0;
+  background: transparent;
   /*.c-map .leaflet-control-zoom.leaflet-bar.leaflet-control {
             padding-bottom: 2px;
         }*/
@@ -10381,14 +10414,30 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   margin-right: auto;
 }
 
-.longform-content.longform-content > figure[data-display-as~="blocks"],
-.longform-content.longform-content > figure[data-display-as~="breakout-box"] {
+.longform-content.longform-content > [data-display-as~="blocks"],
+.longform-content.longform-content > [data-display-as~="breakout-box"] {
   margin-left: 0;
   margin-right: 0;
 }
 
 .longform-content.longform-content > [data-display-as~="breakout-box"]:not(:last-child) {
   margin-bottom: 2.4rem;
+}
+
+.longform-content.longform-content > [data-display-as~="overflow-box"] {
+  max-width: 100%;
+  overflow: auto;
+  background-image: linear-gradient(-90deg, rgba(255, 255, 255, 0) 0%, white 60%, white 100%), linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, white 60%, white 100%), linear-gradient(to right, rgba(0, 0, 20, 0.5), rgba(255, 255, 255, 0)), linear-gradient(to left, rgba(0, 0, 20, 0.5), rgba(255, 255, 255, 0));
+  background-position: left center, right center, left center, right center;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-size: 2em 100%, 2em 100%, 1em 100%, 1em 100%;
+  background-attachment: local, local, scroll, scroll;
+}
+
+.longform-content.longform-content > [data-display-as~="overflow-box"][data-display-as~="overflow-box"][data-display-as~="overflow-box"][data-display-as~="overflow-box"][data-display-as~="overflow-box"] {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .longform-content details {
@@ -10421,10 +10470,6 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
     ============
     ...
 */
-[id="page-footer"][id="page-footer"] {
-  text-align: left;
-}
-
 /*
     Page Sidebar
     ============
@@ -11063,6 +11108,7 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   overflow-x: visible;
   margin-left: 0;
   margin-right: 0;
+  background: transparent;
 }
 
 .user-content.user-content.user-content figcaption {

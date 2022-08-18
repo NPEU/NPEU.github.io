@@ -20,10 +20,11 @@ $map-heights: (
         width: 100%;
         height: auto;
         margin: 0;
+        background: transparent;
 
         & > div[id] {
             display: flex;
-            
+
             border-radius: $s__sz-s;
 
             &:hover,
@@ -90,7 +91,7 @@ $map-heights: (
 
     .modstyle_bespoke--wrapper > .#{$component-namespace}map {
 
-        & > div[id] {     
+        & > div[id] {
             border-radius: 0;
         }
 

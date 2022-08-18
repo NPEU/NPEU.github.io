@@ -5,11 +5,10 @@
 */
 
 
-[id="page-footer"] {
-
-    &#{&} {
-
-        /// Override [data-fs-text="center"]:
-        text-align: left;
-    }
-}
+//.page-footer {
+//
+//    &#{&} {
+//        // Override [data-fs-block="flush"]:
+//        margin: 0;
+//    }
+//}

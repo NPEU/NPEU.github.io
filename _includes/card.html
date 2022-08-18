@@ -1,6 +1,6 @@
 {% if include.title and include.url %}
 <article class="c-card  js-c-card{% if include.unpublished | default: false %}  c-card--unpublished{% endif %}  d-background{% if include.wrapper_classes | default: false %}  {{ include.wrapper_classes }}{% endif %}">
-    <div data-fs-block="border">
+    <div data-fs-block="border  rounded  inverted">
         <header class="c-card__header">
             <h{{ include.hx | default: 3 }} class="c-card__title"><a href="{{ include.url }}"{% if include.cta %} aria-describedby="desc-{{ include.title | slugify }}"{% endif %}><span>{{ include.title }}</span></a></h{{ include.hx | default: 3 }}>
             {% if include.img_src %}
@@ -36,7 +36,7 @@
                     {% endif %}
                     {% if include.url and include.cta %}
                     <p class="l-box  l-box--center">
-                        <b><a href="{{ include.url }}" class="c-cta" id="desc-{{ include.title | slugify }}" tabindex="-1" aria-hidden="true">{{ include.cta }}<svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none"><use xlink:href="#icon-chevron-right"></use></a></b>
+                        <b><a href="{{ include.url }}" class="c-cta" id="desc-{{ include.title | slugify }}" tabindex="-1" aria-hidden="true">{{ include.cta }}<svg focusable="false" aria-hidden="true" width="1.25em" height="1.25em" display="none"><use xlink:href="#icon-chevron-right"></use></svg></a></b>
                     </p>
                     {% endif %}
                 </div>
@@ -44,10 +44,14 @@
         </footer>
         {% endif %}
         {% if include.footer_img_src %}
-        <div class="c-card__footer-image{% if include.footer_img_padded %}  c-card__footer-image--padded{% endif %}">
-            <div class="u-image-cover  js-image-cover  u-image-cover--min-{{ include.footer_img_ratio | default: '30' }}">
-                <div class="u-image-cover__inner">
+        <div class="c-card__footer-image">
+            <div class="u-image-cover  u-image-cover--contain  js-image-cover  u-image-cover--min-{{ include.footer_img_ratio | default: '30' }}">
+                <div class="u-image-cover__inner{% if include.footer_img_padded %}  l-box--space--edge--s{% endif %}">
+                    {% if include.footer_img_svg %}
+                    <img src="{{ include.footer_img_src }}.svg" onerror="this.src='{{ include.footer_img_src }}.png'; this.onerror=null;" alt="" class="u-image-cover__image" width="{{ include.footer_img_w | default: 200 }}" height="{{ include.footer_img_h | default: 133 }}">
+                    {% else %}
                     <img src="{{ include.footer_img_src }}--medium.jpg" sizes="100vw" srcset="{{ include.footer_img_src }}--large.jpg 1600w, {{ include.footer_img_src }}--medium.jpg 900w, {{ include.footer_img_src }}--small.jpg 300w" alt="" class="u-image-cover__image" width="{{ include.footer_img_w | default: 200 }}" height="{{ include.footer_img_h | default: 133 }}">
+                    {% endif %}
                 </div>
             </div>
         </div>
