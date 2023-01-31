@@ -1,6 +1,12 @@
 /*
     Glimpse
     =======
+
+    1. Note the use of :has in this pattern allows the image to have a hover effect if there's a
+       title link, but browsers (at least FF) that don't support :has treat selectors with :has as
+       invalid so the whoel declaration is ignored. To mitigate this, the :has selectors are
+       composed slightly differently to normal, to preven minification form combing selectors and
+       this causing the invalidation. This is done by adding redundent declarations.
 */
 
 $component-namespace: c- !default;
@@ -13,10 +19,14 @@ $glimpse--image-size: 9.6rem !default;
 $glimpse--image-size-large: 17.2rem !default;
 
 $glimpse-heading--font-size: 1.8rem !default;
-$glimpse-footer--font-size:  1.4rem !default;
+$glimpse-body--font-size:  1.4rem !default;
+//$glimpse-footer--font-size:  1.4rem !default;
 
+$__SEL: '.#{$component-namespace}glimpse';
 
-.#{$component-namespace}glimpse {
+/**/
+#{$__SEL} {
+
     /*
         1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
     */
@@ -33,7 +43,11 @@ $glimpse-footer--font-size:  1.4rem !default;
 
         background-color: #fff;
 
-        &::before {
+        /*
+            Browser not supporting 'has' are just missing a hover effect - they would probably be
+            non-the-wiser.
+        */
+        &:has(#{$__SEL}__title a)::before {
             content: "";
             display: block;
             position: absolute;
@@ -50,9 +64,12 @@ $glimpse-footer--font-size:  1.4rem !default;
             top: -#{($glimpse--image-size / 2) - $s__sz-s};
         }
 
-        &:hover::before,
-        &:active::before {
+        &:has(#{$__SEL}__title a):hover::before,
+        &:has(#{$__SEL}__title a):active::before {
             box-shadow: $focus-shadow;
+            color: inherit; /* [^1] */
+            content: ""; /* [^1] */
+            display: block; /* [^1] */
         }
     }
 
@@ -128,7 +145,7 @@ $glimpse-footer--font-size:  1.4rem !default;
     }
 
     #{&}__body {
-        font-size: $glimpse-footer--font-size;
+        font-size: $glimpse-body--font-size;
     }
 
     /*
@@ -163,10 +180,11 @@ $glimpse-footer--font-size:  1.4rem !default;
         }
     }
 
-    &#{&}--image-large::before {
+    &#{&}--image-large:has(#{$__SEL}__title a)::before {
         width: $glimpse--image-size * 1.5;
         height: $glimpse--image-size * 1.5;
         left: -#{$s__sz-m};
+        color: inherit; /* [^1] */
     }
 
     &#{&}--image-large #{&}__image {
@@ -187,10 +205,9 @@ $glimpse-footer--font-size:  1.4rem !default;
         min-width: calc(100% - #{$glimpse--image-size + $s__sz-m});
     }
 
-    &#{&}--image-round {
-        &::before {
-            border-radius: 100%;
-        }
+    &#{&}--image-round:has(#{$__SEL}__title a)::before {
+        border-radius: 100%;
+        color: inherit; /* [^1] */
     }
 
     &#{&}--image-round #{&}__image {
