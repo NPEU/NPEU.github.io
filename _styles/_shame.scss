@@ -14,7 +14,7 @@
             width: 75%;
         }
     }
-    
+
 }
 */
 /*
@@ -38,7 +38,7 @@
         .l-primary-content.l-primary-content > * {
             width: 75%;
         }
-        
+
         .tmp.tmp.tmp {
             width: calc(25% - #{$s__sz-m * 2});
             position: absolute;
@@ -82,6 +82,51 @@
 }
 */
 
+
+// Need to sort this out in the Fallback pattern.
+.dropdown,
+.nav-bar__item,
+.nav-bar__link {
+    position: relative;
+}
+
+.nav-bar__item a,
+.nav-bar__item span {
+    position: relative;
+}
+
+.nav-bar__item--current > a::before,
+.sub-nav__item--current > a::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.4;
+}
+
+
+.nav-bar__item--current > a:hover::before,
+.nav-bar__item--current > a:active::before,
+.nav-bar__item--current > a:focus::before,
+.sub-nav__item--current > a:hover::before,
+.sub-nav__item--current > a:active::before,
+.sub-nav__item--current > a:focus::before {
+    display: none;
+}
+
+
+.search-form .search-form__field.search-form__field {
+    border-radius: 50px 0 0 50px;
+    padding-left: 0.5em;
+}
+
+
 // So the current margin approach falls over a bit when there are hidden elements as the first or
 // last child of a container. E.g. Research filter form.
 // Attempt to correct these edge cases here: (note we can't do "one before last script element")
@@ -99,6 +144,12 @@ script:first-child + * {
     display: none !important;
 }
 
+
+// Fix IE11 icons:
+svg[width="20"][height="20"] {
+    width: 1.25em;
+    height: 1.25em;
+}
 
 
 // Fix IE11 sticky footer - need to put this in proper place:
@@ -187,7 +238,7 @@ script:first-child + * {
 
 /*---------------------*/
 
-// Currently only one use-case for this: TOAST - TOFS Podcast - image looks better pulled up to the 
+// Currently only one use-case for this: TOAST - TOFS Podcast - image looks better pulled up to the
 // header (negated header margin).
 .u-negate-space-below {
     margin-bottom: -$s__sz-m !important;

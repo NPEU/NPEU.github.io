@@ -17,8 +17,8 @@
     }
 
     // https://davidwalsh.name/javascript-debounce-function
-    // Returns a function, that, as long as it continues to be invoked, will not be triggered. 
-    // The function will be called after it stops being called for N milliseconds. If `immediate` 
+    // Returns a function, that, as long as it continues to be invoked, will not be triggered.
+    // The function will be called after it stops being called for N milliseconds. If `immediate`
     // is passed, trigger the function on the leading edge, instead of the trailing.
     var debounce = function(func, wait, immediate) {
         var timeout;
@@ -52,7 +52,7 @@
             // Remove the style. Note the behaviour here isn't ideal, but it's better than the image
             // getting stuck at a small size which can happen otherwise.
             img.removeAttribute('style');
-            
+
             // If we're using the 'contain' variant:
             if (new RegExp('(^| )u-image-cover--contain( |$)', 'gi').test(el.className)) {
                 if (image_rect.height >= container_rect.height) {

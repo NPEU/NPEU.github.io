@@ -85,8 +85,8 @@ var $flbk = {};
         }
         return false;
     };
-    
-    
+
+
     $flbk.u.debounce = function(func, wait, immediate) {
         var timeout;
         return function() {
@@ -106,8 +106,8 @@ var $flbk = {};
             }
         };
     }
-    
-    
+
+
     $flbk.u.ready = function(fn) {
         if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
             fn();
@@ -115,8 +115,8 @@ var $flbk = {};
             document.addEventListener('DOMContentLoaded', fn);
         }
     };
-    
-    
+
+
     $flbk.u.set_style = function(element, style) {
         Object.keys(style).forEach(function(key) {
             var val = style[key];
@@ -129,11 +129,11 @@ var $flbk = {};
         });
     }
 
-    
-    
 
-    $flbk.s.debug = true;
-    //$flbk.s.debug = false;
+
+
+    //$flbk.s.debug = true;
+    $flbk.s.debug = false;
 
     $flbk.s.main_stylesheet_id = 'main_stylesheet';
     $flbk.s.support_ie11 = true;
@@ -179,8 +179,8 @@ var $flbk = {};
 
 (function() {
 
-    var debug = true;
-    //var debug = false;
+    //var debug = true;
+    var debug = false;
 
     var ident = 'card';
 
@@ -254,7 +254,7 @@ var $flbk = {};
 
 /*
     Carousel enhancements
-    
+
     * Prevent page just when links activated.
     * Add 'current' class to links that match current hash.
     * Update hash if user scrolls rather than uses links.
@@ -406,9 +406,11 @@ var cookie_close_class            = 'cookie_notice--close';
 var cookie_notice_effect_duration = 1000;
 var cookie_html                   =
 '<div id="' + cookie_notice_id + '" class="' + cookie_notice_class + '">' + "\n" +
+'<fieldset role="presentation">' + "\n" +
 '<p class="cookie_notice__message">This site uses <a href="http://www.allaboutcookies.org/" rel="external noopener noreferrer" target="_blank">cookies</a> to improve user experience. By using this site you agree to our use of cookies.</p>' + "\n" +
 '<span class="cookie_notice__action"><button id="' + cookie_button_id + '" class="' + cookie_button_class + '">Dismiss</button></span>' + "\n" +
 '</div>';
+'</fieldset>';
 
 /*
     iframe - fit height to contents.
@@ -417,7 +419,7 @@ var cookie_html                   =
 (function() {
 
     var setIframeHeight = function(iframe) {
-        
+
         var newHeight = iframe.contentDocument.querySelector('html').offsetHeight;
         iframe.style.height = newHeight + 'px';
     };
@@ -429,7 +431,7 @@ var cookie_html                   =
         Array.prototype.forEach.call(elements, function(el, i) {
             var iframe        = el;
             var iframe_window = iframe.contentWindow;
-            
+
             iframe.addEventListener('load', function() {
                 setIframeHeight(iframe);
             });
@@ -457,8 +459,8 @@ var cookie_html                   =
 
 (function() {
 
-    var debug = true;
-    //var debug = false;
+    //var debug = true;
+    var debug = false;
 
     var ident = 'glimpse';
 
@@ -583,8 +585,8 @@ var cookie_html                   =
     }
 
     // https://davidwalsh.name/javascript-debounce-function
-    // Returns a function, that, as long as it continues to be invoked, will not be triggered. 
-    // The function will be called after it stops being called for N milliseconds. If `immediate` 
+    // Returns a function, that, as long as it continues to be invoked, will not be triggered.
+    // The function will be called after it stops being called for N milliseconds. If `immediate`
     // is passed, trigger the function on the leading edge, instead of the trailing.
     var debounce = function(func, wait, immediate) {
         var timeout;
@@ -618,7 +620,7 @@ var cookie_html                   =
             // Remove the style. Note the behaviour here isn't ideal, but it's better than the image
             // getting stuck at a small size which can happen otherwise.
             img.removeAttribute('style');
-            
+
             // If we're using the 'contain' variant:
             if (new RegExp('(^| )u-image-cover--contain( |$)', 'gi').test(el.className)) {
                 if (image_rect.height >= container_rect.height) {

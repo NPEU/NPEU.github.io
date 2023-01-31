@@ -14092,7 +14092,7 @@ L.DivIcon.SVGIcon = L.DivIcon.extend({
         "circleColor": null, //defaults to color
         "circleOpacity": null, // defaults to opacity
         "circleFillColor": "rgb(255,255,255)",
-        "circleFillOpacity": null, //default to opacity 
+        "circleFillOpacity": null, //default to opacity
         "circleRatio": 0.5,
         "circleWeight": null, //defaults to weight
         "color": "rgb(0,102,255)",
@@ -14110,7 +14110,7 @@ L.DivIcon.SVGIcon = L.DivIcon.extend({
     },
     initialize: function(options) {
         options = L.Util.setOptions(this, options)
-        
+
         //iconSize needs to be converted to a Point object if it is not passed as one
         options.iconSize = L.point(options.iconSize)
 
@@ -14133,11 +14133,11 @@ L.DivIcon.SVGIcon = L.DivIcon.extend({
         if (!options.circleWeight) {
             options.circleWeight = options.weight
         }
-        if (!options.fillColor) { 
+        if (!options.fillColor) {
             options.fillColor = options.color
         }
         if (!options.fontSize) {
-            options.fontSize = Number(options.iconSize.x/4) 
+            options.fontSize = Number(options.iconSize.x/4)
         }
         if (!options.iconAnchor) {
             options.iconAnchor = L.point(Number(options.iconSize.x)/2, Number(options.iconSize.y))
@@ -14163,12 +14163,12 @@ L.DivIcon.SVGIcon = L.DivIcon.extend({
         var stroke = this.options.circleColor
         var strokeOpacity = this.options.circleOpacity
         var strokeWidth = this.options.circleWeight
-        var className = this.options.className + "-circle"        
-       
+        var className = this.options.className + "-circle"
+
         var circle = '<circle class="' + className + '" cx="' + cx + '" cy="' + cy + '" r="' + radius +
-            '" fill="' + fill + '" fill-opacity="'+ fillOpacity + 
+            '" fill="' + fill + '" fill-opacity="'+ fillOpacity +
             '" stroke="' + stroke + '" stroke-opacity=' + strokeOpacity + '" stroke-width="' + strokeWidth + '"/>'
-        
+
         return circle
     },
     _createPathDescription: function() {
@@ -14219,7 +14219,7 @@ L.DivIcon.SVGIcon = L.DivIcon.extend({
         var lineHeight = Number(this.options.fontSize)
 
         var x = this.options.circleAnchor.x
-        var y = this.options.circleAnchor.y + (lineHeight * 0.35) //35% was found experimentally 
+        var y = this.options.circleAnchor.y + (lineHeight * 0.35) //35% was found experimentally
         var circleText = this.options.circleText
         var textColor = this.options.fontColor.replace("rgb(", "rgba(").replace(")", "," + this.options.fontOpacity + ")")
 
@@ -14305,7 +14305,6 @@ function leafletMapInitialize(map_container_id, map_data, markers) {
     };
 
     var html_el = document.querySelector('html');
-    console.log(html_el);
 
     // Add the JS class name ...
     if (html_el.classList) {
@@ -14339,8 +14338,8 @@ function leafletMapInitialize(map_container_id, map_data, markers) {
         accessToken: map_data.token
     }).addTo(map);
     */
-    
-    
+
+
     // Mapbox tiles (https://www.mapbox.com/)
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -14423,16 +14422,16 @@ L.Control.FullScreen = L.Control.extend({
 		forcePseudoFullscreen: false,
 		fullscreenElement: false
 	},
-	
+
 	onAdd: function (map) {
 		var className = 'leaflet-control-zoom-fullscreen', container, content = '';
-		
+
 		if (map.zoomControl && !this.options.forceSeparateButton) {
 			container = map.zoomControl._container;
 		} else {
 			container = L.DomUtil.create('div', 'leaflet-bar');
 		}
-		
+
 		if (this.options.content) {
 			content = this.options.content;
 		} else {
@@ -14446,24 +14445,24 @@ L.Control.FullScreen = L.Control.extend({
 
 		return container;
 	},
-	
+
 	onRemove: function (map) {
 		L.DomEvent
 			.off(this.link, 'click', L.DomEvent.stopPropagation)
 			.off(this.link, 'click', L.DomEvent.preventDefault)
 			.off(this.link, 'click', this.toggleFullScreen, this);
-		
+
 		L.DomEvent
 			.off(this._container, fullScreenApi.fullScreenEventName, L.DomEvent.stopPropagation)
 			.off(this._container, fullScreenApi.fullScreenEventName, L.DomEvent.preventDefault)
 			.off(this._container, fullScreenApi.fullScreenEventName, this._handleFullscreenChange, this);
-		
+
 		L.DomEvent
 			.off(document, fullScreenApi.fullScreenEventName, L.DomEvent.stopPropagation)
 			.off(document, fullScreenApi.fullScreenEventName, L.DomEvent.preventDefault)
 			.off(document, fullScreenApi.fullScreenEventName, this._handleFullscreenChange, this);
 	},
-	
+
 	_createButton: function (title, className, content, container, fn, context) {
 		this.link = L.DomUtil.create('a', className, container);
 		this.link.href = '#';
@@ -14477,12 +14476,12 @@ L.Control.FullScreen = L.Control.extend({
 			.on(this.link, 'click', L.DomEvent.stopPropagation)
 			.on(this.link, 'click', L.DomEvent.preventDefault)
 			.on(this.link, 'click', fn, context);
-		
+
 		L.DomEvent
 			.on(container, fullScreenApi.fullScreenEventName, L.DomEvent.stopPropagation)
 			.on(container, fullScreenApi.fullScreenEventName, L.DomEvent.preventDefault)
 			.on(container, fullScreenApi.fullScreenEventName, this._handleFullscreenChange, context);
-		
+
 		L.DomEvent
 			.on(document, fullScreenApi.fullScreenEventName, L.DomEvent.stopPropagation)
 			.on(document, fullScreenApi.fullScreenEventName, L.DomEvent.preventDefault)
@@ -14490,7 +14489,7 @@ L.Control.FullScreen = L.Control.extend({
 
 		return this.link;
 	},
-	
+
 	toggleFullScreen: function () {
 		var map = this._map;
 		map._exitFired = false;
@@ -14514,11 +14513,11 @@ L.Control.FullScreen = L.Control.extend({
 			map._isFullscreen = true;
 		}
 	},
-	
+
 	_toggleTitle: function () {
 		this.link.title = this._map._isFullscreen ? this.options.title : this.options.titleCancel;
 	},
-	
+
 	_handleFullscreenChange: function () {
 		var map = this._map;
 		map.invalidateSize();
@@ -14546,7 +14545,7 @@ L.control.fullscreen = function (options) {
 	return new L.Control.FullScreen(options);
 };
 
-/* 
+/*
 Native FullScreen JavaScript API
 -------------
 Assumes Mozilla naming conventions instead of W3C for now
@@ -14555,17 +14554,17 @@ source : http://johndyer.name/native-fullscreen-javascript-api-plus-jquery-plugi
 
 */
 
-	var 
-		fullScreenApi = { 
+	var
+		fullScreenApi = {
 			supportsFullScreen: false,
-			isFullScreen: function () { return false; }, 
-			requestFullScreen: function () {}, 
+			isFullScreen: function () { return false; },
+			requestFullScreen: function () {},
 			cancelFullScreen: function () {},
 			fullScreenEventName: '',
 			prefix: ''
 		},
 		browserPrefixes = 'webkit moz o ms khtml'.split(' ');
-	
+
 	// check for native support
 	if (typeof document.exitFullscreen !== 'undefined') {
 		fullScreenApi.supportsFullScreen = true;
@@ -14583,7 +14582,7 @@ source : http://johndyer.name/native-fullscreen-javascript-api-plus-jquery-plugi
 			fullScreenApi.supportsFullScreen = true;
 		}
 	}
-	
+
 	// update methods to do something useful
 	if (fullScreenApi.supportsFullScreen) {
 		if (fullScreenApi.prefix === 'ms') {

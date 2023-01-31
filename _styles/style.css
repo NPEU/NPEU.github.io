@@ -5453,6 +5453,7 @@ a[href].c-badge {
 }
 
 a[href].c-badge:hover, a[href].c-badge:active, a[href].c-badge:focus {
+  background-color: #fff;
   border: 0;
   box-shadow: 0 0 0 0.3rem #fff, 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
 }
@@ -5721,6 +5722,10 @@ a[href].c-cta--has-icon .icon {
 */
 .c-card {
   /*
+        Add space between adjacent cards. Probabl should really be in a layout but arguments for
+        and against, and this way avoids adding layout containers to dataview modules.
+    */
+  /*
             The pattern markup allows for a TFS border, so zap that:
         */
   /* If there's no body, the footer should grow: */
@@ -5748,6 +5753,11 @@ a[href].c-cta--has-icon .icon {
   height: 100%;
   border-radius: 1.2rem;
   overflow: hidden;
+  margin: 0;
+}
+
+.c-card.c-card + .c-card.c-card {
+  margin-top: 2.4rem;
 }
 
 .c-card > div {
@@ -6226,7 +6236,14 @@ a[href].c-cta--has-icon .icon {
 /*
     Glimpse
     =======
+
+    1. Note the use of :has in this pattern allows the image to have a hover effect if there's a
+       title link, but browsers (at least FF) that don't support :has treat selectors with :has as
+       invalid so the whoel declaration is ignored. To mitigate this, the :has selectors are
+       composed slightly differently to normal, to preven minification form combing selectors and
+       this causing the invalidation. This is done by adding redundent declarations.
 */
+/**/
 /**/
 .c-glimpse {
   /*
@@ -6252,9 +6269,13 @@ a[href].c-cta--has-icon .icon {
   flex-grow: 1;
   height: 100%;
   background-color: #fff;
+  /*
+            Browser not supporting 'has' are just missing a hover effect - they would probably be
+            non-the-wiser.
+        */
 }
 
-.c-glimpse.c-glimpse::before {
+.c-glimpse.c-glimpse:has(.c-glimpse__title a)::before {
   content: "";
   display: block;
   position: absolute;
@@ -6266,8 +6287,14 @@ a[href].c-cta--has-icon .icon {
   top: -3.6rem;
 }
 
-.c-glimpse.c-glimpse:hover::before, .c-glimpse.c-glimpse:active::before {
+.c-glimpse.c-glimpse:has(.c-glimpse__title a):hover::before, .c-glimpse.c-glimpse:has(.c-glimpse__title a):active::before {
   box-shadow: 0 0 0 0.3rem #fff, 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
+  color: inherit;
+  /* [^1] */
+  content: "";
+  /* [^1] */
+  display: block;
+  /* [^1] */
 }
 
 .c-glimpse > div {
@@ -6351,10 +6378,12 @@ a[href].c-cta--has-icon .icon {
   border: 0;
 }
 
-.c-glimpse.c-glimpse--image-large::before {
+.c-glimpse.c-glimpse--image-large:has(.c-glimpse__title a)::before {
   width: 14.4rem;
   height: 14.4rem;
   left: -2.4rem;
+  color: inherit;
+  /* [^1] */
 }
 
 .c-glimpse.c-glimpse--image-large .c-glimpse__image {
@@ -6374,8 +6403,10 @@ a[href].c-cta--has-icon .icon {
   min-width: calc(100% - 12rem);
 }
 
-.c-glimpse.c-glimpse--image-round::before {
+.c-glimpse.c-glimpse--image-round:has(.c-glimpse__title a)::before {
   border-radius: 100%;
+  color: inherit;
+  /* [^1] */
 }
 
 .c-glimpse.c-glimpse--image-round .c-glimpse__image {
@@ -7177,6 +7208,10 @@ a[href].c-cta--has-icon .icon {
   margin-bottom: 0;
 }
 
+.c-panel__module .c-panel__header {
+  margin: 0;
+}
+
 @supports (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
   .c-panel .c-panel__header > div, .user-content.user-content.user-content [data-display-as~="box"] .c-panel__header > div, .user-content.user-content.user-content [data-display-as~="pale-box"] .c-panel__header > div, .user-content.user-content.user-content [data-display-as~="themed-box--background"] .c-panel__header > div, .user-content.user-content.user-content [data-display-as~="themed-box--border"] .c-panel__header > div, .user-content.user-content.user-content [data-display-as~="notice-box"] .c-panel__header > div {
     gap: 0 2.4rem;
@@ -7259,7 +7294,7 @@ a[href].c-cta--has-icon .icon {
   flex: 1 0 50%;
   display: flex;
   flex-direction: column;
-  min-width: max-content;
+  min-width: 14em;
 }
 
 .c-sign.c-sign--span-all {
@@ -7470,8 +7505,11 @@ a[href].c-cta--has-icon .icon {
     =========
 */
 /**/
-.c-utilitext.c-utilitext {
+.c-utilitext:not(.c-utilitext--no-font-reduction) {
   font-size: 0.875em;
+}
+
+.c-utilitext.c-utilitext {
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -7570,7 +7608,9 @@ a[href].c-cta--has-icon .icon {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.2rem black;
 }
 
-.c-panel--rounded .c-card {
+.c-panel--rounded .c-card,
+.c-panel--rounded .c-map > div[id],
+.c-panel--rounded .c-map .leaflet-container {
   border-radius: 0.6rem;
 }
 
@@ -8666,7 +8706,13 @@ a[href].c-cta--has-icon .icon {
   flex: 0 1 auto;
 }
 
-/*    Distribute Layout    =================    Distribute items inside a container.*/
+/*
+    Distribute Layout
+    =================
+
+    Distribute items inside a container.
+
+*/
 .l-layout.l-distribute > .l-layout__inner > .l-box {
   flex-grow: 0;
 }
@@ -8684,16 +8730,36 @@ a[href].c-cta--has-icon .icon {
     /* 3 or more: */
     /* 3 or more, different values for the first one: */
     /* 4 or more: */
-    /*            From here on in there are increasingly more possibilities on how things can be laid out.            More items = more possibilities. I've tried to go for what I consider to be the most balanced option but almost all other possibilities are achievable.            */
+    /*
+            From here on in there are increasingly more possibilities on how things can be laid out.
+            More items = more possibilities. I've tried to go for what I consider to be the most balanced option but almost all other possibilities are achievable.
+            */
     /* 5 or more: (1x5 | 1,2x2 | 2,3 | 5) (skip out 1,4???) */
     /* 5 or more, different values for the first two: */
     /* 5 or more, different values for the first one: */
     /* 6 or more: */
     /* 6 or more, different values for the first two: */
-    /*& > .l-box:nth-last-child(n+6),            & > .l-box:nth-last-child(n+6) + * {                flex-basis: unquote("min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max(50%, ((var(--b) * 4) - 100%) * 999), max(20%, ((var(--b) * 5) - 100%) * 999), max(16%, ((var(--b) * 6) - 100%) * 999))");            }*/
+    /*& > .l-box:nth-last-child(n+6),
+            & > .l-box:nth-last-child(n+6) + * {
+                flex-basis: unquote("min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max(50%, ((var(--b) * 4) - 100%) * 999), max(20%, ((var(--b) * 5) - 100%) * 999), max(16%, ((var(--b) * 6) - 100%) * 999))");
+            }*/
     /* 6 or more, different values for the first one: */
-    /*& > .l-box:nth-last-child(n+6) {                flex-basis: unquote("min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max(50%, ((var(--b) * 4) - 100%) * 999), max(100%, ((var(--b) * 5) - 100%) * 999), max(16%, ((var(--b) * 6) - 100%) * 999))");            }*/
-    /*                It's worth noting here that things get especially tricky and messy. We've already seen                with 6 we've had to skip some steps, and things like 7 and 11 are quite hard too.                Also with ANY amount, the practicalities of allowing all arrangements up to a single                row become limiting.                If you assume you have items that are quite small - and can therefore fit into a single                row - a small reduction in available width that causes wrapping would leave a very large                item on it's own row. This is the whole reason we want to balance things in the first                place, so that this doesn't happen - we want a reduction in available width that causes                wrapping to lead to MORE items being wrapped and thus creating a better balance.                It's just very hard to know where things SHOULD land.            */
+    /*& > .l-box:nth-last-child(n+6) {
+                flex-basis: unquote("min(max(50%, ((var(--b) * 2) - 100%) * 999), max(33%, ((var(--b) * 3) - 100%) * 999), max(50%, ((var(--b) * 4) - 100%) * 999), max(100%, ((var(--b) * 5) - 100%) * 999), max(16%, ((var(--b) * 6) - 100%) * 999))");
+            }*/
+    /*
+                It's worth noting here that things get especially tricky and messy. We've already seen
+                with 6 we've had to skip some steps, and things like 7 and 11 are quite hard too.
+                Also with ANY amount, the practicalities of allowing all arrangements up to a single
+                row become limiting.
+                If you assume you have items that are quite small - and can therefore fit into a single
+                row - a small reduction in available width that causes wrapping would leave a very large
+                item on it's own row. This is the whole reason we want to balance things in the first
+                place, so that this doesn't happen - we want a reduction in available width that causes
+                wrapping to lead to MORE items being wrapped and thus creating a better balance.
+                It's just very hard to know where things SHOULD land.
+
+            */
     /* 7 or more: (1x7 | 1,2x3 | 1,3x2 | 3,4) */
     /* 7 or more, different values for the second and third: */
     /* 7 or more, different values for the first one: */
@@ -8719,7 +8785,7 @@ a[href].c-cta--has-icon .icon {
     flex-basis: min(max((50% - var(--g)), ((var(--b) * 2) - 100%) * 999), max((33% - var(--g)), ((var(--b) * 3) - 100%) * 999));
   }
   .l-layout.l-distribute.l-distribute--balance-top > .l-layout__inner > .l-box:nth-last-child(n+3) {
-    flex-basis: max(33%, ((var(--b) * 3) - 100%) * 999);
+    flex-basis: max(33% - var(--g), ((var(--b) * 3) - 100%) * 999);
   }
   .l-layout.l-distribute.l-distribute--balance-top > .l-layout__inner > .l-box:nth-last-child(n+4),
   .l-layout.l-distribute.l-distribute--balance-top > .l-layout__inner > .l-box:nth-last-child(n+4) ~ * {
@@ -10440,14 +10506,14 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   margin-right: auto;
 }
 
-.longform-content details {
+.longform-content.longform-content > details {
   margin-bottom: 2.4rem;
   border: 0;
   border-bottom: 1px solid #eee;
   padding: 0.6rem 0 0.6rem 2.4rem;
 }
 
-.longform-content summary {
+.longform-content.longform-content > details > summary {
   margin-bottom: 2.4rem;
   font-weight: bold;
 }
@@ -10456,7 +10522,14 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
     Page Header
     ===========
 */
+/*
+    Ensure drop-downs from page header overlay anything else on the page.
+*/
 .page-header {
+  position: relative;
+  /* [1] */
+  z-index: 9999;
+  /* [1] */
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -10465,11 +10538,88 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   justify-content: space-between;
 }
 
+.page-header .page-header__brand-banner.npeu {
+  background-color: #5D4776;
+  background-image: url("images/npeu-pattern.svg") !important;
+  background-size: 68px 132px !important;
+  background-position: 0 2.6rem !important;
+  background-attachment: fixed !important;
+  background-repeat: repeat;
+  box-shadow: 0 -0.3rem 0.3rem 0 rgba(0, 0, 0, 0.7) inset;
+}
+
+.page-header .page-header__brand-banner.npeu > * {
+  position: relative;
+  filter: drop-shadow(0px 6px 2px rgba(0, 0, 0, 0.5));
+}
+
+.page-header .page-header__brand-banner.npeu > *::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #fff;
+  clip-path: ellipse(80% 125% at 0% -15%);
+}
+
+.page-header .page-header__brand-banner.npeu + * {
+  position: relative;
+  z-index: 1;
+}
+
+.page-footer .page-footer__brand-footer.npeu {
+  position: relative;
+}
+
+.page-footer .page-footer__brand-footer.npeu > * {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 6rem;
+}
+
+.page-footer .page-footer__brand-footer.npeu::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  clip-path: ellipse(calc(10em + 75%) 110% at 0% -20%);
+}
+
+.page-footer .page-footer__brand-footer.npeu .page-footer__info-box {
+  background: transparent;
+  border-radius: 0;
+  /*
+    margin: -2.4rem 2.4rem 6rem -2.4rem;
+    padding: 2.4rem;
+    */
+}
+
+.page-footer .page-footer__brand-footer.npeu .page-footer__info-box + * {
+  justify-content: start !important;
+}
+
 /*
     Page Footer
     ============
     ...
 */
+.page-footer .page-footer__brand-footer.npeu {
+  background-color: #463659;
+  background-image: url("images/npeu-pattern-dark.svg") !important;
+  background-size: 68px 132px !important;
+  background-position: 0 2.6rem !important;
+  background-attachment: fixed !important;
+  background-repeat: repeat;
+  box-shadow: 0 0.3rem 0.3rem 0 rgba(0, 0, 0, 0.7) inset;
+}
+
 /*
     Page Sidebar
     ============
@@ -11057,6 +11207,10 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   object-fit: cover;
 }
 
+.user-content.user-content.user-content [data-contains~="no-height-limit"] img {
+  max-height: none;
+}
+
 .user-content.user-content.user-content img[src*="/assets/images/avatars/"],
 .user-content.user-content.user-content [data-contains~="portrait"] img {
   display: block;
@@ -11623,18 +11777,18 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   padding: 0;
 }
 
-a[href].u-image-natural {
+a[href].u-image-natural.u-image-natural {
   border: 0;
   padding: 0;
   margin: 0;
   position: relative;
 }
 
-a[href].u-image-natural:hover, a[href].u-image-natural:active, a[href].u-image-natural:focus {
+a[href].u-image-natural.u-image-natural:hover, a[href].u-image-natural.u-image-natural:active, a[href].u-image-natural.u-image-natural:focus {
   border: 0;
 }
 
-a[href].u-image-natural:hover::before, a[href].u-image-natural:active::before, a[href].u-image-natural:focus::before {
+a[href].u-image-natural.u-image-natural:hover::before, a[href].u-image-natural.u-image-natural:active::before, a[href].u-image-natural.u-image-natural:focus::before {
   content: "";
   display: block;
   position: absolute;
@@ -11644,6 +11798,10 @@ a[href].u-image-natural:hover::before, a[href].u-image-natural:active::before, a
   bottom: 0;
   box-shadow: 0 0 0 0.6rem rgba(0, 0, 0, 0.2) inset;
   z-index: 1;
+}
+
+a[href].u-image-natural.u-image-natural .u-image-natural__image:hover {
+  border: 0;
 }
 
 /*
@@ -11718,7 +11876,7 @@ a[href][rel~="external"].u-image-natural:focus::after {
             width: 75%;
         }
     }
-    
+
 }
 */
 /*
@@ -11742,7 +11900,7 @@ a[href][rel~="external"].u-image-natural:focus::after {
         .l-primary-content.l-primary-content > * {
             width: 75%;
         }
-        
+
         .tmp.tmp.tmp {
             width: calc(25% - 4.8rem);
             position: absolute;
@@ -11784,12 +11942,57 @@ a[href][rel~="external"].u-image-natural:focus::after {
 
 }
 */
+.dropdown,
+.nav-bar__item,
+.nav-bar__link {
+  position: relative;
+}
+
+.nav-bar__item a,
+.nav-bar__item span {
+  position: relative;
+}
+
+.nav-bar__item--current > a::before,
+.sub-nav__item--current > a::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.4;
+}
+
+.nav-bar__item--current > a:hover::before,
+.nav-bar__item--current > a:active::before,
+.nav-bar__item--current > a:focus::before,
+.sub-nav__item--current > a:hover::before,
+.sub-nav__item--current > a:active::before,
+.sub-nav__item--current > a:focus::before {
+  display: none;
+}
+
+.search-form .search-form__field.search-form__field {
+  border-radius: 50px 0 0 50px;
+  padding-left: 0.5em;
+}
+
 script:first-child + * {
   margin-top: 0;
 }
 
 [filterable_item][hidden] {
   display: none !important;
+}
+
+svg[width="20"][height="20"] {
+  width: 1.25em;
+  height: 1.25em;
 }
 
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {

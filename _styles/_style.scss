@@ -282,11 +282,16 @@ $ff-min-widths: (
 
 @import "component-patterns/_utilitext.scss";
 
-// Special case for rounded cards inside rounded panels:
-
-.c-panel--rounded .c-card {
-    border-radius: #{$s__sz-s / 2};
+// Think about including these in the Panel file (make it a 'super object'?)
+// Special case for rounded cards and maps inside rounded panels:
+.c-panel--rounded {
+    .c-card,
+    .c-map > div[id],
+    .c-map .leaflet-container {
+        border-radius: #{$s__sz-s / 2};
+    }
 }
+
 
 /* ---------------------------------------------------------------------------------------------- */
 

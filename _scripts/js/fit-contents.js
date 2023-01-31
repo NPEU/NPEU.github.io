@@ -5,7 +5,7 @@
 (function() {
 
     var setIframeHeight = function(iframe) {
-        
+
         var newHeight = iframe.contentDocument.querySelector('html').offsetHeight;
         iframe.style.height = newHeight + 'px';
     };
@@ -17,7 +17,7 @@
         Array.prototype.forEach.call(elements, function(el, i) {
             var iframe        = el;
             var iframe_window = iframe.contentWindow;
-            
+
             iframe.addEventListener('load', function() {
                 setIframeHeight(iframe);
             });

@@ -1,6 +1,6 @@
 /*
     Carousel enhancements
-    
+
     * Prevent page just when links activated.
     * Add 'current' class to links that match current hash.
     * Update hash if user scrolls rather than uses links.

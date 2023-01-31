@@ -229,13 +229,13 @@ function do_concat_js(cb) {
 
     .pipe(concat(js_filter_filename))
     .pipe(gulp.dest(js_src));
-    
-    
+
+
     // Separate sort script:
     gulp.src([
         './bower_components/Fall-Back-Sortability/sortability.js'
     ])
-    
+
     .pipe(concat(js_sort_filename))
     .pipe(gulp.dest(js_src));
 
@@ -248,7 +248,7 @@ function do_concat_js(cb) {
 
     .pipe(concat(js_slimselect_filename))
     .pipe(gulp.dest(js_src));
-    
+
     // Separate WhatsOn script:
     gulp.src([
         './_scripts/js/whatson.js'

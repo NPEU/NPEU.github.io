@@ -4,8 +4,8 @@
 
 (function() {
 
-    var debug = true;
-    //var debug = false;
+    //var debug = true;
+    var debug = false;
 
     var ident = 'glimpse';
 
