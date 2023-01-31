@@ -24,7 +24,19 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
 
         border-radius: $s__sz-s;
         overflow: hidden;
+
+        margin: 0;
     }
+
+    /*
+        Add space between adjacent cards. Probabl should really be in a layout but arguments for
+        and against, and this way avoids adding layout containers to dataview modules.
+    */
+    &#{&} + &#{&} {
+        margin-top: #{$s__sz-m};
+    }
+
+
 
 
         /*
