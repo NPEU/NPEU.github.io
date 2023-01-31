@@ -215,6 +215,7 @@ a[href].#{$component-namespace}badge {
     &:hover,
     &:active,
     &:focus {
+        background-color: #fff;
         border: 0;
         box-shadow: $focus-shadow;
 
