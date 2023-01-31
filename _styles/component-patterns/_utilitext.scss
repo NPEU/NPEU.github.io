@@ -7,11 +7,17 @@ $component-namespace: c- !default;
 
 $utilitext--text-color: currentColor !default;
 
+
+$__SEL: '.#{$component-namespace}utilitext';
+
 /**/
-.#{$component-namespace}utilitext {
+#{$__SEL} {
+
+    &:not(#{&}--no-font-reduction) {
+        font-size: 0.875em;
+    }
 
     &#{&} {
-        font-size: 0.875em;
         margin-top: 0;
         margin-bottom: 0;
 
@@ -21,7 +27,7 @@ $utilitext--text-color: currentColor !default;
                 margin-left: 0.3em;
                 margin-right: 0;
             }
-            
+
             svg:first-child:not(:only-child) {
                 margin-left: 0;
                 margin-right: 0.3em;
