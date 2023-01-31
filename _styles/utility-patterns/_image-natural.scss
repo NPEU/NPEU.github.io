@@ -52,7 +52,7 @@ $image-natural-namespace: u- !default;
     }*/
 }
 
-a[href].#{$image-natural-namespace}image-natural {
+a[href].#{$image-natural-namespace}image-natural.#{$image-natural-namespace}image-natural {
     border: 0;
     padding: 0;
     margin: 0;
@@ -74,6 +74,10 @@ a[href].#{$image-natural-namespace}image-natural {
             box-shadow: 0 0 0 0.6rem rgba(0,0,0,.2) inset;
             z-index: 1;
         }
+    }
+
+    & .#{$image-natural-namespace}image-natural__image:hover {
+        border: 0;
     }
 }
 
