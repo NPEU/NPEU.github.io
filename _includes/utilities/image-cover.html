@@ -1,7 +1,7 @@
 <!--
 
     IMAGE COVER
-    
+
 -->
 
 
@@ -10,7 +10,7 @@
 <p>Image covers should make use of the min-height classes to ensure images don't collapse to nothing in certain contexts.
 The default min-heights are in steps of 10% sprinkled with common other picture ratios.</p>
 
-<p>Note the max-width set on the containers below are inline styles and are not part of the patter. 
+<p>Note the max-width set on the containers below are inline styles and are not part of the patter.
 They're there to help make the images more manageable in this context.</p>
 
 <p>Also note it's important to include a sensible width attribute, and a height attribute that corresponds to the images aspect ratio.
@@ -100,4 +100,31 @@ This helps keep the images manageable in a FallBack scenario, and helps browsers
         </div>
     </div>
 
+</div>
+
+<hr>
+
+
+<h3>In a layout</h3>
+
+<div class="l-layout  l-row">
+    <div class="l-layout__inner  d-border">
+        <div class="l-box  ff-width-100--60--50">
+            <div class="c-panel  d-background--dark  u-fill-height">
+                <h1>Some content</h1>
+                <p>Some content here...</p>
+                <p>Some content here...</p>
+                <p>Some content here...</p>
+                <p>Some content here...</p>
+            </div>
+        </div>
+
+        <div class="l-box  ff-width-100--60--50">
+            <div class="u-image-cover  js-image-cover  u-image-cover--min-50">
+                <div class="u-image-cover__inner">
+                    <img src="/assets/images/patterns/placeholder-1--small.jpg" sizes="100vw" srcset="/assets/images/patterns/placeholder-1--large.jpg 1600w, /assets/images/patterns/placeholder-1--medium.jpg 900w, /assets/images/patterns/placeholder-1--small.jpg 300w" alt="" class="u-image-cover__image" width="200" height="133">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
