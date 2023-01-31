@@ -549,6 +549,11 @@ $uc-breakpoint: 35em !default;
             object-fit: cover;
         }
 
+        // REmove height limit:
+        [data-contains~="no-height-limit"] img {
+            max-height: none;
+        }
+
         /*
             Note this original method just assumed that images are square.
             MaatHRI team page proves this is not the case, so the above, explicit portrait
