@@ -76,14 +76,14 @@ $longform-content-max-width: 67rem !default;
         margin-right: auto;
     }
 
-    details {
+    &#{&} > details {
         margin-bottom: $s__sz-m;
         border: 0;
         border-bottom: 1px solid #eee;
         padding: $s__sz-xs 0 $s__sz-xs $s__sz-m;
     }
 
-    summary {
+    &#{&} > details > summary {
         margin-bottom: $s__sz-m;
         font-weight: bold;
     }
