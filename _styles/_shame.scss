@@ -214,17 +214,27 @@ svg[width="20"][height="20"] {
 }
 
 .dl-2-col dt {
-    flex: 1 0 8em;
+    flex: 1 1 auto;
+
+    max-width: 100%;
+    width: calc((30em - 100%) * 999);
+    min-width: 30%;
 
     margin: 0;
+    padding-bottom: 0.6rem;
 }
 
 .dl-2-col dd {
-    flex: 1 0 calc(100% - 9em);
+    flex: 1 1 auto;
     align-self: flex-end;
+
+    max-width: 100%;
+    width: calc((29em - 100%) * 999);
+    min-width: 70%;
 
     margin: 0;
     padding-left: 1em;
+    padding-bottom: 0.6rem;
 }
 
 // IE11 needs a wrapper to make the flex behave properly, which I can't add to the markup.
@@ -233,6 +243,7 @@ svg[width="20"][height="20"] {
         display: block;
     }
 }
+
 
 
 

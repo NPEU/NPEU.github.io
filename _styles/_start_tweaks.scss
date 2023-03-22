@@ -70,8 +70,9 @@ blockquote {
     border-top: 1px dotted var(--t-neutral-color);
     border-bottom: 1px dotted var(--t-neutral-color);
 
-    --t-neutral-color-l: var(--t-neutral-color-l--very-light);
-    background-color: hsl(var(--t-neutral-color-h),var(--t-neutral-color-s),var(--t-neutral-color-l));
+    //--t-neutral-color-l: var(--t-neutral-color-l--very-light);
+    //background-color: hsl(var(--t-neutral-color-h),var(--t-neutral-color-s),var(--t-neutral-color-l));
+    background-color: rgba(0,0,0,0.07);
 
     padding: $s__base-rem-space-unit $s__base-rem-space-unit * 2;
 

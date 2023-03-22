@@ -2784,8 +2784,7 @@ svg[width="1.25em"][height="1.25em"] {
 blockquote {
   border-top: 1px dotted var(--t-neutral-color);
   border-bottom: 1px dotted var(--t-neutral-color);
-  --t-neutral-color-l: var(--t-neutral-color-l--very-light);
-  background-color: hsl(var(--t-neutral-color-h), var(--t-neutral-color-s), var(--t-neutral-color-l));
+  background-color: rgba(0, 0, 0, 0.07);
   padding: 2.4rem 4.8rem;
 }
 
@@ -12036,15 +12035,23 @@ svg[width="20"][height="20"] {
 }
 
 .dl-2-col dt {
-  flex: 1 0 8em;
+  flex: 1 1 auto;
+  max-width: 100%;
+  width: calc((30em - 100%) * 999);
+  min-width: 30%;
   margin: 0;
+  padding-bottom: 0.6rem;
 }
 
 .dl-2-col dd {
-  flex: 1 0 calc(100% - 9em);
+  flex: 1 1 auto;
   align-self: flex-end;
+  max-width: 100%;
+  width: calc((29em - 100%) * 999);
+  min-width: 70%;
   margin: 0;
   padding-left: 1em;
+  padding-bottom: 0.6rem;
 }
 
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
