@@ -1,9 +1,13 @@
-AddType application/x-httpd-php .html .htm
-
-php_value include_path "/var/www/html/lab/public/styleguide-next/"
-php_value auto_prepend_file "auto_prepend.php"
-php_value auto_append_file  "auto_append.php"
-
+<IfModule mod_substitute.c>
+    AddOutputFilterByType INFLATE;SUBSTITUTE;DEFLATE text/html
+    Substitute "s|href\s*=\s*\"/|href=\"/styleguide/|i"
+    Substitute "s|href\s*=\s*'/|href = '/styleguide/|i"
+    Substitute "s|<script src=\"/|<script src=\"/styleguide/|ni"
+    Substitute "s|script.src = '/|script.src = '/styleguide/|ni"
+    Substitute "s|/assets|/styleguide/assets|ni"
+    Substitute "s|data=\"/|data=\"/styleguide/|ni"
+    Substitute "s|name=\"msapplication-config\" content=\"/|name=\"msapplication-config\" content=\"/styleguide/|ni"
+</IfModule>
 
 # Apache Server Configs v2.15.0 | MIT License
 # https://github.com/h5bp/server-configs-apache

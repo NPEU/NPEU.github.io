@@ -10717,7 +10717,8 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   border-radius: 1.2rem;
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  width: 100%;
+  display: block;
+  width: auto;
 }
 
 .user-content.user-content.user-content [data-display-as~="box"]::before, .user-content.user-content.user-content [data-display-as~="box"]::after,
@@ -10972,16 +10973,16 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   display: none;
 }
 
-.user-content.user-content.user-content [data-display-is~="pulled-left"] + ::before,
-.user-content.user-content.user-content [data-display-is~="pulled-left"] + ::after,
-.user-content.user-content.user-content [data-display-is~="pulled-right"] + ::before,
-.user-content.user-content.user-content [data-display-is~="pulled-right"] + ::after {
+.user-content.user-content.user-content [data-display-is~="pulled-left"]:not([data-display-is~="non-clearing"]) + ::before,
+.user-content.user-content.user-content [data-display-is~="pulled-left"]:not([data-display-is~="non-clearing"]) + ::after,
+.user-content.user-content.user-content [data-display-is~="pulled-right"]:not([data-display-is~="non-clearing"]) + ::before,
+.user-content.user-content.user-content [data-display-is~="pulled-right"]:not([data-display-is~="non-clearing"]) + ::after {
   content: " ";
   display: table;
 }
 
-.user-content.user-content.user-content [data-display-is~="pulled-left"] + ::after,
-.user-content.user-content.user-content [data-display-is~="pulled-right"] + ::after {
+.user-content.user-content.user-content [data-display-is~="pulled-left"]:not([data-display-is~="non-clearing"]) + ::after,
+.user-content.user-content.user-content [data-display-is~="pulled-right"]:not([data-display-is~="non-clearing"]) + ::after {
   clear: both;
 }
 
@@ -12066,7 +12067,7 @@ svg[width="20"][height="20"] {
 }
 
 /*---------------------*/
-.nav-bar__main .dropdown__area {
+.nav-bar.js-cmr--wide .nav-bar__main .dropdown__area {
   border: 0.6rem solid rgba(255, 255, 255, 0.7);
   border-top-width: 0;
   margin-left: -0.6rem;

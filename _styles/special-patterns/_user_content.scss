@@ -39,8 +39,9 @@ $uc-breakpoint: 35em !default;
 
 
             //@include bottom-space-fix();
-
-            width: 100%;
+            display: block;
+            width: auto;
+            // Was 100% but this causes problems if other styles apply inline margins.
 
             &::before,
             &::after {
@@ -307,13 +308,13 @@ $uc-breakpoint: 35em !default;
                 display: none;
             }
 
-            & + ::before,
-            & + ::after {
+            &:not([data-display-is~="non-clearing"]) + ::before,
+            &:not([data-display-is~="non-clearing"]) + ::after {
                 content: " ";
                 display: table;
             }
 
-            & + ::after {
+            &:not([data-display-is~="non-clearing"]) + ::after {
                 clear: both;
             }
         }
