@@ -131,6 +131,7 @@ $component-namespace: c- !default;
     }
 
 
+    span#{&}__link,
     a[href]#{&}__link {
 
         flex: 1 0 auto;

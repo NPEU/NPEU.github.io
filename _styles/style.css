@@ -7365,6 +7365,7 @@ a[href].c-cta--has-icon .icon {
   display: none;
 }
 
+.c-sign span.c-sign__link,
 .c-sign a[href].c-sign__link {
   flex: 1 0 auto;
   display: flex;
@@ -7377,7 +7378,10 @@ a[href].c-cta--has-icon .icon {
   text-decoration: none;
 }
 
-.c-sign a[href].c-sign__link:hover, .c-sign a[href].c-sign__link:active, .c-sign a[href].c-sign__link:focus {
+.c-sign span.c-sign__link:hover, .c-sign span.c-sign__link:active, .c-sign span.c-sign__link:focus,
+.c-sign a[href].c-sign__link:hover,
+.c-sign a[href].c-sign__link:active,
+.c-sign a[href].c-sign__link:focus {
   color: #fff;
   background-color: transparent;
   text-decoration: none;
@@ -11942,6 +11946,11 @@ a[href][rel~="external"].u-image-natural:focus::after {
 
 }
 */
+.auto-margin {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 .dropdown,
 .nav-bar__item,
 .nav-bar__link {
