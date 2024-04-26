@@ -11865,6 +11865,11 @@ a[href][rel~="external"].u-image-natural:focus::after {
 
 /* ---------------------------------------------------------------------------------------------- */
 /* --| SHAME |----------------------------------------------------------------------------------- */
+dd {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 /*
 .is-blog-article {
     .l-primary-content__header .c-panel {

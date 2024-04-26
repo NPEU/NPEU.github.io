@@ -1,3 +1,10 @@
+// I don't appear to be using a global word break thing but I see problems with DD's when error messages are produced (for example).
+// Trying this out as a fix:
+dd {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
 // Trying out a new blog article page:
 /*
 .is-blog-article {
