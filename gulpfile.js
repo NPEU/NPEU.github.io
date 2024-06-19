@@ -191,7 +191,7 @@ function do_concat_js(cb) {
         './bower_components/Fall-Back-Patterns/base.js',
         './_scripts/js/card.js',
         './_scripts/js/carousel.js',
-        './_scripts/js/cookie-notice-settings.js',
+        './_scripts/js/cookie-notice-settings-v3.js',
         './_scripts/js/fit-contents.js',
         './_scripts/js/glimpse.js',
         './_scripts/js/layout-adjustments.js',
@@ -202,7 +202,7 @@ function do_concat_js(cb) {
         './bower_components/Fall-Back-Patterns/Dropdown/js/dropdown-v3.js',
         './bower_components/Fall-Back-Patterns/Over Panel/js/over-panel-v3.js',
         './bower_components/Details-Polyfill/dist/details-element-polyfill.js',
-        './bower_components/Fall-Back-Cookie-Notice/cookie-notice-v2.js',
+        './bower_components/Fall-Back-Cookie-Notice/cookie-notice-v3.js',
         './bower_components/picturefill/dist/picturefill.js'
     ])
     .pipe(concat(js_filename))

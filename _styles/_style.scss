@@ -394,8 +394,10 @@ $s__search-form__submit--background-color--alt: hsl(var(--t-primary-color-h), va
     padding-left: 0.5em;
 }
 
+
 $s__cookie-notice--spacing: $s__sz-m;
-@import "../bower_components/Fall-Back-Cookie-Notice/_cookie-notice-v2";
+@import "../bower_components/Fall-Back-Cookie-Notice/_cookie-notice-classes-v3";
+//@import "../bower_components/Fall-Back-Cookie-Notice/_cookie-notice-elements-v3";
 
 /* ---------------------------------------------------------------------------------------------- */
 

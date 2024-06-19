@@ -10390,6 +10390,13 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
     ============================================================================================
 
 |-------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------|
+
+    COOKIE NOTICE v3
+    ============================================================================================
+
+|-------------------------------------------------------------------------------------------------*/
+@use 'sass:math';
 /*------------------------------------------------------------------------------------------------*\
     Import Fall-Back vars:
 
@@ -10406,16 +10413,20 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   left: 0;
   bottom: 0;
   z-index: 2000;
+  opacity: 1;
+  -webkit-transition: opacity 1s ease 0s, z-index 1s ease 1s;
+  transition: opacity 1s ease 0s, z-index 1s ease 1s;
+}
+
+#cookie_notice fieldset {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-end;
   padding: 2.4rem;
   margin: 0;
   background-color: #000;
   color: #fff;
   border: 0;
-  opacity: 1;
-  -webkit-transition: opacity 1s ease 0s, z-index 1s ease 1s;
-  transition: opacity 1s ease 0s, z-index 1s ease 1s;
 }
 
 #cookie_notice[data-close="true"] {
@@ -10423,19 +10434,28 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   z-index: 0;
 }
 
-#cookie_notice p {
-  padding: 0 2.4rem;
-  margin: 1.2rem 0;
+#cookie_notice .cookie_notice__message {
+  flex-basis: 80%;
+  flex-grow: 1;
+  padding: 0;
+  margin: calc($s__cookie-notice--spacing / 2) 0;
 }
 
-#cookie_notice p a[href] {
+#cookie_notice .cookie_notice__message a[href] {
   color: white;
 }
 
-#cookie_notice p a[href]:hover,
-#cookie_notice p a[href]:active,
-#cookie_notice p a[href]:focus {
+#cookie_notice .cookie_notice__message a[href]:hover,
+#cookie_notice .cookie_notice__message a[href]:active,
+#cookie_notice .cookie_notice__message a[href]:focus {
   color: #cccccc;
+}
+
+#cookie_notice .cookie_notice__action {
+  flex-grow: 1;
+  text-align: right;
+  padding-left: 2.4rem;
+  margin: calc($s__cookie-notice--spacing / 2) 0;
 }
 
 /* ---------------------------------------------------------------------------------------------- */
