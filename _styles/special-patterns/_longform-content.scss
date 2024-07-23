@@ -52,6 +52,7 @@ $longform-content-max-width: 67rem !default;
     //    padding-right: var(--inset, 0px);
     //}
 
+
     &#{&} > *:not([data-display-as~="blocks"]):not([data-display-as~="breakout-box"]) {
         @include longform-content-styles();
     }
@@ -87,4 +88,14 @@ $longform-content-max-width: 67rem !default;
         margin-bottom: $s__sz-m;
         font-weight: bold;
     }
+}
+
+.is-blog-article .longform-content.longform-content .u-image-cover[data-display-as~="breakout-box"] {
+    margin-top: -$s__sz-m;
+    margin-bottom: $s__sz-m;
+    margin-left: -$s__sz-m;
+    margin-right: -$s__sz-m;
+    max-width: none;
+    width: calc(100% + #{$s__sz-m * 2});
+    clip-path: ellipse(170% 75% at 10% 25%);
 }

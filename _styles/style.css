@@ -10541,6 +10541,16 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   font-weight: bold;
 }
 
+.is-blog-article .longform-content.longform-content .u-image-cover[data-display-as~="breakout-box"] {
+  margin-top: -2.4rem;
+  margin-bottom: 2.4rem;
+  margin-left: -2.4rem;
+  margin-right: -2.4rem;
+  max-width: none;
+  width: calc(100% + 4.8rem);
+  clip-path: ellipse(170% 75% at 10% 25%);
+}
+
 /*
     Page Header
     ===========
@@ -10691,6 +10701,22 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 */
 .user-content.user-content.user-content {
   clear: both;
+  /*[data-display-is~="pulled-left"],
+        [data-display-is~="pulled-right"] {
+            &::after {
+                display: none;
+            }
+
+            &:not([data-display-is~="non-clearing"]) + ::before,
+            &:not([data-display-is~="non-clearing"]) + ::after {
+                content: " ";
+                display: table;
+            }
+
+            &:not([data-display-is~="non-clearing"]) + ::after {
+                clear: both;
+            }
+        }*/
   /*
             1. This is to provide positioning context for the ::after pseudo-element.
             2. This is so a broken image is still 100%.
@@ -10990,24 +11016,6 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 .user-content.user-content.user-content [data-display-is~="pulled-right"],
 .user-content.user-content.user-content [data-position="right"] {
   float: right;
-}
-
-.user-content.user-content.user-content [data-display-is~="pulled-left"]::after,
-.user-content.user-content.user-content [data-display-is~="pulled-right"]::after {
-  display: none;
-}
-
-.user-content.user-content.user-content [data-display-is~="pulled-left"]:not([data-display-is~="non-clearing"]) + ::before,
-.user-content.user-content.user-content [data-display-is~="pulled-left"]:not([data-display-is~="non-clearing"]) + ::after,
-.user-content.user-content.user-content [data-display-is~="pulled-right"]:not([data-display-is~="non-clearing"]) + ::before,
-.user-content.user-content.user-content [data-display-is~="pulled-right"]:not([data-display-is~="non-clearing"]) + ::after {
-  content: " ";
-  display: table;
-}
-
-.user-content.user-content.user-content [data-display-is~="pulled-left"]:not([data-display-is~="non-clearing"]) + ::after,
-.user-content.user-content.user-content [data-display-is~="pulled-right"]:not([data-display-is~="non-clearing"]) + ::after {
-  clear: both;
 }
 
 .user-content.user-content.user-content [data-display-is~="pulled-center"],

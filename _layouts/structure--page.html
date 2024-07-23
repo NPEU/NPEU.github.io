@@ -226,7 +226,7 @@ layout: structure
 
         <div class="l-box  l-box--expand">
 
-            <main id="main" aria-labelledby="welcome">
+            <main id="main" aria-labelledby="welcome" class="{% if page.is_blog == true %}  is-blog-article{% endif %}">
             {{ content }}
             </main>
 

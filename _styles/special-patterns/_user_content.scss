@@ -302,7 +302,7 @@ $uc-breakpoint: 35em !default;
             //}
         }
 
-        [data-display-is~="pulled-left"],
+        /*[data-display-is~="pulled-left"],
         [data-display-is~="pulled-right"] {
             &::after {
                 display: none;
@@ -317,7 +317,7 @@ $uc-breakpoint: 35em !default;
             &:not([data-display-is~="non-clearing"]) + ::after {
                 clear: both;
             }
-        }
+        }*/
 
         [data-display-is~="pulled-center"],
         [data-position="center"] {
