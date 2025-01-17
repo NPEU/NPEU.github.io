@@ -1,34 +1,9 @@
 /*
     MIXINS
 */
+@use 'sass:math';
 // Fluid Typography
 // https://css-tricks.com/snippets/css/fluid-typography/
-
-@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size, $min-line-height:false, $max-line-height:false) {
-    $u1: unit($min-vw);
-    $u2: unit($max-vw);
-    $u3: unit($min-font-size);
-    $u4: unit($max-font-size);
-
-    @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
-            & {
-            font-size: $min-font-size;
-            @if $min-line-height {
-                line-height: $min-line-height;
-            }
-            @media screen and (min-width: $min-vw) {
-                font-size: calc(#{$min-font-size} + #{s__strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{s__strip-unit($max-vw - $min-vw)}));
-            }
-            @media screen and (min-width: $max-vw) {
-                font-size: $max-font-size;
-                @if $max-line-height {
-                    line-height: $max-line-height;
-                }
-            }
-        }
-    }
-}
-
 
 @mixin sloped-background($color) {
     background: -moz-linear-gradient(45deg, darken($color, 7%) 0%, darken($color, 5%) 50%, darken($color, 3%) 50%,darken($color, 5%) 100%) !important;

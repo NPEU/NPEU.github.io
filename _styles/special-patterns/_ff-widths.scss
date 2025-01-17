@@ -5,18 +5,7 @@
     https://www.sitepoint.com/responsive-css-patterns-without-media-queries/
 
 */
-
-
-/// Remove the unit of a length (https://css-tricks.com/snippets/sass/strip-unit-function/)
-/// @param {Number} $number - Number to remove unit from
-/// @return {Number} - Unitless number
-@function strip-unit($number) {
-  @if type-of($number) == 'number' and not unitless($number) {
-    @return $number / ($number * 0 + 1);
-  }
-
-  @return $number;
-}
+@use 'sass:math';
 
 /// Replace `$search` with `$replace` in `$string` (https://css-tricks.com/snippets/sass/str-replace-function/)
 /// @author Hugo Giraudel
@@ -36,7 +25,7 @@
 
 
 @function safe-num($number) {
-    $n: strip-unit($number) + unquote("");
+    $n: s__strip-unit($number) + unquote("");
     @return str-replace($n, '.', '-');
 }
 
@@ -70,7 +59,7 @@ $ff-min-widths: (
     max-width: $max-width !important;
     width: calc((#{$breakpoint} - 100%) * 1000) !important;
     min-width: $min-width !important;
-    
+
     // If gap (inc flexbox gap) is supported we need to account for that:
     @supports (gap: 10px) or (text-transform: full-size-kana) or (translate: 10px) or (content-visibility: auto) {
         min-width: calc(#{$min-width} - var(--g, 0)) !important;

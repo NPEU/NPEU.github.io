@@ -18,7 +18,7 @@ const css_src  = './_styles/';
 const css_dest = './css/';
 const css_map_filename = 'map.css';
 
-const sass   = require('gulp-sass');
+const sass   = require('gulp-sass')(require('sass'));
 const cssmin = require('gulp-cssmin');
 const rename = require('gulp-rename');
 
@@ -100,7 +100,7 @@ exports.css = series(empty_css_output, do_concat_css, do_sass, do_cssmin);
 /*------------------------------------------------------------------------------------------------*\
     IMAGES
 \*------------------------------------------------------------------------------------------------*/
-const img_src  = './_assets/images/';
+/*const img_src  = './_assets/images/';
 const img_dest = './assets/images/';
 
 const svg2png  = require('gulp-svg2png-update');
@@ -117,7 +117,7 @@ function do_svg2png(cb) {
     console.log('Running svg2png...');
 
     pump([
-        gulp.src(img_src + '**/*.svg'),
+        gulp.src(img_src + '**    /*.svg'),
         svg2png(),
         gulp.dest((file) => {
             return file.base;
@@ -132,7 +132,7 @@ function do_imagemin(cb) {
     console.log('Running imagemin...');
 
     pump([
-        gulp.src(img_src + '**/*.{png,jpg,gif}'),
+        gulp.src(img_src + '**    /*.{png,jpg,gif}'),
         imagemin(),
         gulp.dest(img_dest)
     ],
@@ -144,7 +144,7 @@ function do_svgmin(cb) {
     console.log('Running svgmin...');
 
     pump([
-        gulp.src(img_src + '**/*.svg'),
+        gulp.src(img_src + '**    /*.svg'),
         svgmin({
             plugins: [{
                 removeViewBox: false
@@ -163,7 +163,7 @@ exports.svgmin   = do_svgmin;
 exports.img = series(do_svg2png, do_imagemin, do_svgmin);
 
 
-
+*/
 /*------------------------------------------------------------------------------------------------*\
     JS
 \*------------------------------------------------------------------------------------------------*/

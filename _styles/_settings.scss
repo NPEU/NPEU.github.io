@@ -1,6 +1,7 @@
 /*
 
 */
+@use 'sass:math';
 
 $s__base-font-family: 'Lato', sans-serif;
 
@@ -27,7 +28,7 @@ $not-too-small: 18em;
 //$h2-font-size: 32px / $s__base-font-size * 1em;
 //$h3-font-size: 26px / $s__base-font-size * 1em;
 $hover-effect-opacity: 0.2;
-$hover-effect-width: $s__base-rem-space-unit / 4;
+$hover-effect-width: math.div($s__base-rem-space-unit, 4);
 
 // System / UI messages:
 
@@ -40,15 +41,15 @@ $system-message--color--error: #9b3259;
 
 @mixin bottom-space-fix ($size: $s__base-rem-space-unit) {
 
-	padding-bottom: 0 !important;
+    padding-bottom: 0 !important;
 
-	&::after {
-		content: "";
-		display: block;
-		height: 1px;
+    &::after {
+        content: "";
+        display: block;
+        height: 1px;
         margin-top: calc(#{$size} - 1px);
         clear: both;
-	}
+    }
 
 }
 
@@ -61,33 +62,5 @@ $system-message--color--error: #9b3259;
 
 @mixin signs-theme-background ($color) {
     @include sloped-background($color);
-}
-
-
-
-// Fluid Typography
-// https://css-tricks.com/snippets/css/fluid-typography/
-
-@function strip-unit($value) {
-  @return $value / ($value * 0 + 1);
-}
-
-@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
-    $u1: unit($min-vw);
-    $u2: unit($max-vw);
-    $u3: unit($min-font-size);
-    $u4: unit($max-font-size);
-
-    @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
-            & {
-            font-size: $min-font-size;
-            @media screen and (min-width: $min-vw) {
-                font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
-            }
-            @media screen and (min-width: $max-vw) {
-                font-size: $max-font-size;
-            }
-        }
-    }
 }
 

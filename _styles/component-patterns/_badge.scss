@@ -230,11 +230,13 @@ a[href].#{$component-namespace}badge {
 
 }
 
-/*
+
+// Remove StartCSS external indicator:
 a[href][rel~="external"].#{$component-namespace}badge::after {
     display: none;
 }
 
+/*
 a[href][rel~="external"].#{$component-namespace}badge:hover::after,
 a[href][rel~="external"].#{$component-namespace}badge:active::after,
 a[href][rel~="external"].#{$component-namespace}badge:focus::after {

@@ -23,53 +23,56 @@ $pagination-namespace: n- !default;
     a {
         @include bg();
         @include bg-neutral();
-        --t-bg-color-l: var(--t-neutral-color-l--very-light);
-            
-        //padding-top: $s__sz-xs;
-        //padding-bottom: $s__sz-xs;
-        padding: $s__sz-xs;
-        
-        //margin-left: $s__sz-xs;
-        //margin-right: $s__sz-xs;
-        margin: $s__sz-xxs 0.1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        
-        svg[display][focusable][aria-hidden] {
-            margin: 0;
+
+        & {
+            --t-bg-color-l: var(--t-neutral-color-l--very-light);
+
+            //padding-top: $s__sz-xs;
+            //padding-bottom: $s__sz-xs;
+            padding: $s__sz-xs;
+
+            //margin-left: $s__sz-xs;
+            //margin-right: $s__sz-xs;
+            margin: $s__sz-xxs 0.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg[display][focusable][aria-hidden] {
+                margin: 0;
+            }
         }
     }
-    
+
     a[aria-hidden] {
         opacity: 0.5;
     }
-    
+
     a[aria-current] {
         //background-color: #eee;
         //background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-light));
         --t-bg-color-l: var(--t-neutral-color-l--light);
-        
+
         //border-radius: 100%;
         //margin-left: $s__sz-s;
         //margin-right: $s__sz-s;
     }
-    
+
 
     .#{$pagination-namespace}pagination__page-links a {
         width: #{$s__sz-m + $s__sz-s};
     }
-    
+
     .#{$pagination-namespace}pagination__start-links a {
         padding-left: $s__sz-xxs;
         padding-right: $s__sz-xs;
     }
-    
+
     .#{$pagination-namespace}pagination__end-links a {
         padding-left: $s__sz-xs;
         padding-right: $s__sz-xxs;
     }
-    
+
     //.#{$pagination-namespace}pagination__start-links .l-box,
     //.#{$pagination-namespace}pagination__page-links .l-box,
     //.#{$pagination-namespace}pagination__end-links .l-box:not(:last-child) {

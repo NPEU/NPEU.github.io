@@ -2,6 +2,7 @@
     Meter
     =====
 */
+@use 'sass:math';
 
 $component-namespace: c- !default;
 
@@ -27,8 +28,8 @@ $meter--text-color: currentColor !default;
         box-shadow: 0 0 0 1px currentColor inset;
         background: transparent;
         border-radius: 0.6rem;
-        height: #{$s__sz-m/ 2};
-        margin: #{$s__sz-m/ 4} 0;
+        height: #{math.div($s__sz-m, 2)};
+        margin: #{math.div($s__sz-m, 4)} 0;
         position: relative;
         overflow: hidden;
 
@@ -63,7 +64,7 @@ $meter--text-color: currentColor !default;
             position: absolute;
             left: 0;
             top: 0;
-            height: #{$s__sz-m/ 2};
+            height: #{math.div($s__sz-m, 2)};
 
         }
     }
@@ -87,14 +88,14 @@ $meter--text-color: currentColor !default;
 
             &::before {
                 content: "";
-                top: -#{$s__sz-m/ 8};
+                top: -#{math.div($s__sz-m, 8)};
 
                 // Triangle:
                 width: 0px;
                 height: 0px;
-                border-left: #{$s__sz-m/ 4} solid transparent;
-                border-right: #{$s__sz-m/ 4} solid transparent;
-                border-bottom: #{$s__sz-m/ 4} solid currentColor;
+                border-left: #{math.div($s__sz-m, 4)} solid transparent;
+                border-right: #{math.div($s__sz-m, 4)} solid transparent;
+                border-bottom: #{math.div($s__sz-m, 4)} solid currentColor;
             }
 
             &::after {

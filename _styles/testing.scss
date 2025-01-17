@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 // Narrower page wrap just for dev on laptop.
 .page-wrap.page-wrap {
     //max-width: 1200px;
@@ -107,7 +109,7 @@ $ts: 2.4rem;
 }
 
 .u-padding--s {
-    padding: #{$ts / 2} !important;
+    padding: #{math.div($ts, 2)} !important;
 }
 
 .u-padding--sides {

@@ -17,7 +17,7 @@ $component-namespace: c- !default;
             20,
             $s__button-background-color
         );*/
-        
+
         /*@include s__button(
             currentColor,
             transparent,
@@ -30,18 +30,20 @@ $component-namespace: c- !default;
             false,
             currentColor
         );
-        border-radius: $s__sz-xs;
 
-        position: relative;
-        z-index: 0;
+        & {
+            border-radius: $s__sz-xs;
 
-        
+            position: relative;
+            z-index: 0;
 
-        text-decoration: none;
-        position: relative;
 
-        font-weight: normal;
-        font-style: normal;
+
+            text-decoration: none;
+            position: relative;
+
+            font-weight: normal;
+            font-style: normal;
 
             /*
                 1. So to explain these, I need the hover background-color to be light on darker
@@ -49,17 +51,17 @@ $component-namespace: c- !default;
                    visualise this state because it affects layout, and box-shadow is reserved for
                    focus/active states. Outline doesn't round corners in most browsers, and filters
                    and similar don't work in older browsers. Using `calc` on hsl would be a way of
-                   doing it, but IE11 doesn't support it, so I'm using semi-transparent pseudo 
+                   doing it, but IE11 doesn't support it, so I'm using semi-transparent pseudo
                    elements, one white, one black. Then I'm using the essence of the Fab Four
                    technique combined with the current known `l` var to show or hide the relevant
-                   pseudo element. This works in IE11 because I'm using a custom properties 
-                   polyfill, and IE11 gets the fallback styles if JS isn't available, so it's 
+                   pseudo element. This works in IE11 because I'm using a custom properties
+                   polyfill, and IE11 gets the fallback styles if JS isn't available, so it's
                    pretty watertight.
-                   
+
                    Note this may move out of this file if it's needed on other components.
                    Not sure yet.
-                   
-                   2. All sorts of effects are possible since this is an element - position, size, 
+
+                   2. All sorts of effects are possible since this is an element - position, size,
                       rotation etc.
             */
             overflow: hidden;
@@ -83,11 +85,11 @@ $component-namespace: c- !default;
             &::after {
                 background-color: rgba(255,255,255,0.2);
             }
-            
+
             &:hover,
             &:active {
                 text-decoration: none;
-                
+
                 /* [1]: */
                 &::before {
                     //top: 0; /* [2] */
@@ -109,6 +111,7 @@ $component-namespace: c- !default;
                 font-weight: inherit;
                 font-style: inherit;
             }
+        }
     }
 }
 

@@ -8,6 +8,7 @@
        composed slightly differently to normal, to preven minification form combing selectors and
        this causing the invalidation. This is done by adding redundent declarations.
 */
+@use 'sass:math';
 
 $component-namespace: c- !default;
 /**/
@@ -61,7 +62,7 @@ $__SEL: '.#{$component-namespace}glimpse';
 
             position: absolute;
 
-            top: -#{($glimpse--image-size / 2) - $s__sz-s};
+            top: -#{math.div($glimpse--image-size, 2) - $s__sz-s};
         }
 
         &:has(#{$__SEL}__title a):hover::before,
@@ -107,7 +108,7 @@ $__SEL: '.#{$component-namespace}glimpse';
             content: "";
             display: inline-block;
 
-            height: #{($glimpse--image-size / 2) + $s__sz-s};
+            height: #{math.div($glimpse--image-size, 2) + $s__sz-s};
 
             max-width: 100%;
             width: calc((#{$glimpse--breakpoint} - 100%) * 1000);
@@ -163,7 +164,7 @@ $__SEL: '.#{$component-namespace}glimpse';
 
         position: absolute;
 
-        top: -#{($glimpse--image-size / 2) - $s__sz-s};
+        top: -#{math.div($glimpse--image-size, 2) - $s__sz-s};
 
 
         background-color: hsl(var(--t-bd-color-h),var(--t-bd-color-s),var(--t-bd-color-l)); /* [1] */
@@ -194,7 +195,7 @@ $__SEL: '.#{$component-namespace}glimpse';
     }
 
     &#{&}--image-large #{&}__title::before {
-        height: #{($glimpse--image-size / 2) + $s__sz-l + $s__sz-s};
+        height: #{math.div($glimpse--image-size, 2) + $s__sz-l + $s__sz-s};
 
         width: calc((#{$glimpse--breakpoint + $s__sz-xl} - 100%) * 1000);
         min-width: #{$glimpse--image-size + $s__sz-m};
@@ -222,7 +223,7 @@ $__SEL: '.#{$component-namespace}glimpse';
 }
 
 
-.#{$component-namespace}glimpse--has-js {
+.#{$component-namespace}glimpse--has-js:has(#{$__SEL}__title a) {
     cursor: pointer;
 
     &:hover,

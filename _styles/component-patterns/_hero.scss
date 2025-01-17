@@ -82,7 +82,7 @@ $theme-only: false !default;
                 &:hover {
                     background: #888;
                 }
-                
+
                 &.current::after {
                     content: "";
                     display: block;
@@ -120,6 +120,9 @@ $theme-only: false !default;
             -ms-scroll-snap-type: mandatory; /* [4] */
             -ms-scroll-snap-points-x: repeat(100%);  /* [4] */
 
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+
             &:focus::after {
                 display: block;
                 content: "";
@@ -132,10 +135,6 @@ $theme-only: false !default;
                 box-shadow: $s__outline-shadow-inset;
                 z-index: 1;
             }
-
-
-            scrollbar-width: none;
-            -ms-overflow-style: none;
 
             &::-webkit-scrollbar {
                 display: none;
@@ -195,7 +194,7 @@ $theme-only: false !default;
             1. For IE10 to wrap text.
         */
         #{&}__message > #{&}__message--fluid_text,
-        #{&}__message > #{&}__message--fluid_heading {  
+        #{&}__message > #{&}__message--fluid_heading {
             line-height: 1.3;
             font-weight: bold;
             //margin: 0;
@@ -203,17 +202,17 @@ $theme-only: false !default;
         }
 
         #{&}__message > #{&}__message--fluid_text {
-            @include fluid-type(strip-unit($hero-breakpoint) * 16px, strip-unit($hero-max-message-breakpoint) * 16px, $hero-min-message-size, $hero-max-message-size);
+            @include s__fluid-type(s__strip-unit($hero-breakpoint) * 16px, s__strip-unit($hero-max-message-breakpoint) * 16px, $hero-min-message-size, $hero-max-message-size);
         }
 
         #{&}__message > h1#{&}__message--fluid_heading {
-            @include fluid-type(strip-unit($hero-breakpoint) * 16px, strip-unit($hero-max-message-breakpoint) * 16px, $hero-min-heading-size, $hero-max-heading-size);
+            @include s__fluid-type(s__strip-unit($hero-breakpoint) * 16px, s__strip-unit($hero-max-message-breakpoint) * 16px, $hero-min-heading-size, $hero-max-heading-size);
         }
 
         #{&}__message > p#{&}__message--fluid_heading {
-            @include fluid-type(strip-unit($hero-breakpoint) * 16px, strip-unit($hero-max-message-breakpoint) * 16px, $hero-min-fake-heading-size, $hero-max-fake-heading-size);
+            @include s__fluid-type(s__strip-unit($hero-breakpoint) * 16px, s__strip-unit($hero-max-message-breakpoint) * 16px, $hero-min-fake-heading-size, $hero-max-fake-heading-size);
         }
-        
+
         /*
             1. The fallback markup for a non-h heading uses a `<b>` element, so override the
                `bolder` font-weight that comes with that.

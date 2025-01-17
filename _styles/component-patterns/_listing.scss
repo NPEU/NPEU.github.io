@@ -1,0 +1,161 @@
+/*
+    Listing
+    ===========
+
+    These are quite like Listings but with media objects and labels and stuff which make re-using
+    a Listing quite difficult.
+*/
+
+$component-namespace: c- !default;
+
+//$listing-breakpoint: 35em !default;
+$listing-body-width: 27em !default;
+
+
+$listing--image-size: 10rem !default;
+$listing--image-size--wide: 15rem !default;
+$listing--image-size--very-wide: 20rem !default;
+
+$listing-heading--font-size: 1.8rem !default;
+$listing-description--font-size:  1.4rem !default;
+
+/*
+    1. This is a hack for IE11, otherwise the container goes as wide as the children in a row.
+*/
+.#{$component-namespace}listing {
+    &#{&} {
+
+        padding: 0;
+
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        flex-wrap: wrap;
+        gap: $s__sz-m;
+        align-items: flex-start;
+        background-color: #fff;
+
+        margin-top: $s__sz-s;
+        margin-bottom: $s__sz-s;
+
+        --t-bd-color: var(--t-neutral-color);
+        --t-bd-color-h: var(--t-neutral-color-h);
+        --t-bd-color-s: var(--t-neutral-color-s);
+        --t-bd-color-l: var(--t-secondary-color-l--light);
+
+        --p-adjust-t: 0.1rem;
+        --p-adjust-b: 0.1rem;
+
+        border-width: 0;
+        border-top-width: .1rem;
+        border-style: solid;
+        border-color: hsl(var(--t-bd-color-h), var(--t-bd-color-s), var(--t-bd-color-l));
+
+        padding-top: calc(1.2rem - var(--p-adjust-t));
+    }
+
+    &#{&}:last-child {
+        border-bottom-width: .1rem;
+        padding-bottom: calc(1.2rem - var(--p-adjust-b));
+    }
+
+    &#{&}--no-separator {
+        border-top-width: 0;
+        padding-top: 0;
+    }
+
+
+    &#{&}--no-separator:last-child {
+        border-bottom-width: 0;
+        padding-bottom: 0;
+    }
+
+    #{&}__body {
+        //max-width: 100%;
+        //width: calc((#{$listing-breakpoint} - 100%) * 1000);
+        //min-width: calc(100% - #{$listing--image-size + $s__sz-m + $s__sz-m});
+        flex: 999 1 var(--listing-body-width, #{$listing-body-width});
+    }
+
+        #{&}__title {
+            font-size: $listing-heading--font-size;
+            line-height: $s__sz-m;
+            margin-bottom: 0;
+            margin-top: $s__sz-s;
+        }
+
+        #{&}__description {
+            font-size: $listing-description--font-size;
+            opacity: 0.9;
+            margin-top: $s__sz-s;
+        }
+
+
+
+
+    #{&}__image {
+        //min-width: calc(5% + #{$listing--image-size});
+        //max-width: $listing--image-size;
+        //width: calc((#{$listing-breakpoint} - 100%) * -1000);
+        //min-width: 0;
+        //margin-right: $s__sz-m;
+        order: -1;
+        //flex-shrink: 0;
+        flex: 0 0 10rem;
+        max-width: 100%;
+    }
+
+
+
+    &#{&}--wide-image #{&}__body {
+        min-width: calc(100% - #{$listing--image-size--wide + $s__sz-m + $s__sz-m});
+    }
+
+    &#{&}--very-wide-image #{&}__body {
+        min-width: calc(100% - #{$listing--image-size--very-wide + $s__sz-m + $s__sz-m});
+    }
+
+
+    &#{&}--wide-image #{&}__image {
+        flex-basis: $listing--image-size--wide;
+        //max-width: $listing--image-size--wide;
+    }
+
+    &#{&}--very-wide-image #{&}__image {
+        flex-basis: $listing--image-size--very-wide;
+        //max-width: $listing--image-size--very-wide;
+    }
+
+    #{&}__aside {
+        //max-width: $listing--image-size;
+        //width: calc((#{$listing-breakpoint} - 100%) * -1000);
+        //min-width: 0;
+        //margin-right: $s__sz-m;
+        //flex-shrink: 0;
+
+        flex: 1 0 14rem;
+        align-self: normal;
+    }
+
+    hr {
+        display: none;
+    }
+}
+
+
+.#{$component-namespace}listing {
+
+    &#{&}--signpost-layout {
+
+        .#{$component-namespace}listing__body {
+            text-align: center;
+            align-self: center;
+        }
+
+        .#{$component-namespace}listing__image {
+            order: unset;
+            margin: 0 auto;
+        }
+    }
+
+}

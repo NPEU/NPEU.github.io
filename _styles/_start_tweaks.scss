@@ -1,5 +1,8 @@
 // NEED A BETTER PLACE FOR THE FOLLOWING:
 
+@use 'sass:math';
+
+
 
 /* The following overrides TFS styles. I need to put this in STARTCSS when I have a chance:
 TFS
@@ -137,19 +140,19 @@ blockquote > p:last-child::after {
 }*/
 
 h1 {
-    @include fluid-type(250px, 672px, 32px, 52px, false, $s__h1-height);
+    @include s__fluid-type(250px, 672px, 32px, 52px, false, $s__h1-height);
 }
 
 h2 {
-    @include fluid-type(250px, 672px, 28px, 40px, false, $s__h2-height);
+    @include s__fluid-type(250px, 672px, 28px, 40px, false, $s__h2-height);
 }
 
 h3 {
-    @include fluid-type(250px, 672px, 24px, 30px, false, $s__h3-height);
+    @include s__fluid-type(250px, 672px, 24px, 30px, false, $s__h3-height);
 }
 
 h4 {
-    @include fluid-type(250px, 672px, 20px, 22px, false, $s__h4-height);
+    @include s__fluid-type(250px, 672px, 20px, 22px, false, $s__h4-height);
 }
 
 
@@ -174,13 +177,15 @@ figure {
 
 
 table {
-    @include fluid-type(250px, 672px, 10px, 14px);
+    @include s__fluid-type(250px, 672px, 10px, 14px);
     /*line-height: 1.4;*/
 
-    border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
+    & {
+        border-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l));
 
-    a {
-        padding-bottom: 1px;
+        a {
+            padding-bottom: 1px;
+        }
     }
 }
 
@@ -235,8 +240,8 @@ details:not([open]) > *:not(summary) {
 // Not sure if this would have a negative impact anywhere if not class-scoped. Used for Staff Profile view:
 .user-profile dd:not(:first-of-type),
 .user-profile dt:not(:first-of-type) {
-    margin-top: $s__base-rem-space-unit / 4;
-    padding-top: $s__base-rem-space-unit / 4;
+    margin-top: math.div($s__base-rem-space-unit, 4);
+    padding-top: math.div($s__base-rem-space-unit, 4);
     border-top: 1px solid #eee;
 }
 

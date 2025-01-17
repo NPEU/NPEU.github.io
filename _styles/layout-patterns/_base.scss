@@ -13,12 +13,14 @@
     * The specific layout determines how these boxes should behave and arrange themselves.
 
 */
+@use 'sass:math';
+
 $layout_base: true;
 
 $layout-namespace: l- !default;
 $layout-spacing-unit: 2rem !default;
-$layout-spacing-unit--xs: ($layout-spacing-unit / 4) !default;
-$layout-spacing-unit--s: ($layout-spacing-unit / 2) !default;
+$layout-spacing-unit--xs: math.div($layout-spacing-unit, 4) !default;
+$layout-spacing-unit--s: math.div($layout-spacing-unit, 2) !default;
 $layout-spacing-unit--l: ($layout-spacing-unit * 2) !default;
 
 
@@ -118,7 +120,7 @@ $layout-limits: (
     .#{$layout-namespace}box--push-apart {
         margin: 0 auto !important;
     }
-    
+
     .#{$layout-namespace}box--push-end {
         margin-left: auto !important;
     }
@@ -326,11 +328,6 @@ $layout-limits: (
     &.#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box__separator,
     &.#{$layout-namespace}gutter--m > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box {
         padding: $layout-spacing-unit;
-
-        //.#{$layout-namespace}box__separator {
-        //    padding-left: $layout-spacing-unit / 2;
-        //    padding-right: $layout-spacing-unit / 2;
-        //}
     }
 
     // Extra Small /**/
@@ -341,11 +338,6 @@ $layout-limits: (
     &.#{$layout-namespace}gutter--xs > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box,
     &.#{$layout-namespace}gutter--xs > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box__separator {
         padding: $layout-spacing-unit--xs;
-
-        //.#{$layout-namespace}box__separator {
-        //    padding-left: $layout-spacing-unit--xs / 2;
-        //    padding-right: $layout-spacing-unit--xs / 2;
-        //}
     }
 
     // Small /**/
@@ -356,11 +348,6 @@ $layout-limits: (
     &.#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box,
     &.#{$layout-namespace}gutter--s > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box__separator {
         padding: $layout-spacing-unit--s;
-
-        //.#{$layout-namespace}box__separator {
-        //    padding-left: $layout-spacing-unit--s / 2;
-        //    padding-right: $layout-spacing-unit--s / 2;
-        //}
     }
 
     // Large /**/
@@ -371,11 +358,6 @@ $layout-limits: (
     &.#{$layout-namespace}gutter--l > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box,
     &.#{$layout-namespace}gutter--l > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box__separator {
         padding: $layout-spacing-unit--l;
-
-        //.#{$layout-namespace}box__separator {
-        //    padding-left: $layout-spacing-unit--l / 2;
-        //    padding-right: $layout-spacing-unit--l / 2;
-        //}
     }
 
 
@@ -393,84 +375,87 @@ $layout-limits: (
         padding-bottom: 0;
     }
 
+    // All:
+
     // Medium (default) /**/
     &.#{$layout-namespace}gutter.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner,
     &.#{$layout-namespace}gutter--m.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
         //margin: -$layout-spacing-unit * 2;
-        margin: -$layout-spacing-unit;
+        margin: (-$layout-spacing-unit);
     }
 
     // Extra Small /**/
     &.#{$layout-namespace}gutter--xs.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
         //margin: -$layout-spacing-unit--xs * 2;
-        margin: -$layout-spacing-unit--xs;
+        margin: (-$layout-spacing-unit--xs);
     }
 
     // Small /**/
     &.#{$layout-namespace}gutter--s.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
         //margin: -$layout-spacing-unit--s * 2;
-        margin: -$layout-spacing-unit--s;
+        margin: (-$layout-spacing-unit--s);
     }
 
 
     // Large /**/
-    &.#{$layout-namespace}gutter--l.#{$layout-namespace}flush-inline-gutter > .#{$layout-namespace}layout__inner {
+    &.#{$layout-namespace}gutter--l.#{$layout-namespace}flush-edge-gutter > .#{$layout-namespace}layout__inner {
         //margin: -$layout-spacing-unit--l * 2;
-        margin: -$layout-spacing-unit--l;
+        margin: (-$layout-spacing-unit--l);
     }
 
+    // Inline:
 
     // Medium (default) /**/
     &.#{$layout-namespace}gutter.#{$layout-namespace}flush-inline-gutter > .#{$layout-namespace}layout__inner,
     &.#{$layout-namespace}gutter--m.#{$layout-namespace}flush-inline-gutter > .#{$layout-namespace}layout__inner {
         //margin: -$layout-spacing-unit * 2;
-        margin: 0 -$layout-spacing-unit;
+        margin: 0 (-$layout-spacing-unit);
     }
 
     // Extra Small /**/
     &.#{$layout-namespace}gutter--xs.#{$layout-namespace}flush-inline-gutter > .#{$layout-namespace}layout__inner {
         //margin: -$layout-spacing-unit--xs * 2;
-        margin: 0 -$layout-spacing-unit--xs;
+        margin: 0 (-$layout-spacing-unit--xs);
     }
 
     // Small /**/
     &.#{$layout-namespace}gutter--s.#{$layout-namespace}flush-inline-gutter > .#{$layout-namespace}layout__inner {
         //margin: -$layout-spacing-unit--s * 2;
-        margin: 0 -$layout-spacing-unit--s;
+        margin: 0 (-$layout-spacing-unit--s);
     }
-
 
     // Large /**/
     &.#{$layout-namespace}gutter--l.#{$layout-namespace}flush-inline-gutter > .#{$layout-namespace}layout__inner {
         //margin: -$layout-spacing-unit--l * 2;
-        margin: 0 -$layout-spacing-unit--l;
+        margin: 0 (-$layout-spacing-unit--l);
     }
 
+    // Block:
 
     // Medium (default) /**/
     &.#{$layout-namespace}gutter.#{$layout-namespace}flush-block-gutter > .#{$layout-namespace}layout__inner,
     &.#{$layout-namespace}gutter--m.#{$layout-namespace}flush-block-gutter > .#{$layout-namespace}layout__inner {
         //margin: -$layout-spacing-unit * 2;
-        margin: -$layout-spacing-unit 0;
+        margin: (-$layout-spacing-unit) 0;
     }
 
     // Extra Small /**/
     &.#{$layout-namespace}gutter--xs.#{$layout-namespace}flush-block-gutter > .#{$layout-namespace}layout__inner {
         //margin: -$layout-spacing-unit--xs * 2;
-        margin: -$layout-spacing-unit--xs 0;
+        margin: (-$layout-spacing-unit--xs) 0;
     }
 
     // Small /**/
     &.#{$layout-namespace}gutter--s.#{$layout-namespace}flush-block-gutter > .#{$layout-namespace}layout__inner {
         //margin: -$layout-spacing-unit--s * 2;
-        margin: -$layout-spacing-unit--s 0;
+        margin: (-$layout-spacing-unit--s) 0;
     }
 
 
     // Large /**/
     &.#{$layout-namespace}gutter--l.#{$layout-namespace}flush-block-gutter > .#{$layout-namespace}layout__inner {
         //margin: -$layout-spacing-unit--l * 2;
-        margin: -$layout-spacing-unit--l 0;
+        margin: (-$layout-spacing-unit--l) 0;
     }
 
 
@@ -555,8 +540,9 @@ $layout-limits: (
 
     // Preserve space between items (used for text groups):
     &.#{$layout-namespace}preserve-space .#{$layout-namespace}box {
+        $encoded: "00a0";
         &::after {
-            content: "\00a0";
+            content: #{unquote('\"') + ("\\") + $encoded + unquote('\"')};
         }
     }
 

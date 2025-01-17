@@ -56,13 +56,13 @@ $very-dark-adjust: -0.52;
     $t: 0;
     $v: s__strip-unit($value);
     $r: 100 - $v;
-    
+
     //@debug "#{$v}, #{$adjustment}, #{$r}";
 
     @if $adjustment > 0 {
         $t: round($v + ($r * $adjustment));
     } @else {
-        $t: round($v - ($v * -$adjustment));
+        $t: round($v - ($v * ($adjustment * -1)));
     }
 
     @return $t * 1%;

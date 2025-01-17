@@ -3,6 +3,7 @@
     ============
 
 */
+@use 'sass:math';
 
 @if not variable-exists(layout-base) {
     @error "Gallery Grid layout requires Base layout.";
@@ -44,6 +45,7 @@ $gallery-grid-bases: (
 
     }
 
+
     /* MODIFIERS */
 
     /* Widths */
@@ -65,35 +67,35 @@ $gallery-grid-bases: (
 
     &.#{$layout-namespace}gallery-grid--gutter--small > .#{$layout-namespace}layout__inner,
     &.#{$layout-namespace}gallery-grid--gutter--s > .#{$layout-namespace}layout__inner {
-        margin-left: -($s__sz-s / 2);
-        margin-right: -($s__sz-s / 2);
+        margin-left: -(math.div($s__sz-s, 2));
+        margin-right: -(math.div($s__sz-s, 2));
         min-width: calc(100% + #{$s__sz-s});
 
         & > .#{$layout-namespace}box {
-            padding: 0 ($s__sz-s / 2) $s__sz-s ($s__sz-s / 2);
+            padding: 0 math.div($s__sz-s, 2) $s__sz-s math.div($s__sz-s, 2);
         }
     }
 
     &.#{$layout-namespace}gallery-grid--gutter--medium > .#{$layout-namespace}layout__inner,
     &.#{$layout-namespace}gallery-grid--gutter--m > .#{$layout-namespace}layout__inner {
-        margin-left: -($s__sz-m / 2);
-        margin-right: -($s__sz-m / 2);
+        margin-left: -(math.div($s__sz-m, 2));
+        margin-right: -(math.div($s__sz-m, 2));
         min-width: calc(100% + #{$s__sz-m});
 
         & > .#{$layout-namespace}box {
-            padding: 0 ($s__sz-m / 2) $s__sz-m ($s__sz-m / 2);
+            padding: 0 math.div($s__sz-m, 2) $s__sz-m math.div($s__sz-m, 2);
         }
     }
 
 
     &.#{$layout-namespace}gallery-grid--gutter--large > .#{$layout-namespace}layout__inner,
     &.#{$layout-namespace}gallery-grid--gutter--l > .#{$layout-namespace}layout__inner {
-        margin-left: -($s__sz-l / 2);
-        margin-right: -($s__sz-l / 2);
+        margin-left: -(math.div($s__sz-l, 2));
+        margin-right: -(math.div($s__sz-l, 2));
         min-width: calc(100% + #{$s__sz-l});
 
         & > .#{$layout-namespace}box {
-            padding: 0 ($s__sz-l / 2) $s__sz-l ($s__sz-l / 2);
+            padding: 0 math.div($s__sz-l, 2) $s__sz-l math.div($s__sz-l, 2);
         }
     }
 

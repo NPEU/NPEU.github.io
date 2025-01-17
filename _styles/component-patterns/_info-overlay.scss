@@ -2,6 +2,7 @@
     Info Overlay
     ============
 */
+@use 'sass:math';
 
 $component-namespace: c- !default;
 
@@ -61,7 +62,7 @@ $info-overlay-max-message-size: 52px !default;
             is unlikely to change.
         */
         & > svg {
-            margin: calc(#{$s__sz-m} / 2 - 1.25em / 2);
+            margin: calc(math.div($s__sz-m, 2) - math.div(1.25em, 2));
         }
 
         & > svg:nth-child(2) {

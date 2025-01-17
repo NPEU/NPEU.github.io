@@ -1,4 +1,5 @@
 /* --| CSS LOADED |------------------------------------------------------------------------------ */
+@use 'sass:math';
 // This does nothing in the CSS, but gives JS something to look for so it can check if the CSS has
 // loaded.
 #css_has_loaded {
@@ -266,6 +267,8 @@ $ff-min-widths: (
 
 @import "component-patterns/_info-overlay.scss";
 
+@import "component-patterns/_listing.scss";
+
 @import "component-patterns/_map.scss";
 
 @import "component-patterns/_meter.scss";
@@ -288,7 +291,7 @@ $ff-min-widths: (
     .c-card,
     .c-map > div[id],
     .c-map .leaflet-container {
-        border-radius: #{$s__sz-s / 2};
+        border-radius: math.div($s__sz-s, 2);
     }
 }
 
@@ -310,7 +313,7 @@ $ff-min-widths: (
 /* --| Layout Patterns |------------------------------------------------------------------------- */
 
 
-$layout-spacing-unit: $s__base-rem-space-unit / 2;
+$layout-spacing-unit: math.div($s__base-rem-space-unit, 2);
 @import "layout-patterns/_base.scss";
 
 @import "layout-patterns/_center.scss";

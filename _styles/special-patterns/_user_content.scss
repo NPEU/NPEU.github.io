@@ -2,6 +2,8 @@
     User Content
     ============
 */
+@use 'sass:math';
+
 $uc-breakpoint: 35em !default;
 
 .user-content {
@@ -66,11 +68,14 @@ $uc-breakpoint: 35em !default;
         [data-display-as~="box"] {
             @include bd();
             @include bd-neutral();
-            border-width: $border-size;
 
-            a[href][data-display-as~="primary-cta"] {
-                @include bg();
-                @include bg-primary();
+            & {
+                border-width: $border-size;
+
+                a[href][data-display-as~="primary-cta"] {
+                    @include bg();
+                    @include bg-primary();
+                }
             }
         }
 
@@ -78,15 +83,18 @@ $uc-breakpoint: 35em !default;
             //background-color: lighten(map-get(map-get($themes, neutral), primary-color), 45%),
             @include bg();
             @include bg-neutral();
-            --t-bg-color-l: var(--t-neutral-color-l--very-light);
 
-            border-width: 0;
+            & {
+                --t-bg-color-l: var(--t-neutral-color-l--very-light);
 
-            a[href][data-display-as~="primary-cta"] {
-                @include bg();
-                @include bg-neutral();
-                --t-bg-color-l: var(--t-neutral-color-l--dark);
-                color: var(--t-text-color-inverse);
+                border-width: 0;
+
+                a[href][data-display-as~="primary-cta"] {
+                    @include bg();
+                    @include bg-neutral();
+                    --t-bg-color-l: var(--t-neutral-color-l--dark);
+                    color: var(--t-text-color-inverse);
+                }
             }
         }
 
@@ -124,38 +132,47 @@ $uc-breakpoint: 35em !default;
             //    }
             //}
             //
-            a[href][data-display-as~="primary-cta"] {
-                @include bg();
-                color: var(--t-primary-color);
-                --t-bg-color-h: 0;
-                --t-bg-color-s: 0%;
-                --t-bg-color-l: 100%;
+            & {
+                a[href][data-display-as~="primary-cta"] {
+                    @include bg();
+                    color: var(--t-primary-color);
+                    --t-bg-color-h: 0;
+                    --t-bg-color-s: 0%;
+                    --t-bg-color-l: 100%;
+                }
             }
         }
 
         [data-display-as~="themed-box--border"] {
             @include bd();
             @include bd-primary();
-            border-width: $border-size--thick;
 
-            a[href][data-display-as~="primary-cta"] {
-                @include bg();
-                @include bg-primary();
+            & {
+                border-width: $border-size--thick;
+
+                a[href][data-display-as~="primary-cta"] {
+                    @include bg();
+                    @include bg-primary();
+                }
             }
         }
 
         [data-display-as~="notice-box"] {
             @include bg();
             @include bg-secondary();
-            --t-bg-color-l: var(--t-secondary-color-l--very-light);
-            color: var(--t-text-color);
             @include bd();
             @include bd-secondary();
-            border-width: $border-size--thick;
 
-            a[href][data-display-as~="primary-cta"] {
-                @include bg();
-                @include bg-secondary();
+            & {
+                --t-bg-color-l: var(--t-secondary-color-l--very-light);
+                color: var(--t-text-color);
+
+                border-width: $border-size--thick;
+
+                a[href][data-display-as~="primary-cta"] {
+                    @include bg();
+                    @include bg-secondary();
+                }
             }
 
             //border: 6px solid map-get(map-get($themes, $theme-name), secondary-color);
@@ -333,8 +350,10 @@ $uc-breakpoint: 35em !default;
         [data-width="one-quarter"] {
             @include ff-width(calc(100% - #{$s__sz-m * 2}), $uc-breakpoint, 25%);
 
-            > * {
-                max-width: 100%;
+            & {
+                > * {
+                    max-width: 100%;
+                }
             }
         }
 
@@ -342,8 +361,10 @@ $uc-breakpoint: 35em !default;
         [data-width="one-third"] {
             @include ff-width(calc(100% - #{$s__sz-m * 2}), $uc-breakpoint, 33%);
 
-            > * {
-                max-width: 100%;
+            & {
+                > * {
+                    max-width: 100%;
+                }
             }
         }
 
@@ -351,8 +372,10 @@ $uc-breakpoint: 35em !default;
         [data-width="one-half"] {
             @include ff-width(calc(100% - #{$s__sz-m * 2}), $uc-breakpoint, 50%);
 
-            > * {
-                max-width: 100%;
+            & {
+                > * {
+                    max-width: 100%;
+                }
             }
         }
 
@@ -360,8 +383,10 @@ $uc-breakpoint: 35em !default;
         [data-width="two-thirds"] {
             @include ff-width(calc(100% - #{$s__sz-m * 2}), $uc-breakpoint, 67%);
 
-            > * {
-                max-width: 100%;
+            & {
+                > * {
+                    max-width: 100%;
+                }
             }
         }
 
@@ -369,8 +394,10 @@ $uc-breakpoint: 35em !default;
         [data-width="one-whole"] {
             width: calc(100% - #{$s__sz-m * 2});
 
-            > * {
-                max-width: 100%;
+            & {
+                > * {
+                    max-width: 100%;
+                }
             }
         }
 
@@ -596,7 +623,10 @@ $uc-breakpoint: 35em !default;
         [data-contains~="image"] b > i > img {
             @include bd();
             @include bd-neutral();
-            border-width: $border-size--thick;
+
+            & {
+                border-width: $border-size--thick;
+            }
         }
 
         b > i > img,
@@ -736,13 +766,13 @@ $uc-breakpoint: 35em !default;
 
     // Reduce heading sizes (esp for sidebars)
     h2 {
-        font-size: 24px / $s__base-font-size * 1em;
+        font-size: (math.div(24px, $s__base-font-size) * 1em);
         //margin-bottom: $s__base-rem-space-unit / 2;
         margin-bottom: 0;
     }
 
     h3 {
-        font-size: 20px / $s__base-font-size * 1em;
+        font-size: (math.div(20px, $s__base-font-size) * 1em);
         //margin-bottom: $s__base-rem-space-unit / 2;
         margin-bottom: 0;
     }

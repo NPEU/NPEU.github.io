@@ -50,8 +50,8 @@ $component-namespace: c- !default;
             */
             & legend {
                 float: left; /* [1] */
-                padding: ($s__sz-m / 4) 0;
-                margin-right: $s__sz-m / 2;
+                padding: math.div($s__sz-m, 4) 0;
+                margin-right: math.div($s__sz-m, 2);
                 margin-bottom: 0;
             }
 

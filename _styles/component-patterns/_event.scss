@@ -7,6 +7,7 @@
     Applying a `event-wrap` class to a list item to make those items flex-containers seems to work
     OK, but perhaps this would be better abstracted as a `fill-height` class or something?
 */
+@use 'sass:math';
 
 $component-namespace: c- !default;
 
@@ -51,8 +52,8 @@ $event-title--line-height: $s__base-rem-space-unit * 1.5;
 
         #{&}__title {
             border-bottom: 1px solid #999;
-            padding-bottom: $s__sz-m / 2;
-            margin-bottom: $s__sz-m / 2;
+            padding-bottom: math.div($s__sz-m, 2);
+            margin-bottom: math.div($s__sz-m, 2);
         }
 
 
@@ -69,7 +70,7 @@ $event-title--line-height: $s__base-rem-space-unit * 1.5;
             font-size: 1.4rem;
 
             border-bottom: 1px solid #999;
-            padding-bottom: $s__sz-m / 2;
+            padding-bottom: math.div($s__sz-m, 2);
             margin-bottom: 0;
         }
 

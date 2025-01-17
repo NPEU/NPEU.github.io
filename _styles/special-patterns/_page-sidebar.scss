@@ -1,7 +1,7 @@
 /*
     Page Sidebar
     ============
-    
+
     In the context of a sidebar, font sizes and other things should be adjusted.
     It's a tough call whether these things should be declared in the files for those things, or
     centrally.
@@ -9,6 +9,7 @@
     confusing when looking at those files as to why things are different to what's expected, so
     make sure to make a note in each of those files.
 */
+@use 'sass:math';
 
 
 .page-sidebar {
@@ -16,17 +17,21 @@
     &#{&} {
 
         h2 {
-            font-size: 24px / $s__base-font-size * 1em;
+            font-size: math.div(24px, $s__base-font-size) * 1em;
             line-height: $s__base-rem-space-unit * 1.5;
         }
 
         h3 {
-            font-size: 20px / $s__base-font-size * 1em;
+            font-size: math.div(20px, $s__base-font-size) * 1em;
             line-height: $s__base-rem-space-unit;
         }
-        
+
         .c-panel:not(:last-child) {
             margin-bottom: $s__sz-m;
+        }
+
+        & > * + * {
+            margin-top: 2.4rem;
         }
     }
 }

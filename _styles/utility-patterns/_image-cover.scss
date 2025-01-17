@@ -64,19 +64,15 @@ $image-cover-min-heights: (
         }
     }
         @each $n in $image-cover-min-heights {
-            &#{&}--min-#{s__str-replace(#{s__strip-unit($n)}, '.', '-')} {
-                &::before {
-                    padding-top: $n;
-                }
+            &#{&}--min-#{s__str-replace(#{s__strip-unit($n)}, '.', '-')}::before {
+                padding-top: $n;
             }
         }
 
         @media only screen and (min-width: $image-cover-breakpoint) {
             @each $n in $image-cover-min-heights {
-                &#{&}--min-#{s__str-replace(#{s__strip-unit($n)}, '.', '-')}--wide {
-                    &::before {
-                        padding-top: $n;
-                    }
+                &#{&}--min-#{s__str-replace(#{s__strip-unit($n)}, '.', '-')}--wide::before {
+                    padding-top: $n;
                 }
             }
         }
@@ -146,8 +142,8 @@ $image-cover-min-heights: (
         min-height: auto;
 
         @each $n in $image-cover-min-heights {
-            &#{&}--min-#{s__strip-unit($n)} {
-                min-height: auto;
+            &#{&}--min-#{s__str-replace(#{s__strip-unit($n)}, '.', '-')} {
+                min-height: $n;
             }
         }
 
