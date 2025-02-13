@@ -1,5 +1,8 @@
 /*
     Card enhancements
+
+    Allow whole card to be clickable whilst still allowing text to be selected (if there's a
+    full-card link in place).
 */
 
 (function() {

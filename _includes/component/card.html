@@ -99,6 +99,36 @@
     </details>
 </div>
 
+
+<h3>Linkless card</h3>
+
+<p>
+    Note these should be used sparingly as the pattern of 'card' implies it's clickable. However there are case where you want a card-link notice box, so rather than have a separate pattern I've permitted this.
+</p>
+<p>Remember NOT to add the 'js' class.</p>
+
+
+<div class="u-space--below">
+    {% include card.html
+        title="This is a linkless card"
+    %}
+</div>
+
+
+<div>
+    <details class="u-padding  d-background--light">
+        <summary>Show code:</summary>
+        <pre><code class="html">&lt;article class=&quot;c-card  js-c-card  d-border  d-background&quot;&gt;
+    &lt;div data-fs-block=&quot;border&quot;&gt;
+        &lt;header class=&quot;c-card__header&quot;&gt;
+            &lt;h3 class=&quot;c-card__title&quot;&gt;&lt;a href=&quot;/patterns&quot;&gt;This is a minimal card&lt;/a&gt;&lt;/h3&gt;
+        &lt;/header&gt;
+    &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+    </details>
+</div>
+
+
 <h3>Everything</h3>
 
 <p>Image, header extra, content, CTA and footer extra</p>

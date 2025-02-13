@@ -624,9 +624,6 @@ b {
 blockquote {
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  margin-left: 2.4rem;
-  margin-right: 2.4rem;
-  font-style: italic;
   /*
       @TODO - set up vars and styles for the most common quote styles.
       I.e. left-border, and enclosing quotes.
@@ -637,6 +634,11 @@ blockquote:first-child {
 }
 blockquote:last-child {
   margin-bottom: 0;
+}
+blockquote {
+  margin-left: 2.4rem;
+  margin-right: 2.4rem;
+  font-style: italic;
 }
 
 /*-------------------------------------------------------------------------------------------------|
@@ -780,8 +782,6 @@ dd {
 |-------------------------------------------------------------------------------------------------*/
 details {
   display: block; /* N: IE 10/11 */
-  margin-top: 2.4rem;
-  margin-bottom: 2.4rem;
   border-width: 0.1rem;
   border-style: solid;
   border-color: #5d4777;
@@ -808,6 +808,8 @@ details {
       }
   }
   */
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
 }
 details:first-child {
   margin-top: 0;
@@ -852,9 +854,9 @@ dfn {
 
 */
 dl {
+  display: table; /* 1b */
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  display: table; /* 1b */
 }
 dl:first-child {
   margin-top: 0;
@@ -902,8 +904,6 @@ em em {
     More info here: https://thatemil.com/blog/2015/01/03/reset-your-fieldset/
 */
 fieldset {
-  margin-top: 2.4rem;
-  margin-bottom: 2.4rem;
   min-width: 0;
   border-width: 0.1rem;
   border-style: solid;
@@ -931,6 +931,8 @@ fieldset {
       }
   }
   */
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
 }
 fieldset:first-child {
   margin-top: 0;
@@ -969,8 +971,6 @@ figcaption {
 |-------------------------------------------------------------------------------------------------*/
 figure {
   display: block;
-  margin-top: 2.4rem;
-  margin-bottom: 2.4rem;
   margin-left: 2.4rem;
   margin-right: 2.4rem;
   max-width: 100%;
@@ -981,6 +981,8 @@ figure {
   background-color: white;
   background-size: 2em 100%, 2em 100%, 1em 100%, 1em 100%;
   background-attachment: local, local, scroll, scroll;
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
 }
 figure:first-child {
   margin-top: 0;
@@ -1067,10 +1069,11 @@ hgroup:last-child {
 
 |-------------------------------------------------------------------------------------------------*/
 h1 {
-  margin-top: 2.4rem;
-  margin-bottom: 2.4rem;
   font-size: 3.25em;
   line-height: 6rem;
+  text-wrap: balance;
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
 }
 h1:first-child {
   margin-top: 0;
@@ -1080,10 +1083,11 @@ h1:last-child {
 }
 
 h2 {
-  margin-top: 2.4rem;
-  margin-bottom: 2.4rem;
   font-size: 2.5em;
   line-height: 4.8rem;
+  text-wrap: balance;
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
 }
 h2:first-child {
   margin-top: 0;
@@ -1093,10 +1097,11 @@ h2:last-child {
 }
 
 h3 {
-  margin-top: 2.4rem;
-  margin-bottom: 2.4rem;
   font-size: 1.875em;
   line-height: 3.6rem;
+  text-wrap: balance;
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
 }
 h3:first-child {
   margin-top: 0;
@@ -1106,10 +1111,11 @@ h3:last-child {
 }
 
 h4 {
-  margin-top: 2.4rem;
-  margin-bottom: 2.4rem;
   font-size: 1.375em;
   line-height: 3.6rem;
+  text-wrap: balance;
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
 }
 h4:first-child {
   margin-top: 0;
@@ -1119,10 +1125,11 @@ h4:last-child {
 }
 
 h5 {
-  margin-top: 2.4rem;
-  margin-bottom: 2.4rem;
   font-size: 1.125em;
   line-height: 2.4rem;
+  text-wrap: balance;
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
 }
 h5:first-child {
   margin-top: 0;
@@ -1132,10 +1139,11 @@ h5:last-child {
 }
 
 h6 {
-  margin-top: 2.4rem;
-  margin-bottom: 2.4rem;
   font-size: 1em;
   line-height: 2.4rem;
+  text-wrap: balance;
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
 }
 h6:first-child {
   margin-top: 0;
@@ -1157,9 +1165,9 @@ hr {
   position: relative;
   height: 2.4rem;
   overflow: visible; /* 1 */
+  border: none;
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  border: none;
 }
 hr:first-child {
   margin-top: 0;
@@ -1589,11 +1597,11 @@ main {
   width: 100%;
   min-height: 100%;
   padding: 0;
-  margin-top: 2.4rem;
-  margin-bottom: 2.4rem;
   background-color: #fff;
   color: #111;
   position: relative;
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
 }
 main:first-child {
   margin-top: 0;
@@ -1664,9 +1672,9 @@ object {
 
 */
 ol {
+  display: table; /* 1b */
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  display: table; /* 1b */
 }
 ol:first-child {
   margin-top: 0;
@@ -1754,12 +1762,12 @@ p:last-child {
 pre {
   overflow-x: scroll; /* 1 */
   overflow-y: auto; /* 1 */
-  margin-top: 2.4rem;
-  margin-bottom: 2.4rem;
   margin-bottom: 3.1rem; /* 1 */
   background-color: hsl(var(--t-primary-color-h), var(--t-primary-color-s), var(--t-primary-color-l--very-light)); /*1 */
   font-size: 1em; /* 2 */
   font-family: monospace, monospace; /* 3 */
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
 }
 pre:first-child {
   margin-top: 0;
@@ -2282,9 +2290,9 @@ tbody tr:last-child th {
 
 */
 ul {
+  display: table; /* 1b */
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
-  display: table; /* 1b */
 }
 ul:first-child {
   margin-top: 0;
@@ -5280,28 +5288,13 @@ a[href].c-cta--has-icon .icon {
 */
 .c-card {
   /*
-      Add space between adjacent cards. Probabl should really be in a layout but arguments for
+      Add space between adjacent cards. Probably should really be in a layout but arguments for
       and against, and this way avoids adding layout containers to dataview modules.
   */
   /*
       The pattern markup allows for a TFS border, so zap that:
   */
   /* If there's no body, the footer should grow: */
-  /*
-  .c-card__footer > div {
-      margin-top: 0;
-      margin-bottom: 0;
-  }
-
-  .c-card__footer > footer {
-      margin-top: 0;
-      margin-bottom: 0;
-  }
-
-  .c-card__footer > div + footer {
-      margin-top: $s__sz-m;
-  }
-  */
 }
 .c-card.c-card {
   display: flex;
@@ -5309,7 +5302,6 @@ a[href].c-cta--has-icon .icon {
   position: relative;
   height: 100%;
   border-radius: 1.2rem;
-  overflow: hidden;
   margin: 0;
 }
 .c-card.c-card + .c-card.c-card {
@@ -5362,6 +5354,9 @@ a[href].c-cta--has-icon .icon {
   margin-bottom: calc(2.4rem - 0.1rem);
   margin-right: 0;
   margin-left: 0;
+  border-top-left-radius: 1.2rem;
+  border-top-right-radius: 1.2rem;
+  overflow: hidden;
   clip-path: ellipse(170% 75% at 10% 25%);
 }
 .c-card .c-card__title {
@@ -5373,6 +5368,9 @@ a[href].c-cta--has-icon .icon {
 .c-card .c-card__title a {
   text-decoration: none !important;
   color: currentColor;
+}
+.c-card .c-card__title a:any-link:focus {
+  box-shadow: none;
 }
 .c-card .c-card__title a::before {
   content: "";
@@ -5437,10 +5435,13 @@ a[href].c-cta--has-icon .icon {
   box-shadow: 0 0 0 0.3rem #fff, 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
 }
 
+/* We only want pointer cursor for whole card if JS is in play to make it all clickable: */
 .c-card--has-js {
   cursor: pointer;
 }
-.c-card--has-js:hover, .c-card--has-js:active, .c-card--has-js:focus {
+
+.c-card:hover .c-card__title a[href]::before, .c-card:active .c-card__title a[href]::before, .c-card:focus .c-card__title a[href]::before {
+  border-radius: 1.2rem;
   box-shadow: 0 0 0 0.3rem #fff, 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
 }
 
@@ -6793,6 +6794,9 @@ a[href].c-cta--has-icon .icon {
   display: flex;
   flex-direction: column;
   min-width: 14em;
+  margin: 0;
+  padding: 0;
+  border: 0 none;
 }
 .c-sign.c-sign--span-all {
   flex-basis: 100%;
@@ -8143,6 +8147,7 @@ a[href].c-cta--has-icon .icon {
          (due to flex-grow: 1), so a max-width is necessary.
          This is why Grid is preferred and if supported, added below.
   */
+  /* Item bases: */
   /* Gutters */
   /* Alignment */
 }
@@ -8202,7 +8207,9 @@ a[href].c-cta--has-icon .icon {
 /* GRID */
 @supports (display: grid) {
   .l-layout.l-gallery-grid {
+    /* Item bases: */
     /* Gutters */
+    /* Equal height rows */
   }
   .l-layout.l-gallery-grid > .l-layout__inner.l-layout__inner {
     display: grid;
@@ -8237,6 +8244,9 @@ a[href].c-cta--has-icon .icon {
   }
   .l-layout.l-gallery-grid.l-gallery-grid--gutter--large > .l-layout__inner > .l-box, .l-layout.l-gallery-grid.l-gallery-grid--gutter--l > .l-layout__inner > .l-box {
     padding: 0;
+  }
+  .l-layout.l-gallery-grid.l-gallery-grid--equal-rows > .l-layout__inner {
+    grid-auto-rows: 1fr;
   }
 }
 /*

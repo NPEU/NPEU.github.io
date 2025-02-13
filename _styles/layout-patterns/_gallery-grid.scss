@@ -54,7 +54,7 @@ $gallery-grid-bases: (
            (due to flex-grow: 1), so a max-width is necessary.
            This is why Grid is preferred and if supported, added below.
     */
-    // Item bases:
+    /* Item bases: */
     @each $gallery-grid-basis in $gallery-grid-bases {
         &.#{$layout-namespace}gallery-grid--basis-#{$gallery-grid-basis} > .#{$layout-namespace}layout__inner > .#{$layout-namespace}box  {
             flex-basis: #{$gallery-grid-basis}em;
@@ -120,7 +120,7 @@ $gallery-grid-bases: (
             }
         }
 
-        // Item bases:
+        /* Item bases: */
         @each $gallery-grid-basis in $gallery-grid-bases {
             &.#{$layout-namespace}gallery-grid--basis-#{$gallery-grid-basis} > .#{$layout-namespace}layout__inner  {
                 grid-template-columns: repeat(auto-fit, minmax(#{$gallery-grid-basis}em, 1fr));
@@ -160,5 +160,12 @@ $gallery-grid-bases: (
                 padding: 0;
             }
         }
+
+        /* Equal height rows */
+
+        &.#{$layout-namespace}gallery-grid--equal-rows > .#{$layout-namespace}layout__inner {
+            grid-auto-rows: 1fr;
+        }
+
     }
 }

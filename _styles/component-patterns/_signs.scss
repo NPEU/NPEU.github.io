@@ -57,6 +57,11 @@ $component-namespace: c- !default;
         //min-width: max-content;
         // This is a bit of a magic number but I can't find a neater way of doing this for now:
         min-width: 14em;
+
+        // Override TFS border box:
+        margin: 0;
+        padding: 0;
+        border: 0 none;
     }
 
     &#{&}--span-all {
