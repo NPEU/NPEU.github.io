@@ -170,7 +170,6 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
             margin-top: $s__sz-m;
         }
 
-
         #{&}__footer {
             margin-top: $s__sz-m;
             margin-bottom: 0;
@@ -181,6 +180,8 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
             margin-top: $s__sz-m;
             margin-bottom: 0;
             background-color: #fff;
+            border-bottom-left-radius: $s__sz-s;
+            border-bottom-right-radius: $s__sz-s;
         }
 
         #{&}__footer-image--padded {

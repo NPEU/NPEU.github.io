@@ -5423,6 +5423,8 @@ a[href].c-cta--has-icon .icon {
   margin-top: 2.4rem;
   margin-bottom: 0;
   background-color: #fff;
+  border-bottom-left-radius: 1.2rem;
+  border-bottom-right-radius: 1.2rem;
 }
 .c-card .c-card__footer-image--padded {
   padding: 2.4rem;
