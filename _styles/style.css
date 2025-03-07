@@ -6474,13 +6474,13 @@ a[href].c-cta--has-icon .icon {
   background-color: #f4f4f4 !important;
 }
 
-.c-map.c-map--300 > div,
-.c-map.c-map--300 > div > div {
+.js-map .c-map.c-map--300 > div,
+.js-map .c-map.c-map--300 > div > div {
   min-height: 300px;
 }
 
-.c-map.c-map--500 > div,
-.c-map.c-map--500 > div > div {
+.js-map .c-map.c-map--500 > div,
+.js-map .c-map.c-map--500 > div > div {
   min-height: 500px;
 }
 

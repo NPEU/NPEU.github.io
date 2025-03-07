@@ -79,8 +79,8 @@ $map-heights: (
 }
 
 @each $height in $map-heights {
-    .#{$component-namespace}map.#{$component-namespace}map--#{$height} > div,
-    .#{$component-namespace}map.#{$component-namespace}map--#{$height} > div > div {
+    .js-map .#{$component-namespace}map.#{$component-namespace}map--#{$height} > div,
+    .js-map .#{$component-namespace}map.#{$component-namespace}map--#{$height} > div > div {
         min-height: #{$height}px;
     }
 }
