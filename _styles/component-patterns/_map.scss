@@ -17,6 +17,7 @@ $map-heights: (
     .#{$component-namespace}map {
         overflow: visible;
         display: flex;
+        flex-direction: column;
         width: 100%;
         height: auto;
         margin: 0;

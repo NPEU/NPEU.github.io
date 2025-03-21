@@ -6435,6 +6435,7 @@ a[href].c-cta--has-icon .icon {
 .js-map .c-map {
   overflow: visible;
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: auto;
   margin: 0;

@@ -13,7 +13,6 @@
 
 
 <div class="u-space--below">
-
     <figure class="c-map  c-map--300" tabindex="0">
         <div id="test_map">
             <p class="u-text-align--center">
@@ -33,14 +32,48 @@
 <div>
     <details class="u-padding  d-background--light">
         <summary>Show code:</summary>
-        <pre><code class="html">&lt;div class=&quot;c-map  c-map--300&quot; id=&quot;test_map&quot; tabindex=&quot;0&quot;&gt;
-    &lt;p class=&quot;u-text-align--center&quot;&gt;
-        &lt;img src=&quot;https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/-1.21574,51.75161,13,0,0/600x600?access_token=pk.eyJ1IjoiYW5keWtraXJrIiwiYSI6ImNqbGh3a3FnbzA1aDMza204eDJnMmVhMmMifQ.I7diR0BZvQWzn2okKy6qIQ&quot; alt=&quot;&quot;&gt;
-    &lt;/p&gt;
-    &lt;p class=&quot;u-text-align--center&quot;&gt;Sorry, the interactive map is currently unavailable.
-&lt;/div&gt;
-&lt;script&gt;
-leafletMapInitialize(&apos;test_map&apos;, {&quot;lat&quot;:51.75161,&quot;lng&quot;:-1.21574,&quot;zoom&quot;:13,&quot;token&quot;:&quot;pk.eyJ1IjoiYW5keWtraXJrIiwiYSI6ImNqbGh3a3FnbzA1aDMza204eDJnMmVhMmMifQ.I7diR0BZvQWzn2okKy6qIQ&quot;}, [{&quot;lat&quot;:&quot;true&quot;,&quot;lng&quot;:&quot;true&quot;,&quot;color&quot;:&quot;blue&quot;,&quot;popup&quot;:&quot;NPEU Address&quot;}]);
-&lt;/script&gt;</code></pre>
+        <pre><code class="html">&lt;figure class=&quot;c-map  c-map--300&quot; tabindex=&quot;0&quot;&gt;
+    &lt;div id=&quot;test_map&quot;&gt;
+        &lt;p class=&quot;u-text-align--center&quot;&gt;
+            &lt;img src=&quot;https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/geojson%28%7B%22type%22%3A%22Point%22%2C%22coordinates%22%3A%5B-1.21574%2C51.75161%5D%7D%29/-1.21574,51.75161,13,0,0/600x600?access_token=pk.eyJ1IjoiYW5keWtraXJrIiwiYSI6ImNqbGh3a3FnbzA1aDMza204eDJnMmVhMmMifQ.I7diR0BZvQWzn2okKy6qIQ&quot; alt=&quot;&quot;&gt;
+        &lt;/p&gt;
+        &lt;p class=&quot;u-text-align--center&quot;&gt;Sorry, the interactive map is currently unavailable.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;script&gt;
+    if ($flbk.u.css_has_rule(&apos;.leaflet-container&apos; )) {
+        leafletMapInitialize(&apos;test_map&apos;, {&quot;lat&quot;:51.75161,&quot;lng&quot;:-1.21574,&quot;zoom&quot;:13,&quot;token&quot;:&quot;pk.eyJ1IjoiYW5keWtraXJrIiwiYSI6ImNqbGh3a3FnbzA1aDMza204eDJnMmVhMmMifQ.I7diR0BZvQWzn2okKy6qIQ&quot;}, [{&quot;lat&quot;:&quot;true&quot;,&quot;lng&quot;:&quot;true&quot;,&quot;color&quot;:&quot;blue&quot;,&quot;popup&quot;:&quot;NPEU Address&quot;}]);
+    }
+    &lt;/script&gt;
+&lt;/figure&gt;</code></pre>
     </details>
+</div>
+
+
+<h3>Multiple Markers</h3>
+
+{% assign map_markers = 'geojson({"type":"FeatureCollection","features":[{"type":"Feature","properties":{"marker-color":"#fd7567","marker-size":"small"},"geometry":{"type":"MultiPoint","coordinates":[[-1.108964,53.530857],[-2.960033,53.398479],[-1.219615,51.763863]]}},{"type":"Feature","properties":{"marker-color":"#6991FD","marker-size":"small"},"geometry":{"type":"MultiPoint","coordinates":[[-2.224989,53.461212],[-0.0588,51.518002],[0.002653,51.578831],[-2.095541,52.599728],[-1.134843,52.626961]]}}]})' %}
+
+<div class="u-space--below">
+    <figure class="c-map  c-map--500" tabindex="0">
+        <div id="test_map_2">
+            <p class="u-text-align--center">
+                <img class="c-map__static" src="https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/{{ map_markers|url_encode }}/-2,53.5,5,0,0/600x600?access_token=pk.eyJ1IjoiYW5keWtraXJrIiwiYSI6ImNqbGh3a3FnbzA1aDMza204eDJnMmVhMmMifQ.I7diR0BZvQWzn2okKy6qIQ" alt="">
+            </p>
+            <p class="u-text-align--center">Sorry, the interactive map is currently unavailable.</p>
+        </div>
+        <figcaption class="l-box--space--block-start  user-content">
+            <p class="l-layout l-row l-row--center l-gutter l-flush-edge-gutter">
+                <span class="l-layout__inner">
+                    <span class="l-box"><img alt="Blue marker" class="icon--marker" height="32" src="/assets/images/icons/blue-marker.svg" width="21" />- Site in set-up</span> <span class="l-box"><img alt="Red marker" class="icon--marker" height="32" src="/assets/images/icons/red-marker.svg" width="21" />- Recruiting site</span>
+                </span>
+            </p>
+        </figcaption>
+
+        <script>
+        if ($flbk.u.css_has_rule('.leaflet-container' )) {
+            leafletMapInitialize('test_map_2', {"lat":53.5,"lng":-2,"zoom":6,"token":"pk.eyJ1IjoiYW5keWtraXJrIiwiYSI6ImNqbGh3a3FnbzA1aDMza204eDJnMmVhMmMifQ.I7diR0BZvQWzn2okKy6qIQ"}, [{"lat":"53.530857","lng":"-1.108964","color":"red","popup":"<p><b>Doncaster Royal Infirmary's Women and Children's Hospital<\/b><\/p><p><a href=\"#doncaster-royal-infirmarys-women-and-childrens-hospital\">More details<\/a><\/p>"},{"lat":"53.398479","lng":"-2.960033","color":"red","popup":"<p><b>Liverpool Women's Hospital<\/b><\/p><p><a href=\"#liverpool-womens\">More details<\/a><\/p>"},{"lat":"53.461212","lng":"-2.224989","color":"blue","popup":"<p><b>Saint Mary's Hospital<\/b><\/p><p><a href=\"#saint-marys-manchester\">More details<\/a><\/p>"},{"lat":"51.518002","lng":"-0.0588","color":"blue","popup":"<p><b>The Royal London Hospital<\/b><\/p><p><a href=\"#the-royal-london-hospital\">More details<\/a><\/p>"},{"lat":"51.578831","lng":"0.002653","color":"blue","popup":"<p><b>Whipps Cross Hospital<\/b><\/p><p><a href=\"#whipps-cross\">More details<\/a><\/p>"},{"lat":"51.763863","lng":"-1.219615","color":"red","popup":"<p><b>John Radcliffe Hospital<\/b><\/p><p><a href=\"#john-radcliffe-hospital\">More details<\/a><\/p>"},{"lat":"52.599728","lng":"-2.095541","color":"blue","popup":"<p><b>New Cross Hospital<\/b><\/p><p><a href=\"#new-cross\">More details<\/a><\/p>"},{"lat":"52.626961","lng":"-1.134843","color":"blue","popup":"<p><b>Leicester Royal Infirmary<\/b><\/p><p><a href=\"#leicester-royal\">More details<\/a><\/p>"}]);
+        }
+        </script>
+    </figure>
 </div>
