@@ -9685,10 +9685,14 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   justify-content: space-between;
 }
 
-.page-header__brand-banner.page-header__brand-banner--no-cta.l-layout.l-distribute > .l-layout__inner .l-box.l-box {
+.page-header__brand-banner.page-header__brand-banner--no-cta.l-layout.l-distribute > .l-layout__inner .l-box.l-box:not(:only-child) {
   text-align: center;
   width: calc((100% - (var(--min-width) + var(--g))) * -9999);
   min-width: fit-content;
+}
+
+.primary-logo-wrap > .c-badge {
+  max-width: 500px;
 }
 
 /*
@@ -9700,7 +9704,7 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 /*
     IE11 needs this or only-child will be on the right:
 */
-.page-header .l-layout__inner :only-child {
+.page-header__brand-banner > .l-layout__inner .l-box:only-child {
   margin-right: auto;
 }
 
