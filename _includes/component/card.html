@@ -557,11 +557,26 @@ We want the cards to expand to fill the height smartly, so we're forcing the car
         title="This is unpublished"
         url="/patterns"
         header_extra=date_content
-        content="<p>This card tells you something else about something else.</p>"
+        content="<p>This card is unpublished. It's only visible to logged-in users with the right permissions.</p>"
         cta="Read more"
         img_src="/assets/images/patterns/placeholder-2"
         img_alt="Father holding his child"
         unpublished=true
+    %}
+</div>
+
+<h3>Pending state</h3>
+
+<div class="u-space--below">
+    {% include card.html
+        title="This is pending"
+        url="/patterns"
+        header_extra=date_content
+        content="<p>This card is published but pending (futer publish date). It's only visible to logged-in users with the right permissions.</p>"
+        cta="Read more"
+        img_src="/assets/images/patterns/placeholder-1"
+        img_alt="Mother looking at the child she's holding"
+        pending=true
     %}
 </div>
 

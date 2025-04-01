@@ -17,13 +17,13 @@ $block-center-namespace: u- !default;
     &#{&} {
         display: flex;
         align-items: center;
-        justify-content: center;
+        //justify-content: center;
     }
 
     & > * {
         flex: 0 1 auto;
     }
-    
+
     /*
         IE10-11
 
@@ -40,7 +40,7 @@ $block-center-namespace: u- !default;
             -ms-grid-rows: 100%;
         }
 
-        & > * {            
+        & > * {
             -ms-grid-column-align: center;
             -ms-grid-row-align: center;
         }

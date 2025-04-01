@@ -5451,13 +5451,15 @@ a[href].c-cta--has-icon .icon {
   display: none;
 }
 
-.c-card--unpublished {
+.c-card--unpublished,
+.c-card--pending {
   opacity: 0.5;
   -webkit-filter: grayscale(1);
   filter: grayscale(1);
 }
-.c-card--unpublished::after {
-  content: "Unpublished";
+.c-card--unpublished::after,
+.c-card--pending::after {
+  content: "";
   display: block;
   position: absolute;
   top: 0;
@@ -5467,6 +5469,14 @@ a[href].c-cta--has-icon .icon {
   font-size: 0.75em;
   color: #fff;
   background-color: #000;
+}
+
+.c-card--unpublished::after {
+  content: "Unpublished";
+}
+
+.c-card--pending::after {
+  content: "Pending";
 }
 
 @media not all and (min-resolution: 0.001dpcm) {
@@ -9671,8 +9681,27 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   margin-bottom: 0;
 }
 
-.page-header .js-cmr--wide.l-layout__inner {
+.page-header__brand-banner.page-header__brand-banner--no-cta.l-layout.l-distribute > .l-layout__inner {
   justify-content: space-between;
+}
+
+.page-header__brand-banner.page-header__brand-banner--no-cta.l-layout.l-distribute > .l-layout__inner .l-box.l-box {
+  text-align: center;
+  width: calc((100% - (var(--min-width) + var(--g))) * -9999);
+  min-width: fit-content;
+}
+
+/*
+.page-header .js-cmr--wide.l-layout__inner {
+    justify-content: space-between;
+}
+
+*/
+/*
+    IE11 needs this or only-child will be on the right:
+*/
+.page-header .l-layout__inner :only-child {
+  margin-right: auto;
 }
 
 .page-header .page-header__brand-banner.npeu {
@@ -9707,14 +9736,20 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   z-index: 1;
 }
 
+/*
+    Page Footer
+    ============
+    ...
+*/
 .page-footer .page-footer__brand-footer.npeu {
+  background-color: #463659;
+  background-image: url("images/npeu-pattern-dark.svg") !important;
+  background-size: 68px 132px !important;
+  background-position: 0 2.6rem !important;
+  background-attachment: fixed !important;
+  background-repeat: repeat;
+  box-shadow: 0 0.3rem 0.3rem 0 rgba(0, 0, 0, 0.7) inset;
   position: relative;
-}
-
-.page-footer .page-footer__brand-footer.npeu > * {
-  position: relative;
-  z-index: 1;
-  padding-bottom: 6rem;
 }
 
 .page-footer .page-footer__brand-footer.npeu::before {
@@ -9729,6 +9764,12 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   clip-path: ellipse(calc(10em + 75%) 110% at 0% -20%);
 }
 
+.page-footer .page-footer__brand-footer.npeu > * {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 6rem;
+}
+
 .page-footer .page-footer__brand-footer.npeu .page-footer__info-box {
   background: transparent;
   border-radius: 0;
@@ -9740,21 +9781,6 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 
 .page-footer .page-footer__brand-footer.npeu .page-footer__info-box + * {
   justify-content: start !important;
-}
-
-/*
-    Page Footer
-    ============
-    ...
-*/
-.page-footer .page-footer__brand-footer.npeu {
-  background-color: #463659;
-  background-image: url("images/npeu-pattern-dark.svg") !important;
-  background-size: 68px 132px !important;
-  background-position: 0 2.6rem !important;
-  background-attachment: fixed !important;
-  background-repeat: repeat;
-  box-shadow: 0 0.3rem 0.3rem 0 rgba(0, 0, 0, 0.7) inset;
 }
 
 /*
@@ -9801,7 +9827,12 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
   margin: 0 auto;
   background-color: #fff;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   box-shadow: 0 0 2.4rem 0.6rem #000;
+}
+.page-wrap.page-wrap > * {
+  flex-grow: 1;
 }
 
 /*
@@ -10476,7 +10507,7 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
           -ms-grid-rows: 100%;
       }
 
-      & > * {            
+      & > * {
           -ms-grid-column-align: center;
           -ms-grid-row-align: center;
       }
@@ -10487,7 +10518,6 @@ _:-o-prefocus, body:last-child .dropdown .dropdown__control {
 .u-block-center.u-block-center {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 .u-block-center > * {
   flex: 0 1 auto;

@@ -1,5 +1,5 @@
 {% if include.title %}
-<article class="c-card{% if include.url %}  js-c-card{% endif %}{% if include.unpublished | default: false %}  c-card--unpublished{% endif %}  d-background{% if include.wrapper_classes | default: false %}  {{ include.wrapper_classes }}{% endif %}">
+<article class="c-card{% if include.url %}  js-c-card{% endif %}{% if include.unpublished | default: false %}  c-card--unpublished{% endif %}{% if include.pending | default: false %}  c-card--pending{% endif %}  d-background{% if include.wrapper_classes | default: false %}  {{ include.wrapper_classes }}{% endif %}">
     <div data-fs-block="border  rounded  inverted">
         <header class="c-card__header">
             <h{{ include.hx | default: 3 }} class="c-card__title">{% if include.url %}<a href="{{ include.url }}"{% if include.cta %} aria-describedby="desc-{{ include.title | slugify }}"{% endif %}>{% endif %}<span>{{ include.title }}</span>{% if include.url %}</a>{% endif %}</h{{ include.hx | default: 3 }}>

@@ -14,8 +14,29 @@
     margin-bottom: 0;
 }
 
+.page-header__brand-banner.page-header__brand-banner--no-cta.l-layout.l-distribute > .l-layout__inner {
+    justify-content: space-between;
+}
+
+.page-header__brand-banner.page-header__brand-banner--no-cta.l-layout.l-distribute > .l-layout__inner .l-box.l-box {
+    text-align: center;
+    width: calc((100% - (var(--min-width) + var(--g))) * -9999);
+    min-width: fit-content;
+}
+
+
+/*
 .page-header .js-cmr--wide.l-layout__inner {
     justify-content: space-between;
+}
+
+*/
+
+/*
+    IE11 needs this or only-child will be on the right:
+*/
+.page-header .l-layout__inner :only-child {
+    margin-right: auto;
 }
 
 .page-header .page-header__brand-banner.npeu {
@@ -55,39 +76,3 @@
 
 
 
-
-.page-footer .page-footer__brand-footer.npeu {
-    position: relative;
-}
-
-.page-footer .page-footer__brand-footer.npeu > * {
-    position: relative;
-    z-index: 1;
-    padding-bottom: 6rem;
-}
-
-.page-footer .page-footer__brand-footer.npeu::before {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background: rgba(0,0,0,.6);
-    clip-path: ellipse(calc(10em + 75%) 110% at 0% -20%);
-}
-
-
-.page-footer .page-footer__brand-footer.npeu .page-footer__info-box {
-    background: transparent;
-    border-radius: 0;
-    /*
-    margin: -2.4rem 2.4rem 6rem -2.4rem;
-    padding: 2.4rem;
-    */
-  }
-
-.page-footer .page-footer__brand-footer.npeu .page-footer__info-box + * {
-    justify-content: start !important;
-}
