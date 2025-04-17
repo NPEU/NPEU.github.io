@@ -114,7 +114,7 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
                     box-shadow: none;
                 }
 
-                a::before {
+                a::after {
                     content: "";
                     display: block;
                     position: absolute;
@@ -209,18 +209,22 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
     &:hover,
     &:active,
     &:focus {
-        & .#{$component-namespace}card__title a[href]::before {
+        & .#{$component-namespace}card__title a[href]::after {
             border-radius: $s__sz-s;
             box-shadow: $focus-shadow;
         }
     }
 }
 
+/*
+Not sure what this achieves...?
 .#{$component-namespace}card--is-mousedown {
     .#{$component-namespace}card__title a::after {
         display: none;
     }
 }
+
+*/
 
 .#{$component-namespace}card--unpublished,
 .#{$component-namespace}card--pending {
@@ -253,6 +257,7 @@ $card-title--line-height: $s__base-rem-space-unit * 1.5;
         content: "Pending";
     }
 }
+
 
 // Safari 10.1 doesn't handle height correctly, so undoing the 100%. This means it won't expand
 // in layout/grid scenarios, but there are hardly any users so this is acceptable.

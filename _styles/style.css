@@ -468,6 +468,9 @@ a[href]:focus {
     vertical-align: text-bottom;
   }
 }
+a[href] img:hover, a[href] svg:hover {
+  outline-color: transparent;
+}
 
 /*
     Sometimes anchors can be used without an href, and may contain icons etc, so make sure styles
@@ -5372,7 +5375,7 @@ a[href].c-cta--has-icon .icon {
 .c-card .c-card__title a:any-link:focus {
   box-shadow: none;
 }
-.c-card .c-card__title a::before {
+.c-card .c-card__title a::after {
   content: "";
   display: block;
   position: absolute;
@@ -5442,15 +5445,20 @@ a[href].c-cta--has-icon .icon {
   cursor: pointer;
 }
 
-.c-card:hover .c-card__title a[href]::before, .c-card:active .c-card__title a[href]::before, .c-card:focus .c-card__title a[href]::before {
+.c-card:hover .c-card__title a[href]::after, .c-card:active .c-card__title a[href]::after, .c-card:focus .c-card__title a[href]::after {
   border-radius: 1.2rem;
   box-shadow: 0 0 0 0.3rem #fff, 0 0 0 0.6rem rgba(0, 0, 0, 0.2);
 }
 
-.c-card--is-mousedown .c-card__title a::after {
-  display: none;
+/*
+Not sure what this achieves...?
+.c-card--is-mousedown {
+    .c-card__title a::after {
+        display: none;
+    }
 }
 
+*/
 .c-card--unpublished,
 .c-card--pending {
   opacity: 0.5;
