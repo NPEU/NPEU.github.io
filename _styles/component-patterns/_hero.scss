@@ -30,6 +30,7 @@ $theme-only: false !default;
         margin: 0;
         min-inline-size: auto;
         border: 0;
+        border-radius: 0;
         width: 100%;
 
         // Note this won't be needed when moving to :last-child margin method.

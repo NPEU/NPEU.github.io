@@ -1,14 +1,14 @@
 {% if include.title %}
 <article class="c-card{% if include.url %}  js-c-card{% endif %}{% if include.unpublished | default: false %}  c-card--unpublished{% endif %}{% if include.pending | default: false %}  c-card--pending{% endif %}  d-background{% if include.wrapper_classes | default: false %}  {{ include.wrapper_classes }}{% endif %}">
     <div data-fs-block="border  rounded  inverted">
-        <header class="c-card__header">
+        <header class="c-card__header" data-fs-block="flex  flex-column">
             <h{{ include.hx | default: 3 }} class="c-card__title">{% if include.url %}<a href="{{ include.url }}"{% if include.cta %} aria-describedby="desc-{{ include.title | slugify }}"{% endif %}>{% endif %}<span>{{ include.title }}</span>{% if include.url %}</a>{% endif %}</h{{ include.hx | default: 3 }}>
             {% if include.img_src %}
-            <div class="c-card__image  l-box">
+            <div class="c-card__image  l-box" data-fs-block="flex-first">
                 <div class="u-image-cover  js-image-cover  u-image-cover--min-{{ include.img_ratio | default: '56-25' }}">
-                    <div class="u-image-cover__inner">
+                    <p class="u-image-cover__inner">
                         <img src="{{ include.img_src }}--medium.jpg" sizes="100vw" srcset="{{ include.img_src }}--large.jpg 1600w, {{ include.img_src }}--medium.jpg 900w, {{ include.img_src }}--small.jpg 300w" alt="{{ include.img_alt | default: '' }}" class="u-image-cover__image" width="{{ include.img_w | default: 200 }}" height="{{ include.img_h | default: 133 }}">
-                    </div>
+                    </p>
                 </div>
             </div>
             {% endif %}
